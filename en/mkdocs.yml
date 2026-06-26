@@ -222,6 +222,7 @@ nav:
             - Use the MCP Registry API: cloud/mcp-servers/mcp-registry-api.md
         - GenAI Applications: cloud/ai-workspace/genai-applications.md
         - Configure Inbound Auth: cloud/ai-workspace/configure-inbound-auth.md
+        - Secrets Management: cloud/ai-workspace/secrets-management.md
         - Invoke via SDKs: cloud/ai-workspace/using-sdks.md
   #      - Insights: cloud/ai-workspace/insights.md
         - Policies:
