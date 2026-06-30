@@ -134,6 +134,7 @@
 - [Apply Policies to MCP Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/apply-policies.md): Attach authentication, authorization, and ACL policies to an MCP proxy
 - [GenAI Applications](https://wso2.com/api-platform/docs/cloud/ai-workspace/genai-applications.md): Register and track GenAI applications that consume LLM and MCP resources through AI Workspace
 - [Configure Inbound Auth](https://wso2.com/api-platform/docs/cloud/ai-workspace/configure-inbound-auth.md): Configure how client applications authenticate to AI Workspace LLM and MCP proxies
+- [Secrets Management](https://wso2.com/api-platform/docs/cloud/ai-workspace/secrets-management.md): Store and manage AES-GCM-256 encrypted secrets in AI Workspace and reference them securely in LLM provider, MCP proxy, and API backend configurations using placeholder syntax
 - [Invoke via SDKs](https://wso2.com/api-platform/docs/cloud/ai-workspace/using-sdks.md): Use OpenAI-compatible SDKs to call LLM proxies managed by AI Workspace
 - [AI Policies Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/overview.md): Overview of AI Workspace policies: guardrails, rate limits, prompt management, and semantic caching
 - [Guardrails Overview (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/overview.md): Overview of guardrails in AI Workspace: PII masking, content safety, and prompt injection protection
