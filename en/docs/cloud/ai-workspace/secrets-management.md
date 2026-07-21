@@ -23,9 +23,11 @@ Use secrets to avoid embedding raw API keys, tokens, or passwords directly in LL
 
 1. Create a secret via the Platform API with a unique `handle` and the plaintext `value`.
 2. Reference the secret in any artifact configuration using the placeholder syntax:
+{% raw %}
    ```text
    {{ secret "your-secret-handle" }}
    ```
+{% endraw %}
 3. When an artifact that contains a placeholder is deployed, the gateway resolves it with the decrypted value at runtime — the plaintext never appears in the control-plane database or configuration files.
 4. To rotate a credential, call `PUT /api/v0.9/secrets/{handle}` with the new value. Because artifacts reference the secret by handle, no artifact changes or redeployment are required.
 
@@ -34,7 +36,7 @@ Use secrets to avoid embedding raw API keys, tokens, or passwords directly in LL
 When you create or update an **LLM Provider** or **MCP Proxy** through the AI Workspace UI and fill in an upstream API key or auth value, the UI automatically:
 
 1. Creates a secret via `POST /api/v0.9/secrets` using a deterministic handle derived from the resource ID (e.g. `wso2-openai-provider-api-key`).
-2. Substitutes the credential with the `{{ secret "handle" }}` placeholder before saving the resource.
+2. Substitutes the credential with a secret placeholder before saving the resource.
 
 The raw credential is sent to the secrets API only once and is never stored in the artifact configuration. Re-saving a resource that already contains a placeholder skips the secret creation step.
 
@@ -70,7 +72,7 @@ Stores a new encrypted secret. The plaintext value is never returned — not eve
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `handle` | Yes | Unique identifier within the organization. Used in `{{ secret "handle" }}` references. Immutable after creation. |
+| `handle` | Yes | Unique identifier within the organization. Used as the secret name in placeholder references. Immutable after creation. |
 | `name` | Yes | Human-readable display name for the secret. |
 | `value` | Yes | The sensitive value to encrypt and store. |
 | `description` | No | Optional description. |
@@ -206,7 +208,7 @@ PUT /api/v0.9/secrets/{handle}
 Content-Type: multipart/form-data
 ```
 
-Re-encrypts and stores a new value. Because `handle` is immutable, all `{{ secret "handle" }}` placeholders across existing resources remain valid without modification. The plaintext value is not returned in the response.
+Re-encrypts and stores a new value. Because `handle` is immutable, all secret placeholders across existing resources remain valid without modification. The plaintext value is not returned in the response.
 
 **Request fields**
 
@@ -298,12 +300,15 @@ Soft-deletes a secret by setting its status to `DEPRECATED`. Deletion is blocked
 
 Use the following placeholder syntax wherever a configuration field accepts a sensitive string value:
 
+{% raw %}
 ```text
 {{ secret "your-secret-handle" }}
 ```
+{% endraw %}
 
 **Example — LLM provider upstream API key**
 
+{% raw %}
 ```yaml
 spec:
   upstream:
@@ -312,10 +317,11 @@ spec:
       header: Authorization
       value: 'Bearer {{ secret "wso2-openai-key" }}'
 ```
+{% endraw %}
 
 **Validation at save time**
 
-When creating or updating any resource that contains `{{ secret "..." }}` references, the Platform API validates that an active secret with the referenced handle exists in the organization. If any placeholder cannot be resolved, the request is rejected with `400 Bad Request` and the list of unresolvable handles.
+When creating or updating any resource that contains secret placeholder references, the Platform API validates that an active secret with the referenced handle exists in the organization. If any placeholder cannot be resolved, the request is rejected with `400 Bad Request` and the list of unresolvable handles.
 
 ---
 
@@ -335,7 +341,7 @@ No artifact changes or redeployment are required because resources reference the
 Attempting to delete a secret that is still in use returns HTTP 409. To remove it cleanly:
 
 1. Inspect the `references` list in the 409 response.
-2. Update each referencing artifact to remove or replace the `{{ secret "handle" }}` reference.
+2. Update each referencing artifact to remove or replace its secret placeholder reference.
 3. Redeploy the updated artifacts to the gateway.
 4. Retry `DELETE /api/v0.9/secrets/{handle}`.
 
