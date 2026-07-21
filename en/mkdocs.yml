@@ -20,7 +20,6 @@ site_description: API Platform Documentation
 site_author: WSO2
 site_url: https://wso2.com/bijira/docs
 
-
 # Repository
 repo_name: wso2/docs-bijira
 repo_url: https://github.com/wso2/docs-bijira
@@ -52,17 +51,17 @@ theme:
   language: "en"
   palette:
     # Palette toggle for light mode
-       - media: "(prefers-color-scheme: light)"
-         scheme: default 
-         toggle:
-          icon: assets/libs/oxygen-ui-icons/1.7.3/crescent-bright-16.svg
-          name: Switch to dark mode
-      # Palette toggle for dark mode
-       - media: "(prefers-color-scheme: dark)"
-         scheme: slate
-         toggle:
-           icon: assets/libs/oxygen-ui-icons/1.7.3/sun-16.svg
-           name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: assets/libs/oxygen-ui-icons/1.7.3/crescent-bright-16.svg
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: assets/libs/oxygen-ui-icons/1.7.3/sun-16.svg
+        name: Switch to light mode
 
   icon:
     logo: logo
@@ -73,774 +72,774 @@ nav:
   - Overview: index.md
   - Get Started: get-started.md
   - Cloud:
-    - Introduction:
-        - What is API Platform Cloud?: cloud/introduction/what-is-bijira.md
-        - Quick Start Guide:
-          - API Proxy: cloud/introduction/quick-start-guide.md
-          - MCP Server: cloud/introduction/quick-start-guide-mcp.md
-        - Concepts:
-          # - Resource Hierarchy: resource-hierarchy.md
-          - Organization: cloud/bijira-concepts/organization.md
-          - Project: cloud/bijira-concepts/project.md
-          # - Deployment Tracks: cloud/bijira-concepts/deployment-tracks.md
-          - Data Planes: cloud/bijira-concepts/data-planes.md
-    - Create API Proxy:
-        - Overview: cloud/create-api-proxy/overview.md
-        - My APIs (Ingress):
-            - REST APIs:
-                - Create with GenAI: cloud/create-api-proxy/my-apis/http/create-with-genai.md
-                - Import API Contract: cloud/create-api-proxy/my-apis/http/import-api-contract.md
-                - Import API Contract from GitHub: cloud/create-api-proxy/my-apis/http/import-api-from-github.md
-                - Start with Endpoint: cloud/create-api-proxy/my-apis/http/start-with-endpoint.md
-                - Start from Scratch: cloud/create-api-proxy/my-apis/http/start-from-scratch.md
-            - WebSocket APIs:
-                - Create with GenAI: cloud/create-api-proxy/my-apis/websocket/create-with-genai.md
-                - Import API Contract: cloud/create-api-proxy/my-apis/websocket/import-api-contract.md
-                - Start with Endpoint: cloud/create-api-proxy/my-apis/websocket/start-with-endpoint.md
-                - Start from Scratch: cloud/create-api-proxy/my-apis/websocket/start-from-scratch.md
-                - Limitations: cloud/create-api-proxy/my-apis/websocket/quotas-and-limitations.md
-            - GraphQL APIs:
-                - Import API Contract: cloud/create-api-proxy/my-apis/graphql/import-api-contract.md
-                - Start with Endpoint: cloud/create-api-proxy/my-apis/graphql/start-with-endpoint.md
-        - Third Party APIs (Egress):
-            - AI APIs:
-                - Overview: cloud/create-api-proxy/third-party-apis/ai-apis.md
-                - Providers:
-                    - OpenAI: cloud/create-api-proxy/third-party-apis/open-ai.md
-                    - Azure OpenAI: cloud/create-api-proxy/third-party-apis/azure-ai.md
-                    - Mistral: cloud/create-api-proxy/third-party-apis/mistral.md
-                    - AWS Bedrock: cloud/create-api-proxy/third-party-apis/awsbedrock.md
-                    - Anthropic: cloud/create-api-proxy/third-party-apis/claude.md
-                - Policies:
-                    - Token-Based Rate Limit: cloud/create-api-proxy/third-party-apis/token-ratelimit.md
-                    - Guardrails:
-                        - Overview: cloud/create-api-proxy/third-party-apis/guardrails.md
-                        # - Basic Guardrails:
-                        - Regex Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/regex-guardrail.md
-                        - Word Count Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/word-count-guardrail.md
-                        - Sentence Count Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/sentence-count-guardrail.md
-                        - Content Length Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/content-length-guardrail.md
-                        - URL Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/url-guardrail.md
-                        - Regex PII Masking: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/regex-pii-masking.md
-                        # - Advanced Guardrails:
-                        - PII Masking: cloud/create-api-proxy/third-party-apis/guardrails/advanced-guardrails/pii-masking.md
-                        # - Third Party Guardrail Integrations:
-                        - Azure Content Safety Content Moderation: cloud/create-api-proxy/third-party-apis/guardrails/third-party-guardrail-integrations/azure-content-safety-content-moderation.md
-                        - AWS Bedrock Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/third-party-guardrail-integrations/aws-bedrock-guardrail.md
-                    - Semantic Cache: cloud/create-api-proxy/third-party-apis/semantic-cache.md
-            - Get from Marketplace: cloud/create-api-proxy/third-party-apis/get-from-marketplace.md
-            - Import API Contract: cloud/create-api-proxy/third-party-apis/import-api-contract.md
-    - Develop API Proxy:
-        - Authentication and Authorization:
-            - Secure API Access with Asgardeo: cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-asgardeo.md
-            - Secure API Access with API Platform STS: cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-bijira-sts.md
-            - Secure API Access with Azure AD: cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-azure-ad.md
-            - Secure API Access with an External Key Manager: cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-external-idp.md
-            - Secure Communication Between the API Platform Gateway and Your Backend with OAuth2: cloud/develop-api-proxy/authentication-and-authorization/secure-communication-between-bijira-gateway-and-backend-with-oauth2.md
-            - Secure Communication Between the API Platform Gateway and Your Backend with Mutual TLS: cloud/develop-api-proxy/authentication-and-authorization/secure-communication-between-the-bijira-gateway-and-your-backend-with-mutual-tls.md
-        - Policy:
-            - Overview: cloud/develop-api-proxy/policy/overview.md
-            - Policies: cloud/develop-api-proxy/policy/policies.md
-            - Attach and Manage Policies: cloud/develop-api-proxy/policy/attach-and-manage-policies.md
-          # - Apply Advanced Settings on Mediation Policies: cloud/develop-api-proxy/policy/apply-advanced-settings-on-mediation-policies.md
-        - Documents: cloud/develop-api-proxy/documents.md
-        - Make an API AI-Ready: cloud/develop-api-proxy/make-api-ai-ready.md
-        - Lifecycle: cloud/develop-api-proxy/lifecycle-management.md
-        - Subscription Plans: cloud/develop-api-proxy/subscription-plans.md
-    - Test API Proxy:
-        - OpenAPI Console: cloud/test-api-proxy/openapi-console.md
-        - WebSocket Console: cloud/test-api-proxy/ws-test-console.md
-        - GraphQL Console: cloud/test-api-proxy/graphql-console.md
-        - cURL: cloud/test-api-proxy/curl.md
-        - API Chat: cloud/test-api-proxy/api-chat.md
-    - MCP Servers:
-        - Overview: cloud/mcp-servers/get-started-with-mcp.md
-        - Design MCP Servers: cloud/mcp-servers/design-mcp-servers.md
-        - Proxy Remote MCP Servers: cloud/mcp-servers/proxy-remote-servers.md
-        - Customize Developer Portal as an MCP Hub: cloud/mcp-servers/devportal-mcp-hub.md
-    - API Governance:
-        - API Governance Overview: cloud/governance/overview.md
-        - Govern API Proxy: cloud/governance/govern-api-proxy.md
-    - AI Gateway:
-        - Overview: cloud/ai-gateway/overview.md
-        - LLM:
-          - Quick Start Guide: cloud/ai-gateway/llm/quick-start-guide.md
-          - LLM Provider Templates: cloud/ai-gateway/llm/llm-templates.md
-          - Guardrails:
-            - AWS Bedrock Guardrail: cloud/ai-gateway/llm/guardrails/aws-bedrock-guardrail.md
-            - Azure Content Safety: cloud/ai-gateway/llm/guardrails/azure-content-safety.md
-            - Content Length Guardrail: cloud/ai-gateway/llm/guardrails/content-length.md
-            - JSON Schema Guardrail: cloud/ai-gateway/llm/guardrails/json-schema.md
-            - PII Masking Regex Guardrail: cloud/ai-gateway/llm/guardrails/pii-masking-regex.md
-            - Regex Guardrail: cloud/ai-gateway/llm/guardrails/regex.md
-            - Semantic Prompt Guardrail: cloud/ai-gateway/llm/guardrails/semantic-prompt-guard.md
-            - Semantic Tool Filtering: cloud/ai-gateway/llm/guardrails/semantic-tool-filtering.md
-            - Sentence Count Guardrail: cloud/ai-gateway/llm/guardrails/sentence-count.md
-            - URL Guardrail: cloud/ai-gateway/llm/guardrails/url.md
-            - Word Count Guardrail: cloud/ai-gateway/llm/guardrails/word-count.md
-          - Load Balancing:
-            - Model Round Robin: cloud/ai-gateway/llm/load-balancing/model-round-robin.md
-            - Model Weighted Round Robin: cloud/ai-gateway/llm/load-balancing/model-weighted-round-robin.md
-          - Prompt Management:
-            - Prompt Decorator: cloud/ai-gateway/llm/prompt-management/prompt-decorator.md
-            - Prompt Template: cloud/ai-gateway/llm/prompt-management/prompt-template.md
-          - Semantic Caching: cloud/ai-gateway/llm/semantic-caching.md
-        - MCP:
-          - Quick Start Guide: cloud/ai-gateway/mcp/quick-start-guide.md
+      - Introduction:
+          - What is API Platform Cloud?: cloud/introduction/what-is-bijira.md
+          - Quick Start Guide:
+              - API Proxy: cloud/introduction/quick-start-guide.md
+              - MCP Server: cloud/introduction/quick-start-guide-mcp.md
+          - Concepts:
+              # - Resource Hierarchy: resource-hierarchy.md
+              - Organization: cloud/bijira-concepts/organization.md
+              - Project: cloud/bijira-concepts/project.md
+              # - Deployment Tracks: cloud/bijira-concepts/deployment-tracks.md
+              - Data Planes: cloud/bijira-concepts/data-planes.md
+      - Create API Proxy:
+          - Overview: cloud/create-api-proxy/overview.md
+          - My APIs (Ingress):
+              - REST APIs:
+                  - Create with GenAI: cloud/create-api-proxy/my-apis/http/create-with-genai.md
+                  - Import API Contract: cloud/create-api-proxy/my-apis/http/import-api-contract.md
+                  - Import API Contract from GitHub: cloud/create-api-proxy/my-apis/http/import-api-from-github.md
+                  - Start with Endpoint: cloud/create-api-proxy/my-apis/http/start-with-endpoint.md
+                  - Start from Scratch: cloud/create-api-proxy/my-apis/http/start-from-scratch.md
+              - WebSocket APIs:
+                  - Create with GenAI: cloud/create-api-proxy/my-apis/websocket/create-with-genai.md
+                  - Import API Contract: cloud/create-api-proxy/my-apis/websocket/import-api-contract.md
+                  - Start with Endpoint: cloud/create-api-proxy/my-apis/websocket/start-with-endpoint.md
+                  - Start from Scratch: cloud/create-api-proxy/my-apis/websocket/start-from-scratch.md
+                  - Limitations: cloud/create-api-proxy/my-apis/websocket/quotas-and-limitations.md
+              - GraphQL APIs:
+                  - Import API Contract: cloud/create-api-proxy/my-apis/graphql/import-api-contract.md
+                  - Start with Endpoint: cloud/create-api-proxy/my-apis/graphql/start-with-endpoint.md
+          - Third Party APIs (Egress):
+              - AI APIs:
+                  - Overview: cloud/create-api-proxy/third-party-apis/ai-apis.md
+                  - Providers:
+                      - OpenAI: cloud/create-api-proxy/third-party-apis/open-ai.md
+                      - Azure OpenAI: cloud/create-api-proxy/third-party-apis/azure-ai.md
+                      - Mistral: cloud/create-api-proxy/third-party-apis/mistral.md
+                      - AWS Bedrock: cloud/create-api-proxy/third-party-apis/awsbedrock.md
+                      - Anthropic: cloud/create-api-proxy/third-party-apis/claude.md
+                  - Policies:
+                      - Token-Based Rate Limit: cloud/create-api-proxy/third-party-apis/token-ratelimit.md
+                      - Guardrails:
+                          - Overview: cloud/create-api-proxy/third-party-apis/guardrails.md
+                          # - Basic Guardrails:
+                          - Regex Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/regex-guardrail.md
+                          - Word Count Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/word-count-guardrail.md
+                          - Sentence Count Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/sentence-count-guardrail.md
+                          - Content Length Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/content-length-guardrail.md
+                          - URL Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/url-guardrail.md
+                          - Regex PII Masking: cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/regex-pii-masking.md
+                          # - Advanced Guardrails:
+                          - PII Masking: cloud/create-api-proxy/third-party-apis/guardrails/advanced-guardrails/pii-masking.md
+                          # - Third Party Guardrail Integrations:
+                          - Azure Content Safety Content Moderation: cloud/create-api-proxy/third-party-apis/guardrails/third-party-guardrail-integrations/azure-content-safety-content-moderation.md
+                          - AWS Bedrock Guardrail: cloud/create-api-proxy/third-party-apis/guardrails/third-party-guardrail-integrations/aws-bedrock-guardrail.md
+                      - Semantic Cache: cloud/create-api-proxy/third-party-apis/semantic-cache.md
+              - Get from Marketplace: cloud/create-api-proxy/third-party-apis/get-from-marketplace.md
+              - Import API Contract: cloud/create-api-proxy/third-party-apis/import-api-contract.md
+      - Develop API Proxy:
+          - Authentication and Authorization:
+              - Secure API Access with Asgardeo: cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-asgardeo.md
+              - Secure API Access with API Platform STS: cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-bijira-sts.md
+              - Secure API Access with Azure AD: cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-azure-ad.md
+              - Secure API Access with an External Key Manager: cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-external-idp.md
+              - Secure Communication Between the API Platform Gateway and Your Backend with OAuth2: cloud/develop-api-proxy/authentication-and-authorization/secure-communication-between-bijira-gateway-and-backend-with-oauth2.md
+              - Secure Communication Between the API Platform Gateway and Your Backend with Mutual TLS: cloud/develop-api-proxy/authentication-and-authorization/secure-communication-between-the-bijira-gateway-and-your-backend-with-mutual-tls.md
+          - Policy:
+              - Overview: cloud/develop-api-proxy/policy/overview.md
+              - Policies: cloud/develop-api-proxy/policy/policies.md
+              - Attach and Manage Policies: cloud/develop-api-proxy/policy/attach-and-manage-policies.md
+            # - Apply Advanced Settings on Mediation Policies: cloud/develop-api-proxy/policy/apply-advanced-settings-on-mediation-policies.md
+          - Documents: cloud/develop-api-proxy/documents.md
+          - Make an API AI-Ready: cloud/develop-api-proxy/make-api-ai-ready.md
+          - Lifecycle: cloud/develop-api-proxy/lifecycle-management.md
+          - Subscription Plans: cloud/develop-api-proxy/subscription-plans.md
+      - Test API Proxy:
+          - OpenAPI Console: cloud/test-api-proxy/openapi-console.md
+          - WebSocket Console: cloud/test-api-proxy/ws-test-console.md
+          - GraphQL Console: cloud/test-api-proxy/graphql-console.md
+          - cURL: cloud/test-api-proxy/curl.md
+          - API Chat: cloud/test-api-proxy/api-chat.md
+      - MCP Servers:
+          - Overview: cloud/mcp-servers/get-started-with-mcp.md
+          - Design MCP Servers: cloud/mcp-servers/design-mcp-servers.md
+          - Proxy Remote MCP Servers: cloud/mcp-servers/proxy-remote-servers.md
+          - Customize Developer Portal as an MCP Hub: cloud/mcp-servers/devportal-mcp-hub.md
+      - API Governance:
+          - API Governance Overview: cloud/governance/overview.md
+          - Govern API Proxy: cloud/governance/govern-api-proxy.md
+      - AI Gateway:
+          - Overview: cloud/ai-gateway/overview.md
+          - LLM:
+              - Quick Start Guide: cloud/ai-gateway/llm/quick-start-guide.md
+              - LLM Provider Templates: cloud/ai-gateway/llm/llm-templates.md
+              - Guardrails:
+                  - AWS Bedrock Guardrail: cloud/ai-gateway/llm/guardrails/aws-bedrock-guardrail.md
+                  - Azure Content Safety: cloud/ai-gateway/llm/guardrails/azure-content-safety.md
+                  - Content Length Guardrail: cloud/ai-gateway/llm/guardrails/content-length.md
+                  - JSON Schema Guardrail: cloud/ai-gateway/llm/guardrails/json-schema.md
+                  - PII Masking Regex Guardrail: cloud/ai-gateway/llm/guardrails/pii-masking-regex.md
+                  - Regex Guardrail: cloud/ai-gateway/llm/guardrails/regex.md
+                  - Semantic Prompt Guardrail: cloud/ai-gateway/llm/guardrails/semantic-prompt-guard.md
+                  - Semantic Tool Filtering: cloud/ai-gateway/llm/guardrails/semantic-tool-filtering.md
+                  - Sentence Count Guardrail: cloud/ai-gateway/llm/guardrails/sentence-count.md
+                  - URL Guardrail: cloud/ai-gateway/llm/guardrails/url.md
+                  - Word Count Guardrail: cloud/ai-gateway/llm/guardrails/word-count.md
+              - Load Balancing:
+                  - Model Round Robin: cloud/ai-gateway/llm/load-balancing/model-round-robin.md
+                  - Model Weighted Round Robin: cloud/ai-gateway/llm/load-balancing/model-weighted-round-robin.md
+              - Prompt Management:
+                  - Prompt Decorator: cloud/ai-gateway/llm/prompt-management/prompt-decorator.md
+                  - Prompt Template: cloud/ai-gateway/llm/prompt-management/prompt-template.md
+              - Semantic Caching: cloud/ai-gateway/llm/semantic-caching.md
+          - MCP:
+              - Quick Start Guide: cloud/ai-gateway/mcp/quick-start-guide.md
+              - Policies:
+                  - MCP Access Control List: cloud/ai-gateway/mcp/policies/mcp-acl-list.md
+                  - MCP Authentication: cloud/ai-gateway/mcp/policies/mcp-authentication.md
+                  - MCP Authorization: cloud/ai-gateway/mcp/policies/mcp-authorization.md
+                  - MCP Rewrite: cloud/ai-gateway/mcp/policies/mcp-rewrite.md
+          - Observability:
+              - Logging: cloud/ai-gateway/observability/logging.md
+              - Tracing: cloud/ai-gateway/observability/tracing.md
+          - Analytics:
+              - Moesif Analytics: cloud/ai-gateway/analytics/moesif-analytics.md
+              - Analytics Header Filter: cloud/ai-gateway/analytics/analytics-header-filter.md
+      - AI Workspace:
+          - Overview: cloud/ai-workspace/overview.md
+          - Getting Started: cloud/ai-workspace/getting-started.md
+          - AI Gateways:
+              - Setting Up: cloud/ai-workspace/ai-gateways/setting-up.md
+          - LLM Providers:
+              - Overview: cloud/ai-workspace/llm-providers/overview.md
+              - Configure Provider: cloud/ai-workspace/llm-providers/configure-provider.md
+              - Manage Provider: cloud/ai-workspace/llm-providers/manage-provider.md
+          - App LLM Proxies:
+              - Overview: cloud/ai-workspace/llm-proxies/overview.md
+              - Configure App LLM Proxy: cloud/ai-workspace/llm-proxies/configure-proxy.md
+              - Manage App LLM Proxy: cloud/ai-workspace/llm-proxies/manage-proxy.md
+          - MCP Proxies:
+              - Overview: cloud/ai-workspace/mcp-proxies/overview.md
+              - Configure Proxy: cloud/ai-workspace/mcp-proxies/configure-proxy.md
+              - Apply Policies: cloud/ai-workspace/mcp-proxies/apply-policies.md
+          - MCP Registry:
+              - What is an MCP Registry?: cloud/mcp-servers/mcp-registry.md
+              - Publish MCP Proxies: cloud/mcp-servers/publish-mcp-proxies.md
+              - Browse the MCP Hub: cloud/mcp-servers/browse-mcp-hub.md
+              - Use the MCP Registry API: cloud/mcp-servers/mcp-registry-api.md
+          - GenAI Applications: cloud/ai-workspace/genai-applications.md
+          - Configure Inbound Auth: cloud/ai-workspace/configure-inbound-auth.md
+          - Invoke via SDKs: cloud/ai-workspace/using-sdks.md
+          #      - Insights: cloud/ai-workspace/insights.md
           - Policies:
-            - MCP Access Control List: cloud/ai-gateway/mcp/policies/mcp-acl-list.md
-            - MCP Authentication: cloud/ai-gateway/mcp/policies/mcp-authentication.md
-            - MCP Authorization: cloud/ai-gateway/mcp/policies/mcp-authorization.md
-            - MCP Rewrite: cloud/ai-gateway/mcp/policies/mcp-rewrite.md
-        - Observability:
-          - Logging: cloud/ai-gateway/observability/logging.md
-          - Tracing: cloud/ai-gateway/observability/tracing.md
-        - Analytics:
-          - Moesif Analytics: cloud/ai-gateway/analytics/moesif-analytics.md
-          - Analytics Header Filter: cloud/ai-gateway/analytics/analytics-header-filter.md
-    - AI Workspace:
-        - Overview: cloud/ai-workspace/overview.md
-        - Getting Started: cloud/ai-workspace/getting-started.md
-        - AI Gateways:
-            - Setting Up: cloud/ai-workspace/ai-gateways/setting-up.md
-        - LLM Providers:
-            - Overview: cloud/ai-workspace/llm-providers/overview.md
-            - Configure Provider: cloud/ai-workspace/llm-providers/configure-provider.md
-            - Manage Provider: cloud/ai-workspace/llm-providers/manage-provider.md
-        - App LLM Proxies:
-            - Overview: cloud/ai-workspace/llm-proxies/overview.md
-            - Configure App LLM Proxy: cloud/ai-workspace/llm-proxies/configure-proxy.md
-            - Manage App LLM Proxy: cloud/ai-workspace/llm-proxies/manage-proxy.md
-        - MCP Proxies:
-            - Overview: cloud/ai-workspace/mcp-proxies/overview.md
-            - Configure Proxy: cloud/ai-workspace/mcp-proxies/configure-proxy.md
-            - Apply Policies: cloud/ai-workspace/mcp-proxies/apply-policies.md
-        - MCP Registry:
-            - What is an MCP Registry?: cloud/mcp-servers/mcp-registry.md
-            - Publish MCP Proxies: cloud/mcp-servers/publish-mcp-proxies.md
-            - Browse the MCP Hub: cloud/mcp-servers/browse-mcp-hub.md
-            - Use the MCP Registry API: cloud/mcp-servers/mcp-registry-api.md
-        - GenAI Applications: cloud/ai-workspace/genai-applications.md
-        - Configure Inbound Auth: cloud/ai-workspace/configure-inbound-auth.md
-        - Invoke via SDKs: cloud/ai-workspace/using-sdks.md
-  #      - Insights: cloud/ai-workspace/insights.md
-        - Policies:
-            - Overview: cloud/ai-workspace/policies/overview.md
-            - Guardrails:
-                - Overview: cloud/ai-workspace/policies/guardrails/overview.md
-  #              - Semantic Prompt Guard: cloud/ai-workspace/policies/guardrails/semantic-prompt-guard.md
-                - PII Masking Regex: cloud/ai-workspace/policies/guardrails/regex-pii-masking.md
-                - Azure Content Safety: cloud/ai-workspace/policies/guardrails/azure-content-safety.md
-                - Word Count: cloud/ai-workspace/policies/guardrails/word-count-guardrail.md
-                - Sentence Count: cloud/ai-workspace/policies/guardrails/sentence-count-guardrail.md
-            - Rate Limit:
-                - LLM Cost: cloud/ai-workspace/policies/rate-limit/llm-cost.md
-                - Token-Based Rate Limit: cloud/ai-workspace/policies/rate-limit/token-based-rate-limit.md
-                - LLM Cost-Based Rate Limit: cloud/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit.md
-            - Other Policies:
-  #              - Token-Based Rate Limit: cloud/ai-workspace/policies/other-policies/token-based-rate-limit.md
-  #              - Rate Limit - Basic: cloud/ai-workspace/policies/other-policies/basic-rate-limit.md
-                - Model Round Robin: cloud/ai-workspace/policies/other-policies/model-round-robin.md
-                - Prompt Decorator: cloud/ai-workspace/policies/other-policies/prompt-decorator.md
-                - Prompt Template: cloud/ai-workspace/policies/other-policies/prompt-template.md
-                - Semantic Cache: cloud/ai-workspace/policies/other-policies/semantic-cache.md
-            - Writing an AI Policy: cloud/ai-workspace/policies/writing-an-ai-policy.md
-    - Event Gateway:
-        - Overview: cloud/event-gateway/overview.md
-        - Getting Started: cloud/event-gateway/getting-started.md
-        - Setting Up: cloud/event-gateway/setting-up.md
-        - Publish APIs:
-          - Overview: cloud/event-gateway/publish-apis/overview.md
-          - Subscription Based APIs: cloud/event-gateway/publish-apis/subscription-based-apis.md
-          - Subscription Less APIs: cloud/event-gateway/publish-apis/subscription-less-apis.md
-          - Lifecycle Management: cloud/event-gateway/publish-apis/lifecycle-management.md
-        - Troubleshooting: cloud/event-gateway/troubleshooting.md
-    - API Gateway:
-        # - Overview: cloud/api-platform-gateway/overview.md
-        # - API Platform Cloud Gateway: cloud/api-platform-gateway/cloud-gateway.md
-        - Self-Hosted Gateway:
-            - Architecture: cloud/api-platform-gateway/architecture.md
-            - Getting Started: cloud/api-platform-gateway/getting-started.md
-            - Setting Up: cloud/api-platform-gateway/setting-up.md
-            - Adding and Managing Policies: cloud/api-platform-gateway/manage-policies.md
-            - Custom Policies:
-                - Writing a Custom Policy: cloud/api-platform-gateway/writing-a-custom-policy.md
-                - Building the Gateway with Custom Policies: cloud/api-platform-gateway/build-gateway-with-custom-policies.md
-                - Apply Custom Policies to APIs: cloud/api-platform-gateway/apply-custom-policies-to-apis.md
-            - Publish APIs:
-              - Overview: cloud/api-platform-gateway/publish-apis/overview.md
-              - Subscription Based APIs: cloud/api-platform-gateway/publish-apis/subscription-based-apis.md
-              - Subscription Less APIs: cloud/api-platform-gateway/publish-apis/subscription-less-apis.md
-              - Lifecycle Management: cloud/api-platform-gateway/publish-apis/lifecycle-management.md
-            - High Availability: cloud/api-platform-gateway/high-availability.md
-            # - Analytics: cloud/api-platform-gateway/analytics.md
-            # - Troubleshooting: cloud/api-platform-gateway/troubleshooting.md
-        - Third-Party Gateways:
-            - Overview: cloud/federation/overview.md
-            - Discover APIs from AWS API Gateway: cloud/federation/api-discovery-aws.md
-    - Monitor and Insights:
-        - Logs: 
-          - Overview: cloud/monitoring-and-insights/logs/overview.md
-          - Runtime Logs: cloud/monitoring-and-insights/logs/runtime-logs.md
-          - Audit Logs: cloud/monitoring-and-insights/logs/audit-logs.md
-        - Insights: cloud/monitoring-and-insights/insights.md
-        - Compliance Dashboard: cloud/monitoring-and-insights/compliance.md
-        - Integrate API Platform with Moesif: cloud/monitoring-and-insights/integrate-bijira-with-moesif.md
-        - API Platform Status Page: cloud/monitoring-and-insights/status-page.md
-    - Administer:
-        - Create API Subscription Plans: cloud/administer/settings/create-api-subscription-plans.md
-        - Configure a Custom Domain for Your Organization: cloud/administer/settings/configure-a-custom-domain-for-your-organization.md
-        - Manage Environments: cloud/administer/manage-environments/manage-environments.md
-        - Manage CD pipelines: cloud/administer/manage-cd-pipelines/manage-cd-pipelines.md
-        - Configure External Key Manager:
-          - Configure Asgardeo as an External Key Manager: cloud/administer/configure-an-external-idp/configure-asgardeo-as-an-external-idp.md
-          - Configure Azure as an External Key Manager: cloud/administer/configure-an-external-idp/configure-azure-ad-as-an-external-idp.md
-          - Configure Custom External Key Manager: cloud/administer/configure-an-external-idp/configure-custom-external-idp.md
-        - Configure Enterprise Login: cloud/administer/configure-enterprise-login/configure-enterprise-login.md
-        - Configure VPNs on API Platform Cloud Data Plane: cloud/administer/configure-vpns/configure-vpns.md
-    - Workflows:
-        - Configure Workflow Approvals: cloud/workflows/configure-workflow-approvals.md
-        - Submit Workflow Approval Requests: cloud/workflows/submit-workflow-requests.md
-        - Review Workflow Approval Requests: cloud/workflows/review-workflows-requests.md
-    - Tutorials:
-        - Expose a Service as a Managed API: cloud/tutorials/expose-a-service-as-a-managed-api.md
-        - Secure an API with RBAC: cloud/tutorials/secure-an-api-with-role-based-access-control.md
-    - API Platform Samples:
-        - Samples Overview: cloud/samples/samples-overview.md
-    - Developer Portal:
-        - Theming Developer Portal:
-            - Theming with AI: cloud/devportal/theming-devportal-with-ai.md
-            - Theming Manually:
-                - Theme in Organizational Level: cloud/devportal/theming-devportal-org-level.md
-                - Theme in API Level: cloud/devportal/theming-devportal-api-level.md
-            - Devportal Mode: cloud/devportal/developer-portal-mode.md
-        - AI Agent Discovery: cloud/devportal/discover-apis/ai-agent-discovery.md
-        - Discover APIs:
-            - Search APIs: cloud/devportal/discover-apis/api-search.md
-            - Documentations: cloud/devportal/discover-apis/api-documentations.md
-        - API Workflows:
-            - Consuming API Workflows: cloud/devportal/api-workflows/consuming-api-workflows.md
-        - Consume an API:
-            - Consume an API Secured with OAuth2: cloud/devportal/consuming-services/consume-an-api-secured-with-oauth2.md
-            - Consume an API Secured with API Key: cloud/devportal/consuming-services/consume-an-api-secured-with-api-key.md
-        - Manage Applications:
-            - Create an Application: cloud/devportal/manage-applications/create-an-application.md
-        - Manage Subscriptions:
-            - Subscribe to an API: cloud/devportal/manage-subscriptions/subscribe-to-an-api.md
-        - SDK Generation:
-            - AI Assisted SDK Generation: cloud/devportal/sdk-generation/ai-assisted-sdk-generation.md
-        - Admin Settings:
-            - LLM Instructions: cloud/devportal/admin-settings/llm-instructions.md
-            - Managing API Workflows: cloud/devportal/admin-settings/managing-api-workflows.md
+              - Overview: cloud/ai-workspace/policies/overview.md
+              - Guardrails:
+                  - Overview: cloud/ai-workspace/policies/guardrails/overview.md
+                  #              - Semantic Prompt Guard: cloud/ai-workspace/policies/guardrails/semantic-prompt-guard.md
+                  - PII Masking Regex: cloud/ai-workspace/policies/guardrails/regex-pii-masking.md
+                  - Azure Content Safety: cloud/ai-workspace/policies/guardrails/azure-content-safety.md
+                  - Word Count: cloud/ai-workspace/policies/guardrails/word-count-guardrail.md
+                  - Sentence Count: cloud/ai-workspace/policies/guardrails/sentence-count-guardrail.md
+              - Rate Limit:
+                  - LLM Cost: cloud/ai-workspace/policies/rate-limit/llm-cost.md
+                  - Token-Based Rate Limit: cloud/ai-workspace/policies/rate-limit/token-based-rate-limit.md
+                  - LLM Cost-Based Rate Limit: cloud/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit.md
+              - Other Policies:
+                  #              - Token-Based Rate Limit: cloud/ai-workspace/policies/other-policies/token-based-rate-limit.md
+                  #              - Rate Limit - Basic: cloud/ai-workspace/policies/other-policies/basic-rate-limit.md
+                  - Model Round Robin: cloud/ai-workspace/policies/other-policies/model-round-robin.md
+                  - Prompt Decorator: cloud/ai-workspace/policies/other-policies/prompt-decorator.md
+                  - Prompt Template: cloud/ai-workspace/policies/other-policies/prompt-template.md
+                  - Semantic Cache: cloud/ai-workspace/policies/other-policies/semantic-cache.md
+              - Writing an AI Policy: cloud/ai-workspace/policies/writing-an-ai-policy.md
+      - Event Gateway:
+          - Overview: cloud/event-gateway/overview.md
+          - Getting Started: cloud/event-gateway/getting-started.md
+          - Setting Up: cloud/event-gateway/setting-up.md
+          - Publish APIs:
+              - Overview: cloud/event-gateway/publish-apis/overview.md
+              - Subscription Based APIs: cloud/event-gateway/publish-apis/subscription-based-apis.md
+              - Subscription Less APIs: cloud/event-gateway/publish-apis/subscription-less-apis.md
+              - Lifecycle Management: cloud/event-gateway/publish-apis/lifecycle-management.md
+          - Troubleshooting: cloud/event-gateway/troubleshooting.md
+      - API Gateway:
+          # - Overview: cloud/api-platform-gateway/overview.md
+          # - API Platform Cloud Gateway: cloud/api-platform-gateway/cloud-gateway.md
+          - Self-Hosted Gateway:
+              - Architecture: cloud/api-platform-gateway/architecture.md
+              - Getting Started: cloud/api-platform-gateway/getting-started.md
+              - Setting Up: cloud/api-platform-gateway/setting-up.md
+              - Adding and Managing Policies: cloud/api-platform-gateway/manage-policies.md
+              - Custom Policies:
+                  - Writing a Custom Policy: cloud/api-platform-gateway/writing-a-custom-policy.md
+                  - Building the Gateway with Custom Policies: cloud/api-platform-gateway/build-gateway-with-custom-policies.md
+                  - Apply Custom Policies to APIs: cloud/api-platform-gateway/apply-custom-policies-to-apis.md
+              - Publish APIs:
+                  - Overview: cloud/api-platform-gateway/publish-apis/overview.md
+                  - Subscription Based APIs: cloud/api-platform-gateway/publish-apis/subscription-based-apis.md
+                  - Subscription Less APIs: cloud/api-platform-gateway/publish-apis/subscription-less-apis.md
+                  - Lifecycle Management: cloud/api-platform-gateway/publish-apis/lifecycle-management.md
+              - High Availability: cloud/api-platform-gateway/high-availability.md
+              # - Analytics: cloud/api-platform-gateway/analytics.md
+              # - Troubleshooting: cloud/api-platform-gateway/troubleshooting.md
+          - Third-Party Gateways:
+              - Overview: cloud/federation/overview.md
+              - Discover APIs from AWS API Gateway: cloud/federation/api-discovery-aws.md
+      - Monitor and Insights:
+          - Logs:
+              - Overview: cloud/monitoring-and-insights/logs/overview.md
+              - Runtime Logs: cloud/monitoring-and-insights/logs/runtime-logs.md
+              - Audit Logs: cloud/monitoring-and-insights/logs/audit-logs.md
+          - Insights: cloud/monitoring-and-insights/insights.md
+          - Compliance Dashboard: cloud/monitoring-and-insights/compliance.md
+          - Integrate API Platform with Moesif: cloud/monitoring-and-insights/integrate-bijira-with-moesif.md
+          - API Platform Status Page: cloud/monitoring-and-insights/status-page.md
+      - Administer:
+          - Create API Subscription Plans: cloud/administer/settings/create-api-subscription-plans.md
+          - Configure a Custom Domain for Your Organization: cloud/administer/settings/configure-a-custom-domain-for-your-organization.md
+          - Manage Environments: cloud/administer/manage-environments/manage-environments.md
+          - Manage CD pipelines: cloud/administer/manage-cd-pipelines/manage-cd-pipelines.md
+          - Configure External Key Manager:
+              - Configure Asgardeo as an External Key Manager: cloud/administer/configure-an-external-idp/configure-asgardeo-as-an-external-idp.md
+              - Configure Azure as an External Key Manager: cloud/administer/configure-an-external-idp/configure-azure-ad-as-an-external-idp.md
+              - Configure Custom External Key Manager: cloud/administer/configure-an-external-idp/configure-custom-external-idp.md
+          - Configure Enterprise Login: cloud/administer/configure-enterprise-login/configure-enterprise-login.md
+          - Configure VPNs on API Platform Cloud Data Plane: cloud/administer/configure-vpns/configure-vpns.md
+      - Workflows:
+          - Configure Workflow Approvals: cloud/workflows/configure-workflow-approvals.md
+          - Submit Workflow Approval Requests: cloud/workflows/submit-workflow-requests.md
+          - Review Workflow Approval Requests: cloud/workflows/review-workflows-requests.md
+      - Tutorials:
+          - Expose a Service as a Managed API: cloud/tutorials/expose-a-service-as-a-managed-api.md
+          - Secure an API with RBAC: cloud/tutorials/secure-an-api-with-role-based-access-control.md
+      - API Platform Samples:
+          - Samples Overview: cloud/samples/samples-overview.md
+      - Developer Portal:
+          - Theming Developer Portal:
+              - Theming with AI: cloud/devportal/theming-devportal-with-ai.md
+              - Theming Manually:
+                  - Theme in Organizational Level: cloud/devportal/theming-devportal-org-level.md
+                  - Theme in API Level: cloud/devportal/theming-devportal-api-level.md
+              - Devportal Mode: cloud/devportal/developer-portal-mode.md
+          - AI Agent Discovery: cloud/devportal/discover-apis/ai-agent-discovery.md
+          - Discover APIs:
+              - Search APIs: cloud/devportal/discover-apis/api-search.md
+              - Documentations: cloud/devportal/discover-apis/api-documentations.md
+          - API Workflows:
+              - Consuming API Workflows: cloud/devportal/api-workflows/consuming-api-workflows.md
+          - Consume an API:
+              - Consume an API Secured with OAuth2: cloud/devportal/consuming-services/consume-an-api-secured-with-oauth2.md
+              - Consume an API Secured with API Key: cloud/devportal/consuming-services/consume-an-api-secured-with-api-key.md
+          - Manage Applications:
+              - Create an Application: cloud/devportal/manage-applications/create-an-application.md
+          - Manage Subscriptions:
+              - Subscribe to an API: cloud/devportal/manage-subscriptions/subscribe-to-an-api.md
+          - SDK Generation:
+              - AI Assisted SDK Generation: cloud/devportal/sdk-generation/ai-assisted-sdk-generation.md
+          - Admin Settings:
+              - LLM Instructions: cloud/devportal/admin-settings/llm-instructions.md
+              - Managing API Workflows: cloud/devportal/admin-settings/managing-api-workflows.md
   - API Manager:
-    - Overview: api-manager/overview.md
-    - Documentation: https://apim.docs.wso2.com/en/latest/
+      - Overview: api-manager/overview.md
+      - Documentation: https://apim.docs.wso2.com/en/latest/
   - API Gateway:
-    - "next":
-        - Overview: api-gateway/next/overview.md
-        - Setup:
-          - Configuration & Interpolation: api-gateway/next/setup/configuration.md
-          - Storage & Backends: api-gateway/next/setup/storage-and-backends.md
-          - Artifact Templating: api-gateway/next/setup/artifact-templating.md
-        - Resiliency:
-          - Timeouts: api-gateway/next/resiliency/timeouts.md
-        - Quick Start Guide: api-gateway/next/quick-start-guide.md
-        - Policies:
-          - Overview: api-gateway/next/policies/overview.md
-          - Custom Policies:
-            - Writing a Custom Policy: api-gateway/next/policies/custom-policies/writing-a-custom-policy.md
-            - Building Gateway with Custom Policies: api-gateway/next/policies/custom-policies/building-gateway-with-custom-policies.md
-        - Deployment:
-          - Deployment Modes:
-            - Immutable Gateway: api-gateway/next/deployment/deployment-modes/immutable-gateway.md
-            - Kubernetes:
-              - Overview: api-gateway/next/deployment/deployment-modes/kubernetes/overview.md
-              - Standalone Mode: api-gateway/next/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
-              - Kubernetes Operator Mode: api-gateway/next/deployment/deployment-modes/kubernetes/gateway-operator.md
-              - Management CRDs: api-gateway/next/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
-          - High-Availability Production Deployment:
-            - Overview: api-gateway/next/deployment/high-availability-production-deployment.md
-            - Security Hardening: api-gateway/next/deployment/production-deployment/security-hardening.md
-            - Database Configuration: api-gateway/next/deployment/production-deployment/database-configuration.md
-            - Resources & Scaling: api-gateway/next/deployment/production-deployment/resources-and-scaling.md
-            - Deploy & Verify: api-gateway/next/deployment/production-deployment/deploy-and-verify.md
-            - Control Plane Connection: api-gateway/next/deployment/production-deployment/control-plane-connection.md
-          - Deploying APIs:
-            - Bottom-Up Deployment: api-gateway/next/deployment/deploying-apis/bottom-up-api-deployment.md
-        - Observability:
-          - Logging:
-            - Centralized Logging: api-gateway/next/observability/logging.md
-            - Traffic Logging: api-gateway/next/observability/traffic-logging.md
-          - Tracing:
-            - Overview: api-gateway/next/observability/tracing/overview.md
-            - Enabling and Disabling Tracing: api-gateway/next/observability/tracing/enabling-tracing.md
-            - Viewing Traces in Jaeger: api-gateway/next/observability/tracing/viewing-traces-in-jaeger.md
-            - Tracing Configuration: api-gateway/next/observability/tracing/configuration.md
-            - Alternative Tracing Backends: api-gateway/next/observability/tracing/alternative-backends.md
-            - Best Practices and Troubleshooting: api-gateway/next/observability/tracing/best-practices-and-troubleshooting.md
-          - Metrics:
-            - Overview: api-gateway/next/observability/metrics/overview.md
-            - Enabling and Disabling Metrics: api-gateway/next/observability/metrics/enabling-metrics.md
-            - Viewing Metrics in Grafana: api-gateway/next/observability/metrics/viewing-metrics-in-grafana.md
-            - Prometheus Queries: api-gateway/next/observability/metrics/prometheus-queries.md
-            - Configuration Options: api-gateway/next/observability/metrics/configuration.md
-            - Alternative Metrics Backends: api-gateway/next/observability/metrics/alternative-backends.md
-            - Metric Reference: api-gateway/next/observability/metrics/metric-reference.md
-            - Best Practices and Troubleshooting: api-gateway/next/observability/metrics/best-practices-and-troubleshooting.md
-        - Analytics:
-          - Analytics Header Filter: api-gateway/next/analytics/analytics-header-filter.md
-          - Moesif Analytics: api-gateway/next/analytics/moesif-analytics.md
-        - Management API:
-          - Overview: api-gateway/next/gateway-controller-management-api/overview.md
-          - Authentication: api-gateway/next/gateway-controller-management-api/authentication.md
-          - Rest API Management: api-gateway/next/gateway-controller-management-api/rest-api-management.md
-          - MCP Proxy Management: api-gateway/next/gateway-controller-management-api/mcp-proxy-management.md
-          - Certificate Management: api-gateway/next/gateway-controller-management-api/certificate-management.md
-          - LLM Provider Template Management: api-gateway/next/gateway-controller-management-api/llm-provider-template-management.md
-          - LLM Provider Management: api-gateway/next/gateway-controller-management-api/llm-provider-management.md
-          - LLM Proxy Management: api-gateway/next/gateway-controller-management-api/llm-proxy-management.md
-          - Secrets Management: api-gateway/next/gateway-controller-management-api/secrets-management.md
-          - WebSub API Management: api-gateway/next/gateway-controller-management-api/websub-api-management.md
-          - WebBroker API Management: api-gateway/next/gateway-controller-management-api/webbroker-api-management.md
-          - Schemas: api-gateway/next/gateway-controller-management-api/schemas.md
-        - Performance:
-          - Overview: api-gateway/next/performance/overview.md
-          - Gateway runtime with two CPUs: api-gateway/next/performance/gateway-runtime-with-two-cpus.md
-          - Gateway runtime with four CPUs: api-gateway/next/performance/gateway-runtime-with-four-cpus.md
-    - "1.1.0":
-        - Overview: api-gateway/1.1.0/overview.md
-        - Setup:
-          - Storage & Backends: api-gateway/1.1.0/setup/storage-and-backends.md
-          - Artifact Templating: api-gateway/1.1.0/setup/artifact-templating.md
-          - Upstream Timeouts: api-gateway/1.1.0/setup/upstream-timeouts.md
-        - Quick Start Guide: api-gateway/1.1.0/quick-start-guide.md
-        - Policies:
-          - Overview: api-gateway/1.1.0/policies/overview.md
-          - Custom Policies:
-            - Writing a Custom Policy: api-gateway/1.1.0/policies/custom-policies/writing-a-custom-policy.md
-            - Building Gateway with Custom Policies: api-gateway/1.1.0/policies/custom-policies/building-gateway-with-custom-policies.md
-        - Deployment:
-          - Deployment Modes:
-            - Immutable Gateway: api-gateway/1.1.0/deployment/deployment-modes/immutable-gateway.md
-            - Kubernetes:
-              - Overview: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/overview.md
-              - Standalone Mode: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
-              - Kubernetes Operator Mode: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator.md
-              - Management CRDs: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
-          - High-Availability Production Deployment:
-            - Overview: api-gateway/1.1.0/deployment/high-availability-production-deployment.md
-            - Security Hardening: api-gateway/1.1.0/deployment/production-deployment/security-hardening.md
-            - Database Configuration: api-gateway/1.1.0/deployment/production-deployment/database-configuration.md
-            - Resources & Scaling: api-gateway/1.1.0/deployment/production-deployment/resources-and-scaling.md
-            - Deploy & Verify: api-gateway/1.1.0/deployment/production-deployment/deploy-and-verify.md
-            - Control Plane Connection: api-gateway/1.1.0/deployment/production-deployment/control-plane-connection.md
-          - Deploying APIs:
-            - Bottom-Up Deployment: api-gateway/1.1.0/deployment/deploying-apis/bottom-up-api-deployment.md
-        - Observability:
-          - Logging: api-gateway/1.1.0/observability/logging.md
-          - Tracing:
-            - Overview: api-gateway/1.1.0/observability/tracing/overview.md
-            - Enabling and Disabling Tracing: api-gateway/1.1.0/observability/tracing/enabling-tracing.md
-            - Viewing Traces in Jaeger: api-gateway/1.1.0/observability/tracing/viewing-traces-in-jaeger.md
-            - Tracing Configuration: api-gateway/1.1.0/observability/tracing/configuration.md
-            - Alternative Tracing Backends: api-gateway/1.1.0/observability/tracing/alternative-backends.md
-            - Best Practices and Troubleshooting: api-gateway/1.1.0/observability/tracing/best-practices-and-troubleshooting.md
-          - Metrics:
-            - Overview: api-gateway/1.1.0/observability/metrics/overview.md
-            - Enabling and Disabling Metrics: api-gateway/1.1.0/observability/metrics/enabling-metrics.md
-            - Viewing Metrics in Grafana: api-gateway/1.1.0/observability/metrics/viewing-metrics-in-grafana.md
-            - Prometheus Queries: api-gateway/1.1.0/observability/metrics/prometheus-queries.md
-            - Configuration Options: api-gateway/1.1.0/observability/metrics/configuration.md
-            - Alternative Metrics Backends: api-gateway/1.1.0/observability/metrics/alternative-backends.md
-            - Metric Reference: api-gateway/1.1.0/observability/metrics/metric-reference.md
-            - Best Practices and Troubleshooting: api-gateway/1.1.0/observability/metrics/best-practices-and-troubleshooting.md
-        - Analytics:
-          - Analytics Header Filter: api-gateway/1.1.0/analytics/analytics-header-filter.md
-          - Moesif Analytics: api-gateway/1.1.0/analytics/moesif-analytics.md
-        - Management API:
-          - Overview: api-gateway/1.1.0/gateway-controller-management-api/overview.md
-          - Authentication: api-gateway/1.1.0/gateway-controller-management-api/authentication.md
-          - Rest API Management: api-gateway/1.1.0/gateway-controller-management-api/rest-api-management.md
-          - MCP Proxy Management: api-gateway/1.1.0/gateway-controller-management-api/mcp-proxy-management.md
-          - Certificate Management: api-gateway/1.1.0/gateway-controller-management-api/certificate-management.md
-          - LLM Provider Template Management: api-gateway/1.1.0/gateway-controller-management-api/llm-provider-template-management.md
-          - LLM Provider Management: api-gateway/1.1.0/gateway-controller-management-api/llm-provider-management.md
-          - LLM Proxy Management: api-gateway/1.1.0/gateway-controller-management-api/llm-proxy-management.md
-          - Secrets Management: api-gateway/1.1.0/gateway-controller-management-api/secrets-management.md
-          - WebSub API Management: api-gateway/1.1.0/gateway-controller-management-api/websub-api-management.md
-          - WebBroker API Management: api-gateway/1.1.0/gateway-controller-management-api/webbroker-api-management.md
-          - Schemas: api-gateway/1.1.0/gateway-controller-management-api/schemas.md
-        - Performance:
-          - Overview: api-gateway/1.1.0/performance/overview.md
-          - Gateway runtime with two CPUs: api-gateway/1.1.0/performance/gateway-runtime-with-two-cpus.md
-          - Gateway runtime with four CPUs: api-gateway/1.1.0/performance/gateway-runtime-with-four-cpus.md
+      - "next":
+          - Overview: api-gateway/next/overview.md
 
-    - "1.0.0":
-        - Overview: api-gateway/1.0.0/overview.md
-        - Setup:
-          - Storage & Backends: api-gateway/1.0.0/setup/storage-and-backends.md
-          - Artifact Templating: api-gateway/1.0.0/setup/artifact-templating.md
-          - Upstream Timeouts: api-gateway/1.0.0/setup/upstream-timeouts.md
-        - Quick Start Guide: api-gateway/1.0.0/quick-start-guide.md
-        - Policies:
-          - Overview: api-gateway/1.0.0/policies/overview.md
-          - Custom Policies:
-            - Writing a Custom Policy: api-gateway/1.0.0/policies/custom-policies/writing-a-custom-policy.md
-            - Building Gateway with Custom Policies: api-gateway/1.0.0/policies/custom-policies/building-gateway-with-custom-policies.md
-        - Deployment:
-          - Deployment Modes:
-            - Immutable Gateway: api-gateway/1.0.0/deployment/deployment-modes/immutable-gateway.md
-            - Kubernetes:
-              - Overview: api-gateway/1.0.0/deployment/deployment-modes/kubernetes/overview.md
-              - Standalone Mode: api-gateway/1.0.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
-              - Kubernetes Operator Mode: api-gateway/1.0.0/deployment/deployment-modes/kubernetes/gateway-operator.md
-              - Management CRDs: api-gateway/1.0.0/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
-          - High-Availability Production Deployment:
-            - Overview: api-gateway/1.0.0/deployment/high-availability-production-deployment.md
-            - Security Hardening: api-gateway/1.0.0/deployment/production-deployment/security-hardening.md
-            - Database Configuration: api-gateway/1.0.0/deployment/production-deployment/database-configuration.md
-            - Resources & Scaling: api-gateway/1.0.0/deployment/production-deployment/resources-and-scaling.md
-            - Deploy & Verify: api-gateway/1.0.0/deployment/production-deployment/deploy-and-verify.md
-            - Control Plane Connection: api-gateway/1.0.0/deployment/production-deployment/control-plane-connection.md
-          - Deploying APIs:
-            - Bottom-Up Deployment: api-gateway/1.0.0/deployment/deploying-apis/bottom-up-api-deployment.md
-        - Observability:
-          - Logging: api-gateway/1.0.0/observability/logging.md
-          - Tracing:
-            - Overview: api-gateway/1.0.0/observability/tracing/overview.md
-            - Enabling and Disabling Tracing: api-gateway/1.0.0/observability/tracing/enabling-tracing.md
-            - Viewing Traces in Jaeger: api-gateway/1.0.0/observability/tracing/viewing-traces-in-jaeger.md
-            - Tracing Configuration: api-gateway/1.0.0/observability/tracing/configuration.md
-            - Alternative Tracing Backends: api-gateway/1.0.0/observability/tracing/alternative-backends.md
-            - Best Practices and Troubleshooting: api-gateway/1.0.0/observability/tracing/best-practices-and-troubleshooting.md
-          - Metrics:
-            - Overview: api-gateway/1.0.0/observability/metrics/overview.md
-            - Enabling and Disabling Metrics: api-gateway/1.0.0/observability/metrics/enabling-metrics.md
-            - Viewing Metrics in Grafana: api-gateway/1.0.0/observability/metrics/viewing-metrics-in-grafana.md
-            - Prometheus Queries: api-gateway/1.0.0/observability/metrics/prometheus-queries.md
-            - Configuration Options: api-gateway/1.0.0/observability/metrics/configuration.md
-            - Alternative Metrics Backends: api-gateway/1.0.0/observability/metrics/alternative-backends.md
-            - Metric Reference: api-gateway/1.0.0/observability/metrics/metric-reference.md
-            - Best Practices and Troubleshooting: api-gateway/1.0.0/observability/metrics/best-practices-and-troubleshooting.md
-        - Analytics:
-          - Analytics Header Filter: api-gateway/1.0.0/analytics/analytics-header-filter.md
-          - Moesif Analytics: api-gateway/1.0.0/analytics/moesif-analytics.md
-        - Management API:
-          - Overview: api-gateway/1.0.0/gateway-controller-management-api/overview.md
-          - Authentication: api-gateway/1.0.0/gateway-controller-management-api/authentication.md
-          - Rest API Management: api-gateway/1.0.0/gateway-controller-management-api/rest-api-management.md
-          - MCP Proxy Management: api-gateway/1.0.0/gateway-controller-management-api/mcp-proxy-management.md
-          - Certificate Management: api-gateway/1.0.0/gateway-controller-management-api/certificate-management.md
-          - LLM Provider Template Management: api-gateway/1.0.0/gateway-controller-management-api/llm-provider-template-management.md
-          - LLM Provider Management: api-gateway/1.0.0/gateway-controller-management-api/llm-provider-management.md
-          - LLM Proxy Management: api-gateway/1.0.0/gateway-controller-management-api/llm-proxy-management.md
-          - Secrets Management: api-gateway/1.0.0/gateway-controller-management-api/secrets-management.md
-          - WebSub API Management: api-gateway/1.0.0/gateway-controller-management-api/websub-api-management.md
-          - WebBroker API Management: api-gateway/1.0.0/gateway-controller-management-api/webbroker-api-management.md
-          - Schemas: api-gateway/1.0.0/gateway-controller-management-api/schemas.md
+          - Quick Start Guide: api-gateway/next/quick-start-guide.md
+          - Policies:
+              - Overview: api-gateway/next/policies/overview.md
+              - Custom Policies:
+                  - Writing a Custom Policy: api-gateway/next/policies/custom-policies/writing-a-custom-policy.md
+                  - Building Gateway with Custom Policies: api-gateway/next/policies/custom-policies/building-gateway-with-custom-policies.md
+          - Deployment:
+              - Deployment Modes:
+                  - Immutable Gateway: api-gateway/next/deployment/deployment-modes/immutable-gateway.md
+                  - Kubernetes:
+                      - Overview: api-gateway/next/deployment/deployment-modes/kubernetes/overview.md
+                      - Standalone Mode: api-gateway/next/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
+                      - Kubernetes Operator Mode: api-gateway/next/deployment/deployment-modes/kubernetes/gateway-operator.md
+                      - Management CRDs: api-gateway/next/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
+              - High-Availability Production Deployment:
+                  - Overview: api-gateway/next/deployment/high-availability-production-deployment.md
+                  - Security Hardening: api-gateway/next/deployment/production-deployment/security-hardening.md
+                  - Database Configuration: api-gateway/next/deployment/production-deployment/database-configuration.md
+                  - Resources & Scaling: api-gateway/next/deployment/production-deployment/resources-and-scaling.md
+                  - Deploy & Verify: api-gateway/next/deployment/production-deployment/deploy-and-verify.md
+                  - Control Plane Connection: api-gateway/next/deployment/production-deployment/control-plane-connection.md
+              - Deploying APIs:
+                  - Bottom-Up Deployment: api-gateway/next/deployment/deploying-apis/bottom-up-api-deployment.md
+          - Observability:
+              - Logging:
+                  - Centralized Logging: api-gateway/next/observability/logging.md
+                  - Traffic Logging: api-gateway/next/observability/traffic-logging.md
+              - Tracing:
+                  - Overview: api-gateway/next/observability/tracing/overview.md
+                  - Enabling and Disabling Tracing: api-gateway/next/observability/tracing/enabling-tracing.md
+                  - Viewing Traces in Jaeger: api-gateway/next/observability/tracing/viewing-traces-in-jaeger.md
+                  - Tracing Configuration: api-gateway/next/observability/tracing/configuration.md
+                  - Alternative Tracing Backends: api-gateway/next/observability/tracing/alternative-backends.md
+                  - Best Practices and Troubleshooting: api-gateway/next/observability/tracing/best-practices-and-troubleshooting.md
+              - Metrics:
+                  - Overview: api-gateway/next/observability/metrics/overview.md
+                  - Enabling and Disabling Metrics: api-gateway/next/observability/metrics/enabling-metrics.md
+                  - Viewing Metrics in Grafana: api-gateway/next/observability/metrics/viewing-metrics-in-grafana.md
+                  - Prometheus Queries: api-gateway/next/observability/metrics/prometheus-queries.md
+                  - Configuration Options: api-gateway/next/observability/metrics/configuration.md
+                  - Alternative Metrics Backends: api-gateway/next/observability/metrics/alternative-backends.md
+                  - Metric Reference: api-gateway/next/observability/metrics/metric-reference.md
+                  - Best Practices and Troubleshooting: api-gateway/next/observability/metrics/best-practices-and-troubleshooting.md
+          - Analytics:
+              - Analytics Header Filter: api-gateway/next/analytics/analytics-header-filter.md
+              - Moesif Analytics: api-gateway/next/analytics/moesif-analytics.md
+          - Management API:
+              - Overview: api-gateway/next/gateway-controller-management-api/overview.md
+              - Authentication: api-gateway/next/gateway-controller-management-api/authentication.md
+              - Rest API Management: api-gateway/next/gateway-controller-management-api/rest-api-management.md
+              - MCP Proxy Management: api-gateway/next/gateway-controller-management-api/mcp-proxy-management.md
+              - Certificate Management: api-gateway/next/gateway-controller-management-api/certificate-management.md
+              - LLM Provider Template Management: api-gateway/next/gateway-controller-management-api/llm-provider-template-management.md
+              - LLM Provider Management: api-gateway/next/gateway-controller-management-api/llm-provider-management.md
+              - LLM Proxy Management: api-gateway/next/gateway-controller-management-api/llm-proxy-management.md
+              - Secrets Management: api-gateway/next/gateway-controller-management-api/secrets-management.md
+              - WebSub API Management: api-gateway/next/gateway-controller-management-api/websub-api-management.md
+              - WebBroker API Management: api-gateway/next/gateway-controller-management-api/webbroker-api-management.md
+              - Schemas: api-gateway/next/gateway-controller-management-api/schemas.md
+          - Setup:
+              - Configuration & Interpolation: api-gateway/next/setup/configuration.md
+              - Storage & Backends: api-gateway/next/setup/storage-and-backends.md
+              - Artifact Templating: api-gateway/next/setup/artifact-templating.md
+          - Resiliency:
+              - Timeouts: api-gateway/next/resiliency/timeouts.md
+          - Performance:
+              - Overview: api-gateway/next/performance/overview.md
+              - Gateway runtime with two CPUs: api-gateway/next/performance/gateway-runtime-with-two-cpus.md
+              - Gateway runtime with four CPUs: api-gateway/next/performance/gateway-runtime-with-four-cpus.md
+      - "1.1.0":
+          - Overview: api-gateway/1.1.0/overview.md
+          - Quick Start Guide: api-gateway/1.1.0/quick-start-guide.md
+          - Policies:
+              - Overview: api-gateway/1.1.0/policies/overview.md
+              - Custom Policies:
+                  - Writing a Custom Policy: api-gateway/1.1.0/policies/custom-policies/writing-a-custom-policy.md
+                  - Building Gateway with Custom Policies: api-gateway/1.1.0/policies/custom-policies/building-gateway-with-custom-policies.md
+          - Deployment:
+              - Deployment Modes:
+                  - Immutable Gateway: api-gateway/1.1.0/deployment/deployment-modes/immutable-gateway.md
+                  - Kubernetes:
+                      - Overview: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/overview.md
+                      - Standalone Mode: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
+                      - Kubernetes Operator Mode: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator.md
+                      - Management CRDs: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
+              - High-Availability Production Deployment:
+                  - Overview: api-gateway/1.1.0/deployment/high-availability-production-deployment.md
+                  - Security Hardening: api-gateway/1.1.0/deployment/production-deployment/security-hardening.md
+                  - Database Configuration: api-gateway/1.1.0/deployment/production-deployment/database-configuration.md
+                  - Resources & Scaling: api-gateway/1.1.0/deployment/production-deployment/resources-and-scaling.md
+                  - Deploy & Verify: api-gateway/1.1.0/deployment/production-deployment/deploy-and-verify.md
+                  - Control Plane Connection: api-gateway/1.1.0/deployment/production-deployment/control-plane-connection.md
+              - Deploying APIs:
+                  - Bottom-Up Deployment: api-gateway/1.1.0/deployment/deploying-apis/bottom-up-api-deployment.md
+          - Observability:
+              - Logging: api-gateway/1.1.0/observability/logging.md
+              - Tracing:
+                  - Overview: api-gateway/1.1.0/observability/tracing/overview.md
+                  - Enabling and Disabling Tracing: api-gateway/1.1.0/observability/tracing/enabling-tracing.md
+                  - Viewing Traces in Jaeger: api-gateway/1.1.0/observability/tracing/viewing-traces-in-jaeger.md
+                  - Tracing Configuration: api-gateway/1.1.0/observability/tracing/configuration.md
+                  - Alternative Tracing Backends: api-gateway/1.1.0/observability/tracing/alternative-backends.md
+                  - Best Practices and Troubleshooting: api-gateway/1.1.0/observability/tracing/best-practices-and-troubleshooting.md
+              - Metrics:
+                  - Overview: api-gateway/1.1.0/observability/metrics/overview.md
+                  - Enabling and Disabling Metrics: api-gateway/1.1.0/observability/metrics/enabling-metrics.md
+                  - Viewing Metrics in Grafana: api-gateway/1.1.0/observability/metrics/viewing-metrics-in-grafana.md
+                  - Prometheus Queries: api-gateway/1.1.0/observability/metrics/prometheus-queries.md
+                  - Configuration Options: api-gateway/1.1.0/observability/metrics/configuration.md
+                  - Alternative Metrics Backends: api-gateway/1.1.0/observability/metrics/alternative-backends.md
+                  - Metric Reference: api-gateway/1.1.0/observability/metrics/metric-reference.md
+                  - Best Practices and Troubleshooting: api-gateway/1.1.0/observability/metrics/best-practices-and-troubleshooting.md
+          - Analytics:
+              - Analytics Header Filter: api-gateway/1.1.0/analytics/analytics-header-filter.md
+              - Moesif Analytics: api-gateway/1.1.0/analytics/moesif-analytics.md
+          - Management API:
+              - Overview: api-gateway/1.1.0/gateway-controller-management-api/overview.md
+              - Authentication: api-gateway/1.1.0/gateway-controller-management-api/authentication.md
+              - Rest API Management: api-gateway/1.1.0/gateway-controller-management-api/rest-api-management.md
+              - MCP Proxy Management: api-gateway/1.1.0/gateway-controller-management-api/mcp-proxy-management.md
+              - Certificate Management: api-gateway/1.1.0/gateway-controller-management-api/certificate-management.md
+              - LLM Provider Template Management: api-gateway/1.1.0/gateway-controller-management-api/llm-provider-template-management.md
+              - LLM Provider Management: api-gateway/1.1.0/gateway-controller-management-api/llm-provider-management.md
+              - LLM Proxy Management: api-gateway/1.1.0/gateway-controller-management-api/llm-proxy-management.md
+              - Secrets Management: api-gateway/1.1.0/gateway-controller-management-api/secrets-management.md
+              - WebSub API Management: api-gateway/1.1.0/gateway-controller-management-api/websub-api-management.md
+              - WebBroker API Management: api-gateway/1.1.0/gateway-controller-management-api/webbroker-api-management.md
+              - Schemas: api-gateway/1.1.0/gateway-controller-management-api/schemas.md
+          - Setup:
+              - Storage & Backends: api-gateway/1.1.0/setup/storage-and-backends.md
+              - Artifact Templating: api-gateway/1.1.0/setup/artifact-templating.md
+              - Upstream Timeouts: api-gateway/1.1.0/setup/upstream-timeouts.md
+          - Performance:
+              - Overview: api-gateway/1.1.0/performance/overview.md
+              - Gateway runtime with two CPUs: api-gateway/1.1.0/performance/gateway-runtime-with-two-cpus.md
+              - Gateway runtime with four CPUs: api-gateway/1.1.0/performance/gateway-runtime-with-four-cpus.md
+      - "1.0.0":
+          - Overview: api-gateway/1.0.0/overview.md
+          - Quick Start Guide: api-gateway/1.0.0/quick-start-guide.md
+          - Policies:
+              - Overview: api-gateway/1.0.0/policies/overview.md
+              - Custom Policies:
+                  - Writing a Custom Policy: api-gateway/1.0.0/policies/custom-policies/writing-a-custom-policy.md
+                  - Building Gateway with Custom Policies: api-gateway/1.0.0/policies/custom-policies/building-gateway-with-custom-policies.md
+          - Deployment:
+              - Deployment Modes:
+                  - Immutable Gateway: api-gateway/1.0.0/deployment/deployment-modes/immutable-gateway.md
+                  - Kubernetes:
+                      - Overview: api-gateway/1.0.0/deployment/deployment-modes/kubernetes/overview.md
+                      - Standalone Mode: api-gateway/1.0.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
+                      - Kubernetes Operator Mode: api-gateway/1.0.0/deployment/deployment-modes/kubernetes/gateway-operator.md
+                      - Management CRDs: api-gateway/1.0.0/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
+              - High-Availability Production Deployment:
+                  - Overview: api-gateway/1.0.0/deployment/high-availability-production-deployment.md
+                  - Security Hardening: api-gateway/1.0.0/deployment/production-deployment/security-hardening.md
+                  - Database Configuration: api-gateway/1.0.0/deployment/production-deployment/database-configuration.md
+                  - Resources & Scaling: api-gateway/1.0.0/deployment/production-deployment/resources-and-scaling.md
+                  - Deploy & Verify: api-gateway/1.0.0/deployment/production-deployment/deploy-and-verify.md
+                  - Control Plane Connection: api-gateway/1.0.0/deployment/production-deployment/control-plane-connection.md
+              - Deploying APIs:
+                  - Bottom-Up Deployment: api-gateway/1.0.0/deployment/deploying-apis/bottom-up-api-deployment.md
+          - Observability:
+              - Logging: api-gateway/1.0.0/observability/logging.md
+              - Tracing:
+                  - Overview: api-gateway/1.0.0/observability/tracing/overview.md
+                  - Enabling and Disabling Tracing: api-gateway/1.0.0/observability/tracing/enabling-tracing.md
+                  - Viewing Traces in Jaeger: api-gateway/1.0.0/observability/tracing/viewing-traces-in-jaeger.md
+                  - Tracing Configuration: api-gateway/1.0.0/observability/tracing/configuration.md
+                  - Alternative Tracing Backends: api-gateway/1.0.0/observability/tracing/alternative-backends.md
+                  - Best Practices and Troubleshooting: api-gateway/1.0.0/observability/tracing/best-practices-and-troubleshooting.md
+              - Metrics:
+                  - Overview: api-gateway/1.0.0/observability/metrics/overview.md
+                  - Enabling and Disabling Metrics: api-gateway/1.0.0/observability/metrics/enabling-metrics.md
+                  - Viewing Metrics in Grafana: api-gateway/1.0.0/observability/metrics/viewing-metrics-in-grafana.md
+                  - Prometheus Queries: api-gateway/1.0.0/observability/metrics/prometheus-queries.md
+                  - Configuration Options: api-gateway/1.0.0/observability/metrics/configuration.md
+                  - Alternative Metrics Backends: api-gateway/1.0.0/observability/metrics/alternative-backends.md
+                  - Metric Reference: api-gateway/1.0.0/observability/metrics/metric-reference.md
+                  - Best Practices and Troubleshooting: api-gateway/1.0.0/observability/metrics/best-practices-and-troubleshooting.md
+          - Analytics:
+              - Analytics Header Filter: api-gateway/1.0.0/analytics/analytics-header-filter.md
+              - Moesif Analytics: api-gateway/1.0.0/analytics/moesif-analytics.md
+          - Management API:
+              - Overview: api-gateway/1.0.0/gateway-controller-management-api/overview.md
+              - Authentication: api-gateway/1.0.0/gateway-controller-management-api/authentication.md
+              - Rest API Management: api-gateway/1.0.0/gateway-controller-management-api/rest-api-management.md
+              - MCP Proxy Management: api-gateway/1.0.0/gateway-controller-management-api/mcp-proxy-management.md
+              - Certificate Management: api-gateway/1.0.0/gateway-controller-management-api/certificate-management.md
+              - LLM Provider Template Management: api-gateway/1.0.0/gateway-controller-management-api/llm-provider-template-management.md
+              - LLM Provider Management: api-gateway/1.0.0/gateway-controller-management-api/llm-provider-management.md
+              - LLM Proxy Management: api-gateway/1.0.0/gateway-controller-management-api/llm-proxy-management.md
+              - Secrets Management: api-gateway/1.0.0/gateway-controller-management-api/secrets-management.md
+              - WebSub API Management: api-gateway/1.0.0/gateway-controller-management-api/websub-api-management.md
+              - WebBroker API Management: api-gateway/1.0.0/gateway-controller-management-api/webbroker-api-management.md
+              - Schemas: api-gateway/1.0.0/gateway-controller-management-api/schemas.md
+          - Setup:
+              - Storage & Backends: api-gateway/1.0.0/setup/storage-and-backends.md
+              - Artifact Templating: api-gateway/1.0.0/setup/artifact-templating.md
+              - Upstream Timeouts: api-gateway/1.0.0/setup/upstream-timeouts.md
   - AI Gateway:
-    - "next":
-        - Overview: ai-gateway/next/overview.md
-        - Setup:
-            - Configuration & Interpolation: ai-gateway/next/setup/configuration.md
-        - LLM Proxy:
-            - Quick Start Guide: ai-gateway/next/llm-proxy/quick-start-guide.md
-            - LLM Provider Templates: ai-gateway/next/llm-proxy/llm-templates.md
-            - Guardrails:
-                - AWS Bedrock Guardrail: ai-gateway/next/llm-proxy/guardrails/aws-bedrock-guardrail.md
-                - Azure Content Safety: ai-gateway/next/llm-proxy/guardrails/azure-content-safety.md
-                - Content Length Guardrail: ai-gateway/next/llm-proxy/guardrails/content-length.md
-                - JSON Schema Guardrail: ai-gateway/next/llm-proxy/guardrails/json-schema.md
-                - PII Masking Regex Guardrail: ai-gateway/next/llm-proxy/guardrails/pii-masking-regex.md
-                - Regex Guardrail: ai-gateway/next/llm-proxy/guardrails/regex.md
-                - Semantic Prompt Guardrail: ai-gateway/next/llm-proxy/guardrails/semantic-prompt-guard.md
-                - Sentence Count Guardrail: ai-gateway/next/llm-proxy/guardrails/sentence-count.md
-                - URL Guardrail: ai-gateway/next/llm-proxy/guardrails/url.md
-                - Word Count Guardrail: ai-gateway/next/llm-proxy/guardrails/word-count.md
-            - Load Balancing:
-                - Model Round Robin: ai-gateway/next/llm-proxy/load-balancing/model-round-robin.md
-                - Model Weighted Round Robin: ai-gateway/next/llm-proxy/load-balancing/model-weighted-round-robin.md
-            - Prompt Management:
-                - Prompt Decorator: ai-gateway/next/llm-proxy/prompt-management/prompt-decorator.md
-                - Prompt Template: ai-gateway/next/llm-proxy/prompt-management/prompt-template.md
-            - Semantic Caching: ai-gateway/next/llm-proxy/semantic-caching.md
-        - MCP Proxy:
-            - Quick Start Guide: ai-gateway/next/mcp-proxy/quick-start-guide.md
-            - Policies:
-                - MCP Access Control List: ai-gateway/next/mcp-proxy/policies/mcp-acl-list.md
-                - MCP Authentication: ai-gateway/next/mcp-proxy/policies/mcp-authentication.md
-                - MCP Authorization: ai-gateway/next/mcp-proxy/policies/mcp-authorization.md
-                - MCP Rewrite: ai-gateway/next/mcp-proxy/policies/mcp-rewrite.md
-        - Deployment Modes:
-          - Immutable Gateway: ai-gateway/next/deployment-modes/immutable-gateway.md
-          - Kubernetes:
-            - Overview: ai-gateway/next/deployment-modes/kubernetes/overview.md
-            - Standalone Mode: ai-gateway/next/deployment-modes/kubernetes/kubernetes-standalone.md
-            - Kubernetes Operator Mode: ai-gateway/next/deployment-modes/kubernetes/gateway-operator.md
-        - Resiliency:
-            - Timeouts: ai-gateway/next/resiliency/timeouts.md
-        - Observability:
-            - Logging: ai-gateway/next/observability/logging.md
-            - Tracing: ai-gateway/next/observability/tracing.md
-        - Analytics:
-            - Moesif Analytics: ai-gateway/next/analytics/moesif-analytics.md
-            - Analytics Header Filter: ai-gateway/next/analytics/analytics-header-filter.md
-        - Performance:
-            - Overview: ai-gateway/next/performance/overview.md
-            - AI Gateway runtime with two CPUs: ai-gateway/next/performance/ai-gateway-runtime-with-two-cpus.md
-            - AI Gateway runtime with four CPUs: ai-gateway/next/performance/ai-gateway-runtime-with-four-cpus.md
-    - "1.1.0":
-        - Overview: ai-gateway/1.1.0/overview.md
-        - LLM Proxy:
-            - Quick Start Guide: ai-gateway/1.1.0/llm-proxy/quick-start-guide.md
-            - LLM Provider Templates: ai-gateway/1.1.0/llm-proxy/llm-templates.md
-            - Guardrails:
-                - AWS Bedrock Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/aws-bedrock-guardrail.md
-                - Azure Content Safety: ai-gateway/1.1.0/llm-proxy/guardrails/azure-content-safety.md
-                - Content Length Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/content-length.md
-                - JSON Schema Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/json-schema.md
-                - PII Masking Regex Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/pii-masking-regex.md
-                - Regex Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/regex.md
-                - Semantic Prompt Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/semantic-prompt-guard.md
-                - Sentence Count Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/sentence-count.md
-                - URL Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/url.md
-                - Word Count Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/word-count.md
-            - Load Balancing:
-                - Model Round Robin: ai-gateway/1.1.0/llm-proxy/load-balancing/model-round-robin.md
-                - Model Weighted Round Robin: ai-gateway/1.1.0/llm-proxy/load-balancing/model-weighted-round-robin.md
-            - Prompt Management:
-                - Prompt Decorator: ai-gateway/1.1.0/llm-proxy/prompt-management/prompt-decorator.md
-                - Prompt Template: ai-gateway/1.1.0/llm-proxy/prompt-management/prompt-template.md
-            - Semantic Caching: ai-gateway/1.1.0/llm-proxy/semantic-caching.md
-        - MCP Proxy:
-            - Quick Start Guide: ai-gateway/1.1.0/mcp-proxy/quick-start-guide.md
-            - Policies:
-                - MCP Access Control List: ai-gateway/1.1.0/mcp-proxy/policies/mcp-acl-list.md
-                - MCP Authentication: ai-gateway/1.1.0/mcp-proxy/policies/mcp-authentication.md
-                - MCP Authorization: ai-gateway/1.1.0/mcp-proxy/policies/mcp-authorization.md
-                - MCP Rewrite: ai-gateway/1.1.0/mcp-proxy/policies/mcp-rewrite.md
-        - Deployment Modes:
-          - Immutable Gateway: ai-gateway/1.1.0/deployment-modes/immutable-gateway.md
-          - Kubernetes:
-            - Overview: ai-gateway/1.1.0/deployment-modes/kubernetes/overview.md
-            - Standalone Mode: ai-gateway/1.1.0/deployment-modes/kubernetes/kubernetes-standalone.md
-            - Kubernetes Operator Mode: ai-gateway/1.1.0/deployment-modes/kubernetes/gateway-operator.md
-        - Observability:
-            - Logging: ai-gateway/1.1.0/observability/logging.md
-            - Tracing: ai-gateway/1.1.0/observability/tracing.md
-        - Analytics:
-            - Moesif Analytics: ai-gateway/1.1.0/analytics/moesif-analytics.md
-            - Analytics Header Filter: ai-gateway/1.1.0/analytics/analytics-header-filter.md
-        - Performance:
-            - Overview: ai-gateway/1.1.0/performance/overview.md
-            - AI Gateway runtime with two CPUs: ai-gateway/1.1.0/performance/ai-gateway-runtime-with-two-cpus.md
-            - AI Gateway runtime with four CPUs: ai-gateway/1.1.0/performance/ai-gateway-runtime-with-four-cpus.md
-    - "1.0.0":
-        - Overview: ai-gateway/1.0.0/overview.md
-        - LLM Proxy:
-            - Quick Start Guide: ai-gateway/1.0.0/llm-proxy/quick-start-guide.md
-            - LLM Provider Templates: ai-gateway/1.0.0/llm-proxy/llm-templates.md
-            - Guardrails:
-                - AWS Bedrock Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/aws-bedrock-guardrail.md
-                - Azure Content Safety: ai-gateway/1.0.0/llm-proxy/guardrails/azure-content-safety.md
-                - Content Length Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/content-length.md
-                - JSON Schema Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/json-schema.md
-                - PII Masking Regex Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/pii-masking-regex.md
-                - Regex Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/regex.md
-                - Semantic Prompt Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/semantic-prompt-guard.md
-                - Sentence Count Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/sentence-count.md
-                - URL Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/url.md
-                - Word Count Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/word-count.md
-            - Load Balancing:
-                - Model Round Robin: ai-gateway/1.0.0/llm-proxy/load-balancing/model-round-robin.md
-                - Model Weighted Round Robin: ai-gateway/1.0.0/llm-proxy/load-balancing/model-weighted-round-robin.md
-            - Prompt Management:
-                - Prompt Decorator: ai-gateway/1.0.0/llm-proxy/prompt-management/prompt-decorator.md
-                - Prompt Template: ai-gateway/1.0.0/llm-proxy/prompt-management/prompt-template.md
-            - Semantic Caching: ai-gateway/1.0.0/llm-proxy/semantic-caching.md
-        - MCP Proxy:
-            - Quick Start Guide: ai-gateway/1.0.0/mcp-proxy/quick-start-guide.md
-            - Policies:
-                - MCP Access Control List: ai-gateway/1.0.0/mcp-proxy/policies/mcp-acl-list.md
-                - MCP Authentication: ai-gateway/1.0.0/mcp-proxy/policies/mcp-authentication.md
-                - MCP Authorization: ai-gateway/1.0.0/mcp-proxy/policies/mcp-authorization.md
-                - MCP Rewrite: ai-gateway/1.0.0/mcp-proxy/policies/mcp-rewrite.md
-        - Deployment Modes:
-          - Immutable Gateway: ai-gateway/1.0.0/deployment-modes/immutable-gateway.md
-          - Kubernetes:
-            - Overview: ai-gateway/1.0.0/deployment-modes/kubernetes/overview.md
-            - Standalone Mode: ai-gateway/1.0.0/deployment-modes/kubernetes/kubernetes-standalone.md
-            - Kubernetes Operator Mode: ai-gateway/1.0.0/deployment-modes/kubernetes/gateway-operator.md
-        - Observability:
-            - Logging: ai-gateway/1.0.0/observability/logging.md
-            - Tracing: ai-gateway/1.0.0/observability/tracing.md
-        - Analytics:
-            - Moesif Analytics: ai-gateway/1.0.0/analytics/moesif-analytics.md
-            - Analytics Header Filter: ai-gateway/1.0.0/analytics/analytics-header-filter.md
+      - "next":
+          - Overview: ai-gateway/next/overview.md
+          - Setup:
+              - Configuration & Interpolation: ai-gateway/next/setup/configuration.md
+          - LLM Proxy:
+              - Quick Start Guide: ai-gateway/next/llm-proxy/quick-start-guide.md
+              - LLM Provider Templates: ai-gateway/next/llm-proxy/llm-templates.md
+              - Guardrails:
+                  - AWS Bedrock Guardrail: ai-gateway/next/llm-proxy/guardrails/aws-bedrock-guardrail.md
+                  - Azure Content Safety: ai-gateway/next/llm-proxy/guardrails/azure-content-safety.md
+                  - Content Length Guardrail: ai-gateway/next/llm-proxy/guardrails/content-length.md
+                  - JSON Schema Guardrail: ai-gateway/next/llm-proxy/guardrails/json-schema.md
+                  - PII Masking Regex Guardrail: ai-gateway/next/llm-proxy/guardrails/pii-masking-regex.md
+                  - Regex Guardrail: ai-gateway/next/llm-proxy/guardrails/regex.md
+                  - Semantic Prompt Guardrail: ai-gateway/next/llm-proxy/guardrails/semantic-prompt-guard.md
+                  - Sentence Count Guardrail: ai-gateway/next/llm-proxy/guardrails/sentence-count.md
+                  - URL Guardrail: ai-gateway/next/llm-proxy/guardrails/url.md
+                  - Word Count Guardrail: ai-gateway/next/llm-proxy/guardrails/word-count.md
+              - Load Balancing:
+                  - Model Round Robin: ai-gateway/next/llm-proxy/load-balancing/model-round-robin.md
+                  - Model Weighted Round Robin: ai-gateway/next/llm-proxy/load-balancing/model-weighted-round-robin.md
+              - Prompt Management:
+                  - Prompt Decorator: ai-gateway/next/llm-proxy/prompt-management/prompt-decorator.md
+                  - Prompt Template: ai-gateway/next/llm-proxy/prompt-management/prompt-template.md
+              - Semantic Caching: ai-gateway/next/llm-proxy/semantic-caching.md
+          - MCP Proxy:
+              - Quick Start Guide: ai-gateway/next/mcp-proxy/quick-start-guide.md
+              - Policies:
+                  - MCP Access Control List: ai-gateway/next/mcp-proxy/policies/mcp-acl-list.md
+                  - MCP Authentication: ai-gateway/next/mcp-proxy/policies/mcp-authentication.md
+                  - MCP Authorization: ai-gateway/next/mcp-proxy/policies/mcp-authorization.md
+                  - MCP Rewrite: ai-gateway/next/mcp-proxy/policies/mcp-rewrite.md
+          - Deployment Modes:
+              - Immutable Gateway: ai-gateway/next/deployment-modes/immutable-gateway.md
+              - Kubernetes:
+                  - Overview: ai-gateway/next/deployment-modes/kubernetes/overview.md
+                  - Standalone Mode: ai-gateway/next/deployment-modes/kubernetes/kubernetes-standalone.md
+                  - Kubernetes Operator Mode: ai-gateway/next/deployment-modes/kubernetes/gateway-operator.md
+          - Resiliency:
+              - Timeouts: ai-gateway/next/resiliency/timeouts.md
+          - Observability:
+              - Logging: ai-gateway/next/observability/logging.md
+              - Tracing: ai-gateway/next/observability/tracing.md
+          - Analytics:
+              - Moesif Analytics: ai-gateway/next/analytics/moesif-analytics.md
+              - Analytics Header Filter: ai-gateway/next/analytics/analytics-header-filter.md
+          - Performance:
+              - Overview: ai-gateway/next/performance/overview.md
+              - AI Gateway runtime with two CPUs: ai-gateway/next/performance/ai-gateway-runtime-with-two-cpus.md
+              - AI Gateway runtime with four CPUs: ai-gateway/next/performance/ai-gateway-runtime-with-four-cpus.md
+      - "1.1.0":
+          - Overview: ai-gateway/1.1.0/overview.md
+          - LLM Proxy:
+              - Quick Start Guide: ai-gateway/1.1.0/llm-proxy/quick-start-guide.md
+              - LLM Provider Templates: ai-gateway/1.1.0/llm-proxy/llm-templates.md
+              - Guardrails:
+                  - AWS Bedrock Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/aws-bedrock-guardrail.md
+                  - Azure Content Safety: ai-gateway/1.1.0/llm-proxy/guardrails/azure-content-safety.md
+                  - Content Length Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/content-length.md
+                  - JSON Schema Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/json-schema.md
+                  - PII Masking Regex Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/pii-masking-regex.md
+                  - Regex Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/regex.md
+                  - Semantic Prompt Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/semantic-prompt-guard.md
+                  - Sentence Count Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/sentence-count.md
+                  - URL Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/url.md
+                  - Word Count Guardrail: ai-gateway/1.1.0/llm-proxy/guardrails/word-count.md
+              - Load Balancing:
+                  - Model Round Robin: ai-gateway/1.1.0/llm-proxy/load-balancing/model-round-robin.md
+                  - Model Weighted Round Robin: ai-gateway/1.1.0/llm-proxy/load-balancing/model-weighted-round-robin.md
+              - Prompt Management:
+                  - Prompt Decorator: ai-gateway/1.1.0/llm-proxy/prompt-management/prompt-decorator.md
+                  - Prompt Template: ai-gateway/1.1.0/llm-proxy/prompt-management/prompt-template.md
+              - Semantic Caching: ai-gateway/1.1.0/llm-proxy/semantic-caching.md
+          - MCP Proxy:
+              - Quick Start Guide: ai-gateway/1.1.0/mcp-proxy/quick-start-guide.md
+              - Policies:
+                  - MCP Access Control List: ai-gateway/1.1.0/mcp-proxy/policies/mcp-acl-list.md
+                  - MCP Authentication: ai-gateway/1.1.0/mcp-proxy/policies/mcp-authentication.md
+                  - MCP Authorization: ai-gateway/1.1.0/mcp-proxy/policies/mcp-authorization.md
+                  - MCP Rewrite: ai-gateway/1.1.0/mcp-proxy/policies/mcp-rewrite.md
+          - Deployment Modes:
+              - Immutable Gateway: ai-gateway/1.1.0/deployment-modes/immutable-gateway.md
+              - Kubernetes:
+                  - Overview: ai-gateway/1.1.0/deployment-modes/kubernetes/overview.md
+                  - Standalone Mode: ai-gateway/1.1.0/deployment-modes/kubernetes/kubernetes-standalone.md
+                  - Kubernetes Operator Mode: ai-gateway/1.1.0/deployment-modes/kubernetes/gateway-operator.md
+          - Observability:
+              - Logging: ai-gateway/1.1.0/observability/logging.md
+              - Tracing: ai-gateway/1.1.0/observability/tracing.md
+          - Analytics:
+              - Moesif Analytics: ai-gateway/1.1.0/analytics/moesif-analytics.md
+              - Analytics Header Filter: ai-gateway/1.1.0/analytics/analytics-header-filter.md
+          - Performance:
+              - Overview: ai-gateway/1.1.0/performance/overview.md
+              - AI Gateway runtime with two CPUs: ai-gateway/1.1.0/performance/ai-gateway-runtime-with-two-cpus.md
+              - AI Gateway runtime with four CPUs: ai-gateway/1.1.0/performance/ai-gateway-runtime-with-four-cpus.md
+      - "1.0.0":
+          - Overview: ai-gateway/1.0.0/overview.md
+          - LLM Proxy:
+              - Quick Start Guide: ai-gateway/1.0.0/llm-proxy/quick-start-guide.md
+              - LLM Provider Templates: ai-gateway/1.0.0/llm-proxy/llm-templates.md
+              - Guardrails:
+                  - AWS Bedrock Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/aws-bedrock-guardrail.md
+                  - Azure Content Safety: ai-gateway/1.0.0/llm-proxy/guardrails/azure-content-safety.md
+                  - Content Length Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/content-length.md
+                  - JSON Schema Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/json-schema.md
+                  - PII Masking Regex Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/pii-masking-regex.md
+                  - Regex Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/regex.md
+                  - Semantic Prompt Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/semantic-prompt-guard.md
+                  - Sentence Count Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/sentence-count.md
+                  - URL Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/url.md
+                  - Word Count Guardrail: ai-gateway/1.0.0/llm-proxy/guardrails/word-count.md
+              - Load Balancing:
+                  - Model Round Robin: ai-gateway/1.0.0/llm-proxy/load-balancing/model-round-robin.md
+                  - Model Weighted Round Robin: ai-gateway/1.0.0/llm-proxy/load-balancing/model-weighted-round-robin.md
+              - Prompt Management:
+                  - Prompt Decorator: ai-gateway/1.0.0/llm-proxy/prompt-management/prompt-decorator.md
+                  - Prompt Template: ai-gateway/1.0.0/llm-proxy/prompt-management/prompt-template.md
+              - Semantic Caching: ai-gateway/1.0.0/llm-proxy/semantic-caching.md
+          - MCP Proxy:
+              - Quick Start Guide: ai-gateway/1.0.0/mcp-proxy/quick-start-guide.md
+              - Policies:
+                  - MCP Access Control List: ai-gateway/1.0.0/mcp-proxy/policies/mcp-acl-list.md
+                  - MCP Authentication: ai-gateway/1.0.0/mcp-proxy/policies/mcp-authentication.md
+                  - MCP Authorization: ai-gateway/1.0.0/mcp-proxy/policies/mcp-authorization.md
+                  - MCP Rewrite: ai-gateway/1.0.0/mcp-proxy/policies/mcp-rewrite.md
+          - Deployment Modes:
+              - Immutable Gateway: ai-gateway/1.0.0/deployment-modes/immutable-gateway.md
+              - Kubernetes:
+                  - Overview: ai-gateway/1.0.0/deployment-modes/kubernetes/overview.md
+                  - Standalone Mode: ai-gateway/1.0.0/deployment-modes/kubernetes/kubernetes-standalone.md
+                  - Kubernetes Operator Mode: ai-gateway/1.0.0/deployment-modes/kubernetes/gateway-operator.md
+          - Observability:
+              - Logging: ai-gateway/1.0.0/observability/logging.md
+              - Tracing: ai-gateway/1.0.0/observability/tracing.md
+          - Analytics:
+              - Moesif Analytics: ai-gateway/1.0.0/analytics/moesif-analytics.md
+              - Analytics Header Filter: ai-gateway/1.0.0/analytics/analytics-header-filter.md
   # In-development 'next' doc sets, only shown in the nav while browsing a
   # /next/ (or <component>/next/) URL — see extra.version_scoped_navs.
   - Developer Portal:
-    - Overview: next/developer-portal/overview.md
-    - Getting Started: next/developer-portal/getting-started.md
-    - Concepts: next/developer-portal/concepts.md
-    - AI Agent Discovery: next/developer-portal/discover-apis/ai-agent-discovery.md
-    - Discover APIs:
-        - Search APIs: next/developer-portal/discover-apis/api-search.md
-        - Documentations: next/developer-portal/discover-apis/api-documentations.md
-    - API Workflows:
-        - Consuming API Workflows: next/developer-portal/api-workflows/consuming-api-workflows.md
-    - Consume an API:
-        - Consume an API Secured with OAuth2: next/developer-portal/consuming-services/consume-an-api-secured-with-oauth2.md
-        - Consume an API Secured with API Key: next/developer-portal/consuming-services/consume-an-api-secured-with-api-key.md
-    - Manage Applications:
-        - Create an Application: next/developer-portal/manage-applications/create-an-application.md
-    - Manage Subscriptions:
-        - Subscribe to an API: next/developer-portal/manage-subscriptions/subscribe-to-an-api.md
-    - Manage API Keys: next/developer-portal/manage-api-keys.md
-    - Setting Up:
-        - Integrate Third-Party Identity Providers: next/developer-portal/setting-up/integrate-identity-providers.md
-        - Devportal Mode: next/developer-portal/developer-portal-mode.md
-        - Design Mode: next/developer-portal/setting-up/design-mode.md
-    - Admin Settings:
-        - Organization:
-            - Organization Settings: next/developer-portal/admin-settings/organization-settings.md
-            - Manage Views: next/developer-portal/admin-settings/manage-views.md
-            - Manage Labels: next/developer-portal/admin-settings/manage-labels.md
-            - Subscription Plans: next/developer-portal/admin-settings/subscription-plans.md
-            - Key Manager Integration: next/developer-portal/admin-settings/key-manager-integration.md
-        - Content:
-            - Manage APIs: next/developer-portal/admin-settings/manage-apis.md
-            - Manage MCP Servers: next/developer-portal/admin-settings/manage-mcp-servers.md
-        - Integrations:
-            - Webhook Integration: next/developer-portal/admin-settings/webhook-integration.md
-        - AI & Discovery:
-            - LLM Instructions: next/developer-portal/admin-settings/llm-instructions.md
-            - Managing API Workflows: next/developer-portal/admin-settings/managing-api-workflows.md
-        - Appearance:
-            - Theming: next/developer-portal/admin-settings/theming.md
-    - References:
-        - Management API:
-            - Overview: next/developer-portal/rest-api/overview.md
-            - Authentication: next/developer-portal/rest-api/authentication.md
-            - Organizations: next/developer-portal/rest-api/organizations.md
-            - Organization Content: next/developer-portal/rest-api/organization-content.md
-            - Views: next/developer-portal/rest-api/views.md
-            - Labels: next/developer-portal/rest-api/labels.md
-            - Subscription Plans: next/developer-portal/rest-api/subscription-plans.md
-            - Key Managers: next/developer-portal/rest-api/key-managers.md
-            - APIs: next/developer-portal/rest-api/apis.md
-            - API Content: next/developer-portal/rest-api/api-content.md
-            - MCP Servers: next/developer-portal/rest-api/mcp-servers.md
-            - MCP Server Content: next/developer-portal/rest-api/mcp-server-content.md
-            - MCP Server Keys: next/developer-portal/rest-api/mcp-server-keys.md
-            - Applications: next/developer-portal/rest-api/applications.md
-            - Application Keys: next/developer-portal/rest-api/application-keys.md
-            - Subscriptions: next/developer-portal/rest-api/subscriptions.md
-            - API Keys: next/developer-portal/rest-api/api-keys.md
-            - API Workflows: next/developer-portal/rest-api/api-workflows.md
-            - Webhook Subscribers: next/developer-portal/rest-api/webhook-subscribers.md
-            - Webhook Events: next/developer-portal/rest-api/webhook-events.md
-            - Schemas: next/developer-portal/rest-api/schemas.md
-        - Get a Bearer Token via curl: next/developer-portal/references/get-a-bearer-token-via-curl.md
-        - Configurations: next/developer-portal/references/configurations.md
+      - Overview: next/developer-portal/overview.md
+      - Getting Started: next/developer-portal/getting-started.md
+      - Concepts: next/developer-portal/concepts.md
+      - AI Agent Discovery: next/developer-portal/discover-apis/ai-agent-discovery.md
+      - Discover APIs:
+          - Search APIs: next/developer-portal/discover-apis/api-search.md
+          - Documentations: next/developer-portal/discover-apis/api-documentations.md
+      - API Workflows:
+          - Consuming API Workflows: next/developer-portal/api-workflows/consuming-api-workflows.md
+      - Consume an API:
+          - Consume an API Secured with OAuth2: next/developer-portal/consuming-services/consume-an-api-secured-with-oauth2.md
+          - Consume an API Secured with API Key: next/developer-portal/consuming-services/consume-an-api-secured-with-api-key.md
+      - Manage Applications:
+          - Create an Application: next/developer-portal/manage-applications/create-an-application.md
+      - Manage Subscriptions:
+          - Subscribe to an API: next/developer-portal/manage-subscriptions/subscribe-to-an-api.md
+      - Manage API Keys: next/developer-portal/manage-api-keys.md
+      - Setting Up:
+          - Integrate Third-Party Identity Providers: next/developer-portal/setting-up/integrate-identity-providers.md
+          - Devportal Mode: next/developer-portal/developer-portal-mode.md
+          - Design Mode: next/developer-portal/setting-up/design-mode.md
+      - Admin Settings:
+          - Organization:
+              - Organization Settings: next/developer-portal/admin-settings/organization-settings.md
+              - Manage Views: next/developer-portal/admin-settings/manage-views.md
+              - Manage Labels: next/developer-portal/admin-settings/manage-labels.md
+              - Subscription Plans: next/developer-portal/admin-settings/subscription-plans.md
+              - Key Manager Integration: next/developer-portal/admin-settings/key-manager-integration.md
+          - Content:
+              - Manage APIs: next/developer-portal/admin-settings/manage-apis.md
+              - Manage MCP Servers: next/developer-portal/admin-settings/manage-mcp-servers.md
+          - Integrations:
+              - Webhook Integration: next/developer-portal/admin-settings/webhook-integration.md
+          - AI & Discovery:
+              - LLM Instructions: next/developer-portal/admin-settings/llm-instructions.md
+              - Managing API Workflows: next/developer-portal/admin-settings/managing-api-workflows.md
+          - Appearance:
+              - Theming: next/developer-portal/admin-settings/theming.md
+      - References:
+          - Management API:
+              - Overview: next/developer-portal/rest-api/overview.md
+              - Authentication: next/developer-portal/rest-api/authentication.md
+              - Organizations: next/developer-portal/rest-api/organizations.md
+              - Organization Content: next/developer-portal/rest-api/organization-content.md
+              - Views: next/developer-portal/rest-api/views.md
+              - Labels: next/developer-portal/rest-api/labels.md
+              - Subscription Plans: next/developer-portal/rest-api/subscription-plans.md
+              - Key Managers: next/developer-portal/rest-api/key-managers.md
+              - APIs: next/developer-portal/rest-api/apis.md
+              - API Content: next/developer-portal/rest-api/api-content.md
+              - MCP Servers: next/developer-portal/rest-api/mcp-servers.md
+              - MCP Server Content: next/developer-portal/rest-api/mcp-server-content.md
+              - MCP Server Keys: next/developer-portal/rest-api/mcp-server-keys.md
+              - Applications: next/developer-portal/rest-api/applications.md
+              - Application Keys: next/developer-portal/rest-api/application-keys.md
+              - Subscriptions: next/developer-portal/rest-api/subscriptions.md
+              - API Keys: next/developer-portal/rest-api/api-keys.md
+              - API Workflows: next/developer-portal/rest-api/api-workflows.md
+              - Webhook Subscribers: next/developer-portal/rest-api/webhook-subscribers.md
+              - Webhook Events: next/developer-portal/rest-api/webhook-events.md
+              - Schemas: next/developer-portal/rest-api/schemas.md
+          - Get a Bearer Token via curl: next/developer-portal/references/get-a-bearer-token-via-curl.md
+          - Configurations: next/developer-portal/references/configurations.md
   - AI Workspace:
-    - Overview: next/ai-workspace/overview.md
-    - Getting Started: next/ai-workspace/getting-started.md
-    - Configuration: next/ai-workspace/configuration.md
-    - Bottom Up AI Artifact Synchronization: next/ai-workspace/bottom-up-ai-artifact-deployment-guide.md
-    - AI Gateways:
-        - Setting Up: next/ai-workspace/ai-gateways/setting-up.md
-    - LLM Providers:
-        - Overview: next/ai-workspace/llm-providers/overview.md
-        - Configure Provider: next/ai-workspace/llm-providers/configure-provider.md
-        - Manage Provider: next/ai-workspace/llm-providers/manage-provider.md
-    - LLM Provider Templates:
-        - Overview: next/ai-workspace/llm-provider-templates/overview.md
-        - Configure Template: next/ai-workspace/llm-provider-templates/configure-template.md
-        - Manage Template: next/ai-workspace/llm-provider-templates/manage-template.md
-    - App LLM Proxies:
-        - Overview: next/ai-workspace/llm-proxies/overview.md
-        - Configure App LLM Proxy: next/ai-workspace/llm-proxies/configure-proxy.md
-        - Manage App LLM Proxy: next/ai-workspace/llm-proxies/manage-proxy.md
-    - MCP Proxies:
-        - Overview: next/ai-workspace/mcp-proxies/overview.md
-        - Configure Proxy: next/ai-workspace/mcp-proxies/configure-proxy.md
-        - Apply Policies: next/ai-workspace/mcp-proxies/apply-policies.md
-    - CI/CD:
-        - Overview: next/ai-workspace/ci-cd/overview.md
-        - Configure CI/CD Workflow: next/ai-workspace/ci-cd/configure-ci-cd-workflow.md
-    - GenAI Applications: next/ai-workspace/genai-applications.md
-    - Authentication:
-        - Overview: next/ai-workspace/authentication/overview.md
-        - Set up Asgardeo: next/ai-workspace/authentication/asgardeo-setup.md
-    - Configure Inbound Auth: next/ai-workspace/configure-inbound-auth.md
-    - Secrets Management: next/ai-workspace/secrets-management.md
-    - Invoke via SDKs: next/ai-workspace/using-sdks.md
-    - Policies:
-        - Overview: next/ai-workspace/policies/overview.md
-        - Guardrails:
-            - Overview: next/ai-workspace/policies/guardrails/overview.md
-            - PII Masking Regex: next/ai-workspace/policies/guardrails/regex-pii-masking.md
-            - Azure Content Safety: next/ai-workspace/policies/guardrails/azure-content-safety.md
-            - Word Count: next/ai-workspace/policies/guardrails/word-count-guardrail.md
-            - Sentence Count: next/ai-workspace/policies/guardrails/sentence-count-guardrail.md
-        - Rate Limit:
-            - LLM Cost: next/ai-workspace/policies/rate-limit/llm-cost.md
-            - Token-Based Rate Limit: next/ai-workspace/policies/rate-limit/token-based-rate-limit.md
-            - LLM Cost-Based Rate Limit: next/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit.md
-        - Other Policies:
-            - Model Round Robin: next/ai-workspace/policies/other-policies/model-round-robin.md
-            - Prompt Decorator: next/ai-workspace/policies/other-policies/prompt-decorator.md
-            - Prompt Template: next/ai-workspace/policies/other-policies/prompt-template.md
-            - Semantic Cache: next/ai-workspace/policies/other-policies/semantic-cache.md
-        - Writing an AI Policy: next/ai-workspace/policies/writing-an-ai-policy.md
+      - Overview: next/ai-workspace/overview.md
+      - Getting Started: next/ai-workspace/getting-started.md
+      - Configuration: next/ai-workspace/configuration.md
+      - Bottom Up AI Artifact Synchronization: next/ai-workspace/bottom-up-ai-artifact-deployment-guide.md
+      - AI Gateways:
+          - Setting Up: next/ai-workspace/ai-gateways/setting-up.md
+      - LLM Providers:
+          - Overview: next/ai-workspace/llm-providers/overview.md
+          - Configure Provider: next/ai-workspace/llm-providers/configure-provider.md
+          - Manage Provider: next/ai-workspace/llm-providers/manage-provider.md
+      - LLM Provider Templates:
+          - Overview: next/ai-workspace/llm-provider-templates/overview.md
+          - Configure Template: next/ai-workspace/llm-provider-templates/configure-template.md
+          - Manage Template: next/ai-workspace/llm-provider-templates/manage-template.md
+      - App LLM Proxies:
+          - Overview: next/ai-workspace/llm-proxies/overview.md
+          - Configure App LLM Proxy: next/ai-workspace/llm-proxies/configure-proxy.md
+          - Manage App LLM Proxy: next/ai-workspace/llm-proxies/manage-proxy.md
+      - MCP Proxies:
+          - Overview: next/ai-workspace/mcp-proxies/overview.md
+          - Configure Proxy: next/ai-workspace/mcp-proxies/configure-proxy.md
+          - Apply Policies: next/ai-workspace/mcp-proxies/apply-policies.md
+      - CI/CD:
+          - Overview: next/ai-workspace/ci-cd/overview.md
+          - Configure CI/CD Workflow: next/ai-workspace/ci-cd/configure-ci-cd-workflow.md
+      - GenAI Applications: next/ai-workspace/genai-applications.md
+      - Authentication:
+          - Overview: next/ai-workspace/authentication/overview.md
+          - Set up Asgardeo: next/ai-workspace/authentication/asgardeo-setup.md
+      - Configure Inbound Auth: next/ai-workspace/configure-inbound-auth.md
+      - Secrets Management: next/ai-workspace/secrets-management.md
+      - Invoke via SDKs: next/ai-workspace/using-sdks.md
+      - Policies:
+          - Overview: next/ai-workspace/policies/overview.md
+          - Guardrails:
+              - Overview: next/ai-workspace/policies/guardrails/overview.md
+              - PII Masking Regex: next/ai-workspace/policies/guardrails/regex-pii-masking.md
+              - Azure Content Safety: next/ai-workspace/policies/guardrails/azure-content-safety.md
+              - Word Count: next/ai-workspace/policies/guardrails/word-count-guardrail.md
+              - Sentence Count: next/ai-workspace/policies/guardrails/sentence-count-guardrail.md
+          - Rate Limit:
+              - LLM Cost: next/ai-workspace/policies/rate-limit/llm-cost.md
+              - Token-Based Rate Limit: next/ai-workspace/policies/rate-limit/token-based-rate-limit.md
+              - LLM Cost-Based Rate Limit: next/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit.md
+          - Other Policies:
+              - Model Round Robin: next/ai-workspace/policies/other-policies/model-round-robin.md
+              - Prompt Decorator: next/ai-workspace/policies/other-policies/prompt-decorator.md
+              - Prompt Template: next/ai-workspace/policies/other-policies/prompt-template.md
+              - Semantic Cache: next/ai-workspace/policies/other-policies/semantic-cache.md
+          - Writing an AI Policy: next/ai-workspace/policies/writing-an-ai-policy.md
   - Analytics:
-    - Overview: analytics/overview.md
+      - Overview: analytics/overview.md
   - Monetization:
-    - Overview: monetization/overview.md
-    - Monetizing APIs:
-        - Getting Started: monetization/getting-started.md
-        - Manage Paid Subscription Plans: monetization/manage-paid-subscription-plans.md
-    - Consume Monetized APIs:
-        - Subscribe to a Paid Plan: monetization/subscribe-to-paid-plan.md
-        - View Billing and Usage: monetization/view-billing-and-usage.md
+      - Overview: monetization/overview.md
+      - Monetizing APIs:
+          - Getting Started: monetization/getting-started.md
+          - Manage Paid Subscription Plans: monetization/manage-paid-subscription-plans.md
+      - Consume Monetized APIs:
+          - Subscribe to a Paid Plan: monetization/subscribe-to-paid-plan.md
+          - View Billing and Usage: monetization/view-billing-and-usage.md
   - Policy Hub:
-    - Overview: policy-hub/overview.md
+      - Overview: policy-hub/overview.md
   - Guides:
-    - AI and MCP:
-        - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
-        - Build an AI App with Claude Code that Calls Governed Backend APIs: guides/ai-and-mcp/build-ai-app-with-claude-code.md
-        - Set up a Governed Multi-Model LLM Proxy with Cost Controls and Failover: guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md
-        - Find and Connect to an Enterprise MCP Server from the MCP Hub: guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md
-        - Enforce Token-Based Rate Limiting on an LLM Proxy: guides/ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy.md
-        - Build an AI agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
-        - Enforce a Consistent AI Persona with the Prompt Decorator Policy: guides/ai-and-mcp/using-prompt-decorator-policy.md
-        - AI Coding Assistants:
-            - Configure Claude Code with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
-            - Configure Google Gemini CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
-            - Configure OpenAI Codex CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md
-    - Developer Portal:
-        - Go from Zero to a Working API Call Using the Developer Portal: guides/developer-portal/api-discovery-and-tryout.md
-    - Monetization:
-        - API Monetization : guides/monetization/api-monetization.md
-        - MCP Tool Monetization: guides/monetization/mcp-tool-monetization.md
-    - Gateway Federation:
-        - Discover APIs from AWS API Gateway: guides/gateway-federation/discover-apis-from-aws-api-gateway.md
+      - AI and MCP:
+          - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
+          - Build an AI App with Claude Code that Calls Governed Backend APIs: guides/ai-and-mcp/build-ai-app-with-claude-code.md
+          - Set up a Governed Multi-Model LLM Proxy with Cost Controls and Failover: guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md
+          - Find and Connect to an Enterprise MCP Server from the MCP Hub: guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md
+          - Enforce Token-Based Rate Limiting on an LLM Proxy: guides/ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy.md
+          - Build an AI agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
+          - Enforce a Consistent AI Persona with the Prompt Decorator Policy: guides/ai-and-mcp/using-prompt-decorator-policy.md
+          - AI Coding Assistants:
+              - Configure Claude Code with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
+              - Configure Google Gemini CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
+              - Configure OpenAI Codex CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md
+      - Developer Portal:
+          - Go from Zero to a Working API Call Using the Developer Portal: guides/developer-portal/api-discovery-and-tryout.md
+      - Monetization:
+          - API Monetization: guides/monetization/api-monetization.md
+          - MCP Tool Monetization: guides/monetization/mcp-tool-monetization.md
+      - Gateway Federation:
+          - Discover APIs from AWS API Gateway: guides/gateway-federation/discover-apis-from-aws-api-gateway.md
   - Tools:
-    - API Platform CLI:
-        - Quick Start Guide: tools/cli/quick-start-guide.md
-        - Customizing Gateway Policies: tools/cli/customizing-gateway-policies.md
-        - Reference: tools/cli/reference.md
-    - VS Code for API Design:
-        - Getting Started: tools/vscode-api-design/getting-started.md
-        - Design APIs: tools/vscode-api-design/design-apis.md
-        - Govern APIs: tools/vscode-api-design/govern-apis.md
-        - End-to-End Tutorial: tools/vscode-api-design/end-to-end-tutorial.md
-    - Arazzo MCP Generator CLI:
-        - Quick Start Guide: tools/arazzo-mcp-gen-cli/quick-start-guide.md
-        - Reference: tools/arazzo-mcp-gen-cli/reference.md
-    - VS Code Arazzo Visualizer:
-        - Getting Started: tools/vscode-arazzo-visualizer/getting-started.md
+      - API Platform CLI:
+          - Quick Start Guide: tools/cli/quick-start-guide.md
+          - Customizing Gateway Policies: tools/cli/customizing-gateway-policies.md
+          - Reference: tools/cli/reference.md
+      - VS Code for API Design:
+          - Getting Started: tools/vscode-api-design/getting-started.md
+          - Design APIs: tools/vscode-api-design/design-apis.md
+          - Govern APIs: tools/vscode-api-design/govern-apis.md
+          - End-to-End Tutorial: tools/vscode-api-design/end-to-end-tutorial.md
+      - Arazzo MCP Generator CLI:
+          - Quick Start Guide: tools/arazzo-mcp-gen-cli/quick-start-guide.md
+          - Reference: tools/arazzo-mcp-gen-cli/reference.md
+      - VS Code Arazzo Visualizer:
+          - Getting Started: tools/vscode-arazzo-visualizer/getting-started.md
 
 # Extensions
 markdown_extensions:
@@ -1331,7 +1330,7 @@ extra:
     Create API Proxy:
       icon: octicons/pencil-16
       level: 1
-    Develop API Proxy: 
+    Develop API Proxy:
       icon: octicons/tools-16
       level: 1
     Test API Proxy:
@@ -1368,17 +1367,17 @@ extra:
       icon: octicons/book-16
       level: 1
     Analytics & Monetization:
-        icon: octicons/graph-16
-        level: 1
+      icon: octicons/graph-16
+      level: 1
     API Manager:
-        icon: octicons/sliders-16
+      icon: octicons/sliders-16
     Analytics:
-        icon: octicons/graph-16
+      icon: octicons/graph-16
     Monetization:
-        icon: octicons/credit-card-16
-        level: 1
+      icon: octicons/credit-card-16
+      level: 1
     Policy Hub:
-        icon: octicons/package-16
+      icon: octicons/package-16
 
 #site_version: 1.0.0
 # base_path: http://localhost:8000
