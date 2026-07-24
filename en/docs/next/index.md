@@ -139,7 +139,7 @@ The following is a complete view of all components and where to find their docum
 | :--- | :--- | :--- |
 | **API Control Plane** | Design, publish, version, and govern APIs through the web UI and configuration files. Enforce policies across all connected gateways. | Part of [Cloud](../cloud/introduction/what-is-bijira.md) and [API Manager](../api-manager/overview.md) |
 | **AI Workspace** | The enterprise control plane for AI. Manage LLM providers, MCP servers, and GenAI applications. Configure cost and token-based rate limits, enforce guardrails, and view AI consumption insights at the organizational level. Connected to one or more AI Gateways. | [AI Workspace docs](ai-workspace/overview.md) |
-| **API Portal and MCP Hub** | Developer facing portal for API discovery, subscription management, SDK generation, and theming. Includes agentic consumption capabilities for AI agents, such as the llms.txt endpoint, MCP registry, and Arazzo workflow support. | [API Portal docs](developer-portal/theming-devportal-with-ai.md) |
+| **API Portal and MCP Hub** | Developer facing portal for API discovery, subscription management, SDK generation, and theming. Includes agentic consumption capabilities for AI agents, such as the llms.txt endpoint, MCP registry, and Arazzo workflow support. | [API Portal docs](developer-portal/overview.md) |
 | **Analytics and Monetization** | Traffic monitoring, runtime and audit logs, usage tracking, and API monetization with usage-based billing. Powered by Moesif. | <ul><li>[Analytics docs](../analytics/overview.md)</li><li>[Monetization docs](../monetization/overview.md)</li></ul> |
 
 ### Gateway components
@@ -162,7 +162,7 @@ The following is a complete view of all components and where to find their docum
 | Expose my APIs as MCP tools for AI agents | [AI Gateway MCP Proxy](../ai-gateway/next/mcp-proxy/quick-start-guide.md) |
 | Govern MCP traffic (inbound + outbound) | [AI Gateway MCP Proxy](../ai-gateway/next/mcp-proxy/quick-start-guide.md) |
 | Manage LLM providers and AI policies at the organizational level | [AI Workspace](ai-workspace/overview.md) |
-| Set up a developer portal for API discovery | [API Portal](developer-portal/theming-devportal-with-ai.md) |
+| Set up a developer portal for API discovery | [API Portal](developer-portal/overview.md) |
 | Monitor traffic and monetize my APIs | [Analytics](../analytics/overview.md) and [Monetization](../monetization/overview.md) |
 | Follow end-to-end scenario walkthroughs | [Guides](../guides/ai-and-mcp/convert-rest-api-to-mcp-server.md) |
 

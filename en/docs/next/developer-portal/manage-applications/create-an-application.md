@@ -1,6 +1,6 @@
 ---
 title: "Create an application"
-description: "Create an application in the Developer Portal to subscribe to APIs and generate access credentials."
+description: "Create an application in the Developer Portal to hold the OAuth2 client IDs used for OAuth2-secured APIs."
 canonical_url: https://wso2.com/api-platform/docs/cloud/devportal/manage-applications/create-an-application/
 md_url: https://wso2.com/api-platform/docs/cloud/devportal/manage-applications/create-an-application.md
 tags:
@@ -8,53 +8,59 @@ tags:
   - devportal
   - applications
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-07-24
 content_type: "how-to"
 ---
 
-# Create Applications
+# Create an Application
 
-An application is a logical representation of a physical application such as a mobile app, webapp, device, etc. If an application needs to consume an API, it should subscribe to the required API over a selected business plan, which determines the usage quota the application is allowed. A single application can have multiple API subscriptions.
+An application is a logical representation of a physical application — a mobile app, web app, device, or CLI tool. In the Developer Portal, applications are used to link OAuth2 client IDs, created directly in a key manager, for invoking OAuth2-secured APIs.
 
-## Prerequisites
+!!! note
+    Applications are **not** required for subscriptions or API key generation. Subscriptions are made directly to an API, and API keys are bound to an API — not to an application. Applications are only needed for OAuth2-secured APIs. You can optionally associate an existing API key with an application afterward for usage analytics — see [Associate an API Key with an Application](../manage-api-keys.md#associate-an-api-key-with-an-application).
 
-- If you're signing in to the Developer portal for the first time, go to API Platform and create an organization:
-    1. Go to [API Platform Console](https://console.bijira.dev/) and sign in using your preferred method.
-    2. Enter a unique organization name. For example, `TestingOrg`.
-    3. Read and accept the privacy policy and terms of use.
-    4. Click **Create**.
+A developer can have multiple applications with independent OAuth2 client IDs — for example, a `MyApp-Production` application and a `MyApp-Staging` application linked to different OAuth applications in the key manager.
 
-This creates the organization and opens the **Project Home** page of the default project created for you.
+## Create a New Application
 
-## Create a new application
+1. Sign in to the Developer Portal.
+2. In the sidebar, click **Applications**.
+3. Click **Create application**.
+4. Enter an **Application name** (e.g. `MyApp-Production`) and optionally a **Description**.
+5. Click **Create**.
 
-1. Replace `<organization name>` in the following URL with your actual organization name to access your Developer Portal.
+The application is created and you're taken to the application detail page.
 
-    ```url
-    https://devportal.bijira.dev/<organization name>/views/default
-    ```
+## Add an Application Description
 
-2. Sign in to Developer Portal using your preferred method.
-3. Click **Applications** from the sidebar.
-4. Click **Create Application** card. If you already have one or more applications click **+ Create** button.
+1. Select your application.
+2. Click **+ Add description** in the application header.
+3. Enter a description that explains what the application does and who owns it.
+4. Click the checkmark (✔) to save.
 
-    ![Applications page showing an empty Create Application card with a plus icon](../../../assets/img/devportal/create-application-card.png){style="max-width:500px;"}
+## Application Details
 
-5. Enter application name and click **Create**.
+From the application detail page you can:
 
-    ![Applications page with name input field showing DemoBookingApp and Cancel and Create buttons](../../../assets/img/devportal/name-application-card.png){style="max-width:500px;"}
+| Action | Where |
+|---|---|
+| Link an OAuth2 client ID | **Manage Keys** → paste client ID → **Add** |
+| Generate an access token for testing | **Manage Keys** → **Generate Token** tab |
+| Associate an existing API key for analytics | **API Keys** tab → **Associate existing key** |
+| Edit the application name or description | Application overview page → pencil icon next to name/description |
+| Delete the application | **Applications** list → trash icon on the application's card |
 
-6. You will find the created applications list.
+## Delete an Application
 
-   ![Applications list showing DemoBookingApp, Testapp01, and SampleIntegrationApp cards with subscription counts](../../../assets/img/devportal/applications-list.png)
+1. Go to **Applications** in the sidebar.
+2. Click the trash icon on the application's card.
+3. Confirm deletion.
 
-## Add Application Description
+!!! warning
+    Deleting an application removes all stored client ID mappings. It does not contact the key manager — OAuth applications there must be deleted independently if no longer needed. Existing access tokens stop working once they expire. This action is irreversible.
 
-1. Selected application.
-2. Click **+ Add description** to add the application's description.
+## Related
 
-    ![DemoBookingApp detail page with Add description link, Subscriptions count, and Generate Key button](../../../assets/img/devportal/application-description.png)
-
-3. Click **✔** to save the description.
-
-    ![DemoBookingApp description text input field with save checkmark and cancel buttons visible](../../../assets/img/devportal/add-application-description.png)
+- [Consume an API Secured with OAuth2](../consuming-services/consume-an-api-secured-with-oauth2.md) — generate OAuth2 credentials for your application
+- [Subscribe to an API](../manage-subscriptions/subscribe-to-an-api.md) — subscriptions are made directly to an API, not through an application
+- [Manage API Keys](../manage-api-keys.md) — generate an API key and optionally associate it with an application

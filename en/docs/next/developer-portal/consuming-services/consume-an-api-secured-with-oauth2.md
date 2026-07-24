@@ -1,6 +1,6 @@
 ---
 title: "Consume an API secured with OAuth2"
-description: "Generate an OAuth2 access token from an application's consumer key and secret, then use it to invoke a subscribed API."
+description: "Link an OAuth2 client ID to your application, generate an access token, and use it to invoke an OAuth2-secured API."
 canonical_url: https://wso2.com/api-platform/docs/cloud/devportal/consuming-services/consume-an-api-secured-with-oauth2/
 md_url: https://wso2.com/api-platform/docs/cloud/devportal/consuming-services/consume-an-api-secured-with-oauth2.md
 tags:
@@ -8,61 +8,86 @@ tags:
   - devportal
   - authentication
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-07-24
 content_type: "how-to"
 ---
 
 # Consume an API Secured with OAuth2
 
+The Developer Portal uses OAuth 2.0 bearer-token authentication for OAuth2-secured APIs. The OAuth application itself is created directly in the key manager — the portal only links its client ID to your application and proxies token requests for it.
+
 ## Prerequisites
 
-Before proceeding, ensure you have [Created an Application](../manage-applications/create-an-application.md) and [Subscribed to an API](../manage-subscriptions/subscribe-to-an-api.md) to consume.
+Before proceeding, ensure you have [created an application](../manage-applications/create-an-application.md). Applications hold the OAuth2 client ID(s) used to authenticate against OAuth2-secured APIs.
 
-## Generate keys
+If the API also requires a subscription, [subscribe to it](../manage-subscriptions/subscribe-to-an-api.md) first — subscriptions are made directly to the API, independently of your application.
 
-API Platform uses OAuth 2.0 bearer token-based authentication for API access. An API access token is a string passed as an HTTP header in API requests to authenticate access.
+You'll also need an OAuth application already created in the key manager your organization uses — ask your administrator which key manager(s) are available and how to create an OAuth application there if you haven't done so.
 
-Once you create an application, you can generate credentials for it. API Platform provides a consumer key and consumer secret when you generate credentials for the first time. The consumer key acts as the unique identifier for the application and is used for authentication.
+## Link a Client ID
 
-To generate an access token for **testing purposes**, follow these steps:
+1. Sign in to the Developer Portal.
+2. In the sidebar, click **Applications**.
+3. Click on your application. Its detail page includes a **Manage Keys** section.
+4. Select the **Production** or **Sandbox** tab based on your environment.
 
-1. Navigate to the [API Platform Developer Portal](https://devportal.bijira.dev) and sign in.
-
-2. Click on **Applications** in the Developer Portal sidebar.
-
-3. Click on the application for which you want to generate keys and tokens.
-
-4. In the Application detail banner, click **Manage Keys**. This opens the **Manage Keys** page.
-
-5. On the **Manage Keys** page, select either the **Production** or **Sandbox** tab based on your requirement.
-
-    !!!info
+    !!! info
         Sandbox keys can only be used in the sandbox environment.
 
-6. Click **Generate** and wait for the keys to be generated. This will generate the consumer key and consumer secret with default configurations. Once the keys are generated, close the dialog.
+5. For the key manager you want to use, paste the **client ID** of the OAuth application you created there, then click **Add**.
 
-7. Click **Generate** to generate an access token. You can add scopes through the Request Permission section in the Access Token dialog.
+The client ID is now visible on the Manage Keys page. The portal doesn't ask for or store a client secret at this step.
 
-    ![Access Token dialog showing Request Permissions scopes field and generated token with Regenerate button](../../../assets/img/devportal/ScopeSection.png)
+## Generate an Access Token
 
-    !!!info
-        Currently, API Platform does not support configuring allowed scopes at the application level.
+Use the linked client ID and your application's client secret to obtain an access token from the key manager's token endpoint.
 
-8. Copy the displayed access token.
-
-You can use the **View** and **Modify** buttons to inspect and customize the default key generation settings.
-
-Alternatively, click **Instructions** to view details about the token endpoint. You can either copy the generated cURL command to obtain a test token using a cURL client, or use the consumer key and consumer secret to generate an API access token by invoking the token endpoint. You can also revoke the access token by invoking the revoke endpoint.
-
-## Consume an API
-
-Use this generated access token to authenticate API requests by including it in the `Bearer` header when invoking the API.
-
-Example:
+**Client credentials grant (server-to-server), calling the key manager directly:**
 
 ```bash
-curl -H "Authorization: Bearer <YOUR_ACCESS_TOKEN>" -X GET "https://my-sample-api.bijiraapis.dev/greet"
+curl -X POST https://keymanager.example.com/oauth2/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=client_credentials" \
+  -u "<CONSUMER_KEY>:<CONSUMER_SECRET>"
+```
+
+The response contains the access token:
+
+```json
+{
+  "access_token": "eyJhbGciOiJSUzI1NiJ9...",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
+```
+
+**Via the portal UI:**
+
+1. On the **Manage Keys** page, open the **Generate Token** tab for the key manager.
+2. Optionally add scopes in the **Request Permissions** section.
+3. Click **Generate access token**. You'll be prompted for the client secret — it's used once to proxy the token request and is never stored.
+4. Copy the displayed access token.
+
+Alternatively, open the **cURL** tab on the Manage Keys page to copy a ready-made `curl` command (with your client ID already filled in) for generating tokens directly against the key manager, without going through the portal.
+
+## Invoke the API
+
+Include the access token in the `Authorization` header when calling the API:
+
+```bash
+curl -X GET "https://api.example.com/orders/v1/orders" \
+  -H "Authorization: Bearer <YOUR_ACCESS_TOKEN>"
 ```
 
 !!! note
-    The name of the Authorization header may vary depending on the API provider’s configuration. Always refer to the API’s Swagger (OpenAPI) definition for the correct header format.
+    The authorization header name may vary depending on the API's configuration. Check the API's OpenAPI specification (the `securitySchemes` section) for the correct header name and scheme.
+
+## Revoke a Client ID
+
+To remove a linked client ID, go to **Manage Keys** and click **Revoke keys** for that key manager. This only removes the local reference in the portal — it doesn't deregister or delete the OAuth application in the key manager, and any tokens already issued remain valid until they expire. To invalidate the OAuth application itself or revoke a specific token, use the key manager's own console or revoke endpoint.
+
+## Related
+
+- [Subscribe to an API](../manage-subscriptions/subscribe-to-an-api.md) — subscribe before generating credentials
+- [Consume an API Secured with API Key](consume-an-api-secured-with-api-key.md) — alternative for API-key-secured APIs
+- [Key Manager Integration](../admin-settings/key-manager-integration.md) — admin guide for key manager setup

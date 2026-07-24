@@ -680,12 +680,9 @@ nav:
   # In-development 'next' doc sets, only shown in the nav while browsing a
   # /next/ (or <component>/next/) URL — see extra.version_scoped_navs.
   - Developer Portal:
-    - Theming Developer Portal:
-        - Theming with AI: next/developer-portal/theming-devportal-with-ai.md
-        - Theming Manually:
-            - Theme in Organizational Level: next/developer-portal/theming-devportal-org-level.md
-            - Theme in API Level: next/developer-portal/theming-devportal-api-level.md
-        - Devportal Mode: next/developer-portal/developer-portal-mode.md
+    - Overview: next/developer-portal/overview.md
+    - Getting Started: next/developer-portal/getting-started.md
+    - Concepts: next/developer-portal/concepts.md
     - AI Agent Discovery: next/developer-portal/discover-apis/ai-agent-discovery.md
     - Discover APIs:
         - Search APIs: next/developer-portal/discover-apis/api-search.md
@@ -699,11 +696,53 @@ nav:
         - Create an Application: next/developer-portal/manage-applications/create-an-application.md
     - Manage Subscriptions:
         - Subscribe to an API: next/developer-portal/manage-subscriptions/subscribe-to-an-api.md
-    - SDK Generation:
-        - AI Assisted SDK Generation: next/developer-portal/sdk-generation/ai-assisted-sdk-generation.md
+    - Manage API Keys: next/developer-portal/manage-api-keys.md
+    - Setting Up:
+        - Integrate Third-Party Identity Providers: next/developer-portal/setting-up/integrate-identity-providers.md
+        - Devportal Mode: next/developer-portal/developer-portal-mode.md
+        - Design Mode: next/developer-portal/setting-up/design-mode.md
     - Admin Settings:
-        - LLM Instructions: next/developer-portal/admin-settings/llm-instructions.md
-        - Managing API Workflows: next/developer-portal/admin-settings/managing-api-workflows.md
+        - Organization:
+            - Organization Settings: next/developer-portal/admin-settings/organization-settings.md
+            - Manage Views: next/developer-portal/admin-settings/manage-views.md
+            - Manage Labels: next/developer-portal/admin-settings/manage-labels.md
+            - Subscription Plans: next/developer-portal/admin-settings/subscription-plans.md
+            - Key Manager Integration: next/developer-portal/admin-settings/key-manager-integration.md
+        - Content:
+            - Manage APIs: next/developer-portal/admin-settings/manage-apis.md
+            - Manage MCP Servers: next/developer-portal/admin-settings/manage-mcp-servers.md
+        - Integrations:
+            - Webhook Integration: next/developer-portal/admin-settings/webhook-integration.md
+        - AI & Discovery:
+            - LLM Instructions: next/developer-portal/admin-settings/llm-instructions.md
+            - Managing API Workflows: next/developer-portal/admin-settings/managing-api-workflows.md
+        - Appearance:
+            - Theming: next/developer-portal/admin-settings/theming.md
+    - References:
+        - Management API:
+            - Overview: next/developer-portal/rest-api/overview.md
+            - Authentication: next/developer-portal/rest-api/authentication.md
+            - Organizations: next/developer-portal/rest-api/organizations.md
+            - Organization Content: next/developer-portal/rest-api/organization-content.md
+            - Views: next/developer-portal/rest-api/views.md
+            - Labels: next/developer-portal/rest-api/labels.md
+            - Subscription Plans: next/developer-portal/rest-api/subscription-plans.md
+            - Key Managers: next/developer-portal/rest-api/key-managers.md
+            - APIs: next/developer-portal/rest-api/apis.md
+            - API Content: next/developer-portal/rest-api/api-content.md
+            - MCP Servers: next/developer-portal/rest-api/mcp-servers.md
+            - MCP Server Content: next/developer-portal/rest-api/mcp-server-content.md
+            - MCP Server Keys: next/developer-portal/rest-api/mcp-server-keys.md
+            - Applications: next/developer-portal/rest-api/applications.md
+            - Application Keys: next/developer-portal/rest-api/application-keys.md
+            - Subscriptions: next/developer-portal/rest-api/subscriptions.md
+            - API Keys: next/developer-portal/rest-api/api-keys.md
+            - API Workflows: next/developer-portal/rest-api/api-workflows.md
+            - Webhook Subscribers: next/developer-portal/rest-api/webhook-subscribers.md
+            - Webhook Events: next/developer-portal/rest-api/webhook-events.md
+            - Schemas: next/developer-portal/rest-api/schemas.md
+        - Get a Bearer Token via curl: next/developer-portal/references/get-a-bearer-token-via-curl.md
+        - Configurations: next/developer-portal/references/configurations.md
   - AI Workspace:
     - Overview: next/ai-workspace/overview.md
     - Getting Started: next/ai-workspace/getting-started.md
@@ -1093,9 +1132,6 @@ plugins:
         develop-api-proxy/policy/policies.md: cloud/develop-api-proxy/policy/policies.md
         # Developer Portal
         devportal/developer-portal-mode.md: cloud/devportal/developer-portal-mode.md
-        devportal/theming-devportal-api-level.md: cloud/devportal/theming-devportal-api-level.md
-        devportal/theming-devportal-org-level.md: cloud/devportal/theming-devportal-org-level.md
-        devportal/theming-devportal-with-ai.md: cloud/devportal/theming-devportal-with-ai.md
         devportal/admin-settings/llm-instructions.md: cloud/devportal/admin-settings/llm-instructions.md
         devportal/admin-settings/managing-api-workflows.md: cloud/devportal/admin-settings/managing-api-workflows.md
         devportal/api-workflows/consuming-api-workflows.md: cloud/devportal/api-workflows/consuming-api-workflows.md
@@ -1106,7 +1142,6 @@ plugins:
         devportal/discover-apis/api-search.md: cloud/devportal/discover-apis/api-search.md
         devportal/manage-applications/create-an-application.md: cloud/devportal/manage-applications/create-an-application.md
         devportal/manage-subscriptions/subscribe-to-an-api.md: cloud/devportal/manage-subscriptions/subscribe-to-an-api.md
-        devportal/sdk-generation/ai-assisted-sdk-generation.md: cloud/devportal/sdk-generation/ai-assisted-sdk-generation.md
         # Event Gateway
         event-gateway/getting-started.md: cloud/event-gateway/getting-started.md
         event-gateway/overview.md: cloud/event-gateway/overview.md

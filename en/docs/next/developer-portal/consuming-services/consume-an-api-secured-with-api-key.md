@@ -1,6 +1,6 @@
 ---
 title: "Consume an API secured with an API key"
-description: "Generate an API key for a subscribed API and use it to authenticate requests in the api-key header."
+description: "Use a generated API key to authenticate requests to an API secured with API key authentication."
 canonical_url: https://wso2.com/api-platform/docs/cloud/devportal/consuming-services/consume-an-api-secured-with-api-key/
 md_url: https://wso2.com/api-platform/docs/cloud/devportal/consuming-services/consume-an-api-secured-with-api-key.md
 tags:
@@ -8,59 +8,36 @@ tags:
   - devportal
   - authentication
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-07-24
 content_type: "how-to"
 ---
 
 # Consume an API Secured with API Key
 
+API keys are bound to a specific API. You generate a key directly for an API, and that key authenticates your requests to it.
+
 ## Prerequisites
 
-Before proceeding, ensure you have [Created an Application](../manage-applications/create-an-application.md) and [Subscribed to an API](../manage-subscriptions/subscribe-to-an-api.md) to consume.
+The API must have API key authentication enabled — check the API's documentation or the security section of its specification to confirm. If the API requires a subscription, [subscribe to it](../manage-subscriptions/subscribe-to-an-api.md) first.
 
+If you haven't generated a key yet, see [Manage API Keys](../manage-api-keys.md) for the full generate/rotate/revoke lifecycle.
 
-## Creating an API Key
+## Invoke the API
 
-To consume an API secured with an API key, ensure that the desired API has API Key authentication enabled. Then create an application in the API Platform Developer Portal and subscribe it to the API under a defined usage policy. The API key will then be associated with that specific application.
+Include the generated API key in the `api-key` request header when calling the API:
 
----
-
-### Steps to Create an API Key
-
-1. Ensure the desired API has API Key authentication enabled.
-
-2. Navigate to the [API Platform Developer Portal](https://devportal.bijira.dev) and sign in.
-
-3. Click on **Applications** in the Developer Portal sidebar.
-
-4. Click on the application to open it.
-
-5. Subscribe to the API that has API Key authentication enabled via your application. For more information, see [Subscribe to an API](../manage-subscriptions/subscribe-to-an-api.md).
-
-6. In the Application detail banner, click **Manage Keys**. This opens the **Manage Keys** page.
-
-7. On the **Manage Keys** page, select either the **Production** or **Sandbox** tab based on your requirement.
-
-    !!!info
-        Sandbox keys can only be used in the sandbox environment.
-
-8. In the **API Keys** section, locate the API Key enabled API that you subscribed to and click **Generate Key** beside it.
-
-    ![Manage Keys page showing OAuth2 Keys and API Keys sections with Generate Key buttons](../../../assets/img/devportal/api-keys-section.png)
-
-9. In the **Generate API Key** dialog that opens, enter an API Key name.
-
-10. Click **Generate** and wait for the API key to be generated.
-
-11. Copy the generated API key from the dialog and click **Done** to close the dialog. The API key will not be visible in the UI again after closing the dialog.
-
-You can use the **Regenerate** button to generate a new API key, or the **Revoke** button to revoke an existing API key.
-
-## Consume an API
-
-Use this API Key to authenticate API requests by including it in the `api-key` header when invoking the API.
-
-Example:
 ```bash
-curl -H "api-key: <YOUR_API_KEY>" -X GET "https://my-sample-api.bijiraapis.dev/greet"
+curl -X GET "https://api.example.com/orders/v1/orders" \
+  -H "api-key: <YOUR_API_KEY>"
 ```
+
+Replace `<YOUR_API_KEY>` with the key you copied when generating it, and the URL with the API's actual endpoint.
+
+!!! note
+    The header name may vary depending on the API's configuration. Check the API's OpenAPI specification (the `securitySchemes` section) for the correct header name.
+
+## Related
+
+- [Manage API Keys](../manage-api-keys.md) — generate, rotate, revoke, and associate keys with an application
+- [Subscribe to an API](../manage-subscriptions/subscribe-to-an-api.md) — subscribe if the API requires a subscription
+- [Consume an API Secured with OAuth2](consume-an-api-secured-with-oauth2.md) — alternative for OAuth2-secured APIs

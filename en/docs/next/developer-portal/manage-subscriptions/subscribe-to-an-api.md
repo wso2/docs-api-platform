@@ -1,6 +1,6 @@
 ---
 title: "Subscribe to an API"
-description: "Subscribe an application to a published API in the Developer Portal to generate credentials and invoke the API."
+description: "Subscribe directly to a published API in the Developer Portal under a chosen subscription plan to control your rate limits and quota."
 canonical_url: https://wso2.com/api-platform/docs/cloud/devportal/manage-subscriptions/subscribe-to-an-api/
 md_url: https://wso2.com/api-platform/docs/cloud/devportal/manage-subscriptions/subscribe-to-an-api.md
 tags:
@@ -8,27 +8,51 @@ tags:
   - devportal
   - subscriptions
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-07-24
 content_type: "how-to"
 ---
 
-To use a published API in your application, you must subscribe to it. When you subscribe to an API, your subscription covers all minor versions within the API's major version.
+# Subscribe to an API
 
-The subscription process ensures secure authentication of API requests using application keys. While you can generate credentials for an API without subscribing to an application, this approach limits advanced configuration options such as access token expiry time, revoke token expiry time, ID token expiry time, and enabling access to the API without a secret. Generating keys directly in the API is suitable for testing or short-term use but is not recommended for long-term production usage.
+A subscription grants you access to a specific API under a chosen subscription plan, which determines your rate limits and quota. Subscriptions are made directly to an API — no application is required.
 
-To subscribe to an API via an application, follow these steps:
+## Subscribe to an API
 
-1. Go to the [API Platform Developer Portal](https://devportal.bijira.dev) and sign in to your organization.
+1. Sign in to the Developer Portal.
+2. Click **APIs** from the sidebar.
+3. Find the API you want to access and open it.
+4. Click **Subscribe** in the API's banner (or scroll to the **Subscription plans** section).
+5. Click **Subscribe** on the plan card you want (e.g. Bronze, Gold, Unlimited).
 
-2. To navigate to applications, in the Developer Portal sidebar, click **Applications**.
+The subscription is created immediately when you click **Subscribe** on a plan — there's no separate confirmation step. Once subscribed, you can invoke the API under the terms of the chosen plan. If the API uses API key authentication, you can now [generate an API key](../manage-api-keys.md) for it.
 
-3. On the **Applications** page, click on the application you want to use to subscribe to an API.
+## Subscription Plans
 
-4. Under the **Subscribed API Proxies** section, click **Explore more**.
+Subscription plans control how much of the API you can consume. Available plans and their limits are defined by the API publisher — see [Subscription Plans](../admin-settings/subscription-plans.md) for how they're configured. Contact the API owner for details on what each plan includes.
 
-5. In the **APIs** page, click **Subscribe** to subscribe to an API. You can subscribe to one or more APIs based on your requirements.
+## Subscriptionless APIs
 
-    !!! tip
-        When a new minor version of an API is published, the major version-based invocation URL automatically routes to the latest minor version within the subscribed API's major version. This ensures that existing client applications continue to function without disruption while benefiting from improvements or additions in the newer minor version.
+Some APIs are configured to allow direct invocation without subscribing. For these APIs:
 
-Once you subscribe to an API, you can invoke it using the application keys.
+1. Navigate to the API in the catalog.
+2. Click the **Try-Out** tab.
+3. Invoke the API directly using your credentials.
+
+!!! note
+    Subscriptionless access is typically for testing and exploration. For production use, subscribing is recommended — it gives you quota management and key lifecycle control.
+
+## View Your Subscriptions
+
+Your active subscriptions are listed under **Subscriptions** in the Developer Portal sidebar. From there you can see which APIs you're subscribed to, the active plan for each, and manage or cancel subscriptions.
+
+## Cancel a Subscription
+
+1. Go to **Subscriptions** in the sidebar.
+2. Find the API subscription you want to cancel.
+3. Click **Unsubscribe**.
+
+## Related
+
+- [Consume an API Secured with API Key](../consuming-services/consume-an-api-secured-with-api-key.md) — generate an API key for a subscribed API
+- [Consume an API Secured with OAuth2](../consuming-services/consume-an-api-secured-with-oauth2.md) — generate OAuth2 credentials via an application
+- [Subscription Plans](../admin-settings/subscription-plans.md) — admin guide for managing plans
