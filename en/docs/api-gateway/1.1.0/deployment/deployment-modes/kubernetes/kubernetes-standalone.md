@@ -266,6 +266,7 @@ EOF
 
 ### Expose the data plane
 Identify and port forward the data-plane service (replace `<release-name>` with the actual release name).
+
 ```bash
 kubectl get svc
 kubectl port-forward svc/<release-name>-gateway-runtime 8080:8080 8443:8443
