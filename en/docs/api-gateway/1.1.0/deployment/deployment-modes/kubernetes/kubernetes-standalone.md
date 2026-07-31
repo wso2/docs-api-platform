@@ -153,6 +153,8 @@ Refer to inline comments in chart `values.yaml` for all supported fields.
 
 ### Option 1: cert-manager (recommended)
 
+This assumes you haven't installed the gateway yet. If you have already installed the gateway, use "helm upgrade" instead of "helm install"
+
 ```bash
 helm install ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
   --set gateway.controller.tls.enabled=true
@@ -213,8 +215,9 @@ kubectl port-forward svc/ap-gateway-controller 9090:9090
 ```
 
 ### Verify gateway controller admin endpoint is running
+
 ```bash
-curl http://localhost:9094/api/admin/v0.9/health
+curl -u admin:admin http://localhost:9090/api/admin/v0.9/health
 ```
 
 ### Deploy an API configuration
@@ -259,6 +262,13 @@ spec:
     - method: DELETE
       path: /books/{id}
 EOF
+```
+
+### Expose the data plane
+Identify and port forward the data-plane service (replace `<release-name>` with the actual release name).
+```bash
+kubectl get svc
+kubectl port-forward svc/<release-name>-gateway-runtime 8080:8080 8443:8443
 ```
 
 ### Test routing through the gateway
