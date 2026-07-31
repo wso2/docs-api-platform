@@ -67,6 +67,8 @@ Create an empty database and a dedicated account for the gateway.
     psql "host=<db-host> port=5432 dbname=postgres user=<admin-user> sslmode=require"
     ```
 
+    `sslmode=require` encrypts the connection but does not verify the server's identity. For production, use `sslmode=verify-full` with a trusted CA certificate; every PostgreSQL command on this page uses `require` for brevity.
+
     Create the database and a login for the gateway.
 
     ```sql
@@ -328,7 +330,6 @@ For the full list of Redis configuration options, refer to the [Advanced Rate Li
 | SQL Server: `Msg 1934 ... CREATE INDEX failed ... 'QUOTED_IDENTIFIER'` | The script is from a release before the `SET` options were added | Use the script shipped with your gateway version |
 | `permission denied for table ...` at runtime | Step 4 was skipped, or was run before Step 2/3 finished creating the tables it grants access to | Run [Step 4 - Grant Gateway Access](#step-4-grant-gateway-access) |
 | Event Gateway fails on `websub_apis` / `webbroker_apis` / `webhook_secrets` | The supplemental Event Gateway script was not applied | Run Step 3, then re-run Step 4 so `gateway` gets access to the new tables |
-| Controller connects but logs that schema auto-apply was skipped | Expected behavior for external databases | No action needed |
 
 ---
 

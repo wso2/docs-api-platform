@@ -19,7 +19,7 @@ content_type: "how-to"
 The Gateway Controller persists API configurations, subscriptions, applications, keys, and other metadata in a database. Three storage backends are supported, selected through `[controller.storage].type`:
 
 | `type` | Description | Schema provisioning |
-|--------|-------------|---------------------|
+| -------- | ------------- | --------------------- |
 | `sqlite` (default) | Embedded, file-based database (`./data/gateway.db`). Single replica only. | Created and migrated automatically on startup |
 | `postgres` | External PostgreSQL. Required for multi-replica, high-availability deployments. | Must be provisioned before the controller starts |
 | `sqlserver` | External Microsoft SQL Server. Required for multi-replica, high-availability deployments. | Must be provisioned before the controller starts |
@@ -60,12 +60,13 @@ Create an empty database and a dedicated account for the gateway.
 (The schema should be applied by an account with DDL privileges.)
 
 === "PostgreSQL"
-
     Connect as an administrator:
 
     ```bash
     psql "host=<db-host> port=5432 dbname=postgres user=<admin-user> sslmode=require"
     ```
+
+    `sslmode=require` encrypts the connection but does not verify the server's identity. For production, use `sslmode=verify-full` with a trusted CA certificate; every PostgreSQL command on this page uses `require` for brevity.
 
     Create the database and a login for the gateway.
 
@@ -324,13 +325,12 @@ For the full list of Redis configuration options, refer to the [Advanced Rate Li
 ## Troubleshooting
 
 | Symptom | Cause | Fix |
-|---------|-------|-----|
+| --------- | ------- | ----- |
 | PostgreSQL: `ERROR: relation "artifacts" does not exist` | The schema was never applied, or was applied to a different database | Re-run Step 2 against the database named in `[controller.storage.postgres].database` |
 | SQL Server: `Invalid object name 'dbo.artifacts'` | Same as above | Re-run Step 2 against the database named in `[controller.storage.database].database` |
 | SQL Server: `Msg 1934 ... CREATE INDEX failed ... 'QUOTED_IDENTIFIER'` | The script is from a release before the `SET` options were added | Use the script shipped with your gateway version |
 | `permission denied for table ...` at runtime | Step 4 was skipped, or was run before Step 2/3 finished creating the tables it grants access to | Run [Step 4 - Grant Gateway Access](#step-4-grant-gateway-access) |
 | Event Gateway fails on `websub_apis` / `webbroker_apis` / `webhook_secrets` | The supplemental Event Gateway script was not applied | Run Step 3, then re-run Step 4 so `gateway` gets access to the new tables |
-| Controller connects but logs that schema auto-apply was skipped | Expected behavior for external databases | No action needed |
 
 ---
 
