@@ -409,11 +409,11 @@ nav:
           - Gateway runtime with four CPUs: api-gateway/next/performance/gateway-runtime-with-four-cpus.md
     - "1.1.0":
         - Overview: api-gateway/1.1.0/overview.md
+        - Quick Start Guide: api-gateway/1.1.0/quick-start-guide.md
         - Setup:
           - Storage & Backends: api-gateway/1.1.0/setup/storage-and-backends.md
           - Artifact Templating: api-gateway/1.1.0/setup/artifact-templating.md
           - Upstream Timeouts: api-gateway/1.1.0/setup/upstream-timeouts.md
-        - Quick Start Guide: api-gateway/1.1.0/quick-start-guide.md
         - Policies:
           - Overview: api-gateway/1.1.0/policies/overview.md
           - Custom Policies:
