@@ -260,6 +260,7 @@
 - [Setting Up the Database](https://wso2.com/api-platform/docs/api-gateway/setup/database-setup.md): Create the database and apply the Gateway Controller schema scripts for PostgreSQL or SQL Server before starting the gateway
 - [Storage and Backends](https://wso2.com/api-platform/docs/api-gateway/setup/storage-and-backends.md): Configure PostgreSQL as the Gateway Controller storage backend and Redis for distributed rate limiting
 - [Artifact Templating](https://wso2.com/api-platform/docs/api-gateway/setup/artifact-templating.md): Use Go text template expressions in API Platform Gateway YAML artifacts to inject environment variables and dynamic values at startup
+- [Health Checks](https://wso2.com/api-platform/docs/api-gateway/setup/health-checks.md): Configure liveness and readiness health checks for the Gateway Controller, Router, and Policy Engine, and wire them into Docker Compose or Kubernetes probes
 - [Upstream Timeouts](https://wso2.com/api-platform/docs/api-gateway/setup/upstream-timeouts.md): Configure the upstream TCP connection timeout in API Platform Gateway to protect against slow or unreachable backend services
 - [API Gateway Policies Overview](https://wso2.com/api-platform/docs/api-gateway/policies/overview.md): Overview of the policy framework for the standalone gateway
 - [Writing a Custom Policy](https://wso2.com/api-platform/docs/api-gateway/policies/custom-policies/writing-a-custom-policy.md): Write a custom policy for API Platform Gateway using the Go SDK: implement request and response hooks in the policy chain

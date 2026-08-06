@@ -343,6 +343,7 @@ nav:
           - Configuration & Interpolation: api-gateway/next/setup/configuration.md
           - Setting Up the Database: api-gateway/next/setup/database-setup.md
           - Artifact Templating: api-gateway/next/setup/artifact-templating.md
+          - Health Checks: api-gateway/next/setup/health-checks.md
         - Resiliency:
           - Timeouts: api-gateway/next/resiliency/timeouts.md
         - Policies:
@@ -414,6 +415,7 @@ nav:
           - Configuration & Interpolation: api-gateway/1.2.0/setup/configuration.md
           - Setting Up the Database: api-gateway/1.2.0/setup/database-setup.md
           - Artifact Templating: api-gateway/1.2.0/setup/artifact-templating.md
+          - Health Checks: api-gateway/1.2.0/setup/health-checks.md
         - Resiliency:
           - Timeouts: api-gateway/1.2.0/resiliency/timeouts.md
         - Policies:

@@ -26,5 +26,6 @@ US English, readable for non-native speakers and machine translation.
 
 - Present tense. Provide context; don't assume the reader knows the subject.
 - Prefer what the reader can do over what they can't.
-- Define abbreviations at first use. One word, one meaning per document.
+- Define abbreviations at first use, except standard, widely recognized ones (see the
+  acronym exception in `doc-plain-language.md`). One word, one meaning per document.
 - State the intended audience (developer, sysadmin) near the top where it helps.
