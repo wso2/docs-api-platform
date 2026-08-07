@@ -8,7 +8,7 @@ tags:
   - guardrails
   - policies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-16
+last_updated: 2026-08-07
 content_type: "reference"
 ---
 
@@ -77,11 +77,11 @@ The guardrail counts sequences of characters ending with these punctuation marks
 Deploy an LLM provider that ensures requests contain between 1 and 10 sentences:
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v0.9/llm-providers \
+curl -X POST http://localhost:9090/api/management/v1/llm-providers \
   -H "Content-Type: application/yaml" \
   -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
   --data-binary @- <<'EOF'
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProvider
 metadata:
   name: sentence-count-provider

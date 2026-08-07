@@ -8,7 +8,7 @@ tags:
   - mcp
   - policies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-16
+last_updated: 2026-08-07
 content_type: "reference"
 ---
 
@@ -63,7 +63,7 @@ These parameters are configured per MCP Proxy by the API developer:
 Expose tools with different names than the backend:
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: Mcp
 metadata:
   name: mcp-server-api-v1.0
@@ -95,7 +95,7 @@ spec:
 Expose resources with user-friendly URIs mapped to backend resources:
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: Mcp
 metadata:
   name: mcp-server-api-v1.0
@@ -127,7 +127,7 @@ spec:
 Rewrite prompts and tools with metadata:
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: Mcp
 metadata:
   name: mcp-server-api-v1.0

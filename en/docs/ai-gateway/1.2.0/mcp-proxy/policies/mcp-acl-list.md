@@ -8,7 +8,7 @@ tags:
   - mcp
   - policies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-16
+last_updated: 2026-08-07
 content_type: "reference"
 ---
 
@@ -64,7 +64,7 @@ For each capability type (tools, resources, prompts):
 Deny access to certain tools while allowing all others:
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: Mcp
 metadata:
   name: mcp-server-api-v1.0
@@ -92,7 +92,7 @@ spec:
 Allow access to only whitelisted resources:
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: Mcp
 metadata:
   name: mcp-server-api-v1.0
@@ -120,7 +120,7 @@ spec:
 Apply different access control rules to different capability types:
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: Mcp
 metadata:
   name: mcp-server-api-v1.0

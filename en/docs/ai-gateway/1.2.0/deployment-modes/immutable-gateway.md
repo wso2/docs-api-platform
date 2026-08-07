@@ -8,7 +8,7 @@ tags:
   - deployment
   - gitops
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-16
+last_updated: 2026-08-07
 content_type: "how-to"
 ---
 
@@ -87,7 +87,7 @@ Save the following as `artifacts/reading-list-v1.yaml`:
 
 {% raw %}
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: RestApi
 metadata:
   name: reading-list-api-v1

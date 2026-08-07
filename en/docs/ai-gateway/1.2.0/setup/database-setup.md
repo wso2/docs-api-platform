@@ -10,7 +10,7 @@ tags:
   - sqlserver
   - devops
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-07-30
+last_updated: 2026-08-07
 content_type: "how-to"
 ---
 
@@ -124,33 +124,7 @@ Run the script for your database against the database you just created.
 
 The scripts are idempotent — every object is guarded (`CREATE TABLE IF NOT EXISTS` on PostgreSQL, `IF OBJECT_ID(...) IS NULL` on SQL Server) — so re-running them is safe and creates only what is missing.
 
-## Step 3 - Apply the Event Gateway Schema (Event Gateway Only)
-
-The Event Gateway stores WebSub and WebBroker artifacts in the same database, in three tables the core script does not define: `websub_apis`, `webbroker_apis`, and `webhook_secrets`. Like the core schema, these are auto-created only for `sqlite`; for external databases you must apply them yourself.
-
-Apply the matching supplemental script after Step 2:
-
-- [eventgateway-db.postgres.sql](https://github.com/wso2/api-platform/blob/main/event-gateway/gateway-controller/pkg/dbschema/eventgateway-db.postgres.sql)
-- [eventgateway-db.sqlserver.sql](https://github.com/wso2/api-platform/blob/main/event-gateway/gateway-controller/pkg/dbschema/eventgateway-db.sqlserver.sql)
-
-=== "PostgreSQL"
-
-    ```bash
-    psql "host=<db-host> port=5432 dbname=gateway_controller user=<admin-user> sslmode=require" \
-      -v ON_ERROR_STOP=1 -f eventgateway-db.postgres.sql
-    ```
-
-=== "SQL Server"
-
-    ```bash
-    sqlcmd -S <db-host>,1433 -d gateway_controller \
-      -U <admin-user> -P '<admin-password>' -b \
-      -i eventgateway-db.sqlserver.sql
-    ```
-
-Skip this step if you are not running the Event Gateway.
-
-## Step 4 - Grant Gateway Access
+## Step 3 - Grant Gateway Access
 
 With the tables in place give `gateway` the privileges the controller needs at runtime: `SELECT`, `INSERT`, `UPDATE`, and `DELETE`.
 
@@ -178,7 +152,7 @@ With the tables in place give `gateway` the privileges the controller needs at r
     GO
     ```
 
-## Step 5 - Verify the Schema
+## Step 4 - Verify the Schema
 
 Confirm the tables exist before starting the gateway.
 
@@ -207,9 +181,7 @@ llm_proxies             mcp_proxies             rest_apis
 secrets                 subscription_plans      subscriptions
 ```
 
-If you also applied the Event Gateway script, `websub_apis`, `webbroker_apis`, and `webhook_secrets` are present as well.
-
-## Step 6 - Point the Gateway Controller at the Database
+## Step 5 - Point the Gateway Controller at the Database
 
 With the schema in place, configure the connection in `configs/config.toml`.
 
@@ -326,8 +298,7 @@ For the full list of Redis configuration options, refer to the [Advanced Rate Li
 | PostgreSQL: `ERROR: relation "artifacts" does not exist` | The schema was never applied, or was applied to a different database | Re-run Step 2 against the database named in `[controller.storage.postgres].database` |
 | SQL Server: `Invalid object name 'dbo.artifacts'` | Same as above | Re-run Step 2 against the database named in `[controller.storage.database].database` |
 | SQL Server: `Msg 1934 ... CREATE INDEX failed ... 'QUOTED_IDENTIFIER'` | The script is from a release before the `SET` options were added | Use the script shipped with your gateway version |
-| `permission denied for table ...` at runtime | Step 4 was skipped, or was run before Step 2/3 finished creating the tables it grants access to | Run [Step 4 - Grant Gateway Access](#step-4-grant-gateway-access) |
-| Event Gateway fails on `websub_apis` / `webbroker_apis` / `webhook_secrets` | The supplemental Event Gateway script was not applied | Run Step 3, then re-run Step 4 so `gateway` gets access to the new tables |
+| `permission denied for table ...` at runtime | Step 3 was skipped, or was run before Step 2 finished creating the tables it grants access to | Run [Step 3 - Grant Gateway Access](#step-3-grant-gateway-access) |
 | Controller connects but logs that schema auto-apply was skipped | Expected behavior for external databases | No action needed |
 
 ---
