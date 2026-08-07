@@ -39,10 +39,10 @@ docker compose version
 
 ```bash
 # Download distribution.
-wget https://github.com/wso2/api-platform/releases/download/gateway/v1.2.0-rc2/wso2apip-api-gateway-1.2.0-rc2.zip
+wget https://github.com/wso2/api-platform/releases/download/gateway/v1.2.0/wso2apip-api-gateway-1.2.0.zip
 
 # Unzip the downloaded distribution.
-unzip wso2apip-api-gateway-1.2.0-rc2.zip
+unzip wso2apip-api-gateway-1.2.0.zip
 
 cd wso2apip-api-gateway-1.2.0/
 
