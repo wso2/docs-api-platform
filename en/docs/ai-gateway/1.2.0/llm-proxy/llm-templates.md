@@ -8,7 +8,7 @@ tags:
   - llm
   - reference
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-16
+last_updated: 2026-08-04
 content_type: "reference"
 ---
 
@@ -33,7 +33,7 @@ The API Platform Gateway ships with the following pre-configured LLM provider te
 | `anthropic` | Anthropic | Anthropic Claude Provider |
 | `gemini` | Gemini | Google Gemini Provider |
 | `mistralai` | MistralAI | Mistral AI Provider |
-| `awsbedrock` | AWS Bedrock | Amazon Bedrock Provider |
+| `awsbedrock` | AWS Bedrock | AWS Bedrock Provider |
 | `azureai-foundry` | Azure AI Foundry | Microsoft Azure AI Foundry Provider |
 
 These templates are automatically loaded when the gateway starts and are immediately available for use when creating LLM providers.
@@ -43,39 +43,43 @@ These templates are automatically loaded when the gateway starts and are immedia
 Each LLM provider template follows a standard YAML structure:
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProviderTemplate
 metadata:
   name: <template-id>
 spec:
   displayName: <Display Name>
+  groupId: <template-family-id>
+  managedBy: <template-owner>
+  version: <template-version>
   # Provider characteristics
   promptTokens:
-    location: <payload|header|pathParam>
+    location: <payload|header|queryParam|pathParam>
     identifier: <extraction-pattern>
   completionTokens:
-    location: <payload|header|pathParam>
+    location: <payload|header|queryParam|pathParam>
     identifier: <extraction-pattern>
   totalTokens:
-    location: <payload|header|pathParam>
+    location: <payload|header|queryParam|pathParam>
     identifier: <extraction-pattern>
   remainingTokens:
-    location: <payload|header|pathParam>
+    location: <payload|header|queryParam|pathParam>
     identifier: <extraction-pattern>
   requestModel:
-    location: <payload|header|pathParam>
+    location: <payload|header|queryParam|pathParam>
     identifier: <extraction-pattern>
   responseModel:
-    location: <payload|header|pathParam>
+    location: <payload|header|queryParam|pathParam>
     identifier: <extraction-pattern>
 ```
 
 ### Metadata Extraction Patterns
 
-Templates support three types of extraction locations:
+Templates support four types of extraction locations:
 
 - **`payload`**: Extract from JSON response body using JSONPath expressions (e.g., `$.usage.prompt_tokens`)
 - **`header`**: Extract from HTTP response headers using header name (e.g., `x-ratelimit-remaining-tokens`)
+- **`queryParam`**: Extract from a URL query parameter
 - **`pathParam`**: Extract from URL path using regular expressions (e.g., `(?<=models/)[a-zA-Z0-9.\-]+`)
 
 ## Template Details
@@ -85,12 +89,15 @@ Templates support three types of extraction locations:
 The OpenAI template extracts metadata from OpenAI API responses.
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProviderTemplate
 metadata:
   name: openai
 spec:
   displayName: OpenAI
+  groupId: wso2-openai
+  managedBy: wso2
+  version: v1.0
   promptTokens:
     location: payload
     identifier: $.usage.prompt_tokens
@@ -109,6 +116,15 @@ spec:
   responseModel:
     location: payload
     identifier: $.model
+  resourceMappings:
+    resources:
+      - resource: /responses
+        promptTokens:
+          location: payload
+          identifier: $.usage.input_tokens
+        completionTokens:
+          location: payload
+          identifier: $.usage.output_tokens
 ```
 
 ### Azure OpenAI
@@ -116,18 +132,21 @@ spec:
 The Azure OpenAI template is compatible with Microsoft's Azure OpenAI Service API.
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProviderTemplate
 metadata:
   name: azure-openai
 spec:
   displayName: Azure OpenAI
+  groupId: wso2-azure-openai
+  managedBy: wso2
+  version: v1.0
   promptTokens:
     location: payload
-    identifier: $.usage.input_tokens
+    identifier: $.usage.prompt_tokens
   completionTokens:
     location: payload
-    identifier: $.usage.output_tokens
+    identifier: $.usage.completion_tokens
   totalTokens:
     location: payload
     identifier: $.usage.total_tokens
@@ -140,6 +159,15 @@ spec:
   responseModel:
     location: payload
     identifier: $.model
+  resourceMappings:
+    resources:
+      - resource: /responses
+        promptTokens:
+          location: payload
+          identifier: $.usage.input_tokens
+        completionTokens:
+          location: payload
+          identifier: $.usage.output_tokens
 ```
 
 ### Anthropic
@@ -147,12 +175,15 @@ spec:
 The Anthropic template extracts metadata from Anthropic Claude API responses.
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProviderTemplate
 metadata:
   name: anthropic
 spec:
   displayName: Anthropic
+  groupId: wso2-anthropic
+  managedBy: wso2
+  version: v1.0
   promptTokens:
     location: payload
     identifier: $.usage.input_tokens
@@ -175,12 +206,15 @@ spec:
 The Gemini template is designed for Google's Gemini API.
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProviderTemplate
 metadata:
   name: gemini
 spec:
   displayName: Gemini
+  groupId: wso2-gemini
+  managedBy: wso2
+  version: v1.0
   promptTokens:
     location: payload
     identifier: $.usageMetadata.promptTokenCount
@@ -206,12 +240,15 @@ spec:
 The MistralAI template supports Mistral AI's API.
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProviderTemplate
 metadata:
   name: mistralai
 spec:
   displayName: MistralAI
+  groupId: wso2-mistralai
+  managedBy: wso2
+  version: v1.0
   promptTokens:
     location: payload
     identifier: $.usage.prompt_tokens
@@ -234,15 +271,18 @@ spec:
 
 ### AWS Bedrock
 
-The AWS Bedrock template is designed for Amazon Bedrock's unified API.
+The AWS Bedrock template is designed for the AWS Bedrock unified API. To configure and deploy a provider with bearer or AWS Signature Version 4 (SigV4) authentication, see [Configure an AWS Bedrock Large Language Model provider](configure-aws-bedrock-provider.md).
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProviderTemplate
 metadata:
   name: awsbedrock
 spec:
   displayName: AWS Bedrock
+  groupId: wso2-awsbedrock
+  managedBy: wso2
+  version: v1.0
   promptTokens:
     location: payload
     identifier: $.usage.inputTokens
@@ -254,10 +294,10 @@ spec:
     identifier: $.usage.totalTokens
   requestModel:
     location: pathParam
-    identifier: (?<=model/)[a-zA-Z0-9.:-]+(?=/)
+    identifier: model/([A-Za-z0-9.:-]+)/
   responseModel:
     location: pathParam
-    identifier: (?<=model/)[a-zA-Z0-9.:-]+(?=/)
+    identifier: model/([A-Za-z0-9.:-]+)/
 ```
 
 ### Azure AI Foundry
@@ -265,12 +305,15 @@ spec:
 The Azure AI Foundry template supports Microsoft's Azure AI Foundry platform.
 
 ```yaml
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProviderTemplate
 metadata:
   name: azureai-foundry
 spec:
   displayName: Azure AI Foundry
+  groupId: wso2-azureai-foundry
+  managedBy: wso2
+  version: v1.0
   promptTokens:
     location: payload
     identifier: $.usage.prompt_tokens
@@ -289,6 +332,15 @@ spec:
   responseModel:
     location: payload
     identifier: $.model
+  resourceMappings:
+    resources:
+      - resource: /responses
+        promptTokens:
+          location: payload
+          identifier: $.usage.input_tokens
+        completionTokens:
+          location: payload
+          identifier: $.usage.output_tokens
 ```
 
 ## Creating an LLM Provider with a Template
@@ -296,11 +348,11 @@ spec:
 To create an LLM provider using any of the out-of-the-box templates:
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v0.9/llm-providers \
+curl -X POST http://localhost:9090/api/management/v1/llm-providers \
   -H "Content-Type: application/yaml" \
   -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
   --data-binary @- <<'EOF'
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProvider
 metadata:
   name: <unique-id>
@@ -308,6 +360,7 @@ spec:
   displayName: <display-name>
   version: v1.0
   template: <template-id>
+  context: /<provider-context>
   upstream:
     url: https://api.openai.com/v1
     auth:
@@ -330,6 +383,7 @@ Replace the placeholders:
 - `<unique-id>`: Unique identifier for your provider (e.g., `my-openai-provider`)
 - `<display-name>`: Human-readable name (e.g., `My OpenAI Provider`)
 - `<template-id>`: One of the supported template IDs (`openai`, `azure-openai`, `anthropic`, `gemini`, `mistralai`, `awsbedrock`, `azureai-foundry`)
+- `<provider-context>`: Base path for the provider routes (e.g., `openai/latest`)
 - `<auth-header>`: Authentication header name (e.g., `Authorization` for most providers)
 - `<key>`: Your API key with appropriate prefix (e.g., `Bearer sk-...` for OpenAI)
 
@@ -346,7 +400,7 @@ The gateway automatically uses the template's metadata extraction patterns to:
 To list all available LLM provider templates:
 
 ```bash
-curl -X GET http://localhost:9090/api/management/v0.9/llm-provider-templates \
+curl -X GET http://localhost:9090/api/management/v1/llm-provider-templates \
   -u "$ADMIN_USERNAME:$ADMIN_PASSWORD"
 ```
 
@@ -355,7 +409,7 @@ curl -X GET http://localhost:9090/api/management/v0.9/llm-provider-templates \
 To retrieve details of a specific template:
 
 ```bash
-curl -X GET http://localhost:9090/api/management/v0.9/llm-provider-templates/openai \
+curl -X GET http://localhost:9090/api/management/v1/llm-provider-templates/openai \
   -u "$ADMIN_USERNAME:$ADMIN_PASSWORD"
 ```
 
@@ -364,16 +418,19 @@ curl -X GET http://localhost:9090/api/management/v0.9/llm-provider-templates/ope
 Platform administrators can create custom templates for LLM providers not covered by the out-of-the-box templates:
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v0.9/llm-provider-templates \
+curl -X POST http://localhost:9090/api/management/v1/llm-provider-templates \
   -H "Content-Type: application/yaml" \
   -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
   --data-binary @- <<'EOF'
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProviderTemplate
 metadata:
   name: custom-provider
 spec:
   displayName: Custom Provider
+  groupId: custom-provider
+  managedBy: customer
+  version: v1.0
   totalTokens:
     location: payload
     identifier: $.tokens.total
@@ -385,16 +442,19 @@ EOF
 To update an existing custom template:
 
 ```bash
-curl -X PUT http://localhost:9090/api/management/v0.9/llm-provider-templates/custom-provider \
+curl -X PUT http://localhost:9090/api/management/v1/llm-provider-templates/custom-provider \
   -H "Content-Type: application/yaml" \
   -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
   --data-binary @- <<'EOF'
-apiVersion: gateway.api-platform.wso2.com/v1alpha1
+apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProviderTemplate
 metadata:
   name: custom-provider
 spec:
   displayName: Custom Provider Updated
+  groupId: custom-provider
+  managedBy: customer
+  version: v1.0
   promptTokens:
     location: payload
     identifier: $.usage.input_tokens
@@ -407,7 +467,7 @@ EOF
 To delete a custom template:
 
 ```bash
-curl -X DELETE http://localhost:9090/api/management/v0.9/llm-provider-templates/custom-provider \
+curl -X DELETE http://localhost:9090/api/management/v1/llm-provider-templates/custom-provider \
   -u "$ADMIN_USERNAME:$ADMIN_PASSWORD"
 ```
 
@@ -415,18 +475,24 @@ curl -X DELETE http://localhost:9090/api/management/v0.9/llm-provider-templates/
 
 ## Template Field Reference
 
+Use this table to configure an `LlmProviderTemplate` resource.
+
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `apiVersion` | string | Yes | API version, must be `gateway.api-platform.wso2.com/v1alpha1` |
+| `apiVersion` | string | Yes | API version, must be `gateway.api-platform.wso2.com/v1` |
 | `kind` | string | Yes | Resource kind, must be `LlmProviderTemplate` |
 | `metadata.name` | string | Yes | Unique identifier for the template (used as template ID) |
 | `spec.displayName` | string | Yes | Human-readable name for the template |
+| `spec.groupId` | string | No | Stable family identifier shared by versions of the same template; defaults to `metadata.name` |
+| `spec.managedBy` | string | No | Template owner; built-in templates use `wso2`, while custom templates default to `customer` |
+| `spec.version` | string | No | Template content version; defaults to `v1.0` |
 | `spec.promptTokens` | object | No | Configuration for extracting prompt/input token count |
 | `spec.completionTokens` | object | No | Configuration for extracting completion/output token count |
 | `spec.totalTokens` | object | No | Configuration for extracting total token count |
 | `spec.remainingTokens` | object | No | Configuration for extracting remaining token allowance |
 | `spec.requestModel` | object | No | Configuration for extracting request model identifier |
 | `spec.responseModel` | object | No | Configuration for extracting response model identifier |
+| `spec.resourceMappings` | object | No | Resource-specific extraction overrides, such as token paths for `/responses` |
 
 ### Extraction Configuration Object
 
@@ -434,5 +500,5 @@ Each extraction configuration object has the following structure:
 
 | Field | Type | Values | Description |
 |-------|------|--------|-------------|
-| `location` | string | `payload`, `header`, `pathParam` | Where to extract the value from |
-| `identifier` | string | - | JSONPath (for payload), header name (for header), or regex pattern (for pathParam) |
+| `location` | string | `payload`, `header`, `queryParam`, `pathParam` | Where to extract the value from |
+| `identifier` | string | - | JSONPath (for payload), header or query parameter name, or regex pattern (for pathParam) |
