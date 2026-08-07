@@ -336,6 +336,78 @@ nav:
     - Overview: api-manager/overview.md
     - Documentation: https://apim.docs.wso2.com/en/latest/
   - API Gateway:
+    - "next":
+        - Overview: api-gateway/next/overview.md
+        - Quick Start Guide: api-gateway/next/quick-start-guide.md
+        - Setup:
+          - Configuration & Interpolation: api-gateway/next/setup/configuration.md
+          - Setting Up the Database: api-gateway/next/setup/database-setup.md
+          - Artifact Templating: api-gateway/next/setup/artifact-templating.md
+        - Resiliency:
+          - Timeouts: api-gateway/next/resiliency/timeouts.md
+        - Policies:
+          - Overview: api-gateway/next/policies/overview.md
+          - Custom Policies:
+            - Writing a Custom Policy: api-gateway/next/policies/custom-policies/writing-a-custom-policy.md
+            - Building Gateway with Custom Policies: api-gateway/next/policies/custom-policies/building-gateway-with-custom-policies.md
+        - Deployment:
+          - Deployment Modes:
+            - Immutable Gateway: api-gateway/next/deployment/deployment-modes/immutable-gateway.md
+            - Kubernetes:
+              - Overview: api-gateway/next/deployment/deployment-modes/kubernetes/overview.md
+              - Standalone Mode: api-gateway/next/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
+              - Kubernetes Operator Mode: api-gateway/next/deployment/deployment-modes/kubernetes/gateway-operator.md
+              - Management CRDs: api-gateway/next/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
+          - High-Availability Production Deployment:
+            - Overview: api-gateway/next/deployment/high-availability-production-deployment.md
+            - Security Hardening: api-gateway/next/deployment/production-deployment/security-hardening.md
+            - Database Configuration: api-gateway/next/deployment/production-deployment/database-configuration.md
+            - Resources & Scaling: api-gateway/next/deployment/production-deployment/resources-and-scaling.md
+            - Deploy & Verify: api-gateway/next/deployment/production-deployment/deploy-and-verify.md
+            - Control Plane Connection: api-gateway/next/deployment/production-deployment/control-plane-connection.md
+          - Deploying APIs:
+            - Bottom-Up Deployment: api-gateway/next/deployment/deploying-apis/bottom-up-api-deployment.md
+        - Observability:
+          - Logging:
+            - Centralized Logging: api-gateway/next/observability/logging.md
+            - Traffic Logging: api-gateway/next/observability/traffic-logging.md
+          - Tracing:
+            - Overview: api-gateway/next/observability/tracing/overview.md
+            - Enabling and Disabling Tracing: api-gateway/next/observability/tracing/enabling-tracing.md
+            - Viewing Traces in Jaeger: api-gateway/next/observability/tracing/viewing-traces-in-jaeger.md
+            - Tracing Configuration: api-gateway/next/observability/tracing/configuration.md
+            - Alternative Tracing Backends: api-gateway/next/observability/tracing/alternative-backends.md
+            - Best Practices and Troubleshooting: api-gateway/next/observability/tracing/best-practices-and-troubleshooting.md
+          - Metrics:
+            - Overview: api-gateway/next/observability/metrics/overview.md
+            - Enabling and Disabling Metrics: api-gateway/next/observability/metrics/enabling-metrics.md
+            - Viewing Metrics in Grafana: api-gateway/next/observability/metrics/viewing-metrics-in-grafana.md
+            - Prometheus Queries: api-gateway/next/observability/metrics/prometheus-queries.md
+            - Configuration Options: api-gateway/next/observability/metrics/configuration.md
+            - Alternative Metrics Backends: api-gateway/next/observability/metrics/alternative-backends.md
+            - Metric Reference: api-gateway/next/observability/metrics/metric-reference.md
+            - Best Practices and Troubleshooting: api-gateway/next/observability/metrics/best-practices-and-troubleshooting.md
+        - Analytics:
+          - Analytics Header Filter: api-gateway/next/analytics/analytics-header-filter.md
+          - Moesif Analytics: api-gateway/next/analytics/moesif-analytics.md
+        - Management API:
+          - Overview: api-gateway/next/gateway-controller-management-api/overview.md
+          - Authentication: api-gateway/next/gateway-controller-management-api/authentication.md
+          - Rest API Management: api-gateway/next/gateway-controller-management-api/rest-api-management.md
+          - MCP Proxy Management: api-gateway/next/gateway-controller-management-api/mcp-proxy-management.md
+          - Certificate Management: api-gateway/next/gateway-controller-management-api/certificate-management.md
+          - LLM Provider Template Management: api-gateway/next/gateway-controller-management-api/llm-provider-template-management.md
+          - LLM Provider Management: api-gateway/next/gateway-controller-management-api/llm-provider-management.md
+          - LLM Proxy Management: api-gateway/next/gateway-controller-management-api/llm-proxy-management.md
+          - Secrets Management: api-gateway/next/gateway-controller-management-api/secrets-management.md
+          - WebSub API Management: api-gateway/next/gateway-controller-management-api/websub-api-management.md
+          - WebBroker API Management: api-gateway/next/gateway-controller-management-api/webbroker-api-management.md
+          - Schemas: api-gateway/next/gateway-controller-management-api/schemas.md
+        - Performance:
+          - Overview: api-gateway/next/performance/overview.md
+          - Gateway runtime with two CPUs: api-gateway/next/performance/gateway-runtime-with-two-cpus.md
+          - Gateway runtime with four CPUs: api-gateway/next/performance/gateway-runtime-with-four-cpus.md
+        - About this release: api-gateway/next/about-this-release.md
     - "1.2.0":
         - Overview: api-gateway/1.2.0/overview.md
         - Quick Start Guide: api-gateway/1.2.0/quick-start-guide.md
@@ -540,6 +612,61 @@ nav:
           - WebBroker API Management: api-gateway/1.0.0/gateway-controller-management-api/webbroker-api-management.md
           - Schemas: api-gateway/1.0.0/gateway-controller-management-api/schemas.md
   - AI Gateway:
+    - "next":
+      - Overview: ai-gateway/next/overview.md
+      - Quick Start Guide: ai-gateway/next/quick-start-guide.md
+      - Setup:
+        - Configuration & Interpolation: ai-gateway/next/setup/configuration.md
+        - Setting Up the Database: ai-gateway/next/setup/database-setup.md
+      - LLM Proxy:
+        - Quick Start Guide: ai-gateway/next/llm-proxy/quick-start-guide.md
+        - LLM Provider Templates: ai-gateway/next/llm-proxy/llm-templates.md
+        - Multi-Provider Routing: ai-gateway/next/llm-proxy/multi-provider-routing.md
+        - Guardrails:
+          - AWS Bedrock Guardrail: ai-gateway/next/llm-proxy/guardrails/aws-bedrock-guardrail.md
+          - Azure Content Safety: ai-gateway/next/llm-proxy/guardrails/azure-content-safety.md
+          - Content Length Guardrail: ai-gateway/next/llm-proxy/guardrails/content-length.md
+          - JSON Schema Guardrail: ai-gateway/next/llm-proxy/guardrails/json-schema.md
+          - PII Masking Regex Guardrail: ai-gateway/next/llm-proxy/guardrails/pii-masking-regex.md
+          - Regex Guardrail: ai-gateway/next/llm-proxy/guardrails/regex.md
+          - Semantic Prompt Guardrail: ai-gateway/next/llm-proxy/guardrails/semantic-prompt-guard.md
+          - Sentence Count Guardrail: ai-gateway/next/llm-proxy/guardrails/sentence-count.md
+          - URL Guardrail: ai-gateway/next/llm-proxy/guardrails/url.md
+          - Word Count Guardrail: ai-gateway/next/llm-proxy/guardrails/word-count.md
+        - Load Balancing:
+          - Model Round Robin: ai-gateway/next/llm-proxy/load-balancing/model-round-robin.md
+          - Model Weighted Round Robin: ai-gateway/next/llm-proxy/load-balancing/model-weighted-round-robin.md
+        - Prompt Management:
+          - Prompt Decorator: ai-gateway/next/llm-proxy/prompt-management/prompt-decorator.md
+          - Prompt Template: ai-gateway/next/llm-proxy/prompt-management/prompt-template.md
+        - Semantic Caching: ai-gateway/next/llm-proxy/semantic-caching.md
+      - MCP Proxy:
+        - Quick Start Guide: ai-gateway/next/mcp-proxy/quick-start-guide.md
+        - Policies:
+          - MCP Access Control List: ai-gateway/next/mcp-proxy/policies/mcp-acl-list.md
+          - MCP Authentication: ai-gateway/next/mcp-proxy/policies/mcp-authentication.md
+          - MCP Authorization: ai-gateway/next/mcp-proxy/policies/mcp-authorization.md
+          - MCP Rewrite: ai-gateway/next/mcp-proxy/policies/mcp-rewrite.md
+      - Real-Time AI Streaming: ai-gateway/next/streaming-responses.md
+      - Deployment Modes:
+        - Immutable Gateway: ai-gateway/next/deployment-modes/immutable-gateway.md
+        - Kubernetes:
+        - Overview: ai-gateway/next/deployment-modes/kubernetes/overview.md
+        - Standalone Mode: ai-gateway/next/deployment-modes/kubernetes/kubernetes-standalone.md
+        - Kubernetes Operator Mode: ai-gateway/next/deployment-modes/kubernetes/gateway-operator.md
+      - Resiliency:
+        - Timeouts: ai-gateway/next/resiliency/timeouts.md
+      - Observability:
+        - Logging: ai-gateway/next/observability/logging.md
+        - Tracing: ai-gateway/next/observability/tracing.md
+      - Analytics:
+        - Moesif Analytics: ai-gateway/next/analytics/moesif-analytics.md
+        - Analytics Header Filter: ai-gateway/next/analytics/analytics-header-filter.md
+      - Performance:
+        - Overview: ai-gateway/next/performance/overview.md
+        - AI Gateway runtime with two CPUs: ai-gateway/next/performance/ai-gateway-runtime-with-two-cpus.md
+        - AI Gateway runtime with four CPUs: ai-gateway/next/performance/ai-gateway-runtime-with-four-cpus.md
+      - About this release: ai-gateway/next/about-this-release.md
     - "1.2.0":
         - Overview: ai-gateway/1.2.0/overview.md
         - Quick Start Guide: ai-gateway/1.2.0/quick-start-guide.md
@@ -1258,6 +1385,7 @@ extra:
       slug: api-gateway
       default: "1.2.0"
       versions:
+        - "next"
         - "1.2.0"
         - "1.1.0"
         - "1.0.0"
@@ -1265,6 +1393,7 @@ extra:
       slug: ai-gateway
       default: "1.2.0"
       versions:
+        - "next"
         - "1.2.0"
         - "1.1.0"
         - "1.0.0"
