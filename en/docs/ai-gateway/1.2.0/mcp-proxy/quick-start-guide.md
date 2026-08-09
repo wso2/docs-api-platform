@@ -154,7 +154,7 @@ http://localhost:8080/everything/mcp
 
 ## View the MCP proxy in AI Workspace
 
-The gateway syncs the artifacts you deploy on it up to [AI Workspace](../../../next/ai-workspace/overview.md), the control plane for AI traffic across your organization. The `everything-mcp-v1.0` proxy you deployed above appears there without being re-declared, in the `default` project named in its `project-id` annotation. See [Manage Gateway-deployed AI artifacts in AI Workspace](../../../next/ai-workspace/sync-gateway-created-artifacts.md).
+The gateway syncs the artifacts you deploy on it up to [AI Workspace](../../../ai-workspace/1.0.0/overview.md), the control plane for AI traffic across your organization. The `everything-mcp-v1.0` proxy you deployed above appears there without being re-declared, in the `default` project named in its `project-id` annotation. See [Manage Gateway-deployed AI artifacts in AI Workspace](../../../ai-workspace/1.0.0/sync-gateway-created-artifacts.md).
 
 ## Stopping the Gateway
 

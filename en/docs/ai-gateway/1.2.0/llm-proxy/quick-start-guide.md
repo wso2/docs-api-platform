@@ -207,7 +207,7 @@ curl -X POST "https://localhost:8443/assistant/chat/completions" \
 
 ## View the LLM provider and proxy in AI Workspace
 
-The gateway syncs the artifacts you deploy on it up to [AI Workspace](../../../next/ai-workspace/overview.md), the control plane for AI traffic across your organization. The OpenAI provider and the `openai-assistant` proxy you deployed above appear there without being re-declared. See [Manage Gateway-deployed AI artifacts in AI Workspace](../../../next/ai-workspace/sync-gateway-created-artifacts.md).
+The gateway syncs the artifacts you deploy on it up to [AI Workspace](../../../ai-workspace/1.0.0/overview.md), the control plane for AI traffic across your organization. The OpenAI provider and the `openai-assistant` proxy you deployed above appear there without being re-declared. See [Manage Gateway-deployed AI artifacts in AI Workspace](../../../ai-workspace/1.0.0/sync-gateway-created-artifacts.md).
 
 ## Stopping the Gateway
 
