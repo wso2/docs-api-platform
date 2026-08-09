@@ -16,7 +16,7 @@ content_type: "how-to"
 
 # Database configuration
 
-An external database is what makes controller high availability possible. It replaces the default SQLite backend, which supports a single replica, and becomes the shared source of truth that every Gateway Controller replica reads and writes. AI Gateway 1.2.0 supports **PostgreSQL** and **SQL Server**.
+An external database is what makes controller high availability possible. It replaces the default SQLite backend, which supports a single replica. The external database becomes the shared source of truth that every Gateway Controller replica reads and writes. AI Gateway 1.2.0 supports **PostgreSQL** and **SQL Server**.
 
 ## Before you begin
 

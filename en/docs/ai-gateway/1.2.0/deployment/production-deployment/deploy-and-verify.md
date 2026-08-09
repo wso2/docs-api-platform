@@ -85,16 +85,26 @@ kubectl exec -n ai-gateway deploy/ai-gateway-gateway-runtime -- \
 
 A healthy pod isn't proof that large language model (LLM) traffic works. Deploy one provider and one proxy, then call them.
 
-Port-forward the management API and deploy an LLM provider. Read the provider key with `read -rs` so it stays off the screen and out of your shell history, and let the here-document expand it into the request body:
+Port-forward the management API, then write the controller admin credentials to a `netrc` file. A password passed to `curl -u` is visible in the host's process list, and a `netrc` file only you can read keeps it out:
 
 ```bash
 kubectl port-forward -n ai-gateway svc/ai-gateway-controller 9090:9090 &
 
+umask 077
+read -rp "Controller admin username: " ADMIN_USERNAME
+read -rsp "Controller admin password: " ADMIN_PASSWORD && echo
+printf 'machine localhost login %s password %s\n' "$ADMIN_USERNAME" "$ADMIN_PASSWORD" > controller.netrc
+unset ADMIN_PASSWORD
+```
+
+Deploy an LLM provider. Read the provider key with `read -rs`, which keeps it off the screen and out of your shell history. The here-document then expands the key into the request body:
+
+```bash
 read -rsp "OpenAI API key: " OPENAI_API_KEY && echo
 
 curl -X POST http://localhost:9090/api/management/v1/llm-providers \
   -H "Content-Type: application/yaml" \
-  -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
+  --netrc-file controller.netrc \
   --data-binary @- <<EOF
 apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProvider
@@ -122,14 +132,14 @@ unset OPENAI_API_KEY
 ```
 
 !!! note
-    These requests authenticate with basic auth. If you configured an identity provider in [Security hardening](./security-hardening.md#authentication), basic auth is disabled. Replace `-u "$ADMIN_USERNAME:$ADMIN_PASSWORD"` with `-H "Authorization: Bearer $ACCESS_TOKEN"` and use a token your identity provider issued.
+    These requests authenticate with basic auth. If you configured an identity provider in [Security hardening](./security-hardening.md#authentication), basic auth is disabled. Replace `--netrc-file controller.netrc` with `-H "Authorization: Bearer $ACCESS_TOKEN"` and use a token your identity provider issued.
 
 Deploy a proxy that consumes it:
 
 ```bash
 curl -X POST http://localhost:9090/api/management/v1/llm-proxies \
   -H "Content-Type: application/yaml" \
-  -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
+  --netrc-file controller.netrc \
   --data-binary @- <<'EOF'
 apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProxy
@@ -143,6 +153,12 @@ spec:
     id: openai-provider
   policies: []
 EOF
+```
+
+Remove the credentials file once both artifacts are deployed:
+
+```bash
+shred -u controller.netrc
 ```
 
 Route a request through the runtime, using the external address your ingress serves:
@@ -168,17 +184,32 @@ curl -N -X POST "https://ai-gateway.example.com/assistant/chat/completions" \
   }'
 ```
 
-Chunks should arrive progressively. If the response arrives in one piece at the end, a buffered policy is in the chain — see [Real-time AI streaming](../../streaming-responses.md). If it cuts off partway, revisit the timeouts in [Tune the gateway for AI traffic](./ai-workload-tuning.md#raise-the-timeouts-for-long-completions).
+Chunks should arrive progressively. If the whole response arrives at once, one layer in the path is holding it until the response completes. Check these in order:
+
+- The ingress controller or reverse proxy in front of the gateway. Response buffering there hides the stream from the client.
+- A gateway policy that needs the complete body before it can run. See [Real-time AI streaming](../../streaming-responses.md).
+- The provider or the model. Not every model streams every request.
+
+If the response cuts off partway, revisit the timeouts in [Tune the gateway for AI traffic](./ai-workload-tuning.md#raise-the-timeouts-for-long-completions).
 
 ### Verify high availability
 
-With more than one controller replica, confirm that an artifact deployed through one replica reaches runtimes attached to the others. Deploy a proxy, then check that every runtime pod serves it:
+With more than one controller replica, confirm that an artifact deployed through one replica reaches runtimes attached to the others. Deploy a proxy, then call each runtime pod directly, because a Service request that succeeds proves only that one pod holds the artifact:
 
 ```bash
-kubectl get pods -n ai-gateway -l app.kubernetes.io/component=gateway-runtime -o name
+for pod in $(kubectl get pods -n ai-gateway -l app.kubernetes.io/component=gateway-runtime -o name); do
+  echo "$pod"
+  kubectl exec -n ai-gateway "$pod" -- \
+    wget -qO- --no-check-certificate \
+      --header 'Content-Type: application/json' \
+      --post-data '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"Hi"}]}' \
+      https://localhost:8443/assistant/chat/completions
+done
 ```
 
-Call the proxy repeatedly through the Service and confirm consistent responses across replicas. Allow for the EventHub `poll_interval` set in [Database configuration](./database-configuration.md#tune-the-eventhub) before a newly deployed artifact appears everywhere.
+Every pod should answer. A pod that returns a routing error hasn't received the artifact yet. Allow for the EventHub `poll_interval` set in [Database configuration](./database-configuration.md#tune-the-eventhub) before a newly deployed artifact appears everywhere.
+
+Then call the proxy repeatedly through the Service to confirm that load balancing spreads requests across those replicas.
 
 ## Upgrade
 
@@ -215,7 +246,7 @@ helm rollback ai-gateway --namespace ai-gateway
 ```
 
 !!! note
-    Controller pods restart during an upgrade. Because each runtime receives its configuration over xDiscovery Service (xDS) from a controller, keep at least two controller replicas and two runtime replicas so traffic continues to be served throughout. Combine this with the drain settings in [Resources and scaling](./resources-and-scaling.md#drain-in-flight-requests) to avoid cutting off streaming responses.
+    Controller pods restart during an upgrade. Each runtime receives its configuration over xDiscovery Service (xDS) from a controller. Keep at least two controller replicas and two runtime replicas, so traffic continues to be served throughout. Combine this with the drain settings in [Resources and scaling](./resources-and-scaling.md#drain-in-flight-requests) to avoid cutting off streaming responses.
 
 ---
 

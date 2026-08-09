@@ -40,7 +40,7 @@ gateway:
 
 **Gateway Runtime:**
 
-The runtime carries every request. It runs Envoy and the policy engine in one container, and each guardrail, personally identifiable information (PII) masking rule, and rate-limit policy adds per-request work in that container.
+The runtime carries every request. It runs Envoy and the policy engine in one container. Each guardrail, personally identifiable information (PII) masking rule, and rate-limit policy adds per-request work in that container.
 
 ```yaml
 gateway:

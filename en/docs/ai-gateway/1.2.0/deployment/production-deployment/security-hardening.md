@@ -16,11 +16,11 @@ content_type: "how-to"
 
 # Security hardening
 
-Three areas must be configured before the AI Gateway carries production traffic: encryption keys for data at rest, Transport Layer Security (TLS) for data in transit, and authentication on the management API. All three matter more on an AI Gateway than on a plain API gateway, because the artifacts it stores hold the credentials for every large language model (LLM) provider and guardrail service you route to.
+Configure three areas before the AI Gateway carries production traffic: encryption keys for data at rest, Transport Layer Security (TLS) for data in transit, and authentication on the management API. All three matter more on an AI Gateway than on a plain API gateway. Its artifacts hold the credentials for every large language model (LLM) provider and guardrail service you route to.
 
 ## Encryption keys
 
-The controller encrypts sensitive data at rest with 256-bit keys under Advanced Encryption Standard in Galois/Counter Mode (AES-GCM). On an AI Gateway this covers the LLM provider upstream API keys, guardrail service credentials such as Azure Content Safety and AWS Bedrock keys, and any values you store through the secrets management API.
+The controller encrypts sensitive data at rest with 256-bit keys under Advanced Encryption Standard in Galois/Counter Mode (AES-GCM). On an AI Gateway this covers the LLM provider upstream API keys and the guardrail service credentials, such as Azure Content Safety and AWS Bedrock keys. It also covers any values you store through the secrets management API.
 
 At-rest encryption is mandatory. The 1.2.0 chart is fail-closed: it refuses to render unless `gateway.controller.encryptionKeys.enabled` is `true` with a `secretName`, and the controller doesn't start without its key. Provision the key before you install.
 
@@ -72,7 +72,7 @@ gateway:
                 file: /app/data/aesgcm-keys/default-aesgcm256-v1.bin
 ```
 
-The `version` field must match the key identifier in the filename, which is the part after the `default-` prefix and before the `.bin` extension. The file `default-aesgcm256-v1.bin` therefore gives version `aesgcm256-v1`. The `file` path must sit under the `mountPath` you set above.
+The `version` field must match the key identifier in the filename. The identifier is the part after the `default-` prefix and before the `.bin` extension, so `default-aesgcm256-v1.bin` gives version `aesgcm256-v1`. The `file` path must sit under the `mountPath` you set above.
 
 ### Rotate an encryption key
 

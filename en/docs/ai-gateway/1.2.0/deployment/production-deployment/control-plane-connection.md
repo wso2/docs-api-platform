@@ -18,7 +18,7 @@ content_type: "how-to"
 !!! note
     This step is optional. The gateway routes large language model (LLM) and Model Context Protocol (MCP) traffic without a control plane. Connect it when you want to govern several gateways from one place.
 
-[AI Workspace](../../../../ai-workspace/1.0.0/overview.md) is the control plane for AI traffic across an organization: one console for LLM providers, App LLM proxies, MCP proxies, policies such as guardrails and token-based rate limits, and the credentials behind them. A connected gateway keeps serving traffic on its own; the control plane governs what runs on it.
+[AI Workspace](../../../../ai-workspace/1.0.0/overview.md) is the control plane for AI traffic across an organization. One console covers LLM providers, App LLM proxies, MCP proxies, policies such as guardrails and token-based rate limits, and the credentials behind them. A connected gateway keeps serving traffic on its own, and the control plane governs what runs on it.
 
 The connection works in both directions, and you can use both at once:
 

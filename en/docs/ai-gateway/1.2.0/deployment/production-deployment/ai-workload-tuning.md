@@ -16,7 +16,7 @@ content_type: "how-to"
 
 # Tune the gateway for AI traffic
 
-Large language model (LLM) and Model Context Protocol (MCP) traffic differs from representational state transfer (REST) traffic in ways the chart defaults don't anticipate. Requests stay open for tens of seconds, bodies run to megabytes, and guardrails inspect every one of those bodies. This page covers the settings that matter because of those differences. Everything here is optional in the sense that the gateway starts without it, and each default listed below is one that production LLM traffic tends to outgrow.
+Large language model (LLM) and Model Context Protocol (MCP) traffic differs from representational state transfer (REST) traffic in ways the chart defaults don't anticipate. Requests stay open for tens of seconds, bodies run to megabytes, and guardrails inspect every one of those bodies. This page covers the settings that matter because of those differences. The gateway starts without any of them. Each default listed below is one that production LLM traffic tends to outgrow.
 
 ## Raise the timeouts for long completions
 
@@ -81,7 +81,7 @@ gateway:
         timeout: 30s
 ```
 
-- `python_executor.timeout` bounds a single policy execution. Guardrails that call an external service — [Azure Content Safety](../../llm-proxy/guardrails/azure-content-safety.md), [AWS Bedrock guardrails](../../llm-proxy/guardrails/aws-bedrock-guardrail.md), or a [semantic prompt guardrail](../../llm-proxy/guardrails/semantic-prompt-guard.md) that generates embeddings — spend most of that budget on the network call. Raise it if the guardrail service is slow or distant, and keep it below `route_timeout_ms` so the route timeout stays the outer bound.
+- `python_executor.timeout` bounds a single policy execution. Guardrails that call an external service—[Azure Content Safety](../../llm-proxy/guardrails/azure-content-safety.md), [AWS Bedrock guardrails](../../llm-proxy/guardrails/aws-bedrock-guardrail.md), or a [semantic prompt guardrail](../../llm-proxy/guardrails/semantic-prompt-guard.md) that generates embeddings—spend most of that budget on the network call. Raise it if the guardrail service is slow or distant, and keep it below `route_timeout_ms` so the route timeout stays the outer bound.
 - `route_cache_action: RETAIN` keeps the route cache warm across requests. Leave it at `RETAIN`.
 
 Guardrails that reach an external service add that service's latency and its failure modes to every request. Deploy the guardrail service in the same region as the gateway, and check what your chosen guardrail does when the service is unreachable before you rely on it in production.
