@@ -16,7 +16,7 @@ content_type: "how-to"
 
 # Tune the gateway for AI traffic
 
-LLM and MCP traffic differs from REST traffic in ways the chart defaults don't anticipate. Requests stay open for tens of seconds, bodies run to megabytes, and guardrails inspect every one of those bodies. This page covers the settings that matter because of those differences. Everything here is optional in the sense that the gateway starts without it, and each default listed below is one that production LLM traffic tends to outgrow.
+Large language model (LLM) and Model Context Protocol (MCP) traffic differs from representational state transfer (REST) traffic in ways the chart defaults don't anticipate. Requests stay open for tens of seconds, bodies run to megabytes, and guardrails inspect every one of those bodies. This page covers the settings that matter because of those differences. Everything here is optional in the sense that the gateway starts without it, and each default listed below is one that production LLM traffic tends to outgrow.
 
 ## Raise the timeouts for long completions
 
@@ -47,16 +47,16 @@ Individual proxies can override the route timeouts through their `resilience` bl
 
 ## Size the body buffers
 
-The policy engine decompresses request and response bodies so that policies can inspect them. The limit is 10 MiB in each direction. For streaming responses it applies per chunk rather than cumulatively, so a long Server-Sent Events stream isn't affected. A large buffered response, a request carrying a long conversation history, or a document-heavy prompt can cross it.
+The policy engine decompresses request and response bodies so that policies can inspect them. The default limit is 10 MiB in each direction, and the configuration below overrides it to 20 MiB. For streaming responses it applies per chunk rather than cumulatively, so a long Server-Sent Events stream isn't affected. A large buffered response, a request carrying a long conversation history, or a document-heavy prompt can cross it.
 
 ```yaml
 gateway:
   config:
     policy_engine:
       request_body:
-        max_decompressed_bytes: 20971520    # 20 MiB
+        max_decompressed_bytes: 20971520    # 20 MiB, overriding the 10 MiB default
       response_body:
-        max_decompressed_bytes: 20971520    # 20 MiB
+        max_decompressed_bytes: 20971520    # 20 MiB, overriding the 10 MiB default
     router:
       http_listener:
         per_connection_buffer_limit_bytes: 4194304   # 4 MiB

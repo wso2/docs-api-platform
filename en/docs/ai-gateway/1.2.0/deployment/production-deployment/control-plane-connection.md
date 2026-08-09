@@ -16,7 +16,7 @@ content_type: "how-to"
 # Connect to AI Workspace
 
 !!! note
-    This step is optional. The gateway routes LLM and MCP traffic without a control plane. Connect it when you want to govern several gateways from one place.
+    This step is optional. The gateway routes large language model (LLM) and Model Context Protocol (MCP) traffic without a control plane. Connect it when you want to govern several gateways from one place.
 
 [AI Workspace](../../../../ai-workspace/1.0.0/overview.md) is the control plane for AI traffic across an organization: one console for LLM providers, App LLM proxies, MCP proxies, policies such as guardrails and token-based rate limits, and the credentials behind them. A connected gateway keeps serving traffic on its own; the control plane governs what runs on it.
 
@@ -32,16 +32,22 @@ If AI Workspace becomes unreachable, the gateway carries on serving traffic and 
 - A running AI Workspace deployment. For the control plane side of this connection — reachable addresses, WebSocket traversal, and certificate trust — see [Connect AI gateways in production](../../../../ai-workspace/1.0.0/production/connect-gateways.md).
 - A gateway registered in AI Workspace, which is what produces the registration token. Follow [Set up an AI Gateway](../../../../ai-workspace/1.0.0/ai-gateways/setting-up.md).
 
-The gateway connects directly to the Platform API. It doesn't go through the AI Workspace user interface, and the workspace never calls the gateway. That direction explains most connection problems: the control plane address has to resolve and connect **from the gateway's network**, the path between them has to pass WebSocket upgrades and tolerate long-lived connections, and the certificate presented at that address has to chain to a CA the gateway trusts.
+The gateway connects directly to the Platform API. It doesn't go through the AI Workspace user interface, and the workspace never calls the gateway.
+
+Because the gateway opens the connection, three things have to hold on the gateway's side. Most connection problems trace back to one of them:
+
+- The control plane address resolves and accepts connections **from the gateway's network**, not from the workspace's.
+- The path between the two passes WebSocket upgrades and tolerates long-lived connections.
+- The certificate presented at that address chains to a certificate authority (CA) the gateway trusts.
 
 Confirm reachability from a pod in the gateway's namespace before configuring anything:
 
 ```bash
 kubectl run -n ai-gateway conn-test --rm -it --restart=Never --image=curlimages/curl -- \
-  curl -sSI https://platform-api.example.com:9243/health
+  curl -fsS -X GET https://platform-api.example.com:9243/health
 ```
 
-A timeout is a firewall or routing problem. A certificate error is a trust problem. Fix it at the source rather than turning verification off.
+A timeout usually indicates a firewall or routing problem. A certificate error usually indicates a trust problem, such as an untrusted issuer, a hostname that the certificate doesn't cover, or an expired certificate. Fix it at the source rather than turning verification off.
 
 ## Step 1: Store the registration token in a Secret
 
@@ -53,7 +59,7 @@ kubectl create secret generic gateway-cp-token \
   --from-file=token=./token.txt
 ```
 
-Reading the token from a file rather than `--from-literal` keeps it out of your shell history. Delete `token.txt` afterwards.
+Reading the token from a file rather than `--from-literal` keeps it out of your shell history. Delete `token.txt` afterward.
 
 !!! note
     The token is single-use. If you need to install or reconfigure the chart again, click **Reconfigure** on the gateway in AI Workspace to issue a replacement. Doing so revokes the previous token and disconnects the gateway until the replacement is applied.

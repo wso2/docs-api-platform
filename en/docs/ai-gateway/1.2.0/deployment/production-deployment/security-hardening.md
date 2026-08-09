@@ -16,11 +16,11 @@ content_type: "how-to"
 
 # Security hardening
 
-Three areas must be configured before the AI Gateway carries production traffic: encryption keys for data at rest, TLS for data in transit, and authentication on the management API. All three matter more on an AI Gateway than on a plain API gateway, because the artifacts it stores hold the credentials for every LLM provider and guardrail service you route to.
+Three areas must be configured before the AI Gateway carries production traffic: encryption keys for data at rest, Transport Layer Security (TLS) for data in transit, and authentication on the management API. All three matter more on an AI Gateway than on a plain API gateway, because the artifacts it stores hold the credentials for every large language model (LLM) provider and guardrail service you route to.
 
 ## Encryption keys
 
-The controller encrypts sensitive data at rest with AES-GCM 256-bit keys. On an AI Gateway this covers the LLM provider upstream API keys, guardrail service credentials such as Azure Content Safety and AWS Bedrock keys, and any values you store through the secrets management API.
+The controller encrypts sensitive data at rest with 256-bit keys under Advanced Encryption Standard in Galois/Counter Mode (AES-GCM). On an AI Gateway this covers the LLM provider upstream API keys, guardrail service credentials such as Azure Content Safety and AWS Bedrock keys, and any values you store through the secrets management API.
 
 At-rest encryption is mandatory. The 1.2.0 chart is fail-closed: it refuses to render unless `gateway.controller.encryptionKeys.enabled` is `true` with a `secretName`, and the controller doesn't start without its key. Provision the key before you install.
 
@@ -72,7 +72,7 @@ gateway:
                 file: /app/data/aesgcm-keys/default-aesgcm256-v1.bin
 ```
 
-The `version` field must match the filename stem of the Secret key, so `default-aesgcm256-v1.bin` gives version `aesgcm256-v1`. The `file` path must sit under the `mountPath` you set above.
+The `version` field must match the key identifier in the filename, which is the part after the `default-` prefix and before the `.bin` extension. The file `default-aesgcm256-v1.bin` therefore gives version `aesgcm256-v1`. The `file` path must sit under the `mountPath` you set above.
 
 ### Rotate an encryption key
 
@@ -132,11 +132,11 @@ Configure TLS before you expose the gateway. Pick the option that matches how yo
     ```
 
     !!! note
-        Leave `createIssuer` at `false` in production. The self-signed issuer the chart can create is meant for local testing, and clients reject its certificates unless you distribute the CA yourself.
+        Leave `createIssuer` at `false` in production. The self-signed issuer the chart can create is meant for local testing, and clients reject its certificates unless you distribute the certificate authority (CA) yourself.
 
 === "Option B: existing TLS Secret"
 
-    Use this option when certificates come from a corporate PKI, HashiCorp Vault, or another external system.
+    Use this option when certificates come from a corporate public key infrastructure (PKI), HashiCorp Vault, or another external system.
 
     ```bash
     kubectl create secret tls gateway-tls \
@@ -223,7 +223,7 @@ Choose the strategy that matches how your organization handles access.
     ```
 
     !!! note
-        The values in `role_mapping` must match claims the identity provider actually issues in its JWTs. For the roles the controller recognizes and the operations each one permits, see the [gateway controller management API definition](https://raw.githubusercontent.com/wso2/api-platform/refs/tags/ai-gateway/v1.2.0/gateway/gateway-controller/api/management-openapi.yaml).
+        The values in `role_mapping` must match claims the identity provider actually issues in its JSON Web Tokens (JWTs). For the roles the controller recognizes and the operations each one permits, see the [gateway controller management API definition](https://raw.githubusercontent.com/wso2/api-platform/refs/tags/ai-gateway/v1.2.0/gateway/gateway-controller/api/management-openapi.yaml).
 
 === "Option B: basic auth with bcrypt"
 
@@ -232,24 +232,19 @@ Choose the strategy that matches how your organization handles access.
     Generate the hash. This needs `apache2-utils` on Debian or Ubuntu, or `httpd-tools` on RHEL and CentOS:
 
     ```bash
-    htpasswd -nbB admin 'your-secure-password' | cut -d: -f2
-    # Output: $2y$10$...
+    htpasswd -nBC 10 admin | cut -d: -f2
+    # Prompts for the password, then prints: $2y$10$...
     ```
 
     On macOS without `htpasswd`, run it in a container:
 
     ```bash
-    docker run --rm httpd:alpine htpasswd -nbB admin 'your-secure-password' | cut -d: -f2
+    docker run --rm -it httpd:alpine htpasswd -nBC 10 admin | cut -d: -f2
     ```
 
-    Keep the plain password in a Kubernetes Secret for rotation reference only. It must never appear in Helm values or a ConfigMap:
+    Omitting `-b` makes `htpasswd` prompt for the password, so the password stays out of your shell history and out of the process list.
 
-    ```bash
-    kubectl create secret generic gateway-admin-credentials \
-      --namespace <your-namespace> \
-      --from-literal=username=admin \
-      --from-literal=password='your-secure-password'
-    ```
+    Store the password itself in your organization's secret manager, alongside the rest of your break-glass credentials. Don't keep a second copy in a Kubernetes Secret: nothing on the gateway reads it, and it gives anyone who can read Secrets in the namespace the plain-text password.
 
     Put only the hash in the chart values:
 

@@ -16,7 +16,7 @@ content_type: "concept"
 
 # Production deployment overview
 
-This section is for platform engineers and site reliability engineers who run API Platform AI Gateway 1.2.0 for an organization. It covers a highly available Helm deployment on Kubernetes: hardened security, an external database shared by every controller replica, replicated workloads, and the AI-specific tuning that LLM and MCP traffic needs.
+This section is for platform engineers and site reliability engineers who run API Platform AI Gateway 1.2.0 for an organization. It covers a highly available Helm deployment on Kubernetes: hardened security, an external database shared by every controller replica, replicated workloads, and the AI-specific tuning that large language model (LLM) and Model Context Protocol (MCP) traffic needs.
 
 For a single-host evaluation, follow the [quick start guide](../../quick-start-guide.md) instead. For the other ways to run the gateway, see [Immutable Gateway](../deployment-modes/immutable-gateway.md) and [Kubernetes deployment modes](../deployment-modes/kubernetes/overview.md).
 
@@ -29,7 +29,7 @@ A production AI Gateway deployment has three parts.
 
 | Part | What it does | Where it runs |
 |------|--------------|---------------|
-| Gateway Controller | Accepts LLM provider, LLM proxy, and MCP proxy artifacts, persists them in the database, and distributes runtime configuration over xDS. | Your cluster |
+| Gateway Controller | Accepts LLM provider, LLM proxy, and MCP proxy artifacts, persists them in the database, and distributes runtime configuration over xDiscovery Service (xDS). | Your cluster |
 | Gateway Runtime | Envoy plus the policy engine in one container. Routes traffic to LLM providers and MCP servers, and enforces guardrails, rate limits, and other policies. | Your cluster |
 | Database | The shared source of truth for artifacts, deployment state, and encrypted secrets across all controller replicas. | Managed service or your cluster |
 
@@ -48,7 +48,7 @@ This separation means no single-node failure takes down the gateway, autoscaling
 
 ## Architecture
 
-High availability comes from running several Gateway Controller replicas and several Gateway Runtime replicas, with the database as the shared state between controllers.
+High availability comes from running several Gateway Controller replicas and several Gateway Runtime replicas, with the database as the shared state between controllers:
 
 ![Gateway controller replicas sharing a database and distributing configuration to gateway runtime replicas](../../../../assets/img/api-platform-gateway/gateway/high-availability-architecture.png)
 
@@ -57,6 +57,8 @@ When you deploy an LLM provider, an LLM proxy, or an MCP proxy, one controller r
 Gateway Runtime replicas never read the database directly. They receive configuration from their connected controller over xDS, which keeps the runtime layer light and leaves configuration generation to the controller.
 
 ### How failures are contained
+
+The following diagram shows a deployment request reaching one controller replica while a second replica serves its own runtime replicas from the same shared database:
 
 ![Deployment request reaching one controller replica while a second replica serves its own runtime replicas from the same database](../../../../assets/img/api-gateway/high-availability-deployment-example.png)
 
@@ -129,12 +131,18 @@ With a WSO2 subscription, images come from `registry.wso2.com` instead of the pu
 Create a `docker-registry` Secret in the namespace you install into. Replace `<namespace>`, `<wso2-email>`, and `<wso2-password-or-token>` with your values:
 
 ```bash
+read -rsp "WSO2 password or token: " WSO2_TOKEN && echo
+
 kubectl create secret docker-registry wso2-subscription-creds \
   --namespace <namespace> \
   --docker-server=registry.wso2.com \
   --docker-username=<wso2-email> \
-  --docker-password=<wso2-password-or-token>
+  --docker-password="$WSO2_TOKEN"
+
+unset WSO2_TOKEN
 ```
+
+Reading the password with `read -rs` keeps it off the screen and out of your shell history.
 
 Then name that Secret in `values.yaml`:
 

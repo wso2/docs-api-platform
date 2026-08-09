@@ -23,7 +23,7 @@ The allocations below match the ones used in the [AI Gateway performance tests](
 
 **Gateway Controller:**
 
-The controller handles artifact deployment and configuration distribution, not request traffic, so its load doesn't scale with the number of LLM calls.
+The controller handles artifact deployment and configuration distribution, not request traffic, so its load doesn't scale with the number of large language model (LLM) calls.
 
 ```yaml
 gateway:
@@ -40,7 +40,7 @@ gateway:
 
 **Gateway Runtime:**
 
-The runtime carries every request. It runs Envoy and the policy engine in one container, and each guardrail, PII masking rule, and rate-limit policy adds per-request work in that container.
+The runtime carries every request. It runs Envoy and the policy engine in one container, and each guardrail, personally identifiable information (PII) masking rule, and rate-limit policy adds per-request work in that container.
 
 ```yaml
 gateway:
@@ -58,7 +58,7 @@ gateway:
 Two things drive runtime CPU on an AI Gateway more than raw request rate:
 
 - **Guardrails.** PII masking, JSON schema validation, and URL guardrails inspect the full request and response bodies. The performance tests show measurably lower throughput with PII masking enabled, and lower again with PII masking plus URL and JSON schema guardrails, at the same concurrency.
-- **Payload size.** LLM request and response bodies are far larger than typical REST payloads, and body-inspecting policies buffer them. See [Tune the gateway for AI traffic](./ai-workload-tuning.md#size-the-body-buffers) for the buffer limits that govern this.
+- **Payload size.** LLM request and response bodies are far larger than typical representational state transfer (REST) payloads, and body-inspecting policies buffer them. See [Tune the gateway for AI traffic](./ai-workload-tuning.md#size-the-body-buffers) for the buffer limits that govern this.
 
 Benchmark with your own proxies and policy set before settling on final numbers. A proxy with several guardrails needs noticeably more CPU per request than one with authentication alone.
 
@@ -105,7 +105,9 @@ The chart also accepts `topologySpreadConstraints` on both components if you pre
 
 ## Horizontal Pod Autoscaler
 
-The HPA adjusts replica counts from CPU and memory utilization. Configure it on both components:
+The horizontal pod autoscaler (HPA) adjusts replica counts from CPU utilization. The configuration below scales both components on CPU alone. To scale on memory as well, add a memory metric.
+
+Configure the HPA on both components:
 
 ```yaml
 gateway:
@@ -135,7 +137,7 @@ Autoscaling on CPU reacts more slowly to LLM traffic than to typical REST traffi
 
 ## Pod Disruption Budget
 
-A PDB keeps a minimum number of replicas available during voluntary disruptions:
+A pod disruption budget (PDB) keeps a minimum number of replicas available during voluntary disruptions:
 
 ```yaml
 gateway:
@@ -149,7 +151,7 @@ gateway:
       minAvailable: 50%
 ```
 
-This protects against node drains during cluster upgrades, autoscaler scale-down, evictions under resource pressure, and planned maintenance.
+This protects against voluntary disruptions such as node drains during cluster upgrades, autoscaler scale-down, and planned maintenance.
 
 Set `minAvailable` or `maxUnavailable`, not both.
 
@@ -169,7 +171,7 @@ gateway:
           maxUnavailable: 0
 ```
 
-`maxUnavailable: 0` brings up a replacement pod before removing an old one, so capacity never dips during an update.
+`maxUnavailable: 0` stops the rollout controller from removing an old pod before its replacement is ready.
 
 ---
 

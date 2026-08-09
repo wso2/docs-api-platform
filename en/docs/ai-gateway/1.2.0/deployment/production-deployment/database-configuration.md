@@ -31,10 +31,19 @@ Come back here once the schema exists. This page covers only the chart configura
 
 The database password is injected as an environment variable from a Secret. It never goes into the chart values or the generated ConfigMap.
 
+Write the password to a protected file rather than passing it with `--from-literal`, which records it in your shell history and in the host's process list:
+
 ```bash
+umask 077
+read -rsp "Database password: " DB_PASSWORD && echo
+printf '%s' "$DB_PASSWORD" > db_password
+unset DB_PASSWORD
+
 kubectl create secret generic gateway-db-password \
   --namespace <your-namespace> \
-  --from-literal=password='your-db-password'
+  --from-file=password=db_password
+
+shred -u db_password
 ```
 
 ## Configure the chart
@@ -111,19 +120,28 @@ kubectl create secret generic gateway-db-password \
     Set `encrypt` to `true` and `trust_server_certificate` to `false` in production. The chart default of `encrypt: disable` sends database traffic unencrypted.
 
     !!! note
-        The chart also carries a legacy `storage.sqlserver` block for backward compatibility. Configure new deployments through `storage.database` as shown above.
+        The chart also carries a legacy `storage.sqlserver` block for backward compatibility. Configure deployments through `storage.database` as shown above.
 
-## Supply a DSN instead
+## Supply a data source name instead
 
-When the connection string comes from a secrets manager, supply a full DSN rather than the individual fields.
+When the connection string comes from a secrets manager, supply a full data source name (DSN) rather than the individual fields. Write the DSN to a protected file so the password inside it stays out of your shell history and the process list.
 
 === "PostgreSQL"
 
     ```bash
+    umask 077
+    read -rsp "PostgreSQL DSN: " DB_DSN && echo
+    printf '%s' "$DB_DSN" > db_dsn
+    unset DB_DSN
+
     kubectl create secret generic gateway-db-dsn \
       --namespace <your-namespace> \
-      --from-literal=dsn='postgres://gateway:your-db-password@postgres.example.internal:5432/gateway_controller?sslmode=require'
+      --from-file=dsn=db_dsn
+
+    shred -u db_dsn
     ```
+
+    Enter the DSN in the form `postgres://gateway:<your-db-password>@postgres.example.internal:5432/gateway_controller?sslmode=require`.
 
     ```yaml
     gateway:
@@ -143,10 +161,19 @@ When the connection string comes from a secrets manager, supply a full DSN rathe
 === "SQL Server"
 
     ```bash
+    umask 077
+    read -rsp "SQL Server DSN: " DB_DSN && echo
+    printf '%s' "$DB_DSN" > db_dsn
+    unset DB_DSN
+
     kubectl create secret generic gateway-db-dsn \
       --namespace <your-namespace> \
-      --from-literal=dsn='sqlserver://gateway:your-db-password@sqlserver.example.internal:1433?database=gateway_controller&encrypt=true'
+      --from-file=dsn=db_dsn
+
+    shred -u db_dsn
     ```
+
+    Enter the DSN in the form `sqlserver://gateway:<your-db-password>@sqlserver.example.internal:1433?database=gateway_controller&encrypt=true`.
 
     ```yaml
     gateway:
