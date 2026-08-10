@@ -61,12 +61,11 @@ unset CP_TOKEN
 
 kubectl create secret generic gateway-cp-token \
   --namespace ai-gateway \
-  --from-file=token=./token.txt
-
-shred -u token.txt
+  --from-file=token=./token.txt \
+  && shred -u token.txt
 ```
 
-Reading the token from a file rather than `--from-literal` keeps it out of your shell history and out of the host's process list. `install -m 600` creates `token.txt` readable only by you, and `shred -u` removes it once the Secret exists.
+Reading the token from a file rather than `--from-literal` keeps it out of your shell history and out of the host's process list. `install -m 600` creates `token.txt` readable only by you. `shred -u` runs only if the Secret is created, so a failed attempt leaves the file in place for a retry.
 
 !!! note
     The token is single-use. If you need to install or reconfigure the chart again, click **Reconfigure** on the gateway in AI Workspace to issue a replacement. Doing so revokes the previous token and disconnects the gateway until the replacement is applied.

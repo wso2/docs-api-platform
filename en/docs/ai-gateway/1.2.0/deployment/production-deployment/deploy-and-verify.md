@@ -132,7 +132,9 @@ unset OPENAI_API_KEY
 ```
 
 !!! note
-    These requests authenticate with basic auth. If you configured an identity provider in [Security hardening](./security-hardening.md#authentication), basic auth is disabled. Use a token your identity provider issued, and keep it out of the host's process list by writing the header to a `curl` configuration file only you can read:
+    These requests authenticate with basic auth. If you configured an identity provider in [Security hardening](./security-hardening.md#authentication), basic auth is disabled. Use a token your identity provider issued instead.
+
+    Write the token to a `curl` configuration file only you can read. A configuration file keeps the token out of the host's process list:
 
     ```bash
     install -m 600 /dev/null controller.curlrc
@@ -141,7 +143,7 @@ unset OPENAI_API_KEY
     unset ACCESS_TOKEN
     ```
 
-    Then replace `--netrc-file controller.netrc` with `--config controller.curlrc` in each request, and run `shred -u controller.curlrc` when both artifacts are deployed. The controller receives the token in the `Authorization` header either way.
+    In each request, replace `--netrc-file controller.netrc` with `--config controller.curlrc`. Run `shred -u controller.curlrc` once both artifacts are deployed. Either way, the controller receives the token in the `Authorization` header.
 
 Deploy a proxy that consumes it:
 
@@ -219,7 +221,7 @@ failed=0
 for pod in $pods; do
   echo "$pod"
   kubectl exec -n ai-gateway "$pod" -- \
-    wget -qO- --no-check-certificate \
+    wget -qO- --no-check-certificate --timeout=30 --tries=1 \
       --header 'Content-Type: application/json' \
       --post-data '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"Hi"}]}' \
       https://localhost:8443/assistant/chat/completions || failed=1

@@ -137,8 +137,12 @@ Create an image pull Secret in the namespace you install into. Replace `<namespa
 
 ```bash
 read -rsp "WSO2 password or token: " WSO2_TOKEN && echo
+WSO2_USER='<wso2-email>'
 
-printf '{"auths":{"registry.wso2.com":{"username":"<wso2-email>","password":"%s"}}}' "$WSO2_TOKEN" |
+json_escape() { printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'; }
+
+printf '{"auths":{"registry.wso2.com":{"username":"%s","password":"%s"}}}' \
+  "$(json_escape "$WSO2_USER")" "$(json_escape "$WSO2_TOKEN")" |
   kubectl create secret generic wso2-subscription-creds \
     --namespace <namespace> \
     --type=kubernetes.io/dockerconfigjson \
@@ -147,7 +151,7 @@ printf '{"auths":{"registry.wso2.com":{"username":"<wso2-email>","password":"%s"
 unset WSO2_TOKEN
 ```
 
-Reading the password with `read -rs` keeps it off the screen and out of your shell history. Piping the credentials into `kubectl` also keeps it out of the host's process list, where `--docker-password` would expose it.
+Reading the password with `read -rs` keeps it off the screen and out of your shell history. Piping the credentials into `kubectl` also keeps it out of the host's process list, where `--docker-password` would expose it. The `json_escape` function escapes double quotes and backslashes, so a token that contains either produces valid JSON.
 
 Then name that Secret in `values.yaml`:
 
