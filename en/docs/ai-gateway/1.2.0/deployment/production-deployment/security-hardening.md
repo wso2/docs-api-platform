@@ -16,11 +16,17 @@ content_type: "how-to"
 
 # Security hardening
 
-Configure three areas before the AI Gateway carries production traffic: encryption keys for data at rest, Transport Layer Security (TLS) for data in transit, and authentication on the management API. All three matter more on an AI Gateway than on a plain API gateway. Its artifacts hold the credentials for every large language model (LLM) provider and guardrail service you route to.
+Configure three areas before the AI Gateway carries production traffic:
+
+- Encryption keys for data at rest.
+- Transport Layer Security (TLS) for data in transit.
+- Authentication on the management API.
+
+All three matter more on an AI Gateway than on a plain API gateway. Its artifacts hold the credentials for every large language model (LLM) provider and guardrail service you route to.
 
 ## Encryption keys
 
-The controller encrypts sensitive data at rest with 256-bit keys under Advanced Encryption Standard in Galois/Counter Mode (AES-GCM). On an AI Gateway this covers the LLM provider upstream API keys and the guardrail service credentials, such as Azure Content Safety and AWS Bedrock keys. It also covers any values you store through the secrets management API.
+The controller encrypts sensitive data at rest with 256-bit keys under Advanced Encryption Standard in Galois/Counter Mode (AES-GCM). On an AI Gateway this covers the LLM provider upstream API keys and the guardrail service credentials, such as Azure Content Safety and AWS Bedrock Guardrails keys. It also covers any values you store through the secrets management API.
 
 At-rest encryption is mandatory. The 1.2.0 chart is fail-closed: it refuses to render unless `gateway.controller.encryptionKeys.enabled` is `true` with a `secretName`, and the controller doesn't start without its key. Provision the key before you install.
 

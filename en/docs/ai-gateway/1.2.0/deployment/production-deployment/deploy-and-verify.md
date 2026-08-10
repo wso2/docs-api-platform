@@ -90,19 +90,19 @@ Port-forward the management API, then write the controller admin credentials to 
 ```bash
 kubectl port-forward -n ai-gateway svc/ai-gateway-controller 9090:9090 &
 
-umask 077
+install -m 600 /dev/null controller.netrc
 read -rp "Controller admin username: " ADMIN_USERNAME
 read -rsp "Controller admin password: " ADMIN_PASSWORD && echo
 printf 'machine localhost login %s password %s\n' "$ADMIN_USERNAME" "$ADMIN_PASSWORD" > controller.netrc
 unset ADMIN_PASSWORD
 ```
 
-Deploy an LLM provider. Read the provider key with `read -rs`, which keeps it off the screen and out of your shell history. The here-document then expands the key into the request body:
+Deploy an LLM provider. Read the provider key with `read -rs`, which keeps it off the screen and out of your shell history. The here-document then expands the key into the request body. The `--fail` option makes `curl` exit with an error status if the controller rejects the request:
 
 ```bash
 read -rsp "OpenAI API key: " OPENAI_API_KEY && echo
 
-curl -X POST http://localhost:9090/api/management/v1/llm-providers \
+curl --fail --show-error -X POST http://localhost:9090/api/management/v1/llm-providers \
   -H "Content-Type: application/yaml" \
   --netrc-file controller.netrc \
   --data-binary @- <<EOF
@@ -132,12 +132,21 @@ unset OPENAI_API_KEY
 ```
 
 !!! note
-    These requests authenticate with basic auth. If you configured an identity provider in [Security hardening](./security-hardening.md#authentication), basic auth is disabled. Replace `--netrc-file controller.netrc` with `-H "Authorization: Bearer $ACCESS_TOKEN"` and use a token your identity provider issued.
+    These requests authenticate with basic auth. If you configured an identity provider in [Security hardening](./security-hardening.md#authentication), basic auth is disabled. Use a token your identity provider issued, and keep it out of the host's process list by writing the header to a `curl` configuration file only you can read:
+
+    ```bash
+    install -m 600 /dev/null controller.curlrc
+    read -rsp "Access token: " ACCESS_TOKEN && echo
+    printf 'header = "Authorization: Bearer %s"\n' "$ACCESS_TOKEN" > controller.curlrc
+    unset ACCESS_TOKEN
+    ```
+
+    Then replace `--netrc-file controller.netrc` with `--config controller.curlrc` in each request, and run `shred -u controller.curlrc` when both artifacts are deployed. The controller receives the token in the `Authorization` header either way.
 
 Deploy a proxy that consumes it:
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v1/llm-proxies \
+curl --fail --show-error -X POST http://localhost:9090/api/management/v1/llm-proxies \
   -H "Content-Type: application/yaml" \
   --netrc-file controller.netrc \
   --data-binary @- <<'EOF'
@@ -194,20 +203,38 @@ If the response cuts off partway, revisit the timeouts in [Tune the gateway for 
 
 ### Verify high availability
 
-With more than one controller replica, confirm that an artifact deployed through one replica reaches runtimes attached to the others. Deploy a proxy, then call each runtime pod directly, because a Service request that succeeds proves only that one pod holds the artifact:
+With more than one controller replica, confirm that an artifact deployed through one replica reaches runtimes attached to the others. Deploy a proxy, then call each runtime pod directly, because a Service request that succeeds proves only that one pod holds the artifact. Save the following as a script and run it, so an empty pod list or a single failing replica returns a non-zero exit status:
 
 ```bash
-for pod in $(kubectl get pods -n ai-gateway -l app.kubernetes.io/component=gateway-runtime -o name); do
+#!/usr/bin/env bash
+set -euo pipefail
+
+pods=$(kubectl get pods -n ai-gateway -l app.kubernetes.io/component=gateway-runtime -o name)
+if [ -z "$pods" ]; then
+  echo "No gateway-runtime pods found." >&2
+  exit 1
+fi
+
+failed=0
+for pod in $pods; do
   echo "$pod"
   kubectl exec -n ai-gateway "$pod" -- \
     wget -qO- --no-check-certificate \
       --header 'Content-Type: application/json' \
       --post-data '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"Hi"}]}' \
-      https://localhost:8443/assistant/chat/completions
+      https://localhost:8443/assistant/chat/completions || failed=1
 done
+
+exit "$failed"
 ```
 
 Every pod should answer. A pod that returns a routing error hasn't received the artifact yet. Allow for the EventHub `poll_interval` set in [Database configuration](./database-configuration.md#tune-the-eventhub) before a newly deployed artifact appears everywhere.
+
+This check covers artifact routing only. It reaches each pod over `localhost`, a name the runtime certificate isn't issued for, so it skips certificate validation. Validate the certificate separately through the hostname it was issued for:
+
+```bash
+curl -sS -o /dev/null -w '%{http_code}\n' https://ai-gateway.example.com/_gateway-health/ready
+```
 
 Then call the proxy repeatedly through the Service to confirm that load balancing spreads requests across those replicas.
 

@@ -133,21 +133,21 @@ gateway:
 
 With a WSO2 subscription, images come from `registry.wso2.com` instead of the public GHCR registry. One chart field switches this on end to end.
 
-Create a `docker-registry` Secret in the namespace you install into. Replace `<namespace>`, `<wso2-email>`, and `<wso2-password-or-token>` with your values:
+Create an image pull Secret in the namespace you install into. Replace `<namespace>` and `<wso2-email>` with your values, then enter your password or token at the prompt:
 
 ```bash
 read -rsp "WSO2 password or token: " WSO2_TOKEN && echo
 
-kubectl create secret docker-registry wso2-subscription-creds \
-  --namespace <namespace> \
-  --docker-server=registry.wso2.com \
-  --docker-username=<wso2-email> \
-  --docker-password="$WSO2_TOKEN"
+printf '{"auths":{"registry.wso2.com":{"username":"<wso2-email>","password":"%s"}}}' "$WSO2_TOKEN" |
+  kubectl create secret generic wso2-subscription-creds \
+    --namespace <namespace> \
+    --type=kubernetes.io/dockerconfigjson \
+    --from-file=.dockerconfigjson=/dev/stdin
 
 unset WSO2_TOKEN
 ```
 
-Reading the password with `read -rs` keeps it off the screen and out of your shell history.
+Reading the password with `read -rs` keeps it off the screen and out of your shell history. Piping the credentials into `kubectl` also keeps it out of the host's process list, where `--docker-password` would expose it.
 
 Then name that Secret in `values.yaml`:
 

@@ -54,12 +54,19 @@ A timeout usually indicates a firewall or routing problem. A certificate error u
 The registration token is a credential and is shown only once. Keep it out of Helm values, shell history, and source control by putting it in a Kubernetes Secret:
 
 ```bash
+install -m 600 /dev/null token.txt
+read -rsp "Gateway registration token: " CP_TOKEN && echo
+printf '%s' "$CP_TOKEN" > token.txt
+unset CP_TOKEN
+
 kubectl create secret generic gateway-cp-token \
   --namespace ai-gateway \
   --from-file=token=./token.txt
+
+shred -u token.txt
 ```
 
-Reading the token from a file rather than `--from-literal` keeps it out of your shell history. Delete `token.txt` afterward.
+Reading the token from a file rather than `--from-literal` keeps it out of your shell history and out of the host's process list. `install -m 600` creates `token.txt` readable only by you, and `shred -u` removes it once the Secret exists.
 
 !!! note
     The token is single-use. If you need to install or reconfigure the chart again, click **Reconfigure** on the gateway in AI Workspace to issue a replacement. Doing so revokes the previous token and disconnects the gateway until the replacement is applied.
