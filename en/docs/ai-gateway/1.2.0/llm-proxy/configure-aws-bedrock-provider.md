@@ -30,7 +30,7 @@ Make sure that:
 - You have the gateway controller administrator username and password.
 - Your model is available to your AWS account in the selected Region.
 - You have either an [AWS Bedrock API key](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys.html) or an IAM identity that can invoke the model.
-- `curl` is installed. Install `jq` as well if you want the commands to capture the generated gateway API key automatically.
+- `curl` 7.76.0 or later is installed. Install `jq` as well if you want the commands to capture the generated gateway API key automatically.
 
 Set the gateway administrator credentials:
 
@@ -78,6 +78,8 @@ The IAM identity associated with the key must be allowed to invoke the selected 
 ```bash
 export AWS_BEARER_TOKEN_BEDROCK="<bedrock-api-key>"
 ```
+
+Short-term Bedrock API keys cannot be refreshed or extended after they are issued. Replace the key before it expires, and update the gateway secret with the new value.
 
 Do not use an AWS access key ID or secret access key as the bearer token.
 
@@ -375,13 +377,22 @@ Attach a least-privilege policy to the IAM user or role that invokes Bedrock. Th
         "bedrock:InvokeModel",
         "bedrock:InvokeModelWithResponseStream"
       ],
-      "Resource": "*"
+      "Resource": [
+        "arn:aws:bedrock:<region>::foundation-model/<model-id>",
+        "arn:aws:bedrock:<region>:<account-id>:inference-profile/<inference-profile-id>"
+      ]
+    },
+    {
+      "Sid": "ReadBedrockInferenceProfiles",
+      "Effect": "Allow",
+      "Action": "bedrock:GetInferenceProfile",
+      "Resource": "arn:aws:bedrock:<region>:<account-id>:inference-profile/<inference-profile-id>"
     }
   ]
 }
 ```
 
-For production, replace `*` with the model or inference profile Amazon Resource Name (ARN) values the gateway is allowed to invoke. When you scope access to an inference profile, authorize both the inference profile ARN and the corresponding foundation model ARN in each destination Region that the profile can route to. See [Prerequisites for running model inference](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-prereq.html) for the complete AWS guidance.
+Replace the placeholder Amazon Resource Name (ARN) values with the model and inference profile resources the gateway is allowed to invoke. When you scope access to an inference profile, authorize both the inference profile ARN and the corresponding foundation model ARN in each destination Region that the profile can route to. See [Prerequisites for running model inference](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-prereq.html) for the complete AWS guidance.
 
 For `sts-assume-role`, the source identity also needs `sts:AssumeRole` permission for the target role, and the target role's trust policy must trust the source identity.
 
@@ -480,7 +491,7 @@ Check both sides of the relationship: the source identity must be allowed to cal
 
 - Do not commit AWS access keys, session tokens, Bedrock API keys, gateway passwords, or external IDs.
 - Prefer the default credential chain, IRSA, or STS AssumeRole over long-lived IAM user access keys.
-- Use short-term Bedrock API keys for production bearer authentication.
+- Use short-term Bedrock API keys for production bearer authentication, and rotate them before expiration because issued keys cannot be refreshed or extended.
 - Restrict IAM permissions to the required model and inference profile resources.
 - Expose only the required Bedrock operations through `accessControl`.
 - Use HTTPS for Bedrock and production gateway endpoints.
