@@ -80,7 +80,7 @@ Client
 
 The following diagram shows how requests pass through the LLM Proxy chain and LLM Provider chain in sequence, and how responses return through both chains in reverse order:
 
-![Dual-hop guardrail execution diagram showing request flowing through LLM Proxy chain then LLM Provider chain in forward order across request phases, and response flowing in reverse order through LLM Provider chain then LLM Proxy chain back to the client](../../../../assets/img/api-gateway/gateway-policy-execution-order-llm-provider-proxy.svg)
+![Dual-hop guardrail execution diagram showing request flowing through LLM Proxy chain then LLM Provider chain in forward order across request phases, and response flowing in reverse order through LLM Provider chain then LLM Proxy chain back to the client](../../../../assets/img/api-gateway/gateway-policy-execution-order-llm-provider-proxy.png)
 <!-- image source: https://docs.google.com/drawings/d/1Hvnv_89Hd0T5JQr1tg0DLIQTHWDn2szgj13NDhjyccM/edit?usp=sharing -->
 
 This mirrors the request wrapping at the chain level: the LLM Proxy wraps the LLM Provider on the way in, so on the way back the inner chain (Provider) unwinds first, then the outer chain (Proxy).
@@ -99,7 +99,7 @@ When an LLM returns a streaming response (such as SSE from a chat completion end
 
 The following diagram shows how streaming body chunks flow through the policy chain at each hop:
 
-![Streaming policy chain execution order diagram showing request body chunks flowing through the policy chain via OnRequestBodyChunk in forward order, and response chunks flowing in reverse order via OnResponseBodyChunk](../../../../assets/img/api-gateway/gateway-policy-execution-order-streaming.svg)
+![Streaming policy chain execution order diagram showing request body chunks flowing through the policy chain via OnRequestBodyChunk in forward order, and response chunks flowing in reverse order via OnResponseBodyChunk](../../../../assets/img/api-gateway/gateway-policy-execution-order-streaming.png)
 <!-- image source: https://docs.google.com/drawings/d/1HyceTR0htslHoBm3xintrMkZo0jqKfHhnhAcctGgUDs/edit?usp=sharing -->
 
 ## Related topics
