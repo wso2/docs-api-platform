@@ -5,9 +5,9 @@ canonical_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/deployme
 md_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
 tags:
   - ai-gateway
-  - kubernetes
-  - deployment
-author: WSO2 API Platform Documentation Team
+    - kubernetes
+      - deployment
+      author: WSO2 API Platform Documentation Team
 last_updated: 2026-08-07
 content_type: "how-to"
 ---
@@ -231,7 +231,7 @@ helm install ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
   --set gateway.controller.upstreamCerts.secretName=upstream-ca-certs
 ```
 
-## Create and Invoke API
+## Create and Invoke an LLM Provider
 
 ### Port-forward Gateway Controller Service
 
@@ -241,10 +241,10 @@ kubectl port-forward svc/ap-gateway-controller 9090:9090
 
 ### Verify gateway controller admin endpoint is running
 ```bash
-curl http://localhost:9094/api/admin/v0.9/health
+curl http://localhost:9094/api/admin/v1/health
 ```
 
-### Deploy an API configuration
+### Deploy an LLM provider configuration
 
 The management API uses basic auth with the credentials from your Helm values
 (`controller.auth.basic.users`; the chart default is `admin` / `admin`). Export them, changing them if
@@ -255,53 +255,59 @@ export ADMIN_USERNAME=admin
 export ADMIN_PASSWORD=admin
 ```
 
+The gateway includes first-class support for the OpenAI LLM provider. Replace `<openai-apikey>` with your
+OpenAI API key and run the following command to deploy a sample OpenAI LLM provider:
+
 ```bash
-curl -X POST http://localhost:9090/api/management/v1/rest-apis \
+curl -X POST http://localhost:9090/api/management/v1/llm-providers \
   -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
   -H "Content-Type: application/yaml" \
   --data-binary @- <<'EOF'
 apiVersion: gateway.api-platform.wso2.com/v1
-kind: RestApi
+kind: LlmProvider
 metadata:
-  name: reading-list-api-v1.0
+  name: openai-provider
 spec:
-  displayName: Reading-List-API
+  displayName: OpenAI Provider
   version: v1.0
-  context: /reading-list/$version
+  template: openai
+  context: /openai/latest
   upstream:
-    main:
-      url: https://apis.bijira.dev/samples/reading-list-api-service/v1.0
-  policies:
-    - name: set-headers
-      version: v1
-      params:
-        request:
-          headers:
-            - name: x-wso2-apip-gateway-version
-              value: v1.0.0
-        response:
-          headers:
-            - name: x-environment
-              value: development
-  operations:
-    - method: GET
-      path: /books
-    - method: POST
-      path: /books
-    - method: GET
-      path: /books/{id}
-    - method: PUT
-      path: /books/{id}
-    - method: DELETE
-      path: /books/{id}
+    url: https://api.openai.com/v1
+    auth:
+      type: api-key
+      header: Authorization
+      value: <openai-apikey>
+  accessControl:
+    mode: deny_all
+    exceptions:
+      - path: /chat/completions
+        methods: [POST]
+      - path: /models
+        methods: [GET]
+      - path: /models/{modelId}
+        methods: [GET]
 EOF
 ```
 
 ### Test routing through the gateway
 ```bash
-curl http://localhost:8080/reading-list/v1.0/books
-curl -k https://localhost:8443/reading-list/v1.0/books
+curl -X POST https://localhost:8443/openai/latest/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hi"
+      }
+    ]
+  }' -k
 ```
+
+To expose an MCP server instead, follow the same `kubectl port-forward` and admin-credential steps above,
+then POST an `Mcp` payload to `/api/management/v1/mcp-proxies` as shown in the
+[MCP proxy quick start guide](../../../mcp-proxy/quick-start-guide.md).
 
 ## Next Steps
 
