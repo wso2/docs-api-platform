@@ -5,9 +5,9 @@ canonical_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/deployme
 md_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
 tags:
   - ai-gateway
-    - kubernetes
-      - deployment
-      author: WSO2 API Platform Documentation Team
+  - kubernetes
+  - deployment
+author: WSO2 API Platform Documentation Team
 last_updated: 2026-08-07
 content_type: "how-to"
 ---
