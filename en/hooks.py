@@ -94,8 +94,8 @@ def _collect_page_urls(item, urls):
             urls.append(item.url)
     elif item.is_link:
         if item.url:
-            scheme, netloc, path, query, fragment = urlsplit(item.url)
-            if not scheme and not netloc and not item.url.startswith('/'):
+            parsed = urlsplit(item.url)
+            if not parsed.scheme and not parsed.netloc and not item.url.startswith('/'):
                 urls.append(item.url)
             else:
                 logger.debug('Excluding external URL: %s', item.url)
@@ -150,7 +150,7 @@ def _build_version_manifest(nav, config):
 
     # Validate configured default and versions exist
     build_errors = []
-    for section_title, section_cfg in versioned_sections.items():
+    for section_cfg in versioned_sections.values():
         slug = section_cfg.get('slug')
         if not slug:
             continue

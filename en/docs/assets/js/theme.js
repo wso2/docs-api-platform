@@ -507,10 +507,10 @@ document.addEventListener('DOMContentLoaded', function () {
       function rollback(message) {
         select.value = previousValue;
         lastSelectValue = previousValue;
-        // Clear the failed target from localStorage so next page load
-        // doesn't restore a version that doesn't exist or failed to navigate
+        // Restore the version actually active on the page (not the failed
+        // target) so the next page load doesn't fall back to defaultVersion.
         try {
-          window.localStorage.removeItem(storageKey);
+          window.localStorage.setItem(storageKey, previousValue);
         } catch (e) {
           /* ignore */
         }
@@ -569,6 +569,15 @@ document.addEventListener('DOMContentLoaded', function () {
           absoluteUrl = new URL(destination, versionedNavScope).href;
         } catch (e) {
           rollback('Invalid destination URL: ' + e.message);
+          return;
+        }
+
+        // Manifest URLs are build-time restricted to doc-local relative
+        // paths (see hooks.py _collect_page_urls), but re-check at runtime
+        // so a manifest that somehow carries an absolute URL can't send the
+        // browser off-scope.
+        if (absoluteUrl.indexOf(new URL(versionedNavScope).href) !== 0) {
+          rollback('Destination URL escapes site scope: ' + absoluteUrl);
           return;
         }
 
