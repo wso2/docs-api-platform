@@ -41,10 +41,10 @@
   {% endif %}
 {% endmacro %}
 
-<!-- Wrap everything with a macro to reduce file roundtrips (see #2213) -->
+{# Wrap everything with a macro to reduce file roundtrips (see #2213) #}
 {% macro render(nav_item, path, level, parent_title=None) %}
 
-  <!-- Determine class according to state -->
+  {# Determine class according to state #}
   {% set class = "md-nav__item" %}
 
   {% if nav_item.active %}
@@ -53,19 +53,19 @@
 
   {% set current_title = nav_item.title %}
 
-  <!-- Versioned section config (see extra.versioned_sections in mkdocs.yml).
+  {# Versioned section config (see extra.versioned_sections in mkdocs.yml).
        Only applies to top-level tabs (level 1); a same-named section nested
-       elsewhere (e.g. under Cloud) is rendered normally. -->
+       elsewhere (e.g. under Cloud) is rendered normally. #}
   {% set versioned_cfg = None %}
   {% if level == 1 and config.extra.versioned_sections and nav_item.title in config.extra.versioned_sections %}
     {% set versioned_cfg = config.extra.versioned_sections[nav_item.title] %}
   {% endif %}
 
-  <!-- Version-scoped nav config (see extra.version_scoped_navs in mkdocs.yml).
+  {# Version-scoped nav config (see extra.version_scoped_navs in mkdocs.yml).
        Top-level sections listed there are rendered hidden and revealed by
        theme.js only while the matching doc version (e.g. "next") is active.
        Level 1 only, so the same-named section nested under its source (e.g.
-       Cloud > Developer Portal) is unaffected. -->
+       Cloud > Developer Portal) is unaffected. #}
   {% set scoped_version = None %}
   {% if level == 1 and config.extra.version_scoped_navs %}
     {% set scoped_nav = config.extra.version_scoped_navs | selectattr("title", "equalto", nav_item.title) | first %}
@@ -74,7 +74,7 @@
     {% endif %}
   {% endif %}
 
-  <!-- Set nav icon -->
+  {# Set nav icon #}
   {% set icon = None %}
 
   {% if config.extra.nav_icons and nav_item.title in config.extra.nav_icons %}
@@ -85,7 +85,7 @@
     {% endif %}
   {% endif %}
 
-  <!-- Set nav chip -->
+  {# Set nav chip #}
   {% set has_nav_item_chip = false %}
 
   {% if config.extra.nav_chip and nav_item.title in config.extra.nav_chip %}
@@ -100,10 +100,10 @@
     {% endif %}
   {% endif %}
 
-  <!-- Create new map with expanded_nav titles -->
+  {# Create new map with expanded_nav titles #}
   {% set expanded_nav_titles = config.extra.expanded_navs | map(attribute='title') | list %}
 
-  <!-- Hide navigation if configured  -->
+  {# Hide navigation if configured  #}
   {% if config.extra.hide_navs and nav_item.title in config.extra.hide_navs %}
     {% set hide_nav = config.extra.hide_navs[nav_item.title] %}
 
@@ -112,33 +112,33 @@
     {% endif %}
   {% endif %}
 
-  <!-- Versioned section: render a version selector + one group of subtopics per
-       version. Only the active version's group is shown (CSS/JS); see theme.js. -->
+  {# Versioned section: render a version selector + one group of subtopics per
+       version. Only the active version's group is shown (CSS/JS); see theme.js. #}
   {% if nav_item.children and versioned_cfg %}
 
     {% set v_slug = versioned_cfg.slug %}
     {% set v_default = versioned_cfg.default %}
     {% set v_versions = versioned_cfg.versions %}
 
-    <!-- Split into "Latest Version" (the configured default) and "Previous
+    {# Split into "Latest Version" (the configured default) and "Previous
          Versions" (everything else, in configured order) for the dropdown
-         below. -->
+         below. #}
     {% set v_latest = v_default if v_default in v_versions else v_versions[0] %}
     {% set v_previous = v_versions | reject("equalto", v_latest) | list %}
 
-    <!-- Resolve the active version from the current page URL, else the default.
-         A namespace is required so the assignment survives the for-loop scope. -->
+    {# Resolve the active version from the current page URL, else the default.
+         A namespace is required so the assignment survives the for-loop scope. #}
     {% set ns = namespace(active=v_default) %}
     {% if page and page.url %}
-      {% for v in v_versions %}
-        {% if (v_slug ~ "/" ~ v ~ "/") in (page.url ~ "/") %}
-          {% set ns.active = v %}
+      {% for version_item in nav_item.children %}
+        {% if (v_slug ~ "/" ~ version_item.title ~ "/") in (page.url ~ "/") %}
+          {% set ns.active = version_item.title %}
         {% endif %}
       {% endfor %}
     {% endif %}
     {% set active_version = ns.active %}
 
-    <!-- Match the expanded-section styling used by other top-level sections -->
+    {# Match the expanded-section styling used by other top-level sections #}
     {% set matched_expanded_nav = config.extra.expanded_navs | selectattr("title", "equalto", nav_item.title) | first %}
     {# Respect an optional level restriction so a same-named nested item isn't styled like the top-level section #}
     {% if matched_expanded_nav and matched_expanded_nav.level is defined and matched_expanded_nav.level != level %}
@@ -166,7 +166,7 @@
         {{ "checked" if nav_item.active }}
       />
 
-      <!-- Section header: title + inline version selector on the same row -->
+      {# Section header: title + inline version selector on the same row #}
       <div class="md-nav__link md-nav__versioned-header">
         <label class="md-nav__versioned-title" for="{{ path }}" id="{{ path }}_label" tabindex="0">
           <span>
@@ -199,25 +199,33 @@
           {{ nav_item.title }}
         </label>
 
-        <!-- One subtopic group per version; JS toggles which is active -->
-        {% for version_item in nav_item.children %}
-          {% set vgroup_path = path ~ "_v" ~ loop.index %}
-          {% set is_active_group = "is-active" if version_item.title == active_version %}
-          <div class="md-nav__version-group {{ is_active_group }}" data-md-version="{{ version_item.title }}">
-            <ul class="md-nav__list" data-md-scrollfix>
-              {% for sub in version_item.children %}
-                {{ render(sub, vgroup_path ~ "_" ~ loop.index, level + 1, current_title) }}
-              {% endfor %}
-            </ul>
-          </div>
-        {% endfor %}
+        {# Only render active version to avoid duplicating all versions
+           via a list and index it: an unmatched version must still fall back to
+           a rendered group, never to an empty sidebar. Prefer the configured
+           default version over nav order for that fallback — nav order can
+           put an unreleased version (e.g. "next") first, which would be a
+           worse silent fallback than the product's actual default.
+           `nav_item.children` is non-empty here (guarded by the enclosing
+           `if`). #}
+        {% set version_matches = nav_item.children | selectattr("title", "equalto", active_version) | list %}
+        {% set default_matches = nav_item.children | selectattr("title", "equalto", v_default) | list %}
+        {% set active_version_item = version_matches[0] if version_matches else (default_matches[0] if default_matches else nav_item.children[0]) %}
+        {% if active_version_item %}
+        <div class="md-nav__version-group is-active" data-md-version="{{ active_version_item.title }}">
+          <ul class="md-nav__list" data-md-scrollfix>
+            {% for sub in active_version_item.children %}
+              {{ render(sub, path ~ "_v_" ~ loop.index, level + 1, current_title) }}
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
       </nav>
     </li>
 
-  <!-- Main navigation item with nested items -->
+  {# Main navigation item with nested items #}
   {% elif nav_item.children %}
 
-    <!-- Determine whether to render item as a section -->
+    {# Determine whether to render item as a section #}
     {% if "navigation.sections" in features and level == 1 + (
       "navigation.tabs" in features
     ) %}
@@ -252,10 +260,10 @@
       {% endif %}
     {% endif %}
 
-    <!-- Set css class if there is an icon -->
+    {# Set css class if there is an icon #}
     {% set has_icon_class = "md-nav--has-icon" if icon %}
 
-    <!-- Override navigation if configured  -->
+    {# Override navigation if configured  #}
     {% if config.extra.nav_overrides and nav_item.title in config.extra.nav_overrides %}
       {% set override_nav = config.extra.nav_overrides[nav_item.title] %}
 
@@ -266,8 +274,8 @@
       {% endif %}
     {% endif %}
 
-    <!-- Version-scoped sections carry their own divider so it hides and
-         shows together with the section itself. -->
+    {# Version-scoped sections carry their own divider so it hides and
+         shows together with the section itself. #}
     {% if scoped_version %}
       <hr
         class="md-nav--expanded-section-divider"
@@ -275,7 +283,7 @@
       />
     {% endif %}
 
-    <!-- Render item with nested items -->
+    {# Render item with nested items #}
     <li
       class="{{ class }} md-nav__item--nested {{ has_icon_class }} {{ hide_nav_class }}"
       {% if scoped_version %}data-md-scoped-version="{{ scoped_version }}"{% endif %}
@@ -283,10 +291,10 @@
       {% set expanded = "navigation.expand" in features %}
       {% set active = nav_item.active or expanded %}
       
-      <!-- For expanded sections, we want them to start checked (expanded) -->
+      {# For expanded sections, we want them to start checked (expanded) #}
       {% set is_expanded_section = nav_item.title in expanded_nav_titles and matched_expanded_nav is defined and matched_expanded_nav.options is defined and "verticle-line" in matched_expanded_nav.options %}
       {% if is_expanded_section %}
-        <!-- Check for auto-collapse behavior configuration -->
+        {# Check for auto-collapse behavior configuration #}
         {% set should_collapse_list = [] %}
         {% if config.extra.nav_behaviors and config.extra.nav_behaviors.auto_collapse %}
           {% for behavior_config in config.extra.nav_behaviors.auto_collapse %}
@@ -336,12 +344,12 @@
         {% set checked_attr = "" %}
       {% endif %}
 
-      <!-- Determine checked and indeterminate state -->
+      {# Determine checked and indeterminate state #}
       {% if expanded and not checked_attr %}
         {% set indeterminate = "md-toggle--indeterminate" %}
       {% endif %}
 
-      <!-- Active checkbox expands items contained within nested section -->
+      {# Active checkbox expands items contained within nested section #}
       <input
         class="md-nav__toggle md-toggle {{ indeterminate }}"
         type="checkbox"
@@ -350,7 +358,7 @@
         {{ disabled }}
       />
 
-      <!-- Determine all nested items that are index pages -->
+      {# Determine all nested items that are index pages #}
       {% set indexes = [] %}
       {% if "navigation.indexes" in features %}
         {% for nav_item in nav_item.children %}
@@ -360,7 +368,7 @@
         {% endfor %}
       {% endif %}
 
-      <!-- Render toggle to expand nested items -->
+      {# Render toggle to expand nested items #}
       {% if not indexes %}
         <label
           class="md-nav__link {{ hide_sub_nav }}" 
@@ -384,7 +392,7 @@
           {% endif %}
         </label>
 
-      <!-- Render link to index page + toggle -->
+      {# Render link to index page + toggle #}
       {% else %}
         {% set index = indexes | first %}
         {% set class = "md-nav__link--active" if index == page %}
@@ -401,7 +409,7 @@
             </span>
           </a>
 
-          <!-- Only render toggle if there's at least one more page -->
+          {# Only render toggle if there's at least one more page #}
           {% if nav_item.children | length > 1 %}
             {% if not disabled and show_collapsible_icon %}
             <label for="{{ path }}">
@@ -412,7 +420,7 @@
         </div>
       {% endif %}
 
-      <!-- Render nested navigation -->
+      {# Render nested navigation #}
       {% if nav_item.children | length > 0 %}
       <nav
         class="md-nav"
@@ -425,7 +433,7 @@
           {{ nav_item.title }}
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          <!-- Render nested item list -->
+          {# Render nested item list #}
           {% for nav_item in nav_item.children %}
             {% if not indexes or nav_item != indexes | first %}
               {{ render(nav_item, path ~ "_" ~ loop.index, level + 1, current_title) }}
@@ -435,7 +443,7 @@
       </nav>
       {% endif %}
       
-      <!-- Sub nav override links -->
+      {# Sub nav override links #}
       {% if nav_override_link %}
       <div class="md-nav__link md-nav__link--index {{ class }} {{ override_sub_nav }}">
         <a href="{{ nav_override_link | url }}">
@@ -454,25 +462,25 @@
       
     </li>
 
-  <!-- Currently active page -->
+  {# Currently active page #}
   {% elif nav_item == page %}
     <li class="{{ class }}">
       {% set toc = page.toc %}
 
-      <!-- Active checkbox expands items contained within nested section -->
+      {# Active checkbox expands items contained within nested section #}
       <input
         class="md-nav__toggle md-toggle"
         type="checkbox"
         id="__toc"
       />
 
-      <!-- Hack: see partials/toc.html for more information -->
+      {# Hack: see partials/toc.html for more information #}
       {% set first = toc | first %}
       {% if first and first.level == 1 %}
         {% set toc = first.children %}
       {% endif %}
 
-      <!-- Render table of contents, if not empty -->
+      {# Render table of contents, if not empty #}
       {% if toc %}
         <label class="md-nav__link md-nav__link--active" for="__toc">
           {{ nav_item.title }}
@@ -500,13 +508,13 @@
         {% endif %}
       </a>
 
-      <!-- Show table of contents -->
+      {# Show table of contents #}
       {% if toc %}
         {% include "partials/toc.html" %}
       {% endif %}
     </li>
 
-  <!-- Main navigation item -->
+  {# Main navigation item #}
   {% else %}
     <li class="{{ class }} {{ hide_nav_class }}">
       <a href="{{ nav_item.url | url }}" class="md-nav__link">
@@ -530,5 +538,5 @@
   {% endif %}
 {% endmacro %}
 
-<!-- Render current and nested navigation items -->
+{# Render current and nested navigation items #}
 {{ render(nav_item, path, level) }}
