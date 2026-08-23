@@ -442,10 +442,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     var isViewingThisSection = window.location.pathname.split('/').filter(Boolean).indexOf(slug) !== -1;
-    var active = versionFromPath() || (isViewingThisSection ? validStored() : null) || defaultVersion;
 
-    function setActiveVersion(version) {
-      // Add unreleased versions to dropdown
+    // Reflects `version` in the dropdown (adding an "Unreleased" option if
+    // it isn't one of the rendered choices yet). Display only - does not
+    // touch storage, since this runs on every page whether or not the user
+    // is actually viewing this section.
+    function applyActiveVersion(version) {
       if (!select.querySelector('option[value="' + version + '"]')) {
         var unreleasedGroup = select.querySelector('optgroup[label="Unreleased"]');
         if (!unreleasedGroup) {
@@ -459,6 +461,9 @@ document.addEventListener('DOMContentLoaded', function () {
         unreleasedGroup.appendChild(option);
       }
       if (select.value !== version) select.value = version;
+    }
+
+    function persistVersion(version) {
       try {
         window.localStorage.setItem(storageKey, version);
       } catch (e) {
@@ -466,7 +471,15 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    setActiveVersion(active);
+    // Only persist when the URL itself identifies this section's version.
+    // On any other page `active` is just a display fallback (e.g.
+    // defaultVersion) - persisting it would overwrite a real stored
+    // preference every time the user browses away from this section.
+    var urlVersion = versionFromPath();
+    var active = urlVersion || (isViewingThisSection ? validStored() : null) || defaultVersion;
+
+    applyActiveVersion(active);
+    if (urlVersion) persistVersion(active);
     var lastSelectValue = select.value;
 
     var initialManifestId = ++pendingNavigationId;
@@ -477,10 +490,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (versions.length === 0) {
           console.warn('[Version Switcher] Section "' + slug + '" has no versions in manifest. Version switching disabled for this section.');
         }
-        var newActive = versionFromPath() || (isViewingThisSection ? validStored() : null) || defaultVersion;
+        var newUrlVersion = versionFromPath();
+        var newActive = newUrlVersion || (isViewingThisSection ? validStored() : null) || defaultVersion;
         if (newActive && newActive !== active) {
           active = newActive;
-          setActiveVersion(newActive);
+          applyActiveVersion(newActive);
+          if (newUrlVersion) persistVersion(newActive);
         }
       }
     }).catch(function () {
