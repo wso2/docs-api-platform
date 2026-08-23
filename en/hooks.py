@@ -83,19 +83,6 @@ def on_nav(nav, config, files):
     return nav
 
 
-def _is_resolvable_link(url):
-    """True for a Link nav item that actually points somewhere (external URL or
-    absolute path), as opposed to a relative path mkdocs couldn't resolve to a
-    doc file (which it turns into a Link of the same shape, logging a WARNING —
-    see mkdocs.structure.nav._data_to_navigation / the on_nav warning below it).
-    Mirrors that exact scheme/netloc/leading-slash check so unresolvable nav
-    entries (e.g. versions still mid-migration, referencing not-yet-added
-    pages) are excluded rather than offered as real navigation targets.
-    """
-    scheme, netloc, path, query, fragment = urlsplit(url)
-    return bool(scheme or netloc or url.startswith("/"))
-
-
 def _collect_page_urls(item, urls):
     """Collect doc-local URLs from nav tree (excludes external/absolute links).
     URLs stored as relative paths without leading slash.
@@ -183,11 +170,6 @@ def _build_version_manifest(nav, config):
             error_msg = f"Section '{section_slug}' has no versions"
             logger.error(error_msg)
             build_errors.append(error_msg)
-        for version_title, page_urls in versions_dict.items():
-            if not page_urls:
-                error_msg = f"Version '{version_title}' (section '{section_slug}') has no pages"
-                logger.error(error_msg)
-                build_errors.append(error_msg)
     
     if build_errors:
         error_summary = '\n'.join(f'  - {msg}' for msg in build_errors)
@@ -225,22 +207,25 @@ def on_post_build(config, **kwargs):
         logger.error("Failed to create temp file for version manifest: %s", e)
         raise
     try:
-        with os.fdopen(temp_fd, 'w', encoding='utf-8') as f:
+        f = os.fdopen(temp_fd, 'w', encoding='utf-8')
+        temp_fd = None  # fdopen now owns the descriptor
+        with f:
             json.dump(_version_manifest, f, ensure_ascii=False)
         # Ensure atomic manifest write
         os.replace(temp_path, manifest_path)
     except Exception as e:
         logger.error("Failed to write version manifest: %s", e)
-        # Close file descriptor to prevent leak if fdopen() failed
-        try:
-            os.close(temp_fd)
-        except Exception:
-            pass
+        # Close file descriptor only if fdopen() never adopted it
+        if temp_fd is not None:
+            try:
+                os.close(temp_fd)
+            except OSError:
+                logger.debug("Temp descriptor already closed", exc_info=True)
         if os.path.exists(temp_path):
             try:
                 os.remove(temp_path)
-            except Exception:
-                pass
+            except OSError:
+                logger.debug("Could not remove temp file: %s", temp_path, exc_info=True)
         raise
     
     # Validate manifest is not empty

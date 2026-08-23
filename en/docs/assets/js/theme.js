@@ -336,8 +336,6 @@ document.addEventListener('DOMContentLoaded', function () {
     return;  // Exit early, version switcher cannot work
   }
 
-  var pendingNavigationId = 0;
-
   // Fetch with timeout
   function fetchWithTimeout(url, timeoutMs) {
     timeoutMs = timeoutMs || 5000;
@@ -401,6 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var storageKey = 'docVersion:' + slug;
 
+    var pendingNavigationId = 0;
     var versions = [];
 
     // Resolve the active version: URL path segment wins, then stored
@@ -515,7 +514,7 @@ document.addEventListener('DOMContentLoaded', function () {
           var wanted = (slug + '/' + target + '/' + tail).replace(/\/+$/, '');
           for (var i = 0; i < versionUrls.length; i++) {
             var urlPath = versionUrls[i].replace(/\/+$/, '');
-            if (urlPath.slice(-wanted.length) === wanted) {
+            if (urlPath === wanted || urlPath.slice(-(wanted.length + 1)) === '/' + wanted) {
               destination = versionUrls[i];
               break;
             }
@@ -600,13 +599,25 @@ document.addEventListener('DOMContentLoaded', function () {
       var def = section.getAttribute('data-md-default-version');
       if (!slug) return;
       var versions = [];
-      section.querySelectorAll('.md-nav__version-group').forEach(function (g) {
-        var v = g.getAttribute('data-md-version');
-        if (v) versions.push(v);
-      });
+      // Read all versions from data attribute (includes inactive versions)
+      var allVersionsJson = section.getAttribute('data-md-all-versions');
+      if (allVersionsJson) {
+        try {
+          versions = JSON.parse(allVersionsJson);
+        } catch (e) {
+          console.warn('[Version Switcher] Failed to parse versions from data-md-all-versions:', e);
+        }
+      }
+      // Fallback: read only active version from DOM (for compatibility)
+      if (versions.length === 0) {
+        section.querySelectorAll('.md-nav__version-group').forEach(function (g) {
+          var v = g.getAttribute('data-md-version');
+          if (v) versions.push(v);
+        });
+      }
       var active = null;
       var parts = window.location.pathname.split('/').filter(Boolean);
-      var idx = parts.indexOf(slug);
+      var idx = parts.lastIndexOf(slug);
       if (idx !== -1 && idx + 1 < parts.length && versions.indexOf(parts[idx + 1]) !== -1) {
         active = parts[idx + 1];
       }

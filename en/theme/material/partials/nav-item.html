@@ -158,6 +158,7 @@
       class="{{ class }} md-nav__item--nested md-nav__item--versioned {{ has_icon_class }}"
       data-md-versioned-section="{{ v_slug }}"
       data-md-default-version="{{ v_default }}"
+      data-md-all-versions="{{ (nav_item.children | map(attribute='title') | list) | tojson }}"
     >
       <input
         class="md-nav__toggle md-toggle"
