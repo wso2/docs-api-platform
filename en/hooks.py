@@ -155,17 +155,39 @@ def _build_version_manifest(nav, config):
         if not slug:
             continue
 
+        # nav-item.html indexes versions[0] as the fallback "latest" whenever
+        # default isn't a member of versions, so an empty list crashes the
+        # template build and a default outside the list silently mislabels
+        # whichever version happens to be first as "Latest Version".
+        configured_versions = section_cfg.get('versions') or []
+        default = section_cfg.get('default')
+
+        if not configured_versions:
+            error_msg = f'No versions configured for slug "{slug}" (extra.versioned_sections.versions must be non-empty)'
+            logger.error(error_msg)
+            build_errors.append(error_msg)
+
+        if not default:
+            error_msg = f'No default version configured for slug "{slug}" (extra.versioned_sections.default is required)'
+            logger.error(error_msg)
+            build_errors.append(error_msg)
+        elif default not in configured_versions:
+            configured_titles = ', '.join(configured_versions) if configured_versions else '(none)'
+            error_msg = (f'Default version "{default}" not in configured versions for slug "{slug}". '
+                         f'Configured: {configured_titles}')
+            logger.error(error_msg)
+            build_errors.append(error_msg)
+
         versions_dict = _version_manifest.get(slug, {})
         version_titles = ', '.join(sorted(versions_dict.keys())) if versions_dict else '(none)'
 
-        default = section_cfg.get('default')
         if default and default not in versions_dict:
             error_msg = (f'Default version "{default}" not found in nav (slug: {slug}). '
                          f'Available: {version_titles}')
             logger.error(error_msg)
             build_errors.append(error_msg)
 
-        for version in section_cfg.get('versions') or []:
+        for version in configured_versions:
             if version not in versions_dict:
                 error_msg = (f'Configured version "{version}" not found in nav (slug: {slug}). '
                              f'Available: {version_titles}')
