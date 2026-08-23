@@ -148,21 +148,29 @@ def _build_version_manifest(nav, config):
                     slug, version_item.title
                 )
 
-    # Validate configured default versions exist
+    # Validate configured default and versions exist
     build_errors = []
     for section_title, section_cfg in versioned_sections.items():
         slug = section_cfg.get('slug')
-        default = section_cfg.get('default')
-        if not slug or not default:
+        if not slug:
             continue
-        
+
         versions_dict = _version_manifest.get(slug, {})
-        if default not in versions_dict:
-            version_titles = ', '.join(sorted(versions_dict.keys())) if versions_dict else '(none)'
+        version_titles = ', '.join(sorted(versions_dict.keys())) if versions_dict else '(none)'
+
+        default = section_cfg.get('default')
+        if default and default not in versions_dict:
             error_msg = (f'Default version "{default}" not found in nav (slug: {slug}). '
                          f'Available: {version_titles}')
             logger.error(error_msg)
             build_errors.append(error_msg)
+
+        for version in section_cfg.get('versions') or []:
+            if version not in versions_dict:
+                error_msg = (f'Configured version "{version}" not found in nav (slug: {slug}). '
+                             f'Available: {version_titles}')
+                logger.error(error_msg)
+                build_errors.append(error_msg)
 
     # Validate sections have content
     for section_slug, versions_dict in _version_manifest.items():
@@ -211,6 +219,10 @@ def on_post_build(config, **kwargs):
         temp_fd = None  # fdopen now owns the descriptor
         with f:
             json.dump(_version_manifest, f, ensure_ascii=False)
+        # mkstemp() creates the file mode 0600 regardless of umask; os.replace()
+        # preserves that on rename. Match the permissions other site_dir files
+        # get via plain open() so a different serving user/process can read it.
+        os.chmod(temp_path, 0o644)
         # Ensure atomic manifest write
         os.replace(temp_path, manifest_path)
     except Exception as e:

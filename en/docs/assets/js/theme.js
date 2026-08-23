@@ -400,7 +400,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var storageKey = 'docVersion:' + slug;
 
     var pendingNavigationId = 0;
+
+    // Known-valid versions for this section, read synchronously from the DOM
+    // (same attribute the search-breadcrumbs code uses) so both the URL
+    // segment and the stored preference can be validated before the manifest
+    // fetch resolves. Refined to the manifest's keys once it loads.
     var versions = [];
+    var allVersionsJson = section.getAttribute('data-md-all-versions');
+    if (allVersionsJson) {
+      try {
+        versions = JSON.parse(allVersionsJson);
+      } catch (e) {
+        console.warn('[Version Switcher] Failed to parse versions from data-md-all-versions:', e);
+      }
+    }
 
     // Resolve the active version: URL path segment wins, then stored
     // preference, then the configured default.
@@ -422,8 +435,14 @@ document.addEventListener('DOMContentLoaded', function () {
       stored = null;
     }
 
+    // Only trust a stored version if it's a known version (or versions are
+    // not yet known), so a stale/removed value can't take effect.
+    function validStored() {
+      return (versions.length === 0 || versions.indexOf(stored) !== -1) ? stored : null;
+    }
+
     var isViewingThisSection = window.location.pathname.split('/').filter(Boolean).indexOf(slug) !== -1;
-    var active = versionFromPath() || (isViewingThisSection ? stored : null) || defaultVersion;
+    var active = versionFromPath() || (isViewingThisSection ? validStored() : null) || defaultVersion;
 
     function setActiveVersion(version) {
       // Add unreleased versions to dropdown
@@ -458,7 +477,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (versions.length === 0) {
           console.warn('[Version Switcher] Section "' + slug + '" has no versions in manifest. Version switching disabled for this section.');
         }
-        var newActive = versionFromPath() || (isViewingThisSection ? stored : null) || defaultVersion;
+        var newActive = versionFromPath() || (isViewingThisSection ? validStored() : null) || defaultVersion;
         if (newActive && newActive !== active) {
           active = newActive;
           setActiveVersion(newActive);
@@ -481,7 +500,23 @@ document.addEventListener('DOMContentLoaded', function () {
       var previousValue = lastSelectValue;
       var target = select.value;
       lastSelectValue = target;
-      
+
+      // Undo both the dropdown selection and the pending value on any
+      // failure path, so a later change event's "previous value" reflects
+      // the version actually active on the page, not a failed attempt.
+      function rollback(message) {
+        select.value = previousValue;
+        lastSelectValue = previousValue;
+        // Clear the failed target from localStorage so next page load
+        // doesn't restore a version that doesn't exist or failed to navigate
+        try {
+          window.localStorage.removeItem(storageKey);
+        } catch (e) {
+          /* ignore */
+        }
+        showVersionError(message);
+      }
+
       // Track navigation to prevent race conditions
       var thisNavigationId = ++pendingNavigationId;
 
@@ -492,16 +527,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Check section exists in manifest
         if (!manifest[slug]) {
-          select.value = previousValue;
-          showVersionError('Section "' + slug + '" not found in manifest');
+          rollback('Section "' + slug + '" not found in manifest');
           return;
         }
 
         // Get pages for target version
         var versionUrls = manifest[slug][target] || [];
         if (!versionUrls || versionUrls.length === 0) {
-          select.value = previousValue;
-          showVersionError('No pages in version "' + target + '"');
+          rollback('No pages in version "' + target + '"');
           return;
         }
 
@@ -524,30 +557,32 @@ document.addEventListener('DOMContentLoaded', function () {
         // Fall back to first page (overview) in target version
         if (!destination) destination = versionUrls[0];
 
+        // Resolve destination URL against site base to handle subpath deployments correctly.
+        // For a site at https://example.com/subpath/docs/, relative URL api/overview
+        // must become https://example.com/subpath/docs/api/overview
+        // new URL(relative, base) correctly resolves relative to base for subpaths.
+        // Validate the URL (throws synchronously, not caught by the promise's
+        // .catch) before persisting anything, so a bad destination never gets
+        // written to localStorage.
+        var absoluteUrl;
+        try {
+          absoluteUrl = new URL(destination, versionedNavScope).href;
+        } catch (e) {
+          rollback('Invalid destination URL: ' + e.message);
+          return;
+        }
+
         // Persist before navigating so new page restores same version
         try {
           window.localStorage.setItem(storageKey, target);
         } catch (e) {
           /* ignore */
         }
-        // Resolve destination URL against site base to handle subpath deployments correctly.
-        // For a site at https://example.com/subpath/docs/, relative URL api/overview
-        // must become https://example.com/subpath/docs/api/overview
-        // new URL(relative, base) correctly resolves relative to base for subpaths.
-        // CRITICAL #3: Wrap new URL() in try-catch (throws synchronously, not caught by promise .catch)
-        try {
-          var absoluteUrl = new URL(destination, versionedNavScope).href;
-          window.location.href = absoluteUrl;
-        } catch (e) {
-          // Restore dropdown and show error if URL construction fails
-          select.value = previousValue;
-          showVersionError('Invalid destination URL: ' + e.message);
-        }
+        window.location.href = absoluteUrl;
       }).catch(function (err) {
         // Restore dropdown and show error
         if (thisNavigationId !== pendingNavigationId) return;
-        select.value = previousValue;
-        showVersionError('Manifest load failed: ' + err);
+        rollback('Manifest load failed: ' + err);
       });
     });
   });
