@@ -8,7 +8,7 @@ tags:
   - llm
   - routing
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-05
+last_updated: 2026-08-19
 content_type: "guide"
 ---
 
@@ -16,7 +16,7 @@ content_type: "guide"
 
 ## Overview
 
-Multi-provider routing lets one large language model (LLM) proxy expose a single OpenAI-compatible endpoint while routing each request to a selected LLM provider. Applications continue to use the same endpoint and OpenAI-compatible request format when the upstream provider changes. Non-streaming responses are normalized where supported; streaming compatibility varies by provider.
+Multi-provider routing lets one large language model (LLM) proxy expose a single OpenAI-compatible endpoint while routing each request to a selected LLM provider. Applications continue to use the same endpoint and OpenAI-compatible request format when the upstream provider changes. Non-streaming and streaming Chat Completions responses are normalized to OpenAI-compatible shapes where supported.
 
 For example, an application can send all requests to `/openai-multi/chat/completions` and select OpenAI or Anthropic with the `x-provider` request header. The proxy can also distribute requests automatically across provider and model pairs by using round-robin or weighted round-robin routing.
 
@@ -425,9 +425,30 @@ curl -k -X POST https://localhost:8443/openai-multi/chat/completions \
   }'
 ```
 
-The Anthropic transformer replaces the request's `model` value with the model configured under `transformer.params.model`. It also translates the request to the Anthropic Messages format and translates the response back to the OpenAI response shape.
+The Anthropic transformer replaces the request's `model` value with the model configured under `transformer.params.model`. It also translates the request to the Anthropic Messages format and translates non-streaming and streaming responses back to the OpenAI response shape.
 
 Header names and mapped header values are matched case-insensitively. Leading and trailing whitespace in the header value is ignored. If the header is missing, empty, or does not match a mapping, the router selects `defaultProvider`.
+
+#### Stream from a selected provider
+
+Use the same OpenAI Chat Completions payload and set `stream` to `true`. The selected provider returns OpenAI-compatible SSE through the proxy. OpenAI, Azure OpenAI, and Mistral streams pass through in their OpenAI-compatible shape. Anthropic, Gemini, and AWS Bedrock streams are converted to OpenAI `chat.completion.chunk` events.
+
+```bash
+curl -N -k -X POST https://localhost:8443/openai-multi/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: ${PROXY_CONSUMER_KEY}" \
+  -H "x-provider: anthropic" \
+  -d '{
+    "model": "client-model-name",
+    "stream": true,
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a haiku about API gateways."
+      }
+    ]
+  }'
+```
 
 ### Add more providers
 
@@ -439,10 +460,10 @@ Use a transformer when an additional provider does not accept and return the Ope
 
 | Target provider | Transformer type used in this guide | Purpose |
 |-----------------|-------------------------------------|---------|
-| Anthropic | `openai-to-anthropic-transformer` | Converts OpenAI-compatible requests to Anthropic Messages and converts non-streaming responses back to OpenAI format. |
+| Anthropic | `openai-to-anthropic-transformer` | Converts OpenAI-compatible requests to Anthropic Messages and converts responses, including streaming responses, back to OpenAI format. |
 | Azure OpenAI | `openai-to-azure-openai-transformer` | Adapts the request path for an Azure OpenAI deployment and API version. |
 | Mistral | `openai-to-mistral-transformer` | Normalizes OpenAI-compatible requests and responses for Mistral. |
-| Gemini | `openai-to-gemini-transformer` | Converts OpenAI-compatible requests and non-streaming responses for Gemini. |
+| Gemini | `openai-to-gemini-transformer` | Converts OpenAI-compatible requests and Gemini responses, including streaming responses, back to OpenAI format. |
 | AWS Bedrock | `openai-to-bedrock-transformer` | Converts OpenAI-compatible requests and Bedrock Converse responses, including streaming responses. |
 
 A transformer is not required when the selected provider already exposes an OpenAI-compatible API.
@@ -612,7 +633,7 @@ Expand a provider to see its complete transformation behavior. `Converted` means
     | Image input | Base64 and remote URL |
     | Function tools | Converted |
     | Non-streaming OpenAI response | Yes |
-    | Streaming response | Native Anthropic SSE passthrough |
+    | Streaming response | Converted to OpenAI-compatible SSE |
 
     **Request conversion**
 
@@ -641,7 +662,7 @@ Expand a provider to see its complete transformation behavior. `Converted` means
 
     **Streaming**
 
-    Streaming is supported. The transformer selects the Anthropic streaming endpoint and passes native Anthropic server-sent events (SSE) through unchanged. It does not convert the event payloads to OpenAI Chat Completions chunks, so streaming clients must handle Anthropic event payloads.
+    Streaming is supported. The transformer selects the Anthropic streaming endpoint and converts native Anthropic server-sent events (SSE) into OpenAI `chat.completion.chunk` events. It emits role, content, tool-call deltas, finish reasons, usage, and `data: [DONE]`. Anthropic events that have no OpenAI Chat Completions equivalent, such as `ping`, `content_block_stop`, `thinking_delta`, and `signature_delta`, are omitted.
 
     **Tools and multimodal input**
 
@@ -783,7 +804,7 @@ Expand a provider to see its complete transformation behavior. `Converted` means
     | Image input | Base64 and remote URL |
     | Function tools | Converted |
     | Non-streaming OpenAI response | Yes |
-    | Streaming response | Native Gemini SSE passthrough |
+    | Streaming response | Converted to OpenAI-compatible SSE |
 
     **Request conversion**
 
@@ -813,7 +834,7 @@ Expand a provider to see its complete transformation behavior. `Converted` means
 
     **Streaming**
 
-    Streaming is supported. The transformer selects `streamGenerateContent` and passes native Gemini SSE events through unchanged. It does not convert the event payloads to OpenAI Chat Completions chunks, so streaming clients must handle Gemini event payloads.
+    Streaming is supported. The transformer selects `streamGenerateContent` and converts native Gemini SSE events into OpenAI `chat.completion.chunk` events. It emits content, tool-call deltas, finish reasons, usage, and `data: [DONE]`. Gemini parts flagged as `thought: true` are omitted because OpenAI Chat Completions streaming has no equivalent visible field for them.
 
     **Tools and multimodal input**
 
@@ -901,8 +922,8 @@ The round-robin policies track failures per provider/model pair. The same model 
 
 ## Limitations
 
-- **Chat Completions only:** Cross-provider translation targets the OpenAI `/chat/completions` model.
-- No universal OpenAI streaming conversion: Only AWS Bedrock converts provider-specific streaming events into OpenAI Chat Completions chunk objects. Anthropic and Gemini return valid SSE streams. Their provider-native event payloads are passed through unchanged.
+- **Chat Completions only:** Cross-provider translation targets the OpenAI `/chat/completions` endpoint.
+- **Chat Completions streaming shape:** Supported provider transformers return OpenAI `chat.completion.chunk` SSE for streaming responses. Provider-native stream events that have no OpenAI Chat Completions equivalent are omitted.
 - **No automatic capability negotiation:** The gateway does not query the selected model for support for vision, tools, schemas, or individual generation parameters.
 - **No automatic routing validation:** Router mappings must match the primary provider ID or an additional provider's effective name.
 - **No request retry or immediate failover:** Suspension removes an unhealthy target from later rotations but does not retry the failing request.
@@ -950,9 +971,9 @@ If the mapping selects an additional provider that has no transformer, confirm t
 
 Model suspension does not retry the current request. Confirm the behavior with a later request after the first target returns `429` or `5xx`. Also confirm that `suspendDuration` is greater than `0` and that each model entry uses the correct effective provider name.
 
-### Streaming is not in OpenAI chunk format
+### Streaming chunks are missing provider-native details
 
-Anthropic and Gemini support streaming through provider-native SSE passthrough. If the client expects OpenAI Chat Completions chunks, adapt the provider-native event payloads in the client or choose a route that returns OpenAI-compatible chunks.
+Supported provider transformers convert streaming responses to OpenAI Chat Completions chunks. If provider-native events are missing, check whether those events have an OpenAI Chat Completions equivalent. Anthropic thinking events and Gemini thought parts are intentionally omitted.
 
 ### An image or tool request is rejected by the provider
 
