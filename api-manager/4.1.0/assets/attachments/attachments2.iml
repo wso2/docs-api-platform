@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/103333424" isTestSource="false" packagePrefix="org.wso2.caching.digest" />
+      <sourceFolder url="file://$MODULE_DIR$/103334715" isTestSource="false" packagePrefix="org.wso2.sample.workflow" />
+      <sourceFolder url="file://$MODULE_DIR$/103335310" isTestSource="false" packagePrefix="org.wso2.carbon.apimgt.impl.publishers" />
+      <sourceFolder url="file://$MODULE_DIR$/learn" isTestSource="false" packagePrefix="org.wso2.carbon.apimgt.gateway.handlers.security" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

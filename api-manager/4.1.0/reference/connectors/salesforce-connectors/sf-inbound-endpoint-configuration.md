@@ -1,0 +1,184 @@
+---
+title: "Setting up a PushTopic in Salesforce"
+description: "Create a PushTopic, subscribe to its channel, and configure Salesforce authentication for the inbound endpoint."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.1.0/reference/connectors/salesforce-connectors/sf-inbound-endpoint-configuration/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.1.0/reference/connectors/salesforce-connectors/sf-inbound-endpoint-configuration.md
+tags:
+  - api-manager
+  - reference
+  - connectors
+  - salesforce-connectors
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-08-19
+content_type: "how-to"
+---
+
+# Setting up the PushTopic in Salesforce
+
+This documentation explains how to set up the Salesforce environment to connect with WSO2 Salesforce Inbound Endpoint. Please follow up the steps given below
+
+* Create a custom object or object in Salesforce.
+* Creating a PushTopic.
+* Subscribing to the PushTopic Channel
+* Testing the PushTopic Channel.
+* Set up Salesforce Authentication.
+ 
+## Create a custom object or object in Salesforce.
+
+As first step you need to [create a custom object in Salesforce](https://developer.salesforce.com/docs/atlas.en-us.202.0.api_streaming.meta/api_streaming/create_object.htm). In this scenario we use the `Account` object to store the records.
+ 
+## Creating a PushTopic  
+
+The [PushTopic](https://developer.salesforce.com/docs/atlas.en-us.202.0.api_streaming.meta/api_streaming/create_a_pushtopic.htm) record contains a SOQL query. Event notifications are generated for updates that match the query. Alternatively, you can also use Workbench to create a PushTopic. In this sample we using Salesforce Developer Console to create a Push Topic.
+
+1. **Login** to the **Salesforce Account**. Navigate to the top right corner of the **Home page** and click the **Setup** icon. Then select **Developer Console**.
+
+    <img src="../../../../assets/img/integrate/connectors/open-the-developer-console-updated.png" title="Open the Developer Console." width="500" alt="Open the Developer Console."/>
+
+2. After populating the Developer console, click **Debug** -> Open **Execute Anonymous Window**.   
+   
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-execute-anonymous-window-updated.png" title="Open the Anonymous Window." width="500" alt="Open the Anonymous Window."/>
+   
+3. Add the following entry in the **Enter Apex Code** window and click **Execute**.  
+   
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-enter-apex-code-updated.png" title="Enter Apex code." width="700" alt="Enter Apex code."/> 
+   
+    ```
+    PushTopic pushTopic = new PushTopic();
+    pushTopic.Name = 'Account';
+    pushTopic.Query = 'SELECT Id, Name FROM Account';
+    pushTopic.ApiVersion = 37.0;
+    pushTopic.NotifyForOperationCreate = true;
+    pushTopic.NotifyForOperationUpdate = true;
+    pushTopic.NotifyForOperationUndelete = true;
+    pushTopic.NotifyForOperationDelete = true;
+    pushTopic.NotifyForFields = 'Referenced';
+    insert pushTopic;
+    ```
+   We are essentially creating a SOQL query with a few extra parameters that watch for changes in a specified object. If the Push Topic is executed successfully then Salesforce is ready to post notification to WSO2 Salesforce Inbound Endpoint, if any changes are made in the Account object in Salesforce. This is because the below Push Topic has been created for Salesforce's Account object. 
+   
+## Subscribing to the PushTopic Channel
+
+In this step, we need to [subscribe](https://developer.salesforce.com/docs/atlas.en-us.202.0.api_streaming.meta/api_streaming/subscribe_to_pushtopic_channel.htm) to the channel that we created with the PushTopic record in the previous step. For this can be done through the `Workbench`. Workbench is a free, open source, community-supported tool that helps administrators and developers to interact with Salesforce for Data Insert, Update, Upsert, Delete, and Export purposes. 
+
+> **Note**: Salesforce provides a hosted instance of Workbench for demonstration purposes only - Salesforce recommends that you do not use this hosted instance of Workbench to access data in a production database.
+
+1. Using your browser, navigate to the [workbench](https://developer.salesforce.com/page/Workbench).
+
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-slaesforce-login-workbench.png" title="Login Workbench" width="70%" alt="Login Workbench"/> 
+
+2. Select **Environment** as **Production** and **API Version** as **37.0**.
+   
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-select-environment-updated.png" title="Select Environment" width="70%" alt="Select Environment"/>
+
+3. **Accept the terms of service**, and click **Login with Salesforce**.
+
+4. After logging in with Salesforce, you establish a connection to your database, and land on the **Select page**.
+
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-landing-page.png" title="Select page." width="700" alt="Select page."/>
+
+5. Select **queries** -> **Streaming Push Topics**.
+
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-streaming-push-topics-updated.png" title="Streaming PushTopic" width="70%" alt="Streaming PushTopic"/>
+   
+6. In the **Push Topic** field, select **Account**.   
+  
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-select-pushtopic-account-updated.png" title="Select created PushTopic." width="70%" alt="Select created PushTopic"/>
+
+7. Click **Subscribe**. You’ll see the connection and response information and a response like `Subscribed to /topic/Account`.
+
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-subscribe-updated.png" title="Subscribe to the PushTopic" width="70%" alt="Subscribe to the PushTopic"/>
+   
+   > **Note**: Keep this browser window open and make sure that the connection does not time out. You’ll be able to see the event notifications triggered by the Account record you create when testing the PushTopic channel.
+   
+## Testing the PushTopic Channel.
+
+1. Open new browser window and navigate to the [workbench](https://developer.salesforce.com/page/Workbench) using the same username and password. Please follow the steps given in `Subscribe to the PushTopic Channel` `Step 1`.
+
+2. Select **data** -> **Insert**.
+
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-data-insert-updated.png" title="Insert data to test the PushTopic" width="70%" alt="Insert data to test the PudhTopic"/>
+
+3. For **Object Type**, select *Account*. Ensure that the **Single Record** field is selected, and click **Next**. 
+   
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-select-single-record-updated.png" title="Select single record" width="70%" alt="Select single record"/>
+   
+4. Type in a value for the `Name` field. Then click **Confirm Insert**.
+  
+    <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-insert-values-to-name-updated.png" title="Insert value to the object" width="50%" alt="Insert value to the object"/>
+
+5. Switch to your **Streaming Push Topics** browser window. You’ll see a notification that the *Account* update was created. The notification returns the `Id` and `Name` fields that we defined in the SELECT statement of our **PushTopic query**. Please find the notification message as shown bellow.
+   
+    ```
+    Message received from: /topic/Account
+    {
+      "data": {
+        "event": {
+          "createdDate": "2020-04-21T13:02:56.967Z",
+          "replayId": 11,
+          "type": "created"
+        },
+        "sobject": {
+          "Id": "0012x0000048qhUAAQ",
+          "Name": "Doctor"
+        }
+      },
+      "channel": "/topic/Account"
+    }
+    ```
+## Set up Salesforce Authentication
+
+The Salesforce Inbound Endpoint supports two authentication methods:
+
+- **Username/Password (username-token)** — authenticates using a Salesforce username, password, and security token via the SOAP login API. This is the default authentication type.
+- **OAuth2 Client Credentials (oauth)** — authenticates using a Salesforce Connected App's consumer key and secret via the OAuth2 Client Credentials grant. Recommended for server-to-server integrations where storing a user password is undesirable.
+
+!!! info "Version requirement"
+    OAuth2 Client Credentials authentication is available from **Salesforce Inbound Endpoint version 2.1.17** onwards.
+
+=== "Username/Password (username-token)"
+
+    1. **Login** to the **Salesforce Account**. Navigate to the top right corner of the **Home page** and click **Settings**.
+
+        <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-click-settings-updated.png" title="Select Settings." width="40%" alt="Select Settings"/> 
+
+    2. Select **Reset My Security Token** and then click **Reset Security Token** button.   
+       
+        <img src="../../../../assets/img/integrate/connectors/salesforce-inboundep-resetsecurity-token-updated.png" title="Reset Security Token" width="70%" alt="Reset Security Token"/>
+          
+        When setting up the Inbound Endpoint you need to provide the Salesforce password in the following manner. The password provided here is a concatenation of the user password and the security token provided by Salesforce. For more information, see [information on creating a security token in Salesforce](https://help.salesforce.com/articleView?id=user_security_token.htm&type=5).
+       
+        Example : 
+       
+        | Field              | Value           |   
+        | ------------------ |-----------------|
+        |salesforce password | test123         |
+        |Security Token      | XXXXXXXXXX      |
+       
+        ```
+        <parameter name="connection.salesforce.password">test123XXXXXXXXXX</parameter>
+        ```
+
+=== "OAuth2 Client Credentials (oauth)"
+
+    Create a Salesforce External Client App that supports the Client Credentials flow:
+
+    1. **Login** to your **Salesforce Account** and click the **Setup** icon (top right).
+
+    2. In the **Quick Find** box, search for **External Client App Manager** (under **External Client Apps**) and open it. Alternatively, go to **App Manager** (under **Apps**) and click the **New External Client App** button in the top right.
+
+    3. Click **New External Client App**.
+
+    4. Enter an **App Name** and a **Contact Email Address**.
+
+    5. Under **OAuth Settings**, enable **Enable OAuth** and configure the following:
+        - **Callback URL**: Enter any valid URL (e.g., `https://login.salesforce.com/services/oauth2/success`).
+        - **Selected OAuth Scopes**: Add **Manage user data via APIs (api)** and any other required scopes.
+        - Enable **Enable Client Credentials Flow**.
+
+    6. Click **Create**. After saving, open the app, go to the **Settings** tab, and click **Consumer Key and Secret** to retrieve the **Consumer Key** (clientId) and **Consumer Secret** (clientSecret).
+
+    7. To assign a run-as user for the Client Credentials flow, go to the app's **Policies** tab, click **Edit**, and set the **Run As** username to a dedicated integration user.
+
+    !!! note
+        The Client Credentials flow does not require end-user interaction and is intended for server-to-server integrations. Use a dedicated integration user with the minimum required permissions as the run-as user.

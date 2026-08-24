@@ -1,0 +1,77 @@
+---
+title: "Set passwords using variables or system properties"
+description: "Reference passwords in deployment.toml through environment variables or system properties instead of hard-coding them in the file."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.6.0/install-and-setup/setup/security/logins-and-passwords/set-passwords-using-vars-and-sys-props/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.6.0/install-and-setup/setup/security/logins-and-passwords/set-passwords-using-vars-and-sys-props.md
+tags:
+  - api-manager
+  - install-and-setup
+  - setup
+  - security
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-07-20
+content_type: "how-to"
+---
+
+# Set Passwords using Environment Variables or System Properties
+
+The instructions on this page explain how you can set the passwords of system users, keystores, and truststores, etc. using system properties and environment variable, rather than hard coding them in the configuration file itself. 
+
+## Set passwords using environment variables 
+
+1.  Set the password to an environment variable. 
+
+2.  Open `<APIM_HOME>/repository/deployment.toml` file and refer the password value in the configuration using the `$env{<environment_variable_name>}` placeholder. 
+
+    === "Format"
+        ``` toml
+        [super_admin]
+        username="admin"
+        password="$env{<environment_variable_name>}"
+        ```
+       
+    === "Example"
+        ``` toml
+        [super_admin]
+        username="admin"
+        password="$env{ADMIN_PASSWORD}"
+        ```
+
+3.  Start the server to apply the changes.
+
+      * On Linux: `./api-manager.sh`
+      * On Windows: `./api-manager.bat`
+ 
+## Set passwords using system properties
+ 
+ 1.  Open the `<APIM_HOME>/repository/deployment.toml` file and refer the required password value in the configuration using the `$sys{system.property}` placeholder. 
+ 
+    === "Format"
+        ``` toml
+        [super_admin]
+        username="admin"
+        password="$sys{system.property}"
+        ```
+        
+    === "Example"
+        ``` toml
+        [super_admin]
+        username="admin"
+        password="$sys{admin.password}"
+        ```
+    
+2.  Pass the above-configured system property to the runtime by using one of the following options.
+     
+     Let's use `admin.password` here as a sample system property.
+
+     -   During the server startup time
+
+        * On Linux: `./api-manager.sh -Dadmin.password=admin`
+        * On Windows: `./api-manager.bat -Dadmin.password=admin`
+      
+     -   Configure the system property in the `<APIM_HOME>/bin/api-manager.sh` file.
+        
+        ```bash
+        -Dadmin.password=admin \
+        ```
+        

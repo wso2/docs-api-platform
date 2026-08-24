@@ -1,0 +1,42 @@
+---
+title: "Configuring Kafka"
+description: "Install Apache Kafka client libraries and start the ZooKeeper and Kafka servers to use the Kafka inbound endpoint in Micro Integrator."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.0.0/install-and-setup/setup/mi-setup/feature_configs/configuring-kafka/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.0.0/install-and-setup/setup/mi-setup/feature_configs/configuring-kafka.md
+tags:
+  - api-manager
+  - install-and-setup
+  - setup
+  - mi-setup
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-08-20
+content_type: "how-to"
+---
+
+# Configuring Kafka
+
+In order to use the Kafka inbound endpoint, you need to download and install [Apache Kafka](http://kafka.apache.org/downloads.html). The recommended version is `kafka_2.12-2.2.1`.
+
+To configure the Kafka inbound endpoint, copy the following client libraries from the `KAFKA_HOME/libs` directory to the `MI_HOME/lib` directory.
+    
+      - kafka_2.12-2.2.1.jar     
+      - metrics-core-2.2.0.jar    
+      - zkclient-0.11.jar
+      - kafka-clients-2.2.1.jar  
+      - scala-library-2.12.8.jar  
+      - zookeeper-3.4.13.jar
+
+To start the Kafka server:
+
+-   Navigate to `<KAFKA_HOME>` and run the
+    following command to start the ZooKeeper server:
+
+    ```bash
+    bin/zookeeper-server-start.sh config/zookeeper.properties
+    ```
+
+-   Run the following command to start the Kafka server
+
+    ```bash
+    bin/kafka-server-start.sh config/server.properties
+    ```

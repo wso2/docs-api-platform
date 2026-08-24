@@ -1,0 +1,66 @@
+---
+title: "Converting string values to lowercase"
+description: "Configure a Siddhi application that uses a string extension function to convert values to lowercase."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.2.0/use-cases/examples/streaming-examples/string-extension-sample/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.2.0/use-cases/examples/streaming-examples/string-extension-sample.md
+tags:
+  - api-manager
+  - use-cases
+  - examples
+  - streaming-examples
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-08-20
+content_type: "how-to"
+---
+
+# Converting String Values to Lowercase
+
+## Purpose
+This String function converts the string value to lowercase letters
+
+## Prerequisites
+Save this sample. If there is no syntax error, the following messages would be shown on the console
+```
+* Siddhi App StringExtensionSample successfully deployed.
+```
+
+## Executing the Sample
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
+	```
+	* StringExtensionSample.siddhi - Started Successfully!
+	```
+
+## Testing the Sample
+You can publish data event to the file, through event simulator.
+1. Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
+2. In the Single Simulation tab of the panel, select values as follows:
+	* Siddhi App Name: StringExtensionSample
+	* Stream Name: SweetProductionStream
+3. Enter following values in the fields and send.
+	```
+	name: CaKe
+	amount: 55.6
+	```
+
+
+## Viewing the Results
+Messages similar to the following would be shown on the console.
+```
+INFO {io.siddhi.core.stream.output.sink.LogSink} - StringExtensionSample : OutputStream : Event{timestamp=1513760993921, data=[cake, 55.6], isExpired=false}
+```
+
+```sql
+@App:name("StringExtensionSample")
+@App:description('Converts the sweet name to lowercase letters.')
+
+
+define stream SweetProductionStream (name string, amount double);
+
+@sink(type='log')
+define stream OutputStream(name string, amount double);
+
+from SweetProductionStream
+select str:lower(name) as name, amount
+insert into OutputStream;
+```

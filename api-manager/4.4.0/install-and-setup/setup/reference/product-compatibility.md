@@ -1,0 +1,103 @@
+---
+title: "API Manager 4.4.0 Product Compatibility"
+description: "Tested operating systems, JDKs, DBMSs, WSO2 product versions, and compatible WSO2 Identity Server (Key Manager) versions for WSO2 API Manager 4.4.0."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.4.0/install-and-setup/setup/reference/product-compatibility/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.4.0/install-and-setup/setup/reference/product-compatibility.md
+tags:
+  - api-manager
+  - compatibility
+  - key-managers
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-07-15
+content_type: "reference"
+---
+
+# Product Compatibility
+
+Given below are the compatibility details of the WSO2 API Manager (WSO2 API-M) 4.4.0 runtimes.
+
+## API-M runtime compatibility
+
+Given below is the tested compatibility of the API-M runtime of WSO2 API Manager 4.4.0.
+
+#### Tested Operating Systems
+
+As WSO2 API Manager is a Java application, you can generally run it on most operating systems. Listed below are the operating systems that have been tested with the API-M 4.4.0 runtime.
+
+|**Operating System**|**Versions**  |
+|--------------------|--------------|
+|Windows             | 2021         |
+|Ubuntu              | 22.04 |
+|Rocky Linux              | 9.3    |
+
+<a name="tested-jdks"></a>
+#### Tested JDKs
+
+The **WSO2 API-M** runtime has been tested with the following JDKs:
+
+|**JDKS**            |**Versions**|
+|--------------------|-----------|
+|Temurin OpenJDK     | 11, 17, 21    |
+
+#### Tested DBMSs
+
+The **WSO2 API-M** runtime is tested with the following databases:
+
+|**DBMS**     | **Versions**            |
+|--------------|-------------------------|
+|MySQL         | 5.7, 8, 8.4                  |
+|Oracle        | 19c, 23c |
+|Microsoft SQL Server| 2019, 2022        |
+|PostgreSQL            | 16.2, 17       |
+
+!!! warning
+    When creating the database related to apim_db with MySQL 8.0, add **character set latin1** to avoid the MySQL Linux ERROR 1071 (42000).
+    ```sh
+    CREATE DATABASE <APIM_DATABASE_NAME> character set latin1;
+    ```
+
+<a name="tested-wso2-products"></a>
+#### Tested WSO2 Products
+
+The following is a list of other WSO2 products that have been tested with WSO2 API Manager 4.4.0.
+
+- [WSO2 Identity Server 7.0.0 and 6.1.0](https://wso2.com/identity-and-access-management/#)
+- [WSO2 API Platform For Kubernetes(APK) 1.2.0](https://apk.docs.wso2.com/en/latest/)
+
+#### Compatible WSO2 Identity Servers (as Key Manager)
+
+!!! Note 
+    From API Manager 3.2.0 onwards, WSO2 Identity Server is not packaged as a Key Manager. A remote WSO2 Identity Server instance should be used as the Key Manager.
+
+<table>
+<thead>
+<tr class="header" >
+<th>WSO2 API-M</th>
+<th>WSO2 IS-KM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td>API-M 4.4.0 GA</td>
+<td>
+GA or update for:
+<ul>
+<li>WSO2 IS-6.0.0/WSO2 IS-6.1.0</li>
+<li>WSO2 IS-7.0.0 (Tenancy is not compatible)</li>
+</ul>
+</td>
+</tr>
+<tr class="even">
+<td>API-M-4.4.0 update</td>
+<td>GA or update for:
+<ul>
+<li>WSO2 IS-6.0.0/WSO2 IS-6.1.0</li>
+<li>WSO2 IS-7.0.0 (tenancy is not compatible)</li>
+<div class="admonition note">
+      <p class="admonition-title">Note</p>
+      <p>Role based authorization for WSO2 IS 7.x is supported from WSO2 IS 7.0.0.65 onwards</p>
+</div>
+</ul>
+</tr>
+</tbody>
+</table>

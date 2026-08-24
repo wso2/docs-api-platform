@@ -1,0 +1,296 @@
+---
+title: "Create a prototype API with an inline mock script"
+description: "Create a prototype API with inline JavaScript-generated mock payloads and test it using the API Console in the Developer Portal."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.0.0/design/prototype-api/create-a-mock-api-with-an-inline-script/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.0.0/design/prototype-api/create-a-mock-api-with-an-inline-script.md
+tags:
+  - api-manager
+  - design
+  - prototype-api
+  - create-a-mock-api-with-an-inline-script
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-08-20
+content_type: "how-to"
+---
+
+# Creating a Prototype API with Mock Payload Generated Inline Scripts
+
+The prototype implementation in WSO2 API Manager gives users the ability to prototype APIs with inline scripts for testing purposes and as an early promotion. This allows subscribers to try out and test APIs without subscriptions or monetizations, allowing them to provide feedback to improve APIs. Publishers can use this to make changes to the APIs requested by users. The WSO2 API Manager prototype implementation allows you to generate a mock payload based on an API definition. You can prototype an API using the inbuilt JavaScript engine without having to manually write the JavaScript implementation for each resource.
+
+Let's create a prototyped API with mock response payloads, deploy it as a prototype, and invoke it using the API Console, which is integrated into the Developer Portal.
+
+For this let's use the following OpenAPI URL: `https://petstore3.swagger.io/api/v3/openapi.json`
+
+## Step 1 - Create a prototype API with mock response payloads
+
+1. Click **CREATE API** and click **Import Open API**.
+
+    <a href="../../../assets/img/learn/create-api-existing-rest-api-link.png"><img src="../../../assets/img/learn/create-api-existing-rest-api-link.png" alt="importing open api"></a>
+
+2. Upload the OpenAPI URL or OpenAPI File and click **Next**.
+
+    <a href="../../../assets/img/learn/create-api-using-openapi-url-filled.png"><img src="../../../assets/img/learn/create-api-using-openapi-url-filled.png" alt="create api form for existing api"></a>
+    
+3. Provide the API name, context, and version. Thereafter, click **Create**.
+
+    <a href="../../../assets/img/learn/create-api-form-swagger-petstore-filled.png"><img src="../../../assets/img/learn/create-api-form-swagger-petstore-filled.png" alt="provide api details"></a>
+         
+    Now you will be directed to the API overview page.
+
+4. Click **Endpoints** to navigate to the Endpoints page and select **Prototype Implementation** as the endpoint type.
+
+    <a href="../../../assets/img/learn/create-api-prototype-endpoint-add-swagger-petstore.png"><img src="../../../assets/img/learn/create-api-prototype-endpoint-add-swagger-petstore.png" alt="select prototype implementation"></a>
+
+5. Click and expand any of the methods that contain a sample/mock payload to view the inline script that has been generated.
+
+     [![Generated inline script](../../assets/img/learn/create-api-prototype-generated-script.png)](../../assets/img/learn/create-api-prototype-generated-script.png)
+
+     The example response defined in the OpenAPI definition is set as the mock response payload. You can modify the generated inline scripts as required. 
+
+      ``` 
+      responses[200]["application/json"] = {              // Mock response payload stored as a variable
+        "id" : 10,
+        "name" : "doggie",
+        "category" : {
+          "id" : 1,
+          "name" : "Dogs"
+        },
+        "photoUrls" : [ "string" ],
+        "tags" : [ {
+          "id" : 0,
+          "name" : "string"
+        } ],
+        "status" : "available"
+      };                                                 
+      
+      mc.setProperty('CONTENT_TYPE', 'application/json');  // Set the content type of the payload to the message context 
+      mc.setPayloadJSON(response200json);                  // Set the new payload to the message context
+      ```
+    
+6. Modify the inline script for `/pet/{petId}`.
+
+     Set a path parameter entered by the user to a variable that will satisfy a condition and set a response accordingly.
+
+    !!! tip
+   
+        The **RESET** button appears after a change is made to the script. When pressed, the script will revert back to the originally generated script.
+        
+
+     [![Modified inline script](../../assets/img/learn/create-api-prototype-generated-script-modified.png)](../../assets/img/learn/create-api-prototype-generated-script-modified.png)
+   
+   
+
+      ```
+      // **GENERATED CODE** //
+      
+      responses[200]["application/json"] = {                 // Mock response payload stored as a variable
+        "id" : 10,
+        "name" : "doggie",
+        "category" : {
+          "id" : 1,
+          "name" : "Dogs"
+        },
+        "photoUrls" : [ "string" ],
+        "tags" : [ {
+          "id" : 0,
+          "name" : "string"
+        } ],
+        "status" : "available"
+      };                                                
+      
+      // **MANUALLY ADDED CODE** //
+      
+      if (mc.getProperty('uri.var.petId') == 1) {          // Get the path parameter 'petID' to check the condition
+        responses[200]["application/json"] = {
+          "id" : 1,
+          "category" : {
+            "id" : 1,
+            "name" : "Dog"
+          },
+          "name" : "doggie",
+          "photoUrls" : [ "https://www.google.com/search?q=pet+images&client=ubuntu&hs=NYm&channel=fs&tbm=isch&source=iu&ictx=1&fir=ZgS81JuMKfVpqM%252CF26KAcU9PVtkCM%252C_&vet=1&usg=AI4_-kQjTnWk4IVhQbkQmoFJ6zFxD1IynA&sa=X&ved=2ahUKEwjt7e2Rj9fsAhUg6XMBHTZBCuIQ9QF6BAgCEFc#imgrc=ZgS81JuMKfVpqM" ],
+          "tags" : [ {
+            "id" : 1,
+            "name" : "German Sheperd"
+          } ],
+          "status" : "available"
+        }
+      }
+      
+      mc.setProperty('CONTENT_TYPE', 'application/json');  // Set the content type of the payload to the message context 
+      mc.setPayloadJSON(response200json);                  // Set the new payload to the message context
+
+      ```
+    
+    ### Inline Script Methods  
+          
+    The following table lists down the `mc.` methods that you can use to invoke functions in the inline script. You can use these functions to access the Synapse predefined in a script variable named `mc`. The `mc` variable represents an implementation of the `MessageContext`, named `ScriptMessageContext.java`, which contains the following methods, that you can access within the script as `mc.methodName`.
+          
+      | **Return?** | **Method Name**                        | **Description**                                                                                                                                                    |
+      |---------|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+      | Yes     | getPayloadXML()                    | This gets an XML representation of SOAP body payload.                                                                                                          |
+      | No      | setPayloadXML(payload)             | This sets the SOAP body payload from XML.                                                                                                                      |
+      | Yes     | getEnvelopeXML()                   | This gets the XML representation of the complete SOAP envelope.                                                                                                |
+      | No      | setTo(reference)                   | This is used to set the value that specifies the receiver of the message.                                                                                     |
+      | Yes     | setFaultTo(reference)              | This is used to set the value that specifies the receiver of the faults relating to the message.                                                              |
+      | No      | setFrom(reference)                 | This is used to set the value that specifies the sender of the message.                                                                                       |
+      | No      | setReplyTo(reference)              | This is used to set the value that specifies the receiver of the replies to the message.                                                                      |
+      | Yes     | getPayloadJSON()                   | This gets the JSON representation of a SOAP Body payload.                                                                                                      |
+      | No      | setPayloadJSON( payload )          | This sets the JSON representation of a payload obtained via the `             getPayloadJSON()            ` method and sets it in the current message context. |
+      | Yes     | getProperty(name)                  | This gets a property from the current message context.                                                                                                         |
+      | No      | setProperty(key, value)            | This is used to set a property in the current message context. The previously set property values are replaced by this method.                                 |
+      
+7. Click **SAVE** to save the API.
+
+     <a href="../../../assets/img/learn/create-api-prototype-click-save.png"><img src="../../../assets/img/learn/create-api-prototype-click-save.png" alt="save inline scripts page"></a>
+
+## Step 2 - Deploy the API as a prototype
+
+1. Click **Lifecycle** to navigate to the Lifecycle page.
+
+2. Click **Deploy as a Prototype** to deploy the API as a prototype.
+
+    <a href="../../../assets/img/learn/create-api-prototype-lc-page-petstore.png"><img src="../../../assets/img/learn/create-api-prototype-lc-page-petstore.png" alt="deploy as prototype"></a>
+
+## Step 3 - Invoke the API
+
+1. Click **View in Developer Portal** to navigate to the Developer Portal after the API is deployed.
+
+2. Click **Try Out** to navigate to the API Console.
+
+     <a href="../../../assets/img/learn/create-api-prototype-dev-portal-overview-petstore.png"><img src="../../../assets/img/learn/create-api-prototype-dev-portal-overview-petstore.png" alt="try out prototype"></a>
+
+3. Expand any method and click **Try it out**.
+
+     [![Tryout click](../../assets/img/learn/create-api-prototype-tryout-click.png)](../../assets/img/learn/create-api-prototype-tryout-click.png)
+
+4. Enter the value for the parameter and click **Execute** to invoke the API.
+
+    !!! note 
+        The payload that you gave as a JSON/XML output appears in the response for each respective parameter provided.
+
+    1. For `petId : " 0 " `
+
+         [![Tryout for petid0](../../assets/img/learn/create-api-prototype-tryout-execute-petid0.png)](../../assets/img/learn/create-api-prototype-tryout-execute-petid0.png)
+ 
+        The response payload that is defined in the generated script is returned.
+   
+        [![Response for petid0](../../assets/img/learn/create-api-prototype-execute-response-petid0.png)](../../assets/img/learn/create-api-prototype-execute-response-petid0.png)
+
+    2. For `petId : " 1 " `
+
+        [![Tryout for petid1](../../assets/img/learn/create-api-prototype-tryout-execute-petid1.png)](../../assets/img/learn/create-api-prototype-tryout-execute-petid1.png)
+
+        The response payload defined in the manually modified script is returned.
+
+        [![Response for petid1](../../assets/img/learn/create-api-prototype-execute-response-petid1.png)](../../assets/img/learn/create-api-prototype-execute-response-petid1.png)
+   
+   
+You have successfully created an API with an inline script, deployed it as a prototype, and invoked it via the integrated API Console.
+
+An API can also be prototyped by moving the API to the `PROTOTYPED` state by changing the API lifecycle state and providing the prototype endpoints.
+
+For more information, see the [Deploy and Test Prototype APIs](deploy-and-test-mock-apis.md) tutorial.
+
+<div class="admonition info">
+<p class="admonition-title">Related Guides</p>
+
+<p>
+    <ul>
+    <li>Create and Publish an API
+<ul>
+          <li> <a href="../../../deploy-and-publish/publish-on-dev-portal/publish-an-api.md">Create and Publish an API</a></li>
+
+          <li> <a href="../../create-api/create-rest-api/create-a-rest-api.md">Create and Publish an API</a> </li>
+    </ul>
+    <li>
+    <a href="../../create-api/create-a-websocket-api.md">Create a WebSocket API </a>
+</li>
+<li>
+    <a href="../../create-api/create-rest-api/create-a-rest-api-from-an-openapi-definition.md">Create an API from an OpenAPI definition</a></li>
+  </p>
+  </div>
+
+
+## Restricting Access to Java Classes and Methods
+
+!!! attention "Update Level 261"
+    This feature is available only as an update, after Update level 4.0.0.261
+
+Java Classes and Methods are visible to the script by default.
+
+For example,
+
+- `var myArrayList = new java.util.ArrayList();` would instantiate a Java Arraylist.
+- `var hashmapConstructors = c.getClassLoader().loadClass("java.util.HashMap").getDeclaredConstructors();` would get a list of constructors of Java HashMap via reflection.
+
+Usage of classes or methods in such manner can be restricted by using the following configs/system properties.
+
+### Limiting Access to Java Classes
+
+Set the `limit_java_class_access_in_scripts` configurations under `synapse_properties` in the `deployment.toml`, following either a `BLOCK_LIST` approach (selectively blocking) or an `ALLOW_LIST` approach (selectively allowing).
+
+| **Synapse Property**                                | **Description**                                                                                                                                                                                                                                | **Example Values**                           |
+|-----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| `limit_java_class_access_in_scripts.enable`         | Enable limiting access to Java classes.                                                                                                                                                                                                        | `true`<br/>`false`                               |
+| `limit_java_class_access_in_scripts.class_prefixes` | Prefixes of Java class names, as comma separated values. Java Classes used in the script, having names beginning with these values, will be selectively allowed/blocked, based on the provided `limit_java_class_access_in_scripts.list_type`. | `java.util`<br/>`java.lang`                        |
+| `limit_java_class_access_in_scripts.list_type`      | Type of the list. Possible values are:<br/> - `ALLOW_LIST`: Selectively allow<br/> - `BLOCK_LIST`: Selectively block                                                       | `ALLOW_LIST`<br/>`BLOCK_LIST` |
+
+Example Config:
+
+```toml
+[synapse_properties]
+'limit_java_class_access_in_scripts.enable' = true
+'limit_java_class_access_in_scripts.list_type' = "ALLOW_LIST"
+'limit_java_class_access_in_scripts.class_prefixes' = "java.util"
+```
+The above configuration uses an Allow Listing approach. This would only allow using the classes of which - the name starts with `java.util`, within the script. Usage of any other classes would result in an error as shown below:
+
+Script Content:
+```js
+print(java.lang.Math.pow(3, 2));
+```
+Output during API Execution
+```
+ERROR - ScriptMediator {api:Mock:v1.0.0} The script engine returned an error executing the inlined js script function mediate
+com.sun.phobos.script.util.ExtendedScriptException: org.mozilla.javascript.EcmaError: TypeError: Cannot call property pow in object [JavaPackage java.lang.Math]. It is not a function, it is "object". (<Unknown Source>#3) in <Unknown Source> at line number 3
+```
+
+### Limiting Access to Java Methods/Native Objects
+
+Set the following system properties at server start up, following either a `BLOCK_LIST` approach (selectively blocking) or an `ALLOW_LIST` approach (selectively allowing).
+
+| **System Property**                                      | **Description**                                                                                                                                                                                                                               | **Example Values**        |
+|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------|
+| `limitJavaNativeObjectAccessInScripts.enable`     | Enable limiting access to Java methods/native objects.                                                                                                                                                                                        | `true`<br/>`false`            |
+| `limitJavaNativeObjectAccessInScripts.objectNames` | Names of Java methods/native objects, as comma separated values. Java Methods/native objects used in the script having these names will be selectively allowed/blocked, based on the provided `limitJavaNativeObjectAccessInScripts.listType`. | `getClassLoader`<br/>`getClass`         |
+| `limitJavaNativeObjectAccessInScripts.listType`    | Type of the list. Possible values are:<br/> - `ALLOW_LIST`: Selectively allow<br/> - `BLOCK_LIST`: Selectively block                                                      | `ALLOW_LIST`<br/>`BLOCK_LIST` |
+
+Example Config:
+
+```toml
+./bin/api-manager.sh -DlimitJavaNativeObjectAccessInScripts.enable=true -DlimitJavaNativeObjectAccessInScripts.listType=BLOCK_LIST -DlimitJavaNativeObjectAccessInScripts.objectNames=getClassLoader,loadClass
+```
+The above configuration uses a Block Listing approach. This would not allow the usage of `getClassLoader()` method within the script.
+
+Script Content:
+```js
+var hashmapConstructors = c.getClassLoader().loadClass("java.util.HashMap").getDeclaredConstructors()
+```
+
+Output during API Execution:
+```
+ERROR - ScriptMediator {api:Mock:v1.0.0} The script engine returned an error executing the inlined js script function mediate
+com.sun.phobos.script.util.ExtendedScriptException: org.mozilla.javascript.EcmaError: TypeError: Cannot find function getClassLoader in object class javax.script.SimpleScriptContext. (<Unknown Source>#21) in <Unknown Source> at line number 21
+```
+
+### Recommended Approach for Restricting Access
+
+It is recommended to use an Allow List approach for both class and method access restrictions, as it provides a more secure method of permitting only the required classes and methods to be used in the script, while blocking all others by default. The following `ALLOW_LIST` configuration is the recommended baseline to enable the API mocking feature. If you have any script mediator-related use cases with classes included in the prefixes list, adjust it according to your requirements.
+
+```toml
+[synapse_properties]
+'limit_java_class_access_in_scripts.enable' = true
+'limit_java_class_access_in_scripts.list_type' = "ALLOW_LIST"
+'limit_java_class_access_in_scripts.class_prefixes' = "org.apache.synapse.mediators.bsf.CommonScriptMessageContext,java.lang.String"
+```

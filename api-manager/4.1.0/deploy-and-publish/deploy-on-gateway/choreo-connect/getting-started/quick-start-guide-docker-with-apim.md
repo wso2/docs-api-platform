@@ -1,0 +1,191 @@
+---
+title: "Quick start guide"
+description: "Start Choreo Connect with WSO2 API Manager as the control plane, deploy an API, and invoke it with an access token."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.1.0/deploy-and-publish/deploy-on-gateway/choreo-connect/getting-started/quick-start-guide-docker-with-apim/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.1.0/deploy-and-publish/deploy-on-gateway/choreo-connect/getting-started/quick-start-guide-docker-with-apim.md
+tags:
+  - api-manager
+  - deploy-and-publish
+  - deploy-on-gateway
+  - choreo-connect
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-08-19
+content_type: "quickstart"
+---
+
+# Quick Start Guide
+
+Let's start Choreo Connect with a WSO2 API Manager instance which will be acting as the Control Plane, deploy an API via Publisher, and invoke the API with an Access Token from Developer Portal.
+
+!!! info "Before you begin"
+
+    Make sure you have installed [Docker](https://docs.docker.com) and [Docker Compose](https://docs.docker.com/compose/) on your machine. Set up and allocate the following resources for Docker.
+
+    - Minimum CPU : 4vCPU
+    - Minimum Memory : 4GB
+
+!!! important
+
+    **Production Deployments - Choreo Connect**
+
+    The Docker Compose based deployment option explained here is ***only for tryout purposes.*** This method is ***not recommended for production deployments***. For production deployments, you can use the following.
+
+    - Kubernetes based Choreo Connect deployment with [Helm artifacts](deploy/cc-on-kubernetes-with-apim-as-control-plane-helm-artifacts.md) or [YAML artifacts](deploy/cc-on-kubernetes-with-apim-as-control-plane.md)
+    - [Production Deployment Guideline](../production-deployment-guideline.md) for Choreo Connect 
+
+    **Production Deployments - API Manager**
+
+    The Docker Compose files referred in this guide are to deploy API Manager with ***basic configurations***. They are the docker-compose scripts ***provided with the Choreo Connect distribution*** and are only meant for tryout purposes. In order to deploy WSO2 API Manager in production grade, you can use the following. 
+
+    - Docker setup artifacts from the [API Manager page](https://wso2.com/api-management/)
+    - [Production Deployment Guideline](../../../../install-and-setup/setup/deployment-best-practices/production-deployment-guidelines.md#production-deployment-checklist) for API Manager
+
+### Step 1 - Download and extract the Choreo Connect distribution .zip file
+
+1. Download the latest Choreo Connect distribution from [https://wso2.com/choreo/choreo-connect/](https://wso2.com/choreo/choreo-connect/). 
+2. Extract the Choreo Connect distribution .zip file. The extracted folder will be called as `CHOREO-CONNECT_HOME` hereafter.
+
+### Step 2 - Start Choreo Connect and API Manager
+
+1. Add the host entry to `/etc/hosts` file as shown below in order to access the API Manager Publisher and Developer Portal.
+
+    ``` java
+    127.0.0.1   apim
+    ```
+
+2. Start Choreo Connect and API Manager on docker by executing the docker compose script inside the `CHOREO-CONNECT_HOME/docker-compose/choreo-connect-with-apim` folder.
+
+    ``` java
+    docker-compose up -d
+    ```
+
+    Once the containers are up and running, you can monitor the status of the containers using the following command.
+
+    ``` java
+    docker ps | grep choreo-connect-
+    ```
+
+    --8<-- "api-manager/4.1.0/includes/deploy/cc-tryout-in-arm64-docker-note.md"
+
+### Step 3 - Create and publish an API via API Manager
+
+1. Navigate to the Publisher Portal.
+   `https://apim:9444/publisher/`
+
+2. Sign in with **`admin/admin`** as the credentials.
+
+    [![Publisher portal home page](../../../../assets/img/get_started/api-publisher-home.png)](../../../../assets/img/get_started/api-publisher-home.png)
+
+3. Select **REST API** from the home screen and then click **Start From Scratch**.
+   
+    [![Design a new REST API](../../../../assets/img/get_started/design-new-rest-api.png)](../../../../assets/img/get_started/design-new-rest-api.png)
+
+4. Enter the following API details.
+
+    | **Field**    | **Value**                        |
+    |----------|-------------------------------------|
+    | Name     | HelloWorld                     |
+    | Context  | /hello                                 |
+    | Version  | 1.0.6                               |
+    | Endpoint | https://run.mocky.io/v2/5185415ba171ea3a00704eed |
+
+    !!! note
+
+        We are using a mock service from [https://designer.mocky.io/](https://designer.mocky.io/) as the endpoint to test the API. The above endpoint returns the json payload `{"hello": "world"}`.
+     
+     [![Create an API](../../../../assets/img/get_started/api-create.png){: style="width:60%"}](../../../../assets/img/get_started/api-create.png)
+
+5. Click **Create & Publish**.
+
+     This will publish your first API on the Developer Portal as well as deploy it on Choreo Connect. You now have an OAuth 2.0 secured REST API that is ready to be consumed.
+
+    !!! tip   
+        If you are further updating the API, remember create a new revision from the **Deployments** tab and deploy the newly created revision to the Gateway, for the changes to be reflected in Choreo Connect.
+
+### Step 4 - Invoke the API from Publisher
+
+1. Open **Try Out** from the left menu bar.
+
+    <a href="../../../../../assets/img/design/create-api/test-api/publisher-testconsole-leftpane.png"><img src="../../../../../assets/img/design/create-api/test-api/publisher-testconsole-leftpane.png" width="20%" alt="Try out menu option in the left panel"></a>
+
+2. In the Try Out page, you will find an Internal Key that has already been generated for you. You can click the button **Generate Key** whenever you need a new token.
+
+    <a href="../../../../../assets/img/design/create-api/test-api/publisher-testconsole-generatekey.png"><img src="../../../../../assets/img/design/create-api/test-api/publisher-testconsole-generatekey.png" width="80%" alt="Generate key"></a>
+
+    !!! tip
+
+        When invoking the API, this Internal Key authentication token will be included in the header `Internal-Key`. To learn more, click [Internal Key](../security/api-authentication/internal-key-authentication.md). 
+
+3. Select one of the listed HTTP methods. Click **Try it out** and then click **Execute** to invoke the API.
+
+    <a href="../../../../../assets/img/deploy/mgw/expanded-get-resource.png"><img src="../../../../../assets/img/deploy/mgw/expanded-get-resource.png" width="80%" alt="Try it out"></a>
+
+    <a href="../../../../../assets/img/deploy/mgw/try-api.png"><img src="../../../../../assets/img/deploy/mgw/try-api.png" width="80%" alt="Execute"></a>
+
+**That's it!** You have successfully invoked an API deployed in Choreo Connect. 
+
+You can follow the next few steps to get an idea about API Subscriptions, Application Rate limiting and Production Access Tokens. 
+
+### Step 5 - Subscribe to the API and generate a token
+
+1. Navigate to the Developer Portal and select the newly created API.
+
+    `https://apim:9444/devportal/`
+
+2. Navigate to the **Subscriptions** page. 
+
+3. Subscribe the API to the default application visible as **DefaultApplication** with an available Rate Limiting Policy.
+
+    [![Subscribe to an API](../../../../assets/img/deploy/mgw/subscribe-to-api.png)](../../../../assets/img/deploy/mgw/subscribe-to-api.png)
+
+4. Navigate to the **Applications** tab. 
+
+5. Click on **DefaultApplication**, navigate to **Production Keys** page and click **Generate keys** to generate a production key.
+
+    [![Generate production keys](../../../../assets/img/learn/generate-keys-production.png)](../../../../assets/img/learn/generate-keys-production.png)
+
+    !!! tip
+        To generate keys for the Sandbox endpoint, go to the **Sandbox Keys** tab. For more information, see [Maintaining Separate Production and Sandbox Gateways](../../api-gateway/maintaining-separate-production-and-sandbox-gateways.md#multiple-gateways-to-handle-production-and-sandbox-requests-separately).
+
+6. Copy the generated access token before proceeding to the next step.
+
+### Step 6 - Invoke the API from Developer Portal
+
+Follow the instructions below to invoke the previously created API with the generated token.
+
+1. Go back to the **APIs** tab and select your API. Click **Try Out** on the left menu bar.
+
+     The resources of the API will be listed.
+
+2. Paste the access token that you previously copied in the **Access Token** field.
+
+    [![Paste the access token](../../../../assets/img/deploy/mgw/invoke-api.png)](../../../../assets/img/deploy/mgw/invoke-api.png)
+
+3. **If this is the first time you are using the API test console** from your browser, open a new tab and navigate to the `https://localhost:9095/` URL.
+
+     This will prompt your browser to accept the certificate used by Choreo Connect. This is required because, by default, Choreo Connect uses a self-signed certificate that is not trusted by web browsers.
+    
+    !!! important
+
+        This self-signed certificate used by Choreo Connect must be replaced when deploying the system in production.
+
+4. Click on the `GET` resource of the API to expand the resource and click **Try It Out**.
+   
+     [![GET resource](../../../../assets/img/deploy/mgw/expanded-get-resource.png)](../../../../assets/img/deploy/mgw/expanded-get-resource.png)
+
+5. Click **Execute**.
+
+     [![GET resource](../../../../assets/img/deploy/mgw/try-api.png)](../../../../assets/img/deploy/mgw/try-api.png)
+
+     You should see the `{"hello" : "world"}` response from the API. 
+
+     [![Successful response](../../../../assets/img/deploy/mgw/try-it-success.png)](../../../../assets/img/deploy/mgw/try-it-success.png)
+
+__Congratulations!__ You have successfully created your first API, subscribed to it through an OAuth 2.0 application, obtained an access token for testing, and invoked your API with Choreo Connect.
+
+## See also
+
+- [Choreo Connect Overview](choreo-connect-overview.md)
+- [Supported Features](supported-features.md)
+- [Deployment Options](deploy/cc-deploy-overview.md)
+- [Production Deployment Guide](../production-deployment-guideline.md)

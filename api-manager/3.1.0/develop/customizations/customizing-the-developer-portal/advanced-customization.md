@@ -1,0 +1,87 @@
+---
+title: "Advanced customization"
+description: "Set up NodeJS and NPM to build and override React components in the Developer Portal source code."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/3.1.0/develop/customizations/customizing-the-developer-portal/advanced-customization/
+md_url: https://wso2.com/api-platform/docs/api-manager/3.1.0/develop/customizations/customizing-the-developer-portal/advanced-customization.md
+tags:
+  - api-manager
+  - develop
+  - customizations
+  - customizing-the-developer-portal
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-07-27
+content_type: "how-to"
+---
+
+# Advanced Customization
+
+### Prerequisites
+
+- NodeJS
+- NPM
+
+NodeJS is a platform required for ReactJS development. 
+You should have NPM (minimum 5.7.0) and Node.js (minimum 8.12.0) installed.
+
+The user interface of the Developer Portal can be customized simply without editing the React codebase or  the CSS in most cases. You will be required to modify the react code base, if you need to do advanced customizations.
+
+1. Navigate to `<API-M_HOME>/repository/deployment/server/jaggeryapps/devportal/`  in a terminal and run the following command.
+    ```js
+    npm ci
+    ```
+2. Run the command given below, to start the npm build. Note that it will continuously watch for any changes and rebuild the project.  
+    ```js
+    npm run build:dev
+    ```
+3. If you are required to rewrite the UI completely, you can make changes in the `devportal/source` folder. If you want to override a specific React Component or a File from the `source/src/` folder, you need to do it in the `devportal/override/src` folder by only copying the desired file/files.
+
+#### Overriding the API Documentation and Overview components
+```sh
+override
+└── src
+    ├── Readme.txt
+    └── app
+        └── components
+            └── Apis
+                └── Details
+                    ├── Documents
+                    │   └── Documentation.jsx
+                    └── Overview.jsx
+```
+
+#### Adding new files to the override folder
+```sh
+override
+└── src
+    ├── Readme.txt
+    └── app
+        └── components
+            └── Apis
+                └── Details
+                    ├── Documents
+                    │   └── Documentation.jsx
+                    └── Overview.jsx
+                    └── NewFile.jsx
+                    
+```
+You can import the **NewFile.jsx** by adding the **AppOverride** prefix to the import and provide the full path relative to the override folder.
+```sh
+import NewFile from 'AppOverride/src/app/components/Apis/Details/NewFile.jsx';
+```
+
+A compilation error will show up if you try to import the **NewFile.jsx** from **Overview.jsx** as follows.
+```sh
+import NewFile from './NewFile.jsx';
+```
+
+### Development
+
+During an active development, the watch mode works with the overridden files. Adding new files and directories will not trigger a new webpack build.
+
+### Production Build
+
+Make sure you do a production build after you finish development with the command given below. The output of the production build contains minified javascript files optimized for web browsers.
+
+```
+npm run build:prod
+```

@@ -1,0 +1,37 @@
+---
+title: "WSO2 API Manager 3.0.0 Documentation"
+description: "Home page for WSO2 API Manager 3.0.0 documentation, linking to getting started guides, installation, development, and administration resources."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/3.0.0/
+md_url: https://wso2.com/api-platform/docs/api-manager/3.0.0.md
+tags:
+  - api-manager
+  - getting-started
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-08-20
+content_type: "concept"
+---
+
+# Overview
+
+WSO2 API Manager is a complete platform for building, integrating, and exposing your digital services as managed APIs in the cloud, on-premise, and hybrid architectures to drive your digital transformation strategy.
+
+It allows API developers to design, publish, and manage the lifecycle of APIs and API product managers to create API products from one or more APIs.
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/nr1cFyxVdDw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+![WSO2 API Manager Overview](assets/attachments/wso2-apim-overview.png)
+
+## Get started
+
+- [5-min Quick Start](getting-started/quick-start-guide.md) — Create, publish, and consume an API in 5 minutes
+- [Design API](learn/design-api/create-api/create-a-rest-api.md) — Develop, publish, manage, and monitor APIs
+- [Consume API](learn/consume-api/discover-apis/search.md) — Find, explore, subscribe, consume, and evaluate APIs
+- [API Gateway](learn/api-gateway/overview-of-the-api-gateway.md) — Intercept API requests, apply policies, and manage API statistics
+- [API Security](learn/api-security/api-authentication/api-authentication-overview.md) — Authenticate and authorize API requests
+- [Rate Limiting](learn/rate-limiting/introducing-throttling-use-cases.md) — Regulate API traffic and secure APIs against security attacks
+- [Analytics](learn/analytics/overview-of-api-analytics.md) — Monitor system behavior, as well as API and application usage
+
+## Related
+
+- [API Microgateway](https://docs.wso2.com/display/MG301/) — A cloud-native, developer-centric, decentralized API gateway for microservices
+- [Download WSO2 API Manager](https://wso2.com/api-manager/)

@@ -1,0 +1,427 @@
+---
+title: "Quick start guide - API management"
+description: "Follow a step-by-step guide to create, publish, and invoke an API using the WSO2 API Manager Publisher and Developer Portal."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.2.0/get-started/api-manager-quick-start-guide/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.2.0/get-started/api-manager-quick-start-guide.md
+tags:
+  - api-manager
+  - get-started
+  - api-manager-quick-start-guide
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-08-20
+content_type: "quickstart"
+---
+
+# Quick Start Guide - API Management
+
+This section is a step-by-step guide to create, publish, and invoke an API using the **WSO2 API Manager (WSO2 API-M)** Publisher and Developer Portal.
+
+### Before you begin...
+
+Follow the instructions below to start WSO2 APIM-M.
+
+1. Install [Oracle Java SE Development Kit (JDK)](http://java.sun.com/javase/downloads/#java17) version 17 and set the `JAVA_HOME` environment variable.
+     
+     For more information on setting the `JAVA_HOME` environment variable for different operating systems, see [Setup and Install](../install-and-setup/install/installing-the-product/installing-api-m-runtime).
+
+2. [Download version 4.2.0 of WSO2 API-M](https://wso2.com/api-management/).
+
+3. Start WSO2 API-M by navigating to the `<API-M_HOME>/bin` directory using the command-line and execute the following command.
+
+     - `api-manager.bat --run` (for Windows)
+     - `sh api-manager.sh` (for Linux)
+
+   !!! note
+
+        In Windows, you may be confronted by the following error:
+
+        ```
+        System may be unstable: HTTPS ListeningIOReactor encountered a checked exception : Address already in use: bind java.net.BindException: Address already in use: bind
+        ```
+
+         This can be fixed by adding the following to <API-M_HOME>/repository/conf/deployment.toml
+
+        ```
+        [keystore.listener_profile]
+        bind_address = "0.0.0.0:0:0:0:0"
+
+### What you'll build
+
+In this sample scenario, you implement a full lifecycle of an API using WSO2 API Manager.
+
+<a href="../../assets/img/get_started/apim-qsg-diagram.png"><img src="../../assets/img/get_started/apim-qsg-diagram.png" width="60%"></a>
+
+1. Creating and publishing an API via the Publisher Portal of WSO2 API-M.
+2. Deploy the API in a Gateway environment.
+3. Publish the API in the Developer Portal.
+2. Subscribing to the API via the Developer Portal of WSO2 API-M and generating keys.
+3. Invoking the API with the generated keys.
+
+ Let's get started...
+
+### Step 1 - Create and publish an API
+
+Follow the instructions below to create and publish an API via the Publisher Portal of WSO2 API-M.
+
+1. Navigate to the Publisher Portal.
+   
+     `https://localhost:9443/publisher`
+     
+2. Sign in with **`admin/admin`** as the credentials.
+                                                 
+     [![Publisher portal home page](../assets/img/get_started/api-publisher-home.png)](../assets/img/get_started/api-publisher-home.png)
+
+3. Create a mock REST service.
+
+     Let's use a mock REST service to create a REST API from scratch.
+ 
+     A mock service with a JSON response `{"hello": "world"}` is provided by default when you use the service URL as `http://run.mocky.io/v2/5185415ba171ea3a00704eed`, which appears in the [https://designer.mocky.io/](https://designer.mocky.io/) mock service. Let's use the HTTP protocol instead of the HTTPS protocol for this guide.
+
+    !!! tip
+        Optionally, to test this service, copy the service URL [http://run.mocky.io/v2/5185415ba171ea3a00704eed](http://run.mocky.io/v2/5185415ba171ea3a00704eed) and navigate to it on a new browser. You should see the following JSON message.
+            
+         `{"hello": "world"}`
+    
+4. Select **REST API** from the home screen and then click **Start From Scratch**.
+   
+    [![Design a new REST API](../assets/img/get_started/design-new-rest-api.png)](../assets/img/get_started/design-new-rest-api.png)
+
+
+5. Enter the API details.
+
+    <table>
+    <tr> 
+     <th>
+     Name
+     </th>
+     <td>
+     HelloWorld
+     </td>
+     </tr>
+     <tr> 
+     <th>Context
+     </th>
+     <td><code>/hello</code>
+     </td>
+     </tr>
+     <tr> 
+     <th>Version
+     </th>
+     <td>1.0.0
+     </td>
+     </tr>
+     <tr> 
+     <th>Endpoint
+     </th>
+     <td><code>http://run.mocky.io/v2/5185415ba171ea3a00704eed</code>
+      <div class="admonition note">
+      <p class="admonition-title">Note</p>
+      <p><b>Use the HTTP protocol</b> because to use HTTPS you need to import the [https://designer.mocky.io/](https://designer.mocky.io/) certificate into WSO2 API-M.</p>
+      </div> 
+     </td>
+     </tr>
+     </table>
+     
+     [![Create an API](../assets/img/get_started/api-create.png){: style="width:60%"}](../assets/img/get_started/api-create.png)
+        
+6. Click **Create & Publish**.
+
+     This will publish your first API on the Developer Portal as well as deploy it on the API Gateway. You now have an OAuth 2.0 secured REST API that is ready to be consumed.
+
+<a name="subscribe"></a>
+
+### Step 2 - Subscribe to the API
+
+Follow the instructions below to subscribe to the API and generate the keys via the Developer Portal of WSO2 API-M.
+
+1. Navigate to the Developer Portal.
+
+     `https://localhost:9443/devportal`
+    
+     The published `HelloWorld` API is listed in the Developer Portal as shown below.
+
+     [![Developer Portal home page](../assets/img/get_started/dev-portal-landing-page.png)](../assets/img/get_started/dev-portal-landing-page.png)
+
+2. Click **Sign-In** and enter **`admin/admin`** as your credentials to sign in to the Developer Portal.
+
+3. Click on the API thumbnail to view the overview of the API.
+
+     [![API overview](../assets/img/get_started/api-overview.png)](../assets/img/get_started/api-overview.png)
+ 
+4. Register an OAuth 2.0 application.
+
+    1. Click **Subscriptions** on the left menu bar of the screen.
+    
+        [![Subscription Card](../assets/img/get_started/subscriptions-menu.png)](../assets/img/get_started/subscriptions-menu.png)
+    
+    2. Click **SUBSCRIPTION & KEY GENERATION WIZARD** in the above screen.
+    
+         This wizard walks you through 5 steps that will register an OAuth 2.0 application which you will use to consume the `HelloWorld` API.
+
+         [![Key generation wizard](../assets/img/get_started/key-gen-wizard.png)](../assets/img/get_started/key-gen-wizard.png)
+
+    3.  Create the OAuth 2.0 application.
+    
+         Enter the application name, and click **Next** without changing any of the other default values. 
+
+         <table>
+         <tr> 
+         <th>
+         Application Name
+         </th>
+         <td>
+         Greetings
+         </td>
+         </tr>
+         <tr> 
+         <th>Per Token Quota
+         </th>
+         <td>50PerMin
+         </td>
+         </tr>
+         </table>
+
+         [![Wizard - Create application](../assets/img/get_started/key-gen-wizard-1.png)](../assets/img/get_started/key-gen-wizard-1.png)
+
+     3. Subscribe the application to the API.
+        
+         This subscribes the `Greetings` application to the `HelloWorld` API on the selected Business Plan. Click **Next** without changing any of the default values.
+
+         [![Wizard - Subscribe to new application](../assets/img/get_started/key-gen-wizard-2.png)](../assets/img/get_started/key-gen-wizard-2.png)
+
+     4. Generate the credentials for the **Greetings** OAuth2.0 application.
+     
+         The Grant Types define the various protocols, which will be allowed by the system, from which your application will be allowed to request tokens. Click **Next**.
+
+         [![Wizard - Generate Keys](../assets/img/get_started/key-gen-wizard-3.png)](../assets/img/get_started/key-gen-wizard-3.png)
+
+     5. Generate a test access token for the **Greetings** application to access the **HelloWorld** API.
+     
+         This step allows you to specify the permissions (scopes) for the token. Click **Next** without changing any of the default values.
+
+         [![Wizard - Generate Access Token](../assets/img/get_started/key-gen-wizard-4.png)](../assets/img/get_started/key-gen-wizard-4.png)
+
+     6. Click the **copy** icon, as shown below, to copy the generated test access token to the clipboard.
+
+         [![Wizard - Copy Access Token](../assets/img/get_started/key-gen-wizard-5.png)](../assets/img/get_started/key-gen-wizard-5.png)
+    
+     7.  Click **Finish**.
+
+ **Voila!!!** You can now test the **HelloWorld** API with the OAuth 2.0 token that you just generated.
+
+<a name="invoke"></a>
+
+### Step 3 - Invoke the API
+
+Follow the instructions below to invoke the previously created API with the generated keys.
+
+1. Click **Try Out** on the left menu bar.
+
+     The resources of the API will be listed.
+
+2. Paste the access token that you previously copied in the **Access Token** field.
+
+    [![Paste the access token](../assets/img/get_started/test-api.png)](../assets/img/get_started/test-api.png)
+
+3. **If this is the first time you are using the API test console** from your browser,  open a new tab and navigate to the `https://localhost:8243/` URL.
+
+     This will prompt your browser to accept the certificate used by the API Gateway. This is required because by default the API Gateway uses a self-signed certificate that is not trusted by web browsers.
+    
+    !!! note
+
+        This certificate that is used by the API Gateway is replaced when deploying the system in production.
+
+4. Click on the `GET` resource of the API to expand the resource and Click **Try It Out**.
+   
+     [![GET resource](../assets/img/get_started/expanded-get-resource.png)](../assets/img/get_started/expanded-get-resource.png)
+
+5. Click **Execute**.
+
+     [![GET resource](../assets/img/get_started/try-api.png)](../assets/img/get_started/try-api.png)
+
+     You should see the `{"hello" : "world"}` response from the API. 
+
+     [![Successful response](../assets/img/get_started/try-it-success.png)](../assets/img/get_started/try-it-success.png)
+
+__Congratulations!__ You have successfully created your first API, subscribed to it through an OAuth 2.0 application, obtained an access token for testing, and invoked your API with the access token.
+ 
+## Automate API development and deployment
+
+Let's look at how you can use **WSO2 API Controller (apictl)**, which is the command-line tool to move APIs, 
+API Products, and Applications across WSO2 API-M environments and to perform CI/CD operations.
+
+### Before you begin...
+
+Follow the instructions below to setup WSO2 API Controller.
+
+1. [Make sure that you run WSO2 API Manager (WSO2 API-M) 4.2.0](api-manager-quick-start-guide#before-you-begin).
+
+2. Download the apictl.
+
+     1. Navigate to the [API Manager Tooling page](https://wso2.com/api-management/tooling/).
+
+     2. Download the apictl version 4.2.0 (or the latest of the 4.1.x family) based on your operating system from the **API Controller Tooling** section.
+ 
+     3. Extract the ZIP to a preferred location.
+
+         This location will be referred to as the `apictl` directory.
+
+     4. Navigate to the `apictl` directory.
+        
+        !!! warning
+            **If you have previously used an apictl old version**, backup and remove the `/home/<user>/.wso2apictl` directory.
+
+     5. Optionally, execute the following command to view the available operations.
+
+         ``` bash
+         ./apictl --help
+         ```   
+
+3. Point the apictl to the instance of WSO2 API-M in which you want to deploy APIs.
+
+     Execute the following command to add an environment for this purpose.
+     
+    !!! note
+        - In the following command it is assumed that WSO2 API-M is run locally (localhost) using the default ports.
+        - For more information on adding environments using different flag combinations, see [Add an environment](../install-and-setup/setup/api-controller/getting-started-with-wso2-api-controller#add-an-environment).
+    
+    ``` bash
+    ./apictl add env dev \
+             --apim https://localhost:9443
+    ```
+   
+     On successfully executing this command, you should see the following message.
+
+    ``` bash
+    Default token endpoint 'https://localhost:9443/oauth2/token' is added as the token endpoint
+    Successfully added environment 'dev'
+    ```
+
+### Step 1 - Create an API
+
+Follow the instructions below to create an API via WSO2 API Controller.
+
+1. Initialize an API project by providing a name for the project.
+
+     Let's use the command below to create an API named `PetstoreAPI`. This creates a folder named `PetstoreAPI` in your current directory.
+
+       ```bash
+       ./apictl init PetstoreAPI --oas https://apim.docs.wso2.com/en/4.2.0/assets/attachments/get_started/petstore.json
+       ```
+
+     On successfully executing this command, you should see the following message.
+
+     ```bash
+     Initializing a new WSO2 API Manager project in <your-directory-path>/PetstoreAPI
+     Project initialized
+     Open README file to learn more
+     ```   
+    
+    !!! tip
+
+        Optionally, use the following command to view the various options related to initializing a project.
+
+        ```bash
+        ./apictl init --help
+        ```
+
+2. Update the `api.yaml` file.
+
+     1. Open and explore the `PetstoreAPI` folder with an IDE (e.g., VSCode). 
+     
+     2. Open the `api.yaml` file.
+         
+         Alternatively, you can use a text editor to open this file as well.
+   
+     3. Change the values of the following attributes as shown below and save the file.
+
+        ```text   
+        lifeCycleStatus: PUBLISHED
+        ```
+
+        ```text
+        production_endpoints:
+            url: https://petstore.swagger.io/v2
+        sandbox_endpoints:
+            url: https://petstore.swagger.io/v2
+        ```
+
+        !!! Note
+
+            - Make sure that there are no spaces in-between the `context` value in the `api.yaml` file.
+            - Changing the default lifecycle status of the API from `CREATED` to `PUBLISHED`, will deploy the API directly to the Developer Portal and API Gateway, when you push this API to WSO2 API-M in the following step.
+            - If you want to push this API to the Publisher Portal only, the status should be `CREATED`.
+
+### Step 2 - Publish the API
+
+Follow the instructions below to publish an API via WSO2 API Controller.
+
+1. Push the API to WSO2 API-M.
+
+     Navigate back to the `apictl` directory and execute the following command:
+
+    !!! note
+
+        - If you are working with a specific environment for the first time, you are prompted to enter your account credentials on WSO2 API-M. 
+        - You can use the default admin credentials as **`admin/admin`**.
+
+     ``` bash
+     ./apictl import api --file ./PetstoreAPI --environment dev
+     ```
+   
+     You should now see your API deployed successfully on WSO2 API-M.
+
+2. Browse the Publisher and the Developer Portals to view the API details.
+
+     - Publisher - `https://localhost:9443/publisher`
+
+         [![API in the Publisher](../assets/img/get_started/qsg-publisher.png)](../assets/img/get_started/qsg-publisher.png)
+
+     - Developer Portals - `https://localhost:9443/devportal`
+
+         [![API in the Developer Portal](../assets/img/get_started/qsg-devportal.png)](../assets/img/get_started/qsg-devportal.png)
+
+### Step 3 - Invoke the API
+
+Follow the instructions below to invoke an API via WSO2 API Controller.
+
+<a name="step3.1"></a>
+
+1. Generate an access token using apictl.
+
+     Navigate back to the `apictl` directory and execute the following command:
+
+     ``` bash
+     ./apictl get keys -e dev -n SwaggerPetstore -v 1.0.0 -r admin
+     ```
+   
+     You will get an access token that can be used to invoke your API. 
+     
+     
+    !!! info
+        For more information on generating keys using apictl, see [Get keys for an API/API Product](../install-and-setup/setup/api-controller/ci-cd-with-wso2-api-management#g-get-keys-for-an-apiapi-product).
+
+2. Invoke the API.
+
+     Execute the following cURL command to invoke the resource `GET /pet` of your API. 
+    
+     Make sure to enter the access token that you <a href="#step3.1">obtained in the previous step</a> as the `Bearer` in the request.
+
+     ```bash
+     curl -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUz....RWrACAUNSFBpxz1lRLqFlDiaVJAg" https://localhost:8243/SwaggerPetstore/1.0.0/pet/2 -k
+     ```
+
+     You will receive the following response.
+   
+     ```bash
+     {"id":2,"category":{"id":0,"name":"Dogs"},"name":"Crunch","photoUrls":["-"],"tags":[{"id":3,"name":"Crunchiogo"}],"status":"unavailable"}
+     ```
+
+    !!!note
+        Alternatively, you can consume the API as explained in the following sections using the WSO2 API-M Developer Portal.
+        
+         - [Subscribe to the API via the Developer Portal and generate keys](#subscribe)
+         - [Invoke the API with the generated keys](#invoke)
+
+    [![PetStore response](../assets/img/get_started/qsg-petstore-response.png)](../assets/img/get_started/qsg-petstore-response.png)
+   

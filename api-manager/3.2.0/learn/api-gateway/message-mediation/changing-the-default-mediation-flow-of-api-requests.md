@@ -1,0 +1,224 @@
+---
+title: "Changing the default mediation flow of API requests"
+description: "Extend the in, out, and fault mediation flows of the API Gateway with per-API policies, common policies, or global extensions."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/3.2.0/learn/api-gateway/message-mediation/changing-the-default-mediation-flow-of-api-requests/
+md_url: https://wso2.com/api-platform/docs/api-manager/3.2.0/learn/api-gateway/message-mediation/changing-the-default-mediation-flow-of-api-requests.md
+tags:
+  - api-manager
+  - learn
+  - api-gateway
+  - message-mediation
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-08-19
+content_type: "how-to"
+---
+
+# Changing the Default Mediation Flow of API Requests
+
+The API Gateway has a default mediation flow for the API invocation requests that it receives. There are three main mediation
+flows as in, out and fault. You can extend these default mediation flows to do additional custom mediation for the messages in the API Gateway. This can be done by a policy provided as a synapse mediation sequence. You create a custom mediation policy either manually or using a tool such as the WSO2 Integration Studio, and then engage it per API or globally to all APIs of a specific tenant. 
+
+!!! warning
+    The following mediators are not usable within custom sequences because they are not supported by the API Gateway.
+
+    - `Call` mediator in non-blocking mode
+    - `Send` mediator
+
+!!! warning
+    When using the `Loopback` mediator, it is mandatory to set the following property before defining the `Loopback`
+    mediator in the custom mediator sequence in the following manner.
+
+    ``` bash
+    <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+    ```
+
+## Creating Per-API Mediation Policies
+
+### Creating and Uploading Manually in API Publisher
+
+You can create a per API mediation sequence manually and upload it from the API Publisher itself. Thereby, this allows 
+you to add a customized mediation policy to your API. 
+
+!!! note
+    Please note that JS scripts can be used inside the custom policy code to access Java classes, methods, and native objects. By default, all the classes are visible to these scripts. However, it is recommended to restrict access to these by adding the following configuration to the `deployment.toml` file:
+
+    <pre class="java" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence"
+            data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><code>[synapse_properties]
+    'limit_java_class_access_in_scripts.enable' = true # or false
+    'limit_java_class_access_in_scripts.list_type' = "ALLOW_LIST" # or BLOCK_LIST
+    'limit_java_class_access_in_scripts.class_prefixes' = "java.util"</code></pre>
+
+    To further configure script mediation access control, please refer to the  <a href="../../../../install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#restrict-access-java">Restrict Access to Java classes and Java Methods/Native Objects in Scripts documentation.</a>
+
+Following is a manually created sample custom mediation policy. This custom sequence adds a trace log which is getting printed when you invoke any of the APIs deployed in the Gateway.
+
+!!! example
+    ```xml
+    <sequence xmlns="http://ws.apache.org/ns/synapse" name="custom_policy">
+      <log level="custom">
+        <property name="TRACE" value="API Mediation Policy"/>
+      </log>
+    </sequence>
+    ```
+
+Follow the below steps to upload the above sequence as a custom mediation policy in the **Request** message flow.
+
+1. You can copy the above mediation sequence into an **XML** file.
+2.  Log in to the **API Publisher Portal**.
+3.  Create a REST API by following the instructions in [Create a REST API](../../design-api/create-api/create-a-rest-api.md).
+4.  Go to the created API and from the Left Menu, go to **Runtime Configurations**.
+5.  Click [![](../../../assets/img/learn/api-gateway/message-mediation/edit-button.png)](../../../assets/img/learn/api-gateway/message-mediation/edit-button.png) button in the **Message Mediation** section.  
+*You can do this for Request, Response and/or Fault message flows.*     
+  
+    [![](../../../assets/img/learn/api-gateway/message-mediation/edit-mediation.png)](../../../assets/img/learn/api-gateway/message-mediation/edit-mediation.png)  
+
+1.  In the **Select a Mediation Policy** popup you can select **Custom Policies** radio button and upload the above-created mediation as a XML file.  
+
+    [![](../../../assets/img/learn/api-gateway/message-mediation/upload-mediation.png)](../../../assets/img/learn/api-gateway/message-mediation/upload-mediation.png)
+
+2.  Once the file is uploaded, save the API.
+
+3.  If the API is not in `PUBLISHED` state, go to **Lifecycle** tab, click `REDPLOY` to re-publish the API. 
+
+4.  Go **Developer Portal**, subscribe and obtain a token to invoke the published API. 
+
+    !!! tip
+        Follow the instructions in [here](../../consume-api/invoke-apis/invoke-apis-using-tools/invoke-an-api-using-the-integrated-api-console.md) to invoke the API using the integrated API console. 
+
+5.  When you invoke the API using a valid subscription, you can see the following trace log in wso2carbon server logs.
+
+    ```bash
+    [2019-12-19 13:55:11,887]  INFO - LogMediator TRACE = API Mediation Policy
+    ```
+
+#### Attaching Common Policies
+
+There are set of default common policies which are predefined and stored in registry which you can upload from the 
+Publisher UI as well.
+
+[![](../../../assets/img/learn/api-gateway/message-mediation/common-policies.png)](../../../assets/img/learn/api-gateway/message-mediation/common-policies.png)
+
+#### Editing a Mediation Policy
+
+If you want to edit an already attached mediation policy,
+
+1.  Click [![](../../../assets/img/learn/api-gateway/message-mediation/edit-button.png)](../../../assets/img/learn/api-gateway/message-mediation/edit-button.png) button in the **Message Mediation** section. 
+
+2.  Click the download icon next to the selected mediation policy, as shown below.  
+
+    [![](../../../assets/img/learn/api-gateway/message-mediation/download-and-edit-mediation.png)](../../../assets/img/learn/api-gateway/message-mediation/download-and-edit-mediation.png)
+    
+2.  Edit the downloaded mediation XML file and re-upload it as a Custom Policy.
+
+If you want to dis-engage any mediation policy that is already engaged,
+
+1.  Go to the **Edit** option in the **Message Mediation** section.
+You can do this for Request, Response and/or Fault message flows.
+
+2.  Select **None** as the mediation policy and save the API.
+
+    [![](../../../assets/img/learn/api-gateway/message-mediation/non-mediation.png)](../../../assets/img/learn/api-gateway/message-mediation/non-mediation.png)
+
+!!! note
+    Please note that JS scripts can be used inside the custom policy code to access Java classes, methods, and native objects. By default, all the classes are visible to these scripts. However, it is recommended to restrict access to these by adding the following configuration to the `deployment.toml` file:
+
+    <pre class="java" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence"
+            data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><code>[synapse_properties]
+    'limit_java_class_access_in_scripts.enable' = true # or false
+    'limit_java_class_access_in_scripts.list_type' = "ALLOW_LIST" # or BLOCK_LIST
+    'limit_java_class_access_in_scripts.class_prefixes' = "java.util"</code></pre>
+
+    To further configure script mediation access control, please refer to the  <a href="../../../../install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#restrict-access-java">Restrict Access to Java classes and Java Methods/Native Objects in Scripts documentation.</a>
+
+### Creating Manually and Saving in the File System
+
+Alternatively, you can name the mediation XML file in the pattern `<API_NAME>:v<VERSION>--<DIRECTION>` and save it directly in the following location:
+
+-   In the **single-tenant mode** , save the XML file in the `<API-M_HOME>/repository/deployment/server/synapse-configs/default/sequences` directory.
+-   In the **multi-tenant mode** , save the XML file in the tenant's synapse sequence folder.   
+For example, if tenant id is 1, then save it in `<API-M_HOME>/repository/tenants/1/synapse-configs/default/sequences` folder.
+
+In the naming pattern, the `<DIRECTION>` can be `In` or `Out`. When it is `In` , the extension is triggered on the in-flow (request path) and when it is `Out` , the extension is triggered on the out-flow (response path). To change the default fault sequence, you can either modify the default fault sequence or write a custom fault sequence and engage it to APIs through the API Publisher.
+
+!!! tip
+    If you are having a distributed setup, do the changes in **Gateway** node.
+
+An example synapse configuration of a per-API extension sequence created for the API `admin--TwitterSearch` version 1.0.0 is given below.
+
+!!! example
+    ``` xml
+    <sequence xmlns="http://ws.apache.org/ns/synapse" name="admin--TwitterSearch:v1.0.0--In">
+      <log level="custom">
+        <property name="TRACE" value="API Mediation Extension"/>
+      </log>
+    </sequence>
+    ```
+
+You can copy this content into an XML file (e.g., `twittersearch_ext.xml` ) and save it in the `<API-M_HOME>/repository/deployment/server/synapse-configs/default/sequences` directory.
+
+!!! note
+    Please note that JS scripts can be used inside the custom policy code to access Java classes, methods, and native objects. By default, all the classes are visible to these scripts. However, it is recommended to restrict access to these by adding the following configuration to the `deployment.toml` file:
+
+    <pre class="java" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence"
+            data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><code>[synapse_properties]
+    'limit_java_class_access_in_scripts.enable' = true # or false
+    'limit_java_class_access_in_scripts.list_type' = "ALLOW_LIST" # or BLOCK_LIST
+    'limit_java_class_access_in_scripts.class_prefixes' = "java.util"</code></pre>
+
+    To further configure script mediation access control, please refer to the  <a href="../../../../install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#restrict-access-java">Restrict Access to Java classes and Java Methods/Native Objects in Scripts documentation.</a>
+
+The above sequence prints a log message in the wso2carbon logs whenever the `TwitterSearch` API is invoked.
+
+### Creating and Uploading using WSO2 Integration Studio
+
+You can design the custom mediation policy using the tooling support provided by WSO2 Integration Studio and directly upload it
+to the registry in WSO2 API Manager. Visit [Creating and Uploading using WSO2 Integration Studio](creating-and-uploading-using-integration-studio.md).
+
+## Creating Global Extensions
+
+You can also engage mediation extension sequences to all APIs of a specific tenant at once. To do that, simply create the XML with the naming pattern `WSO2AM--Ext--<DIRECTION>` and save it in the `<API-M_HOME>/repository/deployment/server/synapse-configs/default/sequences` directory.
+
+An example synapse configuration of a global extension sequence is given below:
+
+!!! example
+    ``` xml
+    <sequence xmlns="http://ws.apache.org/ns/synapse" name="WSO2AM--Ext--In"> 
+      <log level="custom">
+        <property name="TRACE" value="API Mediation Extension"/>
+      </log>
+    </sequence>
+    ```
+
+This custom sequence adds a trace log which is getting printed when you invoke any of the APIs deployed in the Gateway.
+
+You can copy this content into an XML file (e.g., `global_ext.xml` ) and save it in the `<API-M_HOME>/repository/deployment/server/synapse-configs/default/sequences` directory.
+
+!!! tip
+    If you are having a distributed setup, do the changes in **Gateway** node.
+
+!!! note
+    The mediation extension is applied to all resources of the API.
+
+!!! note
+    Please note that JS scripts can be used inside the custom policy code to access Java classes, methods, and native objects. By default, all the classes are visible to these scripts. However, it is recommended to restrict access to these by adding the following configuration to the `deployment.toml` file:
+
+    <pre class="java" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence"
+            data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><code>[synapse_properties]
+    'limit_java_class_access_in_scripts.enable' = true # or false
+    'limit_java_class_access_in_scripts.list_type' = "ALLOW_LIST" # or BLOCK_LIST
+    'limit_java_class_access_in_scripts.class_prefixes' = "java.util"</code></pre>
+
+    To further configure script mediation access control, please refer to the  <a href="../../../../install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#restrict-access-java">Restrict Access to Java classes and Java Methods/Native Objects in Scripts documentation.</a>
+
+## Sample Message Mediation Policies
+
+Following are some sample mediation policies which you can upload as per API or global policies based on your requirement.
+
+-   [Adding Dynamic Endpoints](adding-dynamic-endpoints.md)
+-   [Removing Specific Request Headers From Response](removing-specific-request-headers-from-response.md)
+-   [Passing a Custom Authorization Token to the Backend](passing-a-custom-authorization-token-to-the-backend.md)
+-   [URL Mapping](mapping-the-parameters-of-your-backend-urls-with-the-api-publisher-urls.md)
+-   [Disabling Message Chunking](disabling-message-chunking.md)
+-   [Transforming API Message Payload](transforming-api-message-payload.md)
+-   [Adding a Non-Blocking Send Operation](adding-a-non-blocking-send-operation.md)
+-   [Adding a Class Mediator](adding-a-class-mediator.md)

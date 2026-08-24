@@ -1,0 +1,27 @@
+---
+title: "Configure a third party key manager"
+description: "Explains the Key Manager and Key Validation handler interfaces used to plug in a third-party OAuth provider."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/3.1.0/install-and-setup/setup/distributed-deployment/configure-a-third-party-key-manager/
+md_url: https://wso2.com/api-platform/docs/api-manager/3.1.0/install-and-setup/setup/distributed-deployment/configure-a-third-party-key-manager.md
+tags:
+  - api-manager
+  - install-and-setup
+  - setup
+  - distributed-deployment
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-08-19
+content_type: "concept"
+---
+
+# Configure a Third Party Key Manager
+
+The **Key Manager** handles all clients, security, and access token-related operations. In a typical API Manager production deployment, different components talk to the Key Manager component for achieving different tasks. The API Gateway connects with the Key Manager to check the validity of OAuth tokens, subscriptions, and API invocations. When a subscriber generates an access token to the application using the Developer Portal, the Developer Portal makes a call to the Key Manager to create an OAuth App and obtains an access token. Similarly, to validate a token, the API Gateway calls the Key Manager, which fetches and validates the token details from the database. For more information, see [Key Manager](../../../getting-started/overview.md#key-manager).
+
+The Key Manager decouples the OAuth client and access token management from the rest of its operations so that you can plug in a third-party OAuth provider for managing OAuth clients and access tokens. When working with an external Key Manager, you need to extend the required Key Manager interface(s), which are explained below, based on your requirements.
+
+-   **[Key Manager interface](https://github.com/wso2/carbon-apimgt/blob/v6.5.349/components/apimgt/org.wso2.carbon.apimgt.api/src/main/java/org/wso2/carbon/apimgt/api/model/KeyManager.java)** - This interface handles the functionalities of the Developer Portal. It contains methods to create, update, get, and delete OAuth2 applications, to map the existing consumer keys and secrets, and to generate the application access tokens. For more information, see [Extending the Key Manager Interface](../../../develop/extending-api-manager/extending-key-management/extending-the-key-manager-interface.md#extending-the-key-manager-interface_1).
+-   **[Key Validation handler](https://github.com/wso2/carbon-apimgt/blob/v6.5.349/components/apimgt/org.wso2.carbon.apimgt.keymgt/src/main/java/org/wso2/carbon/apimgt/keymgt/handlers/DefaultKeyValidationHandler.java)** - This interface handles the functionalities of the Key Manager component. It contains methods to implement at API runtime to validate the token, subscriptions, and scopes, and also to generate JSON Web Tokens (JWTs). For more information, see [Extending Key Validation](../../../develop/extending-api-manager/extending-key-management/extending-key-validation.md).
+
+For more information, see the following samples on writing a Key Manager implementation that acts as the bridge between a third-party OAuth provider and WSO2 API Manager.
+
+- [Integration with Okta OAuth Authorization Server](https://github.com/wso2-extensions/apim-keymanager-okta/blob/OKTA-OAuth-Client-2.0.0/docs/config.md)

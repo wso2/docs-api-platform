@@ -1,0 +1,35 @@
+---
+title: "Tuning inbound endpoints"
+description: "Tune HTTP and Kafka inbound endpoints by configuring worker pool and thread pool settings for better throughput."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.1.0/install-and-setup/setup/mi-setup/performance_tuning/tuning-inbound-endpoints/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.1.0/install-and-setup/setup/mi-setup/performance_tuning/tuning-inbound-endpoints.md
+tags:
+  - api-manager
+  - install-and-setup
+  - setup
+  - mi-setup
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-07-30
+content_type: "how-to"
+---
+
+# Tuning Inbound Endpoints
+
+See the following topics to tune the HTTP and Kafka inbound endpoints.
+
+## Tuning the HTTP Inbound
+
+By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the inbound endpoint to increase the performance, you need to configure the [HTTP worker pool parameters](../../../../reference/synapse-properties/inbound-endpoints/listening-inbound-endpoints/http-inbound-endpoint-properties.md#worker-pool-configuration-properties) when <b>creating the inbound endpoint</b>.
+
+## Tuning the Kafka inbound
+
+Open the `deployment.toml` file, and change the inbound thread pool size based on your use case. Recommended values are specified below.
+
+```toml
+[mediation]
+inbound.core_threads = 200 
+inbound.max_threads = 1000   
+```
+See the [descriptions of the parameters](../../../../reference/config-catalog-mi.md#message-mediation).
+
+When you **create your inbound endpoint**, set the [sequential](../../../../reference/synapse-properties/inbound-endpoints/polling-inbound-endpoints/kafka-inbound-endpoint-properties.md) parameter to `false` for better performance.

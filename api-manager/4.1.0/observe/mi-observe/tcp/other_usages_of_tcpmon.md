@@ -1,0 +1,48 @@
+---
+title: "Other usages of TCPMon"
+description: "Covers using TCPMon to send requests directly to web services, act as a proxy, and simulate slow connections."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.1.0/observe/mi-observe/tcp/other_usages_of_tcpmon/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.1.0/observe/mi-observe/tcp/other_usages_of_tcpmon.md
+tags:
+  - api-manager
+  - observe
+  - mi-observe
+  - tcp
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-07-30
+content_type: "how-to"
+---
+
+# Other Usages of TCPMon
+
+TCPMon is primarily used for message monitoring. Additionally, TCPMon
+can also be used for sending requests to web services and as a proxy
+service. Refer [Starting TCPMon](starting_tcp_mon.md) for
+details on how to start the tool.
+
+## Sending requests to Web services
+
+TCPMon can also be used as a request sender for Web services. The
+request SOAP message can be pasted on the **Send** screen and sent directly
+to the server.
+
+![TCP Sender](../../../assets/img/integrate/tcp/tcpmon-sender-other-usages.png)
+
+## As a proxy
+
+TCPMon can act as a proxy. To start it in proxy mode, select the **Proxy**
+option shown below. When acting as a proxy, TCPMon only needs the listener port to
+be configured.
+
+![Select Proxy](../../../assets/img/integrate/tcp/tcpmon-proxy-dialog.png)
+
+## Advanced settings
+
+TCPMon can simulate a slow connection, in which case the delay and the
+bytes to be dropped can be configured. This is useful when testing Web
+services.
+
+![Advanced settings](../../../assets/img/integrate/tcp/tcpmon-simulate-slow-connection.png)
+
+Also, if HTTP proxy support is required, that can also be set on the
+admin screen.

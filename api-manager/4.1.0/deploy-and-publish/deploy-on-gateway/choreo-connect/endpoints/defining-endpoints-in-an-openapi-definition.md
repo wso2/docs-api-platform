@@ -1,0 +1,202 @@
+---
+title: "Defining endpoints in an OpenAPI definition"
+description: "Define API-level and resource-level production and sandbox endpoints directly in an OpenAPI definition for Choreo Connect."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.1.0/deploy-and-publish/deploy-on-gateway/choreo-connect/endpoints/defining-endpoints-in-an-openapi-definition/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.1.0/deploy-and-publish/deploy-on-gateway/choreo-connect/endpoints/defining-endpoints-in-an-openapi-definition.md
+tags:
+  - api-manager
+  - deploy-and-publish
+  - deploy-on-gateway
+  - choreo-connect
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-07-30
+content_type: "how-to"
+---
+
+# Defining Endpoints in an OpenAPI Definition
+
+You can use an existing OpenAPI definition to create an API project using APICTL, and deploy that project directly to Choreo Connect. When following this path, the endpoints must be included in the OpenAPI definition itself, so that the inbound request of Choreo Connect can be routed to the corresponding backend service. You, as a developer, can state the endpoint URLs for, 
+
+- the whole API or 
+- a particular resource 
+
+depending on the requirement. In addition, you can state the corresponding environment (i.e., production or sandbox) as well.
+
+### API Level Endpoints
+
+It is mandatory for you to define the API Level endpoint at the root level of your OpenAPI definition at the design time. However, if you have defined resource level endpoints for all the resources, then defining an API Level endpoint is not necessary. For resources without a specific endpoint, the inbound traffic is automatically routed to the provided API level endpoint.
+
+``` yaml tab="Format"
+.
+.
+info:
+.
+.
+x-wso2-basePath: <base_path>
+x-wso2-production-endpoints:
+    urls: 
+    - <API_level_endpoint>
+x-wso2-sandbox-endpoints:
+    urls:
+    - <API_level_endpoint>
+security:
+- petstore_auth : []
+```
+
+``` yaml tab="Example"
+.
+.
+info:
+  version: 1.0.5
+  title: PizzaShackAPI
+x-wso2-basePath: /v2
+x-wso2-production-endpoints:
+    urls: 
+    - https://localhost:2380/v2
+x-wso2-sandbox-endpoints:
+    urls:
+    - https://localhost:2380/v2
+security:
+- petstore_auth : []
+
+```
+
+### Resource Level Endpoints
+
+In Choreo Connect, you can define different endpoint URLs for different resources within the same OpenAPI definition. Defining an endpoint under a resource in the OpenAPI definition, will make the endpoint a resource level endpoint. When the traffic comes in for a particular resource, it will be routed based on the endpoint configuration under the resource, and not according to the API level endpoint configuration.
+
+``` yaml tab="Format"
+.
+.
+info:
+.
+.
+x-wso2-basePath: 
+x-wso2-production-endpoints:
+    urls:
+    - 
+paths:
+    /pet/findByStatus:
+        x-wso2-production-endpoints:
+            urls:
+            - 
+        x-wso2-sandbox-endpoints:
+            urls:
+            -
+        get:
+    /pet/{petId}:
+        get:
+.
+. 
+```
+
+``` yaml tab="Example"
+.
+.
+info:
+.
+.
+x-wso2-basePath: 
+x-wso2-production-endpoints:
+    urls:
+    - 
+paths:
+    /pet/findByStatus:
+        x-wso2-production-endpoints:
+            urls:
+            -  https://localhost:2380/v1 
+        get:
+            tags:
+            - pets
+            summary: Finds Pets by status
+            description: Multiple status values can be provided with comma separated strings
+            operationId: findPetsByStatus
+            parameters:
+            - name: status
+              in: query
+              description: Status values that need to be considered for filter
+        .
+        .
+    /pet/{petId}:
+        get:
+.
+.
+```
+
+In the above example `/pet/findByStatus` resource has a separate endpoint configuration compared to the `/pet/{petId}` resource. Therefore, the inbound traffic for the `/pet/findByStatus` resource are routed based on its specific endpoint object, whereas the requests coming to the `/pet/{petId}` resource are routed to the API Level endpoint.
+
+### Endpoint Objects
+
+An endpoint can either belong to a production environment or sandbox environment. Therefore, an endpoint is listed under the extension ` x-wso2-production-endpoints` or `x-wso2-sandbox-endpoints` accordingly.
+
+The following is the basic structure of an endpoint.
+
+``` yaml
+x-wso2-production-endpoints:
+    urls:
+    - <endpoint_URL>
+```
+
+The purpose of URLs field is to include the backend service URLs.
+
+If you have added resource level endpoints and you have repeated the same endpoint in multiple resources, it will cause data duplication in the OpenAPI definition. In order to avoid repetition, the endpoints can be provided under a reference model as shown below. 
+
+``` yaml tab="Format"
+paths:
+    /pet/findByStatus:
+        x-wso2-production-endpoints: "#/x-wso2-endpoints/<endpoint-name>"
+        get:
+            tags:
+            - 
+            summary: 
+            description: 
+            operationId: 
+.
+.
+x-wso2-endpoints:
+- myEndpoint:
+    urls:
+    - <endpoint-URL-1>
+    - <endpoint-URL-2>
+```
+
+``` yaml tab="Example"
+paths:
+    /pet/findByStatus:
+        x-wso2-production-endpoints: "#/x-wso2-endpoints/myEndpoint1"
+        get:
+            tags:
+            - pet
+            summary: Finds Pets by status
+            description: Multiple status values can be provided with comma separated strings
+            operationId: findPetsByStatus
+.
+.
+x-wso2-endpoints:
+- myEndpoint1:
+    urls:
+    - https://localhost:2380/v1
+- myEndpoint2:
+    urls:
+    - https://localhost:2380/v2
+- myEndpoint3:
+    urls:
+    - https://localhost:2380/v1
+    - https://localhost:2380/v2
+    - myEndpoint4:
+```     
+### Related Links
+
+Choreo Connect supports the following endpoint features.
+
+- [Load Balanced Endpoints](load-balanced-endpoints.md): Provides load balancing for the whole API or for a given resource.
+
+- [Failover Endpoints](failover-endpoints.md): Handles failover scenarios for the whole API or for a given resource.
+
+!!! info
+        -   [Overriding Endpoint Information](overriding-endpoints-for-imported-apis.md)
+        This link will be useful when you need to override the endpoint URL of an API just before starting Choreo Connect, since the original endpoint that was added while it was in a different environment does not suit the current environment.
+        -   [Defining a Backend Security Scheme](defining-a-backend-security-scheme.md)
+        This link provides information on how to setup Choreo Connect to support BasicAuth Authentication.
+        -   [Service Discovery](../service-discovery/choreo-connect-and-service-discovery.md)
+        There can be endpoints that change dynamically over time. In such situations, you can use Service Discovery with Consul service registry to make sure that Choreo Connect is aware of the latest endpoint.

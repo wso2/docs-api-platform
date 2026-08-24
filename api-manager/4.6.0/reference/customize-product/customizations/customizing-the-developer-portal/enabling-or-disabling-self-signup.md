@@ -1,0 +1,83 @@
+---
+title: "Disabling or enabling self signup"
+description: "Turn Developer Portal self sign-up on or off for a tenant through the resident identity provider settings in the management console."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.6.0/reference/customize-product/customizations/customizing-the-developer-portal/enabling-or-disabling-self-signup/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.6.0/reference/customize-product/customizations/customizing-the-developer-portal/enabling-or-disabling-self-signup.md
+tags:
+  - api-manager
+  - reference
+  - customize-product
+  - customizations
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-07-23
+content_type: "how-to"
+---
+
+# Disabling or Enabling Self Signup
+
+#### Disabling Self Signup
+
+In a multi-tenanted API Manager setup, self-signup to the Developer Portal works out-of-the-box for all the tenants, including the super tenant. **In order to disable self-signup for a particular tenant, follow the steps below.**.
+
+1. Sign in to the management console ( `https://<HostName>:9443/carbon` ) as tenant admin.
+
+2. Click **Resident** under **Identity Providers** on the Main tab
+
+    ![Identity Provider Resident](../../../../assets/img/learn/idp-resident.png)
+
+3. Expand the **User Onboarding** tab and expand the **Self Registration** tab
+
+    ![Account Management Policies](../../../../assets/img/learn/user-onboarding-self-onboarding.png)
+
+4. Deselect the **User self registration** property and update the content.
+
+    ![Deselect User Self Registration](../../../../assets/img/learn/deselect-user-self-registration.png)
+
+5. Sign in to the admin portal  ( `https://<HostName>:9443/admin` ) as tenant admin and navigate to **Advance Configurations** by clicking **Advance** under **Settings**.
+
+    ![Advance Configuration Admin Portal Self Signup](../../../../assets/img/learn/advance-configuration-admin-portal-self-signup.png)
+
+6. Remove the following configuration and save the content.
+    ``` json
+       "SelfSignUp": {
+            "SignUpRoles":["Internal/subscriber"]
+       }
+    ```
+7. When trying to register as a new user on the particular tenant domain, you will see the following message notifying that self registration is disabled.
+
+    ![Self registration disabled](../../../../assets/img/learn/self-signup-disabled.png)
+
+<a name="enabling-self-signup"></a>
+
+#### Enabling Self Signup
+
+
+1. Sign in to the management console ( `https://<HostName>:9443/carbon` ) as tenant admin.
+
+2. Click **Resident** under **Identity Providers** on the Main tab
+
+3. Expand the **User Onboarding** tab and expand the **Self Registration** tab
+
+4. Select the **User self registration** property and update the content.
+
+5. Sign in to the admin portal  ( `https://<HostName>:9443/admin` ) as tenant admin and navigate to **Advance Configurations** by clicking **Advance** under **Settings**.
+
+6. Add the following configuration and save the content. The `SignUpRoles` configuration indicates the default roles that will be assigned to a user who self signs up to the Developer portal.
+
+    ``` json
+       "SelfSignUp": {
+            "SignUpRoles":["Internal/subscriber"]
+       }
+    ```
+!!! Note
+    To enable email verification, update the `repository/deployment/server/webapps/accountrecoveryendpoint/WEB-INF/web.xml` file by setting the `EnableEmailNotification` parameter to `true`:
+
+    ```xml
+    <context-param>
+        <param-name>EnableEmailNotification</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    ```
+
+!!! tip
+    To engage your own signup process, see [Adding a User Signup Workflow](../adding-a-user-signup-workflow.md).

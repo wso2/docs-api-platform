@@ -1,0 +1,370 @@
+# WSO2 API Platform Documentation
+
+> WSO2 API Platform helps you manage, secure, and govern APIs and AI services. It covers the full API lifecycle: from design and deployment to security, monitoring, and monetization. The platform supports REST, WebSocket, and GraphQL APIs as well as LLM (Large Language Model) traffic and MCP (Model Context Protocol) servers for AI agents. It is available as a managed Cloud platform, a Hybrid deployment (cloud control plane, self-hosted gateways), a self-managed API Manager product, and as lightweight standalone gateways.
+
+## Getting Started
+
+- [Platform Overview](https://wso2.com/api-platform/docs/index.md): What WSO2 API Platform is, the three deployment options (Cloud, Hybrid, Self-Managed), and the two standalone gateway modes: use this to find the right starting point
+- [Get Started](https://wso2.com/api-platform/docs/get-started.md): Index of quick start guides organized by use case: manage APIs, run a standalone gateway, govern AI services, or monetize APIs
+
+## Cloud Platform
+
+- [What is API Platform Cloud?](https://wso2.com/api-platform/docs/cloud/introduction/what-is-bijira.md): Overview of the managed SaaS offering and its core capabilities
+- [Quick Start: API Proxy](https://wso2.com/api-platform/docs/cloud/introduction/quick-start-guide.md): Create and invoke your first REST API Proxy on the cloud platform in under 10 minutes
+- [Quick Start: MCP Server](https://wso2.com/api-platform/docs/cloud/introduction/quick-start-guide-mcp.md): Create and publish your first MCP server from the cloud console
+- [Organizations](https://wso2.com/api-platform/docs/cloud/bijira-concepts/organization.md): The top-level resource boundary: users, roles, groups, and organization identifiers
+- [Projects](https://wso2.com/api-platform/docs/cloud/bijira-concepts/project.md): Logical groupings of APIs and services within an organization
+- [Data Planes](https://wso2.com/api-platform/docs/cloud/bijira-concepts/data-planes.md): Gateway runtime environments: WSO2-managed (cloud), self-hosted (hybrid), or federated third-party
+
+## Create API Proxies
+
+- [Create API Proxy Overview](https://wso2.com/api-platform/docs/cloud/create-api-proxy/overview.md): Overview of all creation paths: ingress (My APIs) and egress (Third-Party APIs)
+- [Create REST API with GenAI](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/http/create-with-genai.md): Generate a REST API Proxy from a natural language description
+- [Import REST API Contract](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/http/import-api-contract.md): Create a REST API Proxy from an existing OpenAPI specification
+- [Import REST API from GitHub](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/http/import-api-from-github.md): Import an OpenAPI spec directly from a GitHub repository
+- [Start REST API with Endpoint](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/http/start-with-endpoint.md): Create a REST API Proxy by providing a backend endpoint URL
+- [Start REST API from Scratch](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/http/start-from-scratch.md): Design a REST API Proxy from scratch using the visual editor
+- [Create WebSocket API with GenAI](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/websocket/create-with-genai.md): Generate a WebSocket API Proxy from a natural language description
+- [Import WebSocket API Contract](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/websocket/import-api-contract.md): Create a WebSocket API Proxy from an AsyncAPI specification
+- [Start WebSocket API with Endpoint](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/websocket/start-with-endpoint.md): Create a WebSocket API Proxy from a backend endpoint URL
+- [Start WebSocket API from Scratch](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/websocket/start-from-scratch.md): Design a WebSocket API Proxy from scratch
+- [WebSocket API Limitations](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/websocket/quotas-and-limitations.md): Known quotas and limitations for WebSocket API proxies
+- [Import GraphQL API Contract](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/graphql/import-api-contract.md): Create a GraphQL API Proxy from a GraphQL schema
+- [Start GraphQL API with Endpoint](https://wso2.com/api-platform/docs/cloud/create-api-proxy/my-apis/graphql/start-with-endpoint.md): Create a GraphQL API Proxy from an existing GraphQL endpoint
+- [AI APIs Overview](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/ai-apis.md): Overview of egress AI API proxies: routing outbound traffic to LLM providers like OpenAI, Anthropic, and Azure
+- [OpenAI Provider Setup](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/open-ai.md): Configure an OpenAI egress API Proxy
+- [Azure OpenAI Provider Setup](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/azure-ai.md): Configure an Azure OpenAI egress API Proxy
+- [Mistral Provider Setup](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/mistral.md): Configure a Mistral egress API Proxy
+- [AWS Bedrock Provider Setup](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/awsbedrock.md): Configure an AWS Bedrock egress API Proxy
+- [Anthropic Provider Setup](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/claude.md): Configure an Anthropic (Claude) egress API Proxy
+- [Get API from Marketplace](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/get-from-marketplace.md): Import pre-built third-party API integrations from the API Platform Marketplace
+- [Import Third-Party API Contract](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/import-api-contract.md): Create a third-party egress proxy from an OpenAPI specification
+- [Guardrails Overview (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/guardrails.md): Overview of guardrails for AI API proxies: content filtering, PII masking, and prompt injection protection
+- [Token-Based Rate Limit (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/token-ratelimit.md): Limit LLM API usage by token count rather than request count
+- [Semantic Cache (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/semantic-cache.md): Cache LLM responses by semantic similarity to reduce cost and latency
+- [Regex Guardrail (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/regex-guardrail.md): Block or allow LLM requests and responses matching a regex pattern
+- [Word Count Guardrail (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/word-count-guardrail.md): Enforce min/max word count on LLM inputs and outputs
+- [Sentence Count Guardrail (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/sentence-count-guardrail.md): Enforce min/max sentence count on LLM inputs and outputs
+- [Content Length Guardrail (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/content-length-guardrail.md): Enforce size limits on LLM request and response payloads
+- [URL Guardrail (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/url-guardrail.md): Detect and block URLs in LLM prompts or completions
+- [Regex PII Masking (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/guardrails/basic-guardrails/regex-pii-masking.md): Mask PII using regex patterns before sending to the LLM
+- [PII Masking: Advanced (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/guardrails/advanced-guardrails/pii-masking.md): ML-based PII detection and masking using Guardrails AI
+- [Azure Content Safety (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/guardrails/third-party-guardrail-integrations/azure-content-safety-content-moderation.md): Azure Content Safety integration for content moderation on LLM traffic
+- [AWS Bedrock Guardrail (AI APIs)](https://wso2.com/api-platform/docs/cloud/create-api-proxy/third-party-apis/guardrails/third-party-guardrail-integrations/aws-bedrock-guardrail.md): AWS Bedrock Guardrail integration for content safety on LLM traffic
+
+## Develop API Proxies
+
+- [Policy Overview](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/policy/overview.md): Customize an API proxy in the interactive UI: add or remove resources and map resources to backend routes
+- [Available Policies](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/policy/policies.md): Reference list of all built-in policies for API proxies
+- [Attach and Manage Policies](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/policy/attach-and-manage-policies.md): Attach, configure, reorder, and remove policies on an API Proxy
+- [API Documents](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/documents.md): Attach prose documentation to an API for display in the Developer Portal
+- [Make an API AI-Ready](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/make-api-ai-ready.md): How to write effective API descriptions, structure OpenAPI specs, and control agent visibility so AI agents can discover and correctly invoke your API
+- [API Lifecycle Management](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/lifecycle-management.md): Manage API Proxy lifecycle states: Created, Pre-Released, Published, Deprecated, Retired
+- [Subscription Plans](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/subscription-plans.md): Assign subscription plans to APIs to control access and enforce quotas
+- [Secure API Access with Asgardeo](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-asgardeo.md): Configure OAuth2/OIDC using Asgardeo as the identity provider
+- [Secure API Access with API Platform STS](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-bijira-sts.md): Use the built-in API Platform security token service for API authentication
+- [Secure API Access with Azure AD](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-azure-ad.md): Configure Azure Active Directory as the identity provider
+- [Secure API Access with External Key Manager](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/authentication-and-authorization/secure-api-access-with-external-idp.md): Integrate any external OAuth2-compatible key manager
+- [Secure Gateway-to-Backend with OAuth2](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/authentication-and-authorization/secure-communication-between-bijira-gateway-and-backend-with-oauth2.md): Configure OAuth2 for outbound communication from the gateway to your backend
+- [Secure Gateway-to-Backend with Mutual TLS](https://wso2.com/api-platform/docs/cloud/develop-api-proxy/authentication-and-authorization/secure-communication-between-the-bijira-gateway-and-your-backend-with-mutual-tls.md): Configure mutual TLS for outbound communication from the gateway to your backend
+
+## Test API Proxies
+
+- [Test with OpenAPI Console](https://wso2.com/api-platform/docs/cloud/test-api-proxy/openapi-console.md): Interactively test a REST API Proxy using the built-in OpenAPI console
+- [Test with WebSocket Console](https://wso2.com/api-platform/docs/cloud/test-api-proxy/ws-test-console.md): Test a WebSocket API Proxy using the built-in WebSocket console
+- [Test with GraphQL Console](https://wso2.com/api-platform/docs/cloud/test-api-proxy/graphql-console.md): Test a GraphQL API Proxy using the built-in GraphQL console
+- [Test with cURL](https://wso2.com/api-platform/docs/cloud/test-api-proxy/curl.md): Test an API Proxy using cURL commands generated by the platform
+- [API Chat](https://wso2.com/api-platform/docs/cloud/test-api-proxy/api-chat.md): Test API proxies using a natural language chat interface
+
+## MCP Servers
+
+- [MCP Servers Overview](https://wso2.com/api-platform/docs/cloud/mcp-servers/get-started-with-mcp.md): What MCP is, how the platform supports it, and the three main use cases: design, proxy, and hub
+- [Design MCP Servers](https://wso2.com/api-platform/docs/cloud/mcp-servers/design-mcp-servers.md): Create MCP servers from HTTP backends or existing API proxies, with auto-generated tool schemas, in-console testing, and publishing
+- [Proxy Remote MCP Servers](https://wso2.com/api-platform/docs/cloud/mcp-servers/proxy-remote-servers.md): Route and govern traffic to existing remote MCP servers through the platform gateway
+- [Customize Developer Portal as MCP Hub](https://wso2.com/api-platform/docs/cloud/mcp-servers/devportal-mcp-hub.md): Configure the Developer Portal to present a dedicated MCP server discovery experience
+- [MCP Registry](https://wso2.com/api-platform/docs/cloud/mcp-servers/mcp-registry.md): Centralized catalog for publishing and discovering MCP servers across your organization
+- [Publish MCP Proxies](https://wso2.com/api-platform/docs/cloud/mcp-servers/publish-mcp-proxies.md): Publish a governed MCP proxy to the MCP Registry
+- [Browse the MCP Hub](https://wso2.com/api-platform/docs/cloud/mcp-servers/browse-mcp-hub.md): Discover and connect to MCP servers available in the Developer Portal
+- [MCP Registry API](https://wso2.com/api-platform/docs/cloud/mcp-servers/mcp-registry-api.md): Programmatic access to the MCP Registry for automated publishing and discovery
+
+## AI Gateway (Cloud)
+
+- [AI Gateway Overview](https://wso2.com/api-platform/docs/cloud/ai-gateway/overview.md): Overview of the cloud-integrated AI Gateway: LLM proxy, MCP proxy, observability, and analytics
+- [LLM Quick Start Guide](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/quick-start-guide.md): Set up an LLM proxy to route traffic to an LLM provider with guardrails and rate limiting
+- [LLM Provider Templates](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/llm-templates.md): Pre-built provider templates for OpenAI, Azure OpenAI, Anthropic, AWS Bedrock, Gemini, and Azure AI Foundry
+- [Semantic Caching (LLM)](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/semantic-caching.md): Cache LLM responses by semantic similarity to reduce cost and latency on repeated queries
+- [Model Round Robin](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/load-balancing/model-round-robin.md): Distribute LLM traffic evenly across multiple providers or model endpoints
+- [Model Weighted Round Robin](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/load-balancing/model-weighted-round-robin.md): Distribute LLM traffic across providers with configurable traffic weights
+- [Prompt Decorator](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/prompt-management/prompt-decorator.md): Prepend or append system-level instructions to every LLM request at the gateway level
+- [Prompt Template](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/prompt-management/prompt-template.md): Replace 'template://' URI references in LLM request payloads with predefined, parameterized prompt templates
+- [AWS Bedrock Guardrail](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/aws-bedrock-guardrail.md): AWS Bedrock Guardrail for enterprise-grade content filtering, topic detection, and PII protection
+- [Azure Content Safety](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/azure-content-safety.md): Azure Content Safety integration for detecting hate speech, sexual content, violence, and self-harm
+- [Content Length Guardrail](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/content-length.md): Enforce byte-length limits on LLM request and response payloads
+- [JSON Schema Guardrail](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/json-schema.md): Validate LLM request and response body content against a JSON schema definition to enforce structured data formats
+- [PII Masking Regex Guardrail](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/pii-masking-regex.md): Mask personally identifiable information using configurable regex patterns
+- [Regex Guardrail](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/regex.md): Block or allow content matching a regular expression pattern
+- [Semantic Prompt Guard](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/semantic-prompt-guard.md): Block semantically similar prompts using embedding-based similarity matching against allow/deny phrase lists
+- [Semantic Tool Filtering](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/semantic-tool-filtering.md): Dynamically filter the tools included in an LLM request based on their semantic relevance to the user's query, selecting top matches or those above a similarity threshold
+- [Sentence Count Guardrail](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/sentence-count.md): Enforce min/max sentence count on LLM inputs and outputs
+- [URL Guardrail](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/url.md): Validate and block URLs found in LLM prompts or completions
+- [Word Count Guardrail](https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/word-count.md): Enforce min/max word count on LLM inputs and outputs
+- [MCP Quick Start Guide](https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/quick-start-guide.md): Set up an MCP proxy to route and govern traffic to MCP servers
+- [MCP Access Control List](https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/policies/mcp-acl-list.md): Control access to MCP tools, resources, and prompts using allow or deny mode with exceptions
+- [MCP Authentication](https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/policies/mcp-authentication.md): Enforce authentication on inbound MCP traffic
+- [MCP Authorization](https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/policies/mcp-authorization.md): Define fine-grained access control rules for MCP tools, resources, and prompts based on JWT claims and scopes
+- [MCP Rewrite](https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/policies/mcp-rewrite.md): Expose user-facing names for MCP tools, resources, and prompts while mapping them to different backend capability names
+- [AI Gateway Logging](https://wso2.com/api-platform/docs/cloud/ai-gateway/observability/logging.md): Configure structured logging for AI Gateway traffic
+- [AI Gateway Tracing](https://wso2.com/api-platform/docs/cloud/ai-gateway/observability/tracing.md): Configure distributed tracing for AI Gateway requests
+- [AI Gateway Moesif Analytics](https://wso2.com/api-platform/docs/cloud/ai-gateway/analytics/moesif-analytics.md): Integrate the AI Gateway with Moesif for LLM usage analytics and cost tracking
+- [AI Gateway Analytics Header Filter](https://wso2.com/api-platform/docs/cloud/ai-gateway/analytics/analytics-header-filter.md): Control which request and response headers are sent to analytics backends using allow or deny mode
+
+## AI Workspace
+
+- [AI Workspace Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/overview.md): The organizational control plane for AI: manage LLM providers, MCP proxies, GenAI applications, and AI policies centrally across connected AI Gateways
+- [AI Workspace Getting Started](https://wso2.com/api-platform/docs/cloud/ai-workspace/getting-started.md): Set up an AI Workspace, connect it to an AI Gateway, and configure your first LLM provider
+- [Setting Up AI Gateways](https://wso2.com/api-platform/docs/cloud/ai-workspace/ai-gateways/setting-up.md): Connect a self-hosted AI Gateway runtime to the AI Workspace control plane
+- [LLM Providers Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/overview.md): What an LLM Provider is: a managed connection to an LLM backend with credentials, access control, and org-level policies
+- [Configure LLM Provider](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/configure-provider.md): Add a new LLM provider in AI Workspace
+- [Manage LLM Provider](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/manage-provider.md): Update credentials and monitor usage for an existing LLM provider
+- [App LLM Proxies Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/overview.md): Per-application LLM endpoints that inherit org-level policies from the parent LLM provider
+- [Configure App LLM Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/configure-proxy.md): Create a new app-level LLM proxy in AI Workspace
+- [Manage App LLM Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/manage-proxy.md): Update and monitor an existing app LLM proxy
+- [MCP Proxies Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/overview.md): Govern MCP server access through centrally managed MCP proxies in AI Workspace
+- [Configure MCP Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/configure-proxy.md): Create a new MCP proxy in AI Workspace
+- [Apply Policies to MCP Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/apply-policies.md): Attach authentication, authorization, and ACL policies to an MCP proxy
+- [GenAI Applications](https://wso2.com/api-platform/docs/cloud/ai-workspace/genai-applications.md): Register and track GenAI applications that consume LLM and MCP resources through AI Workspace
+- [Configure Inbound Auth](https://wso2.com/api-platform/docs/cloud/ai-workspace/configure-inbound-auth.md): Configure how client applications authenticate to AI Workspace LLM and MCP proxies
+- [Invoke via SDKs](https://wso2.com/api-platform/docs/cloud/ai-workspace/using-sdks.md): Use OpenAI-compatible SDKs to call LLM proxies managed by AI Workspace
+- [AI Policies Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/overview.md): Overview of AI Workspace policies: guardrails, rate limits, prompt management, and semantic caching
+- [Guardrails Overview (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/overview.md): Overview of guardrails in AI Workspace: PII masking, content safety, and prompt injection protection
+- [PII Masking Regex (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/regex-pii-masking.md): Regex-based PII masking guardrail for AI Workspace LLM proxies
+- [Azure Content Safety (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/azure-content-safety.md): Azure Content Safety guardrail for AI Workspace LLM proxies
+- [Word Count Guardrail (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/word-count-guardrail.md): Enforce min/max word count on LLM inputs and outputs in AI Workspace
+- [Sentence Count Guardrail (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/sentence-count-guardrail.md): Enforce min/max sentence count on LLM inputs and outputs in AI Workspace
+- [LLM Cost Policy](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/rate-limit/llm-cost.md): Calculate the monetary cost of each LLM API call for downstream rate limiting
+- [Token-Based Rate Limit (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/rate-limit/token-based-rate-limit.md): Limit LLM usage by token count per time window
+- [LLM Cost-Based Rate Limit](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit.md): Block requests once a configured monetary spending limit is reached within a time window
+- [Model Round Robin (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/model-round-robin.md): Round-robin load balancing across LLM providers in AI Workspace
+- [Prompt Decorator (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/prompt-decorator.md): Prepend or append system instructions to every LLM request in AI Workspace
+- [Prompt Template (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/prompt-template.md): Apply reusable, parameterized prompt templates to LLM requests using template:// URI references in AI Workspace
+- [Semantic Cache (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/semantic-cache.md): Cache LLM responses by semantic similarity in AI Workspace
+- [Writing an AI Policy](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/writing-an-ai-policy.md): Author a custom AI policy for use in AI Workspace
+
+## Developer Portal
+
+- [AI Agent Discovery](https://wso2.com/api-platform/docs/cloud/devportal/discover-apis/ai-agent-discovery.md): How AI agents discover and consume APIs through the Developer Portal: llms.txt endpoint, machine-readable API catalog, Arazzo workflow specs, and MCP server catalog
+- [LLM Instructions](https://wso2.com/api-platform/docs/cloud/devportal/admin-settings/llm-instructions.md): Configure portal-level natural language context that appears in llms.txt to guide AI agents
+- [Managing API Workflows](https://wso2.com/api-platform/docs/cloud/devportal/admin-settings/managing-api-workflows.md): Create, publish, and manage Arazzo-based API workflows that guide agents through multi-step call sequences
+- [Consuming API Workflows](https://wso2.com/api-platform/docs/cloud/devportal/api-workflows/consuming-api-workflows.md): How developers and AI agents discover and follow published API workflows
+- [Search APIs](https://wso2.com/api-platform/docs/cloud/devportal/discover-apis/api-search.md): Search and filter APIs in the Developer Portal
+- [API Documentation](https://wso2.com/api-platform/docs/cloud/devportal/discover-apis/api-documentations.md): How API documentation and specifications are presented to consumers
+- [Consume an API with OAuth2](https://wso2.com/api-platform/docs/cloud/devportal/consuming-services/consume-an-api-secured-with-oauth2.md): End-to-end guide for subscribing to and invoking an OAuth2-secured API
+- [Consume an API with API Key](https://wso2.com/api-platform/docs/cloud/devportal/consuming-services/consume-an-api-secured-with-api-key.md): End-to-end guide for subscribing to and invoking an API-key-secured API
+- [Create an Application](https://wso2.com/api-platform/docs/cloud/devportal/manage-applications/create-an-application.md): Create a consumer application to subscribe to APIs and generate credentials
+- [Subscribe to an API](https://wso2.com/api-platform/docs/cloud/devportal/manage-subscriptions/subscribe-to-an-api.md): Subscribe an application to a published API
+- [AI Assisted SDK Generation](https://wso2.com/api-platform/docs/cloud/devportal/sdk-generation/ai-assisted-sdk-generation.md): Generate client SDKs for published APIs using AI assistance
+- [Theming with AI](https://wso2.com/api-platform/docs/cloud/devportal/theming-devportal-with-ai.md): Use AI to generate Developer Portal themes and branding
+- [Theme at Organization Level](https://wso2.com/api-platform/docs/cloud/devportal/theming-devportal-org-level.md): Apply custom branding to the Developer Portal at the organization level
+- [Theme at API Level](https://wso2.com/api-platform/docs/cloud/devportal/theming-devportal-api-level.md): Apply custom branding to individual API pages in the Developer Portal
+- [Developer Portal Mode](https://wso2.com/api-platform/docs/cloud/devportal/developer-portal-mode.md): Choose between three display modes: API Portal (APIs only), MCP Hub (MCP servers only), and API & MCP Portal (the default, showing both)
+
+## API Governance
+
+- [API Governance Overview](https://wso2.com/api-platform/docs/cloud/governance/overview.md): Overview of governance capabilities: design-time linting, policy validation, and compliance checking
+- [Govern API Proxy](https://wso2.com/api-platform/docs/cloud/governance/govern-api-proxy.md): Apply governance rules and rulesets to an API Proxy
+
+## Self-Hosted and Third-Party Gateways
+
+- [Self-Hosted Gateway Getting Started](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/getting-started.md): Connect a self-hosted gateway to the cloud control plane (hybrid deployment)
+- [Self-Hosted Gateway Architecture](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/architecture.md): Architecture of a self-hosted gateway connected to the cloud control plane
+- [Self-Hosted Gateway Setting Up](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/setting-up.md): Configure environment, certificates, and networking for a self-hosted gateway
+- [Adding and Managing Policies](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/manage-policies.md): Apply and manage policies on a self-hosted gateway
+- [Writing a Custom Policy](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/writing-a-custom-policy.md): Author a custom policy using the gateway SDK
+- [Building Gateway with Custom Policies](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/build-gateway-with-custom-policies.md): Bundle custom policies into a self-hosted gateway image
+- [Apply Custom Policies to APIs](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/apply-custom-policies-to-apis.md): Attach custom policies to specific APIs on a self-hosted gateway
+- [Self-Hosted Gateway High Availability](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/high-availability.md): Configure high availability for a self-hosted gateway deployment
+- [Publish APIs Overview (Self-Hosted)](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/publish-apis/overview.md): How to publish APIs through a self-hosted gateway
+- [Subscription Based APIs (Self-Hosted)](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/publish-apis/subscription-based-apis.md): Publish subscription-gated APIs on a self-hosted gateway
+- [Subscription Less APIs (Self-Hosted)](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/publish-apis/subscription-less-apis.md): Publish open-access APIs on a self-hosted gateway
+- [Lifecycle Management (Self-Hosted)](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/publish-apis/lifecycle-management.md): Manage API lifecycle states on a self-hosted gateway
+- [Third-Party Gateway Federation Overview](https://wso2.com/api-platform/docs/cloud/federation/overview.md): Federate external third-party gateways into the API Platform control plane for centralized governance, discovery, and developer access
+- [Discover APIs from AWS API Gateway](https://wso2.com/api-platform/docs/cloud/federation/api-discovery-aws.md): Import and catalog APIs from AWS API Gateway into the Developer Portal
+
+## Event Gateway
+
+- [Event Gateway Overview](https://wso2.com/api-platform/docs/cloud/event-gateway/overview.md): Gateway for event-driven APIs: bridges WebSocket, WebHook, and SSE with message brokers like Kafka, MQTT, and Solace
+- [Event Gateway Getting Started](https://wso2.com/api-platform/docs/cloud/event-gateway/getting-started.md): Set up and publish your first event-driven API through the Event Gateway
+- [Event Gateway Setting Up](https://wso2.com/api-platform/docs/cloud/event-gateway/setting-up.md): Deploy the Event Gateway in production environments
+- [Publish APIs Overview (Event Gateway)](https://wso2.com/api-platform/docs/cloud/event-gateway/publish-apis/overview.md): How to publish event-driven APIs through the Event Gateway
+- [Subscription Based APIs (Event Gateway)](https://wso2.com/api-platform/docs/cloud/event-gateway/publish-apis/subscription-based-apis.md): Publish subscription-gated event APIs
+- [Subscription Less APIs (Event Gateway)](https://wso2.com/api-platform/docs/cloud/event-gateway/publish-apis/subscription-less-apis.md): Publish open-access event APIs
+- [Lifecycle Management (Event Gateway)](https://wso2.com/api-platform/docs/cloud/event-gateway/publish-apis/lifecycle-management.md): Manage lifecycle states for event APIs
+- [Event Gateway Troubleshooting](https://wso2.com/api-platform/docs/cloud/event-gateway/troubleshooting.md): Diagnose and resolve common Event Gateway issues
+
+## Monitor and Insights
+
+- [Logs Overview](https://wso2.com/api-platform/docs/cloud/monitoring-and-insights/logs/overview.md): Overview of logging: runtime logs and audit logs
+- [Runtime Logs](https://wso2.com/api-platform/docs/cloud/monitoring-and-insights/logs/runtime-logs.md): View and filter real-time API traffic logs
+- [Audit Logs](https://wso2.com/api-platform/docs/cloud/monitoring-and-insights/logs/audit-logs.md): Review audit trails for configuration and administrative changes
+- [Insights](https://wso2.com/api-platform/docs/cloud/monitoring-and-insights/insights.md): API traffic analytics: latency, error rates, LLM usage, and MCP activity
+- [Compliance Dashboard](https://wso2.com/api-platform/docs/cloud/monitoring-and-insights/compliance.md): Monitor API governance compliance across your organization
+- [Integrate with Moesif](https://wso2.com/api-platform/docs/cloud/monitoring-and-insights/integrate-bijira-with-moesif.md): Manually connect an existing Moesif organization to API Platform and view API usage insights on the Moesif dashboard
+- [API Platform Status Page](https://wso2.com/api-platform/docs/cloud/monitoring-and-insights/status-page.md): Check real-time service availability, active incidents, and scheduled maintenance for WSO2 API Platform Cloud
+
+## Analytics
+
+- [API Analytics with Moesif](https://wso2.com/api-platform/docs/analytics/overview.md): Set up Moesif Basic in WSO2 API Platform Cloud or self-hosted gateways, configure real-time alerts, and explore analytics dashboards for APIs, LLM proxies, and MCP servers
+
+## Monetization
+
+- [API Monetization Overview](https://wso2.com/api-platform/docs/monetization/overview.md): Generate revenue from APIs with Stripe-powered paid subscription plans and flexible pricing models
+- [Monetization Getting Started](https://wso2.com/api-platform/docs/monetization/getting-started.md): Connect a Stripe account and set up your first paid subscription plan
+- [Manage Paid Subscription Plans](https://wso2.com/api-platform/docs/monetization/manage-paid-subscription-plans.md): Create and configure paid subscription tiers
+- [Subscribe to a Paid Plan](https://wso2.com/api-platform/docs/monetization/subscribe-to-paid-plan.md): How consumers subscribe to a paid API subscription plan via Stripe checkout
+- [View Billing and Usage](https://wso2.com/api-platform/docs/monetization/view-billing-and-usage.md): View consumption metrics and billing statements for paid subscriptions
+
+## Administer
+
+- [Create API Subscription Plans](https://wso2.com/api-platform/docs/cloud/administer/settings/create-api-subscription-plans.md): Create and manage API subscription plans that control access and quotas
+- [Configure Custom Domain](https://wso2.com/api-platform/docs/cloud/administer/settings/configure-a-custom-domain-for-your-organization.md): Configure a custom domain for your API Platform organization
+- [Manage Environments](https://wso2.com/api-platform/docs/cloud/administer/manage-environments/manage-environments.md): Create and manage deployment environments (development, staging, production)
+- [Manage CD Pipelines](https://wso2.com/api-platform/docs/cloud/administer/manage-cd-pipelines/manage-cd-pipelines.md): Configure continuous delivery pipelines for automated API deployment
+- [Configure Asgardeo as External Key Manager](https://wso2.com/api-platform/docs/cloud/administer/configure-an-external-idp/configure-asgardeo-as-an-external-idp.md): Use Asgardeo as an external OAuth2 key manager
+- [Configure Azure as External Key Manager](https://wso2.com/api-platform/docs/cloud/administer/configure-an-external-idp/configure-azure-ad-as-an-external-idp.md): Use Azure Active Directory as an external OAuth2 key manager
+- [Configure Custom External Key Manager](https://wso2.com/api-platform/docs/cloud/administer/configure-an-external-idp/configure-custom-external-idp.md): Integrate any custom OAuth2-compatible identity provider as a key manager
+- [Configure Enterprise Login](https://wso2.com/api-platform/docs/cloud/administer/configure-enterprise-login/configure-enterprise-login.md): Enable SSO for your organization using an enterprise identity provider
+- [Configure VPNs](https://wso2.com/api-platform/docs/cloud/administer/configure-vpns/configure-vpns.md): Set up VPN connectivity between the cloud data plane and your private network
+
+## Workflows
+
+- [Configure Workflow Approvals](https://wso2.com/api-platform/docs/cloud/workflows/configure-workflow-approvals.md): Set up approval gates for environment promotion and custom URL configuration workflows
+- [Submit Workflow Approval Requests](https://wso2.com/api-platform/docs/cloud/workflows/submit-workflow-requests.md): How developers submit requests that trigger approval workflows
+- [Review Workflow Approval Requests](https://wso2.com/api-platform/docs/cloud/workflows/review-workflows-requests.md): How admins review and act on pending approval requests
+
+## Tutorials and Samples
+
+- [Expose a Service as a Managed API](https://wso2.com/api-platform/docs/cloud/tutorials/expose-a-service-as-a-managed-api.md): End-to-end tutorial: expose a backend service as a managed REST API
+- [Secure an API with RBAC](https://wso2.com/api-platform/docs/cloud/tutorials/secure-an-api-with-role-based-access-control.md): End-to-end tutorial: implement role-based access control on a REST API
+- [API Platform Samples Overview](https://wso2.com/api-platform/docs/cloud/samples/samples-overview.md): Index of runnable code samples for common platform use cases
+- [Sample: LLM Proxy Token-Based Rate Limiting](https://wso2.com/api-platform/docs/samples/ai-gw-llm-proxy-sample-overview.md): Runnable local Docker sample: demonstrates how the AI Gateway tracks token usage per response and blocks requests once the quota is exhausted, using a WireMock backend (no real API key required)
+- [Sample: AI Policies for Privacy and Cost Control](https://wso2.com/api-platform/docs/samples/AI-gateway-and-llm-failover.md): Runnable local Docker sample: attach failover, semantic caching, and PII masking policies to an LLM proxy at the gateway layer without changing application code
+
+## API Manager
+
+- [API Manager Overview](https://wso2.com/api-platform/docs/api-manager/overview.md): WSO2 API Manager: the self-hosted full-stack product for on-premises and air-gapped deployments
+
+## API Gateway (Standalone)
+
+- [API Gateway Overview](https://wso2.com/api-platform/docs/api-gateway/overview.md): Overview of the standalone Go-based gateway for REST, WebSocket, and GraphQL APIs
+- [API Gateway Quick Start](https://wso2.com/api-platform/docs/api-gateway/quick-start-guide.md): Configure your first API Proxy using YAML and start routing traffic
+- [Storage and Backends](https://wso2.com/api-platform/docs/api-gateway/setup/storage-and-backends.md): Configure PostgreSQL as the Gateway Controller storage backend and Redis for distributed rate limiting
+- [Artifact Templating](https://wso2.com/api-platform/docs/api-gateway/setup/artifact-templating.md): Use Go text template expressions in API Platform Gateway YAML artifacts to inject environment variables and dynamic values at startup
+- [Upstream Timeouts](https://wso2.com/api-platform/docs/api-gateway/setup/upstream-timeouts.md): Configure the upstream TCP connection timeout in API Platform Gateway to protect against slow or unreachable backend services
+- [API Gateway Policies Overview](https://wso2.com/api-platform/docs/api-gateway/policies/overview.md): Overview of the policy framework for the standalone gateway
+- [Writing a Custom Policy](https://wso2.com/api-platform/docs/api-gateway/policies/custom-policies/writing-a-custom-policy.md): Write a custom policy for API Platform Gateway using the Go SDK: implement request and response hooks in the policy chain
+- [Building Gateway with Custom Policies](https://wso2.com/api-platform/docs/api-gateway/policies/custom-policies/building-gateway-with-custom-policies.md): Use API Platform CLI to bundle custom policies into an API Platform Gateway Docker image for deployment
+- [Immutable Gateway Deployment](https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/immutable-gateway.md): Run the gateway in immutable mode, loading all configuration from files at startup
+- [Kubernetes Deployment Overview](https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/overview.md): Overview of Kubernetes deployment options for the standalone gateway
+- [Kubernetes Standalone Mode](https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/kubernetes-standalone.md): Install and manage API Platform Gateway on Kubernetes using the standalone Helm chart, without the Gateway Operator
+- [Kubernetes Operator Mode](https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/gateway-operator.md): Deploy API Platform Gateway on Kubernetes using the operator with APIGateway and RestApi CRDs, or using the standard Kubernetes Gateway API with HTTPRoute
+- [Gateway Operator Management CRDs](https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md): Reference for management-API-backed Kubernetes CRDs in API Platform Gateway: LlmProvider, LlmProxy, Mcp, ApiKey, SubscriptionPlan, Subscription, and Certificate
+- [High-Availability Production Deployment](https://wso2.com/api-platform/docs/api-gateway/deployment/high-availability-production-deployment.md): Deploy API Platform Gateway in a highly available, production-grade configuration on Kubernetes with Helm, PostgreSQL, and replicated workloads
+- [Security Hardening](https://wso2.com/api-platform/docs/api-gateway/deployment/production-deployment/security-hardening.md): Harden the standalone gateway for production security requirements
+- [Database Configuration](https://wso2.com/api-platform/docs/api-gateway/deployment/production-deployment/database-configuration.md): Configure the database backend for a production standalone gateway deployment
+- [Resources and Scaling](https://wso2.com/api-platform/docs/api-gateway/deployment/production-deployment/resources-and-scaling.md): Set CPU and memory resource limits, pod anti-affinity rules, Horizontal Pod Autoscaler, and Pod Disruption Budget for API Platform Gateway
+- [Deploy and Verify](https://wso2.com/api-platform/docs/api-gateway/deployment/production-deployment/deploy-and-verify.md): Install API Platform Gateway using Helm, verify that pods and services are healthy, and perform upgrade and rollback procedures
+- [Control Plane Connection](https://wso2.com/api-platform/docs/api-gateway/deployment/production-deployment/control-plane-connection.md): Connect the standalone gateway to the API Platform control plane
+- [Bottom-Up API Deployment](https://wso2.com/api-platform/docs/api-gateway/deployment/deploying-apis/bottom-up-api-deployment.md): Deploy REST APIs directly to API Platform Gateway and automatically sync them to on-prem WSO2 API Manager
+- [API Gateway Logging](https://wso2.com/api-platform/docs/api-gateway/observability/logging.md): Set up the logging stack for the standalone gateway using Fluent Bit for collection, OpenSearch for storage, and OpenSearch Dashboards for visualization
+- [API Gateway Tracing](https://wso2.com/api-platform/docs/api-gateway/observability/tracing/overview.md): Set up distributed tracing for the standalone gateway using an OpenTelemetry Collector and Jaeger
+- [Enable Distributed Tracing](https://wso2.com/api-platform/docs/api-gateway/observability/tracing/enabling-tracing.md): Enable and configure distributed tracing for API Platform Gateway in config.toml by pointing to an OTLP collector endpoint
+- [Tracing Configuration Options](https://wso2.com/api-platform/docs/api-gateway/observability/tracing/configuration.md): Configure distributed tracing for API Platform Gateway: sampling rates, OTLP collector endpoints, and batch export settings
+- [View Traces in Jaeger](https://wso2.com/api-platform/docs/api-gateway/observability/tracing/viewing-traces-in-jaeger.md): Access the Jaeger UI and search for distributed traces from API Platform Gateway components
+- [Export Traces to Alternative Backends](https://wso2.com/api-platform/docs/api-gateway/observability/tracing/alternative-backends.md): Configure API Platform Gateway to export OpenTelemetry traces to alternative backends including Moesif, Datadog, and New Relic
+- [Tracing Best Practices and Troubleshooting](https://wso2.com/api-platform/docs/api-gateway/observability/tracing/best-practices-and-troubleshooting.md): Best practices for distributed tracing in API Platform Gateway: sampling strategies, production recommendations, and troubleshooting guidance
+- [API Gateway Metrics](https://wso2.com/api-platform/docs/api-gateway/observability/metrics/overview.md): Configure metrics collection for API Platform Gateway components using Prometheus and Grafana, with reference dashboards and alerting
+- [Enable Metrics](https://wso2.com/api-platform/docs/api-gateway/observability/metrics/enabling-metrics.md): Enable and configure Prometheus metrics collection for API Platform Gateway components in config.toml
+- [Metrics Configuration Options](https://wso2.com/api-platform/docs/api-gateway/observability/metrics/configuration.md): Configure Prometheus scrape intervals and custom metrics endpoints for API Platform Gateway components
+- [Metric Reference](https://wso2.com/api-platform/docs/api-gateway/observability/metrics/metric-reference.md): Complete reference for all Prometheus metrics exposed by API Platform Gateway controller, router, and policy engine components
+- [Prometheus Queries](https://wso2.com/api-platform/docs/api-gateway/observability/metrics/prometheus-queries.md): Useful PromQL queries for monitoring API Platform Gateway controller, router, and policy engine metrics
+- [View Metrics in Grafana](https://wso2.com/api-platform/docs/api-gateway/observability/metrics/viewing-metrics-in-grafana.md): Access pre-built Grafana dashboards to view and explore API Platform Gateway component metrics
+- [Export Metrics to Alternative Backends](https://wso2.com/api-platform/docs/api-gateway/observability/metrics/alternative-backends.md): Export API Platform Gateway metrics to alternative backends including AWS CloudWatch, Datadog, and other Prometheus-compatible systems
+- [Metrics Best Practices and Troubleshooting](https://wso2.com/api-platform/docs/api-gateway/observability/metrics/best-practices-and-troubleshooting.md): Best practices for correlating API Platform Gateway metrics with logs and traces, and guidance for troubleshooting common metrics issues
+- [API Gateway Moesif Analytics](https://wso2.com/api-platform/docs/api-gateway/analytics/moesif-analytics.md): Configure the Moesif in API Platform Gateway to capture and publish API request and response data
+- [API Gateway Analytics Header Filter](https://wso2.com/api-platform/docs/api-gateway/analytics/analytics-header-filter.md): Control which request and response headers are captured in analytics using allow or deny mode in API Platform Gateway
+- [Management API Overview](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/overview.md): Overview of the API Platform Gateway Controller REST API for managing REST APIs, MCP proxies, LLM providers, certificates, and secrets
+- [Management API Authentication](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/authentication.md): Configure Basic Auth or JWT/IDP authentication and role-based authorization for the API Platform Gateway Controller management REST API
+- [Management API: REST API Management](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/rest-api-management.md): REST API reference for creating, listing, updating, and deleting REST API configurations, API keys, and subscriptions via the Gateway Controller
+- [Management API: MCP Proxy Management](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/mcp-proxy-management.md): REST API reference for creating, listing, updating, and deleting MCP proxy configurations in API Platform Gateway
+- [Management API: Certificate Management](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/certificate-management.md): REST API reference for managing custom TLS certificates in API Platform Gateway: list, upload, delete, and reload certificates dynamically
+- [Management API: LLM Provider Template Management](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/llm-provider-template-management.md): REST API reference for creating, listing, updating, and deleting LLM provider templates in API Platform Gateway
+- [Management API: LLM Provider Management](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/llm-provider-management.md): REST API reference for creating, listing, updating, and deleting LLM provider configurations and API keys in API Platform Gateway
+- [Management API: LLM Proxy Management](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/llm-proxy-management.md): REST API reference for creating, listing, updating, and deleting LLM proxy configurations and API keys in API Platform Gateway
+- [Management API: Secrets Management](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/secrets-management.md): REST API reference for creating, listing, retrieving, updating, and deleting secrets in API Platform Gateway
+- [Management API: WebSub API Management](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/websub-api-management.md): REST API reference for creating, listing, updating, and deleting WebSub API configurations and API keys in API Platform Gateway
+- [Management API: WebBroker API Management](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/webbroker-api-management.md): REST API reference for creating, listing, retrieving, and deleting WebBroker API configurations in API Platform Gateway
+- [Management API: Schemas](https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/schemas.md): JSON schema definitions for all API Platform Gateway Controller management API request and response objects
+
+## AI Gateway (Standalone)
+
+- [AI Gateway Overview](https://wso2.com/api-platform/docs/ai-gateway/overview.md): Overview of the standalone AI Gateway: LLM proxy, MCP proxy, deployment, and observability
+- [LLM Proxy Quick Start](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/quick-start-guide.md): Deploy the standalone AI Gateway and route your first LLM request
+- [LLM Provider Templates](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/llm-templates.md): Provider templates for OpenAI, Anthropic, Azure OpenAI, AWS Bedrock, Gemini, and Azure AI Foundry
+- [Semantic Caching](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/semantic-caching.md): Cache LLM responses by semantic similarity in the standalone gateway
+- [Model Round Robin](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/load-balancing/model-round-robin.md): Distribute LLM traffic evenly across multiple providers or model endpoints
+- [Model Weighted Round Robin](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/load-balancing/model-weighted-round-robin.md): Distribute LLM traffic across providers with configurable traffic weights
+- [Prompt Decorator](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/prompt-management/prompt-decorator.md): Prepend or append system-level instructions to every LLM request at the gateway level
+- [Prompt Template](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/prompt-management/prompt-template.md): Replace 'template://' URI references in LLM request payloads with predefined, parameterized prompt templates
+- [AWS Bedrock Guardrail](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/aws-bedrock-guardrail.md): AWS Bedrock Guardrail for enterprise-grade content filtering, topic detection, and PII protection
+- [Azure Content Safety](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/azure-content-safety.md): Azure Content Safety integration for detecting hate speech, sexual content, violence, and self-harm
+- [Content Length Guardrail](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/content-length.md): Enforce byte-length limits on LLM inputs and outputs
+- [JSON Schema Guardrail](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/json-schema.md): Validate LLM request and response body content against a JSON schema definition to enforce structured data formats
+- [PII Masking Regex Guardrail](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/pii-masking-regex.md): Mask personally identifiable information using configurable regex patterns
+- [Regex Guardrail](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/regex.md): Block or allow content matching a regular expression pattern
+- [Semantic Prompt Guard](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/semantic-prompt-guard.md): Block semantically similar prompts using embedding-based similarity matching against allow/deny phrase lists
+- [Sentence Count Guardrail](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/sentence-count.md): Enforce min/max sentence count on LLM inputs and outputs
+- [URL Guardrail](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/url.md): Validate and block URLs in LLM prompts or completions
+- [Word Count Guardrail](https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/word-count.md): Enforce min/max word count on LLM inputs and outputs
+- [MCP Proxy Quick Start](https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/quick-start-guide.md): Set up a standalone MCP proxy and invoke it through an MCP client
+- [MCP Access Control List](https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/policies/mcp-acl-list.md): Control access to MCP tools, resources, and prompts using allow or deny mode with exceptions
+- [MCP Authentication](https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/policies/mcp-authentication.md): Enforce authentication on inbound MCP traffic
+- [MCP Authorization](https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/policies/mcp-authorization.md): Define fine-grained access control rules for MCP tools, resources, and prompts based on JWT claims and scopes
+- [MCP Rewrite](https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/policies/mcp-rewrite.md): Expose user-facing names for MCP tools, resources, and prompts while mapping them to different backend capability names
+- [AI Gateway Immutable Deployment](https://wso2.com/api-platform/docs/ai-gateway/deployment-modes/immutable-gateway.md): Run the standalone AI Gateway in immutable mode, loading all configuration from files at startup
+- [AI Gateway Kubernetes Overview](https://wso2.com/api-platform/docs/ai-gateway/deployment-modes/kubernetes/overview.md): Overview of Kubernetes deployment for the standalone AI Gateway
+- [AI Gateway Kubernetes Standalone](https://wso2.com/api-platform/docs/ai-gateway/deployment-modes/kubernetes/kubernetes-standalone.md): Deploy the standalone AI Gateway on Kubernetes without an operator
+- [AI Gateway Kubernetes Operator](https://wso2.com/api-platform/docs/ai-gateway/deployment-modes/kubernetes/gateway-operator.md): Deploy the standalone AI Gateway using the Kubernetes operator
+- [AI Gateway Logging](https://wso2.com/api-platform/docs/ai-gateway/observability/logging.md): Configure structured logging for the standalone AI Gateway
+- [AI Gateway Tracing](https://wso2.com/api-platform/docs/ai-gateway/observability/tracing.md): Configure distributed tracing for the standalone AI Gateway
+- [AI Gateway Moesif Analytics](https://wso2.com/api-platform/docs/ai-gateway/analytics/moesif-analytics.md): Integrate the standalone AI Gateway with Moesif for LLM usage analytics and cost tracking
+- [AI Gateway Analytics Header Filter](https://wso2.com/api-platform/docs/ai-gateway/analytics/analytics-header-filter.md): Control which request and response headers are sent to analytics backends using allow or deny mode
+- [AI Gateway Controller Authentication](https://wso2.com/api-platform/docs/ai-gateway/ai-gateway-rest-api/authentication.md): Configure Basic Auth or JWT/IDP authentication and role-based authorization for the AI Gateway Controller REST API
+
+## Policy Hub
+
+- [Policy Hub Overview](https://wso2.com/api-platform/docs/policy-hub/overview.md): Open source repository of API policies and AI guardrails: automatically available to Cloud, API Manager 4.7+, and standalone gateways
+
+## Guides
+
+- [Convert a REST API into an MCP Tool](https://wso2.com/api-platform/docs/guides/ai-and-mcp/convert-rest-api-to-mcp-server.md): End-to-end walkthrough: expose a REST API as a governed MCP server, enforce OAuth2, and connect it to Claude Desktop
+- [Build an AI App with Claude Code](https://wso2.com/api-platform/docs/guides/ai-and-mcp/build-ai-app-with-claude-code.md): End-to-end walkthrough: build an AI application with Claude Code that calls backend APIs governed by WSO2 API Platform
+- [Governed Multi-Model LLM Proxy with Cost Controls and Failover](https://wso2.com/api-platform/docs/guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md): End-to-end walkthrough: set up a single governed LLM proxy that round-robins across multiple models for failover, enforces per-team token budgets, masks PII before requests leave your network, caches semantically similar prompts, and attributes cost per team via Moesif
+- [Enforce a Consistent AI Persona with the Prompt Decorator Policy](https://wso2.com/api-platform/docs/guides/ai-and-mcp/using-prompt-decorator-policy.md): End-to-end walkthrough: attach the prompt decorator policy to an LLM proxy to prepend a persona system message to every request, so every client application gets the same on-brand assistant without changing any code
+- [Find and Connect to an Enterprise MCP Server from the MCP Hub](https://wso2.com/api-platform/docs/guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md): End-to-end walkthrough: discover MCP servers and tools in the MCP Hub, generate OAuth2 credentials, and connect Claude Desktop to an enterprise MCP server
+- [Configure Claude Code with AI Gateway](https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md): Configure Claude Code to route all LLM traffic through the WSO2 AI Gateway
+- [Configure Google Gemini CLI with AI Gateway](https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md): Configure Google Gemini CLI to route LLM traffic through the WSO2 AI Gateway
+- [Configure OpenAI Codex CLI with AI Gateway](https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md): Configure OpenAI Codex CLI to route LLM traffic through the WSO2 AI Gateway
+- [Go from Zero to a Working API Call Using the Developer Portal](https://wso2.com/api-platform/docs/guides/developer-portal/api-discovery-and-tryout.md): End-to-end walkthrough: discover an API in the Developer Portal, try it with an API key, subscribe to a plan, and invoke it with rate limiting applied
+
+## Tools
+
+- [API Platform CLI Quick Start](https://wso2.com/api-platform/docs/tools/cli/quick-start-guide.md): Get started with the `ap` command-line interface
+- [Customizing Gateway Policies with CLI](https://wso2.com/api-platform/docs/tools/cli/customizing-gateway-policies.md): Use the CLI to add and remove policies from a gateway image
+- [API Platform CLI Reference](https://wso2.com/api-platform/docs/tools/cli/reference.md): Full command reference for the `ap` CLI
+- [VS Code API Designer: Getting Started](https://wso2.com/api-platform/docs/tools/vscode-api-design/getting-started.md): Install and configure the WSO2 VS Code extension for API design
+- [VS Code: Design APIs](https://wso2.com/api-platform/docs/tools/vscode-api-design/design-apis.md): Design and edit OpenAPI specifications with AI assistance in VS Code
+- [VS Code: Govern APIs](https://wso2.com/api-platform/docs/tools/vscode-api-design/govern-apis.md): Apply governance rules to API designs directly from VS Code
+- [VS Code: End-to-End Tutorial](https://wso2.com/api-platform/docs/tools/vscode-api-design/end-to-end-tutorial.md): Full walkthrough: draft, design, govern, and fix an OpenAPI specification using API Designer and GitHub Copilot
+- [Arazzo MCP Generator CLI Quick Start](https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/quick-start-guide.md): Convert an Arazzo specification into a Dockerized Python MCP server using the arazzo-mcp-gen CLI
+- [Arazzo MCP Generator CLI Reference](https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/reference.md): Full command reference for arazzo-mcp-gen: sample, validate, inspect, visualize, and mcp-server generate
+- [VS Code Arazzo Visualizer: Getting Started](https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/getting-started.md): Visualize, edit, and run Arazzo workflow specifications as interactive diagrams directly inside VS Code

@@ -1,0 +1,190 @@
+---
+title: "Exposing APIs with custom hostnames in Choreo Connect"
+description: "Expose APIs deployed on Choreo Connect with custom hostnames by defining virtual hosts in WSO2 API Manager."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.0.0/deploy-and-publish/deploy-on-gateway/choreo-connect/deploy-api/deploy-api-with-custom-hostnames/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.0.0/deploy-and-publish/deploy-on-gateway/choreo-connect/deploy-api/deploy-api-with-custom-hostnames.md
+tags:
+  - api-manager
+  - deploy-and-publish
+  - deploy-on-gateway
+  - choreo-connect
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-08-20
+content_type: "how-to"
+---
+
+# Exposing APIs With Custom Hostnames in Choreo Connect Using WSO2 API Manager
+
+You can expose APIs with custom hostnames in Choreo Connect using either one of the following Choreo Connect modes:
+
+- [Choreo Connect with WSO2 API Manager as a Control Plane](#choreo-connect-with-wso2-api-manager-as-a-control-plane)
+- [Choreo Connect as a Standalone Gateway](#choreo-connect-as-a-standalone-gateway)
+
+## Choreo Connect with WSO2 API Manager as a Control Plane
+
+Follow the instructions below to use Choreo Connect with WSO2 API Manager as the Control Plane to expose APIs with custom hostnames via the Publisher Portal in WSO2 API Manager:
+
+!!! info
+    **Before you begin**
+
+    This guide assumes that you already have a Choreo Connect instance that is up and running. If not, checkout the [Quick Start Guide](../getting-started/quick-start-guide-docker-with-apim.md) on how to install and run Choreo Connect. To learn more about Choreo Connect, have a look at the [Overview of Choreo Connect](../getting-started/choreo-connect-overview.md).
+
+### Step 1 - Define Virtual Hosts
+
+Let's define virtual hosts (VHosts) in API Manager server instance by editing the `deployment.toml`.
+
+!!! info
+    Refer [Define Custom Hostnames](../../deploy-api/exposing-apis-via-custom-hostnames.md#step-1-define-the-custom-hostnames)
+    for more information.
+
+1. Open `<APIM-HOME>/repository/conf/deployment.toml` file.
+2. Add the following configuration under the **Default** `[[apim.gateway.environment]]` to define the VHost `us.wso2.com`.
+    ```toml
+    [[apim.gateway.environment.virtual_host]]
+    ws_endpoint = "ws://us.wso2.com:9099"
+    wss_endpoint = "wss://us.wso2.com:8099"
+    http_endpoint = "http://us.wso2.com/gateway"
+    https_endpoint = "https://us.wso2.com/gateway"
+    websub_event_receiver_http_endpoint = "http://us.wso2.com:9021"
+    websub_event_receiver_https_endpoint = "https://us.wso2.com:8021"
+    ``` 
+### Step 2 - Configure Choreo Connect with API Manager
+
+Refer to [documentation on how to configure Choreo Connect with API Manager](../getting-started/deploy/cc-on-docker-with-apim-as-control-plane.md).
+
+### Step 3 - Create an API in API Manager
+
+Follow the steps [here](../../../../design/create-api/create-rest-api/create-a-rest-api-from-an-openapi-definition.md).
+
+### Step 4 - Deploy the API in API Manager
+
+The guide [here](../../deploy-api/deploy-an-api.md) will explain how you can easily deploy the API you just created.
+When deploying the API, select the Virtual Host you defined earlier (i.e. `us.wso2.com`).
+
+You have successfully deployed the API to Choreo Connect with the VHost `us.wso2.com`.
+
+To invoke the API, skip to the steps [here](#step-5-invoke-the-api).
+
+### Step 5 - Invoke the API
+
+First we need to add the host entry to `/etc/hosts` file in order to access the API Manager publisher and Developer Portal.
+Add the following entry to `/etc/hosts` file
+
+```sh
+127.0.0.1   us.wso2.com
+```
+
+--8<-- "api-manager/4.0.0/includes/obtain-jwt.md"
+
+Execute the following cURL command to Invoke the API using the JWT.
+
+```sh
+curl -X GET "https://us.wso2.com:9095/v2/pet/findByStatus?status=available" -H "accept: application/xml" -H "Authorization:Bearer $TOKEN" -k
+```
+
+!!! note
+    You can also use header to specify the VHost to invoke the API.
+    ```sh
+    curl -X GET "https://localhost:9095/v2/pet/findByStatus?status=available" \
+        -H "Host: us.wso2.com"
+        -H "accept: application/xml" \
+        -H "Authorization:Bearer $TOKEN" -k
+    ```
+
+## Choreo Connect as a Standalone Gateway
+
+Follow the instructions below to use Choreo Connect as a Standalone Gateway to expose APIs with custom hostnames via WSO2 API Controller (apictl), which is a CLI Tool:
+
+!!! info
+    **Before you begin**
+
+    This guide assumes that you already have a Choreo Connect instance that is up and running. If not, checkout the [Quick Start Guide](../getting-started/deploy/cc-as-a-standalone-gateway-on-docker.md) on how to install and run Choreo Connect. To learn more about Choreo Connect, have a look at the [Overview of Choreo Connect](../getting-started/choreo-connect-overview.md).
+
+### Step 1 - Define Virtual Hosts
+
+Navigate to the `deployment_environments.yaml` file and define the virtual hosts as shown below.
+
+```yaml
+type: deployment_environments
+version: v4.1.0
+data:
+ -
+   displayOnDevportal: true
+   deploymentEnvironment: Default
+   deploymentVhost: us.wso2.com
+```
+
+!!! info
+    When configuring multiple Choreo Connect Gateway environments, you have to configure the default VHost of the particular environment.
+    
+    ```toml tab="Format"
+    # default vhosts mapping for standalone mode
+    [[adapter.vhostMapping]]
+      environment = <ENVIRONMENT_NAME>
+      vhost = <DEFAULT_VHOST_OF_ENVIRONMENT>
+    ```
+    
+    ```toml tab="Example"
+    # default vhosts mapping for standalone mode
+    [[adapter.vhostMapping]]
+      environment = "Default"
+      vhost = "localhost"
+    [[adapter.vhostMapping]]
+      environment = "sg-region"
+      vhost = "sg.wso2.com"
+    ```
+    
+    If the VHost is not declared in the API project, the API is deployed with the default VHost of the environment.
+    For exammple, an API project with following `deployment_environments.yaml` will be deployed to the following.
+    - Environment: Default - Vhost: us.wso2.com
+    - Environment: sg-region - Vhost: sg.wso2.com
+    - Environment: uk-region - API is not deployed to this environment becuase it is not configured in `[[adapter.vhostMapping]]`.
+    
+    ```yaml
+    type: deployment_environments
+    version: v4.1.0
+    data:
+     -
+       displayOnDevportal: true
+       deploymentEnvironment: Default
+       deploymentVhost: us.wso2.com
+     -
+       displayOnDevportal: true
+       deploymentEnvironment: sg-region
+     -
+       displayOnDevportal: true
+       deploymentEnvironment: uk-region
+    ```
+
+### Step 2 - Deploy the API
+
+Follow the all steps up to **Deploy API** in the [Deploy an API via apictl documentation](deploy-rest-api-in-choreo-connect.md#choreo-connect-as-a-standalone-gateway).
+
+Let's invoke the API.
+
+### Step 3 - Invoke the API
+
+First we need to add the host entry to `/etc/hosts` file in order to access the API Manager publisher and Developer Portal.
+
+Add the following entry to `/etc/hosts` file
+
+```sh
+127.0.0.1   us.wso2.com
+```
+
+--8<-- "api-manager/4.0.0/includes/obtain-jwt.md"
+
+Execute the following cURL command to Invoke the API using the JWT.
+
+```sh
+curl -X GET "https://us.wso2.com:9095/v2/pet/findByStatus?status=available" -H "accept: application/xml" -H "Authorization:Bearer $TOKEN" -k
+```
+
+!!! note
+    You can also use header to specify the VHost to invoke the API.
+    ```sh
+    curl -X GET "https://localhost:9095/v2/pet/findByStatus?status=available" \
+        -H "Host: us.wso2.com"
+        -H "accept: application/xml" \
+        -H "Authorization:Bearer $TOKEN" -k
+    ```

@@ -1,0 +1,51 @@
+---
+title: "Common runtime and configuration artifacts"
+description: "Directories that hold the persistent runtime and configuration artifacts of a WSO2 API Manager deployment, and what each contains."
+canonical_url: https://wso2.com/api-platform/docs/api-manager/4.6.0/reference/common-runtime-and-configuration-artifacts/
+md_url: https://wso2.com/api-platform/docs/api-manager/4.6.0/reference/common-runtime-and-configuration-artifacts.md
+tags:
+  - api-manager
+  - reference
+  - common-runtime-and-configuration-artifacts
+author: WSO2 API Platform Documentation Team
+last_updated: 2026-07-23
+content_type: "reference"
+---
+
+# Common Runtime and Configuration Artifacts
+
+The following are the artifacts used commonly in a WSO2 API Manager deployment.
+
+!!! info
+        Persistent runtime artifacts could be updated at the runtime, and are expected to be available across instance restarts, VM re-creation or container re-spawning. Persistent file storage systems should be used to ensure this.
+
+    Example: In a Kubernetes based container environment, its possible to use Persistent Volumes to persist these artifacts.
+
+### Persistent Runtime Artifacts
+
+These are directories in API Manager that includes deployable files, which are valid from a specified date and time at runtime.
+
+-   `<API-M_HOME>/repository/deployment/server` -  Contains webapps that are related to customizing WSO2 API Manager during deployment. Required for deploying a super tenant. Also contains Synapse configurations and custom sequences, throttling execution plans.
+
+-   `<API-M_HOME>/repository/tenants` - This is only used when the deployment involves multi-tenancy. For more information, see [Configuring Multiple Tenants](../administer/multitenancy/introduction-to-multitenancy.md).
+
+-   `<API-M_HOME>/repository/database` - H2 database (For solr indexing).
+
+!!! info
+    Shared Artifacts
+
+    The following artifacts can be shared among API Manager nodes.
+
+    1. `<API-M_HOME>/repository/deployment/server/userstores` (Optional)
+    2. `<API-M_HOME>/repository/tenants`
+
+
+### Persistent Configuration Artifacts
+
+These are directories in API Manager where the configuration files are stored.
+
+-   `<API-M_HOME>/repository/resources` - This folder/artifact contains keystores, templates, scripts, etc.
+
+-   `<API-M_HOME>/repository/conf` - This folder contains the configuration files related to servers, datasources, registry, user management, etc.
+
+-   `<API-M_HOME>/bin` - Contains files for JVM changes, profile changes, etc.
