@@ -8,7 +8,7 @@ tags:
   - llm
   - mcp
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-31
+last_updated: 2026-08-12
 content_type: "concept"
 ---
 
@@ -16,119 +16,21 @@ content_type: "concept"
 
 A gateway for managing and securing AI traffic, including Large Language Model (LLM) APIs and Model Context Protocol (MCP) servers.
 
-## Quick Start
+## Why use the AI Gateway
 
-- [LLM Quick Start Guide](./llm-proxy/quick-start-guide.md)—Install the gateway, confirm the Gateway Controller admin health endpoint reports it healthy, and route traffic to an LLM provider such as OpenAI.
-- [MCP Quick Start Guide](./mcp-proxy/quick-start-guide.md)—Install the gateway, confirm the Gateway Controller admin health endpoint reports it healthy, and route traffic to an MCP server.
+Run the AI Gateway when AI traffic needs the controls you already apply to your APIs. With it, you can:
 
-## Key Concepts
+- Apply guardrails that validate, filter, or transform content before it reaches a model or a client. See [Guardrails](guardrails/index.md).
+- Serve one OpenAI-compatible endpoint that routes requests to multiple LLM providers. See [Multi-provider routing](routing/multi-provider-routing.md).
+- Expose MCP servers through a central gateway, and apply authentication and access control to MCP traffic. See [MCP proxy](gateway-artifacts/mcp-proxy.md).
+- Collect logs, traces, and analytics for the traffic the gateway handles. See [Gateway logs](logging-and-tracing/gateway-logs.md).
+- Run the gateway on its own, or register it with AI Workspace to govern the gateways across your organization. See [Connect to AI Workspace](setup-and-deployment/production-deployment/control-plane-connection.md).
 
-### LLM Provider Template
+## Who it is for
 
-An LLM Provider Template defines the characteristics and behaviors specific to an AI service provider, such as OpenAI, Azure OpenAI, or other LLM platforms. It describes how the gateway should interpret and extract usage and operational metadata, including prompt, completion, total, and remaining token information, as well as request and response model metadata.
+Two roles share the gateway. A platform administrator configures LLM providers, the credentials they use, and the policies that apply organization-wide. An AI developer creates LLM proxies on top of those providers, and adds the policies a single application needs.
 
-Following templates are shipped out-of-the-box
+## Where to go next
 
-- OpenAI
-- Azure OpenAI
-- Anthropic
-- AWS Bedrock
-- Azure AI Foundry
-- Gemini
-
-### LLM Provider
-
-An LLM Provider represents a connection to an AI backend service such as OpenAI, Azure OpenAI, or other LLM APIs. Platform administrators configure LLM Providers to define:
-
-- The LLM Provider Template
-- The upstream LLM service URL
-- Authentication credentials (API keys, tokens)
-- Access control rules for which endpoints are exposed
-- Budget control policies, such as token-based rate limiting
-- Organization-wide policies such as guardrails
-
-Once configured, the LLM Provider allows traffic to flow through the gateway to the AI backend.
-
-To connect the gateway to AWS Bedrock, see [Configure an AWS Bedrock LLM Provider](llm-proxy/configure-aws-bedrock-provider.md). The guide covers both Bedrock bearer API keys and AWS Signature Version 4 (SigV4) authentication.
-
-### LLM Proxy
-
-An LLM Proxy allows developers to create custom API endpoints that consume an LLM Provider, while inheriting administrator-enforced access control, budgeting and organization-wide policies defined at the provider level. Each proxy gets its own URL context (e.g., `/assistant`) and can have its own policies applied. This enables:
-
-- Multiple AI applications to share a single LLM Provider
-- A single OpenAI-compatible endpoint to route requests to multiple LLM providers. See [Multi-Provider Routing for LLM Proxies](./llm-proxy/multi-provider-routing.md).
-- Per-application policies such as prompt management and guardrails
-- Separation between platform administration and application development
-
-### MCP Proxy
-
-An MCP Proxy routes Model Context Protocol traffic to MCP servers. MCP is a protocol that enables AI assistants to interact with external tools and data sources. With MCP Proxies, you can:
-
-- Expose MCP servers through a centralized gateway
-- Apply authentication and access control to MCP traffic
-- Manage multiple MCP servers from a single control plane
-
-MCP Proxies support the following MCP specification versions:
-
-- `2025-06-18`
-- `2025-11-25`
-
-### Streaming
-
-When an upstream service streams its response, the gateway relays it to the client chunk by chunk instead of buffering the whole response. This holds for LLM providers and LLM proxies, and needs no configuration. On MCP proxies, request bodies stream, but response bodies stay buffered. See [Real-time AI streaming](./streaming-responses.md).
-
-## Default Ports
-
-| Port | Service | Description |
-|------|---------|-------------|
-| 8080 | Router | HTTP traffic |
-| 8443 | Router | HTTPS traffic |
-| 9090 | Gateway-Controller | REST API |
-| 9094 | Gateway-Controller Admin | Health and admin endpoints |
-
-## Architecture
-
-```
-                           ┌─────────────────┐
-                           │ LLM Providers   │
-                           │ (OpenAI, etc.)  │
-                           └────────▲────────┘
-                                    │
-┌──────────┐    ┌──────────────┐    │
-│ AI Apps  │───▶│  AI Gateway  │────┤
-└──────────┘    └──────────────┘    │
-                                    │
-                           ┌────────▼────────┐
-                           │  MCP Servers    │
-                           └─────────────────┘
-```
-
-**How it works:**
-
-1. Administrators verify the Gateway-Controller admin health endpoint and configure LLM Providers and MCP Proxies via the Gateway-Controller API
-2. Developers create LLM Proxies to build AI applications on top of available providers
-3. The gateway routes traffic, applies policies, and manages authentication
-
-## AI Guardrails
-
-AI Guardrails allow you to enforce safety, content, and compliance policies on AI traffic flowing through the AI Gateway. They can be applied at the LLM Provider level (organization-wide), at the LLM Proxy level (per-application), or on MCP Proxies.
-
-The complete and up-to-date guardrail catalogue — with configuration references and examples — is maintained in the gateway-controllers repository: [gateway-controllers documentation](https://github.com/wso2/gateway-controllers/blob/main/docs/README.md)
-
-You can extend the AI Gateway with custom guardrail policies by building a custom gateway image using the `ap` CLI. See [Customizing the Gateway by Adding and Removing Policies](../../tools/cli/customizing-gateway-policies.md).
-
-## Documentation
-
-The following table lists the AI Gateway documentation sections and what each one covers:
-
-| Section | Description |
-|---------|-------------|
-| [LLM](./llm-proxy/quick-start-guide.md) | LLM provider configuration, guardrails, prompt management, and semantic caching |
-| [MCP](./mcp-proxy/quick-start-guide.md) | MCP proxy setup and policies |
-| [Real-time AI streaming](./streaming-responses.md) | Streamed responses across providers and proxies, and how policies and analytics behave |
-| [Observability](./observability/logging.md) | Logging and tracing configuration |
-| [Analytics](./analytics/moesif-analytics.md) | Analytics integrations (Moesif) |
-| [Policies and Guardrails](https://github.com/wso2/gateway-controllers/blob/main/docs/README.md) | Gateway policies and guardrails for AI traffic control |
-| [Management API](./gateway-controller-management-api/overview.md) | REST API reference for managing LLM providers, LLM proxies, MCP proxies, certificates, and secrets |
-| [Production deployment](./deployment/production-deployment/overview.md) | High-availability Kubernetes deployment with Helm, an external database, replicated workloads, and AI workload tuning |
-| [AI Workspace](../../ai-workspace/1.0.0/overview.md) | The control plane for governing LLM providers, proxies, and policies across every gateway you run |
+- To install the gateway and route a first request through it, see [Quick Start Guide](quick-start-guide.md).
+- To learn which artifacts a request passes through, see [How it works](how-it-works.md).

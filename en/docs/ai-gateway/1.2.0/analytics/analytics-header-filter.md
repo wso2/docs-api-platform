@@ -8,7 +8,7 @@ tags:
   - analytics
   - policies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-07
+last_updated: 2026-08-14
 content_type: "reference"
 ---
 
@@ -59,9 +59,11 @@ Each filter parameter (`requestHeadersToFilter` and `responseHeadersToFilter`) i
 
 ## System Requirements
 
-* Analytics must be enabled globally via `config.yaml` (`analytics.enabled: true`)
+* Analytics must be enabled globally via `config.toml` (`analytics.enabled = true`)
 * The policy must be explicitly applied to the API policy chain
 * If analytics is disabled at the system level, this policy has no effect
+
+For the full set of analytics system parameters, including the publishers to enable and whether payloads are collected, see the [Analytics Header Filter policy](https://wso2.com/api-platform/policy-hub/policies/analytics-header-filter) in Policy Hub.
 
 
 ## API Definition Example

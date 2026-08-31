@@ -725,80 +725,107 @@ nav:
     - "1.2.0":
         - Overview: ai-gateway/1.2.0/overview.md
         - Quick Start Guide: ai-gateway/1.2.0/quick-start-guide.md
-        - Setup:
-            - Configuration & Interpolation: ai-gateway/1.2.0/setup/configuration.md
-            - Setting Up the Database: ai-gateway/1.2.0/setup/database-setup.md
-        - LLM Proxy:
-            - Quick Start Guide: ai-gateway/1.2.0/llm-proxy/quick-start-guide.md
-            - LLM Provider Templates: ai-gateway/1.2.0/llm-proxy/llm-templates.md
-            - Multi-Provider Routing: ai-gateway/1.2.0/llm-proxy/multi-provider-routing.md
-            - Guardrails:
-                - Overview: ai-gateway/1.2.0/llm-proxy/guardrails/overview.md
-                - Guardrail execution order: ai-gateway/1.2.0/llm-proxy/guardrails/execution-order.md
-                - AWS Bedrock Guardrail: ai-gateway/1.2.0/llm-proxy/guardrails/aws-bedrock-guardrail.md
-                - Azure Content Safety: ai-gateway/1.2.0/llm-proxy/guardrails/azure-content-safety.md
-                - Content Length Guardrail: ai-gateway/1.2.0/llm-proxy/guardrails/content-length.md
-                - JSON Schema Guardrail: ai-gateway/1.2.0/llm-proxy/guardrails/json-schema.md
-                - PII Masking Regex Guardrail: ai-gateway/1.2.0/llm-proxy/guardrails/pii-masking-regex.md
-                - Regex Guardrail: ai-gateway/1.2.0/llm-proxy/guardrails/regex.md
-                - Semantic Prompt Guardrail: ai-gateway/1.2.0/llm-proxy/guardrails/semantic-prompt-guard.md
-                - Sentence Count Guardrail: ai-gateway/1.2.0/llm-proxy/guardrails/sentence-count.md
-                - URL Guardrail: ai-gateway/1.2.0/llm-proxy/guardrails/url.md
-                - Word Count Guardrail: ai-gateway/1.2.0/llm-proxy/guardrails/word-count.md
-            - Load Balancing:
-                - Model Round Robin: ai-gateway/1.2.0/llm-proxy/load-balancing/model-round-robin.md
-                - Model Weighted Round Robin: ai-gateway/1.2.0/llm-proxy/load-balancing/model-weighted-round-robin.md
-            - Prompt Management:
-                - Prompt Decorator: ai-gateway/1.2.0/llm-proxy/prompt-management/prompt-decorator.md
-                - Prompt Template: ai-gateway/1.2.0/llm-proxy/prompt-management/prompt-template.md
-            - Semantic Caching: ai-gateway/1.2.0/llm-proxy/semantic-caching.md
-        - MCP Proxy:
-            - Quick Start Guide: ai-gateway/1.2.0/mcp-proxy/quick-start-guide.md
-            - Policies:
-                - MCP Access Control List: ai-gateway/1.2.0/mcp-proxy/policies/mcp-acl-list.md
-                - MCP Authentication: ai-gateway/1.2.0/mcp-proxy/policies/mcp-authentication.md
-                - MCP Authorization: ai-gateway/1.2.0/mcp-proxy/policies/mcp-authorization.md
-                - MCP Rate Limit: ai-gateway/1.2.0/mcp-proxy/policies/mcp-ratelimit.md
-                - MCP Rewrite: ai-gateway/1.2.0/mcp-proxy/policies/mcp-rewrite.md
-        - Real-Time AI Streaming: ai-gateway/1.2.0/streaming-responses.md
-        - Deployment:
-          - Deployment Modes:
-            - Immutable Gateway: ai-gateway/1.2.0/deployment/deployment-modes/immutable-gateway.md
-            - Kubernetes:
-              - Overview: ai-gateway/1.2.0/deployment/deployment-modes/kubernetes/overview.md
-              - Standalone Mode: ai-gateway/1.2.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
-              - Kubernetes Operator Mode: ai-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator.md
-          - Production Deployment:
-            - Overview: ai-gateway/1.2.0/deployment/production-deployment/overview.md
-            - Security Hardening: ai-gateway/1.2.0/deployment/production-deployment/security-hardening.md
-            - Database Configuration: ai-gateway/1.2.0/deployment/production-deployment/database-configuration.md
-            - Resources & Scaling: ai-gateway/1.2.0/deployment/production-deployment/resources-and-scaling.md
-            - Tune for AI Traffic: ai-gateway/1.2.0/deployment/production-deployment/ai-workload-tuning.md
-            - Deploy & Verify: ai-gateway/1.2.0/deployment/production-deployment/deploy-and-verify.md
-            - Connect to AI Workspace: ai-gateway/1.2.0/deployment/production-deployment/control-plane-connection.md
-        - Resiliency:
-            - Timeouts: ai-gateway/1.2.0/resiliency/timeouts.md
-        - Observability:
-            - Logging: ai-gateway/1.2.0/observability/logging.md
-            - Traffic Logging: ai-gateway/1.2.0/observability/traffic-logging.md
-            - Tracing: ai-gateway/1.2.0/observability/tracing.md
+        - Authenticate Clients: ai-gateway/1.2.0/authenticate-clients.md
+        - Guardrails:
+            - ai-gateway/1.2.0/guardrails/index.md
+            - Guardrails Catalogue: ai-gateway/1.2.0/guardrails/guardrails-catalogue.md
+            - Guardrail execution order: ai-gateway/1.2.0/guardrails/execution-order.md
+        - Token Based Rate Limiting: ai-gateway/1.2.0/token-based-rate-limiting.md
+        - Cost Control and Budgets: ai-gateway/1.2.0/cost-control-and-budgets.md
+        - Semantic Caching: ai-gateway/1.2.0/semantic-caching.md
+        - Routing:
+            - ai-gateway/1.2.0/routing/index.md
+            - Multi-Provider Routing: ai-gateway/1.2.0/routing/multi-provider-routing.md
+            - Multi Model Routing: ai-gateway/1.2.0/routing/multi-model-routing.md
+            - Routing Policies:
+                - Load Balancing and Failover: ai-gateway/1.2.0/routing/routing-policies/load-balancing-and-failover.md
+                - LLM Header Routing: ai-gateway/1.2.0/routing/routing-policies/llm-header-routing.md
+        - Prompt Management: ai-gateway/1.2.0/prompt-management.md
+        - MCP Governance: ai-gateway/1.2.0/mcp-governance.md
+        - Transform Requests and Responses: ai-gateway/1.2.0/transform-requests-and-responses.md
+        - Timeouts and Resilience: ai-gateway/1.2.0/timeouts-and-resilience.md
+        - Stream Responses: ai-gateway/1.2.0/streaming-responses.md
+        - Logging and Tracing:
+            - ai-gateway/1.2.0/logging-and-tracing/index.md
+            - Gateway Logs: ai-gateway/1.2.0/logging-and-tracing/gateway-logs.md
+            - Log Requests and Responses: ai-gateway/1.2.0/logging-and-tracing/log-requests-and-responses.md
+            - Tracing: ai-gateway/1.2.0/logging-and-tracing/tracing.md
         - Analytics:
+            - ai-gateway/1.2.0/analytics/index.md
             - Moesif Analytics: ai-gateway/1.2.0/analytics/moesif-analytics.md
             - Analytics Header Filter: ai-gateway/1.2.0/analytics/analytics-header-filter.md
-        - Performance:
-            - Overview: ai-gateway/1.2.0/performance/overview.md
-            - AI Gateway runtime with two CPUs: ai-gateway/1.2.0/performance/ai-gateway-runtime-with-two-cpus.md
-            - AI Gateway runtime with four CPUs: ai-gateway/1.2.0/performance/ai-gateway-runtime-with-four-cpus.md
-        - Management API:
-            - Overview: ai-gateway/1.2.0/gateway-controller-management-api/overview.md
-            - Authentication: ai-gateway/1.2.0/gateway-controller-management-api/authentication.md
-            - LLM Provider Template Management: ai-gateway/1.2.0/gateway-controller-management-api/llm-provider-template-management.md
-            - LLM Provider Management: ai-gateway/1.2.0/gateway-controller-management-api/llm-provider-management.md
-            - LLM Proxy Management: ai-gateway/1.2.0/gateway-controller-management-api/llm-proxy-management.md
-            - MCP Proxy Management: ai-gateway/1.2.0/gateway-controller-management-api/mcp-proxy-management.md
-            - Certificate Management: ai-gateway/1.2.0/gateway-controller-management-api/certificate-management.md
-            - Secrets Management: ai-gateway/1.2.0/gateway-controller-management-api/secrets-management.md
-            - Schemas: ai-gateway/1.2.0/gateway-controller-management-api/schemas.md
+        - AI Workspace:
+            - Extend Your Gateway with AI Workspace: ai-gateway/1.2.0/ai-workspace/extend-your-gateway-with-ai-workspace.md
+            - Connect the Gateway to AI Workspace: ai-gateway/1.2.0/ai-workspace/connect-the-gateway.md
+        - How It Works: ai-gateway/1.2.0/how-it-works.md
+        - Setup and Deployment:
+            - ai-gateway/1.2.0/setup-and-deployment/index.md
+            - Install the Gateway: ai-gateway/1.2.0/setup-and-deployment/install-the-gateway.md
+            - Kubernetes:
+                - ai-gateway/1.2.0/setup-and-deployment/kubernetes/index.md
+                - Standalone Mode: ai-gateway/1.2.0/setup-and-deployment/kubernetes/kubernetes-standalone.md
+                - Kubernetes Operator Mode: ai-gateway/1.2.0/setup-and-deployment/kubernetes/gateway-operator.md
+            - Immutable Gateway: ai-gateway/1.2.0/setup-and-deployment/immutable-gateway.md
+            - Configuration and Interpolation: ai-gateway/1.2.0/setup-and-deployment/configuration.md
+            - Database: ai-gateway/1.2.0/setup-and-deployment/database-setup.md
+            - Secure the Management API: ai-gateway/1.2.0/setup-and-deployment/secure-the-management-api.md
+            - Production Deployment:
+                - ai-gateway/1.2.0/setup-and-deployment/production-deployment/index.md
+                - Security Hardening: ai-gateway/1.2.0/setup-and-deployment/production-deployment/security-hardening.md
+                - Database Configuration: ai-gateway/1.2.0/setup-and-deployment/production-deployment/database-configuration.md
+                - Resources and Scaling: ai-gateway/1.2.0/setup-and-deployment/production-deployment/resources-and-scaling.md
+                - Tune for AI Traffic: ai-gateway/1.2.0/setup-and-deployment/production-deployment/ai-workload-tuning.md
+                - Deploy and Verify: ai-gateway/1.2.0/setup-and-deployment/production-deployment/deploy-and-verify.md
+                - Connect to AI Workspace: ai-gateway/1.2.0/setup-and-deployment/production-deployment/control-plane-connection.md
+            - Sizing and Performance:
+                - ai-gateway/1.2.0/setup-and-deployment/sizing-and-performance/index.md
+                - AI Gateway runtime with two CPUs: ai-gateway/1.2.0/setup-and-deployment/sizing-and-performance/ai-gateway-runtime-with-two-cpus.md
+                - AI Gateway runtime with four CPUs: ai-gateway/1.2.0/setup-and-deployment/sizing-and-performance/ai-gateway-runtime-with-four-cpus.md
+        - Gateway Artifacts:
+            - ai-gateway/1.2.0/gateway-artifacts/index.md
+            - LLM Provider:
+                - ai-gateway/1.2.0/gateway-artifacts/llm-provider/index.md
+                - Create and Configure an LLM Provider: ai-gateway/1.2.0/gateway-artifacts/llm-provider/create-and-configure-an-llm-provider.md
+                - Supported Providers:
+                    - OpenAI: ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/openai.md
+                    - Azure OpenAI: ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/azure-openai.md
+                    - Anthropic: ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/anthropic.md
+                    - Gemini: ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/gemini.md
+                    - MistralAI: ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/mistralai.md
+                    - AWS Bedrock: ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/aws-bedrock.md
+                    - Azure AI Foundry: ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/azure-ai-foundry.md
+                    - Custom Provider: ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/custom-provider.md
+            - LLM Proxy: ai-gateway/1.2.0/gateway-artifacts/llm-proxy.md
+            - MCP Proxy: ai-gateway/1.2.0/gateway-artifacts/mcp-proxy.md
+        - CLI and Extensibility:
+            - CLI Quick Start: tools/cli/quick-start-guide.md
+            - CLI Reference: tools/cli/reference.md
+            - Customizing Gateway Policies: tools/cli/customizing-gateway-policies.md
+        - Guides:
+            - Set up a Governed Multi-Model LLM Proxy with Cost Controls and Failover: guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md
+            - Enforce Token-Based Rate Limiting on an LLM Proxy: guides/ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy.md
+            - Enforce a Consistent AI Persona with the Prompt Decorator Policy: guides/ai-and-mcp/using-prompt-decorator-policy.md
+            - Build an AI App with Claude Code that Calls Governed Backend APIs: guides/ai-and-mcp/build-ai-app-with-claude-code.md
+            - Build an AI Agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
+            - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
+            - Find and Connect to an Enterprise MCP Server from the MCP Hub: guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md
+            - Configure AI Coding Assistants:
+                - Configure Claude Code with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
+                - Configure Google Gemini CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
+                - Configure OpenAI Codex CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md
+        - Reference:
+            - ai-gateway/1.2.0/reference/index.md
+            - Provider Templates: ai-gateway/1.2.0/reference/llm-templates.md
+            - Management REST API:
+                - ai-gateway/1.2.0/reference/management-api/index.md
+                - LLM Provider Template Management: ai-gateway/1.2.0/reference/management-api/llm-provider-template-management.md
+                - LLM Provider Management: ai-gateway/1.2.0/reference/management-api/llm-provider-management.md
+                - LLM Proxy Management: ai-gateway/1.2.0/reference/management-api/llm-proxy-management.md
+                - MCP Proxy Management: ai-gateway/1.2.0/reference/management-api/mcp-proxy-management.md
+                - Certificate Management: ai-gateway/1.2.0/reference/management-api/certificate-management.md
+                - Secrets Management: ai-gateway/1.2.0/reference/management-api/secrets-management.md
+                - Schemas: ai-gateway/1.2.0/reference/management-api/schemas.md
+            - Default Ports: ai-gateway/1.2.0/reference/default-ports.md
         - About this release: ai-gateway/1.2.0/about-this-release.md
     - "1.1.0":
         - Overview: ai-gateway/1.1.0/overview.md
@@ -1373,10 +1400,10 @@ plugins:
         ai-gateway/1.1.0/deployment-modes/kubernetes/gateway-operator.md: ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator.md
         ai-gateway/1.1.0/deployment-modes/kubernetes/kubernetes-standalone.md: ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
         ai-gateway/1.1.0/deployment-modes/kubernetes/overview.md: ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/overview.md
-        ai-gateway/1.2.0/deployment-modes/immutable-gateway.md: ai-gateway/1.2.0/deployment/deployment-modes/immutable-gateway.md
-        ai-gateway/1.2.0/deployment-modes/kubernetes/gateway-operator.md: ai-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator.md
-        ai-gateway/1.2.0/deployment-modes/kubernetes/kubernetes-standalone.md: ai-gateway/1.2.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
-        ai-gateway/1.2.0/deployment-modes/kubernetes/overview.md: ai-gateway/1.2.0/deployment/deployment-modes/kubernetes/overview.md
+        ai-gateway/1.2.0/deployment-modes/immutable-gateway.md: ai-gateway/1.2.0/setup-and-deployment/immutable-gateway.md
+        ai-gateway/1.2.0/deployment-modes/kubernetes/gateway-operator.md: ai-gateway/1.2.0/setup-and-deployment/kubernetes/gateway-operator.md
+        ai-gateway/1.2.0/deployment-modes/kubernetes/kubernetes-standalone.md: ai-gateway/1.2.0/setup-and-deployment/kubernetes/kubernetes-standalone.md
+        ai-gateway/1.2.0/deployment-modes/kubernetes/overview.md: ai-gateway/1.2.0/setup-and-deployment/kubernetes/index.md
         ai-gateway/next/deployment-modes/immutable-gateway.md: ai-gateway/next/setup-and-deployment/immutable-gateway.md
         ai-gateway/next/deployment-modes/kubernetes/gateway-operator.md: ai-gateway/next/setup-and-deployment/kubernetes/gateway-operator.md
         ai-gateway/next/deployment-modes/kubernetes/kubernetes-standalone.md: ai-gateway/next/setup-and-deployment/kubernetes/kubernetes-standalone.md
@@ -1409,7 +1436,7 @@ plugins:
         ai-gateway/mcp-proxy/policies/mcp-acl-list.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-acl-list.md
         ai-gateway/mcp-proxy/policies/mcp-authentication.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-authentication.md
         ai-gateway/mcp-proxy/policies/mcp-authorization.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-authorization.md
-        ai-gateway/mcp-proxy/policies/mcp-ratelimit.md: ai-gateway/1.2.0/mcp-proxy/policies/mcp-ratelimit.md
+        ai-gateway/mcp-proxy/policies/mcp-ratelimit.md: ai-gateway/1.2.0/mcp-governance.md
         ai-gateway/mcp-proxy/policies/mcp-rewrite.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-rewrite.md
         ai-gateway/mcp-proxy/quick-start-guide.md: ai-gateway/1.1.0/mcp-proxy/quick-start-guide.md
         ai-gateway/observability/logging.md: ai-gateway/1.1.0/observability/logging.md
@@ -1932,6 +1959,62 @@ plugins:
         workflows/configure-workflow-approvals.md: cloud/workflows/configure-workflow-approvals.md
         workflows/review-workflows-requests.md: cloud/workflows/review-workflows-requests.md
         workflows/submit-workflow-requests.md: cloud/workflows/submit-workflow-requests.md
+        # AI Gateway 1.2.0: restructured to match the next layout
+        ai-gateway/1.2.0/deployment/deployment-modes/immutable-gateway.md: ai-gateway/1.2.0/setup-and-deployment/immutable-gateway.md
+        ai-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator.md: ai-gateway/1.2.0/setup-and-deployment/kubernetes/gateway-operator.md
+        ai-gateway/1.2.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md: ai-gateway/1.2.0/setup-and-deployment/kubernetes/kubernetes-standalone.md
+        ai-gateway/1.2.0/deployment/deployment-modes/kubernetes/overview.md: ai-gateway/1.2.0/setup-and-deployment/kubernetes/index.md
+        ai-gateway/1.2.0/deployment/production-deployment/ai-workload-tuning.md: ai-gateway/1.2.0/setup-and-deployment/production-deployment/ai-workload-tuning.md
+        ai-gateway/1.2.0/deployment/production-deployment/control-plane-connection.md: ai-gateway/1.2.0/setup-and-deployment/production-deployment/control-plane-connection.md
+        ai-gateway/1.2.0/deployment/production-deployment/database-configuration.md: ai-gateway/1.2.0/setup-and-deployment/production-deployment/database-configuration.md
+        ai-gateway/1.2.0/deployment/production-deployment/deploy-and-verify.md: ai-gateway/1.2.0/setup-and-deployment/production-deployment/deploy-and-verify.md
+        ai-gateway/1.2.0/deployment/production-deployment/overview.md: ai-gateway/1.2.0/setup-and-deployment/production-deployment/index.md
+        ai-gateway/1.2.0/deployment/production-deployment/resources-and-scaling.md: ai-gateway/1.2.0/setup-and-deployment/production-deployment/resources-and-scaling.md
+        ai-gateway/1.2.0/deployment/production-deployment/security-hardening.md: ai-gateway/1.2.0/setup-and-deployment/production-deployment/security-hardening.md
+        ai-gateway/1.2.0/gateway-controller-management-api/authentication.md: ai-gateway/1.2.0/setup-and-deployment/secure-the-management-api.md
+        ai-gateway/1.2.0/gateway-controller-management-api/certificate-management.md: ai-gateway/1.2.0/reference/management-api/certificate-management.md
+        ai-gateway/1.2.0/gateway-controller-management-api/llm-provider-management.md: ai-gateway/1.2.0/reference/management-api/llm-provider-management.md
+        ai-gateway/1.2.0/gateway-controller-management-api/llm-provider-template-management.md: ai-gateway/1.2.0/reference/management-api/llm-provider-template-management.md
+        ai-gateway/1.2.0/gateway-controller-management-api/llm-proxy-management.md: ai-gateway/1.2.0/reference/management-api/llm-proxy-management.md
+        ai-gateway/1.2.0/gateway-controller-management-api/mcp-proxy-management.md: ai-gateway/1.2.0/reference/management-api/mcp-proxy-management.md
+        ai-gateway/1.2.0/gateway-controller-management-api/overview.md: ai-gateway/1.2.0/reference/management-api/index.md
+        ai-gateway/1.2.0/gateway-controller-management-api/schemas.md: ai-gateway/1.2.0/reference/management-api/schemas.md
+        ai-gateway/1.2.0/gateway-controller-management-api/secrets-management.md: ai-gateway/1.2.0/reference/management-api/secrets-management.md
+        ai-gateway/1.2.0/llm-proxy/configure-aws-bedrock-provider.md: ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/aws-bedrock.md
+        ai-gateway/1.2.0/llm-proxy/guardrails/aws-bedrock-guardrail.md: https://wso2.com/api-platform/policy-hub/policies/aws-bedrock-guardrail
+        ai-gateway/1.2.0/llm-proxy/guardrails/azure-content-safety.md: https://wso2.com/api-platform/policy-hub/policies/azure-content-safety-content-moderation
+        ai-gateway/1.2.0/llm-proxy/guardrails/content-length.md: https://wso2.com/api-platform/policy-hub/policies/content-length-guardrail
+        ai-gateway/1.2.0/llm-proxy/guardrails/execution-order.md: ai-gateway/1.2.0/guardrails/execution-order.md
+        ai-gateway/1.2.0/llm-proxy/guardrails/json-schema.md: https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail
+        ai-gateway/1.2.0/llm-proxy/guardrails/overview.md: ai-gateway/1.2.0/guardrails/index.md
+        ai-gateway/1.2.0/llm-proxy/guardrails/pii-masking-regex.md: https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex
+        ai-gateway/1.2.0/llm-proxy/guardrails/regex.md: https://wso2.com/api-platform/policy-hub/policies/regex-guardrail
+        ai-gateway/1.2.0/llm-proxy/guardrails/semantic-prompt-guard.md: https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard
+        ai-gateway/1.2.0/llm-proxy/guardrails/sentence-count.md: https://wso2.com/api-platform/policy-hub/policies/sentence-count-guardrail
+        ai-gateway/1.2.0/llm-proxy/guardrails/url.md: https://wso2.com/api-platform/policy-hub/policies/url-guardrail
+        ai-gateway/1.2.0/llm-proxy/guardrails/word-count.md: https://wso2.com/api-platform/policy-hub/policies/word-count-guardrail
+        ai-gateway/1.2.0/llm-proxy/llm-templates.md: ai-gateway/1.2.0/reference/llm-templates.md
+        ai-gateway/1.2.0/llm-proxy/load-balancing/model-round-robin.md: https://wso2.com/api-platform/policy-hub/policies/model-round-robin
+        ai-gateway/1.2.0/llm-proxy/load-balancing/model-weighted-round-robin.md: https://wso2.com/api-platform/policy-hub/policies/model-weighted-round-robin
+        ai-gateway/1.2.0/llm-proxy/multi-provider-routing.md: ai-gateway/1.2.0/routing/multi-provider-routing.md
+        ai-gateway/1.2.0/llm-proxy/prompt-management/prompt-decorator.md: https://wso2.com/api-platform/policy-hub/policies/prompt-decorator
+        ai-gateway/1.2.0/llm-proxy/prompt-management/prompt-template.md: https://wso2.com/api-platform/policy-hub/policies/prompt-template
+        ai-gateway/1.2.0/llm-proxy/quick-start-guide.md: ai-gateway/1.2.0/quick-start-guide.md
+        ai-gateway/1.2.0/llm-proxy/semantic-caching.md: https://wso2.com/api-platform/policy-hub/policies/semantic-cache
+        ai-gateway/1.2.0/mcp-proxy/policies/mcp-acl-list.md: https://wso2.com/api-platform/policy-hub/policies/mcp-acl-list
+        ai-gateway/1.2.0/mcp-proxy/policies/mcp-authentication.md: https://wso2.com/api-platform/policy-hub/policies/mcp-auth
+        ai-gateway/1.2.0/mcp-proxy/policies/mcp-authorization.md: https://wso2.com/api-platform/policy-hub/policies/mcp-authz
+        ai-gateway/1.2.0/mcp-proxy/policies/mcp-rewrite.md: https://wso2.com/api-platform/policy-hub/policies/mcp-rewrite
+        ai-gateway/1.2.0/mcp-proxy/quick-start-guide.md: ai-gateway/1.2.0/gateway-artifacts/mcp-proxy.md
+        ai-gateway/1.2.0/observability/logging.md: ai-gateway/1.2.0/logging-and-tracing/gateway-logs.md
+        ai-gateway/1.2.0/observability/tracing.md: ai-gateway/1.2.0/logging-and-tracing/tracing.md
+        ai-gateway/1.2.0/observability/traffic-logging.md: ai-gateway/1.2.0/logging-and-tracing/log-requests-and-responses.md
+        ai-gateway/1.2.0/performance/ai-gateway-runtime-with-four-cpus.md: ai-gateway/1.2.0/setup-and-deployment/sizing-and-performance/ai-gateway-runtime-with-four-cpus.md
+        ai-gateway/1.2.0/performance/ai-gateway-runtime-with-two-cpus.md: ai-gateway/1.2.0/setup-and-deployment/sizing-and-performance/ai-gateway-runtime-with-two-cpus.md
+        ai-gateway/1.2.0/performance/overview.md: ai-gateway/1.2.0/setup-and-deployment/sizing-and-performance/index.md
+        ai-gateway/1.2.0/resiliency/timeouts.md: ai-gateway/1.2.0/timeouts-and-resilience.md
+        ai-gateway/1.2.0/setup/configuration.md: ai-gateway/1.2.0/setup-and-deployment/configuration.md
+        ai-gateway/1.2.0/setup/database-setup.md: ai-gateway/1.2.0/setup-and-deployment/database-setup.md
 extra_css:
   - assets/css/extra.css
   - assets/lib/highlightjs/default.min.css

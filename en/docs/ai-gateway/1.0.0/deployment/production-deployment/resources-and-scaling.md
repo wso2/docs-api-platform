@@ -48,7 +48,7 @@ gateway:
 The chart default of `100Mi` suits a small artifact set. Size it for the number of providers, proxies, and secrets you expect.
 
 !!! note "Controller high availability needs AI Gateway 1.1.0 or later"
-    Running more than one controller replica requires an external database, which AI Gateway 1.1.0 adds with PostgreSQL support and 1.2.0 extends to SQL Server. If controller high availability is a requirement, deploy [AI Gateway 1.2.0](../../../1.2.0/deployment/production-deployment/overview.md) instead.
+    Running more than one controller replica requires an external database, which AI Gateway 1.1.0 adds with PostgreSQL support and 1.2.0 extends to SQL Server. If controller high availability is a requirement, deploy [AI Gateway 1.2.0](../../../1.2.0/setup-and-deployment/production-deployment/index.md) instead.
 
 ## Resource limits
 

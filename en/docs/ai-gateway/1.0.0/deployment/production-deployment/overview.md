@@ -38,7 +38,7 @@ For the other ways to run the gateway, see [Immutable Gateway](../deployment-mod
     Deploy the release that covers what you need:
 
     - For an external database, or for chart support for the Horizontal Pod Autoscaler and Pod Disruption Budget, deploy [AI Gateway 1.1.0](../../../1.1.0/deployment/production-deployment/overview.md) or later.
-    - For SQL Server support or AI Workspace governance, deploy [AI Gateway 1.2.0](../../../1.2.0/deployment/production-deployment/overview.md).
+    - For SQL Server support or AI Workspace governance, deploy [AI Gateway 1.2.0](../../../1.2.0/setup-and-deployment/production-deployment/index.md).
 
 ## What you deploy
 

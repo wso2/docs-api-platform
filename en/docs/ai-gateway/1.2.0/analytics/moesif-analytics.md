@@ -8,8 +8,10 @@ tags:
   - analytics
   - moesif
   - observability
+  - spend
+  - cost-tracking
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-23
+last_updated: 2026-08-24
 content_type: "how-to"
 ---
 
@@ -51,7 +53,7 @@ Analytics is configured entirely through the gateway `config.toml` file and is e
 !!! note
     Analytics is a **consumer** of a shared data-capture pipeline called the **collector**. The
     collector has no `enabled` flag of its own — it activates automatically whenever `analytics.enabled`
-    (or `traffic_logging.enabled`) is `true`. See [Traffic Logging](../observability/traffic-logging.md)
+    (or `traffic_logging.enabled`) is `true`. See [Log requests and responses](../logging-and-tracing/log-requests-and-responses.md)
     for the other consumer of this same pipeline, which writes a stdout JSON line per request instead
     of publishing to an external SaaS.
 

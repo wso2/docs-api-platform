@@ -1,6 +1,6 @@
 ---
-title: "Real-Time AI Streaming"
-description: "Stream responses through API Platform AI Gateway chunk by chunk across LLM providers, LLM proxies, and MCP proxies, and understand how policies, analytics, and token usage behave."
+title: "Stream responses"
+description: "Stream responses chunk by chunk through LLM providers, LLM proxies, and MCP proxies, and how policies, analytics, and token usage behave."
 canonical_url: https://wso2.com/api-platform/docs/ai-gateway/streaming-responses/
 md_url: https://wso2.com/api-platform/docs/ai-gateway/streaming-responses.md
 tags:
@@ -8,12 +8,14 @@ tags:
   - llm
   - mcp
   - streaming
+  - sse
+  - chunked
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-05
+last_updated: 2026-08-17
 content_type: "concept"
 ---
 
-# Real-time AI streaming
+# Stream responses
 
 The AI Gateway forwards a streamed response to the client chunk by chunk, as each chunk arrives from the upstream service. The gateway doesn't hold the response until the upstream finishes generating it, so the first token reaches your application at about the same time it leaves the provider. Chat interfaces and agent loops keep their token-by-token behavior when they run through the gateway.
 
@@ -98,6 +100,8 @@ If a streamed response carries no `usage` block, the gateway has no token counts
 
 ## Related documentation
 
-- [LLM Proxy Quick Start Guide](llm-proxy/quick-start-guide.md) — deploy a provider and a proxy, then send your first request
-- [MCP Proxy Quick Start Guide](mcp-proxy/quick-start-guide.md) — deploy an MCP proxy
-- [Sentence Count Guardrail](llm-proxy/guardrails/sentence-count.md) — a guardrail that gates a stream until it can evaluate the content
+- [Quick Start Guide](quick-start-guide.md) — deploy a provider and a proxy, then send your first request
+- [MCP proxy](gateway-artifacts/mcp-proxy.md) — deploy an MCP proxy
+- [Sentence Count Guardrail](https://wso2.com/api-platform/policy-hub/policies/sentence-count-guardrail) — a guardrail that gates a stream until it can evaluate the content
+- [Timeouts and resilience](timeouts-and-resilience.md) — a streamed response holds the route open, so the route timeout matters more than it does for a single reply
+- [Log requests and responses](logging-and-tracing/log-requests-and-responses.md) — what a streamed exchange looks like when the traffic content is recorded

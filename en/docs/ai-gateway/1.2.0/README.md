@@ -8,7 +8,7 @@ tags:
   - llm
   - mcp
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-07
+last_updated: 2026-08-11
 content_type: "overview"
 ---
 
@@ -18,8 +18,8 @@ A gateway for managing and securing AI traffic, including Large Language Model (
 
 ## Quick Start
 
-- [LLM Quick Start Guide](llm-proxy/quick-start-guide.md) - Set up the gateway and route traffic to LLM providers like OpenAI
-- [MCP Quick Start Guide](mcp-proxy/quick-start-guide.md) - Set up the gateway and route traffic to MCP servers
+- [LLM Quick Start Guide](quick-start-guide.md) — Set up the gateway and route traffic to LLM providers like OpenAI
+- [MCP proxy](gateway-artifacts/mcp-proxy.md) — Set up the gateway and route traffic to MCP servers
 
 ## Key Concepts
 
@@ -35,6 +35,7 @@ Following templates are shipped out-of-the-box
 - AWS Bedrock
 - Azure AI Foundry
 - Gemini
+- MistralAI
 
 ### LLM Provider
 
@@ -49,7 +50,7 @@ An LLM Provider represents a connection to an AI backend service such as OpenAI,
 
 Once configured, the LLM Provider allows traffic to flow through the gateway to the AI backend.
 
-To connect the gateway to AWS Bedrock, see [Configure an AWS Bedrock LLM Provider](llm-proxy/configure-aws-bedrock-provider.md). The guide covers both Bedrock bearer API keys and AWS Signature Version 4 (SigV4) authentication.
+To connect the gateway to AWS Bedrock, see [Configure an AWS Bedrock LLM Provider](gateway-artifacts/llm-provider/supported-providers/aws-bedrock.md). The guide covers both Bedrock bearer API keys and AWS Signature Version 4 (SigV4) authentication.
 
 ### LLM Proxy
 

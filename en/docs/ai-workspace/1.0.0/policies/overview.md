@@ -88,7 +88,7 @@ These policies shape how requests are routed and composed:
 
 ### Provider transformation policies
 
-These policies translate an OpenAI Chat Completions request into another provider's API shape, and translate the response back. Pair them with the [LLM header router](https://wso2.com/api-platform/policy-hub/policies/llm-header-router) to route one endpoint across several providers. Use one on its own to point a single OpenAI-shaped endpoint at a different provider. For an end-to-end example configured on the gateway, see [Multi-provider routing](../../../ai-gateway/1.2.0/llm-proxy/multi-provider-routing.md).
+These policies translate an OpenAI Chat Completions request into another provider's API shape, and translate the response back. Pair them with the [LLM header router](https://wso2.com/api-platform/policy-hub/policies/llm-header-router) to route one endpoint across several providers. Use one on its own to point a single OpenAI-shaped endpoint at a different provider. For an end-to-end example configured on the gateway, see [Multi-provider routing](../../../ai-gateway/1.2.0/routing/multi-provider-routing.md).
 
 | Policy | Target provider |
 |--------|-----------------|

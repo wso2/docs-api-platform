@@ -20,7 +20,7 @@ content_type: "how-to"
 A control plane connection gives the gateway a central place to receive artifacts from and report state to. AI Gateway 1.1.0 connects over a persistent WebSocket connection. It supports a [WSO2 API Manager (APIM) control plane](https://apim.docs.wso2.com/en/latest/api-gateway/platform-gateway/getting-started/) and an [API Platform Cloud control plane](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/getting-started/).
 
 !!! important "AI Workspace needs AI Gateway 1.2.0"
-    [AI Workspace](../../../../ai-workspace/1.0.0/overview.md) is the control plane for governing LLM providers, App LLM proxies, MCP proxies, and AI policies across an organization. It works with gateway version 1.2 and above. A 1.1.0 gateway can't register with it. To govern this gateway from AI Workspace, upgrade to [AI Gateway 1.2.0](../../../1.2.0/deployment/production-deployment/control-plane-connection.md) first.
+    [AI Workspace](../../../../ai-workspace/1.0.0/overview.md) is the control plane for governing LLM providers, App LLM proxies, MCP proxies, and AI policies across an organization. It works with gateway version 1.2 and above. A 1.1.0 gateway can't register with it. To govern this gateway from AI Workspace, upgrade to [AI Gateway 1.2.0](../../../1.2.0/setup-and-deployment/production-deployment/control-plane-connection.md) first.
 
 ## Step 1: Store the registration token in a Secret
 
