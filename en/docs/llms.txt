@@ -397,6 +397,9 @@
 - [Configure Google Gemini CLI with AI Gateway](https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md): Configure Google Gemini CLI to route LLM traffic through the WSO2 AI Gateway
 - [Configure OpenAI Codex CLI with AI Gateway](https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md): Configure OpenAI Codex CLI to route LLM traffic through the WSO2 AI Gateway
 - [Go from Zero to a Working API Call Using the Developer Portal](https://wso2.com/api-platform/docs/guides/developer-portal/api-discovery-and-tryout.md): End-to-end walkthrough: discover an API in the Developer Portal, try it with an API key, subscribe to a plan, and invoke it with rate limiting applied
+- [Monetize a REST API with Stripe](https://wso2.com/api-platform/docs/guides/monetization/api-monetization.md): End-to-end walkthrough: publish a REST API with a Pay-as-you-go plan and let WSO2 API Platform sync per-request usage to Stripe for metering and payments, with no billing code
+- [Monetize an AI API with the AI Workspace and Moesif](https://wso2.com/api-platform/docs/guides/monetization/ai-api-monetization.md): End-to-end walkthrough: expose an Anthropic Claude LLM through the AI Workspace, attribute usage per consumer with GenAI Applications, publish token usage to Moesif, and connect Stripe to bill consumers for the tokens they consume
+- [Monetize MCP Tools with the Self-Hosted Gateway](https://wso2.com/api-platform/docs/guides/monetization/mcp-tool-monetization.md): End-to-end walkthrough: front an MCP server with the self-hosted AI gateway, publish per-tool-call usage to Moesif, and connect Stripe to bill AI agents for the MCP tools they call
 
 ## Tools
 

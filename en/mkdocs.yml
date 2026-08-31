@@ -1313,6 +1313,7 @@ nav:
         - Go from Zero to a Working API Call Using the Developer Portal: guides/developer-portal/api-discovery-and-tryout.md
     - Monetization:
         - API Monetization : guides/monetization/api-monetization.md
+        - AI API Monetization: guides/monetization/ai-api-monetization.md
         - MCP Tool Monetization: guides/monetization/mcp-tool-monetization.md
     - Gateway Federation:
         - Discover APIs from AWS API Gateway: guides/gateway-federation/discover-apis-from-aws-api-gateway.md
