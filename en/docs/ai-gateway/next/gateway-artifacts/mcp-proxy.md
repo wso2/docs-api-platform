@@ -8,7 +8,7 @@ tags:
   - mcp
   - mcp-proxy
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-20
+last_updated: 2026-08-31
 content_type: "how-to"
 ---
 
@@ -21,6 +21,13 @@ An MCP Proxy routes Model Context Protocol traffic to MCP servers. MCP is a prot
 - Manage multiple MCP servers from a single control plane
 
 This page takes you through deploying a proxy and routing your first MCP traffic through it.
+
+!!! note "Supported MCP specification versions"
+    MCP proxies support the following MCP specification versions:
+
+    - `2025-06-18`
+    - `2025-11-25`
+
 
 ## Prerequisites
 
