@@ -26,7 +26,7 @@ This guide walks you through:
 - [Part 3: Configure an LLM provider](#part-3-configure-an-llm-provider)
 - [Part 4: Run your first prompt](#part-4-run-your-first-prompt)
 
-By the end, you'll have a local AI Workspace deployment managing an AI Gateway connected to an LLM provider, and you'll send a real chat completion request through the resulting endpoint.
+By the end, you'll have a local AI Workspace deployment managing an AI Gateway connected to an LLM provider. You'll send a real chat completion request through the resulting endpoint.
 
 It's written for platform engineers, developers, and anyone evaluating a self-hosted AI governance layer. No prior WSO2 API Platform experience is required. For optional background on the concepts this guide uses, see:
 
@@ -77,7 +77,7 @@ The script prompts for the admin username and password. Press <kbd>Enter</kbd> a
 |----------|----------|---------|
 | Transport Layer Security (TLS) certificate | `resources/certificates/cert.pem` and `key.pem` | Self-signed HTTPS pair shared by the services |
 | RS256 JSON Web Token (JWT) signing keypair | `resources/keys/jwt_private.pem` and `jwt_public.pem` | The Platform API signs login tokens with the private key, and verifies them with the public key too. The API Portal also verifies them with the public key. There's no shared hash-based message authentication code (HMAC) secret |
-| At-rest encryption key | `resources/keys/encryption.key` | The Platform API's 32-byte key for encrypting stored secrets, such as LLM provider API keys. **Retain it**: losing or changing it makes previously-encrypted data unreadable |
+| At-rest encryption key | `resources/keys/encryption.key` | The Platform API's 32-byte key for encrypting stored secrets, such as LLM provider API keys. Retain it: losing or changing it makes previously-encrypted data unreadable |
 | API Portal encryption key | `resources/keys/api-portal-encryption.key` | Encrypts the API Portal's subscription and webhook secrets at rest. Provisioned alongside the others even if you don't run the API Portal. Retain it for the same reason |
 | API Portal session secret | `resources/keys/api-portal-session-secret` | Signs API Portal session cookies. Rotating it only signs users out. Also provisioned regardless of whether you run the API Portal |
 | Admin credentials | `api-platform.env` | The username and bcrypt password hash used for sign-in |
@@ -104,7 +104,7 @@ Rerunning `./scripts/setup.sh` later is safe. See [Rerun the setup script](setti
 docker compose up -d
 ```
 
-This starts two containers: `platform-api` (the backend, on port 9243) and `ai-workspace` (the UI and backend-for-frontend, on port 9643). The `ai-workspace` container waits for `platform-api` to report healthy before it starts.
+This starts two containers: `platform-api` (the backend, on port 9243) and `ai-workspace` (the user interface (UI) and backend-for-frontend, on port 9643). The `ai-workspace` container waits for `platform-api` to report healthy before it starts.
 
 !!! tip "Port 9243 or 9643 already taken?"
     If the start command fails with a port binding error, identify what's already listening on the default ports:
@@ -154,7 +154,7 @@ On first sign-in, AI Workspace opens on a **Quick Start** page with a short tour
 > **Get up and running with Quick Start**
 > Step-by-step guided flows for LLM Providers, MCP Proxies, and more — set up your AI Gateway in minutes.
 
-Click **Got it** to dismiss the tour. The page then asks **What would you like to set up first?**, with three starting points: **Expose My LLM Providers Securely** (**Recommended**), **Manage AI Gateways**, and **Publish my MCP servers securely**. Each is a guided version of the steps this guide walks through by hand, with a **What you'll do** preview before you commit to one.
+Click **Got it** to dismiss the tour. The page then asks **What would you like to set up first?** Three starting points follow: **Expose My LLM Providers Securely** (**Recommended**), **Manage AI Gateways**, and **Publish my MCP servers securely** (MCP is the Model Context Protocol). Each is a guided version of the steps this guide walks through by hand, with a **What you'll do** preview before you commit to one.
 
 ![AI Workspace Quick Start page with a tour tooltip and three guided setup options](../../assets/img/ai-gateway/standalone-ai-workspace/quick-start-guide/first-run-tour.png)
 
@@ -178,7 +178,7 @@ An AI Gateway is the runtime that routes requests to LLM providers. You need at 
 
 4. Click **Add Gateway**.
 
-AI Workspace creates the gateway with a status of **Inactive** and opens a **Get Started** section with a **Gateway Registration Token** and installation instructions for four methods: **Quick Start**, **Virtual Machine**, **Docker**, and **Kubernetes**. This guide uses **Quick Start**. For the other methods, see [Set up an AI Gateway](ai-gateways/setting-up.md).
+AI Workspace creates the gateway with a status of **Inactive**. It opens a **Get Started** section with a **Gateway Registration Token** and installation instructions for four methods: **Quick Start**, **Virtual Machine**, **Docker**, and **Kubernetes**. This guide uses **Quick Start**. For the other methods, see [Set up an AI Gateway](ai-gateways/setting-up.md).
 
 !!! danger "Save the registration token now"
     It's shown only once. If you lose it, click **Reconfigure** on the gateway's page to generate a replacement. This revokes the old token.
@@ -192,7 +192,7 @@ AI Workspace creates the gateway with a status of **Inactive** and opens a **Get
    unzip wso2apip-ai-gateway-1.2.0.zip
    ```
 
-2. **Set up the gateway.** This one-time script provisions the AES-256 at-rest encryption key, the gateway's HTTPS listener certificate, the gateway-controller admin credentials, and `api-platform.env`. Like AI Workspace, the gateway fails closed if any of these is missing. The admin password is printed once. Copy it: it authenticates directly to the gateway controller, which this guide doesn't use again.
+2. **Set up the gateway.** This one-time script provisions the Advanced Encryption Standard (AES)-256 at-rest encryption key, the gateway's HTTPS listener certificate, the gateway-controller admin credentials, and `api-platform.env`. Like AI Workspace, the gateway fails closed if any of these is missing. The admin password is printed once. Copy it: it authenticates directly to the gateway controller, which this guide doesn't use again.
 
    ```bash
    cd wso2apip-ai-gateway-1.2.0 && ./scripts/setup.sh
@@ -215,7 +215,7 @@ AI Workspace creates the gateway with a status of **Inactive** and opens a **Get
    ENVFILE
    ```
 
-   The control plane host is a bare `host:port`, with no scheme. Unlike the earlier warning about `host.docker.internal`, this points the other way: it's the gateway container reaching out to the Platform API on your host machine, which is exactly what that hostname is for.
+   The control plane host is a bare `host:port`, with no scheme. Unlike the earlier warning about `host.docker.internal`, this points the other way. It's the gateway container reaching out to the Platform API on your host machine. That's exactly what that hostname is for.
 
    !!! note "Running on Windows"
        The heredoc above (`<< 'ENVFILE'`) doesn't work in PowerShell. Either run this step from Git Bash or WSL, or open `api-platform.env` in a text editor and add the two lines directly.
@@ -311,7 +311,7 @@ curl -X POST "<INVOKE_URL>/v1/chat/completions" \
   }'
 ```
 
-A successful response returns HTTP 200 with a chat completion:
+A successful response returns `200 OK` with a chat completion:
 
 ```json
 {
@@ -335,7 +335,7 @@ A successful response returns HTTP 200 with a chat completion:
 
 Your response's `id`, `created` timestamp, and `content` differ. That's expected. What matters is a `200` status and a `choices` array with a real model reply.
 
-At this point, you have a local AI Workspace deployment managing an AI Gateway connected to Mistral AI, and you just sent a real chat completion through that gateway with a key you generated yourself. That's the whole chain: AI Workspace, the AI Gateway, and the upstream provider, working together.
+At this point, you have a local AI Workspace deployment managing an AI Gateway connected to Mistral AI. You just sent a real chat completion through that gateway with a key you generated yourself. That's the whole chain: AI Workspace, the AI Gateway, and the upstream provider, working together.
 
 ## Verify everything works end to end
 
@@ -368,7 +368,7 @@ This stops the containers but preserves the `platform-api-data` volume. Every ga
 docker compose down -v
 ```
 
-This also removes the `platform-api-data` volume. The next start is a clean slate: no gateways, providers, or proxies, and a new admin password from `./scripts/setup.sh`.
+This also removes the `platform-api-data` volume, so the next start is a clean slate with no gateways, providers, or proxies. `api-platform.env` isn't part of that volume, so your admin credentials survive unchanged. To also get a new admin password, delete `APIP_CP_ADMIN_USERNAME` and `APIP_CP_ADMIN_PASSWORD_HASH` from `api-platform.env` first, then rerun `./scripts/setup.sh`.
 
 The AI Gateway you connected in [Part 2](#part-2-connect-an-ai-gateway) is a separate Docker Compose stack, in its own directory. Stop it the same way, from there.
 
@@ -377,7 +377,7 @@ The AI Gateway you connected in [Part 2](#part-2-connect-an-ai-gateway) is a sep
 - [Manage an LLM provider](llm-providers/manage-provider.md): configure connection, access control, security, rate limiting, and guardrails for the provider you just created
 - [Configure an App LLM proxy](llm-proxies/configure-proxy.md): add an application-specific endpoint on top of a provider, with its own guardrails and access rules
 - [Manage an App LLM proxy](llm-proxies/manage-proxy.md): configure provider settings, resources, security, and guardrails for an existing proxy
-- [Invoke providers and proxies via SDKs](using-sdks.md): call your deployed endpoint from the OpenAI, Anthropic, Gemini, Mistral, Azure OpenAI (including Azure AI Foundry), or LangChain SDKs
+- [Invoke providers and proxies via SDKs](using-sdks.md): call your deployed endpoint from the OpenAI, Anthropic, Gemini, Mistral, Azure OpenAI (including Azure AI Foundry), or LangChain software development kits (SDKs)
 - [MCP proxies overview](mcp-proxies/overview.md): govern access to a Model Context Protocol (MCP) server through the same gateway
 - [GenAI applications](genai-applications.md): group API keys under a named application for usage visibility and governance
 - [Change the ports AI Workspace uses](setting-up/ports.md): remap the default `9643` and `9243` ports
