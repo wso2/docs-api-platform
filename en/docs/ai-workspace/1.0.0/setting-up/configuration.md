@@ -16,7 +16,7 @@ content_type: "reference"
 
 The AI Workspace stack has two services: the AI Workspace Backend-for-Frontend (BFF) and the Platform API it proxies to. Each reads its configuration from a TOML file (`config.toml`) layered over built-in defaults.
 
-This page explains how each service loads its config file. It also covers how environment values and mounted files are injected through interpolation tokens, how to keep sensitive values out of the file, and how to provision or rotate the credentials those tokens resolve to. For the first-time setup that runs the setup script described here, see [Get started with AI Workspace](../getting-started.md).
+This page explains how each service loads its config file. It also covers how environment values and mounted files are injected through interpolation tokens, how to keep sensitive values out of the file, and how to provision or rotate the credentials those tokens resolve to. For first-time setup, see [Get started with AI Workspace](../getting-started.md).
 
 ## How configuration is loaded
 
@@ -92,11 +92,11 @@ Neither `encryption_key` nor `client_secret` carries a default, so each is a req
 
 ## Rerun the setup script
 
-Rerunning `./scripts/setup.sh` is safe. By default it fills in only what's missing and never overwrites a value that already exists. The flags change that:
+By default, rerunning `./scripts/setup.sh` is safe: it fills in only what's missing and never overwrites a value that already exists. The flags below change that:
 
 | Flag | Effect |
 |------|--------|
-| `--force` | Regenerate the TLS certificate, the JWT keypair, and the API Portal session secret, and rotate the admin credentials. Never touches either encryption key. |
+| `--force` | Regenerate the Transport Layer Security (TLS) certificate, the JSON Web Token (JWT) keypair, and the API Portal session secret, and rotate the admin credentials. Never touches either encryption key. |
 | `--rotate-encryption-key` | Replace `resources/keys/encryption.key` and `resources/keys/api-portal-encryption.key`, even though they exist. Destructive. See the warning below. |
 | `--certs-only` | Generate only the TLS certificate. Skips the keys, the admin credentials, and `api-platform.env`. |
 | `--profiles=<a,b,...>` | Write a different `COMPOSE_PROFILES` value to `.env`, for example `--profiles=platform-api`. Only takes effect if `.env` doesn't already set `COMPOSE_PROFILES`, or combined with `--force`. |
@@ -110,13 +110,13 @@ To rotate a single value by hand, delete it from `api-platform.env`, or delete t
 
 If you don't run `setup.sh`, provision the at-rest encryption key yourself before the first start. It protects [AI Workspace secrets](../secrets-management.md) and subscription tokens, and the Platform API refuses to start if it's missing or malformed. Keep it stable across restarts and replicas.
 
-This covers a self-managed Docker Compose setup. For a VM or Kubernetes production deployment, where you provision this key alongside the database password and OIDC client secret, see [Provision secrets and keys](../production/secrets-and-keys.md) instead.
+This covers a self-managed Docker Compose setup. For a virtual machine (VM) or Kubernetes production deployment, where you provision this key alongside the database password and OIDC client secret, see [Provision secrets and keys](../production/secrets-and-keys.md) instead.
 
-The key is a single 32-byte AES-256 value, supplied as 64 hex characters or base64. Generate it and write it to `resources/keys/encryption.key`, inside the directory the container mounts at `/etc/platform-api/keys`. Create the file so that only its owner can read it:
+The key is a single 32-byte Advanced Encryption Standard (AES)-256 value, supplied as 64 hex characters or base64. Generate it and write it to `resources/keys/encryption.key`, inside the directory the container mounts at `/etc/platform-api/keys`. The Platform API container reads the file as UID 10001, a different user than the one that creates it, so grant read access to everyone rather than restricting it to the owner:
 
 ```sh
 (umask 077 && openssl rand -hex 32 > resources/keys/encryption.key)
-chmod 600 resources/keys/encryption.key
+chmod 644 resources/keys/encryption.key
 ```
 
 Keep the key out of source control, alongside `api-platform.env`. A trailing newline is trimmed on load. The Platform API doesn't read the key from an environment variable directly. It reads the `encryption_key` field in `config.toml`, shown above under [Sensitive values in `config.toml`](#sensitive-values-in-configtoml).
