@@ -13,7 +13,7 @@ content_type: "troubleshooting"
 
 # Troubleshoot AI Workspace
 
-This page covers the problems you're most likely to encounter while setting up AI Workspace and an AI Gateway. See [Get started with AI Workspace](getting-started.md) for the setup steps these fixes assume, [AI Workspace overview](overview.md) for how the pieces fit together, and [AI Workspace configuration and environment interpolation](setting-up/configuration.md) for how settings are loaded.
+This page covers the problems you're most likely to encounter while setting up AI Workspace and an AI Gateway. For the setup steps these fixes assume, see [Get started with AI Workspace](getting-started.md). For background, see [AI Workspace overview](overview.md) and [AI Workspace configuration and environment interpolation](setting-up/configuration.md).
 
 ## The AI Gateway stays Inactive after you start it
 
@@ -25,8 +25,8 @@ Check that:
 
 ## A chat completion request returns `401` or `403`
 
-Confirm you're sending the generated provider API key in the `X-API-Key` header, not your AI Workspace sign-in session. These authenticate two different things. One signs you in to AI Workspace. The other authenticates an application to the gateway.
+Confirm you're sending the generated inbound API key in the header your provider's **Security** tab configures (`X-API-Key` by default), not your AI Workspace sign-in session. These authenticate two different things: one signs you in to AI Workspace; the other authenticates an application to the gateway.
 
 ## A chat completion request returns an error naming the model
 
-The gateway only allows models explicitly added on the provider's **Models** tab. Add the model ID you're requesting, save, and try again.
+The gateway only allows models explicitly added on the provider's **Models** tab. Add the model ID you're requesting, click **Save**, then **Deploy to Gateway** to push the change to your gateway, and try again.

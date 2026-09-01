@@ -164,6 +164,7 @@
 - [Secrets Management](https://wso2.com/api-platform/docs/ai-workspace/secrets-management.md): How the standalone AI Workspace encrypts and rotates stored credentials
 - [Authentication in AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/setting-up/authentication/overview.md): File-based sign-in for local use versus an identity provider over OIDC for production
 - [AI Workspace CI/CD Overview](https://wso2.com/api-platform/docs/ai-workspace/ci-cd/overview.md): Manage LLM providers, App LLM proxies, and MCP proxies as version-controlled files with the `ap` CLI
+- [Troubleshoot AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/troubleshooting.md): Fixes for common AI Workspace problems: a gateway that stays Inactive, a chat completion request that returns 401, 403, or a model error
 - [Production Deployment Overview](https://wso2.com/api-platform/docs/ai-workspace/production/overview.md): Run the standalone AI Workspace on a virtual machine or Kubernetes, with high availability and hardening
 
 ## Developer Portal

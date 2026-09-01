@@ -149,16 +149,16 @@ This file-based sign-in is intended for trying out AI Workspace, not for product
 
 ### Step 6: Take the first-run tour
 
-On first sign-in, AI Workspace opens on a **Quick Start** page with a short tour:
+On first sign-in, AI Workspace opens on a **Quick Start** page with a short tour that introduces LLM providers and Model Context Protocol (MCP) proxies:
 
 > **Get up and running with Quick Start**
 > Step-by-step guided flows for LLM Providers, MCP Proxies, and more — set up your AI Gateway in minutes.
 
-Click **Got it** to dismiss the tour. The page then asks **What would you like to set up first?** Three starting points follow: **Expose My LLM Providers Securely** (**Recommended**), **Manage AI Gateways**, and **Publish my MCP servers securely** (MCP is the Model Context Protocol). Each is a guided version of the steps this guide walks through by hand, with a **What you'll do** preview before you commit to one.
+Click **Got it** to dismiss the tour. The page then asks **What would you like to set up first?** Three starting points follow: **Expose My LLM Providers Securely** (**Recommended**), **Manage AI Gateways**, and **Publish my MCP servers securely**. Each is a guided version of the steps this guide walks through by hand, with a **What you'll do** preview before you commit to one.
 
-![AI Workspace Quick Start page with a tour tooltip and three guided setup options](../../assets/img/ai-gateway/standalone-ai-workspace/quick-start-guide/first-run-tour.png)
+![](../../assets/img/ai-gateway/standalone-ai-workspace/quick-start-guide/first-run-tour.png)
 
-This guide doesn't follow the wizard directly. It walks through the same underlying steps with enough detail to explain what each screen and field does. Click **Skip and go to overview** if you'd rather land on the **Overview** page.
+This guide doesn't follow the wizard directly. It walks through the same underlying steps with enough detail to explain what each screen and field does. Click **Skip and go to overview** if you'd rather open the **Overview** page instead.
 
 ## Part 2: Connect an AI Gateway
 
@@ -215,7 +215,7 @@ AI Workspace creates the gateway with a status of **Inactive**. It opens a **Get
    ENVFILE
    ```
 
-   The control plane host is a bare `host:port`, with no scheme. Unlike the earlier warning about `host.docker.internal`, this points the other way. It's the gateway container reaching out to the Platform API on your host machine. That's exactly what that hostname is for.
+   The control plane host is a bare `host:port`, with no scheme. Unlike the earlier warning about `host.docker.internal`, this is the reverse direction: the gateway container reaches out to the Platform API on your host machine. That's exactly what that hostname is for.
 
    !!! note "Running on Windows"
        The heredoc above (`<< 'ENVFILE'`) doesn't work in PowerShell. Either run this step from Git Bash or WSL, or open `api-platform.env` in a text editor and add the two lines directly.
@@ -335,7 +335,7 @@ A successful response returns `200 OK` with a chat completion:
 
 Your response's `id`, `created` timestamp, and `content` differ. That's expected. What matters is a `200` status and a `choices` array with a real model reply.
 
-At this point, you have a local AI Workspace deployment managing an AI Gateway connected to Mistral AI. You just sent a real chat completion through that gateway with a key you generated yourself. That's the whole chain: AI Workspace, the AI Gateway, and the upstream provider, working together.
+At this point, you have a local AI Workspace deployment managing an AI Gateway connected to Mistral AI. You just sent a real chat completion through that gateway with a key you generated yourself. AI Workspace, the AI Gateway, and the upstream provider all worked together to complete that request.
 
 ## Verify everything works end to end
 
@@ -368,7 +368,7 @@ This stops the containers but preserves the `platform-api-data` volume. Every ga
 docker compose down -v
 ```
 
-This also removes the `platform-api-data` volume, so the next start is a clean slate with no gateways, providers, or proxies. `api-platform.env` isn't part of that volume, so your admin credentials survive unchanged. To also get a new admin password, delete `APIP_CP_ADMIN_USERNAME` and `APIP_CP_ADMIN_PASSWORD_HASH` from `api-platform.env` first, then rerun `./scripts/setup.sh`.
+This also removes the `platform-api-data` volume, so the next start begins with no gateways, providers, or proxies configured. `api-platform.env` isn't part of that volume, so your admin credentials survive unchanged. To also get a new admin password, delete `APIP_CP_ADMIN_USERNAME` and `APIP_CP_ADMIN_PASSWORD_HASH` from `api-platform.env` first, then rerun `./scripts/setup.sh`.
 
 The AI Gateway you connected in [Part 2](#part-2-connect-an-ai-gateway) is a separate Docker Compose stack, in its own directory. Stop it the same way, from there.
 
@@ -384,6 +384,6 @@ The AI Gateway you connected in [Part 2](#part-2-connect-an-ai-gateway) is a sep
 - [Connect a database to the Platform API](setting-up/database.md): move off the default SQLite store to PostgreSQL or SQL Server for production
 - [Authentication in AI Workspace](setting-up/authentication/overview.md): connect an identity provider before sharing this instance with a team
 - [Configure inbound authentication](configure-inbound-auth.md): change the header name your applications use to call a provider or proxy
-- [AI Workspace CI/CD overview](ci-cd/overview.md): manage providers and proxies as version-controlled files with the `ap` CLI
+- [AI Workspace CI/CD overview](ci-cd/overview.md): manage providers and proxies as version-controlled files with the `ap` command-line interface (CLI)
 - [Production deployment overview](production/overview.md): take this deployment to a virtual machine or Kubernetes, with high availability and hardening
 - [Troubleshoot AI Workspace](troubleshooting.md): fixes for the most common setup problems

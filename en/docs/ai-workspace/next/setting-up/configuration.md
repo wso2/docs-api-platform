@@ -112,7 +112,7 @@ If you don't run `setup.sh`, provision the at-rest encryption key yourself befor
 
 This covers a self-managed Docker Compose setup. For a virtual machine (VM) or Kubernetes production deployment, where you provision this key alongside the database password and OIDC client secret, see [Provision secrets and keys](../production/secrets-and-keys.md) instead.
 
-The key is a single 32-byte Advanced Encryption Standard (AES)-256 value, supplied as 64 hex characters or base64. Generate it and write it to `resources/keys/encryption.key`, inside the directory the container mounts at `/etc/platform-api/keys`. The Platform API container reads the file as UID 10001, a different user than the one that creates it, so grant read access to everyone rather than restricting it to the owner:
+The key is a single 32-byte Advanced Encryption Standard (AES)-256 value, supplied as 64 hex characters or base64. Generate it and write it to `resources/keys/encryption.key`, inside the directory the container mounts at `/etc/platform-api/keys`. The Platform API container reads the file as user ID (UID) 10001, a different user than the one that creates it, so grant read access to everyone rather than restricting it to the owner:
 
 ```sh
 (umask 077 && openssl rand -hex 32 > resources/keys/encryption.key)
