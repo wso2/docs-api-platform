@@ -15,18 +15,18 @@ content_type: "reference"
 
 # Gateway runtime with four CPUs
 
-The table below displays the resource allocations for the gateway-related components used in the performance tests.
+The table below displays the resource allocations for the gateway-related components deployed as pods on the Amazon EKS cluster used in the performance tests.
 
 | Component          | CPU | Memory | Router Concurrency | GOMAXPROCS |
 | ------------------ | --- | ------ | ------------------ | ---------- |
 | Gateway Controller | 1   | 2 GB   | —                  | —          |
-| Gateway Runtime    | 4   | 2 GB   | 4                  | 4          |
+| Gateway Runtime    | 4   | 2 GB   | 3                  | 1          |
 
 ## Throughput (requests/sec) vs. concurrent users
 
 The graph below shows how gateway throughput changes as concurrent users increase for the API without policies and the API with mediation policies.
 
-![Line chart of gateway throughput in requests per second versus concurrent users at 100, 500, 800, and 1000 users, comparing the API without policies and the API with mediation policies on a four-CPU gateway runtime](../../../assets/img/api-gateway/performance/four-core-Throughput-vs-Concurrent-Users.svg){ width="900" }
+![Line chart of gateway throughput in requests per second versus concurrent users at 100, 500, and 1000 users, comparing the API without policies and the API with mediation policies on a four-CPU gateway runtime](../../../assets/img/api-gateway/performance/1.2.0/four-core-Throughput-vs-Concurrent-Users.svg){ width="900" }
 
 **Key observations:**
 
@@ -38,7 +38,7 @@ The graph below shows how gateway throughput changes as concurrent users increas
 
 The graph below shows how average response time changes for both APIs as concurrent users increase. The backend delay was configured to 0 ms for these tests.
 
-![Line chart of average response time in milliseconds versus concurrent users at 100, 500, 800, and 1000 users, comparing the API without policies and the API with mediation policies on a four-CPU gateway runtime](../../../assets/img/api-gateway/performance/four-core-Average-Response-Time-vs-Concurrent-Users.svg){ width="900" }
+![Line chart of average response time in milliseconds versus concurrent users at 100, 500, and 1000 users, comparing the API without policies and the API with mediation policies on a four-CPU gateway runtime](../../../assets/img/api-gateway/performance/1.2.0/four-core-Average-Response-Time-vs-Concurrent-Users.svg){ width="900" }
 
 **Key observations:**
 
@@ -49,7 +49,7 @@ The graph below shows how average response time changes for both APIs as concurr
 
 The graphs below show the 90th, 95th, and 99th percentile response times at 0 ms backend delay. Percentile values indicate the response time below which that percentage of requests completed, for example, the 99th percentile is the response time exceeded by only 1% of requests.
 
-![Line chart of 90th, 95th, and 99th percentile response times in milliseconds versus concurrent users for the API without policies on a four-CPU gateway runtime](../../../assets/img/api-gateway/performance/four-core-AP-%20with-8-routes-Response-Time-vs-Concurrent-Users.svg){ width="900" }
+![Line chart of 90th, 95th, and 99th percentile response times in milliseconds versus concurrent users for the API without policies on a four-CPU gateway runtime](../../../assets/img/api-gateway/performance/1.2.0/four-core-AP-%20with-8-routes-Response-Time-vs-Concurrent-Users.svg){ width="900" }
 
 **Key observations:**
 
