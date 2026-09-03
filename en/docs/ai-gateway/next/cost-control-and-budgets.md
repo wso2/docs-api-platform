@@ -19,9 +19,11 @@ content_type: "concept"
 
 A token count is not a bill. Models differ in price, prompt tokens and completion tokens are charged differently, and a team that stays inside its token quota can still spend more than you planned. Budgeting at the gateway puts the ceiling in currency, where the finance question actually lives.
 
-## How the two cost policies work together
+## How cost policies work together
 
-Two policies work as a pair. `LLM Cost` prices each call and stores the figure; `LLM Cost-Based Rate Limit` reads that figure and rejects traffic once the quota is spent. Attach both, in that order.
+Two policies work as a pair. A pricing policy prices each call and stores the figure; `LLM Cost-Based Rate Limit` reads that figure and rejects traffic once the quota is spent. Attach both, in that order.
+
+Which pricing policy depends on the endpoint. Use `LLM Cost` for a vendor's own endpoint. Use `Azure LLM Cost` for Azure OpenAI and Azure AI Foundry, where a call names one of your deployments rather than a model, so pricing has to resolve that name before it can find a rate. Attach only one of the two to a route, as both write the same figure.
 
 Attach them on an `LlmProvider` for a budget that covers every proxy consuming it, or on an `LlmProxy` for one application's budget. A call's cost is known only after the model reports its token usage, so enforcement happens in the response phase: the call that exhausts the budget completes, and the next one is rejected.
 
@@ -32,6 +34,7 @@ These policies are documented in the [Policy Hub](https://wso2.com/api-platform/
 | Policy | What it does |
 |--------|--------------|
 | [LLM Cost](https://wso2.com/api-platform/policy-hub/policies/llm-cost) | Calculates the monetary cost of each LLM call and stores it for downstream policies |
+| [Azure LLM Cost](https://wso2.com/api-platform/policy-hub/policies/azure-llm-cost) | Calculates the monetary cost of each LLM call made through Azure OpenAI and Azure AI Foundry, mapping deployment names to models and price tiers |
 | [LLM Cost-Based Rate Limit](https://wso2.com/api-platform/policy-hub/policies/llm-cost-based-ratelimit) | Enforces monetary budget quotas on LLM usage |
 
 To cap by token count or request count instead, see [Token based rate limiting](token-based-rate-limiting.md).
