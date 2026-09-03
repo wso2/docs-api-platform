@@ -112,12 +112,23 @@ If you don't run `setup.sh`, provision the at-rest encryption key yourself befor
 
 This covers a self-managed Docker Compose setup. For a virtual machine (VM) or Kubernetes production deployment, where you provision this key alongside the database password and OIDC client secret, see [Provision secrets and keys](../production/secrets-and-keys.md) instead.
 
-The key is a single 32-byte Advanced Encryption Standard (AES)-256 value, supplied as 64 hex characters or base64. Generate it and write it to `resources/keys/encryption.key`, inside the directory the container mounts at `/etc/platform-api/keys`. The Platform API container reads the file as user ID (UID) 10001, a different user than the one that creates it, so grant read access to everyone rather than restricting it to the owner:
+The key is a single 32-byte Advanced Encryption Standard (AES)-256 value, supplied as 64 hex characters or base64. The container mounts it at `/etc/platform-api/keys`, and reads it as user ID (UID) 10001, a different user than the one that creates it.
 
-```sh
-(umask 077 && openssl rand -hex 32 > resources/keys/encryption.key)
-chmod 644 resources/keys/encryption.key
-```
+To provision it:
+
+1. Generate the key and write it to `resources/keys/encryption.key`.
+2. Grant read access to UID 10001. If your filesystem supports POSIX ACLs, do this without opening the file to every other account on the host:
+
+    ```sh
+    (umask 077 && openssl rand -hex 32 > resources/keys/encryption.key)
+    setfacl -m u:10001:r resources/keys/encryption.key
+    ```
+
+    If ACLs aren't available on your filesystem, the fallback is to make the file world-readable instead. This grants read access more broadly than the ACL approach:
+
+    ```sh
+    chmod 644 resources/keys/encryption.key
+    ```
 
 Keep the key out of source control, alongside `api-platform.env`. A trailing newline is trimmed on load. The Platform API doesn't read the key from an environment variable directly. It reads the `encryption_key` field in `config.toml`, shown above under [Sensitive values in `config.toml`](#sensitive-values-in-configtoml).
 

@@ -1,6 +1,6 @@
 ---
 title: "Troubleshoot AI Workspace"
-description: "Fixes for common AI Workspace problems: a gateway that stays Inactive, a chat completion request that returns 401, 403, or a model error."
+description: "Fixes for common AI Workspace problems: a gateway that stays Inactive, or a chat completion request that returns 401 or 403."
 canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/troubleshooting/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/troubleshooting.md
 tags:
@@ -26,7 +26,3 @@ Check that:
 ## A chat completion request returns `401` or `403`
 
 Confirm you're sending the generated inbound API key in the header your provider's **Security** tab configures (`X-API-Key` by default), not your AI Workspace sign-in session. These authenticate two different things: one signs you in to AI Workspace; the other authenticates an application to the gateway.
-
-## A chat completion request returns an error naming the model
-
-The gateway only allows models explicitly added on the provider's **Models** tab. Add the model ID you're requesting, click **Save**, then **Deploy to Gateway** to push the change to your gateway, and try again.
