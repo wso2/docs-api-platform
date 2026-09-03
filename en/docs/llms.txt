@@ -150,6 +150,23 @@
 - [Semantic Cache (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/semantic-cache.md): Cache LLM responses by semantic similarity in AI Workspace
 - [Writing an AI Policy](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/writing-an-ai-policy.md): Author a custom AI policy for use in AI Workspace
 
+## AI Workspace (Standalone)
+
+- [AI Workspace Overview](https://wso2.com/api-platform/docs/ai-workspace/overview.md): The self-hosted control plane for AI: manage LLM providers, MCP proxies, GenAI applications, and AI policies, deployed with Docker Compose
+- [AI Workspace Get Started](https://wso2.com/api-platform/docs/ai-workspace/getting-started.md): Run AI Workspace locally with Docker Compose, connect an AI Gateway, configure an LLM provider, and run a real prompt through it
+- [Setting Up AI Gateways](https://wso2.com/api-platform/docs/ai-workspace/ai-gateways/setting-up.md): Register an AI Gateway runtime in the standalone AI Workspace and connect it with a registration token
+- [LLM Providers Overview](https://wso2.com/api-platform/docs/ai-workspace/llm-providers/overview.md): What an LLM provider is in the standalone AI Workspace: credentials, access control, and models
+- [Configure LLM Provider](https://wso2.com/api-platform/docs/ai-workspace/llm-providers/configure-provider.md): Add and deploy a new LLM provider in the standalone AI Workspace
+- [Manage LLM Provider](https://wso2.com/api-platform/docs/ai-workspace/llm-providers/manage-provider.md): Configure connection, access control, security, rate limiting, guardrails, and models for a deployed provider
+- [App LLM Proxies Overview](https://wso2.com/api-platform/docs/ai-workspace/llm-proxies/overview.md): Application-facing endpoints on top of an LLM provider, with their own guardrails and access rules
+- [MCP Proxies Overview](https://wso2.com/api-platform/docs/ai-workspace/mcp-proxies/overview.md): Connect the AI Gateway to upstream MCP servers through a centrally managed MCP proxy
+- [GenAI Applications](https://wso2.com/api-platform/docs/ai-workspace/genai-applications.md): Group API keys under a named application for usage visibility and governance
+- [Secrets Management](https://wso2.com/api-platform/docs/ai-workspace/secrets-management.md): How the standalone AI Workspace encrypts and rotates stored credentials
+- [Authentication in AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/setting-up/authentication/overview.md): File-based sign-in for local use versus an identity provider over OIDC for production
+- [AI Workspace CI/CD Overview](https://wso2.com/api-platform/docs/ai-workspace/ci-cd/overview.md): Manage LLM providers, App LLM proxies, and MCP proxies as version-controlled files with the `ap` CLI
+- [Troubleshoot AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/troubleshooting.md): Fixes for common AI Workspace problems: a gateway that stays Inactive, a chat completion request that returns 401, 403, or a model error
+- [Production Deployment Overview](https://wso2.com/api-platform/docs/ai-workspace/production/overview.md): Run the standalone AI Workspace on a virtual machine or Kubernetes, with high availability and hardening
+
 ## Developer Portal
 
 - [AI Agent Discovery](https://wso2.com/api-platform/docs/cloud/devportal/discover-apis/ai-agent-discovery.md): How AI agents discover and consume APIs through the Developer Portal: llms.txt endpoint, machine-readable API catalog, Arazzo workflow specs, and MCP server catalog

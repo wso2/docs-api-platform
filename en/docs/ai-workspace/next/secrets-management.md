@@ -359,7 +359,7 @@ Deleting a secret that's still in use returns HTTP 409. To remove it cleanly:
 
 ## Encryption key
 
-Secrets are encrypted at rest with the Platform API's at-rest encryption key, which also protects subscription tokens. The setup script provisions this key for Docker Compose deployments. For how to generate, mount, and reference it, see [Provision the at-rest encryption key manually](./getting-started.md#provision-the-at-rest-encryption-key-manually).
+Secrets are encrypted at rest with the Platform API's at-rest encryption key, which also protects subscription tokens. The setup script provisions this key for Docker Compose deployments. For how to generate, mount, and reference it, see [Provision the at-rest encryption key manually](./setting-up/configuration.md#provision-the-at-rest-encryption-key-manually).
 
 !!! warning
     Use the same encryption key across restarts and across all replicas. Changing or rotating it makes previously-encrypted secrets unreadable.

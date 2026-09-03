@@ -8,7 +8,7 @@ tags:
   - configuration
   - interpolation
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-07-24
+last_updated: 2026-08-31
 content_type: "reference"
 ---
 
@@ -16,7 +16,7 @@ content_type: "reference"
 
 The AI Workspace stack has two services: the AI Workspace Backend-for-Frontend (BFF) and the Platform API it proxies to. Each reads its configuration from a TOML file (`config.toml`) layered over built-in defaults.
 
-This page explains how each service loads its config file. It also covers how environment values and mounted files are injected through interpolation tokens, and how to keep sensitive values out of the file. For provisioning the keys, certificates, and credentials those tokens resolve to, see [Get started with AI Workspace](../getting-started.md).
+This page explains how each service loads its config file. It also covers how environment values and mounted files are injected through interpolation tokens, how to keep sensitive values out of the file, and how to provision or rotate the credentials those tokens resolve to. For first-time setup, see [Get started with AI Workspace](../getting-started.md).
 
 ## How configuration is loaded
 
@@ -90,16 +90,70 @@ Neither `encryption_key` nor `client_secret` carries a default, so each is a req
 !!! important "Two unrelated mechanisms"
     The {% raw %}`{{ env }}`{% endraw %} and {% raw %}`{{ file }}`{% endraw %} tokens on this page are resolved by the service's config loader at startup, and only inside `config.toml`. The {% raw %}`{{ secret "handle" }}`{% endraw %} placeholder of [Secrets management](../secrets-management.md) is resolved by the gateway at request time, and only inside artifact configurations. Neither works in the other's place.
 
-## Where the values come from
+## Rerun the setup script
 
-Provisioning the keys, certificates, and credentials the tokens resolve to is part of setting the stack up, not part of how the config loader works. For those steps, see:
+By default, rerunning `./scripts/setup.sh` is safe: it fills in only what's missing and never overwrites a value that already exists. The flags below change that:
 
-- [Run the setup script](../getting-started.md#step-2-run-the-setup-script) — what a fresh stack is given, and where each artifact lands.
-- [Rerun the setup script](../getting-started.md#rerun-the-setup-script) — the flags, and which of them rotate what.
-- [Provision the at-rest encryption key manually](../getting-started.md#provision-the-at-rest-encryption-key-manually) — the path for a deployment that doesn't use the script.
-- [Change environment values after setup](../getting-started.md#change-environment-values-after-setup) — editing `api-platform.env`, the file Compose loads into the containers.
+| Flag | Effect |
+|------|--------|
+| `--force` | Regenerate the Transport Layer Security (TLS) certificate, the JSON Web Token (JWT) keypair, and the API Portal session secret, and rotate the admin credentials. Never touches either encryption key. |
+| `--rotate-encryption-key` | Replace `resources/keys/encryption.key` and `resources/keys/api-portal-encryption.key`, even though they exist. Destructive. See the warning below. |
+| `--certs-only` | Generate only the TLS certificate. Skips the keys, the admin credentials, and `api-platform.env`. |
+| `--profiles=<a,b,...>` | Write a different `COMPOSE_PROFILES` value to `.env`, for example `--profiles=platform-api`. Only takes effect if `.env` doesn't already set `COMPOSE_PROFILES`, or combined with `--force`. |
+
+To rotate a single value by hand, delete it from `api-platform.env`, or delete the file under `resources/certificates` or `resources/keys`, and rerun the script. Don't delete `resources/keys/encryption.key` or `resources/keys/api-portal-encryption.key` this way. Rerunning the script regenerates a missing encryption key without warning, which makes data encrypted under the old key unreadable. To rotate either encryption key, use `--rotate-encryption-key` and read the warning below first.
+
+!!! warning "Rotating an encryption key destroys encrypted data"
+    `--rotate-encryption-key` replaces both encryption keys, which makes everything encrypted under the old keys permanently unreadable. That covers stored [AI Workspace secrets](../secrets-management.md) and subscription tokens held by the Platform API. It also covers the API Portal's subscription secrets and webhook secrets. At an interactive terminal the script asks you to type `rotate` to confirm; in a non-interactive run, passing the flag is itself the confirmation. Rotating the JWT keypair with `--force` is milder. It only invalidates issued login tokens, so everyone signs in again.
+
+## Provision the at-rest encryption key manually
+
+If you don't run `setup.sh`, provision the at-rest encryption key yourself before the first start. It protects [AI Workspace secrets](../secrets-management.md) and subscription tokens, and the Platform API refuses to start if it's missing or malformed. Keep it stable across restarts and replicas.
+
+This covers a self-managed Docker Compose setup. For a virtual machine (VM) or Kubernetes production deployment, where you provision this key alongside the database password and OIDC client secret, see [Provision secrets and keys](../production/secrets-and-keys.md) instead.
+
+The key is a single 32-byte Advanced Encryption Standard (AES)-256 value, supplied as 64 hex characters or base64. The container mounts it at `/etc/platform-api/keys`, and reads it as user ID (UID) 10001, a different user than the one that creates it.
+
+To provision it:
+
+1. Generate the key and write it to `resources/keys/encryption.key`.
+2. Grant read access to UID 10001. If your filesystem supports POSIX ACLs, do this without opening the file to every other account on the host:
+
+    ```sh
+    (umask 077 && openssl rand -hex 32 > resources/keys/encryption.key)
+    setfacl -m u:10001:r resources/keys/encryption.key
+    ```
+
+    If ACLs aren't available on your filesystem, the fallback is to make the file world-readable instead. This grants read access more broadly than the ACL approach:
+
+    ```sh
+    chmod 644 resources/keys/encryption.key
+    ```
+
+Keep the key out of source control, alongside `api-platform.env`. A trailing newline is trimmed on load. The Platform API doesn't read the key from an environment variable directly. It reads the `encryption_key` field in `config.toml`, shown above under [Sensitive values in `config.toml`](#sensitive-values-in-configtoml).
+
+To use the environment variable form instead, switch the token to {% raw %}`{{ env "APIP_CP_ENCRYPTION_KEY" }}`{% endraw %} and set the variable in `api-platform.env`.
+
+## Change environment values after setup
+
+`api-platform.env` holds the values the containers read at startup. Those are the admin credentials the setup script wrote, plus anything else your `config.toml` pulls in through an {% raw %}`{{ env }}`{% endraw %} token. Edit that file to change a setting, for example to switch the AI Workspace login mode or point at a different control plane. Then restart the stack.
+
+The sample `docker-compose.yaml` loads the file with the `env_file:` directive. It sets `format: raw` so that the `$` characters in a bcrypt password hash aren't treated as Compose interpolation:
+
+```yaml
+services:
+  platform-api:
+    env_file:
+      - path: api-platform.env
+        required: true
+        format: raw
+```
+
+Keep `api-platform.env` out of source control. It's git-ignored in the distribution.
 
 ## Related
 
-- [Get started with AI Workspace](../getting-started.md): provision the keys, certificates, and credentials the tokens resolve to
+- [Get started with AI Workspace](../getting-started.md): download AI Workspace, run the setup script for the first time, and deploy the stack
 - [Change the ports AI Workspace uses](ports.md): move the stack off its default ports
+- [Provision secrets and keys](../production/secrets-and-keys.md): the VM and Kubernetes equivalent of manually provisioning the encryption key, alongside the database password and OIDC client secret
+- [Troubleshoot AI Workspace](../troubleshooting.md): fixes for common setup problems

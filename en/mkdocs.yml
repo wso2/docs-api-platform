@@ -1182,6 +1182,7 @@ nav:
       - GenAI Applications: ai-workspace/next/genai-applications.md
       - Configure Inbound Auth: ai-workspace/next/configure-inbound-auth.md
       - Invoke via SDKs: ai-workspace/next/using-sdks.md
+      - Troubleshooting: ai-workspace/next/troubleshooting.md
       # REST reference for everything above.
       - References:
           - Platform API:
@@ -1264,6 +1265,7 @@ nav:
       - GenAI Applications: ai-workspace/1.0.0/genai-applications.md
       - Configure Inbound Auth: ai-workspace/1.0.0/configure-inbound-auth.md
       - Invoke via SDKs: ai-workspace/1.0.0/using-sdks.md
+      - Troubleshooting: ai-workspace/1.0.0/troubleshooting.md
       # REST reference for everything above.
       - References:
           - Platform API:
