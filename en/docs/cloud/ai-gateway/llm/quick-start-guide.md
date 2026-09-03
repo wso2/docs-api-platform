@@ -65,7 +65,7 @@ Select the __Quick Start__ tab in the detail page of the newly added gateway's *
     unzip wso2apip-ai-gateway-1.1.0.zip
     ```
 
-2. Create the environment file with your registration token. The 
+2. Create the environment file with your registration token. 
 
     ```bash
     cat > wso2apip-ai-gateway-1.1.0/configs/keys.env << 'ENVFILE'
@@ -121,6 +121,8 @@ Click **Add Provider**. The provider is added to __LLM Providers__ list. The det
 1. Click **Deploy to Gateway**.
 2. Click **Deploy** next to the [gateway you created](#create-an-ai-gateway).
 3. Wait for the status to change to **Deployed**.
+
+Click __LLM Providers__ in the navigation menu and click on your Provider. It opens the Provider's detail page in the __Overview__ tab.
 
 ## Send your first request
 
