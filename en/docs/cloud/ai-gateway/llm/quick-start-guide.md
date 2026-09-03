@@ -9,7 +9,7 @@ tags:
   - llm
   - quickstart
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-09-01
+last_updated: 2026-09-03
 content_type: "quickstart"
 ---
 
