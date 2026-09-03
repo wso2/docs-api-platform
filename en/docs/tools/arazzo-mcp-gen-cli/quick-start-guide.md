@@ -34,16 +34,12 @@ the CLI will:
 | Generate | Emits `mcp_server.py` + `Dockerfile`, then builds a Docker image |
 | Run | `docker run` the image — any MCP client can connect |
 
----
-
 ## Prerequisites
 
 | Tool | Why | Install |
 |------|-----|---------|
 | **Docker** | Build and run the generated image | [docs.docker.com/get-docker](https://docs.docker.com/get-docker/) |
 | **Node.js + npx** *(optional)* | Enables the Spectral validator for in-depth Arazzo checks | [nodejs.org](https://nodejs.org) |
-
----
 
 ## Installation
 
@@ -175,8 +171,6 @@ shasum -a 256 -c checksums.txt --ignore-missing
 
 An intact archive reports `OK`. Delete the archive when you're done: `rm arazzo-mcp-gen-0.1.0-*.zip`.
 
----
-
 ## User scenario: end-to-end walkthrough
 
 In this scenario, you have an OpenAPI spec for a pet store API and want to expose a "check if a pet exists, then create or update it" workflow as an MCP tool for an AI agent.
@@ -305,8 +299,6 @@ The server is now live at `http://localhost:5000/mcp` in stateless HTTP mode. To
 
 Save the file, then quit Claude Desktop and open it again. The AI agent can now call your Arazzo workflows as tools. The tool executes the full multi-step logic internally and returns the final result.
 
----
-
 ## Generated artifacts
 
 Inspect with `--output` / `-o ./artifacts`:
@@ -325,5 +317,3 @@ artifacts/
 | `mcp_server.py` | Python server using `fastmcp` and `arazzo-runner`. Workflow inputs become typed function parameters; docstrings come from workflow summaries/descriptions. |
 | `Dockerfile` | Standard slim Python container. Installs dependencies, copies the `arazzo/` folder, and runs `mcp_server.py`. |
 | `arazzo/` | All spec files the container needs to resolve `$ref` and `sourceDescriptions` at runtime. |
-
----

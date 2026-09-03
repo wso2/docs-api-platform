@@ -70,8 +70,6 @@ arazzo-mcp-gen validate -f ./my-arazzo-folder --strict
 | `0` | Passed (no errors) |
 | `1` | Errors found, or warnings in `--strict` mode |
 
----
-
 ### `inspect`
 
 Parses and prints a detailed, colour-coded overview of an Arazzo spec — without generating anything. Use this to understand a spec or debug step-flow routing before generating an MCP server.
@@ -104,8 +102,6 @@ arazzo-mcp-gen inspect -f ./workflow.yaml
     - `onSuccess` / `onFailure` routing with conditions (GOTO, END, RETRY)
     - Step outputs and their expressions
     - Workflow-level outputs
-
----
 
 ### `visualize`
 
@@ -149,8 +145,6 @@ arazzo-mcp-gen viz -f ./my-arazzo-folder
 !!! tip
 
     Paste any `.mmd` file into [mermaid.live](https://mermaid.live) for a shareable interactive link.
-
----
 
 ### `mcp-server generate`
 
