@@ -13,7 +13,7 @@ last_updated: 2026-09-02
 content_type: "quickstart"
 ---
 
-## Quick start — Arazzo MCP Generator (arazzo-mcp-gen)
+# Quick start — Arazzo MCP Generator (arazzo-mcp-gen)
 
 `arazzo-mcp-gen` is a CLI tool that turns an [Arazzo specification](https://spec.openapis.org/arazzo/latest.html) and its referenced OpenAPI files into a fully Dockerized Python MCP (Model Context Protocol) server. Each Arazzo workflow becomes an MCP tool that any AI agent can call.
 
