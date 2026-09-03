@@ -9,7 +9,7 @@ tags:
   - arazzo
   - mcp
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-09-01
+last_updated: 2026-09-02
 content_type: "quickstart"
 ---
 
@@ -47,54 +47,113 @@ the CLI will:
 
 ## Installation
 
-Download the archive for your platform from the [arazzo-mcp-generator releases](https://github.com/wso2/arazzo-mcp-generator/releases) page, or use the install commands below.
+Download the archive for your platform from the [releases page](https://github.com/wso2/arazzo-mcp-generator/releases), or use the install commands below.
 
 The commands below install version `0.1.0`. Substitute another version number in the URL to install a different release.
 
-### macOS and Linux
+=== "macOS (Apple Silicon)"
 
-Run only the block that matches your platform:
+    Download the archive:
 
-```bash
-# For macOS (Apple Silicon)
-curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-darwin-arm64.zip
-unzip arazzo-mcp-gen-0.1.0-darwin-arm64.zip
-sudo mv arazzo-mcp-gen-darwin-arm64 /usr/local/bin/arazzo-mcp-gen
+    ```bash
+    curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-darwin-arm64.zip
+    ```
 
-# For macOS (Intel)
-curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-darwin-amd64.zip
-unzip arazzo-mcp-gen-0.1.0-darwin-amd64.zip
-sudo mv arazzo-mcp-gen-darwin-amd64 /usr/local/bin/arazzo-mcp-gen
+    Extract it:
 
-# For Linux (x86_64)
-curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-linux-amd64.zip
-unzip arazzo-mcp-gen-0.1.0-linux-amd64.zip
-sudo mv arazzo-mcp-gen-linux-amd64 /usr/local/bin/arazzo-mcp-gen
+    ```bash
+    unzip arazzo-mcp-gen-0.1.0-darwin-arm64.zip
+    ```
 
-# For Linux (ARM64)
-curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-linux-arm64.zip
-unzip arazzo-mcp-gen-0.1.0-linux-arm64.zip
-sudo mv arazzo-mcp-gen-linux-arm64 /usr/local/bin/arazzo-mcp-gen
-```
+    Move the binary to a folder on your `PATH`, so you can run `arazzo-mcp-gen` from anywhere:
 
-Moving the binary to `/usr/local/bin` lets you run `arazzo-mcp-gen` from any folder.
+    ```bash
+    sudo mv arazzo-mcp-gen-darwin-arm64 /usr/local/bin/arazzo-mcp-gen
+    ```
 
-> **Note:** If you downloaded through a browser rather than with `curl`, macOS marks the file as untrusted and refuses to run it. Clear the mark:
->
-> ```bash
-> xattr -d com.apple.quarantine /usr/local/bin/arazzo-mcp-gen
-> ```
+=== "macOS (Intel)"
 
-### Windows
+    Download the archive:
 
-Download and extract the archive in PowerShell:
+    ```bash
+    curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-darwin-amd64.zip
+    ```
 
-```powershell
-Invoke-WebRequest -Uri https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-windows-amd64.zip -OutFile arazzo-mcp-gen-0.1.0-windows-amd64.zip
-Expand-Archive -Path arazzo-mcp-gen-0.1.0-windows-amd64.zip -DestinationPath .
-```
+    Extract it:
 
-Move `arazzo-mcp-gen.exe` to a folder on your `PATH` to run it from anywhere, or run it from the folder you extracted it into.
+    ```bash
+    unzip arazzo-mcp-gen-0.1.0-darwin-amd64.zip
+    ```
+
+    Move the binary to a folder on your `PATH`, so you can run `arazzo-mcp-gen` from anywhere:
+
+    ```bash
+    sudo mv arazzo-mcp-gen-darwin-amd64 /usr/local/bin/arazzo-mcp-gen
+    ```
+
+=== "Linux (x86_64)"
+
+    Download the archive:
+
+    ```bash
+    curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-linux-amd64.zip
+    ```
+
+    Extract it:
+
+    ```bash
+    unzip arazzo-mcp-gen-0.1.0-linux-amd64.zip
+    ```
+
+    Move the binary to a folder on your `PATH`, so you can run `arazzo-mcp-gen` from anywhere:
+
+    ```bash
+    sudo mv arazzo-mcp-gen-linux-amd64 /usr/local/bin/arazzo-mcp-gen
+    ```
+
+=== "Linux (ARM64)"
+
+    Download the archive:
+
+    ```bash
+    curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-linux-arm64.zip
+    ```
+
+    Extract it:
+
+    ```bash
+    unzip arazzo-mcp-gen-0.1.0-linux-arm64.zip
+    ```
+
+    Move the binary to a folder on your `PATH`, so you can run `arazzo-mcp-gen` from anywhere:
+
+    ```bash
+    sudo mv arazzo-mcp-gen-linux-arm64 /usr/local/bin/arazzo-mcp-gen
+    ```
+
+=== "Windows"
+
+    Download the archive:
+
+    ```powershell
+    Invoke-WebRequest -Uri https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-windows-amd64.zip -OutFile arazzo-mcp-gen-0.1.0-windows-amd64.zip
+    ```
+
+    Extract it:
+
+    ```powershell
+    Expand-Archive -Path arazzo-mcp-gen-0.1.0-windows-amd64.zip -DestinationPath .
+    ```
+
+    Move `arazzo-mcp-gen.exe` to a folder on your `PATH` to run it from anywhere, or run it from the folder you extracted it into.
+
+!!! note
+
+    If you downloaded through a browser rather than with `curl`, macOS marks the file as untrusted and refuses to run it. Clear the mark:
+
+    ```bash
+    xattr -d com.apple.quarantine /usr/local/bin/arazzo-mcp-gen
+    ```
 
 ### Verify the installation
 
@@ -120,7 +179,7 @@ An intact archive reports `OK`. Delete the archive when you're done: `rm arazzo-
 
 ## User scenario: end-to-end walkthrough
 
-> **Scenario:** You have an OpenAPI spec for a pet store API and want to expose a "check if a pet exists, then create or update it" workflow as an MCP tool for an AI agent.
+In this scenario, you have an OpenAPI spec for a pet store API and want to expose a "check if a pet exists, then create or update it" workflow as an MCP tool for an AI agent.
 
 ### Step 1 — Prepare your project folder
 
@@ -240,7 +299,9 @@ The server is now live at `http://localhost:5000/mcp` in stateless HTTP mode. To
 }
 ```
 
-> **Note:** Replace `http://localhost:5000/mcp` with the endpoint shown in your terminal if you used a different port.
+!!! note
+
+    Replace `http://localhost:5000/mcp` with the endpoint shown in your terminal if you used a different port.
 
 Save the file, then quit Claude Desktop and open it again. The AI agent can now call your Arazzo workflows as tools. The tool executes the full multi-step logic internally and returns the final result.
 

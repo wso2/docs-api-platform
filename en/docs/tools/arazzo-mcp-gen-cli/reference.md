@@ -10,7 +10,7 @@ tags:
   - mcp
   - reference
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-09-01
+last_updated: 2026-09-02
 content_type: "reference"
 ---
 
@@ -146,7 +146,9 @@ arazzo-mcp-gen viz -f ./my-arazzo-folder
 - Implicit sequential flow and fallthrough paths (dashed arrows)
 - Cross-workflow `goto` references
 
-> Paste any `.mmd` file into [mermaid.live](https://mermaid.live) for a shareable interactive link.
+!!! tip
+
+    Paste any `.mmd` file into [mermaid.live](https://mermaid.live) for a shareable interactive link.
 
 ---
 
@@ -164,7 +166,9 @@ arazzo-mcp-gen mcp-server generate -f <file-or-folder> [flags]
 | `--port` | `-p` | Port the MCP server listens on inside the container and on your host | `5000` |
 | `--output` | `-o` | Save generated artifacts (`mcp_server.py`, `Dockerfile`, `arazzo/` folder) to this path for inspection. If omitted a temp directory is used and cleaned up automatically | — |
 
-> **Note:** `--file` (`-f`) is required. Point it at a single Arazzo file when a folder holds more than one and you want to convert only that one.
+!!! note
+
+    `--file` (`-f`) is required. Point it at a single Arazzo file when a folder holds more than one and you want to convert only that one.
 
 **Examples**
 
