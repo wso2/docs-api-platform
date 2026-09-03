@@ -425,5 +425,5 @@
 - [VS Code: Govern APIs](https://wso2.com/api-platform/docs/tools/vscode-api-design/govern-apis.md): Apply governance rules to API designs directly from VS Code
 - [VS Code: End-to-End Tutorial](https://wso2.com/api-platform/docs/tools/vscode-api-design/end-to-end-tutorial.md): Full walkthrough: draft, design, govern, and fix an OpenAPI specification using API Designer and GitHub Copilot
 - [Arazzo MCP Generator CLI Quick Start](https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/quick-start-guide.md): Convert an Arazzo specification into a Dockerized Python MCP server using the arazzo-mcp-gen CLI
-- [Arazzo MCP Generator CLI Reference](https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/reference.md): Full command reference for arazzo-mcp-gen: sample, validate, inspect, visualize, and mcp-server generate
+- [Arazzo MCP Generator CLI Reference](https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/reference.md): Full command reference for arazzo-mcp-gen: validate, inspect, visualize, and mcp-server generate
 - [VS Code Arazzo Visualizer: Getting Started](https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/getting-started.md): Visualize, edit, and run Arazzo workflow specifications as interactive diagrams directly inside VS Code

@@ -9,15 +9,15 @@ tags:
   - arazzo
   - mcp
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-23
+last_updated: 2026-09-02
 content_type: "quickstart"
 ---
 
-## Quick Start — Arazzo MCP Generator (arazzo-mcp-gen)
+# Quick start — Arazzo MCP Generator (arazzo-mcp-gen)
 
 `arazzo-mcp-gen` is a CLI tool that turns an [Arazzo specification](https://spec.openapis.org/arazzo/latest.html) and its referenced OpenAPI files into a fully Dockerized Python MCP (Model Context Protocol) server. Each Arazzo workflow becomes an MCP tool that any AI agent can call.
 
-## What It Does
+## What it does
 
 Given a folder containing:
 
@@ -34,8 +34,6 @@ the CLI will:
 | Generate | Emits `mcp_server.py` + `Dockerfile`, then builds a Docker image |
 | Run | `docker run` the image — any MCP client can connect |
 
----
-
 ## Prerequisites
 
 | Tool | Why | Install |
@@ -43,78 +41,158 @@ the CLI will:
 | **Docker** | Build and run the generated image | [docs.docker.com/get-docker](https://docs.docker.com/get-docker/) |
 | **Node.js + npx** *(optional)* | Enables the Spectral validator for in-depth Arazzo checks | [nodejs.org](https://nodejs.org) |
 
----
-
 ## Installation
 
-Download the latest version for your operating system from the [Releases](https://github.com/HimethW/arazzo-mcp-gen/releases) page.
+Download the archive for your platform from the [releases page](https://github.com/wso2/arazzo-mcp-generator/releases), or use the install commands below.
 
-### Windows
-1. Download `arazzo-mcp-gen-windows-amd64.exe`.
-2. Rename it to `arazzo-mcp-gen.exe`.
-3. Move it to a folder in your PATH (e.g., `C:\Windows\system32`) or run it directly from your downloads.
+The commands below install version `0.1.0`. Substitute another version number in the URL to install a different release.
 
-### macOS / Linux
-1. Download the binary for your architecture (`darwin` for Mac, `linux` for Linux).
-2. Make it executable:
-   ```bash
-   chmod +x arazzo-mcp-gen-linux-amd64
-   sudo mv arazzo-mcp-gen-linux-amd64 /usr/local/bin/arazzo-mcp-gen
-   ```
+=== "macOS (Apple Silicon)"
 
-Verify the installation:
+    Download the archive:
+
+    ```bash
+    curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-darwin-arm64.zip
+    ```
+
+    Extract it:
+
+    ```bash
+    unzip arazzo-mcp-gen-0.1.0-darwin-arm64.zip
+    ```
+
+    Move the binary to a folder on your `PATH`, so you can run `arazzo-mcp-gen` from anywhere:
+
+    ```bash
+    sudo mv arazzo-mcp-gen-darwin-arm64 /usr/local/bin/arazzo-mcp-gen
+    ```
+
+=== "macOS (Intel)"
+
+    Download the archive:
+
+    ```bash
+    curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-darwin-amd64.zip
+    ```
+
+    Extract it:
+
+    ```bash
+    unzip arazzo-mcp-gen-0.1.0-darwin-amd64.zip
+    ```
+
+    Move the binary to a folder on your `PATH`, so you can run `arazzo-mcp-gen` from anywhere:
+
+    ```bash
+    sudo mv arazzo-mcp-gen-darwin-amd64 /usr/local/bin/arazzo-mcp-gen
+    ```
+
+=== "Linux (x86_64)"
+
+    Download the archive:
+
+    ```bash
+    curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-linux-amd64.zip
+    ```
+
+    Extract it:
+
+    ```bash
+    unzip arazzo-mcp-gen-0.1.0-linux-amd64.zip
+    ```
+
+    Move the binary to a folder on your `PATH`, so you can run `arazzo-mcp-gen` from anywhere:
+
+    ```bash
+    sudo mv arazzo-mcp-gen-linux-amd64 /usr/local/bin/arazzo-mcp-gen
+    ```
+
+=== "Linux (ARM64)"
+
+    Download the archive:
+
+    ```bash
+    curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-linux-arm64.zip
+    ```
+
+    Extract it:
+
+    ```bash
+    unzip arazzo-mcp-gen-0.1.0-linux-arm64.zip
+    ```
+
+    Move the binary to a folder on your `PATH`, so you can run `arazzo-mcp-gen` from anywhere:
+
+    ```bash
+    sudo mv arazzo-mcp-gen-linux-arm64 /usr/local/bin/arazzo-mcp-gen
+    ```
+
+=== "Windows"
+
+    Download the archive:
+
+    ```powershell
+    Invoke-WebRequest -Uri https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/arazzo-mcp-gen-0.1.0-windows-amd64.zip -OutFile arazzo-mcp-gen-0.1.0-windows-amd64.zip
+    ```
+
+    Extract it:
+
+    ```powershell
+    Expand-Archive -Path arazzo-mcp-gen-0.1.0-windows-amd64.zip -DestinationPath .
+    ```
+
+    Move `arazzo-mcp-gen.exe` to a folder on your `PATH` to run it from anywhere, or run it from the folder you extracted it into.
+
+!!! note
+
+    If you downloaded through a browser rather than with `curl`, macOS marks the file as untrusted and refuses to run it. Clear the mark:
+
+    ```bash
+    xattr -d com.apple.quarantine /usr/local/bin/arazzo-mcp-gen
+    ```
+
+### Verify the installation
+
+Confirm that the binary runs and reports its version:
 
 ```bash
 arazzo-mcp-gen --version
+# arazzo-mcp-gen version v0.1.0
 ```
 
----
+### Check the download
 
-## Quick Start
-
-If you don't have an Arazzo spec yet, let the CLI create a sample one:
+Each release includes `checksums.txt`, which lists a fingerprint for every published archive. Comparing your copy against that list confirms the download arrived intact. Run this from the folder holding the archive:
 
 ```bash
-arazzo-mcp-gen sample my-project
-cd my-project
+curl -LO https://github.com/wso2/arazzo-mcp-generator/releases/download/0.1.0/checksums.txt
+shasum -a 256 -c checksums.txt --ignore-missing
 ```
 
-Then validate, inspect, and generate in three commands:
+An intact archive reports `OK`. Delete the archive when you're done: `rm arazzo-mcp-gen-0.1.0-*.zip`.
 
-```bash
-arazzo-mcp-gen validate -d .
-arazzo-mcp-gen inspect  -d .
-arazzo-mcp-gen mcp-server generate -d . -p 5000
-```
+## User scenario: end-to-end walkthrough
 
-Once Docker finishes building, run it:
-
-```bash
-docker run -p 5000:5000 <image-name-from-output>
-```
-
-## User Scenario: End-to-End Walkthrough
-
-> **Scenario:** You have an OpenAPI spec for a pet store API and want to expose a "check if a pet exists, then create or update it" workflow as an MCP tool for an AI agent.
+In this scenario, you have an OpenAPI spec for a pet store API and want to expose a "check if a pet exists, then create or update it" workflow as an MCP tool for an AI agent.
 
 ### Step 1 — Prepare your project folder
 
-Create a folder containing your Arazzo specification and its referenced OpenAPI files:
+The tool needs your Arazzo file, which lists the workflow steps, and the OpenAPI file describing the API those steps call.
 
-1. Create a folder named `pet-project`.
-2. Save your Arazzo file (e.g., `petstore_workflow.yaml`) inside it.
-3. Ensure all OpenAPI `.yaml` files referenced in the Arazzo spec are also in this folder.
+1. Create a folder named `pet-project`, then change into it with `cd pet-project`. The commands in the following steps all run from inside this folder.
+2. Save your Arazzo file (for example, `petstore_workflow.yaml`) inside it. If you don't have one, open the [sample Arazzo file](https://github.com/wso2/arazzo-mcp-generator#sample-arazzo-file), copy the YAML block, and save it under that name.
+3. If your Arazzo spec references OpenAPI files by name, put those files in this folder too. The sample references the Petstore API by URL, so it needs no local copy.
 
-```
+```text
 pet-project/
 ├── petstore_workflow.yaml   ← Your Arazzo spec
-└── petstore_openapi.yaml    ← Your OpenAPI spec
+└── petstore_openapi.yaml    ← Your OpenAPI spec, if referenced by file name
 ```
 
 ### Step 2 — Validate the spec
 
 ```bash
-arazzo-mcp-gen validate -d .
+arazzo-mcp-gen validate -f .
 ```
 
 **Expected output (Spectral available):**
@@ -124,6 +202,8 @@ Validating: /path/to/pet-project/petstore_workflow.yaml
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Validation Result: PASSED
   ✓ All arazzo rules passed
+  ⚠ 0 warnings
+  ✗ 0 errors
   ─ Validated using Spectral (spectral:arazzo ruleset)
 ```
 
@@ -132,7 +212,7 @@ Fix any errors reported before continuing. Warnings are informational; use `--st
 ### Step 3 — Inspect the spec
 
 ```bash
-arazzo-mcp-gen inspect -d .
+arazzo-mcp-gen inspect -f .
 ```
 
 Review the printed summary to confirm:
@@ -144,16 +224,16 @@ Review the printed summary to confirm:
 ### Step 4 — Visualize the flow
 
 ```bash
-arazzo-mcp-gen visualize -d .
+arazzo-mcp-gen visualize -f .
 ```
 
-Your browser opens with an interactive Mermaid flowchart. Check the branching logic visually — this is especially useful for multi-step workflows with `onSuccess` / `onFailure` routing.
+Your browser opens a rendered Mermaid flowchart. Check the branching logic visually — this is especially useful for multi-step workflows with `onSuccess` / `onFailure` routing.
 
 To save it:
 
 ```bash
 # As a Markdown file (renders on GitHub)
-arazzo-mcp-gen visualize -d . -o flow.md
+arazzo-mcp-gen visualize -f . -o flow.md
 ```
 
 ### Step 5 — Generate the MCP server
@@ -161,7 +241,7 @@ arazzo-mcp-gen visualize -d . -o flow.md
 Make sure Docker is running, then:
 
 ```bash
-arazzo-mcp-gen mcp-server generate -d . -p 5000 -o ./artifacts
+arazzo-mcp-gen mcp-server generate -f . -p 5000 -o ./artifacts
 ```
 
 **Expected output:**
@@ -178,6 +258,9 @@ Building Docker image...
 ║ Run:    docker run -p 5000:5000 pet-upsert-workflow-v3-mcp-server      ║
 ║ URL:    http://localhost:5000                                          ║
 ║                                                                        ║
+║ If TLS verification must be disabled for self-signed HTTPS endpoints,  ║
+║ run the image with: -e ARAZZO_DISABLE_TLS_VERIFY=1                     ║
+║                                                                        ║
 ║ Build artifacts saved to: ./artifacts                                  ║
 ╚════════════════════════════════════════════════════════════════════════╝
 ```
@@ -192,7 +275,7 @@ docker run -p 5000:5000 pet-upsert-workflow-v3-mcp-server
 
 ### Step 7 — Connect an MCP client
 
-The server is now live at `http://localhost:5000/mcp` in stateless HTTP mode. To connect it to an MCP client like **Claude Desktop**, you can use `supergateway` to bridge the HTTP endpoint:
+The server is now live at `http://localhost:5000/mcp` in stateless HTTP mode. To connect it to an MCP client like **Claude Desktop**, you can use `supergateway` to bridge the HTTP endpoint. Add the following to your Claude Desktop configuration, keeping any settings already in the file. On macOS it's at `~/Library/Application Support/Claude/claude_desktop_config.json`; on Windows, `%APPDATA%\Claude\claude_desktop_config.json`:
 
 ```json
 {
@@ -210,17 +293,17 @@ The server is now live at `http://localhost:5000/mcp` in stateless HTTP mode. To
 }
 ```
 
-> **Note:** Replace `http://localhost:5000/mcp` with the endpoint shown in your terminal if you used a different port.
+!!! note
 
-The AI agent can now call your Arazzo workflows as tools. The tool executes the full multi-step logic internally and returns the final result.
+    Replace `http://localhost:5000/mcp` with the endpoint shown in your terminal if you used a different port.
 
----
+Save the file, then quit Claude Desktop and open it again. The AI agent can now call your Arazzo workflows as tools. The tool executes the full multi-step logic internally and returns the final result.
 
-## Generated Artifacts
+## Generated artifacts
 
 Inspect with `--output` / `-o ./artifacts`:
 
-```
+```text
 artifacts/
 ├── mcp_server.py     ← FastMCP server; each workflow = @mcp.tool()
 ├── Dockerfile        ← python:3.11-slim image; EXPOSEs your port
@@ -234,5 +317,3 @@ artifacts/
 | `mcp_server.py` | Python server using `fastmcp` and `arazzo-runner`. Workflow inputs become typed function parameters; docstrings come from workflow summaries/descriptions. |
 | `Dockerfile` | Standard slim Python container. Installs dependencies, copies the `arazzo/` folder, and runs `mcp_server.py`. |
 | `arazzo/` | All spec files the container needs to resolve `$ref` and `sourceDescriptions` at runtime. |
-
----

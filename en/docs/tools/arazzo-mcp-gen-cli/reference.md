@@ -1,6 +1,6 @@
 ---
 title: "Arazzo MCP Generator CLI reference"
-description: "Command reference for arazzo-mcp-gen: sample, validate, inspect, visualize, and mcp-server generate."
+description: "Command reference for arazzo-mcp-gen: validate, inspect, visualize, and mcp-server generate."
 canonical_url: https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/reference/
 md_url: https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/reference.md
 tags:
@@ -10,39 +10,8 @@ tags:
   - mcp
   - reference
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-23
+last_updated: 2026-09-02
 content_type: "reference"
----
-
-### `sample`
-
-Creates a new directory with a ready-to-use sample Arazzo spec targeting the Petstore v3 API. Good starting point for writing your own spec.
-
-```bash
-arazzo-mcp-gen sample [project-name]
-```
-
-| Argument | Description | Default |
-|----------|-------------|---------|
-| `project-name` | Name of the folder to create | `sample-arazzo-project` |
-
-**Examples**
-
-```bash
-# Create a folder called 'sample-arazzo-project'
-arazzo-mcp-gen sample
-
-# Create a folder called 'my-api-project'
-arazzo-mcp-gen sample my-api-project
-```
-
-What it creates:
-
-```
-my-api-project/
-└── petstore_workflow.yaml   ← sample Arazzo spec targeting Petstore v3
-```
-
 ---
 
 ### `validate`
@@ -52,33 +21,29 @@ Validates an Arazzo specification for correctness and completeness.
 Uses **Spectral** (via `npx @stoplight/spectral-cli`) with the official `spectral:arazzo` ruleset as the primary validator when available. Falls back to the built-in Go validator when Node.js is not installed, showing install instructions.
 
 ```bash
-arazzo-mcp-gen validate -d <folder>
-arazzo-mcp-gen validate -f <file>
+arazzo-mcp-gen validate -f <file-or-folder>
 ```
 
 | Flag | Short | Description | Default |
 |------|-------|-------------|---------|
-| `--folder` | `-d` | Folder containing the Arazzo file (auto-detected) | — |
-| `--file` | `-f` | Path to a single Arazzo `.yaml` file | — |
+| `--file` | `-f` | Path to an Arazzo file, or a folder that the CLI scans to find one | — |
 | `--check-remote` | | Also probe remote source URLs for accessibility | `false` |
 | `--strict` | | Treat warnings as errors (exits with code 1 on warnings) | `false` |
-
-> Use either `--folder` or `--file`, not both.
 
 **Examples**
 
 ```bash
 # Validate all files in a folder
-arazzo-mcp-gen validate -d ./my-arazzo-folder
+arazzo-mcp-gen validate -f ./my-arazzo-folder
 
 # Validate a single file
 arazzo-mcp-gen validate -f ./workflow.yaml
 
 # Validate and also check that remote OpenAPI URLs are reachable
-arazzo-mcp-gen validate -d ./my-arazzo-folder --check-remote
+arazzo-mcp-gen validate -f ./my-arazzo-folder --check-remote
 
 # Strict mode: fail if there are any warnings
-arazzo-mcp-gen validate -d ./my-arazzo-folder --strict
+arazzo-mcp-gen validate -f ./my-arazzo-folder --strict
 ```
 
 **What it checks (Spectral ruleset)**
@@ -105,27 +70,23 @@ arazzo-mcp-gen validate -d ./my-arazzo-folder --strict
 | `0` | Passed (no errors) |
 | `1` | Errors found, or warnings in `--strict` mode |
 
----
-
 ### `inspect`
 
 Parses and prints a detailed, colour-coded overview of an Arazzo spec — without generating anything. Use this to understand a spec or debug step-flow routing before generating an MCP server.
 
 ```bash
-arazzo-mcp-gen inspect -d <folder>
-arazzo-mcp-gen inspect -f <file>
+arazzo-mcp-gen inspect -f <file-or-folder>
 ```
 
 | Flag | Short | Description |
 |------|-------|-------------|
-| `--folder` | `-d` | Folder containing the Arazzo file |
-| `--file` | `-f` | Path to a single Arazzo `.yaml` file |
+| `--file` | `-f` | Path to an Arazzo file, or a folder that the CLI scans to find one |
 
 **Examples**
 
 ```bash
 # Inspect a folder (auto-detects the Arazzo file)
-arazzo-mcp-gen inspect -d ./my-arazzo-folder
+arazzo-mcp-gen inspect -f ./my-arazzo-folder
 
 # Inspect a specific file
 arazzo-mcp-gen inspect -f ./workflow.yaml
@@ -142,39 +103,35 @@ arazzo-mcp-gen inspect -f ./workflow.yaml
     - Step outputs and their expressions
     - Workflow-level outputs
 
----
-
 ### `visualize`
 
 Generates a Mermaid flowchart diagram of the Arazzo spec's workflow logic. By default opens the rendered diagram in your browser (no extra tools needed). Can also save to a file.
 
 ```bash
-arazzo-mcp-gen visualize -d <folder>
-arazzo-mcp-gen visualize -f <file> [-o <output-file>]
+arazzo-mcp-gen visualize -f <file-or-folder> [-o <output-file>]
 ```
 
 Alias: `viz`
 
 | Flag | Short | Description |
 |------|-------|-------------|
-| `--folder` | `-d` | Folder containing the Arazzo file |
-| `--file` | `-f` | Path to a single Arazzo `.yaml` file |
+| `--file` | `-f` | Path to an Arazzo file, or a folder that the CLI scans to find one |
 | `--output` | `-o` | Output file path. `.md` → Mermaid in fenced code block; `.mmd` → raw Mermaid syntax |
 
 **Examples**
 
 ```bash
 # Open diagram in browser (default)
-arazzo-mcp-gen visualize -d ./my-arazzo-folder
+arazzo-mcp-gen visualize -f ./my-arazzo-folder
 
 # Save to GitHub-renderable Markdown
 arazzo-mcp-gen visualize -f ./workflow.yaml -o diagram.md
 
 # Save raw Mermaid source
-arazzo-mcp-gen visualize -d ./my-arazzo-folder -o flow.mmd
+arazzo-mcp-gen visualize -f ./my-arazzo-folder -o flow.mmd
 
 # Short alias
-arazzo-mcp-gen viz -d ./my-arazzo-folder
+arazzo-mcp-gen viz -f ./my-arazzo-folder
 ```
 
 **Diagram shows**
@@ -185,40 +142,39 @@ arazzo-mcp-gen viz -d ./my-arazzo-folder
 - Implicit sequential flow and fallthrough paths (dashed arrows)
 - Cross-workflow `goto` references
 
-> Paste any `.mmd` file into [mermaid.live](https://mermaid.live) for a shareable interactive link.
+!!! tip
 
----
+    Paste any `.mmd` file into [mermaid.live](https://mermaid.live) for a shareable interactive link.
 
 ### `mcp-server generate`
 
 The main command. Reads your Arazzo + OpenAPI files, generates a Python MCP server, and builds a Docker image.
 
 ```bash
-arazzo-mcp-gen mcp-server generate -d <folder> [flags]
-arazzo-mcp-gen mcp-server generate -f <arazzo-file> [flags]
+arazzo-mcp-gen mcp-server generate -f <file-or-folder> [flags]
 ```
 
 | Flag | Short | Description | Default |
 |------|-------|-------------|---------|
-| `--folder` | `-d` | Folder containing Arazzo + OpenAPI files (auto-detects the Arazzo file) | — |
-| `--file` | `-f` | Path to a single Arazzo specification file (uses its parent directory for OpenAPI files) | — |
+| `--file` | `-f` | Path to an Arazzo file, or a folder that the CLI scans to find one. When you give a file, the CLI looks in its parent folder for the referenced OpenAPI files | — |
 | `--port` | `-p` | Port the MCP server listens on inside the container and on your host | `5000` |
 | `--output` | `-o` | Save generated artifacts (`mcp_server.py`, `Dockerfile`, `arazzo/` folder) to this path for inspection. If omitted a temp directory is used and cleaned up automatically | — |
 
-> **Note:** One of `--folder` (`-d`) or `--file` (`-f`) is required, but not both.
-> Use `--file` when a folder contains multiple Arazzo files and you want to convert only one.
+!!! note
+
+    `--file` (`-f`) is required. Point it at a single Arazzo file when a folder holds more than one and you want to convert only that one.
 
 **Examples**
 
 ```bash
 # From a folder (auto-detects the Arazzo file)
-arazzo-mcp-gen mcp-server generate -d ./my-arazzo-folder
+arazzo-mcp-gen mcp-server generate -f ./my-arazzo-folder
 
 # From a single Arazzo file directly
 arazzo-mcp-gen mcp-server generate -f ./my-arazzo-folder/workflow.arazzo.yaml
 
 # Custom port
-arazzo-mcp-gen mcp-server generate -d ./my-arazzo-folder -p 8080
+arazzo-mcp-gen mcp-server generate -f ./my-arazzo-folder -p 8080
 
 # Inspect generated files after build
 arazzo-mcp-gen mcp-server generate -f ./workflow.arazzo.yaml -p 8080 -o ./artifacts
@@ -226,9 +182,9 @@ arazzo-mcp-gen mcp-server generate -f ./workflow.arazzo.yaml -p 8080 -o ./artifa
 
 **Input requirements**
 
-- When using `-d`: the folder must contain exactly one `.yaml`/`.yml` file with a top-level `arazzo:` key
-- When using `-f`: point directly to the Arazzo file; the folder can contain multiple Arazzo files
-- All OpenAPI files referenced in `sourceDescriptions[].url` must be in the same folder as the Arazzo file
+- When `-f` is a folder: it must contain exactly one `.yaml`/`.yml` file with a top-level `arazzo:` key
+- When `-f` is a file: point directly to the Arazzo file; the folder can contain multiple Arazzo files
+- Local OpenAPI files referenced in `sourceDescriptions[].url` must be in the same folder as the Arazzo file. Remote URLs need no local copy, and the generated server fetches them at runtime
 - The Arazzo file must have `info.title`, `info.version`, and at least one workflow
 
 **What it does**
@@ -243,6 +199,12 @@ arazzo-mcp-gen mcp-server generate -f ./workflow.arazzo.yaml -p 8080 -o ./artifa
 
 ```bash
 docker run -p 5000:5000 <image-name>
+```
+
+To reach an HTTPS endpoint that uses a self-signed certificate, set `ARAZZO_DISABLE_TLS_VERIFY` when you start the container:
+
+```bash
+docker run -p 5000:5000 -e ARAZZO_DISABLE_TLS_VERIFY=1 <image-name>
 ```
 
 The MCP endpoint is available at `http://localhost:5000/mcp`.
