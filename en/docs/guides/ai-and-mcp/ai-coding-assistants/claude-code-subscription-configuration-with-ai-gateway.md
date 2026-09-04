@@ -18,11 +18,12 @@ content_type: "how-to"
 
 This guide explains how to route Claude Code requests through WSO2 API Platform when your organization pays for Claude through a Claude Team or Claude Enterprise subscription rather than through Anthropic API keys.
 
-In this setup, Claude Code keeps its standard subscription login. The AI Gateway adds an independent layer of enterprise authentication on a custom header, and then applies governance policies before the request reaches Anthropic. Every request therefore carries two credentials: the developer's Claude subscription token, which Anthropic validates, and an enterprise credential, which the Gateway validates.
+In this setup, Claude Code keeps its standard subscription login. The AI Gateway adds an independent layer of enterprise authentication on a custom header, and then applies governance policies before the request reaches Anthropic. Every request therefore carries two credentials:
 
-You can secure the LLM provider with any authentication method the AI Gateway supports, such as an API key, basic authentication, or JWT authentication. Whichever you choose, it must read its credential from a header other than `Authorization`, which the Claude subscription token occupies. This guide uses JWT authentication, which validates a token issued by your identity provider and attributes each request to an individual developer.
+- The developer's Claude subscription token, which Anthropic validates.
+- An enterprise credential, which the gateway validates.
 
----
+You can secure the LLM Provider with any authentication method the AI Gateway supports, such as an API key, basic authentication, or JWT authentication. The `Authorization` header holds the Claude subscription token, so your credential must use a custom header. This guide uses JWT authentication. The gateway validates the token issued by your identity provider and attributes each request to an individual developer.
 
 ## Choose the setup that matches your billing model
 
@@ -32,14 +33,12 @@ The following table compares the two patterns:
 
 | | API key billing | Claude subscription billing |
 |---|---|---|
-| **How you pay Anthropic** | Per token, against an Anthropic API key | A flat Claude Team or Claude Enterprise subscription |
-| **Credential the Gateway holds** | Your Anthropic API key | None. The Gateway forwards each developer's Claude token untouched |
-| **How developers authenticate to the Gateway** | API key, basic authentication, or JWT authentication | API key, basic authentication, or JWT authentication, sent on a custom header rather than `Authorization` |
+| **How you pay Anthropic** | Per token, against an Anthropic API key | A Claude Team or Claude Enterprise subscription |
+| **Credential the gateway holds** | Your Anthropic API key | None. The gateway forwards each developer's Claude token untouched |
+| **How developers authenticate to the gateway** | API key, basic authentication, or JWT authentication | API key, basic authentication, or JWT authentication, sent on a custom header rather than `Authorization` |
 | **Guide** | [Configure Claude Code with AI Gateway](./claude-code-configuration-with-ai-gateway.md) | This guide |
 
 Both patterns give you the same governance surface: analytics, guardrails, prompt decoration, and rate limiting.
-
----
 
 ## How the request flow works
 
@@ -48,14 +47,12 @@ A single Claude Code request travels through five stages:
 1. **Claude authentication.** Claude Code signs the developer in through the standard Claude login flow and stores the resulting subscription token. The token travels on the standard `Authorization` header.
 2. **Enterprise authentication.** The developer obtains an access token from your identity provider, typically through the OAuth 2.0 authorization code flow with Proof Key for Code Exchange (PKCE). The token travels on a custom header, such as `AuthorizationGW`.
 3. **Gateway validation.** The AI Gateway validates the enterprise token against the identity provider's JSON Web Key Set (JWKS) endpoint and attributes the request to an individual developer.
-4. **Policy enforcement.** The Gateway applies the policies attached to the LLM provider, such as prompt decoration, cost tracking, guardrails, and rate limiting.
-5. **Upstream forwarding.** The Gateway forwards the request to Anthropic with the `Authorization` header untouched, so Anthropic bills the developer's subscription.
+4. **Policy enforcement.** The gateway applies the policies attached to the LLM Provider, such as prompt decoration, cost tracking, guardrails, and rate limiting.
+5. **Upstream forwarding.** The gateway forwards the request to Anthropic with the `Authorization` header untouched, so Anthropic bills the developer's subscription.
 
 The two credentials stay independent. Anthropic validates only the Claude token, and the identity provider never sees it.
 
-By default, the [JWT Auth](https://wso2.com/api-platform/policy-hub/policies/jwt-auth) policy forwards the validated enterprise token upstream. It copies the token to the `x-forwarded-authorization` header and removes the original custom header. Anthropic then receives both tokens, and ignores the one it doesn't recognize. If you'd rather the enterprise token stop at the Gateway, you can set the policy's `forwardToken` parameter to `false`.
-
----
+By default, the [JWT Auth](https://wso2.com/api-platform/policy-hub/policies/jwt-auth) policy forwards the validated enterprise token upstream. It copies the token to the `x-forwarded-authorization` header and removes the original custom header. Anthropic then receives both tokens, and ignores the one it doesn't recognize. If you'd rather the enterprise token stop at the gateway, you can set the policy's `forwardToken` parameter to `false`.
 
 ## Prerequisites
 
@@ -64,34 +61,29 @@ Before you begin, make sure you have:
 - A Claude Team or Claude Enterprise subscription that your developers can sign in to
 - A WSO2 API Platform admin account
 - An organization created in WSO2 API Platform
-- An OAuth 2.0 identity provider that publishes a JSON Web Key Set (JWKS) endpoint, such as Asgardeo, Microsoft Entra ID, Okta, Keycloak, or Auth0. You need this only for JWT authentication, which this guide uses.
+- An OAuth 2.0 identity provider that publishes a JSON Web Key Set (JWKS) endpoint, such as Asgardeo, Microsoft Entra ID, Okta, Keycloak, or Auth0. You need this only for JWT authentication.
 - [Claude Code](https://code.claude.com/docs/en/overview) installed
 
----
-
-## Step 1: Start an AI Gateway on WSO2 API Platform
+## Step 1: Start an AI Gateway on WSO2 AI Workspace
 
 !!! note
-    If an AI Gateway is already created and active, continue to Step 2.
+    If you have created and activated an AI Gateway instance, skip over to step 2.
 
 If an AI Gateway is not already created, follow these steps:
 
-1. **Log in to the WSO2 API Platform Console** as an admin.
+1. **Log in to the WSO2 AI Workspace** as an admin.
 
-2. **Make sure you are at the Organization level.**  
-    - Select the organization from the header tab at the top of the page.
+2. Make sure you are at the organization level. Then select the organization from the header tab at the top of the page.
 
-3. In the left navigation panel, navigate to **Admin → Gateways**.
+3. In the left navigation panel, navigate to **AI Gateways**.
 
-4. Click **Add Self-Hosted Gateway**.
+4. Click **Add AI Gateway**.
 
-5. Select **AI Gateway** as the gateway type.
+5. Fill in the required information.
 
-6. Fill in the required information.
+6. Click **Add Gateway**.
 
-7. Click **Add**.
-
-8. Follow the instructions shown on the next screen to:
+7. Follow the instructions shown on the next screen to:
 
     - Download the gateway
     - Configure the gateway
@@ -99,13 +91,11 @@ If an AI Gateway is not already created, follow these steps:
 
 Once the AI Gateway is active, you can continue to configure enterprise authentication.
 
----
-
 ## Step 2: Register your identity provider with the AI Gateway
 
-Follow this step if you authenticate developers with JWT authentication, as this guide does. If you secure the LLM provider with an API key or with basic authentication, skip to Step 3.
+Follow this step if you authenticate developers with JWT authentication, as this guide does. If you secure the LLM Provider with an API key or with basic authentication, skip to step 3.
 
-The JWT Auth policy authenticates each request against a key manager declared in the Gateway's `config.toml` file. Declare your identity provider there before you attach the policy to the LLM provider in Step 3.
+The JWT Auth policy authenticates each request against a key manager declared in the gateway's `config.toml` file. Declare your identity provider there before you attach the policy to the LLM Provider in step 3.
 
 The following example uses Asgardeo. Substitute the issuer and JWKS URLs published by whichever identity provider your organization uses.
 
@@ -119,7 +109,7 @@ uri = "https://api.asgardeo.io/t/<your-organization>/oauth2/jwks"
 skipTlsVerify = false
 ```
 
-Restart the Gateway after you change `config.toml`. For the complete set of policy parameters, including the header name, the accepted signing algorithms, and the JWKS cache and retry behavior, see the [JWT Auth policy documentation](https://wso2.com/api-platform/policy-hub/policies/jwt-auth).
+Restart the gateway after you change `config.toml`. For the complete set of policy parameters, including the header name, the accepted signing algorithms, and the JWKS cache and retry behavior, see the [JWT Auth policy documentation](https://wso2.com/api-platform/policy-hub/policies/jwt-auth).
 
 ### Register an application in your identity provider
 
@@ -129,22 +119,16 @@ Developers obtain access tokens through an application registered in your identi
 - The authorization code grant, with PKCE enforced
 - A public client, so no client secret is distributed to developer machines
 - A loopback redirect URL that matches the port the local client completing the login listens on
-- JWT access tokens, so the Gateway can validate them against the JWKS endpoint
+- JWT access tokens, so the gateway can validate them against the JWKS endpoint
 - A claim that carries the developer's email address or another stable identifier
 
-The Gateway reads that claim to attribute usage to an individual developer, so choose one that's unique and stable across your organization.
+The gateway reads that claim to attribute usage to an individual developer, so choose one that's unique and stable across your organization.
 
----
+## Step 3: Create and deploy an Anthropic LLM Provider
 
-## Step 3: Create and deploy an Anthropic LLM provider
+Under subscription billing, the gateway holds no Anthropic credential of its own. Each developer's Claude token reaches Anthropic untouched, so the provider stores no API key, and an authentication policy authenticates the developer instead.
 
-Under subscription billing, the Gateway holds no Anthropic credential of its own. Each developer's Claude token reaches Anthropic untouched, so the provider stores no API key, and an authentication policy authenticates the developer instead.
-
-1. **Log in to the WSO2 API Platform Console** as an admin.
-
-2. Click **AI Workspace** at the top of the page.
-
-### Create an Anthropic LLM provider
+### Create an Anthropic LLM Provider
 
 1. In the left navigation panel of the AI Workspace Console, navigate to **LLM → LLM Providers**.
 
@@ -158,13 +142,13 @@ Under subscription billing, the Gateway holds no Anthropic credential of its own
 
 5. Leave the **API Key** field empty.
 
-    Under subscription billing, the Gateway needs no Anthropic credential. With the field empty, AI Workspace records the provider's upstream authentication as `none`, and the Gateway attaches no API key to the upstream request, so the developer's Claude subscription token is the only credential Anthropic receives.
+    Under subscription billing, the gateway needs no Anthropic credential. With the field empty, AI Workspace records the provider's upstream authentication as `none`, and the gateway attaches no API key to the upstream request, so the developer's Claude subscription token is the only credential Anthropic receives.
 
-    If you create the provider through the Gateway management API instead of the console, set `upstream.auth.type` to `none` and omit the header and value. An `api-key` type with an empty value fails validation.
+    If you create the provider through the gateway management API instead of the console, set `upstream.auth.type` to `none` and omit the header and value. An `api-key` type with an empty value fails validation.
 
 6. Click **Add Provider**.
 
-### Update the LLM provider for subscription billing
+### Update the LLM Provider for subscription billing
 
 Two settings differ from the defaults. Change both before you deploy the provider.
 
@@ -178,23 +162,21 @@ Two settings differ from the defaults. Change both before you deploy the provide
 
     This guide uses the **JWT Auth** policy. Under its advanced settings, provide:
 
-    - **Issuer**: the key manager name you declared in `config.toml` in Step 2, for example `WSO2IDP`
+    - **Issuer**: the key manager name you declared in `config.toml` in step 2, for example `WSO2IDP`
     - **Header name**: the custom header that carries the enterprise token, for example `AuthorizationGW`
     - **User ID claim**: optional. The claim that identifies the developer, used to attribute usage and cost.
 
-### Deploy the Anthropic provider to the AI Gateway
+### Deploy the Anthropic LLM Provider to the AI Gateway
 
 1. On the page that opens after creating the provider, click **Deploy to Gateway**.
 
-2. Find the active AI Gateway where you want to deploy the Anthropic provider.
+2. Find the active AI Gateway where you want to deploy the Anthropic LLM Provider.
 
 3. Click **Deploy** next to that gateway.
 
-The Anthropic LLM provider is now deployed to the selected AI Gateway, and it's served at the Gateway host, port, and the context you set, for example `https://<gateway-host>:<port>/claude-code-enterprise`.
+The Anthropic LLM Provider is now deployed to the selected AI Gateway, and it's served at the gateway host, port, and the context you set, for example `https://<gateway-host>:<port>/claude-code-enterprise`.
 
----
-
-## Step 4: Configure Claude Code to use the LLM provider
+## Step 4: Configure Claude Code to use the LLM Provider
 
 Claude Code can be configured using environment variables or through Claude Code's `settings.json` file.
 
@@ -211,43 +193,39 @@ export ANTHROPIC_CUSTOM_HEADERS="AuthorizationGW: Bearer <ENTERPRISE ACCESS TOKE
 
 Replace:
 
-- `<LLM PROVIDER URL>` with the AI Gateway host, port, and the context of the deployed Anthropic LLM provider
+- `<LLM PROVIDER URL>` with the AI Gateway host, port, and the context of the deployed Anthropic LLM Provider
 - `<ENTERPRISE ACCESS TOKEN>` with an access token issued by your identity provider
 
 The access token is a credential. Typing it into an export command records it in your shell history. It also stays readable in the process environment. Treat the terminal session as you would one holding any other secret. [Refresh the enterprise token automatically](#optional-refresh-the-enterprise-token-automatically) describes how a token helper supplies the value without it being typed at all.
 
-The header name must match the **Header name** you set on the authentication policy in Step 3 and, for the JWT Auth policy, the header configured in `config.toml`. If the names differ, the Gateway finds no credential and rejects the request with a `401` status code.
+The header name must match the header name you set on the authentication policy in step 3 and, for the JWT Auth policy, the header configured in `config.toml`. If the names differ, the gateway finds no credential and rejects the request with an HTTP `401 Unauthorized` status code.
 
 !!! warning "Don't set a gateway credential variable"
     Leave `ANTHROPIC_AUTH_TOKEN` and `ANTHROPIC_API_KEY` unset. Either variable replaces the saved claude.ai login for the session, which stops the request from billing against the subscription. This is the main difference from the [API key billing setup](./claude-code-configuration-with-ai-gateway.md), where `ANTHROPIC_AUTH_TOKEN` carries a placeholder value.
 
-!!! note
-    These environment variables apply only to the current terminal session. If you open a new terminal session, you must export them again.
+These environment variables apply only to the current terminal session. If you open a new terminal session, you must export them again.
 
-!!! note "Persistent configuration"
+#### Make the configuration persistent
 
-    To make the base URL permanent, add it to Claude Code's `settings.json` file.
+To make the base URL permanent, add it to Claude Code's `settings.json` file at `~/.claude/settings.json`. Create the file if it does not already exist.
 
-    - **Location**: `~/.claude/settings.json`
-    - Create the file if it does not already exist.
-
-    ```json
-    {
-        "env": {
-            "ANTHROPIC_BASE_URL": "<LLM PROVIDER URL>"
-        }
+```json
+{
+    "env": {
+        "ANTHROPIC_BASE_URL": "<LLM PROVIDER URL>"
     }
-    ```
+}
+```
 
-    Keep the enterprise token out of this file. Tokens are short-lived, so a value saved here stops working.
+Keep the enterprise token out of this file. Tokens are short-lived, so a value saved here stops working.
 
-    For an organization-wide rollout, distribute the base URL through managed settings delivered by your mobile device management (MDM) tooling, so developers can't repoint the client. For the settings file locations and their precedence, see [Claude Code's official documentation](https://code.claude.com/docs/en/settings#settings-files).
+For an organization-wide rollout, distribute the base URL through managed settings delivered by your mobile device management (MDM) tooling, so developers can't repoint the client. For the settings file locations and their precedence, see [Claude Code settings files](https://code.claude.com/docs/en/settings#settings-files).
 
 ### Optional: refresh the enterprise token automatically
 
-The configuration above is complete. Claude Code routes through the Gateway as soon as both environment variables are set.
+The configuration above is complete. Claude Code routes through the gateway as soon as both environment variables are set.
 
-Enterprise access tokens are short-lived, so the token in `ANTHROPIC_CUSTOM_HEADERS` eventually expires and the Gateway starts returning `401` responses. Export a fresh token to carry on. Because the token travels on a custom header rather than on the standard `Authorization` header, Claude Code's built-in `apiKeyHelper` can't refresh it for you.
+Enterprise access tokens are short-lived, so the token in `ANTHROPIC_CUSTOM_HEADERS` eventually expires and the gateway starts returning HTTP `401 Unauthorized` responses. Export a fresh token to carry on. Because the token travels on a custom header rather than on the standard `Authorization` header, Claude Code's built-in `apiKeyHelper` can't refresh it for you.
 
 A token helper automates that refresh. It's worth adding once developers tire of exporting tokens by hand, or when you roll the setup out across a fleet. Either of the following approaches works.
 
@@ -265,20 +243,20 @@ claude() {
 
 Direct mode covers the command-line interface only. An IDE extension launches Claude Code without going through the shell function, so the wrapper never runs.
 
-**Proxy mode** covers both the command-line interface and IDE extensions. A local reverse proxy listens on the developer machine, injects a token into the custom header on every request, and forwards the request to the Gateway. When the Gateway returns a `401` status code, the proxy refreshes the token, or reruns the browser login, and retries the request once. Point `ANTHROPIC_BASE_URL` at the local proxy instead of at the Gateway. The token then stays out of every configuration file, and one endpoint serves both clients.
+**Proxy mode** covers both the command-line interface and IDE extensions. A local reverse proxy listens on the developer machine, injects a token into the custom header on every request, and forwards the request to the gateway. When the gateway returns an HTTP `401 Unauthorized` status code, the proxy refreshes the token, or reruns the browser login, and retries the request once. Point `ANTHROPIC_BASE_URL` at the local proxy instead of at the gateway. The token then stays out of every configuration file, and one endpoint serves both clients.
 
 ### Configure SSL certificate trust
 
-When using a local WSO2 API Platform AI Gateway over HTTPS, Claude Code must be able to trust the certificate presented by the Gateway.
+When using a local WSO2 API Platform AI Gateway over HTTPS, Claude Code must be able to trust the certificate presented by the gateway.
 
 !!! note
     If the AI Gateway uses a valid CA-signed certificate, no additional certificate configuration is required.
 
-If the Gateway uses a self-signed certificate, Claude Code may fail to connect due to certificate verification errors. In such cases, add the Gateway certificate to the certificate trust store used by Claude Code before running the client.
+If the gateway uses a self-signed certificate, Claude Code may fail to connect due to certificate verification errors. In such cases, add the gateway certificate to the certificate trust store used by Claude Code before running the client.
 
 For more information, visit the [Claude Code Official Documentation](https://code.claude.com/docs/en/troubleshoot-install#tls-or-ssl-connection-errors).
 
-If your organization signs the Gateway certificate with an internal certificate authority, point Claude Code at that authority's certificate bundle:
+If your organization signs the gateway certificate with an internal certificate authority, point Claude Code at that authority's certificate bundle:
 
 ```bash
 export NODE_EXTRA_CA_CERTS="/path/to/your-ca-bundle.pem"
@@ -293,9 +271,7 @@ This adds your authority to the certificates Claude Code trusts, and leaves cert
     export NODE_TLS_REJECT_UNAUTHORIZED=0
     ```
 
-    This disables validation for every HTTPS connection the client makes, not only the one to the Gateway, which leaves the session open to interception. Use it in a throwaway terminal on your own machine, and never in `settings.json`, in a shell profile, or in managed settings delivered to other people.
-
----
+    This disables validation for every HTTPS connection the client makes, not only the one to the gateway, which leaves the session open to interception. Use it in a throwaway terminal on your own machine, and never in `settings.json`, in a shell profile, or in managed settings delivered to other people.
 
 ## Step 5: Run Claude Code
 
@@ -306,8 +282,6 @@ claude
 ```
 
 Claude Code will now send requests through WSO2 API Platform instead of directly calling Anthropic, while Anthropic continues to bill the developer's subscription.
-
----
 
 ## Use case examples
 
@@ -323,9 +297,7 @@ The following example shows Moesif being used to view analytics.
 
 [![Moesif Overview dashboard showing unique users, total requests, errors, and LLM traffic metrics with time-series chart](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/analytics-example.png)](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/analytics-example.png)
 
-For more information on Analytics, refer to the official [WSO2 API Platform Documentation](https://wso2.com/api-platform/docs/monitoring-and-insights/integrate-bijira-with-moesif/)
-
----
+For more information, see [Integrate with Moesif](https://wso2.com/api-platform/docs/monitoring-and-insights/integrate-bijira-with-moesif/).
 
 ### Implement WSO2 AI Gateway guardrails for enhanced control
 
@@ -341,23 +313,19 @@ For example, a **PII Masking Regex Guardrail** can be configured in the request 
 
 [![Claude Code terminal showing phone number redacted as asterisks after PII masking guardrail intercepts prompt](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/claude-code-guardrail-redacted-example.png)](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/claude-code-guardrail-redacted-example.png)
 
-For more information on AI Guardrails, refer to the official [WSO2 API Platform Documentation](https://wso2.com/api-platform/docs/ai-gateway/llm/guardrails/pii-masking-regex/)
-
----
+For more information, see [PII Masking Regex guardrail](https://wso2.com/api-platform/docs/ai-gateway/llm/guardrails/pii-masking-regex/).
 
 ### Rate limiting at AI Gateway
 
-WSO2 API Manager AI Gateway supports request-based and token-based rate limiting for AI APIs. This allows you to control Claude Code usage when requests are routed through the Gateway.
+WSO2 API Manager AI Gateway supports request-based and token-based rate limiting for AI APIs. This allows you to control Claude Code usage when requests are routed through the gateway.
 
-For example, you can create an AI subscription policy with a limited request count or total token count, and apply it when subscribing to the Anthropic AI API. Once Claude Code invokes the API through that subscription, the Gateway enforces the selected quota automatically. If the configured limit is exceeded, subsequent requests are throttled until the quota resets.
+For example, you can create an AI subscription policy with a limited request count or total token count, and apply it when subscribing to the Anthropic AI API. Once Claude Code invokes the API through that subscription, the gateway enforces the selected quota automatically. If the configured limit is exceeded, subsequent requests are throttled until the quota resets.
 
 A Claude subscription charges a flat fee rather than a per-token rate, so use these limits to protect shared capacity across your organization rather than to control spend.
 
 [![Claude Code terminal showing prompt retrying with message "Retrying in 2s attempt 6/10" after rate limit reached](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/claude-code-rate-limit-example.png)](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/claude-code-rate-limit-example.png)
 
-For more information on rate limiting and other policies, refer to the official [WSO2 API Platform documentation](https://wso2.com/api-platform/docs/ai-workspace/policies/overview/)
-
----
+For more information, see [Policies overview](https://wso2.com/api-platform/docs/ai-workspace/policies/overview/).
 
 ### Prompt Decorator
 
@@ -365,7 +333,7 @@ WSO2 API Manager AI Gateway supports Prompt Decorators, which allow you to modif
 
 Under a flat subscription, usage that isn't related to work costs the organization capacity rather than money, and it puts an organizational account behind requests the organization never intended to make. A Prompt Decorator applied in the request flow prepends an organizational usage restriction to the system prompt of every request, which keeps the restriction outside any single developer's control.
 
-A Prompt Decorator guides the model rather than filtering traffic. It states the policy on every request, and the model acts on it, but the Gateway still forwards the request. To reject off-policy prompts before they reach Anthropic, pair the decorator with a guardrail. [Semantic Prompt Guard](../../../ai-gateway/1.2.0/llm-proxy/guardrails/semantic-prompt-guard.md) compares each prompt against allowed and denied phrase lists. It blocks the prompts that fall outside them.
+A Prompt Decorator guides the model rather than filtering traffic. It states the policy on every request, and the model acts on it, but the gateway still forwards the request. To reject off-policy prompts before they reach Anthropic, pair the decorator with a guardrail. [Semantic Prompt Guard](../../../ai-gateway/1.2.0/llm-proxy/guardrails/semantic-prompt-guard.md) compares each prompt against allowed and denied phrase lists. It blocks the prompts that fall outside them.
 
 The following policy configuration states the restriction. Adjust the wording of `text` to match your organization's acceptable use policy.
 
@@ -391,9 +359,7 @@ The following policy configuration states the restriction. Adjust the wording of
 
 The `jsonPath` value targets the text of the last system block in the Anthropic Messages API request body, and `append: false` places the restriction ahead of the text already there.
 
-For more information on Prompt Management, refer to the official [WSO2 API Platform documentation](https://wso2.com/api-platform/docs/ai-gateway/llm/prompt-management/prompt-decorator/)
-
----
+For more information, see [Prompt Decorator](https://wso2.com/api-platform/docs/ai-gateway/llm/prompt-management/prompt-decorator/).
 
 ### Estimate LLM cost
 
@@ -401,9 +367,7 @@ The **LLM Cost** policy records token consumption per request and converts it in
 
 Anthropic charges a flat subscription fee rather than a per-token rate, so treat these figures as an estimate of what the same traffic would cost under API key billing. They're a way to compare usage between teams and to size a subscription, not an invoice.
 
-Cost figures depend on the pricing data available to the Gateway. A model with no pricing entry produces no cost figure, so confirm that every Claude model your developers use has one.
-
----
+Cost figures depend on the pricing data available to the gateway. A model with no pricing entry produces no cost figure, so confirm that every Claude model your developers use has one.
 
 ## Troubleshooting
 
@@ -411,10 +375,8 @@ The following table lists two problems specific to this setup:
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| The Gateway returns a `401` status code | The header name in `ANTHROPIC_CUSTOM_HEADERS` doesn't match the authentication policy, or the credential expired | Align the header name across the client and the policy. For JWT authentication, check `config.toml` as well. If the credential expired, export a fresh token or add a token helper |
+| The gateway returns an HTTP `401 Unauthorized` status code | The header name in `ANTHROPIC_CUSTOM_HEADERS` doesn't match the authentication policy, or the credential expired | Align the header name across the client and the policy. For JWT authentication, check `config.toml` as well. If the credential expired, export a fresh token or add a token helper |
 | Anthropic bills API usage rather than the subscription | `ANTHROPIC_AUTH_TOKEN` or `ANTHROPIC_API_KEY` is set | Unset both variables, and sign in again through the Claude login flow |
-
----
 
 ## Related topics
 
