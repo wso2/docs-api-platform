@@ -48,7 +48,7 @@ A single Claude Code request travels through five stages:
 2. **Enterprise authentication.** The developer obtains an access token from your identity provider, typically through the OAuth 2.0 authorization code flow with Proof Key for Code Exchange (PKCE). The token travels on a custom header, such as `AuthorizationGW`.
 3. **Gateway validation.** The AI Gateway validates the enterprise token against the identity provider's JSON Web Key Set (JWKS) endpoint and attributes the request to an individual developer.
 4. **Policy enforcement.** The gateway applies the policies attached to the LLM Provider, such as prompt decoration, cost tracking, guardrails, and rate limiting.
-5. **Upstream forwarding.** The gateway forwards the request to Anthropic with the `Authorization` header untouched, so Anthropic bills the developer's subscription.
+5. **Upstream forwarding.** The gateway forwards the request to Anthropic with the `Authorization` header untouched, so the request draws on the organization's Claude subscription.
 
 The two credentials stay independent. Anthropic validates only the Claude token, and the identity provider never sees it.
 
@@ -281,7 +281,7 @@ After setting the required environment variables, run Claude Code:
 claude
 ```
 
-Claude Code sends requests through WSO2 API Platform instead of directly calling Anthropic, and Anthropic bills the developer's subscription.
+Claude Code sends requests through WSO2 API Platform instead of directly calling Anthropic, and the request draws on the organization's Claude subscription.
 
 ## Use case examples
 
