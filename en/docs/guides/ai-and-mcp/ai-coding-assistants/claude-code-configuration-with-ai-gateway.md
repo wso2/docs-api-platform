@@ -9,7 +9,7 @@ tags:
   - ai-coding-assistants
   - claude-code
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-07-01
+last_updated: 2026-08-20
 content_type: "how-to"
 ---
 
@@ -18,6 +18,9 @@ content_type: "how-to"
 This guide explains how to configure Claude Code to send requests through WSO2 API Platform using an AI Gateway, an Anthropic LLM provider, and an App LLM Proxy.
 
 By routing requests through WSO2 API Platform instead of invoking Anthropic directly, you can apply security, traffic control, and governance policies such as guardrails, rate limiting, analytics, and monitoring. The Gateway acts as an intermediary, forwarding requests from Claude Code to Anthropic while enforcing these controls.
+
+!!! note "Using a Claude Team or Claude Enterprise subscription?"
+    This guide covers the API key billing model, where the Gateway holds an Anthropic API key and Anthropic charges per token. If your organization pays for Claude through a subscription instead, the Gateway forwards each developer's Claude token untouched and authenticates the developer against your identity provider. For that setup, see [Configure Claude Code with AI Gateway using a Claude subscription](./claude-code-subscription-configuration-with-ai-gateway.md).
 
 ---
 
