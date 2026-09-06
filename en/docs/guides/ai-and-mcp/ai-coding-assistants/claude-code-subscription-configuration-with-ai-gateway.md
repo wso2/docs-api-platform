@@ -23,7 +23,7 @@ In this setup, Claude Code keeps its standard subscription login. The AI Gateway
 - The developer's Claude subscription token, which Anthropic validates.
 - An enterprise credential, which the gateway validates.
 
-You can secure the LLM Provider with any authentication method the AI Gateway supports, such as an API key, basic authentication, or JWT authentication. The `Authorization` header holds the Claude subscription token, so your credential must use a custom header. This guide uses JWT authentication. The gateway validates the token issued by your identity provider and attributes each request to an individual developer.
+An LLM Provider defines the upstream large language model (LLM) service, which is Anthropic here. You can secure it with any authentication method the AI Gateway supports, such as an API key, basic authentication, or JSON Web Token (JWT) authentication. The `Authorization` header holds the Claude subscription token, so your credential must use a custom header. This guide uses JWT authentication. The gateway validates the token issued by your identity provider and attributes each request to an individual developer.
 
 ## Choose the setup that matches your billing model
 
@@ -142,7 +142,7 @@ Under subscription billing, the gateway holds no Anthropic credential of its own
 
 5. Leave the **API Key** field empty.
 
-    Under subscription billing, the gateway needs no Anthropic credential. With the field empty, AI Workspace records the provider's upstream authentication as `none`, and the gateway attaches no API key to the upstream request, so the developer's Claude subscription token is the only credential Anthropic receives.
+    Under subscription billing, the gateway needs no Anthropic credential. With the field empty, AI Workspace records the provider's upstream authentication as `none`. The gateway then attaches no API key to the upstream request, so the developer's Claude subscription token is the credential Anthropic authenticates.
 
     If you create the provider through the gateway management API instead of the console, set `upstream.auth.type` to `none` and omit the header and value. An `api-key` type with an empty value fails validation.
 
@@ -158,7 +158,7 @@ Two settings differ from the defaults. Change both before you deploy the provide
 
 2. On the **Guardrails and Policies** tab, add an authentication policy.
 
-    Use any authentication method the AI Gateway supports, as long as it reads its credential from a header other than `Authorization`, which the Claude subscription token occupies.
+    Use any authentication method the AI Gateway supports. It must read its credential from a header other than `Authorization`, which the Claude subscription token occupies.
 
     This guide uses the **JWT Auth** policy. Under its advanced settings, provide:
 
@@ -174,7 +174,7 @@ Two settings differ from the defaults. Change both before you deploy the provide
 
 3. Click **Deploy** next to that gateway.
 
-The Anthropic LLM Provider is now deployed to the selected AI Gateway, and it's served at the gateway host, port, and the context you set, for example `https://<gateway-host>:<port>/claude-code-enterprise`.
+The Anthropic LLM Provider is deployed to the selected AI Gateway, and it's served at the gateway host, port, and the context you set, for example `https://<gateway-host>:<port>/claude-code-enterprise`.
 
 ## Step 4: Configure Claude Code to use the LLM Provider
 
@@ -245,7 +245,7 @@ Direct mode covers the command-line interface only. An IDE extension launches Cl
 
 **Proxy mode** covers both the command-line interface and IDE extensions. A local reverse proxy listens on the developer machine, injects a token into the custom header on every request, and forwards the request to the gateway. When the gateway returns an HTTP `401 Unauthorized` status code, the proxy refreshes the token, or reruns the browser login, and retries the request once. Point `ANTHROPIC_BASE_URL` at the local proxy instead of at the gateway. The token then stays out of every configuration file, and one endpoint serves both clients.
 
-### Configure SSL certificate trust
+### Configure TLS certificate trust
 
 When using a local WSO2 API Platform AI Gateway over HTTPS, Claude Code must be able to trust the certificate presented by the gateway.
 
@@ -281,7 +281,7 @@ After setting the required environment variables, run Claude Code:
 claude
 ```
 
-Claude Code will now send requests through WSO2 API Platform instead of directly calling Anthropic, while Anthropic continues to bill the developer's subscription.
+Claude Code sends requests through WSO2 API Platform instead of directly calling Anthropic, and Anthropic bills the developer's subscription.
 
 ## Use case examples
 
@@ -380,7 +380,7 @@ The following table lists two problems specific to this setup:
 
 ## Related topics
 
-- [Configure Claude Code with AI Gateway](./claude-code-configuration-with-ai-gateway.md) — the API key billing setup
-- [JWT Auth policy](https://wso2.com/api-platform/policy-hub/policies/jwt-auth) — the authentication policy used in this guide
+- [Configure Claude Code with AI Gateway](./claude-code-configuration-with-ai-gateway.md)—the API key billing setup
+- [JWT Auth policy](https://wso2.com/api-platform/policy-hub/policies/jwt-auth)—the authentication policy used in this guide
 - [Configure Google Gemini CLI with AI Gateway](./gemini-cli-configuration-with-ai-gateway.md)
 - [Configure OpenAI Codex CLI with AI Gateway](./codex-configuration-with-ai-gateway.md)
