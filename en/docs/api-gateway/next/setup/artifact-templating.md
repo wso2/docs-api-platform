@@ -117,3 +117,7 @@ In this example:
 - `ORDERS_BACKEND_URL` is optional — falls back to the default URL if not set.
 - `ORDERS_API_KEY` is required — the gateway will not start if it is missing, and the value is redacted in config dumps.
 - `DEPLOYMENT_ENV` is optional with a default of `production`.
+
+---
+
+[← Setting Up the Database](./database-setup.md) &nbsp;|&nbsp; [Health Checks →](./health-checks.md)

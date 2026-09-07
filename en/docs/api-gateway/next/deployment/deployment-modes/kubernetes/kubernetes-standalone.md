@@ -237,12 +237,13 @@ helm install ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
 ### Port-forward Gateway Controller Service
 
 ```bash
-kubectl port-forward svc/ap-gateway-controller 9090:9090
+kubectl port-forward svc/ap-gateway-controller 9090:9090 9094:9094
 ```
 
-### Verify gateway controller admin endpoint is running
+### Verify the Gateway Controller's admin endpoint is running
+
 ```bash
-curl http://localhost:9094/api/admin/v0.9/health
+curl http://localhost:9094/api/admin/v1/health
 ```
 
 ### Deploy an API configuration
