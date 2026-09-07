@@ -621,6 +621,7 @@ nav:
         - Overview: ai-gateway/next/overview.md
         - Quick Start Guide: ai-gateway/next/quick-start-guide.md
         - Authenticate Clients: ai-gateway/next/authenticate-clients.md
+        - Authenticate Backends: ai-gateway/next/authenticate-backends.md
         - Guardrails:
             - ai-gateway/next/guardrails/index.md
             - Guardrails Catalogue: ai-gateway/next/guardrails/guardrails-catalogue.md

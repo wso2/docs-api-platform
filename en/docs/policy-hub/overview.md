@@ -8,13 +8,13 @@ tags:
   - policies
   - gateway
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-23
+last_updated: 2026-09-01
 content_type: "overview"
 ---
 
 # WSO2 API Platform Policy Hub
 
-[The Policy Hub](https://wso2.com/api-platform/policy-hub) is the official, curated collection of [gateway policies](../api-gateway/1.1.0/policies/overview.md) for the WSO2 API Platform. It gives you a growing library of production-ready, versioned policy implementations that you can apply to any API or MCP server without writing custom code.
+[The Policy Hub](https://wso2.com/api-platform/policy-hub) is the official, curated collection of [gateway policies](../api-gateway/next/policies/overview.md) for the WSO2 API Platform. It gives you a growing library of production-ready, versioned policy implementations that you can apply to any API or MCP server without writing custom code.
 
 Policies are self-contained units of behavior that plug into the gateway's request and response pipeline. You compose them, like stacking authentication on top of rate limiting on top of a guardrail, as opposed to building each concern from scratch. If your requisites exceed what the hub provides, you can author and ship your own policies alongside hub ones.
 
@@ -24,19 +24,20 @@ The Policy Hub is powered by an [open source repository on GitHub](https://githu
 
 A policy attaches to an API, covering all operations, or to a specific operation, and runs on the request phase, the response phase, or both. Multiple policies chain together on the same API, each one processing the message in sequence before it reaches the next. The gateway evaluates the chain at runtime. 
 
-For more information, see [API Platform Policies overview](../api-gateway/1.1.0/policies/overview.md).
+For more information, see [API Platform Policies overview](../api-gateway/next/policies/overview.md).
 
-## Policy Categories
+## Policy categories
 
 ### Security
 
-Authenticate and authorize traffic before it reaches your backend.
+Authenticate incoming requests and secure outbound calls to your backend, using mechanisms such as API keys and OAuth 2.0 (OAuth2).
 
 | Policy | What it does |
 | -- | -- |
 | API Key Auth | Protects APIs with pre-shared API keys |
 | Basic Auth | Enforces HTTP Basic Authentication |
 | JWT Auth | Validates JWT access tokens against one or more JWKS providers |
+| OAuth2 Generator | Generates an OAuth 2.0 or static bearer credential and injects it into a configurable request header before forwarding to the backend |
 | CORS | Handles preflight requests and injects CORS response headers |
 | Subscription Validation | Confirms the caller holds an active subscription for the target API |
 | Rate Limit — Basic | Caps requests per time window |

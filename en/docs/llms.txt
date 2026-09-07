@@ -329,6 +329,7 @@
 - [AI Gateway Overview](https://wso2.com/api-platform/docs/ai-gateway/overview.md): Overview of the standalone AI Gateway: LLM proxy, MCP proxy, deployment, and observability
 - [AI Gateway Quick Start](https://wso2.com/api-platform/docs/ai-gateway/quick-start-guide.md): Deploy the standalone AI Gateway and route your first LLM request
 - [Authenticate Clients](https://wso2.com/api-platform/docs/ai-gateway/authenticate-clients.md): Protect an LLM proxy or provider with the api-key-auth policy, issue consumer API keys through the management API, and manage the key lifecycle.
+- [Authenticate Backends](https://wso2.com/api-platform/docs/ai-gateway/authenticate-backends.md): Configure how the AI Gateway authenticates to an upstream LLM or MCP backend, using upstream.auth's api-key, oauth2, other, and none types.
 - [Guardrails](https://wso2.com/api-platform/docs/ai-gateway/guardrails.md): AI Gateway guardrails: LLM-aware policies for content filtering, safety, and compliance, with per-policy reference in the WSO2 API Platform Policy Hub.
 - [Guardrails Catalogue](https://wso2.com/api-platform/docs/ai-gateway/guardrails/guardrails-catalogue.md): Every guardrail policy the AI Gateway ships, what each one checks, and how to extend the gateway with a guardrail of your own.
 - [Guardrail Execution Order](https://wso2.com/api-platform/docs/ai-gateway/guardrails/execution-order.md): How guardrails execute in the dual-hop model: the LLM Proxy chain runs before the LLM Provider chain on request, and in reverse on response.

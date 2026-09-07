@@ -2298,6 +2298,9 @@ continued
 {
   "auth": {
     "type": "api-key",
+    "policyName": "string",
+    "policyVersion": "string",
+    "policyParams": {},
     "header": "string",
     "value": "string"
   }
@@ -2310,15 +2313,19 @@ continued
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |auth|object|false|none|none|
-|type|string|true|none|none|
-|header|string|false|none|none|
-|value|string|false|write-only|Upstream credential. Write-only: accepted on create/update and never returned by the management API on a read, for any role. Supply either a literal value or a secret reference (e.g. a `secret` template expression); either way the field is omitted from management API response bodies. An update that omits it inherits the stored value; set `type: none` to remove auth.|
+|type|string|true|none|Auth mechanism to attach: api-key, oauth2, other, or none.|
+|policyName|string|false|none|Policy to attach. Optional for api-key/oauth2 (built-in default); required for other.|
+|policyVersion|string|false|none|Major version of policyName to attach (e.g. "v1"). Defaults to the highest version loaded.|
+|policyParams|object|false|none|Parameters passed to the attached policy. Required for oauth2 and other.|
+|header|string|false|deprecated|DEPRECATED - use policyParams. Request header to set when type is api-key.|
+|value|string|false|write-only, deprecated|DEPRECATED - use policyParams. Upstream credential when type is api-key.|
 
 ##### Enumerated Values
 
 |Property|Value|
 |---|---|
 |type|api-key|
+|type|oauth2|
 |type|other|
 |type|none|
 
@@ -2332,6 +2339,9 @@ continued
 ```json
 {
   "type": "api-key",
+  "policyName": "string",
+  "policyVersion": "string",
+  "policyParams": {},
   "header": "string",
   "value": "string"
 }
@@ -2342,15 +2352,19 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|type|string|true|none|none|
-|header|string|false|none|none|
-|value|string|false|write-only|Upstream credential. Write-only: accepted on create/update and never returned by the management API on a read, for any role. An update that omits it inherits the stored value; set `type: none` to remove auth.|
+|type|string|true|none|Auth mechanism to attach: api-key, oauth2, other, or none.|
+|policyName|string|false|none|Policy to attach. Optional for api-key/oauth2 (built-in default); required for other.|
+|policyVersion|string|false|none|Major version of policyName to attach (e.g. "v1"). Defaults to the highest version loaded.|
+|policyParams|object|false|none|Parameters passed to the attached policy. Required for oauth2 and other.|
+|header|string|false|deprecated|DEPRECATED - use policyParams. Request header to set when type is api-key.|
+|value|string|false|write-only, deprecated|DEPRECATED - use policyParams. Upstream credential when type is api-key.|
 
 ##### Enumerated Values
 
 |Property|Value|
 |---|---|
 |type|api-key|
+|type|oauth2|
 |type|other|
 |type|none|
 
