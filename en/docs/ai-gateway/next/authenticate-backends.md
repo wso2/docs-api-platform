@@ -27,6 +27,7 @@ This page is for the platform administrator who holds the upstream credential.
 
 An LLM provider's connection to OpenAI, for example, sets its credential in `upstream.auth`:
 
+{% raw %}
 ```yaml
 apiVersion: gateway.api-platform.wso2.com/v1
 kind: LlmProvider
@@ -52,6 +53,7 @@ spec:
       - path: /chat/completions
         methods: [POST]
 ```
+{% endraw %}
 
 `upstream.auth` doesn't implement authentication itself — it attaches a policy that does. Every type shares the same four fields:
 
@@ -79,6 +81,7 @@ The examples below show an LLM provider's `upstream.auth`, which an MCP proxy al
 
 === "api-key"
 
+    {% raw %}
     ```yaml
     upstream:
       url: https://api.openai.com/v1
@@ -90,11 +93,13 @@ The examples below show an LLM provider's `upstream.auth`, which an MCP proxy al
               - name: Authorization
                 value: 'Bearer {{ secret "openai-api-key" }}'
     ```
+    {% endraw %}
 
     `policyParams` takes the [Set Headers](https://wso2.com/api-platform/policy-hub/policies/set-headers) policy's own parameters — see that page for the full reference.
 
 === "oauth2"
 
+    {% raw %}
     ```yaml
     upstream:
       url: https://api.example.com
@@ -105,6 +110,7 @@ The examples below show an LLM provider's `upstream.auth`, which an MCP proxy al
           clientId: gateway-client
           clientSecret: '{{ secret "gateway-client-secret" }}'
     ```
+    {% endraw %}
 
     `policyParams` takes the [OAuth2 Generator](https://wso2.com/api-platform/policy-hub/policies/oauth2-generator) policy's own parameters — see that page for the full reference, including the password grant, a static bearer token, and caching options.
 
