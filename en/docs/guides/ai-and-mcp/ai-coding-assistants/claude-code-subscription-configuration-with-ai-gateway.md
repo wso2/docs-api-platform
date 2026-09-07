@@ -297,7 +297,7 @@ The following example shows Moesif being used to view analytics.
 
 [![Moesif Overview dashboard showing unique users, total requests, errors, and LLM traffic metrics with time-series chart](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/analytics-example.png)](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/analytics-example.png)
 
-For more information, see [Integrate with Moesif](../../../cloud/monitoring-and-insights/integrate-bijira-with-moesif.md).
+For more information, see [Analytics overview](../../../analytics/overview.md).
 
 ### Implement WSO2 AI Gateway guardrails for enhanced control
 
@@ -313,7 +313,7 @@ For example, a **PII Masking Regex Guardrail** can be configured in the request 
 
 [![Claude Code terminal showing phone number redacted as asterisks after PII masking guardrail intercepts prompt](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/claude-code-guardrail-redacted-example.png)](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/claude-code-guardrail-redacted-example.png)
 
-For more information, see [PII Masking Regex guardrail](../../../cloud/ai-gateway/llm/guardrails/pii-masking-regex.md).
+For more information, see [PII Masking Regex guardrail](https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex).
 
 ### Rate limiting at AI Gateway
 
@@ -325,7 +325,7 @@ A Claude subscription charges a flat fee rather than a per-token rate, so use th
 
 [![Claude Code terminal showing prompt retrying with message "Retrying in 2s attempt 6/10" after rate limit reached](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/claude-code-rate-limit-example.png)](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/claude-code-rate-limit-example.png)
 
-For more information, see [Policies overview](../../../cloud/ai-workspace/policies/overview.md).
+For more information, see [Policies overview](../../../ai-workspace/1.0.0/policies/overview.md).
 
 ### Prompt Decorator
 
@@ -359,7 +359,7 @@ The following policy configuration states the restriction. Adjust the wording of
 
 The `jsonPath` value targets the text of the last system block in the Anthropic Messages API request body, and `append: false` places the restriction ahead of the text already there.
 
-For more information, see [Prompt Decorator](../../../cloud/ai-gateway/llm/prompt-management/prompt-decorator.md).
+For more information, see [Prompt Decorator](https://wso2.com/api-platform/policy-hub/policies/prompt-decorator).
 
 ### Estimate LLM cost
 
