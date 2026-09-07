@@ -243,7 +243,7 @@ Claude Code will now send requests through WSO2 API Platform instead of directly
 
 ### View API Analytics and Insights
 
-By routing Claude Code requests through the WSO2 API Manager AI Gateway, you automatically gain access to built-in analytics and reporting capabilities.
+By routing Claude Code requests through the WSO2 API Platform AI Gateway, you automatically gain access to built-in analytics and reporting capabilities.
 
 WSO2 provides integrated analytics, powered by Moesif, and also supports integration with external tools such as the ELK stack (**Elasticsearch**, **Logstash**, **Kibana**) and Choreo Analytics.
 
@@ -257,7 +257,7 @@ For more information on Analytics, refer to the official [WSO2 API Platform Docu
 
 ### Implement WSO2 AI Gateway Guardrails for Enhanced Control
 
-WSO2 API Manager AI Gateway guardrails enable granular control over the data exchanged between Claude Code and the Anthropic API.
+WSO2 API Platform AI Gateway guardrails enable granular control over the data exchanged between Claude Code and the Anthropic API.
 
 By applying guardrails, you can enforce security and compliance policies such as:
 
@@ -275,7 +275,7 @@ For more information on AI Guardrails, refer to the official [WSO2 API Platform 
 
 ### Rate limiting at AI Gateway
 
-WSO2 API Manager AI Gateway supports request-based and token-based rate limiting for AI APIs. This allows you to control Claude Code usage when requests are routed through the Gateway.
+WSO2 API Platform AI Gateway supports request-based and token-based rate limiting for AI APIs. This allows you to control Claude Code usage when requests are routed through the Gateway.
 
 For example, you can create an AI subscription policy with a limited request count or total token count, and apply it when subscribing to the Anthropic AI API. Once Claude Code invokes the API through that subscription, the Gateway enforces the selected quota automatically. If the configured limit is exceeded, subsequent requests are throttled until the quota resets.
 
@@ -289,7 +289,7 @@ For more information on Rate Limiting and other policies, refer to the official 
 
 ### Prompt Decorator
 
-WSO2 API Manager AI Gateway supports Prompt Decorators, which allow you to modify or enrich prompts before they are sent to the backend AI provider. This is useful for enforcing consistent instructions, adding system-level context, or guiding model behavior without requiring changes in the client application.
+WSO2 API Platform AI Gateway supports Prompt Decorators, which allow you to modify or enrich prompts before they are sent to the backend AI provider. This is useful for enforcing consistent instructions, adding system-level context, or guiding model behavior without requiring changes in the client application.
 
 As a simple example, you can configure a Prompt Decorator in the request flow to prepend a system instruction to all incoming prompts.
 
