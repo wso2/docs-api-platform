@@ -1,0 +1,89 @@
+/*
+ * Copyright (c) 2026, WSO2 LLC. (https://www.wso2.com).
+ *
+ * WSO2 LLC. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ * Styling for the per-section version selector rendered in the left nav for
+ * sections listed under extra.versioned_sections (see partials/nav-item.html).
+ */
+
+/* Section header row: title takes the available space, version dropdown sits
+   inline beside it, expand chevron at the far right. */
+.md-nav__versioned-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.md-nav__versioned-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.md-nav__versioned-title > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.md-nav__versioned-header .md-nav__versioned-toggle {
+  flex: 0 0 auto;
+  margin-left: 0;
+}
+
+.md-nav__version-dropdown {
+  flex: 0 0 auto;
+  max-width: 5.2rem;
+  padding: 0.1rem 0.3rem;
+  font-family: var(--md-text-font);
+  font-size: 0.6rem;
+  color: var(--md-default-fg-color);
+  background-color: var(--md-surface-fg-color, #fff);
+  border: 1px solid var(--md-divider-color, rgba(0, 0, 0, 0.12));
+  border-radius: var(--md-border-radius, 8px);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.md-nav__version-dropdown:hover,
+.md-nav__version-dropdown:focus {
+  border-color: var(--md-primary-fg-color);
+  outline: none;
+  box-shadow: 0 0 0 1px var(--md-primary-fg-color);
+}
+
+/* Show only the active version's subtopic group. The active group is marked
+   server-side (is-active) so the correct group is visible before JS runs. */
+.md-nav__version-group {
+  display: none;
+}
+
+.md-nav__version-group.is-active {
+  display: block;
+}
+
+/* Version-scoped root nav sections (extra.version_scoped_navs) and their
+   preceding dividers stay hidden until theme.js marks them visible for the
+   matching doc version (e.g. "next"). */
+.md-nav--primary [data-md-scoped-version] {
+  display: none;
+}
+
+.md-nav--primary [data-md-scoped-version].md-nav__scoped--visible {
+  display: block;
+}
