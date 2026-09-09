@@ -1,6 +1,6 @@
 ---
-title: "Publish MCP servers to a governed catalog using AI Workspace and the API Portal and MCP Hub"
-description: "Register an AI Gateway, create MCP proxies for existing MCP servers, and publish them to the API Portal and MCP Hub for governed discovery."
+title: "Publish MCP servers to a governed catalog using AI Workspace and API Portal and MCP Hub"
+description: "Register an AI Gateway, create MCP proxies for existing MCP servers, and publish them to API Portal and MCP Hub for governed discovery."
 canonical_url: https://wso2.com/api-platform/docs/guides/ai-and-mcp/publish-mcp-servers-to-a-governed-catalog/
 md_url: https://wso2.com/api-platform/docs/guides/ai-and-mcp/publish-mcp-servers-to-a-governed-catalog.md
 tags:
@@ -17,20 +17,20 @@ content_type: "tutorial"
 
 ## Overview
 
-This guide shows you how to publish existing MCP servers into a governed, discoverable catalog using AI Workspace and the API Portal and MCP Hub. Without a central, governed catalog, each MCP server your team runs possesses no shared, governed source of truth for consumers or AI agents. By the end, you'll have two MCP servers deployed behind a gateway and published to the API Portal and MCP Hub, discoverable by both humans in the catalog and AI agents through `llms.txt`. A companion sample runs the same governance pattern end to end using self-hosted components using Docker Compose.
+This guide shows you how to publish existing MCP servers into a governed, discoverable catalog using AI Workspace and API Portal and MCP Hub. Without a central, governed catalog, each MCP server your team runs possesses no shared, governed source of truth for consumers or AI agents. By the end, you'll have two MCP servers deployed behind a gateway and published to API Portal and MCP Hub, discoverable by both humans in the catalog and AI agents through `llms.txt`. A companion sample runs the same governance pattern end to end using self-hosted components using Docker Compose.
 
 ## Learning objectives
 
 - Set up an AI Gateway instance.
 - Register the AI Gateway runtime with AI Workspace.
 - Create MCP proxies on top of two independently running MCP servers, with no server code to write.
-- Publish MCP proxies to the API Portal and MCP Hub so they're discoverable as one governed catalog.
-- Verify the published MCP servers in the API Portal and MCP Hub.
+- Publish MCP proxies to API Portal and MCP Hub so they're discoverable as one governed catalog.
+- Verify the published MCP servers in API Portal and MCP Hub.
 - Verify that the published MCP servers are discoverable by AI agents.
 
 ## Prerequisites
 
-- A WSO2 API Platform account with access to AI Workspace and the API Portal and MCP Hub
+- A WSO2 API Platform account with access to AI Workspace and API Portal and MCP Hub
 - Docker with the Compose plugin, `curl`, and `unzip`, to run the gateway runtime
 
 ## Architecture
@@ -62,9 +62,9 @@ This guide shows you how to publish existing MCP servers into a governed, discov
         [Consumers: developers + AI agents]
 ```
 
-Both MCP proxies route through the same gateway, but they're two separate catalog entries. Publishing registers each one in your organization's MCP registry. The API Portal and MCP Hub then makes the registry available to both human consumers and AI agents.
+Both MCP proxies route through the same gateway, but they're two separate catalog entries. Publishing registers each one in your organization's MCP registry. API Portal and MCP Hub then makes the registry available to both human consumers and AI agents.
 
-## Step 1: Create an AI Gateway
+## Step 1: Create an AI Gateway in AI Workspace
 
 An AI Gateway entry in AI Workspace represents one gateway runtime. Registering it here gets you a token; you still start the runtime yourself with Docker.
 
@@ -84,7 +84,7 @@ An AI Gateway entry in AI Workspace represents one gateway runtime. Registering 
 
 **Expected result:** The gateway detail screen opens, showing its status as **Inactive**.
 
-## Step 2: Run the gateway runtime
+## Step 2: Start the gateway runtime
 
 Select the **Quick Start** tab in the gateway's **Get Started** pane, then run the commands it shows you. Replace _`<version_number>`_ with the latest AI Gateway release version as AI Workspace shows.
 
@@ -95,7 +95,7 @@ Select the **Quick Start** tab in the gateway's **Get Started** pane, then run t
     unzip wso2apip-ai-gateway-<version_number>.zip
     ```
 
-2. Create the environment file with your registration token from Step 1:
+2. Create the environment file with your registration token from step 1:
 
     ```bash
     cat > wso2apip-ai-gateway-<version_number>/configs/keys.env << 'ENVFILE'
@@ -135,7 +135,7 @@ AI Workspace provides a sample MCP server. Follow these steps to create an MCP P
 
 ![Successfully deploying an MCP Proxy to AI Gateway](../../assets/img/guides/ai-and-mcp/mcp-catalog/deployment-status.png)
 
-## Step 5: Add the Everything MCP Server Proxy to the API Portal and MCP Hub
+## Step 5: Add the Everything MCP Server Proxy to API Portal and MCP Hub
 After deploying a Proxy, it becomes reachable through the gateway-specific MCP Proxy URL. For example:
 
 ![MCP Proxy overview page](../../assets/img/guides/ai-and-mcp/mcp-catalog/publishing-to-mcp-hub.png)
@@ -153,7 +153,7 @@ After successful publication, you can go to the MCP Hub from the Proxy overview 
 
 ![Published Everything MCP Server Proxy in MCP Hub](../../assets/img/guides/ai-and-mcp/mcp-catalog/everything-mcp-in-dev-portal.png)
 
-**Expected result:** The proxy is registered in your organization's MCP registry and becomes discoverable and viewable in the API Portal and MCP Hub.
+**Expected result:** The proxy is registered in your organization's MCP registry and becomes discoverable and viewable in API Portal and MCP Hub.
 
 ## Step 6: Create an MCP Proxy for the DeepWiki server
 
@@ -173,10 +173,10 @@ Then repeat the steps in step 4 to deploy this Proxy to your AI Gateway instance
 
 **Expected result:** The Proxy is created and its deployment status changes to **Active**.
 
-## Step 7: Add the DeepWiki MCP Server Proxy to the API Portal and MCP Hub
+## Step 7: Add the DeepWiki MCP Server Proxy to API Portal and MCP Hub
 Repeat step 5 to publish the DeepWiki MCP Server Proxy to the MCP Hub.
 
-**Expected result:** The proxy is registered in your organization's MCP registry and becomes discoverable and viewable in the API Portal and MCP Hub.
+**Expected result:** The proxy is registered in your organization's MCP registry and becomes discoverable and viewable in API Portal and MCP Hub.
 
 ## Verify
 
@@ -195,7 +195,7 @@ To verify that the `llms.txt` file contains the two MCP servers you have publish
 
 You can also open the `llms.txt` preview in another tab to see the current `llms.txt`. To add more information, configure the portal name and description. The preview changes as you add these information. Then click **Publish** to publish the updated `llms.txt`.
 
-![The `llms.txt` file of the API Portal and MCP Hub for an organization](../../assets/img/guides/ai-and-mcp/mcp-catalog/llm-instructions-dev-portal.png)
+![The `llms.txt` file of API Portal and MCP Hub for an organization](../../assets/img/guides/ai-and-mcp/mcp-catalog/llm-instructions-dev-portal.png)
 
 ## Troubleshooting
 
@@ -203,7 +203,7 @@ You can also open the `llms.txt` preview in another tab to see the current `llms
 |---|---|
 | MCP Server URL fetch fails when creating the proxy | Confirm the URL ends in `/mcp` and is reachable without credentials. Both servers used in this guide are public and requires no credentials. |
 | Unable to publish an MCP Proxy | Confirm the Proxy's deployment status is **Active**. You must deploy a Proxy before you can publish it. |
-| A proxy doesn't appear in the API Portal and MCP Hub after publishing | Allow a few moments for the catalog to refresh, then reload the page. |
+| A proxy doesn't appear in API Portal and MCP Hub after publishing | Allow a few moments for the catalog to refresh, then reload the page. |
 
 ## Next steps
 
@@ -214,6 +214,6 @@ You can also open the `llms.txt` preview in another tab to see the current `llms
 
 ## Try the sample
 
-The companion sample runs this same governance pattern end to end using using Docker Compose. The sample uses self-hosted, standalone components. You will learn how to publish two MCP servers through the Management API. You will then verify them through the MCP Registry API and the API Portal and MCP Hub UI. You don't need a Cloud account to run the sample.
+The companion sample runs this same governance pattern end to end using using Docker Compose. The sample uses self-hosted, standalone components. You will learn how to publish two MCP servers through the Management API. You will then verify them through the MCP Registry API and API Portal and MCP Hub UI. You don't need a Cloud account to run the sample.
 
 [View the sample on GitHub](https://github.com/wso2/api-platform/tree/main/samples/mcp-registry-catalog).
