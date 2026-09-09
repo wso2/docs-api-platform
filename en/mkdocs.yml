@@ -1315,6 +1315,7 @@ nav:
         - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
         - Find and Connect to an Enterprise MCP Server from the MCP Hub: guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md
         - Build an AI Agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
+        - Publish MCP servers to a governed catalog using AI Workspace and API Portal and MCP Hub: guides/ai-and-mcp/publish-mcp-servers-to-a-governed-catalog.md
     - Developer Portal:
         - Go from Zero to a Working API Call Using the Developer Portal: guides/developer-portal/api-discovery-and-tryout.md
     - Monetization:
