@@ -706,6 +706,7 @@ nav:
             - Build an AI App with Claude Code that Calls Governed Backend APIs: guides/ai-and-mcp/build-ai-app-with-claude-code.md
             - Build an AI Agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
             - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
+            - Expose a Multi-Step API Workflow as an MCP Tool: guides/ai-and-mcp/expose-a-multi-step-api-workflow-as-an-mcp-tool.md
             - Find and Connect to an Enterprise MCP Server from the MCP Hub: guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md
             - Configure AI Coding Assistants:
                 - Configure Claude Code with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
@@ -811,6 +812,7 @@ nav:
             - Build an AI App with Claude Code that Calls Governed Backend APIs: guides/ai-and-mcp/build-ai-app-with-claude-code.md
             - Build an AI Agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
             - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
+            - Expose a Multi-Step API Workflow as an MCP Tool: guides/ai-and-mcp/expose-a-multi-step-api-workflow-as-an-mcp-tool.md
             - Find and Connect to an Enterprise MCP Server from the MCP Hub: guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md
             - Configure AI Coding Assistants:
                 - Configure Claude Code with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
