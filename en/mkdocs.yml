@@ -946,6 +946,7 @@ nav:
         - Overview: api-portal/next/overview.md
         - About this Release: api-portal/next/about-this-release.md
         - Concepts: api-portal/next/concepts.md
+        - Quick Start Guide: api-portal/next/quickstart-guide.md
         # Stand the portal up, in the order an operator does it.
         - Getting Started: api-portal/next/getting-started.md
         - Setting Up:
