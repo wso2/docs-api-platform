@@ -10,7 +10,7 @@ tags:
   - spend
   - cost-tracking
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-19
+last_updated: 2026-09-12
 content_type: "concept"
 ---
 
@@ -27,6 +27,7 @@ This section contains the following pages:
 | Page | What it covers |
 |------|----------------|
 | [Moesif analytics](moesif-analytics.md) | Configure Moesif in API Platform AI Gateway to capture and publish API request and response data. |
+| [OpenTelemetry analytics](opentelemetry-analytics.md) | Export analytics events as OTLP log records to an OpenTelemetry Collector or any OTLP-compatible backend, including LLM token usage and cost. |
 | [Analytics header filter](analytics-header-filter.md) | Control which request and response headers are sent to analytics backends using allow or deny mode in API Platform AI Gateway. |
 
-Both pages configure a policy from the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../policy-hub/overview.md).
+Moesif analytics and the analytics header filter configure a policy from the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../policy-hub/overview.md).
