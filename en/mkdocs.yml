@@ -397,6 +397,7 @@ nav:
         - Analytics:
           - Analytics Header Filter: api-gateway/next/analytics/analytics-header-filter.md
           - Moesif Analytics: api-gateway/next/analytics/moesif-analytics.md
+          - OpenTelemetry Analytics: api-gateway/next/analytics/opentelemetry-analytics.md
         - Management API:
           - Overview: api-gateway/next/gateway-controller-management-api/overview.md
           - Authentication: api-gateway/next/gateway-controller-management-api/authentication.md
@@ -651,6 +652,7 @@ nav:
         - Analytics:
             - ai-gateway/next/analytics/index.md
             - Moesif Analytics: ai-gateway/next/analytics/moesif-analytics.md
+            - OpenTelemetry Analytics: ai-gateway/next/analytics/opentelemetry-analytics.md
             - Analytics Header Filter: ai-gateway/next/analytics/analytics-header-filter.md
         - AI Workspace:
             - Extend Your Gateway with AI Workspace: ai-gateway/next/ai-workspace/extend-your-gateway-with-ai-workspace.md
