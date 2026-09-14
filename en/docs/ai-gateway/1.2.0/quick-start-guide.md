@@ -1,6 +1,6 @@
 ---
 title: "AI Gateway Quick Start Guide"
-description: "Run the AI Gateway with Docker Compose, deploy an LLM provider and proxy, route your first LLM request, and govern it from AI Workspace."
+description: "Run the AI Gateway with Docker Compose, deploy an LLM provider, route your first LLM request, and govern it from AI Workspace."
 canonical_url: https://wso2.com/api-platform/docs/ai-gateway/quick-start-guide/
 md_url: https://wso2.com/api-platform/docs/ai-gateway/quick-start-guide.md
 tags:
@@ -10,7 +10,7 @@ tags:
   - quickstart
   - docker
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-26
+last_updated: 2026-09-11
 content_type: "quickstart"
 ---
 
@@ -47,63 +47,139 @@ The commands below use version `1.2.0`. Substitute the API Platform AI Gateway r
 
 === "Linux / macOS"
 
+    **Step 1: Download the gateway**
+
+    Run this command in your terminal to download the AI Gateway distribution:
+
     ```bash
-    # Download distribution.
     curl -fL -o wso2apip-ai-gateway-1.2.0.zip https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip
+    ```
 
-    # Unzip the downloaded distribution.
+    Then extract the content:
+
+    ```bash
     unzip wso2apip-ai-gateway-1.2.0.zip
+    ```
 
+    Go inside the root directory of the gateway distribution folder:
+
+    ```bash
     cd wso2apip-ai-gateway-1.2.0/
+    ```
 
-    # Run the one-time setup. This provisions the Advanced Encryption Standard (AES)-256 at-rest
-    # encryption key, the router HTTPS listener certificate, api-platform.env, and the
-    # gateway-controller admin credentials. It prints the admin password once — copy it.
+    **Step 2: Run the setup script**
+
+    Run the following script for a one-time setup.
+
+    ```bash
     ./scripts/setup.sh
+    ```
 
-    # Export the admin credentials so the management-API calls below can authenticate.
-    # The username defaults to "admin"; use the password setup.sh just printed.
+    This provisions the following:
+
+    - The Advanced Encryption Standard (AES)-256 at-rest encryption key
+    - The router HTTPS listener certificate
+    - The `api-platform.env` file
+    - The gateway-controller admin credentials
+
+    The script prints the admin password once — copy it.
+
+    **Step 3: Export admin credentials**
+
+    Export the admin credentials so the management-API calls below can authenticate. The username defaults to `admin`. Use the password the setup script `setup.sh` printed in the preceding step.
+
+    ```bash
     export ADMIN_USERNAME=admin
     export ADMIN_PASSWORD='<the password scripts/setup.sh printed>'
+    ```
 
-    # Start the complete stack
+    **Step 4: Start the gateway**
+
+    Start the complete gateway stack using Docker Compose:
+
+    ```bash
     docker compose up
+    ```
 
-    # Verify gateway controller admin endpoint is running
+    **Step 5: Verify the gateway**
+
+    Verify that the gateway controller is healthy:
+
+    ```bash
     curl http://localhost:9094/api/admin/v1/health
     ```
 
+    A successful response confirms the gateway is running and ready to accept API configurations.
+
 === "Windows (PowerShell)"
 
+    **Step 1: Download the gateway**
+
+    Run this command in your terminal to download the AI Gateway distribution:
+
     ```powershell
-    # Download distribution.
     Invoke-WebRequest -Uri https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip -OutFile wso2apip-ai-gateway-1.2.0.zip
+    ```
 
-    # Unzip the downloaded distribution.
+    Then extract the content:
+
+    ```powershell
     Expand-Archive -Path wso2apip-ai-gateway-1.2.0.zip -DestinationPath .
+    ```
 
+    Go inside the root directory of the gateway distribution folder:
+
+    ```powershell
     Set-Location wso2apip-ai-gateway-1.2.0
+    ```
 
-    # Run the one-time setup. This provisions the Advanced Encryption Standard (AES)-256 at-rest
-    # encryption key, the router HTTPS listener certificate, api-platform.env, and the
-    # gateway-controller admin credentials. It prints the admin password once — copy it.
+    **Step 2: Run the setup script**
+
+    Run the following script for a one-time setup.
+
+    ```powershell
     pwsh -ExecutionPolicy Bypass -File .\scripts\setup.ps1
+    ```
 
-    # Set the admin credentials so the management-API calls below can authenticate.
-    # The username defaults to "admin"; use the password setup.ps1 just printed.
+    This provisions the following:
+
+    - The Advanced Encryption Standard (AES)-256 at-rest encryption key
+    - The router HTTPS listener certificate
+    - The `api-platform.env` file
+    - The gateway-controller admin credentials
+
+    The script prints the admin password once — copy it.
+
+    **Step 3: Set admin credentials**
+
+    Set the admin credentials so the management-API calls below can authenticate. The username defaults to `admin`. Use the password the setup script `setup.ps1` printed in the preceding step.
+
+    ```powershell
     $env:ADMIN_USERNAME='admin'
     $env:ADMIN_PASSWORD='<the password setup.ps1 printed>'
+    ```
 
-    # Start the complete stack
+    **Step 4: Start the gateway**
+
+    Start the complete gateway stack using Docker Compose:
+
+    ```powershell
     docker compose up
+    ```
 
-    # Verify gateway controller admin endpoint is running
+    **Step 5: Verify the gateway**
+
+    Verify that the gateway controller is healthy:
+
+    ```powershell
     curl.exe http://localhost:9094/api/admin/v1/health
     ```
 
+    A successful response confirms the gateway is running and ready to accept API configurations.
+
     Note the `.exe`, since `curl` is an alias for `Invoke-WebRequest` in Windows PowerShell. PowerShell 7 removes that alias, and `curl.exe` works in both versions.
 
-    The two management API requests below—the LLM provider `POST` and the LLM proxy `POST`—pipe their YAML payload in through a shell heredoc (`--data-binary @- <<'EOF'`). PowerShell doesn't support heredocs. Either run those two requests from Git Bash or WSL, or use the **Windows (PowerShell)** tab on each one, which saves the YAML to a file and posts that file explicitly.
+    The management API requests below pipe their YAML payload in through a shell heredoc (`--data-binary @- <<'EOF'`). PowerShell doesn't support heredocs. Either run them from Git Bash or WSL, or use the **Windows (PowerShell)** tab on each one, which saves the YAML to a file and posts that file explicitly.
 
 !!! tip "Port 8080, 8443, 9090, or 9094 already taken?"
     If the start command fails with a port binding error, identify what is already listening on the default ports:
@@ -410,7 +486,7 @@ As a platform administrator, deploy an LLM provider for the vendor whose API key
 
     {% endraw %}
 
-The remaining steps on this page use the OpenAI provider, because the LLM proxy they build sends requests in the OpenAI format. To consume an Anthropic or AWS Bedrock provider through a proxy, see [Multi-provider routing](routing/multi-provider-routing.md), which adds the transformer that converts between the two formats.
+The remaining step on this page uses the OpenAI provider, because the test request below uses the OpenAI request format. To route requests to an Anthropic or AWS Bedrock provider through a single endpoint, see [Multi-provider routing](routing/multi-provider-routing.md), which adds the transformer that converts between formats.
 
 To test LLM provider traffic routing through the gateway, invoke the following request.
 
@@ -441,86 +517,6 @@ To test LLM provider traffic routing through the gateway, invoke the following r
 !!! note "Why these commands pass `-k`"
     The `-k` flag tells `curl` to skip Transport Layer Security (TLS) certificate verification. The router presents the self-signed listener certificate that `setup.sh` or `setup.ps1` generates, and no certificate authority trusts it. Outside local testing, give the router a certificate from a trusted certificate authority and remove `-k`.
 
-## Deploy an LLM proxy configuration to consume an LLM provider
-
-The API Platform Gateway supports configuring and deploying LLM proxies. As an AI developer, run the following command to deploy a sample LLM proxy that consumes the OpenAI LLM provider the platform administrator deployed above.
-
-=== "Linux / macOS"
-
-    ```bash
-    curl -X POST http://localhost:9090/api/management/v1/llm-proxies \
-      -H "Content-Type: application/yaml" \
-      -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
-      --data-binary @- <<'EOF'
-    apiVersion: gateway.api-platform.wso2.com/v1
-    kind: LlmProxy
-    metadata:
-      name: openai-assistant
-    spec:
-      displayName: OpenAI Assistant
-      version: v1.0
-      context: /assistant
-      provider:
-        id: openai-provider
-      policies: []
-    EOF
-    ```
-
-=== "Windows (PowerShell)"
-
-    Save the proxy definition to `openai-assistant.yaml`:
-
-    ```powershell
-    @'
-    apiVersion: gateway.api-platform.wso2.com/v1
-    kind: LlmProxy
-    metadata:
-      name: openai-assistant
-    spec:
-      displayName: OpenAI Assistant
-      version: v1.0
-      context: /assistant
-      provider:
-        id: openai-provider
-      policies: []
-    '@ | Set-Content -Path openai-assistant.yaml -Encoding utf8
-    ```
-
-    Then post it:
-
-    ```powershell
-    curl.exe -X POST http://localhost:9090/api/management/v1/llm-proxies `
-      -H "Content-Type: application/yaml" `
-      -u "${env:ADMIN_USERNAME}:${env:ADMIN_PASSWORD}" `
-      --data-binary "@openai-assistant.yaml"
-    ```
-
-To test LLM proxy traffic routing through the gateway and consume the LLM provider, invoke the following request.
-
-=== "Linux / macOS"
-
-    ```bash
-    curl -X POST "https://localhost:8443/assistant/chat/completions" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "model": "gpt-4o-mini",
-        "messages": [
-          {
-            "role": "user",
-            "content": "Hi"
-          }
-        ]
-      }' -k
-    ```
-
-=== "Windows (PowerShell)"
-
-    ```powershell
-    curl.exe -X POST https://localhost:8443/assistant/chat/completions `
-      -H "Content-Type: application/json" `
-      -d '{"model": "gpt-4o-mini", "messages": [{"role": "user", "content": "Hi"}]}' -k
-    ```
-
 ## Govern this gateway from AI Workspace
 
 The gateway you just started serves traffic on its own. [AI Workspace](../../ai-workspace/1.0.0/overview.md) is the control plane for AI traffic across your organization. One console manages LLM providers, App LLM proxies, MCP proxies, policies such as guardrails and token-based rate limits, and the credentials behind them. Register this gateway with AI Workspace to govern every AI gateway you run from one place, across every environment.
@@ -528,7 +524,7 @@ The gateway you just started serves traffic on its own. [AI Workspace](../../ai-
 Both directions work, and you can use them together:
 
 - **Top-down.** Configure an artifact in AI Workspace, apply policies to it, then deploy it to one or more gateways.
-- **Bottom-up.** Keep deploying through the management API, as this guide does. The gateway syncs every artifact you create to AI Workspace automatically, where each one appears as a copy the gateway owns. The OpenAI provider and the `openai-assistant` proxy from this guide appear there without being re-declared. To see what a synced artifact looks like, and what stays editable, see [Manage Gateway-deployed AI artifacts in AI Workspace](../../ai-workspace/1.0.0/sync-gateway-created-artifacts.md).
+- **Bottom-up.** Keep deploying through the management API, as this guide does. The gateway syncs every artifact you create to AI Workspace automatically, where each one appears as a copy the gateway owns. The OpenAI provider from this guide appears there without being re-declared. To see what a synced artifact looks like, and what stays editable, see [Manage Gateway-deployed AI artifacts in AI Workspace](../../ai-workspace/1.0.0/sync-gateway-created-artifacts.md).
 
 The gateway keeps serving traffic either way. If AI Workspace is unreachable, the gateway carries on and the sync catches up once the connection is restored.
 
@@ -538,7 +534,7 @@ To weigh up the two products before you connect them, see [Extend your gateway w
 
 When stopping the gateway, you have two options:
 
-**Option 1: Stop runtime, keep data (persisted proxies and configuration)**
+**Option 1: Stop runtime, keep data (persisted provider configuration)**
 
 ```bash
 docker compose down
@@ -556,9 +552,10 @@ This stops the containers and removes the `controller-data` volume. The next sta
 
 ## Next steps
 
+- Expose the provider to applications through a per-application endpoint: [LLM Proxy](gateway-artifacts/llm-proxy.md)
 - Route to more than one provider, with failover: [Multi-provider routing](routing/multi-provider-routing.md)
 - Add guardrails to a proxy, such as [PII masking](https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex) or a [JSON schema guardrail](https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail)
-- Expose an MCP server through the gateway: [MCP proxy](gateway-artifacts/mcp-proxy.md)
+- Expose an MCP server through the gateway: [MCP Proxy](gateway-artifacts/mcp-proxy.md)
 - Govern AI traffic across all your gateways from the control plane: [AI Workspace overview](../../ai-workspace/1.0.0/overview.md)
 - Take this gateway to production on Kubernetes: [Production deployment overview](./setup-and-deployment/production-deployment/index.md)
 - Register a production gateway with the control plane: [Connect to AI Workspace](./setup-and-deployment/production-deployment/control-plane-connection.md)
