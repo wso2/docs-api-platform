@@ -705,6 +705,7 @@ nav:
             - Set up a Governed Multi-Model LLM Proxy with Cost Controls and Failover: guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md
             - Enforce Token-Based Rate Limiting on an LLM Proxy: guides/ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy.md
             - Enforce a Consistent AI Persona with the Prompt Decorator Policy: guides/ai-and-mcp/using-prompt-decorator-policy.md
+            - Reduce MCP Tool Poisoning Risk with the MCP Access Control Policy: guides/ai-and-mcp/block-mcp-tool-poisoning-with-the-mcp-access-control-policy.md
             - Build an AI App with Claude Code that Calls Governed Backend APIs: guides/ai-and-mcp/build-ai-app-with-claude-code.md
             - Build an AI Agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
             - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
@@ -810,6 +811,7 @@ nav:
             - Set up a Governed Multi-Model LLM Proxy with Cost Controls and Failover: guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md
             - Enforce Token-Based Rate Limiting on an LLM Proxy: guides/ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy.md
             - Enforce a Consistent AI Persona with the Prompt Decorator Policy: guides/ai-and-mcp/using-prompt-decorator-policy.md
+            - Reduce MCP Tool Poisoning Risk with the MCP Access Control Policy: guides/ai-and-mcp/block-mcp-tool-poisoning-with-the-mcp-access-control-policy.md
             - Build an AI App with Claude Code that Calls Governed Backend APIs: guides/ai-and-mcp/build-ai-app-with-claude-code.md
             - Build an AI Agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
             - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
@@ -1320,6 +1322,7 @@ nav:
         - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
         - Find and Connect to an Enterprise MCP Server from the MCP Hub: guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md
         - Build an AI Agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
+        - Reduce MCP Tool Poisoning Risk with the MCP Access Control Policy: guides/ai-and-mcp/block-mcp-tool-poisoning-with-the-mcp-access-control-policy.md
         - Publish MCP servers to a governed catalog using AI Workspace and API Portal and MCP Hub: guides/ai-and-mcp/publish-mcp-servers-to-a-governed-catalog.md
     - Developer Portal:
         - Go from Zero to a Working API Call Using the Developer Portal: guides/developer-portal/api-discovery-and-tryout.md
