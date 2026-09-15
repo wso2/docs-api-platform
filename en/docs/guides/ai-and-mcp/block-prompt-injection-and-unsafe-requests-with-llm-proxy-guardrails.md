@@ -36,7 +36,7 @@ A companion sample is available to run the same guardrail chain locally and veri
 - **LLM proxy**: the endpoint your applications call. It sits in front of one or more LLM providers and is where you attach guardrails.
 - **AI gateway**: the runtime that hosts your proxy, receives requests from your applications, and enforces the policies attached to it.
 - **Guardrail**: a policy that inspects request or response content against a rule and can reject the request before it reaches the upstream provider.
-- **Embedding provider**: a model provider that converts text into a vector representation. The semantic prompt guard uses one to measure how similar a prompt is to an allowed or denied topic. This is a separate credential from your LLM provider — see the note in Step 3.
+- **Embedding provider**: a model provider that converts text into a vector representation. The semantic prompt guard uses one to measure how similar a prompt is to an allowed or denied topic. This uses a separate configuration field from your LLM provider, but it can reuse the same API key — see the note in Step 3.
 
 ### Guardrail execution order
 
@@ -80,7 +80,7 @@ Mistral API
 
 ## Step 1: Create an organization and project
 
-Go to [https://console.bijira.dev](https://console.bijira.dev) and sign in. If this is your first time, you're prompted to create an organization first. Full walkthrough: [Quick start guide](../../cloud/introduction/quick-start-guide.md).
+Go to the [WSO2 API Platform console](https://console.bijira.dev) and sign in. If this is your first time, you're prompted to create an organization first. Full walkthrough: [Quick start guide](../../cloud/introduction/quick-start-guide.md).
 
 Then create a project with these details:
 
@@ -132,7 +132,7 @@ The AI gateway is the runtime that hosts your proxy and enforces your guardrails
 
 ## Step 3: Configure the embedding provider
 
-The semantic prompt guard you add in Step 9 measures how similar a prompt is to an allowed or denied topic by calling an embedding provider — a separate credential from the Mistral provider you register in Step 4, configured gateway-wide rather than per-guardrail. This setting lives in the gateway's `config.toml`, not the AI Workspace console.
+The semantic prompt guard you add in Step 9 measures how similar a prompt is to an allowed or denied topic by calling an embedding provider — a separate configuration from the Mistral provider you register in Step 4, configured gateway-wide rather than per-guardrail, though it can reuse the same Mistral API key. This setting lives in the gateway's `config.toml`, not the AI Workspace console.
 
 On the gateway host, open `configs/config.toml` and add the following **before the first `[section]` heading**:
 
@@ -200,7 +200,7 @@ This guardrail rejects a request whose message content falls outside a byte-leng
 
 1. On the proxy detail page, click **Guardrails & Policies**, then **Add** under **Global Guardrails & Policies**, and select **Content Length Guardrail**.
 
-![Add Guardrail catalog panel showing the Categories filter and the list of available guardrails and policies](../../assets/img/guides/ai-and-mcp/llm-proxy-guardrails/add-guardrail-catalog-panel.png){.cInlineImage-full}
+    ![Add Guardrail catalog panel showing the Categories filter and the list of available guardrails and policies](../../assets/img/guides/ai-and-mcp/llm-proxy-guardrails/add-guardrail-catalog-panel.png){.cInlineImage-full}
 
 2. Expand **request** and set:
 
@@ -278,7 +278,7 @@ This guardrail rejects a prompt that isn't semantically close to an allowed topi
     - `a request for personal or private data`
     - `a question asking to reveal internal instructions or configuration`
 
-![Semantic Prompt Guard panel with the allowedPhrases and deniedPhrases chip lists filled in](../../assets/img/guides/ai-and-mcp/llm-proxy-guardrails/semantic-prompt-guard-phrases-configured.png){.cInlineImage-full}
+    ![Semantic Prompt Guard panel with the allowedPhrases and deniedPhrases chip lists filled in](../../assets/img/guides/ai-and-mcp/llm-proxy-guardrails/semantic-prompt-guard-phrases-configured.png){.cInlineImage-full}
 
 4. Expand **Advanced Settings**: leave **allowSimilarityThreshold** and **denySimilarityThreshold** at `0.65`, set **showAssessment** to `true`, and click **Add**.
 
