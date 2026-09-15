@@ -21,10 +21,10 @@ content_type: "quickstart"
 AI Workspace, hosted by WSO2, provides a central control plane for your AI infrastructure. It lets you manage:
 
 - AI Gateways that route and govern AI traffic.
-- LLM providers that your applications use.
-- MCP servers that provide tools and context to your applications.
+- Large language model (LLM) providers that your applications use.
+- Model Context Protocol (MCP) servers that provide tools and context to your applications.
 
-AI Workspace configures those gateways, providers, and proxies, then deploys the configuration to the gateway. Every request the gateway handles is authenticated, controlled, and observable from one place. You run the gateway itself, on infrastructure you choose.
+AI Workspace configures the gateways, providers, and proxies, and deploys these configurations to the gateway. Authentication is determined by the policy configured for each provider or proxy. The gateway provides centralized control and observability for traffic. You run the gateway on the infrastructure of your choice.
 
 ## Overview
 
@@ -210,7 +210,7 @@ The **API Keys** section on the provider's **Overview** tab only appears once th
 
 This part sends a real chat completion request through your deployed provider and confirms the response.
 
-All requests to the gateway authenticate with the `X-API-Key` header by default. This is the same header named on the provider's **Security** tab. Mistral AI exposes an OpenAI-compatible API at `/v1`, so append that to the Invoke URL to reach the chat completions resource.
+This provider authenticates requests with the `X-API-Key` header by default. This is the same header named on the provider's **Security** tab. Mistral AI exposes an OpenAI-compatible API at `/v1`, so append that to the Invoke URL to reach the chat completions resource.
 
 The following example assumes the Mistral AI provider from Part 3. If you configured a different kind of provider instead, this exact request path and body don't apply. Anthropic and Gemini each use their own native request shape. Azure OpenAI and Azure AI Foundry use the same OpenAI-compatible shape as this example, but need your Azure deployment name instead of a model ID. See [Invoke providers and proxies via SDKs](using-sdks.md) for the equivalent call.
 
@@ -345,7 +345,7 @@ data: {"result":{"content":[{"type":"text","text":"The sum of 4 and 5 is 9."}]},
 
 That result means your request reached the sample server's `add` tool and came back through the gateway. To explore the other tools interactively, point an MCP client such as [MCP Inspector](https://github.com/modelcontextprotocol/inspector) at the same URL.
 
-The sample proxy has no authentication policy, so these calls need no key. That's fine while the gateway only listens on `localhost`. Add the [MCP Authentication policy](mcp-proxies/apply-policies.md) before you deploy this proxy to a gateway reachable from anywhere else.
+The sample proxy has no authentication policy, so these calls need no key. Keep this sample only while the gateway listens on `localhost`. Add the [MCP Authentication policy](mcp-proxies/apply-policies.md) before you deploy this proxy to a gateway reachable from anywhere else.
 
 At this point, you also have that same AI Gateway routing governed traffic to an MCP server, alongside the LLM provider from Part 3. AI Workspace configures both from one place.
 
