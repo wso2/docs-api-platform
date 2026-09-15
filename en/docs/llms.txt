@@ -122,6 +122,7 @@
 
 - [AI Workspace Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/overview.md): The organizational control plane for AI: manage LLM providers, MCP proxies, GenAI applications, and AI policies centrally across connected AI Gateways
 - [AI Workspace Getting Started](https://wso2.com/api-platform/docs/cloud/ai-workspace/getting-started.md): Set up an AI Workspace, connect it to an AI Gateway, and configure your first LLM provider
+- [AI Workspace Quickstart](https://wso2.com/api-platform/docs/cloud/ai-workspace/quickstart.md): Connect an AI Gateway to AI Workspace, configure an LLM provider and an MCP proxy, and call both through the AI Gateway
 - [Setting Up AI Gateways](https://wso2.com/api-platform/docs/cloud/ai-workspace/ai-gateways/setting-up.md): Connect a self-hosted AI Gateway runtime to the AI Workspace control plane
 - [LLM Providers Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/overview.md): What an LLM Provider is: a managed connection to an LLM backend with credentials, access control, and org-level policies
 - [Configure LLM Provider](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/configure-provider.md): Add a new LLM provider in AI Workspace
