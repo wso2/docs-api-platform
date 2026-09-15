@@ -36,9 +36,13 @@ Guardrail policies are documented in the [Policy Hub](https://wso2.com/api-platf
 | [Granite Guardian Prompt Injection](https://wso2.com/api-platform/policy-hub/policies/granite-guardian-prompt-injection) | Detects prompt injection and jailbreak attempts in LLM API requests using IBM Granite Guardian 3.3 8B |
 | [NeMo Guard Content Safety](https://wso2.com/api-platform/policy-hub/policies/nvidia-nemoguard-content-safety) | Validates request and/or response content using NVIDIA NeMo Guard (llama-3.1-nemoguard-8b-content-safety) |
 
+## Add or update guardrails
+
+A guardrail is a gateway policy, so you add or update one by editing the gateway's `build.yaml` and rebuilding the image with the `ap` CLI. See [Add or Update Policies in a Gateway](../../../api-gateway/1.2.0/policies/add-or-update-policies.md).
+
 ## Custom guardrails
 
-You can extend the AI Gateway with custom guardrail policies by building a custom gateway image using the `ap` CLI. See [Customizing the Gateway by Adding and Removing Policies](../../../tools/cli/customizing-gateway-policies.md).
+To write your own guardrail policy in Go and build it into the gateway image, see [Writing a Custom Policy](../../../api-gateway/1.2.0/policies/custom-policies/writing-a-custom-policy.md).
 
 ## Related topics
 

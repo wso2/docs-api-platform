@@ -354,6 +354,7 @@ nav:
         - Policies:
           - Overview: api-gateway/next/policies/overview.md
           - Policy execution order: api-gateway/next/policies/policy-execution-order.md
+          - Add or Update Policies: api-gateway/next/policies/add-or-update-policies.md
           - Custom Policies:
             - Writing a Custom Policy: api-gateway/next/policies/custom-policies/writing-a-custom-policy.md
             - Building Gateway with Custom Policies: api-gateway/next/policies/custom-policies/building-gateway-with-custom-policies.md
@@ -427,6 +428,7 @@ nav:
         - Policies:
           - Overview: api-gateway/1.2.0/policies/overview.md
           - Policy execution order: api-gateway/1.2.0/policies/policy-execution-order.md
+          - Add or Update Policies: api-gateway/1.2.0/policies/add-or-update-policies.md
           - Custom Policies:
             - Writing a Custom Policy: api-gateway/1.2.0/policies/custom-policies/writing-a-custom-policy.md
             - Building Gateway with Custom Policies: api-gateway/1.2.0/policies/custom-policies/building-gateway-with-custom-policies.md
@@ -497,6 +499,7 @@ nav:
         - Policies:
           - Overview: api-gateway/1.1.0/policies/overview.md
           - Policy execution order: api-gateway/1.1.0/policies/policy-execution-order.md
+          - Add or Update Policies: api-gateway/1.1.0/policies/add-or-update-policies.md
           - Custom Policies:
             - Writing a Custom Policy: api-gateway/1.1.0/policies/custom-policies/writing-a-custom-policy.md
             - Building Gateway with Custom Policies: api-gateway/1.1.0/policies/custom-policies/building-gateway-with-custom-policies.md
@@ -566,6 +569,7 @@ nav:
         - Policies:
           - Overview: api-gateway/1.0.0/policies/overview.md
           - Policy execution order: api-gateway/1.0.0/policies/policy-execution-order.md
+          - Add or Update Policies: api-gateway/1.0.0/policies/add-or-update-policies.md
           - Custom Policies:
             - Writing a Custom Policy: api-gateway/1.0.0/policies/custom-policies/writing-a-custom-policy.md
             - Building Gateway with Custom Policies: api-gateway/1.0.0/policies/custom-policies/building-gateway-with-custom-policies.md
@@ -1502,6 +1506,7 @@ plugins:
         api-gateway/observability/tracing/overview.md: api-gateway/1.1.0/observability/tracing/overview.md
         api-gateway/observability/tracing/viewing-traces-in-jaeger.md: api-gateway/1.1.0/observability/tracing/viewing-traces-in-jaeger.md
         api-gateway/overview.md: api-gateway/1.1.0/overview.md
+        api-gateway/policies/add-or-update-policies.md: api-gateway/1.2.0/policies/add-or-update-policies.md
         api-gateway/policies/custom-policies/building-gateway-with-custom-policies.md: api-gateway/1.1.0/policies/custom-policies/building-gateway-with-custom-policies.md
         api-gateway/policies/custom-policies/writing-a-custom-policy.md: api-gateway/1.1.0/policies/custom-policies/writing-a-custom-policy.md
         api-gateway/policies/overview.md: api-gateway/1.1.0/policies/overview.md

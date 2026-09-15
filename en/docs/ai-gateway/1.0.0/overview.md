@@ -103,7 +103,7 @@ AI Guardrails allow you to enforce safety, content, and compliance policies on A
 
 The complete and up-to-date guardrail catalogue — with configuration references and examples — is maintained in the gateway-controllers repository: [https://github.com/wso2/gateway-controllers/blob/main/docs/README.md](https://github.com/wso2/gateway-controllers/blob/main/docs/README.md)
 
-You can extend the AI Gateway with custom guardrail policies by building a custom gateway image using the `ap` CLI. See [Customizing the Gateway by Adding and Removing Policies](../../tools/cli/customizing-gateway-policies.md).
+A guardrail is a gateway policy. To add a guardrail to the gateway, or update one to a different version, build a custom gateway image with the `ap` CLI and see [Add or Update Policies in a Gateway](../../api-gateway/1.0.0/policies/add-or-update-policies.md). To write your own guardrail policy, see [Writing a Custom Policy](../../api-gateway/1.0.0/policies/custom-policies/writing-a-custom-policy.md).
 
 ## Documentation
 
