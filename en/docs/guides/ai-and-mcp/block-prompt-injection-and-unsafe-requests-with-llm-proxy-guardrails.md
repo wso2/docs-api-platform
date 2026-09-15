@@ -18,7 +18,7 @@ content_type: "tutorial"
 
 ## Overview
 
-An LLM proxy with no guardrails forwards every request to your model as-is: an oversized payload, a wall-of-text prompt, a classic prompt-injection attempt, or a question about credentials and internal system details all reach the model the same way a legitimate question does. This guide shows you how to chain four guardrails on an LLM proxy so each of those request types is rejected before it ever reaches your model.
+An LLM proxy with no guardrails forwards every request to your model as-is. An oversized payload, a wall-of-text prompt, a classic prompt-injection attempt, or a question about credentials and internal system details all reach the model the same way a legitimate question does. This guide shows you how to chain four guardrails on an LLM proxy. Each guardrail rejects one of those request types before it ever reaches your model.
 
 By the end, you'll have a governed LLM proxy that runs four guardrails in sequence on every request:
 
@@ -40,16 +40,16 @@ A companion sample is available to run the same guardrail chain locally and veri
 
 ### Guardrail execution order
 
-The gateway runs the guardrails attached to a proxy in the order you add them, and any guardrail can reject a request immediately — the remaining guardrails in the chain never run, and the request never reaches the upstream provider. This guide adds guardrails cheapest-first: content length, word count, and regex all inspect the request text directly, in memory, while the semantic prompt guard calls an embedding provider over the network, adding at least one external round trip. Placing it last means a request that already fails an earlier check never reaches that network call at all.
+The gateway runs the guardrails attached to a proxy in the order you add them. Any guardrail can reject a request immediately — the remaining guardrails in the chain never run, and the request never reaches the upstream provider. This guide adds guardrails cheapest-first. Content length, word count, and regex all inspect the request text directly, in memory. The semantic prompt guard calls an embedding provider over the network instead, adding at least one external round trip. Placing it last means a request that already fails an earlier check never reaches that network call at all.
 
 !!! warning "The semantic prompt guard validates its phrases when you deploy, not only when it runs"
-    When you deploy a proxy, the gateway calls the embedding provider immediately to precompute embeddings for every allowed and denied phrase on the semantic prompt guard. If that call fails — for example, because the embedding provider's API key is invalid — the **entire guardrail chain fails to build for every route on the proxy**, not just the semantic check. Content length, word count, and regex stop working too, and every request returns `HTTP 500` until the embedding provider configuration is fixed and the proxy is redeployed. Complete Step 3 correctly before deploying, or you'll see this failure mode.
+    When you deploy a proxy, the gateway calls the embedding provider immediately to precompute embeddings for every allowed and denied phrase on the semantic prompt guard. If that call fails — for example, because the embedding provider's API key is invalid — the **entire guardrail chain fails to build for every route on the proxy**, not just the semantic check. Content length, word count, and regex stop working too. Every request returns `HTTP 500` until you fix the embedding provider configuration and redeploy the proxy. Complete Step 3 correctly before deploying, or you'll see this failure mode.
 
 ## Prerequisites
 
 - A WSO2 API Platform account. [Sign up for free](https://console.bijira.dev).
 - Docker and Docker Compose, to run the self-hosted AI gateway.
-- A Mistral API key, used both to register Mistral as the LLM provider and to configure the embedding provider the semantic prompt guard depends on. Any provider AI Workspace supports (OpenAI, Azure OpenAI, and others) works the same way; this guide uses Mistral throughout.
+- A Mistral API key. You use it both to register Mistral as the LLM provider and to configure the embedding provider the semantic prompt guard depends on. Any provider AI Workspace supports (OpenAI, Azure OpenAI, and others) works the same way; this guide uses Mistral throughout.
 - `curl` for testing.
 - Access to the gateway host's `config.toml` file and the ability to restart the gateway.
 
@@ -90,7 +90,7 @@ Then create a project with these details:
 | **Identifier** | llm-proxy-guardrails-demo |
 
 !!! note
-    Organizations and projects are created in this main console, not in AI Workspace. Once your project exists, click **AI Workspace** in the top navigation bar to enter AI Workspace (it opens in a new tab), and confirm **LLM Proxy Guardrails Demo** is selected via **Select Project**. AI Workspace itself has no project-creation option — if you need a new project later, come back to this console to create one.
+    Organizations and projects are created in this main console, not in AI Workspace. Once your project exists, click **AI Workspace** in the top navigation bar to enter AI Workspace (it opens in a new tab). Confirm **LLM Proxy Guardrails Demo** is selected via **Select Project**. AI Workspace itself has no project-creation option — if you need a new project later, come back to this console to create one.
 
 **Expected result:** The AI Workspace project home page opens, showing empty **LLM Service Providers**, **App LLM Proxies**, and **GenAI Applications** panels.
 
@@ -132,7 +132,7 @@ The AI gateway is the runtime that hosts your proxy and enforces your guardrails
 
 ## Step 3: Configure the embedding provider
 
-The semantic prompt guard you add in Step 9 measures how similar a prompt is to an allowed or denied topic by calling an embedding provider — a separate configuration from the Mistral provider you register in Step 4, configured gateway-wide rather than per-guardrail, though it can reuse the same Mistral API key. This setting lives in the gateway's `config.toml`, not the AI Workspace console.
+The semantic prompt guard you add in Step 9 calls an embedding provider to measure how similar a prompt is to an allowed or denied topic. This is a separate configuration from the Mistral provider you register in Step 4, and it's set gateway-wide rather than per-guardrail. It can reuse the same Mistral API key. This setting lives in the gateway's `config.toml`, not the AI Workspace console.
 
 On the gateway host, open `configs/config.toml` and add the following **before the first `[section]` heading**:
 
@@ -161,7 +161,7 @@ docker compose --env-file configs/keys.env restart gateway-controller gateway-ru
 
 ## Step 4: Add Mistral as an LLM provider
 
-Registering the provider stores your Mistral API key in the platform so the gateway can call Mistral on your behalf — your application never handles this key. LLM providers are managed at the organization level, shared across every project, unlike the project-scoped resources in the other steps. Full reference: [Configure an LLM provider](../../cloud/ai-workspace/llm-providers/configure-provider.md).
+Registering the provider stores your Mistral API key in the platform, so the gateway can call Mistral on your behalf. Your application never handles this key. LLM providers are managed at the organization level, shared across every project, unlike the project-scoped resources in the other steps. Full reference: [Configure an LLM provider](../../cloud/ai-workspace/llm-providers/configure-provider.md).
 
 1. From the project's **Overview** page, under **LLM Service Providers**, click **+ Add New**.
 2. Select **Mistral**, name it **Mistral Provider**, and paste your Mistral API key. Click **Add Provider**.
@@ -242,7 +242,7 @@ This guardrail rejects a message that's too short or too long by word count, ind
 
 ## Step 8: Add the regex guardrail
 
-This guardrail rejects a message matching a handful of classic prompt-injection phrasings. It's a pattern-matching example, not comprehensive prompt-injection protection — a real defense typically layers this with the semantic guard in Step 9 and other controls, since attackers can phrase an injection attempt in ways no fixed pattern anticipates.
+This guardrail rejects a message matching a handful of classic prompt-injection phrasings. It's a pattern-matching example, not comprehensive prompt-injection protection. A real defense typically layers this with the semantic guard in Step 9 and other controls, since attackers can phrase an injection attempt in ways no fixed pattern anticipates.
 
 1. Click **Add**, select **Regex Guardrail**, expand **request**, set **enabled** to `true`, **jsonPath** to `$.messages[-1].content`, and **regex** to:
 
@@ -287,7 +287,7 @@ This guardrail rejects a prompt that isn't semantically close to an allowed topi
 ![Semantic Prompt Guard advanced settings showing the similarity thresholds and showAssessment toggle](../../assets/img/guides/ai-and-mcp/llm-proxy-guardrails/semantic-prompt-guard-thresholds-configured.png){.cInlineImage-full}
 
 !!! tip "Tuning the similarity thresholds"
-    A higher threshold (for example, `0.85`) requires a closer match and is stricter; a lower one (for example, `0.50`) is more permissive. The right value depends on your embedding model, phrases, and traffic — there's no universal production number, so start at `0.65` and adjust using **showAssessment**'s matched-phrase and similarity-score output against real requests.
+    A higher threshold (for example, `0.85`) requires a closer match and is stricter; a lower one (for example, `0.50`) is more permissive. The right value depends on your embedding model, phrases, and traffic, so there's no universal production number. Start at `0.65` and adjust using **showAssessment**'s matched-phrase and similarity-score output against real requests.
 
 ## Step 10: Put the guardrails in order and save
 
@@ -329,6 +329,9 @@ Your application uses this key — distinct from the provider-facing key from St
 ## Verify
 
 Use the API key and invoke URL from Step 12. The invoke URL already includes your project and proxy context, so append the resource path directly.
+
+!!! note "About the `-k` flag in these commands"
+    The commands below use `-k` to skip certificate validation, because the Docker Compose gateway from Step 2 uses a self-signed certificate. If you're using an existing gateway with a trusted certificate instead, remove `-k` (or point `curl` at your CA bundle with `--cacert`) so certificate validation stays enabled.
 
 1. **Clean, on-topic request** — should pass every guardrail and reach Mistral:
 
