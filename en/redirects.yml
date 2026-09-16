@@ -5,6 +5,7 @@ redirect_maps:
   # AI/API Gateway versioning restructuring (per-product Cloud/Self-Hosted variants)
   api-gateway/analytics/analytics-header-filter.md: api-gateway/1.1.0/analytics/analytics-header-filter.md
   api-gateway/analytics/moesif-analytics.md: api-gateway/1.1.0/analytics/moesif-analytics.md
+  api-gateway/analytics/opentelemetry-analytics.md: api-gateway/1.2.0/analytics/opentelemetry-analytics.md
   api-gateway/deployment/deploying-apis/bottom-up-api-deployment.md: api-gateway/1.1.0/deployment/deploying-apis/bottom-up-api-deployment.md
   api-gateway/deployment/deployment-modes/immutable-gateway.md: api-gateway/1.1.0/deployment/deployment-modes/immutable-gateway.md
   api-gateway/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md

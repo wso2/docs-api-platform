@@ -203,6 +203,7 @@ nav:
         - Analytics:
           - Analytics Header Filter: api-gateway/1.2.0/analytics/analytics-header-filter.md
           - Moesif Analytics: api-gateway/1.2.0/analytics/moesif-analytics.md
+          - OpenTelemetry Analytics: api-gateway/1.2.0/analytics/opentelemetry-analytics.md
         - Management API:
           - Overview: api-gateway/1.2.0/gateway-controller-management-api/overview.md
           - Authentication: api-gateway/1.2.0/gateway-controller-management-api/authentication.md
