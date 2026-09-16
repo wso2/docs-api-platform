@@ -1,6 +1,6 @@
 ---
 title: "AI Gateway Quick Start Guide"
-description: "Run the AI Gateway with Docker Compose, deploy an LLM provider and proxy, route your first LLM request, and govern it from AI Workspace."
+description: "Run the AI Gateway with Docker Compose, deploy an LLM provider, route your first LLM request, and govern it from AI Workspace."
 canonical_url: https://wso2.com/api-platform/docs/ai-gateway/quick-start-guide/
 md_url: https://wso2.com/api-platform/docs/ai-gateway/quick-start-guide.md
 tags:
@@ -103,7 +103,7 @@ The commands below use version `1.2.0`. Substitute the API Platform AI Gateway r
 
     Note the `.exe`, since `curl` is an alias for `Invoke-WebRequest` in Windows PowerShell. PowerShell 7 removes that alias, and `curl.exe` works in both versions.
 
-    The two management API requests below—the LLM provider `POST` and the LLM proxy `POST`—pipe their YAML payload in through a shell heredoc (`--data-binary @- <<'EOF'`). PowerShell doesn't support heredocs. Either run those two requests from Git Bash or WSL, or use the **Windows (PowerShell)** tab on each one, which saves the YAML to a file and posts that file explicitly.
+    The management API requests below pipe their YAML payload in through a shell heredoc (`--data-binary @- <<'EOF'`). PowerShell doesn't support heredocs. Either run them from Git Bash or WSL, or use the **Windows (PowerShell)** tab on each one, which saves the YAML to a file and posts that file explicitly.
 
 !!! tip "Port 8080, 8443, 9090, or 9094 already taken?"
     If the start command fails with a port binding error, identify what is already listening on the default ports:
@@ -410,9 +410,7 @@ As a platform administrator, deploy an LLM provider for the vendor whose API key
 
     {% endraw %}
 
-The remaining steps on this page use the OpenAI provider, because the LLM proxy they build sends requests in the OpenAI format. To consume an Anthropic or AWS Bedrock provider through a proxy, see [Multi-provider routing](routing/multi-provider-routing.md), which adds the transformer that converts between the two formats.
-
-To test LLM provider traffic routing through the gateway, invoke the following request.
+To test LLM provider traffic routing through the gateway, invoke the following request against the OpenAI provider.
 
 === "Linux / macOS"
 
@@ -441,85 +439,8 @@ To test LLM provider traffic routing through the gateway, invoke the following r
 !!! note "Why these commands pass `-k`"
     The `-k` flag tells `curl` to skip Transport Layer Security (TLS) certificate verification. The router presents the self-signed listener certificate that `setup.sh` or `setup.ps1` generates, and no certificate authority trusts it. Outside local testing, give the router a certificate from a trusted certificate authority and remove `-k`.
 
-## Deploy an LLM proxy configuration to consume an LLM provider
-
-The API Platform Gateway supports configuring and deploying LLM proxies. As an AI developer, run the following command to deploy a sample LLM proxy that consumes the OpenAI LLM provider the platform administrator deployed above.
-
-=== "Linux / macOS"
-
-    ```bash
-    curl -X POST http://localhost:9090/api/management/v1/llm-proxies \
-      -H "Content-Type: application/yaml" \
-      -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
-      --data-binary @- <<'EOF'
-    apiVersion: gateway.api-platform.wso2.com/v1
-    kind: LlmProxy
-    metadata:
-      name: openai-assistant
-    spec:
-      displayName: OpenAI Assistant
-      version: v1.0
-      context: /assistant
-      provider:
-        id: openai-provider
-      policies: []
-    EOF
-    ```
-
-=== "Windows (PowerShell)"
-
-    Save the proxy definition to `openai-assistant.yaml`:
-
-    ```powershell
-    @'
-    apiVersion: gateway.api-platform.wso2.com/v1
-    kind: LlmProxy
-    metadata:
-      name: openai-assistant
-    spec:
-      displayName: OpenAI Assistant
-      version: v1.0
-      context: /assistant
-      provider:
-        id: openai-provider
-      policies: []
-    '@ | Set-Content -Path openai-assistant.yaml -Encoding utf8
-    ```
-
-    Then post it:
-
-    ```powershell
-    curl.exe -X POST http://localhost:9090/api/management/v1/llm-proxies `
-      -H "Content-Type: application/yaml" `
-      -u "${env:ADMIN_USERNAME}:${env:ADMIN_PASSWORD}" `
-      --data-binary "@openai-assistant.yaml"
-    ```
-
-To test LLM proxy traffic routing through the gateway and consume the LLM provider, invoke the following request.
-
-=== "Linux / macOS"
-
-    ```bash
-    curl -X POST "https://localhost:8443/assistant/chat/completions" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "model": "gpt-4o-mini",
-        "messages": [
-          {
-            "role": "user",
-            "content": "Hi"
-          }
-        ]
-      }' -k
-    ```
-
-=== "Windows (PowerShell)"
-
-    ```powershell
-    curl.exe -X POST https://localhost:8443/assistant/chat/completions `
-      -H "Content-Type: application/json" `
-      -d '{"model": "gpt-4o-mini", "messages": [{"role": "user", "content": "Hi"}]}' -k
-    ```
+!!! tip "Give each application its own endpoint"
+    A provider exposes an LLM vendor to the gateway. An LLM proxy exposes that provider to a single application, with its own URL context and its own policies. The proxy inherits the access control and budgets the provider enforces. See [LLM proxy](gateway-artifacts/llm-proxy.md).
 
 ## Govern this gateway from AI Workspace
 
@@ -528,7 +449,7 @@ The gateway you just started serves traffic on its own. [AI Workspace](../../ai-
 Both directions work, and you can use them together:
 
 - **Top-down.** Configure an artifact in AI Workspace, apply policies to it, then deploy it to one or more gateways.
-- **Bottom-up.** Keep deploying through the management API, as this guide does. The gateway syncs every artifact you create to AI Workspace automatically, where each one appears as a copy the gateway owns. The OpenAI provider and the `openai-assistant` proxy from this guide appear there without being re-declared. To see what a synced artifact looks like, and what stays editable, see [Manage Gateway-deployed AI artifacts in AI Workspace](../../ai-workspace/1.0.0/sync-gateway-created-artifacts.md).
+- **Bottom-up.** Keep deploying through the management API, as this guide does. The gateway syncs every artifact you create to AI Workspace automatically, where each one appears as a copy the gateway owns. The OpenAI provider from this guide appears there without being re-declared. To see what a synced artifact looks like, and what stays editable, see [Manage Gateway-deployed AI artifacts in AI Workspace](../../ai-workspace/1.0.0/sync-gateway-created-artifacts.md).
 
 The gateway keeps serving traffic either way. If AI Workspace is unreachable, the gateway carries on and the sync catches up once the connection is restored.
 
@@ -556,6 +477,7 @@ This stops the containers and removes the `controller-data` volume. The next sta
 
 ## Next steps
 
+- Expose a provider to your applications through a proxy, with its own context and policies: [LLM proxy](gateway-artifacts/llm-proxy.md)
 - Route to more than one provider, with failover: [Multi-provider routing](routing/multi-provider-routing.md)
 - Add guardrails to a proxy, such as [PII masking](https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex) or a [JSON schema guardrail](https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail)
 - Expose an MCP server through the gateway: [MCP proxy](gateway-artifacts/mcp-proxy.md)
