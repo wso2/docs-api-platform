@@ -1,6 +1,6 @@
 ---
 title: "AI Gateway Quick Start Guide"
-description: "Run the AI Gateway with Docker Compose, deploy an LLM provider, route your first LLM request, and govern it from AI Workspace."
+description: "Run the AI Gateway with Docker Compose, deploy an LLM provider, route your first LLM request, and govern the gateway from AI Workspace."
 canonical_url: https://wso2.com/api-platform/docs/ai-gateway/quick-start-guide/
 md_url: https://wso2.com/api-platform/docs/ai-gateway/quick-start-guide.md
 tags:
@@ -103,7 +103,7 @@ The commands below use version `1.2.0`. Substitute the API Platform AI Gateway r
 
     Note the `.exe`, since `curl` is an alias for `Invoke-WebRequest` in Windows PowerShell. PowerShell 7 removes that alias, and `curl.exe` works in both versions.
 
-    The management API requests below pipe their YAML payload in through a shell heredoc (`--data-binary @- <<'EOF'`). PowerShell doesn't support heredocs. Either run them from Git Bash or WSL, or use the **Windows (PowerShell)** tab on each one, which saves the YAML to a file and posts that file explicitly.
+    The management API requests below pipe their YAML payload through a shell heredoc (`--data-binary @-`). PowerShell doesn't support heredocs. Either run them from Git Bash or WSL, or use the **Windows (PowerShell)** tab on each one. That tab saves the YAML to a file and posts the file explicitly.
 
 !!! tip "Port 8080, 8443, 9090, or 9094 already taken?"
     If the start command fails with a port binding error, identify what is already listening on the default ports:
@@ -440,7 +440,7 @@ To test LLM provider traffic routing through the gateway, invoke the following r
     The `-k` flag tells `curl` to skip Transport Layer Security (TLS) certificate verification. The router presents the self-signed listener certificate that `setup.sh` or `setup.ps1` generates, and no certificate authority trusts it. Outside local testing, give the router a certificate from a trusted certificate authority and remove `-k`.
 
 !!! tip "Give each application its own endpoint"
-    A provider exposes an LLM vendor to the gateway. An LLM proxy exposes that provider to a single application, with its own URL context and its own policies. The proxy inherits the access control and budgets the provider enforces. See [LLM proxy](gateway-artifacts/llm-proxy.md).
+    A provider exposes an LLM vendor to the gateway. An LLM proxy exposes that provider to a single application. The proxy has its own URL context and policies, and inherits the access control and budgets the provider enforces. See [LLM proxy](gateway-artifacts/llm-proxy.md).
 
 ## Govern this gateway from AI Workspace
 
@@ -477,7 +477,7 @@ This stops the containers and removes the `controller-data` volume. The next sta
 
 ## Next steps
 
-- Expose a provider to your applications through a proxy, with its own context and policies: [LLM proxy](gateway-artifacts/llm-proxy.md)
+- Expose a provider to your applications through a proxy that has its own context and policies: [LLM proxy](gateway-artifacts/llm-proxy.md)
 - Route to more than one provider, with failover: [Multi-provider routing](routing/multi-provider-routing.md)
 - Add guardrails to a proxy, such as [PII masking](https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex) or a [JSON schema guardrail](https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail)
 - Expose an MCP server through the gateway: [MCP proxy](gateway-artifacts/mcp-proxy.md)
