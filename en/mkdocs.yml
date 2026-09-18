@@ -717,6 +717,7 @@ nav:
             - Build an AI Agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
             - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
             - Find and Connect to an Enterprise MCP Server from the MCP Hub: guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md
+            - Observe MCP Traffic on the AI Gateway: guides/ai-and-mcp/observe-mcp-traffic.md
             - Configure AI Coding Assistants:
                 - Configure Claude Code with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
                 - Configure Google Gemini CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
@@ -825,6 +826,7 @@ nav:
             - Build an AI Agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
             - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
             - Find and Connect to an Enterprise MCP Server from the MCP Hub: guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md
+            - Observe MCP Traffic on the AI Gateway: guides/ai-and-mcp/observe-mcp-traffic.md
             - Configure AI Coding Assistants:
                 - Configure Claude Code with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
                 - Configure Google Gemini CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
@@ -1331,6 +1333,7 @@ nav:
     - MCP Proxies:
         - Convert a REST API into an MCP Tool and Use It in Claude Desktop: guides/ai-and-mcp/convert-rest-api-to-mcp-server.md
         - Find and Connect to an Enterprise MCP Server from the MCP Hub: guides/ai-and-mcp/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md
+        - Observe MCP Traffic on the AI Gateway: guides/ai-and-mcp/observe-mcp-traffic.md
         - Build an AI Agent That Uses Aggregated MCP Tools from Multiple APIs: guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md
         - Expose a Multi-Step API Workflow as an MCP Tool: guides/ai-and-mcp/expose-a-multi-step-api-workflow-as-an-mcp-tool.md
         - Reduce MCP Tool Poisoning Risk with the MCP Access Control Policy: guides/ai-and-mcp/block-mcp-tool-poisoning-with-the-mcp-access-control-policy.md
