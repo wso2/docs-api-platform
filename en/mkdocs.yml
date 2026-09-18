@@ -710,6 +710,7 @@ nav:
         - Guides:
             - Set up a Governed Multi-Model LLM Proxy with Cost Controls and Failover: guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md
             - Enforce Token-Based Rate Limiting on an LLM Proxy: guides/ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy.md
+            - Observe LLM Traffic on the AI Gateway: guides/ai-and-mcp/observe-llm-traffic.md
             - Enforce a Consistent AI Persona with the Prompt Decorator Policy: guides/ai-and-mcp/using-prompt-decorator-policy.md
             - Reduce MCP Tool Poisoning Risk with the MCP Access Control Policy: guides/ai-and-mcp/block-mcp-tool-poisoning-with-the-mcp-access-control-policy.md
             - Block Prompt Injection and Unsafe Requests with LLM Proxy Guardrails: guides/ai-and-mcp/block-prompt-injection-and-unsafe-requests-with-llm-proxy-guardrails.md
@@ -818,6 +819,7 @@ nav:
         - Guides:
             - Set up a Governed Multi-Model LLM Proxy with Cost Controls and Failover: guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md
             - Enforce Token-Based Rate Limiting on an LLM Proxy: guides/ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy.md
+            - Observe LLM Traffic on the AI Gateway: guides/ai-and-mcp/observe-llm-traffic.md
             - Enforce a Consistent AI Persona with the Prompt Decorator Policy: guides/ai-and-mcp/using-prompt-decorator-policy.md
             - Reduce MCP Tool Poisoning Risk with the MCP Access Control Policy: guides/ai-and-mcp/block-mcp-tool-poisoning-with-the-mcp-access-control-policy.md
             - Block Prompt Injection and Unsafe Requests with LLM Proxy Guardrails: guides/ai-and-mcp/block-prompt-injection-and-unsafe-requests-with-llm-proxy-guardrails.md
@@ -1320,6 +1322,7 @@ nav:
         - Build an AI App with Claude Code that Calls Governed Backend APIs: guides/ai-and-mcp/build-ai-app-with-claude-code.md
         - Set up a Governed Multi-Model LLM Proxy with Cost Controls and Failover: guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md
         - Enforce Token-Based Rate Limiting on an LLM Proxy: guides/ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy.md
+        - Observe LLM Traffic on the AI Gateway: guides/ai-and-mcp/observe-llm-traffic.md
         - Enforce a Consistent AI Persona with the Prompt Decorator Policy: guides/ai-and-mcp/using-prompt-decorator-policy.md
         - Block Prompt Injection and Unsafe Requests with LLM Proxy Guardrails: guides/ai-and-mcp/block-prompt-injection-and-unsafe-requests-with-llm-proxy-guardrails.md
         - AI Coding Assistants:
