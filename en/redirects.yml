@@ -1,5 +1,5 @@
 redirect_maps:
   # AI Tools guides moved from Cloud > AI Gateway to Guides > AI and MCP > AI Coding Assistants
-  cloud/ai-gateway/llm/ai-tools/claude-code-configuration-with-ai-gateway.md: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
-  cloud/ai-gateway/llm/ai-tools/gemini-cli-configuration-with-ai-gateway.md: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
-  cloud/ai-gateway/llm/ai-tools/codex-configuration-with-ai-gateway.md: guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md
+  ai-gateway/llm/ai-tools/claude-code-configuration-with-ai-gateway.md: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
+  ai-gateway/llm/ai-tools/gemini-cli-configuration-with-ai-gateway.md: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
+  ai-gateway/llm/ai-tools/codex-configuration-with-ai-gateway.md: guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md
