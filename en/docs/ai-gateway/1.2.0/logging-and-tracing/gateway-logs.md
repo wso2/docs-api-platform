@@ -1,8 +1,8 @@
 ---
 title: "Gateway logs"
 description: "Configure centralized log collection for API Platform AI Gateway using Fluent Bit, OpenSearch, and alternative logging stacks."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/logging-and-tracing/gateway-logs/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/logging-and-tracing/gateway-logs.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/logging-and-tracing/gateway-logs/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/logging-and-tracing/gateway-logs.md
 tags:
   - ai-gateway
   - observability

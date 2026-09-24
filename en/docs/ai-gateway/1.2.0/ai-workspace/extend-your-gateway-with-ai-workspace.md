@@ -1,8 +1,8 @@
 ---
 title: "Extend your gateway with AI Workspace"
 description: "What connecting AI Gateway to AI Workspace adds: one console, central deployment, artifact sync, shared policies, and traffic insights."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/ai-workspace/extend-your-gateway-with-ai-workspace/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/ai-workspace/extend-your-gateway-with-ai-workspace.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/ai-workspace/extend-your-gateway-with-ai-workspace/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/ai-workspace/extend-your-gateway-with-ai-workspace.md
 tags:
   - ai-gateway
   - ai-workspace

@@ -1,8 +1,8 @@
 ---
 title: "MCP governance"
 description: "Control what an AI agent can reach through an MCP proxy: authenticate callers, authorize per tool, restrict and rename the tool list, and rate limit calls."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/mcp-governance/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/mcp-governance.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/mcp-governance/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/mcp-governance.md
 tags:
   - ai-gateway
   - mcp

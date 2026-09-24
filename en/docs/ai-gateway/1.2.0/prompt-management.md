@@ -1,8 +1,8 @@
 ---
 title: "Prompt management"
 description: "Shape prompts at the AI Gateway before they reach a model: inject standing instructions, apply templates, and compress text to reduce token usage."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/prompt-management/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/prompt-management.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/prompt-management/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/prompt-management.md
 tags:
   - ai-gateway
   - prompts

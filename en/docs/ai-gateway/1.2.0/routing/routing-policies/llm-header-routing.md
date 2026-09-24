@@ -1,8 +1,8 @@
 ---
 title: "LLM header routing"
 description: "Select an LLM provider from a request header with the llm-header-router policy, using an ordered mapping and an optional default provider."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/routing/routing-policies/llm-header-routing/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/routing/routing-policies/llm-header-routing.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/routing/routing-policies/llm-header-routing/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/routing/routing-policies/llm-header-routing.md
 tags:
   - ai-gateway
   - routing
