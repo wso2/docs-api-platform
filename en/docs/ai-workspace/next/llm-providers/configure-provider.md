@@ -1,7 +1,7 @@
 ---
 title: "Configure an LLM provider"
 description: "Add an LLM provider in AI Workspace, configure authentication and guardrails, and deploy it to an AI Gateway."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/llm-providers/configure-provider/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-providers/configure-provider/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-providers/configure-provider.md
 tags:
   - cloud

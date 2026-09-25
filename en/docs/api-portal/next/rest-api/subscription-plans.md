@@ -1,8 +1,8 @@
 ---
 title: "Subscription Plans"
 description: "List, create, upsert, get, and delete subscription plans via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/subscription-plans/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/subscription-plans.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/subscription-plans/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/subscription-plans.md
 tags:
   - cloud
   - api-portal

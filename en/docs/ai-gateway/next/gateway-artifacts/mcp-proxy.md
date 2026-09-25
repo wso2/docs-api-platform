@@ -1,8 +1,8 @@
 ---
 title: "MCP proxy"
 description: "Route Model Context Protocol traffic through the AI Gateway with an MCP proxy, then deploy one and connect an MCP client to it."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/mcp-proxy/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/mcp-proxy.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/mcp-proxy/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/mcp-proxy.md
 tags:
   - ai-gateway
   - mcp

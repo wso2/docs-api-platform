@@ -1,8 +1,8 @@
 ---
 title: "Agent governance"
 description: "What AI agents and the A2A protocol are, how an A2A exchange works, and what the AI Gateway adds when it fronts an agent with an Agent artifact."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance.md
 tags:
   - ai-gateway
   - a2a

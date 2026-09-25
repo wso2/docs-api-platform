@@ -1,7 +1,7 @@
 ---
 title: "LLM provider templates overview"
 description: "Learn how LLM provider templates capture endpoint, authentication, OpenAPI, and token mapping configuration as reusable blueprints for creating LLM providers in AI Workspace."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/llm-provider-templates/overview/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-provider-templates/overview/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-provider-templates/overview.md
 tags:
   - cloud

@@ -1,8 +1,8 @@
 ---
 title: "End to end: a secured API from gateway to portal"
 description: "Stand up the control plane, portal, and gateway, publish an API that requires both a subscription token and an API key, and invoke it with credentials issued in the API Portal."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/tutorials/secured-api-end-to-end/
-md_url: https://wso2.com/api-platform/docs/api-portal/tutorials/secured-api-end-to-end.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/tutorials/secured-api-end-to-end/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/tutorials/secured-api-end-to-end.md
 tags:
   - cloud
   - api-portal

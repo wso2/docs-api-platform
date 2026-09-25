@@ -1,7 +1,7 @@
 ---
 title: "Configure inbound authentication"
 description: "Control the header name client applications use to send their API key when calling a deployed LLM provider or App LLM proxy."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/configure-inbound-auth/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/configure-inbound-auth/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/configure-inbound-auth.md
 tags:
   - cloud

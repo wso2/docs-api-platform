@@ -1,8 +1,8 @@
 ---
 title: "Manage labels in the API Portal & MCP Hub"
 description: "Create, edit, and delete labels used to group APIs so that views can control which APIs are visible to consumers."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/manage-labels/
-md_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/manage-labels.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/admin-settings/manage-labels/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/admin-settings/manage-labels.md
 tags:
   - cloud
   - api-portal

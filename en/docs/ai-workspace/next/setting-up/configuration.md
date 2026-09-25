@@ -1,7 +1,7 @@
 ---
 title: "AI Workspace configuration and environment interpolation"
 description: "How AI Workspace and the Platform API load config.toml, inject environment values and mounted files through interpolation tokens, and keep secrets out of it."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/setting-up/configuration/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/setting-up/configuration/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/setting-up/configuration.md
 tags:
   - ai-workspace

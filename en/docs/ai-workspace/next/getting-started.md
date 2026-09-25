@@ -1,7 +1,7 @@
 ---
 title: "Get started with AI Workspace"
 description: "Run AI Workspace locally with Docker Compose, connect an AI Gateway, configure an LLM provider, and run your first prompt through it."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/getting-started/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/getting-started/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/getting-started.md
 tags:
   - cloud

@@ -1,7 +1,7 @@
 ---
 title: "Configure an App LLM proxy"
 description: "Create an App LLM proxy, optionally attach guardrails, and deploy it to a gateway."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/llm-proxies/configure-proxy/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-proxies/configure-proxy/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-proxies/configure-proxy.md
 tags:
   - cloud

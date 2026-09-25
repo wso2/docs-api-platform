@@ -1,7 +1,7 @@
 ---
 title: "AI Workspace CI/CD overview"
 description: "Manage AI Workspace artifacts such as LLM providers, App LLM proxies, and MCP proxies through a Git-based CI/CD workflow."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/ci-cd/overview/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/ci-cd/overview/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/ci-cd/overview.md
 tags:
   - cloud

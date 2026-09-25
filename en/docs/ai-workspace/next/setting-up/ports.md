@@ -1,7 +1,7 @@
 ---
 title: "Change the ports AI Workspace uses"
 description: "Move the AI Workspace and Platform API off their default ports, either by remapping the published host port or by changing the port each service listens on."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/setting-up/ports/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/setting-up/ports/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/setting-up/ports.md
 tags:
   - cloud

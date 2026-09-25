@@ -1,8 +1,8 @@
 ---
 title: "Platform API"
 description: "Overview of the WSO2 API Platform Platform API for managing AI Workspace gateways, LLM providers, proxies, applications, and secrets."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/overview/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/overview.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/overview/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/overview.md
 tags:
   - ai-workspace
   - platform-api

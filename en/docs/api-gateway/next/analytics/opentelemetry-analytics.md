@@ -1,8 +1,8 @@
 ---
 title: "Configure OpenTelemetry analytics"
 description: "Export API Platform Gateway analytics events as OpenTelemetry Protocol (OTLP) log records to an OpenTelemetry Collector or any OTLP-compatible backend."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/analytics/opentelemetry-analytics/
-md_url: https://wso2.com/api-platform/docs/api-gateway/analytics/opentelemetry-analytics.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/analytics/opentelemetry-analytics/
+md_url: https://wso2.com/api-platform/docs/api-gateway/next/analytics/opentelemetry-analytics.md
 tags:
   - api-gateway
   - analytics

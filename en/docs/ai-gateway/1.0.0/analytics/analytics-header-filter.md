@@ -1,8 +1,8 @@
 ---
 title: "Analytics Header Filter"
 description: "Control which request and response headers are sent to analytics backends using allow or deny mode in API Platform AI Gateway."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/analytics/analytics-header-filter/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/analytics/analytics-header-filter.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/analytics/analytics-header-filter/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/analytics/analytics-header-filter.md
 tags:
   - ai-gateway
   - analytics

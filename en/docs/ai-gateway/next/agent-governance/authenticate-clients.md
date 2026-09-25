@@ -1,8 +1,8 @@
 ---
 title: "Authenticate agent clients"
 description: "Require a credential on an A2A agent's operations, issue API keys for an agent through the management API, and manage the key lifecycle."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/authenticate-clients/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/authenticate-clients.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/authenticate-clients/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/authenticate-clients.md
 tags:
   - ai-gateway
   - a2a

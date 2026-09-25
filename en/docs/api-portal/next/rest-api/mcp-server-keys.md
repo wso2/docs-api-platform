@@ -1,8 +1,8 @@
 ---
 title: "MCP Server Keys"
 description: "Generate, list, regenerate, revoke, and associate MCP server API keys via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/mcp-server-keys/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/mcp-server-keys.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/mcp-server-keys/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/mcp-server-keys.md
 tags:
   - cloud
   - api-portal

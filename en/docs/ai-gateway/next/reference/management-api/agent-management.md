@@ -1,8 +1,8 @@
 ---
 title: "Management API: Agent Management"
 description: "REST API reference for creating, listing, updating, and deleting A2A agent configurations and their API keys in API Platform Gateway."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/reference/management-api/agent-management/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/reference/management-api/agent-management.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/reference/management-api/agent-management/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/reference/management-api/agent-management.md
 tags:
   - ai-gateway
   - management-api

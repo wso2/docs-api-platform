@@ -1,8 +1,8 @@
 ---
 title: "Authenticate to backends"
 description: "Configure how the AI Gateway authenticates to an upstream LLM or MCP backend, using the api-key, oauth2, other, and none upstream authentication types."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/authenticate-backends/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/authenticate-backends.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/authenticate-backends/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/authenticate-backends.md
 tags:
   - ai-gateway
   - security

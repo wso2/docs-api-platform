@@ -1,8 +1,8 @@
 ---
 title: "Connect to AI Workspace"
 description: "Register a production AI Gateway with AI Workspace: the registration token as a Kubernetes Secret, the control plane address, TLS trust, and sync behavior."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/production-deployment/control-plane-connection/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/production-deployment/control-plane-connection.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/production-deployment/control-plane-connection/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/production-deployment/control-plane-connection.md
 tags:
   - ai-gateway
   - production

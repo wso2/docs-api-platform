@@ -1,8 +1,8 @@
 ---
 title: "Platform API: LLM proxy deployments"
 description: "REST API reference for deploying, undeploying, and restoring LLM proxy deployments."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/llm-proxy-deployments/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/llm-proxy-deployments.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/llm-proxy-deployments/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/llm-proxy-deployments.md
 tags:
   - ai-workspace
   - platform-api

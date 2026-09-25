@@ -1,8 +1,8 @@
 ---
 title: "Metrics Best Practices and Troubleshooting"
 description: "Best practices for correlating API Platform Gateway metrics with logs and traces, and guidance for troubleshooting common metrics issues."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/observability/metrics/best-practices-and-troubleshooting/
-md_url: https://wso2.com/api-platform/docs/api-gateway/observability/metrics/best-practices-and-troubleshooting.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/observability/metrics/best-practices-and-troubleshooting/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/observability/metrics/best-practices-and-troubleshooting.md
 tags:
   - api-gateway
   - observability

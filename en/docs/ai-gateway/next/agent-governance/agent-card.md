@@ -1,8 +1,8 @@
 ---
 title: "Agent Card"
 description: "Serve an Agent Card the gateway holds, proxy the agent's own card with rewritten addresses, and guard the authenticated extended Agent Card."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/agent-card/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/agent-card.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/agent-card/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/agent-card.md
 tags:
   - ai-gateway
   - a2a

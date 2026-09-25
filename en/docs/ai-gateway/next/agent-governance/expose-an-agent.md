@@ -1,8 +1,8 @@
 ---
 title: "Expose an agent"
 description: "Configure an Agent's context, upstream, and A2A transports, and learn the gateway paths each of the eleven A2A 1.0 operations is served at."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/expose-an-agent/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/expose-an-agent.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/expose-an-agent/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/expose-an-agent.md
 tags:
   - ai-gateway
   - a2a

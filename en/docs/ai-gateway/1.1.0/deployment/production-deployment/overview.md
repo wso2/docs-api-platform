@@ -1,8 +1,8 @@
 ---
 title: "Production Deployment Overview"
 description: "Plan a high-availability production deployment of API Platform AI Gateway 1.1.0 on Kubernetes with Helm, PostgreSQL, and replicated workloads."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/production-deployment/overview/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/production-deployment/overview.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/production-deployment/overview/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/production-deployment/overview.md
 tags:
   - ai-gateway
   - production

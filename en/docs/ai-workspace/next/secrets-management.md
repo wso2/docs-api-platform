@@ -1,7 +1,7 @@
 ---
 title: "Secrets management"
 description: "Store and manage encrypted secrets in AI Workspace and reference them securely in artifact configurations without exposing plaintext credentials."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/secrets-management/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/secrets-management/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/secrets-management.md
 tags:
   - cloud

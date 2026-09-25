@@ -1,7 +1,7 @@
 ---
 title: "Manage an LLM provider"
 description: "Configure connection, access control, security, rate limiting, guardrails, and models for a deployed LLM provider, then redeploy or delete it."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/llm-providers/manage-provider/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-providers/manage-provider/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-providers/manage-provider.md
 tags:
   - cloud

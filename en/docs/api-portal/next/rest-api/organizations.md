@@ -1,8 +1,8 @@
 ---
 title: "Organizations"
 description: "Retrieve and update the organization served by this API Portal instance."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/organizations/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/organizations.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/organizations/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/organizations.md
 tags:
   - cloud
   - api-portal

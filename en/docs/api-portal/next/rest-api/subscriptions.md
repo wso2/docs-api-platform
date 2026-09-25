@@ -1,8 +1,8 @@
 ---
 title: "Subscriptions"
 description: "Create, list, get, update, delete, change plan, and regenerate the token for a subscription via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/subscriptions/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/subscriptions.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/subscriptions/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/subscriptions.md
 tags:
   - cloud
   - api-portal

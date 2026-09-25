@@ -1,8 +1,8 @@
 ---
 title: "AI Gateway Kubernetes Deployment Modes"
 description: "Choose between standalone and operator-managed Kubernetes deployment modes for API Platform AI Gateway."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/deployment-modes/kubernetes/overview/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/deployment-modes/kubernetes/overview.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/deployment/deployment-modes/kubernetes/overview/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/deployment/deployment-modes/kubernetes/overview.md
 tags:
   - ai-gateway
   - kubernetes

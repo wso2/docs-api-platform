@@ -1,7 +1,7 @@
 ---
 title: "Invoke providers and proxies via SDKs"
 description: "Call a deployed LLM provider or App LLM proxy using the OpenAI, Anthropic, Gemini, Mistral, Azure OpenAI, or LangChain SDKs."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/using-sdks/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/using-sdks/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/using-sdks.md
 tags:
   - cloud

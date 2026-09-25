@@ -1,8 +1,8 @@
 ---
 title: "Platform API: Gateway policies"
 description: "REST API reference for syncing, listing, and deleting custom gateway policies."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/gateway-policies/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/gateway-policies.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/gateway-policies/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/gateway-policies.md
 tags:
   - ai-workspace
   - platform-api

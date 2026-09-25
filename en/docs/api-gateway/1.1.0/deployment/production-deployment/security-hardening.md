@@ -1,8 +1,8 @@
 ---
 title: "Security Hardening"
 description: "Configure the necessary security areas before deploying API Platform Gateway to production."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/deployment/production-deployment/security-hardening/
-md_url: https://wso2.com/api-platform/docs/api-gateway/deployment/production-deployment/security-hardening.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/deployment/production-deployment/security-hardening/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/deployment/production-deployment/security-hardening.md
 tags:
   - security
   - api-management

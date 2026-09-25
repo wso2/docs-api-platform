@@ -1,8 +1,8 @@
 ---
 title: "Platform API: MCP proxies"
 description: "REST API reference for creating, listing, updating, and deleting MCP proxies."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/mcp-proxies/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/mcp-proxies.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/mcp-proxies/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/mcp-proxies.md
 tags:
   - ai-workspace
   - platform-api

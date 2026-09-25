@@ -1,8 +1,8 @@
 ---
 title: "Deploy in Kubernetes Standalone Mode"
 description: "Install and manage API Platform Gateway on Kubernetes using the standalone Helm chart, without the Gateway Operator."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/kubernetes-standalone/
-md_url: https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/deployment-modes/kubernetes/kubernetes-standalone/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
 tags:
   - api-gateway
   - kubernetes

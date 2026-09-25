@@ -1,8 +1,8 @@
 ---
 title: "Semantic Prompt Guardrail"
 description: "Block semantically similar prompts using embedding-based similarity matching against configured allow and deny phrase lists."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/semantic-prompt-guard/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/semantic-prompt-guard.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/semantic-prompt-guard/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/semantic-prompt-guard.md
 tags:
   - ai-gateway
   - guardrails

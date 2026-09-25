@@ -1,8 +1,8 @@
 ---
 title: "Token based rate limiting"
 description: "Cap LLM consumption through the AI Gateway by the tokens a model processed, so one application cannot exhaust a shared model quota."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/token-based-rate-limiting/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/token-based-rate-limiting.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/token-based-rate-limiting/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/token-based-rate-limiting.md
 tags:
   - ai-gateway
   - rate-limiting

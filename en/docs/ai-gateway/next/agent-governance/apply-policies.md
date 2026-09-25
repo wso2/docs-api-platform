@@ -1,8 +1,8 @@
 ---
 title: "Apply policies to an agent"
 description: "The three policy scopes an Agent carries — public Agent Card, every operation, and one operation — and the order the gateway runs them in."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/apply-policies/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/apply-policies.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/apply-policies/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/apply-policies.md
 tags:
   - ai-gateway
   - a2a

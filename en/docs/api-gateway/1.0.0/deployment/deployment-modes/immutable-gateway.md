@@ -1,8 +1,8 @@
 ---
 title: "Immutable Gateway"
 description: "Run API Platform Gateway in immutable mode, loading API configurations from files at startup for GitOps and immutable infrastructure workflows."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/immutable-gateway/
-md_url: https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/immutable-gateway.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/deployment/deployment-modes/immutable-gateway/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/deployment/deployment-modes/immutable-gateway.md
 tags:
   - api-gateway
   - deployment

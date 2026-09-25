@@ -1,8 +1,8 @@
 ---
 title: "Transform requests and responses"
 description: "Change a request or response as it passes through the AI Gateway: add or strip headers, and answer a call at the gateway without going upstream."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/transform-requests-and-responses/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/transform-requests-and-responses.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/transform-requests-and-responses/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/transform-requests-and-responses.md
 tags:
   - ai-gateway
   - transformation

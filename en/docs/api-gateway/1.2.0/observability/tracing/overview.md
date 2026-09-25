@@ -1,8 +1,8 @@
 ---
 title: "Distributed Tracing Overview"
 description: "Overview of the distributed tracing architecture for API Platform Gateway: how components export traces through the OpenTelemetry Collector to Jaeger."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/observability/tracing/overview/
-md_url: https://wso2.com/api-platform/docs/api-gateway/observability/tracing/overview.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/tracing/overview/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/tracing/overview.md
 tags:
   - api-gateway
   - observability

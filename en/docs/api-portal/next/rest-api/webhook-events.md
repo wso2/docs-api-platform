@@ -1,8 +1,8 @@
 ---
 title: "Webhook Events"
 description: "List and get webhook events via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/webhook-events/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/webhook-events.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/webhook-events/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/webhook-events.md
 tags:
   - cloud
   - api-portal

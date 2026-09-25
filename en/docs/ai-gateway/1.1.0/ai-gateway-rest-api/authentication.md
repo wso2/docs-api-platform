@@ -1,8 +1,8 @@
 ---
 title: "Authentication and Authorization in Gateway Controller"
 description: "Configure Basic Auth or JWT/IDP authentication and role-based authorization for the AI Gateway Controller REST API."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/ai-gateway-rest-api/authentication/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/ai-gateway-rest-api/authentication.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/ai-gateway-rest-api/authentication/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/ai-gateway-rest-api/authentication.md
 tags:
   - ai-gateway
   - security

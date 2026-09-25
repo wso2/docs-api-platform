@@ -1,8 +1,8 @@
 ---
 title: "Security Hardening"
 description: "Harden API Platform AI Gateway before production: AES-256 at-rest encryption keys, TLS for the listener and upstreams, and management API authentication."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/production-deployment/security-hardening/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/production-deployment/security-hardening.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/production-deployment/security-hardening/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/production-deployment/security-hardening.md
 tags:
   - ai-gateway
   - production

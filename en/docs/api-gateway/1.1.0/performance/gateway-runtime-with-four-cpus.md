@@ -1,8 +1,8 @@
 ---
 title: "Gateway Runtime with Four CPUs - Performance Results"
 description: "View API Platform Gateway performance benchmark results with a four-CPU gateway runtime, including throughput, average response time, and percentile response times."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/performance/gateway-runtime-with-four-cpus/
-md_url: https://wso2.com/api-platform/docs/api-gateway/performance/gateway-runtime-with-four-cpus.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/performance/gateway-runtime-with-four-cpus/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/performance/gateway-runtime-with-four-cpus.md
 tags:
   - api-gateway
   - performance

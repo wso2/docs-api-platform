@@ -1,8 +1,8 @@
 ---
 title: "Azure AI Foundry"
 description: "Connect the AI Gateway to Azure AI Foundry: the values your Foundry resource supplies, and what the azureai-foundry template extracts from responses."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/supported-providers/azure-ai-foundry/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/supported-providers/azure-ai-foundry.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/llm-provider/supported-providers/azure-ai-foundry/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/llm-provider/supported-providers/azure-ai-foundry.md
 tags:
   - ai-gateway
   - llm-provider

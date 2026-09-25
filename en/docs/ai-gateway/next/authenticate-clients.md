@@ -1,8 +1,8 @@
 ---
 title: "Authenticate clients"
 description: "Protect an LLM proxy or provider with the api-key-auth policy, issue consumer API keys through the management API, and manage the key lifecycle."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/authenticate-clients/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/authenticate-clients.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/authenticate-clients/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/authenticate-clients.md
 tags:
   - ai-gateway
   - security

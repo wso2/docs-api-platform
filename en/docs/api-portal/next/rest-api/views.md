@@ -1,8 +1,8 @@
 ---
 title: "Views"
 description: "Create, list, update, and delete views via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/views/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/views.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/views/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/views.md
 tags:
   - cloud
   - api-portal

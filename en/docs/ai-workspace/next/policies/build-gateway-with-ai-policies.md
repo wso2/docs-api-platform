@@ -1,7 +1,7 @@
 ---
 title: "Build the AI Gateway with custom AI policies"
 description: "Install the AP CLI, configure build.yaml, and build a custom AI Gateway image that includes your custom AI policies."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/policies/build-gateway-with-ai-policies/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/policies/build-gateway-with-ai-policies/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/policies/build-gateway-with-ai-policies.md
 tags:
   - cloud

@@ -1,7 +1,7 @@
 ---
 title: "Set up Microsoft Entra ID as your identity provider"
 description: "Configure Microsoft Entra ID for a production AI Workspace deployment: application registration, app roles, and the config.toml settings both services read."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/setting-up/authentication/entra-id-setup/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/setting-up/authentication/entra-id-setup/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/setting-up/authentication/entra-id-setup.md
 tags:
   - cloud

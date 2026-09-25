@@ -1,8 +1,8 @@
 ---
 title: "Authenticate to the Management API"
 description: "Configure Basic Auth or JWT/IDP authentication and role-based authorization for the API Platform Gateway Controller management REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/authentication/
-md_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/authentication.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/gateway-controller-management-api/authentication/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/gateway-controller-management-api/authentication.md
 tags:
   - api-gateway
   - authentication

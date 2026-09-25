@@ -1,8 +1,8 @@
 ---
 title: "Deploy and Verify"
 description: "Install the API Platform AI Gateway Helm chart, confirm the controller and runtime are healthy, route a live LLM request, and run upgrades and rollbacks."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/production-deployment/deploy-and-verify/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/production-deployment/deploy-and-verify.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/setup-and-deployment/production-deployment/deploy-and-verify/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/setup-and-deployment/production-deployment/deploy-and-verify.md
 tags:
   - ai-gateway
   - production

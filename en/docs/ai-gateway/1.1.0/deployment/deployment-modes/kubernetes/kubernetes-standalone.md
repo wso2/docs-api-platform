@@ -1,8 +1,8 @@
 ---
 title: "Kubernetes Standalone Mode"
 description: "Install and manage API Platform AI Gateway on Kubernetes using the standalone Helm chart without the Gateway Operator."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/deployment-modes/kubernetes/kubernetes-standalone/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/kubernetes-standalone/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
 tags:
   - ai-gateway
   - kubernetes

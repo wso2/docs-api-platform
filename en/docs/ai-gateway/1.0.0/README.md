@@ -1,8 +1,8 @@
 ---
 title: "API Platform AI Gateway"
 description: "Overview of API Platform AI Gateway for managing LLM and MCP traffic, covering key concepts, architecture, and quick start links."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/
-md_url: https://wso2.com/api-platform/docs/ai-gateway.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0.md
 tags:
   - ai-gateway
   - llm

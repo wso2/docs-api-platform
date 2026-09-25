@@ -1,8 +1,8 @@
 ---
 title: "Guardrails catalogue"
 description: "Every guardrail policy the AI Gateway ships, what each one checks, and how to extend the gateway with a guardrail of your own."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/guardrails/guardrails-catalogue/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/guardrails/guardrails-catalogue.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/guardrails/guardrails-catalogue/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/guardrails/guardrails-catalogue.md
 tags:
   - ai-gateway
   - guardrails

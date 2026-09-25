@@ -1,8 +1,8 @@
 ---
 title: "Semantic caching"
 description: "Serve a cached LLM response when a semantically equivalent prompt has already been answered, cutting both latency and upstream token spend."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/semantic-caching/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/semantic-caching.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/semantic-caching/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/semantic-caching.md
 tags:
   - ai-gateway
   - caching

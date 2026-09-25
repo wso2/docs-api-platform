@@ -1,8 +1,8 @@
 ---
 title: "Azure Content Safety"
 description: "Validate LLM request and response content against Azure Content Safety API, detecting hate speech, sexual content, and violence."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/azure-content-safety/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/azure-content-safety.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/azure-content-safety/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/azure-content-safety.md
 tags:
   - ai-gateway
   - guardrails

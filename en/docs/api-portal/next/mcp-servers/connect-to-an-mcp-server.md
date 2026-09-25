@@ -1,8 +1,8 @@
 ---
 title: "Connect to an MCP server"
 description: "Subscribe to an MCP server, obtain a bearer token, and paste the portal's configuration snippet into your MCP client."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/mcp-servers/connect-to-an-mcp-server/
-md_url: https://wso2.com/api-platform/docs/api-portal/mcp-servers/connect-to-an-mcp-server.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/mcp-servers/connect-to-an-mcp-server/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/mcp-servers/connect-to-an-mcp-server.md
 tags:
   - cloud
   - api-portal

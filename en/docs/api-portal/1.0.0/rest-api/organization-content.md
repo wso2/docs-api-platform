@@ -1,8 +1,8 @@
 ---
 title: "Organization Content"
 description: "Get, apply, reset, and download an organization's theme assets via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/organization-content/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/organization-content.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/rest-api/organization-content/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/rest-api/organization-content.md
 tags:
   - cloud
   - api-portal

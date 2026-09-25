@@ -1,8 +1,8 @@
 ---
 title: "Gateway artifacts"
 description: "The three resources you deploy on the AI Gateway: what an LLM provider holds, what an LLM proxy adds on top of it, and how an MCP proxy differs."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts.md
 tags:
   - ai-gateway
   - llm-provider

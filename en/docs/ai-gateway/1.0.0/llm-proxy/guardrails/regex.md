@@ -1,8 +1,8 @@
 ---
 title: "Regex Guardrail"
 description: "Validate LLM request and response content against regular expression patterns to enforce formats or detect prohibited content."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/regex/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/regex.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/llm-proxy/guardrails/regex/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/llm-proxy/guardrails/regex.md
 tags:
   - ai-gateway
   - guardrails

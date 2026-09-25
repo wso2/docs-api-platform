@@ -1,8 +1,8 @@
 ---
 title: "Management API: WebBroker API Management"
 description: "REST API reference for creating, listing, retrieving, and deleting WebBroker API configurations in API Platform Gateway."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/webbroker-api-management/
-md_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/webbroker-api-management.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/gateway-controller-management-api/webbroker-api-management/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/gateway-controller-management-api/webbroker-api-management.md
 tags:
   - api-gateway
   - management-api

@@ -1,8 +1,8 @@
 ---
 title: "Log requests and responses"
 description: "Record the payload and headers of traffic passing through the AI Gateway, as a log line per request or through a policy on chosen operations."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/logging-and-tracing/log-requests-and-responses/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/logging-and-tracing/log-requests-and-responses.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/logging-and-tracing/log-requests-and-responses/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/logging-and-tracing/log-requests-and-responses.md
 tags:
   - ai-gateway
   - logging

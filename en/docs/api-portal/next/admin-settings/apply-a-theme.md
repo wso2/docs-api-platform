@@ -1,8 +1,8 @@
 ---
 title: "Apply a theme to a view"
 description: "Upload a theme ZIP to a view in the API Portal & MCP Hub, download the current theme, or reset to the built-in default."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/apply-a-theme/
-md_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/apply-a-theme.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/admin-settings/apply-a-theme/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/admin-settings/apply-a-theme.md
 tags:
   - cloud
   - api-portal

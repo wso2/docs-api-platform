@@ -1,8 +1,8 @@
 ---
 title: "API Platform Gateway Overview"
 description: "Learn the architecture and components of API Platform Gateway: Gateway Controller, Gateway Runtime, Policy Engine, default ports, and the ap CLI."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/overview/
-md_url: https://wso2.com/api-platform/docs/api-gateway/overview.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/overview/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/overview.md
 tags:
   - api-gateway
   - architecture

@@ -1,8 +1,8 @@
 ---
 title: "Install the gateway"
 description: "Install and start the AI Gateway on your machine, a virtual machine, Docker, or Kubernetes, with the full Docker Compose procedure."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/install-the-gateway/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/install-the-gateway.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/install-the-gateway/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/install-the-gateway.md
 tags:
   - ai-gateway
   - installation

@@ -1,8 +1,8 @@
 ---
 title: "Platform API: Authentication"
 description: "JWT bearer authentication, required claims, and the OAuth2 scope reference for the WSO2 API Platform Platform API."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/authentication/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/authentication.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/authentication/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/authentication.md
 tags:
   - ai-workspace
   - platform-api

@@ -1,8 +1,8 @@
 ---
 title: "API Platform Gateway Quick Start Guide"
 description: "Run API Platform Gateway in standalone mode with Docker Compose, deploy your first REST API, and invoke it through the gateway in minutes."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/quick-start-guide/
-md_url: https://wso2.com/api-platform/docs/api-gateway/quick-start-guide.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/quick-start-guide/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/quick-start-guide.md
 tags:
   - api-gateway
   - quickstart

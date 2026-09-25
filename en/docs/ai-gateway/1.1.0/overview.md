@@ -1,8 +1,8 @@
 ---
 title: "API Platform AI Gateway Overview"
 description: "Manage and secure AI traffic with API Platform AI Gateway: LLM providers, LLM proxies, MCP proxies, and guardrails for LLM APIs and MCP servers."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/overview/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/overview.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/overview/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/overview.md
 tags:
   - ai-gateway
   - llm

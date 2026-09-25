@@ -1,8 +1,8 @@
 ---
 title: "Consume an API: which credentials you need"
 description: "Work out which of the three credentials an API expects—a subscription token, an API key, or an OAuth2 access token—and how to get each one."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/consume-an-api/overview/
-md_url: https://wso2.com/api-platform/docs/api-portal/consume-an-api/overview.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/consume-an-api/overview/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/consume-an-api/overview.md
 tags:
   - cloud
   - api-portal

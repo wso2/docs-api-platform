@@ -1,7 +1,7 @@
 ---
 title: "Set up Asgardeo as your identity provider"
 description: "Configure Asgardeo as the identity provider for a production AI Workspace deployment, from application registration to Platform API configuration."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/setting-up/authentication/asgardeo-setup/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/setting-up/authentication/asgardeo-setup/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/setting-up/authentication/asgardeo-setup.md
 tags:
   - cloud

@@ -1,8 +1,8 @@
 ---
 title: "Management API: Certificate Management"
 description: "REST API reference for managing custom TLS certificates in API Platform Gateway: list, upload, delete, and reload certificates dynamically."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/reference/management-api/certificate-management/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/reference/management-api/certificate-management.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/reference/management-api/certificate-management/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/reference/management-api/certificate-management.md
 tags:
   - ai-gateway
   - management-api

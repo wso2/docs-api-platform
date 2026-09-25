@@ -1,8 +1,8 @@
 ---
 title: "View Traces in Jaeger"
 description: "Access the Jaeger UI and search for distributed traces from API Platform Gateway components."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/observability/tracing/viewing-traces-in-jaeger/
-md_url: https://wso2.com/api-platform/docs/api-gateway/observability/tracing/viewing-traces-in-jaeger.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/observability/tracing/viewing-traces-in-jaeger/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/observability/tracing/viewing-traces-in-jaeger.md
 tags:
   - api-gateway
   - observability

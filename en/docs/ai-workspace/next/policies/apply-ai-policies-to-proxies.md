@@ -1,7 +1,7 @@
 ---
 title: "Apply AI policies to LLM providers, App LLM proxies, and MCP proxies"
 description: "Sync a custom AI policy from your AI Gateway to your organization and apply it to LLM providers, App LLM proxies, and MCP proxies."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/policies/apply-ai-policies-to-proxies/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/policies/apply-ai-policies-to-proxies/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/policies/apply-ai-policies-to-proxies.md
 tags:
   - cloud

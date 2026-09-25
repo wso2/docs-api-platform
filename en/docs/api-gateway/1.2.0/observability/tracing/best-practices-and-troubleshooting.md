@@ -1,8 +1,8 @@
 ---
 title: "Tracing Best Practices and Troubleshooting"
 description: "Best practices for distributed tracing in API Platform Gateway: sampling strategies, production recommendations, and troubleshooting guidance."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/observability/tracing/best-practices-and-troubleshooting/
-md_url: https://wso2.com/api-platform/docs/api-gateway/observability/tracing/best-practices-and-troubleshooting.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/tracing/best-practices-and-troubleshooting/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/tracing/best-practices-and-troubleshooting.md
 tags:
   - api-gateway
   - observability

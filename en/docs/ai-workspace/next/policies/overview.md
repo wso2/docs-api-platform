@@ -1,7 +1,7 @@
 ---
 title: "AI Workspace policies overview"
 description: "What AI and MCP policies you can attach to LLM providers and proxies in AI Workspace, where each one is applied, and how the rate limit policies cap requests, tokens, and spend."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/policies/overview/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/policies/overview/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/policies/overview.md
 tags:
   - cloud

@@ -1,8 +1,8 @@
 ---
 title: "Multi-provider routing"
 description: "Route OpenAI-compatible LLM proxy requests to multiple providers using header-based selection and provider-specific transformers."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/routing/multi-provider-routing/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/routing/multi-provider-routing.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/routing/multi-provider-routing/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/routing/multi-provider-routing.md
 tags:
   - ai-gateway
   - llm

@@ -1,8 +1,8 @@
 ---
 title: "Platform API: Secrets"
 description: "REST API reference for creating, rotating, and deleting organization-scoped secrets."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/secrets/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/secrets.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/secrets/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/secrets.md
 tags:
   - ai-workspace
   - platform-api

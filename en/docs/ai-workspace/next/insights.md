@@ -1,7 +1,7 @@
 ---
 title: "Insights"
 description: "Open your Moesif analytics workspace from the AI Workspace to view traffic, token usage, latency, and consumer behavior for your AI Gateways."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/insights/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/insights/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/insights.md
 tags:
   - cloud

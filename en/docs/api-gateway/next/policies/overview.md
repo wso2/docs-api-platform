@@ -1,8 +1,8 @@
 ---
 title: "API Platform Policies Overview"
 description: "Understand gateway policies in WSO2 API Platform: how Go and Python policies execute in the request and response pipeline and how to chain them."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/policies/overview/
-md_url: https://wso2.com/api-platform/docs/api-gateway/policies/overview.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/overview/
+md_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/overview.md
 tags:
   - api-gateway
   - policies

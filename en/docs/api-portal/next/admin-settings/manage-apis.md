@@ -1,8 +1,8 @@
 ---
 title: "Manage APIs in the API Portal & MCP Hub"
 description: "Add, edit, publish, deprecate, and delete the REST, WebSocket, GraphQL, WebSub, and SOAP APIs visible in the API Portal & MCP Hub."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/manage-apis/
-md_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/manage-apis.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/admin-settings/manage-apis/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/admin-settings/manage-apis.md
 tags:
   - cloud
   - api-portal

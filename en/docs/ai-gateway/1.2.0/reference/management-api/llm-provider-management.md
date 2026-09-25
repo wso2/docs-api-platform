@@ -1,8 +1,8 @@
 ---
 title: "Management API: LLM Provider Management"
 description: "REST API reference for creating, listing, updating, and deleting LLM provider configurations and API keys in API Platform Gateway."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/reference/management-api/llm-provider-management/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/reference/management-api/llm-provider-management.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/reference/management-api/llm-provider-management/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/reference/management-api/llm-provider-management.md
 tags:
   - ai-gateway
   - management-api

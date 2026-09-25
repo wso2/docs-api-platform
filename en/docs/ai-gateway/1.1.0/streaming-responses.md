@@ -1,8 +1,8 @@
 ---
 title: "Real-Time AI Streaming"
 description: "Stream responses through API Platform AI Gateway chunk by chunk across LLM providers, LLM proxies, and MCP proxies, and understand how policies, analytics, and token usage behave."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/streaming-responses/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/streaming-responses.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/streaming-responses/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/streaming-responses.md
 tags:
   - ai-gateway
   - llm

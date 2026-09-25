@@ -1,8 +1,8 @@
 ---
 title: "Kubernetes Operator for API Platform Gateway"
 description: "Deploy API Platform AI Gateway on Kubernetes using the Gateway Operator with platform CRDs or the Kubernetes Gateway API."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/deployment-modes/kubernetes/gateway-operator/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/deployment-modes/kubernetes/gateway-operator.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator.md
 tags:
   - ai-gateway
   - kubernetes

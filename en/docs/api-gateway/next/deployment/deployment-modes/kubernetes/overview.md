@@ -1,8 +1,8 @@
 ---
 title: "API Platform Kubernetes Gateway (V2.0.0)"
 description: "Overview of API Platform Kubernetes Gateway V2.0.0 deployment modes: standalone, operator-managed, and Kubernetes Gateway API workflows."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/overview/
-md_url: https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/overview.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/deployment/deployment-modes/kubernetes/overview/
+md_url: https://wso2.com/api-platform/docs/api-gateway/next/deployment/deployment-modes/kubernetes/overview.md
 tags:
   - api-gateway
   - kubernetes

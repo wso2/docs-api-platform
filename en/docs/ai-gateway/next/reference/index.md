@@ -1,8 +1,8 @@
 ---
 title: "Reference"
 description: "Reference material for the AI Gateway: the Gateway Controller management REST API, its request and response schemas, and the default listener ports."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/reference/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/reference.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/reference/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/reference.md
 tags:
   - ai-gateway
   - reference

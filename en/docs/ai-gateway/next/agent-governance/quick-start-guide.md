@@ -1,8 +1,8 @@
 ---
 title: "A2A agent quick start guide"
 description: "Deploy an A2A agent behind the AI Gateway, fetch its Agent Card, and invoke it over both the JSON-RPC and HTTP+JSON bindings."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/quick-start-guide/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/agent-governance/quick-start-guide.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/quick-start-guide/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/agent-governance/quick-start-guide.md
 tags:
   - ai-gateway
   - a2a

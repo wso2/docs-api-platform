@@ -1,8 +1,8 @@
 ---
 title: "Configure webhooks in the API Portal & MCP Hub"
 description: "Register endpoints to receive signed, real-time notifications when applications, API keys, or subscriptions change."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/webhook-integration/
-md_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/webhook-integration.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/admin-settings/webhook-integration/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/admin-settings/webhook-integration.md
 tags:
   - cloud
   - api-portal

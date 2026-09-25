@@ -1,8 +1,8 @@
 ---
 title: "OpenAI"
 description: "Connect the AI Gateway to OpenAI: the upstream URL, API key authentication, the endpoints the provider exposes, and a request that tests the connection."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/supported-providers/openai/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/supported-providers/openai.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/openai/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/openai.md
 tags:
   - ai-gateway
   - llm-provider

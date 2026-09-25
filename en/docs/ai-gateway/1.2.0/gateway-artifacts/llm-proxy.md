@@ -1,8 +1,8 @@
 ---
 title: "LLM proxy"
 description: "Expose an LLM provider through an LLM proxy and deploy one: its own URL context, per-application policies, and the provider rules it inherits."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-proxy/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-proxy.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/gateway-artifacts/llm-proxy/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/gateway-artifacts/llm-proxy.md
 tags:
   - ai-gateway
   - llm-proxy

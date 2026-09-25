@@ -1,8 +1,8 @@
 ---
 title: "Setting Up the Database"
 description: "Create the database and apply the Gateway Controller schema for PostgreSQL or SQL Server before starting the API Platform Gateway."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/setup/database-setup/
-md_url: https://wso2.com/api-platform/docs/api-gateway/setup/database-setup.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/setup/database-setup/
+md_url: https://wso2.com/api-platform/docs/api-gateway/next/setup/database-setup.md
 tags:
   - api-gateway
   - configuration

@@ -1,7 +1,7 @@
 ---
 title: "LLM providers overview"
 description: "Connect AI service platforms such as OpenAI, Anthropic, Azure OpenAI, Gemini, and Mistral AI as reusable LLM providers in AI Workspace."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/llm-providers/overview/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-providers/overview/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-providers/overview.md
 tags:
   - cloud

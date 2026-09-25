@@ -1,8 +1,8 @@
 ---
 title: "Gateway Operator Management CRDs"
 description: "Reference for management-API-backed Kubernetes CRDs in API Platform Gateway: LlmProvider, LlmProxy, Mcp, ApiKey, SubscriptionPlan, Subscription, and Certificate."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/gateway-operator-management-crds/
-md_url: https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator-management-crds/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
 tags:
   - api-gateway
   - kubernetes

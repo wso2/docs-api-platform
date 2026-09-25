@@ -1,8 +1,8 @@
 ---
 title: "Configure Traffic Logging"
 description: "Emit a structured JSON log line for every API request from the API Platform Gateway — to stdout, a rotating file, or an HTTP log receiver — with no external SaaS and no policy dependency."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/observability/traffic-logging/
-md_url: https://wso2.com/api-platform/docs/api-gateway/observability/traffic-logging.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/traffic-logging/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/traffic-logging.md
 tags:
   - api-gateway
   - observability

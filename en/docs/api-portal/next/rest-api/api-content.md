@@ -1,8 +1,8 @@
 ---
 title: "API Content"
 description: "Upload, replace, get, and delete an API's landing page content and documentation via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/api-content/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/api-content.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/api-content/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/api-content.md
 tags:
   - cloud
   - api-portal

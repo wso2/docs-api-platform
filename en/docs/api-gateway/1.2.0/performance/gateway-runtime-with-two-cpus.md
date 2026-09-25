@@ -1,8 +1,8 @@
 ---
 title: "Gateway Runtime with Two CPUs - Performance Results"
 description: "View API Platform Gateway performance benchmark results with a two-CPU gateway runtime, including throughput, average response time, percentile response times, and varying payload sizes."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/performance/gateway-runtime-with-two-cpus/
-md_url: https://wso2.com/api-platform/docs/api-gateway/performance/gateway-runtime-with-two-cpus.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/performance/gateway-runtime-with-two-cpus/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/performance/gateway-runtime-with-two-cpus.md
 tags:
   - api-gateway
   - performance

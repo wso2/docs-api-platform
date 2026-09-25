@@ -1,8 +1,8 @@
 ---
 title: "Platform API: Gateway tokens"
 description: "REST API reference for rotating and revoking gateway registration tokens."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/gateway-tokens/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/gateway-tokens.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/gateway-tokens/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/gateway-tokens.md
 tags:
   - ai-workspace
   - platform-api

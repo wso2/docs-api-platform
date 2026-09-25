@@ -1,8 +1,8 @@
 ---
 title: "Setting Up the Database"
 description: "Create the database and apply the Gateway Controller schema for PostgreSQL or SQL Server before starting the API Platform AI Gateway."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/database-setup/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/database-setup.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/database-setup/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/database-setup.md
 tags:
   - ai-gateway
   - configuration

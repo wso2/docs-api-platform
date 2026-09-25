@@ -1,8 +1,8 @@
 ---
 title: "LLM Proxy Quick Start Guide"
 description: "Run API Platform AI Gateway with Docker Compose, configure an LLM provider, and route your first LLM request through a managed proxy."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/quick-start-guide/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/quick-start-guide.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/llm-proxy/quick-start-guide/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/llm-proxy/quick-start-guide.md
 tags:
   - ai-gateway
   - llm

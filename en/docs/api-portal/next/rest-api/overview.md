@@ -1,8 +1,8 @@
 ---
 title: "API Portal Management API"
 description: "Overview of the API Portal Management API for managing organizations, APIs, MCP servers, applications, subscriptions, and API keys."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/overview/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/overview.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/overview/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/overview.md
 tags:
   - cloud
   - api-portal

@@ -1,8 +1,8 @@
 ---
 title: "Set up Asgardeo as your identity provider"
 description: "Configure WSO2 Asgardeo as the OIDC identity provider for a production API Portal deployment, from application registration to config.toml."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/setting-up/authentication/asgardeo-as-idp/
-md_url: https://wso2.com/api-platform/docs/api-portal/setting-up/authentication/asgardeo-as-idp.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/setting-up/authentication/asgardeo-as-idp/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/setting-up/authentication/asgardeo-as-idp.md
 tags:
   - cloud
   - api-portal

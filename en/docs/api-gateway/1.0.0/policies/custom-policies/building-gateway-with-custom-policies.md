@@ -1,8 +1,8 @@
 ---
 title: "Build a Gateway Image with Custom Policies"
 description: "Use API Platform CLI to bundle custom policies into an API Platform Gateway Docker image for deployment."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/policies/custom-policies/building-gateway-with-custom-policies/
-md_url: https://wso2.com/api-platform/docs/api-gateway/policies/custom-policies/building-gateway-with-custom-policies.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/policies/custom-policies/building-gateway-with-custom-policies/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.0.0/policies/custom-policies/building-gateway-with-custom-policies.md
 tags:
   - api-gateway
   - policies

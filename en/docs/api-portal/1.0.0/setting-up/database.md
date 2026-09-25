@@ -1,8 +1,8 @@
 ---
 title: "Set up the database"
 description: "Configure the API Portal & MCP Hub to run on SQLite, PostgreSQL, or Microsoft SQL Server: connection settings, schema, and Transport Layer Security (TLS)."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/setting-up/database/
-md_url: https://wso2.com/api-platform/docs/api-portal/setting-up/database.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/setting-up/database/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/setting-up/database.md
 tags:
   - cloud
   - api-portal

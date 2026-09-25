@@ -1,8 +1,8 @@
 ---
 title: "Add or Update Policies in a Gateway"
 description: "Add a Policy Hub or local policy to an API Platform Gateway, or update a policy to a different version, by editing build.yaml and rebuilding the image."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/policies/add-or-update-policies/
-md_url: https://wso2.com/api-platform/docs/api-gateway/policies/add-or-update-policies.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/add-or-update-policies/
+md_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/add-or-update-policies.md
 tags:
   - api-gateway
   - policies

@@ -1,8 +1,8 @@
 ---
 title: "Platform API: Schemas"
 description: "JSON schema definitions for Platform API request and response objects."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/schemas/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/schemas.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/schemas/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/schemas.md
 tags:
   - ai-workspace
   - platform-api

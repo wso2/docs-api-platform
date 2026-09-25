@@ -1,8 +1,8 @@
 ---
 title: "Configuring External Storage and Backends"
 description: "Configure PostgreSQL as the Gateway Controller storage backend and Redis for distributed rate limiting in API Platform Gateway."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/setup/storage-and-backends/
-md_url: https://wso2.com/api-platform/docs/api-gateway/setup/storage-and-backends.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/setup/storage-and-backends/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/setup/storage-and-backends.md
 tags:
   - api-gateway
   - configuration

@@ -1,8 +1,8 @@
 ---
 title: "Connect to a Control Plane"
 description: "Connect an AI Gateway 1.0.0 deployment to a WSO2 APIM or API Platform Cloud control plane, and what to know about AI Workspace version requirements."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/production-deployment/control-plane-connection/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/deployment/production-deployment/control-plane-connection.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/deployment/production-deployment/control-plane-connection/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/deployment/production-deployment/control-plane-connection.md
 tags:
   - ai-gateway
   - production

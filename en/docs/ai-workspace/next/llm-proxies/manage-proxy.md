@@ -1,7 +1,7 @@
 ---
 title: "Manage an App LLM proxy"
 description: "Configure provider settings, resources, security, and guardrails for a deployed App LLM proxy, then save, redeploy, or delete it."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/llm-proxies/manage-proxy/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-proxies/manage-proxy/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-proxies/manage-proxy.md
 tags:
   - cloud

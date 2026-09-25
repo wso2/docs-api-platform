@@ -1,8 +1,8 @@
 ---
 title: "Management API: MCP Proxy Management"
 description: "REST API reference for creating, listing, updating, and deleting MCP proxy configurations in API Platform Gateway."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/mcp-proxy-management/
-md_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/mcp-proxy-management.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/gateway-controller-management-api/mcp-proxy-management/
+md_url: https://wso2.com/api-platform/docs/api-gateway/next/gateway-controller-management-api/mcp-proxy-management.md
 tags:
   - api-gateway
   - management-api

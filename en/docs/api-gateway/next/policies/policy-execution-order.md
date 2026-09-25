@@ -1,8 +1,8 @@
 ---
 title: "Policy execution order"
 description: "How multiple gateway policies execute in sequence across the four request and response phases: forward ordering on request, reverse ordering on response, streaming mode, and short-circuit behavior."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/policies/policy-execution-order/
-md_url: https://wso2.com/api-platform/docs/api-gateway/policies/policy-execution-order.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/policy-execution-order/
+md_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/policy-execution-order.md
 tags:
   - api-gateway
   - policies

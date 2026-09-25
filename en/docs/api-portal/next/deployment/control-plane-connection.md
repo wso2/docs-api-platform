@@ -1,8 +1,8 @@
 ---
 title: "Control Plane Connection"
 description: "How a standalone API Portal & MCP Hub deployment reaches gateways: registering a webhook subscriber against an existing Platform API, and the local-auth connection it does not need in production."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/deployment/control-plane-connection/
-md_url: https://wso2.com/api-platform/docs/api-portal/deployment/control-plane-connection.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/deployment/control-plane-connection/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/deployment/control-plane-connection.md
 tags:
   - cloud
   - api-portal

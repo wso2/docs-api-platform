@@ -1,8 +1,8 @@
 ---
 title: "Platform API: LLM proxies"
 description: "REST API reference for creating, listing, updating, and deleting LLM proxies."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/llm-proxies/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/llm-proxies.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/llm-proxies/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/llm-proxies.md
 tags:
   - ai-workspace
   - platform-api

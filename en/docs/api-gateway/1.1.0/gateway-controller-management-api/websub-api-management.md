@@ -1,8 +1,8 @@
 ---
 title: "Management API: WebSub API Management"
 description: "REST API reference for creating, listing, updating, and deleting WebSub API configurations and API keys in API Platform Gateway."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/websub-api-management/
-md_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/websub-api-management.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/gateway-controller-management-api/websub-api-management/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/gateway-controller-management-api/websub-api-management.md
 tags:
   - api-gateway
   - management-api

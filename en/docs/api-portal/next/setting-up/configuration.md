@@ -1,8 +1,8 @@
 ---
 title: "API Portal configuration and environment interpolation"
 description: "How the API Portal & MCP Hub loads its config.toml, injects environment values and mounted files through interpolation tokens, and keeps sensitive values out of the config file."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/setting-up/configuration/
-md_url: https://wso2.com/api-platform/docs/api-portal/setting-up/configuration.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/setting-up/configuration/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/setting-up/configuration.md
 tags:
   - cloud
   - api-portal

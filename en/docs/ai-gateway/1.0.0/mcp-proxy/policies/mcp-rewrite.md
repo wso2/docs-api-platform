@@ -1,8 +1,8 @@
 ---
 title: "MCP Rewrite"
 description: "Expose user-facing names for MCP tools, resources, and prompts while mapping them to different backend capability names."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/policies/mcp-rewrite/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/policies/mcp-rewrite.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/mcp-proxy/policies/mcp-rewrite/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/mcp-proxy/policies/mcp-rewrite.md
 tags:
   - ai-gateway
   - mcp

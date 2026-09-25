@@ -1,8 +1,8 @@
 ---
 title: "Guardrails"
 description: "AI Gateway guardrails: LLM-aware policies for content filtering, safety, and compliance, with per-policy reference in the WSO2 API Platform Policy Hub."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/guardrails/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/guardrails.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/guardrails/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/guardrails.md
 tags:
   - ai-gateway
   - guardrails

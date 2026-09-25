@@ -1,8 +1,8 @@
 ---
 title: "Management API Schemas"
 description: "JSON schema definitions for all API Platform Gateway Controller management API request and response objects."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/schemas/
-md_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/schemas.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/gateway-controller-management-api/schemas/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/gateway-controller-management-api/schemas.md
 tags:
   - api-gateway
   - management-api

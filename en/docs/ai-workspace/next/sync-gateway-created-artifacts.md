@@ -1,7 +1,7 @@
 ---
 title: "Manage Gateway-deployed AI artifacts in AI Workspace"
 description: "Create an LLM provider template, LLM provider, LLM proxy, or MCP proxy on the AI Gateway and view the read-only copy that syncs up to AI Workspace."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/sync-gateway-created-artifacts/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/sync-gateway-created-artifacts/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/sync-gateway-created-artifacts.md
 tags:
   - cloud

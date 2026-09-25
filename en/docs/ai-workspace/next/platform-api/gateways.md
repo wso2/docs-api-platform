@@ -1,8 +1,8 @@
 ---
 title: "Platform API: Gateways"
 description: "REST API reference for registering, listing, updating, and deleting AI gateways."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/gateways/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/gateways.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/gateways/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/gateways.md
 tags:
   - ai-workspace
   - platform-api

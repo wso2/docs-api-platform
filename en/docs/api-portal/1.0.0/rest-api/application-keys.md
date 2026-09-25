@@ -1,8 +1,8 @@
 ---
 title: "Application Keys"
 description: "Map an OAuth client ID, generate an access token, and remove a client ID mapping via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/application-keys/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/application-keys.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/rest-api/application-keys/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/rest-api/application-keys.md
 tags:
   - cloud
   - api-portal

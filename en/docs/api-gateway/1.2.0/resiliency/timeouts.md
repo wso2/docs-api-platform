@@ -1,8 +1,8 @@
 ---
 title: "Configure Timeouts"
 description: "Configure gateway level and API-level timeouts to protect against slow or unreachable backends and slow clients."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/resiliency/timeouts/
-md_url: https://wso2.com/api-platform/docs/api-gateway/resiliency/timeouts.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/resiliency/timeouts/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/resiliency/timeouts.md
 tags:
   - api-gateway
   - configuration

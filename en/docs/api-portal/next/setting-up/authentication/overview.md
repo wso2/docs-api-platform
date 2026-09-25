@@ -1,8 +1,8 @@
 ---
 title: "Authentication in the API Portal & MCP Hub"
 description: "Understand the two ways users sign in to the API Portal & MCP Hub: local authentication against the Platform API for development, and an OIDC identity provider for production."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/setting-up/authentication/overview/
-md_url: https://wso2.com/api-platform/docs/api-portal/setting-up/authentication/overview.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/setting-up/authentication/overview/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/setting-up/authentication/overview.md
 tags:
   - cloud
   - api-portal

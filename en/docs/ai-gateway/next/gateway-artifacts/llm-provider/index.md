@@ -1,8 +1,8 @@
 ---
 title: "LLM provider"
 description: "Connect the AI Gateway to an LLM backend: what an LLM Provider holds, who configures it, and a guide for every provider template it ships."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/llm-provider/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/llm-provider.md
 tags:
   - ai-gateway
   - llm-provider

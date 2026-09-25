@@ -1,8 +1,8 @@
 ---
 title: "Connect an identity provider to the API Portal"
 description: "Configure the API Portal & MCP Hub to delegate login to any OIDC identity provider: client registration, claim mappings, role or scope authorization, and the config.toml tables involved."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/setting-up/authentication/connect-an-identity-provider/
-md_url: https://wso2.com/api-platform/docs/api-portal/setting-up/authentication/connect-an-identity-provider.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/setting-up/authentication/connect-an-identity-provider/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/setting-up/authentication/connect-an-identity-provider.md
 tags:
   - cloud
   - api-portal

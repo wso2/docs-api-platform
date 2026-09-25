@@ -1,8 +1,8 @@
 ---
 title: "Get started with API Portal & MCP Hub"
 description: "Run the API Portal & MCP Hub locally with Docker Compose, sign in, and publish your first API to the catalog."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/getting-started/
-md_url: https://wso2.com/api-platform/docs/api-portal/getting-started.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/getting-started/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/getting-started.md
 tags:
   - cloud
   - api-portal

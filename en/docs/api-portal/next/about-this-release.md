@@ -1,8 +1,8 @@
 ---
 title: "About this release"
 description: "What's included in API Portal & MCP Hub 1.0.0: the API and MCP catalog, API workflows, MCP registry, applications, authentication, theming, and the admin UI."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/about-this-release/
-md_url: https://wso2.com/api-platform/docs/api-portal/about-this-release.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/about-this-release/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/about-this-release.md
 tags:
   - cloud
   - api-portal

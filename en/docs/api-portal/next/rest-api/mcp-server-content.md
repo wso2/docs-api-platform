@@ -1,8 +1,8 @@
 ---
 title: "MCP Server Content"
 description: "Upload, replace, get, and delete an MCP server's content via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/mcp-server-content/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/mcp-server-content.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/mcp-server-content/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/mcp-server-content.md
 tags:
   - cloud
   - api-portal

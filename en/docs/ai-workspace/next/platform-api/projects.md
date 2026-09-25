@@ -1,8 +1,8 @@
 ---
 title: "Platform API: Projects"
 description: "REST API reference for creating, listing, updating, and deleting projects."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/projects/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/projects.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/projects/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/projects.md
 tags:
   - ai-workspace
   - platform-api

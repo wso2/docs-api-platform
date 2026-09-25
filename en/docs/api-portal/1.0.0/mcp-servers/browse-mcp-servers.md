@@ -1,8 +1,8 @@
 ---
 title: "Browse MCP servers in the API Portal & MCP Hub"
 description: "Browse and search the MCP catalog, read a server's tools, resources, and prompts, and invoke them from the MCP Playground."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/mcp-servers/browse-mcp-servers/
-md_url: https://wso2.com/api-platform/docs/api-portal/mcp-servers/browse-mcp-servers.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/mcp-servers/browse-mcp-servers/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/mcp-servers/browse-mcp-servers.md
 tags:
   - cloud
   - api-portal

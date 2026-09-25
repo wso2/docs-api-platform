@@ -1,8 +1,8 @@
 ---
 title: "Write a Custom Gateway Policy"
 description: "Write a custom policy for API Platform Gateway using the Go SDK: implement request and response hooks in the policy chain."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/policies/custom-policies/writing-a-custom-policy/
-md_url: https://wso2.com/api-platform/docs/api-gateway/policies/custom-policies/writing-a-custom-policy.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/policies/custom-policies/writing-a-custom-policy/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/policies/custom-policies/writing-a-custom-policy.md
 tags:
   - api-gateway
   - policies

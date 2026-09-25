@@ -1,8 +1,8 @@
 ---
 title: "Platform API: API keys"
 description: "REST API reference for listing the API keys visible to the current user."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/api-keys/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/api-keys.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/api-keys/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/api-keys.md
 tags:
   - ai-workspace
   - platform-api

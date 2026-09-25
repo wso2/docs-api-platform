@@ -1,8 +1,8 @@
 ---
 title: "Secure the management API"
 description: "Configure Basic Auth or JWT/IDP authentication and role-based authorization for the AI Gateway Controller REST API."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/secure-the-management-api/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/secure-the-management-api.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/setup-and-deployment/secure-the-management-api/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/setup-and-deployment/secure-the-management-api.md
 tags:
   - ai-gateway
   - security

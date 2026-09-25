@@ -1,7 +1,7 @@
 ---
 title: "About this release"
 description: "Features, compatible product versions, key considerations, and known limitations of WSO2 AI Workspace 1.0.0."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/about-this-release/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/about-this-release/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/about-this-release.md
 tags:
   - cloud

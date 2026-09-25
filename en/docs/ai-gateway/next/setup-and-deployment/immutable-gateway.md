@@ -1,8 +1,8 @@
 ---
 title: "Immutable Gateway"
 description: "Run API Platform AI Gateway in immutable mode, loading LLM and MCP configurations from files at startup for GitOps workflows."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/immutable-gateway/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/immutable-gateway.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/immutable-gateway/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/immutable-gateway.md
 tags:
   - ai-gateway
   - deployment

@@ -1,8 +1,8 @@
 ---
 title: "AWS Bedrock"
 description: "Connect API Platform AI Gateway to AWS Bedrock using a bearer API key or AWS Signature Version 4 authentication, then invoke a model through the gateway."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/supported-providers/aws-bedrock/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/supported-providers/aws-bedrock.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/llm-provider/supported-providers/aws-bedrock/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/llm-provider/supported-providers/aws-bedrock.md
 tags:
   - ai-gateway
   - llm-provider

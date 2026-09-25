@@ -1,8 +1,8 @@
 ---
 title: "Quick start for API Portal and MCP Hub"
 description: "Install the API Portal and MCP Hub with Docker, then add an API and an MCP server through the admin UI and through GitOps."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/quickstart-guide/
-md_url: https://wso2.com/api-platform/docs/api-portal/quickstart-guide.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/quickstart-guide/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/quickstart-guide.md
 tags:
   - cloud
   - api-portal

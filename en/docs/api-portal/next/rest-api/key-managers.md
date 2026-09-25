@@ -1,8 +1,8 @@
 ---
 title: "Key Managers"
 description: "Create, list, get, update, and delete key managers via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/key-managers/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/key-managers.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/key-managers/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/key-managers.md
 tags:
   - cloud
   - api-portal

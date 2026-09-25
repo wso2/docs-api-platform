@@ -1,8 +1,8 @@
 ---
 title: "Design Mode"
 description: "Develop and preview API Portal layouts and themes offline, without a running database or identity provider."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/design-mode/
-md_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/design-mode.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/admin-settings/design-mode/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/admin-settings/design-mode.md
 tags:
   - cloud
   - api-portal

@@ -1,7 +1,7 @@
 ---
 title: "Set up an AI Gateway in AI Workspace"
 description: "Register an AI Gateway in AI Workspace, connect the runtime with a registration token, and manage existing gateways."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/ai-gateways/setting-up/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/ai-gateways/setting-up/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/ai-gateways/setting-up.md
 tags:
   - cloud

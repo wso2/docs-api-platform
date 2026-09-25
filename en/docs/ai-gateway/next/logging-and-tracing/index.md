@@ -1,8 +1,8 @@
 ---
 title: "Logging and tracing"
 description: "Collect the AI Gateway's own runtime logs, record the content of the traffic it carries, and follow a single request across the hops it makes."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/logging-and-tracing/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/logging-and-tracing.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/logging-and-tracing/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/logging-and-tracing.md
 tags:
   - ai-gateway
   - logging

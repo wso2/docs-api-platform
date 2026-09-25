@@ -1,8 +1,8 @@
 ---
 title: "API Workflows"
 description: "Create, list, get, update, delete, and generate an agent prompt for API workflows via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/api-workflows/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/api-workflows.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/api-workflows/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/api-workflows.md
 tags:
   - cloud
   - api-portal

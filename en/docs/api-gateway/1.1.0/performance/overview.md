@@ -1,8 +1,8 @@
 ---
 title: "API Platform Gateway Performance"
 description: "Review WSO2 API Platform Gateway performance test methodology, deployment architecture, metrics, and benchmark results for two-CPU and four-CPU gateway runtime configurations."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/performance/overview/
-md_url: https://wso2.com/api-platform/docs/api-gateway/performance/overview.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/performance/overview/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/performance/overview.md
 tags:
   - api-gateway
   - performance

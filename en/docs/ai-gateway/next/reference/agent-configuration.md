@@ -1,8 +1,8 @@
 ---
 title: "Agent configuration reference"
 description: "Every field in the Agent artifact spec: context, upstream, transports, operations, Agent Card blocks, defaults, and the rules enforced at deploy time."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/reference/agent-configuration/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/reference/agent-configuration.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/reference/agent-configuration/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/reference/agent-configuration.md
 tags:
   - ai-gateway
   - a2a

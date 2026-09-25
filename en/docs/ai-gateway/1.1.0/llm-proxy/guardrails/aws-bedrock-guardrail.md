@@ -1,8 +1,8 @@
 ---
 title: "AWS Bedrock Guardrail"
 description: "Validate LLM request and response content against AWS Bedrock Guardrails for content filtering, topic detection, and PII masking."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/aws-bedrock-guardrail/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/aws-bedrock-guardrail.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/aws-bedrock-guardrail/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/aws-bedrock-guardrail.md
 tags:
   - ai-gateway
   - guardrails

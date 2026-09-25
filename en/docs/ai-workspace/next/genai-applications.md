@@ -1,7 +1,7 @@
 ---
 title: "GenAI applications"
 description: "Group API keys under a named GenAI application for application-level usage visibility, analytics, and governance."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/genai-applications/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/genai-applications/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/genai-applications.md
 tags:
   - cloud

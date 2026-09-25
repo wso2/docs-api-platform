@@ -1,8 +1,8 @@
 ---
 title: "AI Gateway Runtime with Four CPUs - Performance Results"
 description: "AI Gateway benchmark results for a four-CPU runtime: throughput and response times across auth-only, PII masking, and advanced guardrail scenarios."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/sizing-and-performance/ai-gateway-runtime-with-four-cpus/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/sizing-and-performance/ai-gateway-runtime-with-four-cpus.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/sizing-and-performance/ai-gateway-runtime-with-four-cpus/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/sizing-and-performance/ai-gateway-runtime-with-four-cpus.md
 tags:
   - ai-gateway
   - performance

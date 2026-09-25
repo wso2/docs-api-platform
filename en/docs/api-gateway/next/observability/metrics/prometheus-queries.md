@@ -1,8 +1,8 @@
 ---
 title: "Prometheus Queries"
 description: "Useful PromQL queries for monitoring API Platform Gateway controller, router, and policy engine metrics."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/observability/metrics/prometheus-queries/
-md_url: https://wso2.com/api-platform/docs/api-gateway/observability/metrics/prometheus-queries.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/observability/metrics/prometheus-queries/
+md_url: https://wso2.com/api-platform/docs/api-gateway/next/observability/metrics/prometheus-queries.md
 tags:
   - api-gateway
   - observability

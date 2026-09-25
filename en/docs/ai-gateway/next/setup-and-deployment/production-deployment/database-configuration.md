@@ -1,8 +1,8 @@
 ---
 title: "Database Configuration"
 description: "Point AI Gateway controller replicas at a shared PostgreSQL or SQL Server database, inject the password from a Secret, and tune the connection pool."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/production-deployment/database-configuration/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/production-deployment/database-configuration.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/production-deployment/database-configuration/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/production-deployment/database-configuration.md
 tags:
   - ai-gateway
   - production

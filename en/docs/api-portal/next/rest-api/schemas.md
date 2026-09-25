@@ -1,8 +1,8 @@
 ---
 title: "Schemas"
 description: "Data model schemas referenced by the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/schemas/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/schemas.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/schemas/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/rest-api/schemas.md
 tags:
   - cloud
   - api-portal

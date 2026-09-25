@@ -1,7 +1,7 @@
 ---
 title: "Write an AI policy for the AI Gateway"
 description: "Build a custom AI policy using the gateway SDK, including support for buffered and streaming (SSE) LLM request and response bodies."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/policies/writing-an-ai-policy/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/policies/writing-an-ai-policy/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/policies/writing-an-ai-policy.md
 tags:
   - cloud

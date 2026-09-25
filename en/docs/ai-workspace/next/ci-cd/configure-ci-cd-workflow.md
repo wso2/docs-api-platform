@@ -1,7 +1,7 @@
 ---
 title: "Configure an AI Workspace CI/CD workflow"
 description: "Use the ap CLI to validate and apply AI Workspace artifacts such as LLM providers, App LLM proxies, and MCP proxies from project files."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/ci-cd/configure-ci-cd-workflow/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/ci-cd/configure-ci-cd-workflow/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/ci-cd/configure-ci-cd-workflow.md
 tags:
   - cloud

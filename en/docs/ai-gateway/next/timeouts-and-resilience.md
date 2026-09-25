@@ -1,8 +1,8 @@
 ---
 title: "Timeouts and resilience"
 description: "Configure connect, route, idle, and HTTP connection manager timeouts at gateway and API level, so slow or unreachable backends fail predictably."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/timeouts-and-resilience/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/timeouts-and-resilience.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/timeouts-and-resilience/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/timeouts-and-resilience.md
 tags:
   - ai-gateway
   - configuration

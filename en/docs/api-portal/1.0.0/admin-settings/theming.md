@@ -1,8 +1,8 @@
 ---
 title: "Theming the API Portal & MCP Hub"
 description: "Build a custom theme for a view—override styles, layouts, partials, and pages, re-color the portal from a few seed variables, and package it for upload."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/theming/
-md_url: https://wso2.com/api-platform/docs/api-portal/admin-settings/theming.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/admin-settings/theming/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/admin-settings/theming.md
 tags:
   - cloud
   - api-portal

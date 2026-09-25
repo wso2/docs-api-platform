@@ -1,8 +1,8 @@
 ---
 title: "Change the ports the API Portal uses"
 description: "Move the API Portal & MCP Hub and the Platform API off their default ports, either through the APIP_AP_SERVER_PORT variable or by editing the Compose port mappings."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/setting-up/ports/
-md_url: https://wso2.com/api-platform/docs/api-portal/setting-up/ports.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/setting-up/ports/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/setting-up/ports.md
 tags:
   - cloud
   - api-portal

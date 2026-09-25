@@ -1,8 +1,8 @@
 ---
 title: "Consume an API secured with OAuth2"
 description: "Link a key manager client ID to your application, generate an access token from the portal or with curl, and call an OAuth2-secured API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/consume-an-api/oauth2/
-md_url: https://wso2.com/api-platform/docs/api-portal/consume-an-api/oauth2.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/consume-an-api/oauth2/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/consume-an-api/oauth2.md
 tags:
   - cloud
   - api-portal

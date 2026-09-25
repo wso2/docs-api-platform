@@ -1,8 +1,8 @@
 ---
 title: "Metric Reference"
 description: "Complete reference for all Prometheus metrics exposed by API Platform Gateway controller, router, and policy engine components."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/observability/metrics/metric-reference/
-md_url: https://wso2.com/api-platform/docs/api-gateway/observability/metrics/metric-reference.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/metrics/metric-reference/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/metrics/metric-reference.md
 tags:
   - api-gateway
   - observability

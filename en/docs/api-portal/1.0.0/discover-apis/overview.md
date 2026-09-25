@@ -1,8 +1,8 @@
 ---
 title: "APIs in the API Portal & MCP Hub"
 description: "What an API is in the API Portal & MCP Hub, the API types it publishes, the two routes APIs take into the catalog, and how they differ from MCP servers."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/discover-apis/overview/
-md_url: https://wso2.com/api-platform/docs/api-portal/discover-apis/overview.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/discover-apis/overview/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/discover-apis/overview.md
 tags:
   - cloud
   - api-portal

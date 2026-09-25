@@ -1,8 +1,8 @@
 ---
 title: "High-Availability Production Deployment"
 description: "Deploy API Platform Gateway in a highly available, production-grade configuration on Kubernetes with Helm, an external database (PostgreSQL or SQL Server), and replicated workloads."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/deployment/high-availability-production-deployment/
-md_url: https://wso2.com/api-platform/docs/api-gateway/deployment/high-availability-production-deployment.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/deployment/high-availability-production-deployment/
+md_url: https://wso2.com/api-platform/docs/api-gateway/next/deployment/high-availability-production-deployment.md
 tags:
   - api-gateway
   - deployment

@@ -1,8 +1,8 @@
 ---
 title: "Multi model routing"
 description: "Distribute LLM proxy traffic across a pool of models with round robin or weighted round robin, and move off a model that starts returning errors."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/routing/multi-model-routing/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/routing/multi-model-routing.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/routing/multi-model-routing/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/routing/multi-model-routing.md
 tags:
   - ai-gateway
   - routing

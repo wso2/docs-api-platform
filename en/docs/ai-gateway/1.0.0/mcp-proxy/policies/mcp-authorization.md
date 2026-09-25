@@ -1,8 +1,8 @@
 ---
 title: "MCP Authorization"
 description: "Define fine-grained access control rules for MCP tools, resources, and prompts based on JWT claims and scopes."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/policies/mcp-authorization/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/policies/mcp-authorization.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/mcp-proxy/policies/mcp-authorization/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/mcp-proxy/policies/mcp-authorization.md
 tags:
   - ai-gateway
   - mcp

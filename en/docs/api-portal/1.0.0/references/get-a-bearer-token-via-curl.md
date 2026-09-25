@@ -1,8 +1,8 @@
 ---
 title: "Get a Bearer token via curl (IdP mode)"
 description: "Obtain a Bearer token for the API Portal REST API from the terminal, without a browser, when running in external IdP mode."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/references/get-a-bearer-token-via-curl/
-md_url: https://wso2.com/api-platform/docs/api-portal/references/get-a-bearer-token-via-curl.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/references/get-a-bearer-token-via-curl/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/references/get-a-bearer-token-via-curl.md
 tags:
   - cloud
   - api-portal

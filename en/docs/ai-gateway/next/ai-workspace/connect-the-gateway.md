@@ -1,8 +1,8 @@
 ---
 title: "Connect the gateway to AI Workspace"
 description: "Find the page that connects your AI Gateway to AI Workspace, whether you're trying the control plane locally or registering a production gateway."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/ai-workspace/connect-the-gateway/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/ai-workspace/connect-the-gateway.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/ai-workspace/connect-the-gateway/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/ai-workspace/connect-the-gateway.md
 tags:
   - ai-gateway
   - ai-workspace

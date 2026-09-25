@@ -1,8 +1,8 @@
 ---
 title: "LLM Provider Templates"
 description: "Reference for LLM Provider Templates in API Platform AI Gateway, covering built-in templates for OpenAI, Anthropic, Gemini, and more."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/reference/llm-templates/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/reference/llm-templates.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/reference/llm-templates/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/reference/llm-templates.md
 tags:
   - ai-gateway
   - llm

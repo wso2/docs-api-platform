@@ -1,8 +1,8 @@
 ---
 title: "Health checks for the Gateway Controller and Gateway Runtime"
 description: "Configure liveness and readiness health checks for the Gateway Controller, Router, and Policy Engine, and wire them into Docker Compose or Kubernetes probes."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/setup/health-checks/
-md_url: https://wso2.com/api-platform/docs/api-gateway/setup/health-checks.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/setup/health-checks/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/setup/health-checks.md
 tags:
   - api-gateway
   - health-check

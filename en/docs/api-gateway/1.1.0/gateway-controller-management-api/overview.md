@@ -1,8 +1,8 @@
 ---
 title: "Gateway Controller Management API"
 description: "Overview of the API Platform Gateway Controller REST API for managing REST APIs, MCP proxies, LLM providers, certificates, and secrets."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/overview/
-md_url: https://wso2.com/api-platform/docs/api-gateway/gateway-controller-management-api/overview.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/gateway-controller-management-api/overview/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.1.0/gateway-controller-management-api/overview.md
 tags:
   - api-gateway
   - management-api

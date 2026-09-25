@@ -1,8 +1,8 @@
 ---
 title: "AI agent API discovery"
 description: "Expose published APIs, MCP servers, and workflows through llms.txt and machine-readable Markdown endpoints so AI agents can discover and invoke them."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/ai-agent-discovery/
-md_url: https://wso2.com/api-platform/docs/api-portal/ai-agent-discovery.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/next/ai-agent-discovery/
+md_url: https://wso2.com/api-platform/docs/api-portal/next/ai-agent-discovery.md
 tags:
   - cloud
   - api-portal

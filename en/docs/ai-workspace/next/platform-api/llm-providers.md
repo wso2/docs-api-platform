@@ -1,8 +1,8 @@
 ---
 title: "Platform API: LLM providers"
 description: "REST API reference for creating, listing, updating, and deleting LLM providers."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/llm-providers/
-md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/platform-api/llm-providers.md
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/llm-providers/
+md_url: https://wso2.com/api-platform/docs/ai-workspace/next/platform-api/llm-providers.md
 tags:
   - ai-workspace
   - platform-api

@@ -1,7 +1,7 @@
 ---
 title: "Apply policies to an MCP proxy"
 description: "Apply access control, authorization, and rewrite policies to MCP proxies using the Policy Hub."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/mcp-proxies/apply-policies/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/mcp-proxies/apply-policies/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/mcp-proxies/apply-policies.md
 tags:
   - cloud

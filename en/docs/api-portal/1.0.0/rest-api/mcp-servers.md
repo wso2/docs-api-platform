@@ -1,8 +1,8 @@
 ---
 title: "MCP Servers"
 description: "Create, list, get, update, and delete MCP server metadata via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/mcp-servers/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/mcp-servers.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/rest-api/mcp-servers/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/rest-api/mcp-servers.md
 tags:
   - cloud
   - api-portal

@@ -1,7 +1,7 @@
 ---
 title: "MCP proxies overview"
 description: "Connect the AI Gateway to upstream MCP servers and apply security, policy, and observability controls through an MCP proxy."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/mcp-proxies/overview/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/mcp-proxies/overview/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/mcp-proxies/overview.md
 tags:
   - cloud

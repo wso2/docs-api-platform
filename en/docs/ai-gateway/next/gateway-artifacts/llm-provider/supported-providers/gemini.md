@@ -1,8 +1,8 @@
 ---
 title: "Gemini"
 description: "Connect the AI Gateway to the Gemini API: the values Google supplies, what the gemini template extracts, and OpenAI-format compatibility."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/supported-providers/gemini/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/supported-providers/gemini.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/llm-provider/supported-providers/gemini/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/gateway-artifacts/llm-provider/supported-providers/gemini.md
 tags:
   - ai-gateway
   - llm-provider

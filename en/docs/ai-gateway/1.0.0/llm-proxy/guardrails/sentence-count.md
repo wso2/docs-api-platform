@@ -1,8 +1,8 @@
 ---
 title: "Sentence Count Guardrail"
 description: "Enforce minimum and maximum sentence count limits on LLM request and response content using the Sentence Count guardrail."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/sentence-count/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/guardrails/sentence-count.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/llm-proxy/guardrails/sentence-count/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/llm-proxy/guardrails/sentence-count.md
 tags:
   - ai-gateway
   - guardrails

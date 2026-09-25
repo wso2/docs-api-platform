@@ -1,8 +1,8 @@
 ---
 title: "MCP Proxy Quick Start Guide"
 description: "Run API Platform AI Gateway with Docker Compose, configure an MCP proxy, and route your first MCP traffic through the gateway."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/quick-start-guide/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/mcp-proxy/quick-start-guide.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/mcp-proxy/quick-start-guide/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/mcp-proxy/quick-start-guide.md
 tags:
   - ai-gateway
   - mcp

@@ -1,8 +1,8 @@
 ---
 title: "Gateway Configuration and Environment Interpolation"
 description: "How the gateway loads config.toml, injects environment values through interpolation tokens, and bootstraps keys and certificates with the setup script."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/configuration/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/configuration.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/configuration/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/setup-and-deployment/configuration.md
 tags:
   - api-gateway
   - configuration

@@ -1,8 +1,8 @@
 ---
 title: "Analytics"
 description: "Publish AI Gateway request and response data to an analytics backend, and control which headers leave the gateway with it."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/analytics/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/analytics.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/analytics/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/analytics.md
 tags:
   - ai-gateway
   - analytics

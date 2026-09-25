@@ -1,8 +1,8 @@
 ---
 title: "MCP Registry API"
 description: "Discover and publish MCP servers through the API Portal & MCP Hub's implementation of the Model Context Protocol registry specification."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/mcp-registry/
-md_url: https://wso2.com/api-platform/docs/api-portal/mcp-registry.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/mcp-registry/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/mcp-registry.md
 tags:
   - cloud
   - api-portal

@@ -1,8 +1,8 @@
 ---
 title: "Deploy with the Kubernetes Gateway Operator"
 description: "Deploy API Platform Gateway on Kubernetes using the operator with APIGateway and RestApi CRDs, or using the standard Kubernetes Gateway API with HTTPRoute."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/gateway-operator/
-md_url: https://wso2.com/api-platform/docs/api-gateway/deployment/deployment-modes/kubernetes/gateway-operator.md
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator.md
 tags:
   - api-gateway
   - kubernetes

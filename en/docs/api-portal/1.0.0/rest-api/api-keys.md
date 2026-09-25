@@ -1,8 +1,8 @@
 ---
 title: "API Keys"
 description: "Generate, list, regenerate, revoke, and associate API keys via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/api-keys/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/api-keys.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/rest-api/api-keys/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/rest-api/api-keys.md
 tags:
   - cloud
   - api-portal

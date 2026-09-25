@@ -1,7 +1,7 @@
 ---
 title: "App LLM proxies overview"
 description: "Add an application-facing endpoint on top of an LLM provider for app- or agent-specific authentication, guardrails, and access controls."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/llm-proxies/overview/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-proxies/overview/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/llm-proxies/overview.md
 tags:
   - cloud

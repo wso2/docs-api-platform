@@ -1,7 +1,7 @@
 ---
 title: "AI Workspace overview"
 description: "Centrally manage AI gateways, LLM providers, proxies, policies, and secrets from a single control plane."
-canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/overview/
+canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/overview/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/overview.md
 tags:
   - cloud

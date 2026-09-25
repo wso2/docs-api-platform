@@ -1,8 +1,8 @@
 ---
 title: "Setup and deployment"
 description: "Install the AI Gateway, configure it, secure its management API, and deploy it at scale on Kubernetes, with sizing guidance from published benchmarks."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/setup-and-deployment.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/setup-and-deployment/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/setup-and-deployment.md
 tags:
   - ai-gateway
   - deployment

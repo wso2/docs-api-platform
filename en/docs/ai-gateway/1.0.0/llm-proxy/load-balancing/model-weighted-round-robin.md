@@ -1,8 +1,8 @@
 ---
 title: "Model Weighted Round Robin"
 description: "Distribute LLM requests across AI models by assigned weights, giving higher-capacity or lower-cost models proportionally more traffic."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/load-balancing/model-weighted-round-robin/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/llm-proxy/load-balancing/model-weighted-round-robin.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/llm-proxy/load-balancing/model-weighted-round-robin/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.0.0/llm-proxy/load-balancing/model-weighted-round-robin.md
 tags:
   - ai-gateway
   - llm

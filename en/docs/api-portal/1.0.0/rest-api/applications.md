@@ -1,8 +1,8 @@
 ---
 title: "Applications"
 description: "List, create, get, update, and delete applications via the API Portal REST API."
-canonical_url: https://wso2.com/api-platform/docs/api-portal/rest-api/applications/
-md_url: https://wso2.com/api-platform/docs/api-portal/rest-api/applications.md
+canonical_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/rest-api/applications/
+md_url: https://wso2.com/api-platform/docs/api-portal/1.0.0/rest-api/applications.md
 tags:
   - cloud
   - api-portal

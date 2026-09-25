@@ -1,8 +1,8 @@
 ---
 title: "Guardrail execution order"
 description: "How guardrails execute in the dual-hop model: the LLM Proxy chain runs before the LLM Provider chain on request, and in reverse on response."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/guardrails/execution-order/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/guardrails/execution-order.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/guardrails/execution-order/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/next/guardrails/execution-order.md
 tags:
   - ai-gateway
   - guardrails
