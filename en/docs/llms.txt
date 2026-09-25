@@ -432,6 +432,7 @@
 - [Configure Claude Code with AI Gateway Using a Claude Subscription](https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/claude-code-subscription-configuration-with-ai-gateway.md): Route Claude Team or Enterprise subscription traffic through the WSO2 AI Gateway with enterprise identity and per-user cost visibility
 - [Configure Google Gemini CLI with AI Gateway](https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md): Configure Google Gemini CLI to route LLM traffic through the WSO2 AI Gateway
 - [Configure OpenAI Codex CLI with AI Gateway](https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md): Configure OpenAI Codex CLI to route LLM traffic through the WSO2 AI Gateway
+- [Build an AI Agent that Reacts to WebSocket Notifications](https://wso2.com/api-platform/docs/guides/websocket/build-an-ai-agent-for-websocket-notifications.md): End-to-end walkthrough: connect a Python AI agent to a WebSocket notification stream, and use an LLM provider and MCP proxy in AI Workspace to choose and call a tool for each significant event
 - [Go from Zero to a Working API Call Using the Developer Portal](https://wso2.com/api-platform/docs/guides/developer-portal/api-discovery-and-tryout.md): End-to-end walkthrough: discover an API in the Developer Portal, try it with an API key, subscribe to a plan, and invoke it with rate limiting applied
 
 ## Tools
