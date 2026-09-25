@@ -419,6 +419,7 @@
 
 ## Guides
 
+- [Guides Overview](https://wso2.com/api-platform/docs/guides/overview.md): Landing page that groups all step-by-step guides by goal: govern LLM traffic, expose and govern MCP servers, discover APIs and MCP servers, configure AI coding assistants with AI Gateway, monetize APIs and MCP tools, manage and govern APIs, connect third-party gateways, and expose real-time APIs
 - [Convert a REST API into an MCP Tool](https://wso2.com/api-platform/docs/guides/ai-and-mcp/convert-rest-api-to-mcp-server.md): End-to-end walkthrough: expose a REST API as a governed MCP server, enforce OAuth2, and connect it to Claude Desktop
 - [Build an AI App with Claude Code](https://wso2.com/api-platform/docs/guides/ai-and-mcp/build-ai-app-with-claude-code.md): End-to-end walkthrough: build an AI application with Claude Code that calls backend APIs governed by WSO2 API Platform
 - [Governed Multi-Model LLM Proxy with Cost Controls and Failover](https://wso2.com/api-platform/docs/guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md): End-to-end walkthrough: set up a single governed LLM proxy that round-robins across multiple models for failover, enforces per-team token budgets, masks PII before requests leave your network, caches semantically similar prompts, and attributes cost per team via Moesif

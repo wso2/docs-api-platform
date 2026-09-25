@@ -173,7 +173,7 @@ The following is a complete view of all components and where to find their docum
 | Set up a developer portal for API discovery | [API Portal](cloud/devportal/theming-devportal-with-ai.md) |
 | Run a self-hosted developer portal | [Self-hosted API Portal](api-portal/1.0.0/overview.md) |
 | Monitor traffic and monetize my APIs | [Analytics and Monetization](analytics-and-monetization/overview.md) |
-| Follow end-to-end scenario walkthroughs | [Guides](guides/ai-and-mcp/convert-rest-api-to-mcp-server.md) |
+| Follow end-to-end scenario walkthroughs | [Guides](guides/overview.md) |
 
 ## Key concepts
 The following concepts apply across the entire platform:

@@ -73,7 +73,7 @@ Once you have completed a quick start guide, here is where to go next:
 | I want to... | Go here |
 | :--- | :--- |
 | Explore the full feature docs for my product | [Cloud](cloud/introduction/what-is-bijira.md) · [API Manager](api-manager/overview.md) · [API Gateway](api-gateway/1.1.0/overview.md) · [AI Gateway](ai-gateway/1.1.0/overview.md) |
-| Follow end-to-end scenarios spanning multiple components | [Guides](guides/ai-and-mcp/convert-rest-api-to-mcp-server.md) |
+| Follow end-to-end scenarios spanning multiple components | [Guides](guides/overview.md) |
 | Try runnable code samples | [Samples](cloud/samples/samples-overview.md) |
 | Understand platform concepts (organizations, projects, data planes) | [Concepts](cloud/bijira-concepts/organization.md) |
 | Browse reusable policies and guardrails | [Policy Hub](policy-hub/overview.md) |
