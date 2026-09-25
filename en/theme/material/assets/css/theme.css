@@ -25,6 +25,7 @@
 @import url('partials/_sidebar.css');
 @import url('partials/_header.css');
 @import url('partials/_version-select.css');
+@import url('partials/_content-actions.css');
 
 :root {
     --md-main-content-max-width: 1400px;

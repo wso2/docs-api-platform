@@ -1,0 +1,166 @@
+/*
+ * Copyright (c) 2026, WSO2 LLC. (https://www.wso2.com).
+ *
+ * WSO2 LLC. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ * Styling for the "Edit page" / "Copy page" buttons rendered above every page
+ * (see partials/actions.html). Behavior in docs/assets/js/theme.js.
+ */
+
+.md-content__actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 0.8rem;
+}
+
+.md-content__actions .md-button--content-action {
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--md-divider-color, rgba(0, 0, 0, 0.12));
+  border-radius: 6px;
+  background-color: var(--md-surface-fg-color, var(--md-default-bg-color));
+  color: var(--md-default-fg-color);
+  opacity: 1;
+  gap: 4px;
+}
+
+.md-content__actions .md-button--content-action:hover,
+.md-content__actions .md-button--content-action:focus {
+  background-color: var(--md-default-fg-color--lightest);
+  border-color: var(--md-divider-color, rgba(0, 0, 0, 0.12));
+  color: var(--md-default-fg-color);
+  opacity: 1;
+}
+
+.md-button--content-action svg {
+  height: 14px;
+  width: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Change the copy icon of the main button for a check mark */
+.md-content__copy-icon {
+  display: inline-flex;
+}
+
+.md-content__copy-icon--copied {
+  display: none;
+}
+
+.md-content__copy-trigger.md-content__copy-trigger--copied .md-content__copy-icon--copy {
+  display: none;
+}
+
+.md-content__copy-trigger.md-content__copy-trigger--copied .md-content__copy-icon--copied {
+  display: inline-flex;
+}
+
+.md-content__copy {
+  position: relative;
+  display: flex;
+}
+
+.md-content__copy .md-content__copy-trigger {
+  border-radius: 6px 0 0 6px;
+}
+
+.md-content__actions .md-content__copy-toggle {
+  display: flex;
+  align-items: center;
+  padding: 3px 5px;
+  margin-left: -1px;
+  border: 1px solid var(--md-divider-color, rgba(0, 0, 0, 0.12));
+  border-radius: 0 6px 6px 0;
+  background-color: var(--md-surface-fg-color, var(--md-default-bg-color));
+  color: var(--md-default-fg-color);
+  opacity: 1;
+}
+
+.md-content__actions .md-content__copy-toggle:hover,
+.md-content__actions .md-content__copy-toggle:focus {
+  background-color: var(--md-default-fg-color--lightest);
+  border-color: var(--md-divider-color, rgba(0, 0, 0, 0.12));
+  color: var(--md-default-fg-color);
+  opacity: 1;
+}
+
+.md-content__copy-toggle svg {
+  height: 14px;
+  width: 14px;
+  fill: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.md-content__copy.open .md-content__copy-toggle svg {
+  transform: rotate(180deg);
+}
+
+.md-content__copy-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 1;
+  min-width: 150px;
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--md-divider-color, rgba(0, 0, 0, 0.12));
+  background-color: var(--md-surface-fg-color, var(--md-default-bg-color));
+  box-shadow: var(--md-box-shadow-2);
+  display: none;
+  flex-direction: column;
+}
+
+.md-content__copy.open .md-content__copy-menu {
+  display: flex;
+}
+
+.md-content__copy-menu-item + .md-content__copy-menu-item {
+  margin-top: 2px;
+}
+
+.md-content__copy-menu .md-content__copy-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: var(--md-default-fg-color);
+  white-space: nowrap;
+}
+
+.md-content__copy-menu .md-content__copy-menu-item:hover,
+.md-content__copy-menu .md-content__copy-menu-item:focus {
+  background-color: var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color);
+}
+
+.md-content__copy-menu-item svg {
+  height: 16px;
+  width: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 30em) {
+  .md-content__actions {
+    justify-content: flex-start;
+  }
+}

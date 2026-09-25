@@ -1,0 +1,73 @@
+<!--
+ * Copyright (c) 2026, WSO2 LLC. (https://www.wso2.com).
+ *
+ * WSO2 LLC. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ * Overrides Material's stock partials/actions.html (two bare icon links) with
+ * labeled buttons: "Edit page" and a "Copy page" split button whose dropdown
+ * allows you to copy and view a page's Markdown. The raw Markdown a page is
+ * copied from / linked to is written alongside the HTML at build time by the
+ * on_page_markdown hook in hooks.py (e.g. cloud/.../overview.md next to
+ * cloud/.../overview/index.html); md_url below just points at that file.
+ * Click behavior is defined in docs/assets/js/theme.js; styling is defined in
+ * assets/css/partials/_content-actions.css.
+-->
+
+{% if page.edit_url %}
+{% set md_path = (page.url | trim('/')) if page.url else '' %}
+{% set md_path = md_path if md_path else 'index' %}
+{% set md_url = (md_path ~ '.md') | url %}
+<div class="md-content__actions">
+  {% if "content.action.edit" in features %}
+  <a href="{{ page.edit_url }}" class="md-typeset md-button md-button--small md-button--flex md-button--content-action"
+    title="Edit this page">
+    {% include ".icons/material/file-edit-outline.svg" %}
+    <span>Edit page</span>
+  </a>
+  {% endif %}
+  {% if "content.action.view" in features %}
+  <div class="md-content__copy" data-md-copy-page-url="{{ md_url }}">
+    <a href="#"
+      class="md-typeset md-button md-button--small md-button--flex md-button--content-action md-content__copy-trigger"
+      title="Copy page as Markdown">
+      <span class="md-content__copy-icon md-content__copy-icon--copy">
+        {% include ".icons/material/content-copy.svg" %}
+      </span>
+      <span class="md-content__copy-icon md-content__copy-icon--copied">
+        {% include ".icons/material/check.svg" %}
+      </span>
+      <span>Copy page</span>
+    </a>
+    <button type="button" class="md-typeset md-button md-button--small md-content__copy-toggle"
+      aria-label="More page actions" aria-expanded="false">
+      {% include ".icons/material/chevron-down.svg" %}
+    </button>
+    <div class="md-content__copy-menu" role="menu">
+      <a href="#" class="md-content__copy-menu-item md-content__copy-trigger" title="Copy page as Markdown"
+        role="menuitem">
+        {% include ".icons/material/content-copy.svg" %}
+        <span>Copy Markdown</span>
+      </a>
+      <a href="{{ md_url }}" class="md-content__copy-menu-item" title="View this page as plain text" role="menuitem"
+        target="_blank" rel="noopener">
+        {% include ".icons/material/file-eye-outline.svg" %}
+        <span>View Markdown</span>
+      </a>
+      {# Add future page actions (e.g. "Open in ChatGPT") as additional <a> items here. #}
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
