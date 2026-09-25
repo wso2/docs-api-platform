@@ -1360,6 +1360,7 @@ nav:
         - Discover APIs from AWS API Gateway: guides/gateway-federation/discover-apis-from-aws-api-gateway.md
     - WebSocket APIs:
         - Build a WebSocket-Based Real-Time Notification System: guides/websocket/build-a-websocket-notification-system.md
+        - Build an AI Agent that Reacts to WebSocket Notifications: guides/websocket/build-an-ai-agent-for-websocket-notifications.md
   - Tools:
     - API Platform CLI:
         - Quick Start Guide: tools/cli/quick-start-guide.md
