@@ -8,7 +8,7 @@ tags:
   - ai-workspace
   - llm-proxies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-07
+last_updated: 2026-09-30
 content_type: "overview"
 ---
 
@@ -34,7 +34,10 @@ The main benefit is specialization and isolation. You can call a single provider
 
 **Switch between compatible providers without client changes.** Applications and agents call the proxy URL rather than the provider directly. You can swap the underlying LLM provider, for example from OpenAI to Azure OpenAI, and clients need no changes as long as the new provider preserves the client-facing contract. That contract covers the authentication clients send and the resources the proxy exposes.
 
+**Route to several providers from one endpoint.** A proxy can front more than one LLM provider. Applications keep sending one request format to one URL, and select a provider per request. The proxy translates between the format it accepts and each provider's own.
+
 ## Next steps
 
 - [Configure an App LLM proxy](configure-proxy.md): create and deploy your first specialized proxy
+- [Route to several providers](multi-provider.md): attach more than one provider to a single proxy
 - [Manage an App LLM proxy](manage-proxy.md): update configuration, guardrails, and resources after deployment

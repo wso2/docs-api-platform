@@ -1305,6 +1305,7 @@ nav:
       - App LLM Proxies:
           - Overview: ai-workspace/next/llm-proxies/overview.md
           - Configure App LLM Proxy: ai-workspace/next/llm-proxies/configure-proxy.md
+          - Route to Several Providers: ai-workspace/next/llm-proxies/multi-provider.md
           - Manage App LLM Proxy: ai-workspace/next/llm-proxies/manage-proxy.md
       - MCP Proxies:
           - Overview: ai-workspace/next/mcp-proxies/overview.md

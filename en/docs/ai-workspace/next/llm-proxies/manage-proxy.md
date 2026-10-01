@@ -8,7 +8,7 @@ tags:
   - ai-workspace
   - llm-proxies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-09-24
+last_updated: 2026-09-30
 content_type: "how-to"
 ---
 
@@ -18,39 +18,59 @@ Once you create an App LLM proxy, manage its configuration through the proxy det
 
 ## Access proxy details
 
-1. Navigate to **LLM** > **Proxies** in the left navigation menu.
+1. Navigate to **LLM** > **App LLM Proxies** in the left navigation menu.
 
 2. Click a proxy name to open its details page.
 
 The proxy details page displays the following information at the top:
 
-- **Proxy name**, for example `Test-Openai`
-- **Provider**: the linked LLM service provider
-- **Version**: the proxy version
+- **Proxy name**, with the version shown as a badge beside it
+- **Provider**: the proxy's primary LLM service provider
+- **Context**: the base path for the proxy's endpoints
 - **Last updated**: the timestamp of the most recent change
+- **Created by**: the user who created the proxy
 
-The page is organized into four configuration tabs: **Provider**, **Resources**, **Security**, and **Guardrails**. On the right side, you'll find the **Get Started** panel with API key generation and deployed gateway information.
+The page is organized into five configuration tabs: **Overview**, **Definition**, **Providers**, **Security**, and **Guardrails & Policies**. **Definition** precedes **Providers** because the interface a proxy accepts decides what each provider needs translating to. On the right side, you'll find the **Get Started** panel with API key generation and deployed gateway information.
 
 The **Deploy to Gateway** button and a **delete** icon are located in the top-right corner of the page.
 
-## Provider settings
+## Providers
 
-Configure which LLM service provider the proxy connects to and how it authenticates with the provider.
+Configure which LLM service providers the proxy connects to and how it authenticates with each of them. A proxy has at least one provider and may have several - see
+[Route to several providers](multi-provider.md).
 
-### LLM service provider
+### The provider list
 
-1. Go to the **Provider** tab.
+1. Go to the **Providers** tab.
 
-2. Use the **Provider** dropdown to select or change the linked LLM service provider.
+    The tab shows the proxy's **Inbound interface**, the number of providers attached, and a table
+    listing each one.
 
-    The dropdown lists all service providers that have been configured in your workspace.
+    ![Providers tab of a proxy, showing the inbound interface, the provider count and the provider table](../../../assets/img/ai-workspace/proxy-creation/providers-tab.png)
+
+2. Each row shows the provider's name with its **Provider ID** beneath, its **Transformer policy**,
+   a **Primary** toggle, and row actions.
+
+3. Use **Edit provider** to change a row's credential or transformer, **+ Add Additional LLM
+   Provider** to attach another, and **Remove provider** to detach one. Move the primary marker with
+   the **Primary** toggle.
+
+    The provider selection lists all service providers configured in your workspace that are not
+    already attached.
 
     !!! info
-        Changing the provider updates related settings such as authentication and available resources.
+        Changing a provider updates related settings such as authentication and available resources.
+
+    !!! note
+        The last remaining provider cannot be removed. A proxy always has at least one.
+
+Edits are held on the page until you save, so you can adjust several providers and apply them
+together. The bar at the bottom of the page reports whether anything is unsaved.
 
 ### API key configuration
 
-If your selected provider uses API key authentication, you'll see the **API Key Configuration** section below the provider dropdown.
+If a provider uses API key authentication, its provider panel shows an **API Key** field. Each
+provider carries its own credential, entered manually or generated from the panel.
 
 | Field | Description |
 |-------|-------------|
@@ -78,7 +98,7 @@ The OpenAPI specification defines the resources, or API endpoints, available thr
 
 **To import manually:**
 
-1. Go to the **Resources** tab.
+1. Go to the **Definition** tab.
 
 2. Click the **Import from file** button.
 
@@ -91,7 +111,7 @@ The OpenAPI specification defines the resources, or API endpoints, available thr
 
 ### View resources
 
-After importing, the **Resources** section displays the count and list of parsed resources. Each resource shows:
+After importing, the **Resources** panel on the **Definition** tab displays the count and list of parsed resources, and the **Overview** tab lists them too. Each resource shows:
 
 - **HTTP Method**: the HTTP method (GET, POST, PUT, DELETE, or PATCH)
 - **Resource Path**: the endpoint path, for example `/v1/chat/completions`
@@ -167,7 +187,7 @@ Resource-wise guardrails apply to **specific endpoints** only. This section list
 
 ## Save changes
 
-After making configuration changes across any tab (Provider, Resources, Security, Guardrails), click the **Save** button at the bottom-right of the page to persist your changes.
+After making configuration changes across any tab (Definition, Providers, Security, Guardrails & Policies), click the **Save** button at the bottom-right of the page to persist your changes.
 
 Use the **Cancel** button to discard all unsaved changes and revert to the last saved state.
 

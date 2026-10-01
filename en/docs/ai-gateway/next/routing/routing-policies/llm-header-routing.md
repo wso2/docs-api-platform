@@ -9,7 +9,7 @@ tags:
   - llm
   - header-routing
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-20
+last_updated: 2026-09-30
 content_type: "reference"
 ---
 
@@ -36,7 +36,7 @@ The router has the following selection behavior:
 - Preserves a non-empty provider selection made by an earlier policy
 - Leaves the routing header on the upstream request
 
-The header router publishes provider-selection metadata but does not by itself override the named upstream. An additional provider therefore needs a matching inline transformer, or another policy that explicitly sets its upstream.
+The header router sets the selected provider's named upstream during the request-header phase, and publishes the selection as request metadata. An additional provider is reached whether or not it carries a transformer. The published selection is what lets conditional credential and transformer policies apply only what belongs to the chosen provider.
 
 ## Policy reference
 
@@ -44,6 +44,6 @@ This policy is documented in the [Policy Hub](https://wso2.com/api-platform/poli
 
 ## Related topics
 
-- [Multi-provider routing](../multi-provider-routing.md) — the worked configuration this policy appears in, including the transformer each additional provider needs.
+- [Multi-provider routing](../multi-provider-routing.md) — the worked configuration this policy appears in, including when a provider needs a transformer and when it does not.
 - [Load balancing and failover](load-balancing-and-failover.md) — the round robin policies, for distributing across a pool instead of naming one provider.
 - [Multi model routing](../multi-model-routing.md) — the use-case page for distributing traffic across models.
