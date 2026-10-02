@@ -6,6 +6,7 @@
 
 - [Platform Overview](https://wso2.com/api-platform/docs/index.md): What WSO2 API Platform is, the three deployment options (Cloud, Hybrid, Self-Managed), and the two standalone gateway modes: use this to find the right starting point
 - [Get Started](https://wso2.com/api-platform/docs/get-started.md): Index of quick start guides organized by use case: manage APIs, run a standalone gateway, govern AI services, or monetize APIs
+- [Frequently Asked Questions](https://wso2.com/api-platform/docs/faq.md): Answers to common questions about deployment options, AI Gateway and AI Workspace, LLM and MCP proxies, guardrails and policies, API security, consumption, and monitoring
 
 ## Cloud Platform
 
