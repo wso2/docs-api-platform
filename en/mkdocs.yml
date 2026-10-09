@@ -1445,6 +1445,18 @@ nav:
               - API Keys: ai-workspace/1.0.0/platform-api/api-keys.md
               - Secrets: ai-workspace/1.0.0/platform-api/secrets.md
               - Schemas: ai-workspace/1.0.0/platform-api/schemas.md
+  - API Control Plane:
+    - Overview: api-control-plane/next/overview.md
+    - GraphQL APIs:
+        - Overview: api-control-plane/next/graphql-apis/overview.md
+        - Create a GraphQL API: api-control-plane/next/graphql-apis/create-graphql-api.md
+        - Manage a GraphQL API: api-control-plane/next/graphql-apis/manage-graphql-api.md
+        - Apply Policies: api-control-plane/next/graphql-apis/apply-policies.md
+        - GraphQL Authorization Policy: api-control-plane/next/graphql-apis/graphql-authorization-policy.md
+        - Deploy a GraphQL API: api-control-plane/next/graphql-apis/deploy-graphql-api.md
+        - Test a GraphQL API: api-control-plane/next/graphql-apis/test-graphql-api.md
+        - Manage API Keys: api-control-plane/next/graphql-apis/manage-api-keys.md
+        - Platform API: api-control-plane/next/graphql-apis/platform-api.md
   - Analytics:
     - Overview: analytics/overview.md
   - Monetization:
@@ -2246,7 +2258,9 @@ extra:
   # rendered hidden; theme.js reveals them while the current URL contains the
   # version as a path segment (e.g. /next/api-portal/...). See
   # partials/nav-item.html and theme.js.
-  version_scoped_navs: []
+  version_scoped_navs:
+    - title: API Control Plane
+      version: "next"
   expanded_navs:
     - title: Cloud
       options:
