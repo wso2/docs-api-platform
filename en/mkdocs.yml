@@ -214,6 +214,7 @@ nav:
         - Analytics:
             - ai-gateway/1.2.0/analytics/index.md
             - Moesif Analytics: ai-gateway/1.2.0/analytics/moesif-analytics.md
+            - OpenTelemetry Analytics: ai-gateway/1.2.0/analytics/opentelemetry-analytics.md
             - Analytics Header Filter: ai-gateway/1.2.0/analytics/analytics-header-filter.md
         - AI Workspace:
             - Extend Your Gateway with AI Workspace: ai-gateway/1.2.0/ai-workspace/extend-your-gateway-with-ai-workspace.md
@@ -222,6 +223,7 @@ nav:
         - Setup and Deployment:
             - ai-gateway/1.2.0/setup-and-deployment/index.md
             - Install the Gateway: ai-gateway/1.2.0/setup-and-deployment/install-the-gateway.md
+            - Minimum resource requirements: ai-gateway/1.2.0/setup-and-deployment/resource-requirement.md
             - Kubernetes:
                 - ai-gateway/1.2.0/setup-and-deployment/kubernetes/index.md
                 - Standalone Mode: ai-gateway/1.2.0/setup-and-deployment/kubernetes/kubernetes-standalone.md
