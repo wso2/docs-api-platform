@@ -1,8 +1,8 @@
 ---
 title: "Create and configure an LLM provider"
 description: "Create an LLM provider: choose a template, set the upstream URL and credentials, deploy it with the management API, and test the connection."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/create-and-configure-an-llm-provider/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/create-and-configure-an-llm-provider.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/gateway-artifacts/llm-provider/create-and-configure-an-llm-provider/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/gateway-artifacts/llm-provider/create-and-configure-an-llm-provider.md
 tags:
   - ai-gateway
   - llm-provider

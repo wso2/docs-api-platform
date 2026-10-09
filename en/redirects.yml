@@ -5909,3 +5909,5 @@ redirect_maps:
   ai-gateway/1.2.0/resiliency/timeouts.md: ai-gateway/1.2.0/timeouts-and-resilience.md
   ai-gateway/1.2.0/setup/configuration.md: ai-gateway/1.2.0/setup-and-deployment/configuration.md
   ai-gateway/1.2.0/setup/database-setup.md: ai-gateway/1.2.0/setup-and-deployment/database-setup.md
+  ai-gateway/analytics/opentelemetry-analytics.md: ai-gateway/1.2.0/analytics/opentelemetry-analytics.md
+  ai-gateway/mcp-proxy/policies/mcp-ratelimit.md: ai-gateway/1.2.0/mcp-governance.md

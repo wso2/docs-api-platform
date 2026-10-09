@@ -1,8 +1,8 @@
 ---
 title: "Azure OpenAI"
 description: "Connect the AI Gateway to Azure OpenAI: the values your Azure resource supplies, what the azure-openai template extracts, and OpenAI-format compatibility."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/supported-providers/azure-openai/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/gateway-artifacts/llm-provider/supported-providers/azure-openai.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/azure-openai/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/gateway-artifacts/llm-provider/supported-providers/azure-openai.md
 tags:
   - ai-gateway
   - llm-provider

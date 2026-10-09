@@ -1,8 +1,8 @@
 ---
 title: "Routing"
 description: "Route AI Gateway traffic across LLM providers and models, with the policies that select a provider, distribute across a pool, and suspend a failing model."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/routing/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/routing.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/routing/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/routing.md
 tags:
   - ai-gateway
   - routing

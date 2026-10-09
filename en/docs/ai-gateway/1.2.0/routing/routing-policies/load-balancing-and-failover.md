@@ -1,8 +1,8 @@
 ---
 title: "Load balancing and failover"
 description: "Spread AI traffic across a pool of models with the round robin and weighted round robin policies, and move off a model that starts returning errors."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/routing/routing-policies/load-balancing-and-failover/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/routing/routing-policies/load-balancing-and-failover.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/routing/routing-policies/load-balancing-and-failover/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/routing/routing-policies/load-balancing-and-failover.md
 tags:
   - ai-gateway
   - load-balancing

@@ -1,8 +1,8 @@
 ---
 title: "Cost control and budgets"
 description: "Put a monetary ceiling on LLM usage through the AI Gateway: price each call as it passes and reject traffic once a budget is spent."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/cost-control-and-budgets/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/cost-control-and-budgets.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/cost-control-and-budgets/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/1.2.0/cost-control-and-budgets.md
 tags:
   - ai-gateway
   - cost
