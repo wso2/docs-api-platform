@@ -118,7 +118,7 @@ Find APIs and MCP servers in the Developer Portal and MCP Hub, and make your fir
 
 ---
 
-Route Claude Code, Gemini CLI, and Codex traffic through AI Gateway.
+Route Claude Code, Gemini CLI, Codex, and GitHub Copilot traffic through AI Gateway.
 
 - [Configure Claude Code with AI Gateway](ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md)
 
@@ -135,6 +135,10 @@ Route Claude Code, Gemini CLI, and Codex traffic through AI Gateway.
 - [Configure OpenAI Codex CLI with AI Gateway](ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md)
 
     Route Codex CLI requests through AI Gateway with an App LLM Proxy.
+
+- [Configure GitHub Copilot with AI Gateway](ai-and-mcp/ai-coding-assistants/github-copilot-configuration-with-ai-gateway.md)
+
+    Route GitHub Copilot CLI and Copilot Chat in VS Code requests through AI Gateway with an App LLM Proxy.
 
 </div>
 

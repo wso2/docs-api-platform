@@ -734,6 +734,7 @@ nav:
                 - Configure Claude Code with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
                 - Configure Google Gemini CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
                 - Configure OpenAI Codex CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md
+                - Configure GitHub Copilot with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/github-copilot-configuration-with-ai-gateway.md
         - Reference:
             - ai-gateway/next/reference/index.md
             - Provider Templates: ai-gateway/next/reference/llm-templates.md
@@ -851,6 +852,7 @@ nav:
                 - Configure Claude Code with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
                 - Configure Google Gemini CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
                 - Configure OpenAI Codex CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md
+                - Configure GitHub Copilot with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/github-copilot-configuration-with-ai-gateway.md
         - Reference:
             - ai-gateway/2026.09.24/reference/index.md
             - Provider Templates: ai-gateway/2026.09.24/reference/llm-templates.md
@@ -964,6 +966,7 @@ nav:
                 - Configure Claude Code with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
                 - Configure Google Gemini CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
                 - Configure OpenAI Codex CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md
+                - Configure GitHub Copilot with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/github-copilot-configuration-with-ai-gateway.md
         - Reference:
             - ai-gateway/1.2.0/reference/index.md
             - Provider Templates: ai-gateway/1.2.0/reference/llm-templates.md
@@ -1468,6 +1471,7 @@ nav:
             - Configure Claude Code with a Claude Subscription: guides/ai-and-mcp/ai-coding-assistants/claude-code-subscription-configuration-with-ai-gateway.md
         - Configure Google Gemini CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md
         - Configure OpenAI Codex CLI with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md
+        - Configure GitHub Copilot with AI Gateway: guides/ai-and-mcp/ai-coding-assistants/github-copilot-configuration-with-ai-gateway.md
     - Manage and Govern APIs:
         - Build an AI App with Claude Code that Calls Governed Backend APIs: guides/ai-and-mcp/build-ai-app-with-claude-code.md
     - Expose and Govern MCP Servers:
