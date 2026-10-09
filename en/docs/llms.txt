@@ -161,6 +161,7 @@
 - [Manage LLM Provider](https://wso2.com/api-platform/docs/ai-workspace/llm-providers/manage-provider.md): Configure connection, access control, security, rate limiting, guardrails, and models for a deployed provider
 - [App LLM Proxies Overview](https://wso2.com/api-platform/docs/ai-workspace/llm-proxies/overview.md): Application-facing endpoints on top of an LLM provider, with their own guardrails and access rules
 - [MCP Proxies Overview](https://wso2.com/api-platform/docs/ai-workspace/mcp-proxies/overview.md): Connect the AI Gateway to upstream MCP servers through a centrally managed MCP proxy
+- [Agent Proxy Quick Start Guide](https://wso2.com/api-platform/docs/ai-workspace/agent-proxies/quick-start-guide.md): Put a sample A2A agent behind an AI Gateway from AI Workspace, call it through the gateway, and secure it with an API key
 - [GenAI Applications](https://wso2.com/api-platform/docs/ai-workspace/genai-applications.md): Group API keys under a named application for usage visibility and governance
 - [Secrets Management](https://wso2.com/api-platform/docs/ai-workspace/secrets-management.md): How the standalone AI Workspace encrypts and rotates stored credentials
 - [Authentication in AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/setting-up/authentication/overview.md): File-based sign-in for local use versus an identity provider over OIDC for production
