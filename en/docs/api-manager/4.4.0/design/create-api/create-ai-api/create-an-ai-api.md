@@ -85,6 +85,10 @@ The overview page of the newly created API appears.
 
 Now, you have successfully created an AI API. Next, [deploy the API](../../../deploy-and-publish/deploy-on-gateway/deploy-api/deploy-an-api.md), [test the API](../../../design/create-api/create-rest-api/test-a-rest-api.md), and finally [publish the API](../../../deploy-and-publish/publish-on-dev-portal/publish-an-api.md).
 
+## Limitations
+
+Streaming is not supported for AI APIs when using the **WSO2 API Manager Universal Gateway**.
+
 ## See Also
 
 Learn more on the concepts that you need to know when creating a REST API:
