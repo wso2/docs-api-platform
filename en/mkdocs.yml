@@ -1507,6 +1507,7 @@ nav:
         - Reference: tools/arazzo-mcp-gen-cli/reference.md
     - VS Code Arazzo Visualizer:
         - Getting Started: tools/vscode-arazzo-visualizer/getting-started.md
+  - FAQ: faq.md
 
 # Extensions
 markdown_extensions:
@@ -2327,6 +2328,9 @@ extra:
       level: 1
     Get Started:
       icon: octicons/rocket-16
+      level: 1
+    FAQ:
+      icon: octicons/question-16
       level: 1
     Cloud:
       icon: octicons/cloud-16
