@@ -1321,6 +1321,8 @@ nav:
           - Overview: ai-workspace/next/mcp-proxies/overview.md
           - Configure Proxy: ai-workspace/next/mcp-proxies/configure-proxy.md
           - Apply Policies: ai-workspace/next/mcp-proxies/apply-policies.md
+      - Agent Proxies:
+          - Quick Start Guide: ai-workspace/next/agent-proxies/quick-start-guide.md
       # Credentials the artifacts above reference.
       - Secrets Management: ai-workspace/next/secrets-management.md
       # The other two ways artifacts get created.
