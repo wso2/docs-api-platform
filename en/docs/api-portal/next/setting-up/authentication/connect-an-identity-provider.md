@@ -9,7 +9,7 @@ tags:
   - authentication
   - oidc
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-04
+last_updated: 2026-10-13
 content_type: "how-to"
 ---
 
@@ -17,7 +17,7 @@ content_type: "how-to"
 
 The API Portal & MCP Hub delegates user login to any identity provider (IdP) that speaks OpenID Connect (OIDC). This guide is written for the administrator who deploys the portal, and it covers the configuration every IdP needs. For a worked example of these steps against one specific IdP, see [Set up Asgardeo as your identity provider](asgardeo-as-idp.md).
 
-For how identity provider authentication compares with local authentication, see [Authentication in the API Portal & MCP Hub](overview.md).
+For how identity provider authentication compares with local authentication, see [Authentication in the API Portal & MCP Hub](overview.md). To serve every organization in your IdP from one portal, configure the IdP as described here, and then turn on [multi-organization mode](multi-organization.md).
 
 ## How OIDC login works here
 
@@ -61,9 +61,11 @@ The portal reads three claims out of the ID token by name, and `[api_portal.auth
 
 | Mapping key | Default claim | Carries |
 |-------------|---------------|---------|
-| `organization` | `org_name` | The organization identifier, resolved against the organization this instance serves on every request. Required—a token without it is rejected with `403`. See [step 5](#step-5-make-the-organization-claim-resolve-to-your-organization). |
+| `organization` | `org_name` | The organization identifier, resolved against the organization this instance serves on every request. A token without it acts in the configured organization. See [step 5](#step-5-make-the-organization-claim-resolve-to-your-organization). |
 | `roles` | `roles` | The user's role names. Required when `authorization.mode = "role"`; startup fails if the mapping is empty. |
 | `groups` | `groups` | The user's group names. Carried into the session for use in page and content rules. |
+| `org_name` | Empty | Optional. The organization's name, used to name an organization that [multi-organization mode](multi-organization.md) provisions. |
+| `org_handle` | Empty | Optional. The organization's URL handle, which an organization that multi-organization mode provisions takes as its handle when it's usable. |
 
 Each value is either a flat top-level claim name or a dot-separated path into a nested claim. That path syntax accommodates providers that nest their claims—Keycloak puts roles under `realm_access.roles`, for example.
 
@@ -173,18 +175,21 @@ In production, prefer a mounted secret file. Swap the token for {% raw %}`'{{ fi
 
 ## Step 5: Make the organization claim resolve to your organization
 
-A portal instance serves exactly one organization, and the database schema is multi-organization—so a token your IdP correctly signed for a *different* organization would pass every signature, expiry, and audience check. The portal closes that gap by resolving the mapped organization claim and confirming it names the organization the instance is pinned to. It does this at login and on every authenticated request, and a mismatch is a flat `403`, whether the asserted organization is unknown or merely someone else's. A token carrying no organization claim at all is rejected the same way.
+By default, a portal instance serves exactly one organization, and the database schema is multi-organization—so a token your IdP correctly signed for a *different* organization would pass every signature, expiry, and audience check. The portal closes that gap by resolving the mapped organization claim and confirming it names the organization the instance is pinned to. It does this at login and on every authenticated request, and a mismatch is a flat `403`, whether the asserted organization is unknown or merely someone else's. To serve several organizations from one instance instead, see [Serve multiple organizations from one API Portal](multi-organization.md).
 
-The claim's value has to resolve to your organization, which means it must equal either of these:
+A token carrying no organization claim at all acts in the configured organization, with the roles or scopes it carries. Make sure the IdP puts the claim on every user's token, and that `claim_mappings.organization` names the claim your IdP actually sends: with a wrong name, no token carries the claim, so every user acts in the configured organization.
+
+The claim's value has to resolve to your organization, which means it must equal one of these:
 
 | Value | Matching |
 |-------|----------|
 | The organization handle, from `[api_portal.organization] handle` | Case-insensitive |
 | The organization display name, from **Settings > Organization** | Exact |
+| The organization's IdP reference ID, from `[api_portal.auth] idp_org_id` | Exact |
 
-The handle is also the organization's **IDP reference ID**, which the portal writes when it first seeds the organization row. That field is fixed from then on: the Management API rejects a request that changes it, so **IDP reference ID** in [Organization settings](../../admin-settings/organization-settings.md) reflects the handle rather than offering a second value to match against.
+The IdP reference ID defaults to the handle. Set `[api_portal.auth] idp_org_id` only when your IdP's organization claim differs from the URL handle, and restart the portal to apply a change. **IDP reference ID** in [Organization settings](../../admin-settings/organization-settings.md) shows the configured value, and users already signed in with the previous claim value must sign in again.
 
-So point the claim at the handle. Which way round you do that depends on what your IdP has to assert.
+So point the claim at the handle, or set `idp_org_id` to the value your IdP asserts. Which way round you do that depends on what your IdP has to assert.
 
 ### When your IdP asserts an organization identifier
 
@@ -234,7 +239,7 @@ If sign-in fails, the mismatch is usually one of these:
 - `callback_url` differs from the redirect URL registered in the IdP.
 - `issuer` doesn't match the token's `iss` claim, or `audience` doesn't match its `aud` claim.
 - The ID token doesn't carry the claim names configured in `[api_portal.auth.claim_mappings]`, so the organization or roles claim is never found.
-- The organization claim's value is neither the organization handle nor its display name, so it resolves to no organization the instance serves.
+- The organization claim's value isn't the organization handle, its display name, or its IdP reference ID, so it resolves to no organization the instance serves.
 - The IdP issues opaque access tokens rather than JWTs, which fails Bearer-token requests to `/api-portal/api/v0.9` while browser login still works.
 
 Set `[api_portal.logging] level = "debug"` to see which claim or check fails.
@@ -267,3 +272,4 @@ The roles claim is the one that most often differs. These paths are known to wor
 - [Authentication in the API Portal & MCP Hub](overview.md): how identity provider authentication compares with local authentication
 - [Configurations](../../references/configurations.md): every `config.toml` key, and how interpolation tokens deliver values into it
 - [Organization settings](../../admin-settings/organization-settings.md): the organization's display name and references, as administrators see them
+- [Serve multiple organizations from one API Portal](multi-organization.md): one portal for every organization in your IdP
