@@ -8,7 +8,7 @@ tags:
   - observability
   - logging
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-20
+last_updated: 2026-10-13
 content_type: "how-to"
 ---
 
@@ -51,6 +51,12 @@ Envoy access log ──ALS──► collector ──► traffic-log serializer �
 
 Because emission happens on Envoy's access-log path, it fires for every request Envoy terminates —
 including requests denied by an auth policy before they reach any downstream logic.
+
+Headers and bodies are captured earlier, while the policy engine processes the request and response.
+By default they are handed to the access-log side in memory, through the
+[correlation store](#tuning-capture-throughput-correlation-store), rather than being carried through
+Envoy. This keeps the cost of header and body logging low, and it is enabled automatically. The
+logged output is the same either way.
 
 Two properties hold for every sink:
 
@@ -143,6 +149,23 @@ are sensible for most deployments.
     controller and the policy-engine can never disagree on it. `buffer_flush_interval`,
     `buffer_size_bytes`, and `grpc_request_timeout` are additional Envoy-sender-only keys under
     `[collector.server]`; see `config-template.toml` for their defaults.
+
+### `[collector.correlation_store]`
+
+Tuning for the in-memory hand-off of captured headers and bodies. The defaults suit most
+deployments, and the section can be omitted entirely. See
+[Tuning capture throughput](#tuning-capture-throughput-correlation-store) for how it works and how
+to size it.
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `mode` | string | `"auto"` | `"auto"`: used when both `policy_engine.server.mode` and `collector.server.mode` are `"uds"` (the default). `"on"`: always used. `"off"`: never used; captured fields travel through Envoy. |
+| `capacity` | int | `20000` | Maximum number of requests held at a time. Must be at least `shards`, and at most `10000000`. |
+| `ttl` | duration | `"30s"` | How long a finished request's entry waits for its access-log entry before its slot can be reused. Must be longer than `collector.server.buffer_flush_interval`; a shorter value is raised at startup (see below). |
+| `max_entry_age` | duration | `"5m"` | How long an entry whose response was never seen to finish can hold its slot before it can be reused. Raised to `ttl` if lower. |
+| `shards` | int | `32` | Number of independently locked partitions. Rounded up to a power of two; at most `1024`. |
+| `max_payload_bytes` | int | `262144` (256 KiB) | Largest single captured body held in memory. Larger bodies travel through Envoy. `0` keeps every body out of the store. |
+| `max_body_bytes` | int | `16777216` (16 MiB) | Total memory for captured headers and bodies held at a time. `0` keeps every body out of the store; headers then share a 16 MiB budget. |
 
 ## The `file` sink
 
@@ -675,6 +698,183 @@ sum(rate(policy_engine_traffic_log_written_total[5m]))
     configured, one request produces one write **per sink**, so a bare `sum()` of
     `written_total` reads as double the request rate.
 
+## Tuning capture throughput (correlation store)
+
+Capturing headers and bodies adds work to every request, so it lowers the gateway's maximum
+throughput. The correlation store keeps that cost down, and it is on by default. This section
+explains how it works, when to change its settings, and how to monitor it.
+
+### How the store works
+
+A request's headers and bodies are captured while the policy engine processes the request and
+response, and they are logged later, from Envoy's access-log entry. The store hands them from one
+side to the other in memory, inside the policy engine:
+
+1. When a request's first field is captured, the store creates an entry for it and tags the request
+   with a short token.
+2. The headers and bodies captured for that request are added to the entry.
+3. When Envoy's access-log entry for the request arrives, the policy engine reads the entry by its
+   token, builds the analytics event and the traffic-log line, and frees the entry.
+
+Without the store, every captured field is carried through Envoy as request metadata, which costs
+considerably more CPU per request.
+
+The store never loses captured data by being too small. A field that does not fit (the store is
+full, the body is larger than `max_payload_bytes`, or the byte budget is used up) is carried through
+Envoy instead, exactly as it would be with the store off. Every traffic-log line, analytics event and
+OpenTelemetry record has the same content with the store on or off.
+
+!!! note
+    The store applies to every consumer of the collector, so it speeds up analytics publishers such
+    as Moesif and OpenTelemetry as well as traffic logging. It is only used while the collector is
+    active, that is, while `analytics.enabled` or `traffic_logging.enabled` is `true`.
+
+### When the store is used (`mode`)
+
+A request's capture and its access-log entry must reach the **same policy-engine process** for the
+store to work.
+
+| `mode` | Store used | Use it when |
+|---|---|---|
+| `"auto"` (default) | When `policy_engine.server.mode` and `collector.server.mode` are both `"uds"` | Almost always. Over a Unix domain socket, both always reach the policy engine in the same container. |
+| `"on"` | Always | Only when TCP mode is in use and `router.policy_engine.host` resolves to exactly **one** policy-engine process. If it resolves to several, the access-log entry can reach a different process from the one holding the fields, and those lines lose their headers and bodies. |
+| `"off"` | Never | Troubleshooting, or to rule the store out. Every captured field travels through Envoy, as in releases without the store. |
+
+In TCP mode with `"auto"`, the store is off, so throughput is the same as without it.
+
+### Sizing
+
+The defaults hold up to 20,000 requests and 16 MiB of captured data. Change them only if the
+metrics in [Monitoring the store](#monitoring-the-store) show that the store is too small.
+
+* **`capacity`**: an entry lives from the request's first captured field until its access-log entry
+  is read, which usually happens within about a second (`collector.server.buffer_flush_interval`,
+  default 1 s) after the response ends. Size it to at least
+  **peak requests per second × (typical request duration + flush interval)**, with headroom.
+  For example, 5,000 requests per second with responses under 1 s needs about 10,000 entries, well
+  within the default.
+* **`max_body_bytes`**: the most memory the store uses for captured headers and bodies. Raise it if
+  you log large bodies at a high rate and `rejected_budget` keeps climbing. The memory is counted
+  against the gateway-runtime container's limit.
+* **`max_payload_bytes`**: bodies larger than this are carried through Envoy instead. Raising it
+  lets larger bodies use the store, at the cost of more memory per request.
+* **`shards`**: spreads lock contention across partitions. The default suits most instances; raise
+  it (for example, to 64) only on instances with many CPU cores handling a very high request rate.
+
+`ttl` and `max_entry_age` decide when the slot of an entry that was **never read** can be reused.
+That normally happens only when Envoy drops an access-log entry. A slot is only reclaimed when the
+store needs room, and each reclaimed entry is counted in
+`policy_engine_correlation_store_evictions_total`. An entry reclaimed before it is read loses its
+captured headers and bodies, so keep both values well above the access-log delay:
+
+* **`ttl`** applies once the response has finished. It must be longer than
+  `collector.server.buffer_flush_interval`. A shorter value does not stop the gateway from starting:
+  it is raised to twice the flush interval with a warning such as
+  `collector.correlation_store.ttl is not longer than the access-log flush interval; raising it`.
+  The deprecated `[analytics.grpc_event_server]` flush interval is taken into account.
+* **`max_entry_age`** applies while the response has not finished. Raise it if you serve responses
+  that stream for longer than 5 minutes (for example, long-lived server-sent event streams) and see
+  `max_age` evictions.
+
+### Example configurations
+
+=== "Defaults"
+
+    No section is needed. This is equivalent to:
+
+    ```toml
+    [collector.correlation_store]
+    mode = "auto"
+    capacity = 20000
+    ttl = "30s"
+    max_entry_age = "5m"
+    shards = 32
+    max_payload_bytes = 262144
+    max_body_bytes = 16777216
+    ```
+
+=== "High traffic with body logging"
+
+    For a large instance logging request and response bodies at a high rate. Make sure the container's
+    memory limit allows for the larger byte budget.
+
+    ```toml
+    [collector.correlation_store]
+    capacity = 50000
+    shards = 64
+    max_body_bytes = 67108864   # 64 MiB
+    ```
+
+=== "Memory-constrained"
+
+    Keep headers in the store but carry bodies through Envoy.
+
+    ```toml
+    [collector.correlation_store]
+    max_body_bytes = 0
+    ```
+
+=== "Off"
+
+    ```toml
+    [collector.correlation_store]
+    mode = "off"
+    ```
+
+### Monitoring the store
+
+The policy engine exports these Prometheus counters on its metrics port (`[policy_engine.metrics]`,
+port `9003` by default).
+
+| Metric | Labels | Description |
+|---|---|---|
+| `policy_engine_correlation_store_writes_total` | `result` | Captured fields offered to the store. `stored`: kept in memory. `rejected_full`: no free entry. `rejected_budget`: over `max_payload_bytes` or `max_body_bytes`. Rejected fields are carried through Envoy, so a rejection costs throughput, not data. |
+| `policy_engine_correlation_store_reads_total` | `result` | Access-log lookups. `hit`: the entry was found. `miss`: the request had no entry, for example because nothing was stored for it. |
+| `policy_engine_correlation_store_evictions_total` | `reason` | Unread entries reclaimed to make room. `ttl`: the response finished more than `ttl` ago. `max_age`: the response was never seen to finish within `max_entry_age`. |
+
+```promql
+# Fraction of captured fields that did not fit in the store
+sum(rate(policy_engine_correlation_store_writes_total{result=~"rejected_.*"}[5m]))
+  / sum(rate(policy_engine_correlation_store_writes_total[5m]))
+
+# Unread entries reclaimed (alert if above zero for a sustained period)
+sum by (reason) (rate(policy_engine_correlation_store_evictions_total[5m])) > 0
+```
+
+* A steady `rejected_full` rate: raise `capacity`.
+* A steady `rejected_budget` rate: raise `max_body_bytes`, or `max_payload_bytes` if your bodies are
+  larger than 256 KiB.
+* Any `evictions_total`: check that `ttl` is well above the access-log flush interval and any backlog
+  of your access-log consumers. For `max_age`, also check `max_entry_age` against your longest
+  streaming responses.
+
+### Other ways to reduce the cost of capture
+
+* **Capture only what you log.** Each `[collector]` flag adds work for every request, whether or not
+  a consumer uses the field. Bodies cost the most; request headers alone cost the least. Use
+  `traffic_logging.exclude_fields` to drop fields you do not need from the line.
+* **Bodies are only read when needed.** For REST APIs, when `collector.request_body` and
+  `collector.response_body` are `false`, the gateway does not buffer request or response bodies
+  for analytics, unless another policy on the route needs them. MCP, LLM and agent APIs always read
+  the body, because their analytics, such as token usage, come from it.
+* **Tune the Go garbage collector for high traffic.** In the gateway-runtime environment, set
+  `GOGC=400` and `GOMEMLIMIT` to about 75% of the container's memory limit (for example,
+  `GOMEMLIMIT=1500MiB` for a 2 GiB container). This trades some memory for less garbage-collection
+  work.
+
+### Configuring the store with Helm
+
+The chart does not model `[collector.correlation_store]` as structured values, so set it through the
+raw TOML passthrough, `gateway.config_toml`:
+
+```yaml
+gateway:
+  config_toml: |
+    [collector.correlation_store]
+    capacity = 50000
+    max_body_bytes = 67108864
+```
+
 ## Kubernetes / Helm
 
 The chart renders the whole feature from `.Values.gateway.config` — `[collector]`,
@@ -743,6 +943,11 @@ environment variables for `{{ env }}` tokens) — the chart renders the *referen
 | `dropped_total{reason="backpressure"}` climbing | The receiver accepts but responds slowly, and retries were abandoned to keep draining. | Fix receiver latency; or raise `retry_abort_queue_ratio` to favor delivery over drain (at the cost of newer events). |
 | `dropped_total{reason="send_failed"}` climbing | Retries exhausted — the receiver is failing or unreachable. | Check `write_errors_total{sink="http"}` for the status code, then the endpoint, auth material, and TLS trust. |
 | Lines lost after a restart, `file` sink | Buffering only applies to `http`; `file` and `stdout` write straight to their descriptor. | Nothing to tune — check `dropped_total` instead. |
+| Gateway fails to start: `collector.correlation_store.<key> must ...` | A `[collector.correlation_store]` value is out of range: an unknown `mode`, `capacity` below `shards` or above `10000000`, `shards` above `1024`, a non-positive `capacity`, `ttl` or `shards`, or a negative byte limit or `max_entry_age`. | Correct the value named in the message. |
+| Warning at startup: `collector.correlation_store.ttl is not longer than the access-log flush interval; raising it` | `ttl` is not longer than `collector.server.buffer_flush_interval` (or the deprecated `[analytics.grpc_event_server]` value). | No action needed: the gateway uses twice the flush interval. Set a longer `ttl` to silence the warning. |
+| Lines lose their headers and bodies, TCP mode | `mode = "on"` while `router.policy_engine.host` resolves to more than one policy-engine process. | Use the default `mode = "auto"`, which turns the store off in TCP mode. |
+| `correlation_store_writes_total{result="rejected_full"}` or `rejected_budget` climbing | The store is too small for the traffic. Nothing is lost, but those fields take the slower path. | Raise `capacity` or `max_body_bytes`. See [Sizing](#sizing). |
+| `correlation_store_evictions_total` above zero | Entries were reclaimed before their access-log entry was read, so those lines lack headers and bodies. | Raise `ttl` (for `ttl` evictions) or `max_entry_age` (for `max_age` evictions). |
 
 `traffic_logging.shutdown_timeout` (default `"5s"`) bounds the flush of buffering sinks on `SIGTERM`.
 Only `http` buffers; `stdout` and `file` have nothing to flush.
