@@ -8,7 +8,7 @@ tags:
   - api-portal
   - webhooks
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-07-31
+last_updated: 2026-10-13
 content_type: "how-to"
 ---
 
@@ -64,6 +64,9 @@ Two things to design your endpoint around:
 
 - **A delivery is attempted once.** Any `non-2xx` response, connection error, or timeout is terminal—there's no automatic retry. Make the endpoint reliable, and answer within the configured timeout.
 - **Acknowledge fast, work later.** Return a `2xx` and do the propagation asynchronously, rather than holding the connection open while you call a gateway.
+
+
+In [multi-organization mode](../setting-up/authentication/multi-organization.md#webhooks), one portal delivers every organization's events, and each organization's subscribers receive only that organization's events.
 
 You can read delivery history, including failures and their HTTP status, through the Management API—see [Webhook Events](../rest-api/webhook-events.md).
 
