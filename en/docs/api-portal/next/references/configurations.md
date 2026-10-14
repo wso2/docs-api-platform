@@ -104,8 +104,9 @@ public_key_path = ""    # path to the Platform API's RS256 public key PEM
 tls_skip_verify = false
 
 # The [api_portal.auth.idp] endpoints describe your own identity provider and have
-# no default. issuer, authorization_url, token_url, client_id, and callback_url are
-# required when mode = "idp"; the portal refuses to start without them.
+# no default. authorization_url, token_url, client_id, callback_url, and jwks_url are
+# required when mode = "idp"; the portal refuses to start without them. issuer is
+# recommended.
 [api_portal.auth.idp]
 name = "my-idp"        # friendly name, used in logs
 issuer = ""
