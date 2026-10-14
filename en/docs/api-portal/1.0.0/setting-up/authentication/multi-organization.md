@@ -39,8 +39,8 @@ org_name     = "org_name"     # optional: names a provisioned organization
 org_handle   = "org_handle"   # optional: its URL handle, taken as is
 
 [api_portal.auth.idp]
-# Required in this mode: the audience bearer tokens must be issued for, usually the
-# client ID. Give several as a comma-separated string or an array.
+# Recommended: the audience bearer tokens must be issued for, usually the client ID.
+# Give several as a comma-separated string or an array.
 audience = "<portal-client-id>"
 ```
 
@@ -53,7 +53,7 @@ Check your deployment against these requirements before you turn the mode on:
 - **The portal owns its database.** Several instances may share the database only as replicas of the same deployment, with identical configuration. Don't point another, differently configured portal at the same database.
 - **Replicas share `security.encryption_key`.** Any replica may deliver webhooks for any organization.
 - **Provisioning needs verified TLS to the IdP.** See [How organizations are provisioned](#how-organizations-are-provisioned).
-- **`auth.idp.audience` is required.** The portal refuses to start without it in this mode, because a token the IdP issued to any other application would otherwise be accepted for every organization.
+- **Set `auth.idp.issuer` and `auth.idp.audience` (recommended).** List in `audience` every client ID that bearer tokens are issued for, as a comma-separated string or an array.
 
 At startup, the portal logs that it's running in multi-organization mode and lists the organizations it serves, so you can confirm it points at the database you meant. It also logs an error for organizations that share an IdP reference ID. Sign-ins to those organizations are refused as ambiguous until you change one of them.
 
