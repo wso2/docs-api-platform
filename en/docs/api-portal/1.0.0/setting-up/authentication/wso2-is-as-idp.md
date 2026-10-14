@@ -112,7 +112,7 @@ roles        = "roles"
 [api_portal.auth.idp]
 client_id     = "<api-portal-client-id>"
 client_secret = '{{ env "APIP_AP_AUTH_IDP_CLIENT_SECRET" }}'
-audience      = "<api-portal-client-id>"   # required in multi-organization mode
+audience      = "<api-portal-client-id>"   # recommended
 issuer        = "https://localhost:9443/oauth2/token"
 scope         = "openid profile email roles"
 authorization_url   = "https://localhost:9443/oauth2/authorize"

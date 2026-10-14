@@ -104,8 +104,9 @@ public_key_path = ""    # path to the Platform API's RS256 public key PEM
 tls_skip_verify = false
 
 # The [api_portal.auth.idp] endpoints describe your own identity provider and have
-# no default. issuer, authorization_url, token_url, client_id, and callback_url are
-# required when mode = "idp"; the portal refuses to start without them.
+# no default. authorization_url, token_url, client_id, and callback_url are required
+# when mode = "idp"; the portal refuses to start without them. issuer and audience are
+# recommended.
 [api_portal.auth.idp]
 name = "my-idp"        # friendly name, used in logs
 issuer = ""
@@ -114,7 +115,7 @@ token_url = ""
 user_info_url = ""
 client_id = ""
 client_secret = ""
-audience = ""          # required when multi_organization.enabled = true
+audience = ""          # recommended
 callback_url = ""
 scope = "openid profile email"
 sign_up_url = ""
@@ -215,7 +216,7 @@ enabled = false
 
 | Key | Description |
 |---|---|
-| `multi_organization.enabled` | `true` serves every organization under `organization.portal_id` from this instance, and provisions an organization from a verified token's organization claim the first time one of its users signs in. Needs `auth.mode = "idp"` and `auth.idp.audience`; without the audience, the portal refuses to start. With local authentication, the setting has no effect and the portal logs a warning. Any value other than `true` or `false` stops the portal from starting |
+| `multi_organization.enabled` | `true` serves every organization in the database from this instance, and provisions an organization from a verified token's organization claim the first time one of its users signs in. Needs `auth.mode = "idp"`; setting `auth.idp.issuer` and `auth.idp.audience` is recommended. With local authentication, the setting has no effect and the portal logs a warning. Any value other than `true` or `false` stops the portal from starting |
 
 See [Serve multiple organizations from one API Portal](../setting-up/authentication/multi-organization.md) for the deployment requirements, provisioning rules, and sign-in behavior.
 
