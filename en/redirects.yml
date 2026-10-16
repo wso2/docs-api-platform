@@ -5911,3 +5911,5 @@ redirect_maps:
   ai-gateway/1.2.0/setup/database-setup.md: ai-gateway/1.2.0/setup-and-deployment/database-setup.md
   ai-gateway/analytics/opentelemetry-analytics.md: ai-gateway/1.2.0/analytics/opentelemetry-analytics.md
   ai-gateway/mcp-proxy/policies/mcp-ratelimit.md: ai-gateway/1.2.0/mcp-governance.md
+  # The version root: README.md is excluded from the build
+  ai-gateway/2026.09.24/index.md: ai-gateway/2026.09.24/overview.md

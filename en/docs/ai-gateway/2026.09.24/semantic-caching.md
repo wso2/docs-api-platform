@@ -31,7 +31,7 @@ Set that threshold deliberately. Too loose and the gateway answers one question 
 
 ## Caching policies
 
-This policy is documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../policy-hub/overview.md).
+This policy is documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../policy-hub/overview/).
 
 | Policy | What it does |
 |--------|--------------|
@@ -39,6 +39,6 @@ This policy is documented in the [Policy Hub](https://wso2.com/api-platform/poli
 
 ## Related topics
 
-- [Set up a governed multi-model LLM proxy](../../guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md) — distributes traffic across models behind one proxy, with per-team token budgets, PII masking, and semantic caching.
+- [Set up a governed multi-model LLM proxy](../../../guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover/) — distributes traffic across models behind one proxy, with per-team token budgets, PII masking, and semantic caching.
 - [Cost control and budgets](cost-control-and-budgets.md) — put a monetary ceiling on the calls that do reach a model.
 - [Prompt management](prompt-management.md) — compress a prompt to reduce the tokens a cache miss costs.

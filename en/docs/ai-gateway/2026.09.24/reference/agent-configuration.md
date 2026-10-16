@@ -114,7 +114,7 @@ Omitting the whole block, or just `public`, serves the public card in `passthrou
 
 Omitting `protected` is not equivalent. It leaves the extended card guarded and is never turned into an explicit protected configuration.
 
-#### `a2a.agentCard.public`
+#### `a2a.agentCard.public` { #a2aagentcardpublic }
 
 | Field | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -125,7 +125,7 @@ Omitting `protected` is not equivalent. It leaves the extended card guarded and 
 | `policies` | array | No | — | Ordered policies applied only to public card serving. |
 | `signing` | object | No | — | Gateway card signing. Rejected at deploy time — see [Unsupported fields](#unsupported-fields). |
 
-#### `a2a.agentCard.protected`
+#### `a2a.agentCard.protected` { #a2aagentcardprotected }
 
 | Field | Type | Required | Default | Description |
 |---|---|---|---|---|

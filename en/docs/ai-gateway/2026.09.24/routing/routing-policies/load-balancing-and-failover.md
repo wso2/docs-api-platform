@@ -33,7 +33,7 @@ Attach these policies on an `LlmProxy`, which is where a pool of providers is as
 
 ## Load balancing policies
 
-These policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../../policy-hub/overview.md).
+These policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../../../policy-hub/overview/).
 
 | Policy | What it does |
 |--------|--------------|
@@ -44,5 +44,5 @@ These policies are documented in the [Policy Hub](https://wso2.com/api-platform/
 
 - [Multi model routing](../multi-model-routing.md) — the use-case page: why you distribute across models, with the round robin and weighted round robin configuration in full.
 - [Multi-provider routing](../multi-provider-routing.md) — the worked configuration: several providers behind one OpenAI-compatible proxy, the transformer each provider needs, and how suspension behaves in practice.
-- [Set up a governed multi-model LLM proxy](../../../../guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md) — distributes traffic across models behind one proxy, with per-team token budgets, PII masking, and semantic caching.
+- [Set up a governed multi-model LLM proxy](../../../../../guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover/) — distributes traffic across models behind one proxy, with per-team token budgets, PII masking, and semantic caching.
 - [Timeouts and resilience](../../timeouts-and-resilience.md) — decide how long the gateway waits before it treats an upstream as failed.

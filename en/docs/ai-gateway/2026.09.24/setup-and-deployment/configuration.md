@@ -71,7 +71,7 @@ The shipped `config.toml` already carries interpolation tokens for the settings 
 For the complete list of tokens and every configurable option, refer to the [config template](https://github.com/wso2/api-platform/blob/main/gateway/configs/config-template.toml).
 
 !!! tip "Distinct from artifact templating"
-    The interpolation tokens described here apply to the gateway's **own `config.toml`**. API **artifacts** (RestApi, LLMProvider, and other resource files) support a separate, richer set of template functions (`env`, `required`, `redact`, `default`) applied to the artifact body. See [Artifact Templating](./artifact-templating.md) for that mechanism.
+    The interpolation tokens described here apply to the gateway's **own `config.toml`**. API **artifacts** (RestApi, LLMProvider, and other resource files) support a separate, richer set of template functions (`env`, `required`, `redact`, `default`) applied to the artifact body. See [Artifact Templating](../../../../api-gateway/next/setup/artifact-templating/) for that mechanism.
 
 ## Delivering environment values
 
@@ -158,4 +158,4 @@ The script is **idempotent** — existing files are kept, not overwritten. Flags
 
 ---
 
-[← Artifact Templating](./artifact-templating.md) &nbsp;|&nbsp; [Setting Up the Database →](./database-setup.md)
+[← Artifact Templating](../../../../api-gateway/next/setup/artifact-templating/) &nbsp;|&nbsp; [Setting Up the Database →](./database-setup.md)

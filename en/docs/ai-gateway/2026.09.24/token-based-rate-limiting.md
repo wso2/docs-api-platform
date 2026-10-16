@@ -29,7 +29,7 @@ Token based limits read usage from the model's response, so they take effect in 
 
 ## Rate limiting policies
 
-This policy is documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../policy-hub/overview.md).
+This policy is documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../policy-hub/overview/).
 
 | Policy | What it does |
 |--------|--------------|
@@ -50,6 +50,6 @@ Use either alongside a token based limit when a client should be held to both a 
 
 ## Related topics
 
-- [Enforce token-based rate limiting on an LLM proxy](../../guides/ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy.md) — caps token consumption on a proxy within a rolling window, so one application cannot exhaust the budget.
+- [Enforce token-based rate limiting on an LLM proxy](../../../guides/ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy/) — caps token consumption on a proxy within a rolling window, so one application cannot exhaust the budget.
 - [Authenticate clients](authenticate-clients.md) — issue a key per application, so a limit applies to a caller you can identify.
 - [Cost control and budgets](cost-control-and-budgets.md) — enforce a monetary ceiling instead of a usage ceiling.

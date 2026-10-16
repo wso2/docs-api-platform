@@ -26,11 +26,11 @@ Four pages cover those two steps, each for a different situation. Find the row t
 
 | Situation | Page | What it covers |
 |---|---|---|
-| You want to try AI Workspace on your own machine first | [Get started with AI Workspace](../../../ai-workspace/next/getting-started.md) | Running the control plane locally, then creating a gateway in it |
-| You're connecting a gateway on either runtime | [Connect AI gateways in production](../../../ai-workspace/next/production/connect-gateways.md) | The authoritative procedure for both Docker Compose and Kubernetes, including certificate trust |
-| You need the console side — the gateway record and its token | [Set up an AI Gateway](../../../ai-workspace/next/ai-gateways/setting-up.md) | Adding a gateway in AI Workspace and obtaining its registration token |
+| You want to try AI Workspace on your own machine first | [Get started with AI Workspace](../../../../ai-workspace/next/getting-started/) | Running the control plane locally, then creating a gateway in it |
+| You're connecting a gateway on either runtime | [Connect AI gateways in production](../../../../ai-workspace/next/production/connect-gateways/) | The authoritative procedure for both Docker Compose and Kubernetes, including certificate trust |
+| You need the console side — the gateway record and its token | [Set up an AI Gateway](../../../../ai-workspace/next/ai-gateways/setting-up/) | Adding a gateway in AI Workspace and obtaining its registration token |
 | You're connecting a production Kubernetes gateway | [Connect to AI Workspace](../setup-and-deployment/production-deployment/control-plane-connection.md) | The gateway-side chart values and token storage |
 
 ## Verify the connection
 
-Each path ends with its own check that the gateway registered. For a production connection, see [Verify](../../../ai-workspace/next/production/connect-gateways.md#verify). For a Helm installation, see [Step 3: Verify the connection](../setup-and-deployment/production-deployment/control-plane-connection.md#step-3-verify-the-connection).
+Each path ends with its own check that the gateway registered. For a production connection, see [Verify](../../../../ai-workspace/next/production/connect-gateways/#verify). For a Helm installation, see [Step 3: Verify the connection](../setup-and-deployment/production-deployment/control-plane-connection.md#step-3-verify-the-connection).
