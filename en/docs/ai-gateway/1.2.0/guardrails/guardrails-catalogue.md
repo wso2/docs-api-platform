@@ -19,7 +19,7 @@ The gateway ships the guardrails below. Each one validates, filters, or transfor
 
 ## Available guardrails
 
-Guardrail policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../policy-hub/overview.md).
+Guardrail policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../../policy-hub/overview/).
 
 | Guardrail | What it checks |
 |-----------|----------------|
@@ -38,11 +38,11 @@ Guardrail policies are documented in the [Policy Hub](https://wso2.com/api-platf
 
 ## Add or update guardrails
 
-A guardrail is a gateway policy, so you add or update one by editing the gateway's `build.yaml` and rebuilding the image with the `ap` CLI. See [Add or Update Policies in a Gateway](../../../api-gateway/1.2.0/policies/add-or-update-policies.md).
+A guardrail is a gateway policy, so you add or update one by editing the gateway's `build.yaml` and rebuilding the image with the `ap` CLI. See [Add or Update Policies in a Gateway](../../../../api-gateway/1.2.0/policies/add-or-update-policies/).
 
 ## Custom guardrails
 
-To write your own guardrail policy in Go and build it into the gateway image, see [Writing a Custom Policy](../../../api-gateway/1.2.0/policies/custom-policies/writing-a-custom-policy.md).
+To write your own guardrail policy in Go and build it into the gateway image, see [Writing a Custom Policy](../../../../api-gateway/1.2.0/policies/custom-policies/writing-a-custom-policy/).
 
 ## Related topics
 

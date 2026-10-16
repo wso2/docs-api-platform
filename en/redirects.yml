@@ -1,37 +1,37 @@
 redirect_maps:
   # AI/API Gateway versioning restructuring (per-product Cloud/Self-Hosted variants)
-  ai-gateway/ai-gateway-rest-api/authentication.md: ai-gateway/1.1.0/ai-gateway-rest-api/authentication.md
-  ai-gateway/analytics/analytics-header-filter.md: ai-gateway/1.1.0/analytics/analytics-header-filter.md
-  ai-gateway/analytics/moesif-analytics.md: ai-gateway/1.1.0/analytics/moesif-analytics.md
-  ai-gateway/deployment-modes/immutable-gateway.md: ai-gateway/1.1.0/deployment-modes/immutable-gateway.md
-  ai-gateway/deployment-modes/kubernetes/gateway-operator.md: ai-gateway/1.1.0/deployment-modes/kubernetes/gateway-operator.md
-  ai-gateway/deployment-modes/kubernetes/kubernetes-standalone.md: ai-gateway/1.1.0/deployment-modes/kubernetes/kubernetes-standalone.md
-  ai-gateway/deployment-modes/kubernetes/overview.md: ai-gateway/1.1.0/deployment-modes/kubernetes/overview.md
-  ai-gateway/llm-proxy/guardrails/aws-bedrock-guardrail.md: ai-gateway/1.1.0/llm-proxy/guardrails/aws-bedrock-guardrail.md
-  ai-gateway/llm-proxy/guardrails/azure-content-safety.md: ai-gateway/1.1.0/llm-proxy/guardrails/azure-content-safety.md
-  ai-gateway/llm-proxy/guardrails/content-length.md: ai-gateway/1.1.0/llm-proxy/guardrails/content-length.md
-  ai-gateway/llm-proxy/guardrails/json-schema.md: ai-gateway/1.1.0/llm-proxy/guardrails/json-schema.md
-  ai-gateway/llm-proxy/guardrails/pii-masking-regex.md: ai-gateway/1.1.0/llm-proxy/guardrails/pii-masking-regex.md
-  ai-gateway/llm-proxy/guardrails/regex.md: ai-gateway/1.1.0/llm-proxy/guardrails/regex.md
-  ai-gateway/llm-proxy/guardrails/semantic-prompt-guard.md: ai-gateway/1.1.0/llm-proxy/guardrails/semantic-prompt-guard.md
-  ai-gateway/llm-proxy/guardrails/sentence-count.md: ai-gateway/1.1.0/llm-proxy/guardrails/sentence-count.md
-  ai-gateway/llm-proxy/guardrails/url.md: ai-gateway/1.1.0/llm-proxy/guardrails/url.md
-  ai-gateway/llm-proxy/guardrails/word-count.md: ai-gateway/1.1.0/llm-proxy/guardrails/word-count.md
-  ai-gateway/llm-proxy/llm-templates.md: ai-gateway/1.1.0/llm-proxy/llm-templates.md
-  ai-gateway/llm-proxy/load-balancing/model-round-robin.md: ai-gateway/1.1.0/llm-proxy/load-balancing/model-round-robin.md
-  ai-gateway/llm-proxy/load-balancing/model-weighted-round-robin.md: ai-gateway/1.1.0/llm-proxy/load-balancing/model-weighted-round-robin.md
-  ai-gateway/llm-proxy/prompt-management/prompt-decorator.md: ai-gateway/1.1.0/llm-proxy/prompt-management/prompt-decorator.md
-  ai-gateway/llm-proxy/prompt-management/prompt-template.md: ai-gateway/1.1.0/llm-proxy/prompt-management/prompt-template.md
-  ai-gateway/llm-proxy/quick-start-guide.md: ai-gateway/1.1.0/llm-proxy/quick-start-guide.md
-  ai-gateway/llm-proxy/semantic-caching.md: ai-gateway/1.1.0/llm-proxy/semantic-caching.md
-  ai-gateway/mcp-proxy/policies/mcp-acl-list.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-acl-list.md
-  ai-gateway/mcp-proxy/policies/mcp-authentication.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-authentication.md
-  ai-gateway/mcp-proxy/policies/mcp-authorization.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-authorization.md
-  ai-gateway/mcp-proxy/policies/mcp-rewrite.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-rewrite.md
-  ai-gateway/mcp-proxy/quick-start-guide.md: ai-gateway/1.1.0/mcp-proxy/quick-start-guide.md
-  ai-gateway/observability/logging.md: ai-gateway/1.1.0/observability/logging.md
-  ai-gateway/observability/tracing.md: ai-gateway/1.1.0/observability/tracing.md
-  ai-gateway/overview.md: ai-gateway/1.1.0/overview.md
+  ai-gateway/ai-gateway-rest-api/authentication.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/ai-gateway-rest-api/authentication/
+  ai-gateway/analytics/analytics-header-filter.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/analytics/analytics-header-filter/
+  ai-gateway/analytics/moesif-analytics.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/analytics/moesif-analytics/
+  ai-gateway/deployment-modes/immutable-gateway.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/deployment-modes/immutable-gateway/
+  ai-gateway/deployment-modes/kubernetes/gateway-operator.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator/
+  ai-gateway/deployment-modes/kubernetes/kubernetes-standalone.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/kubernetes-standalone/
+  ai-gateway/deployment-modes/kubernetes/overview.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/overview/
+  ai-gateway/llm-proxy/guardrails/aws-bedrock-guardrail.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/aws-bedrock-guardrail/
+  ai-gateway/llm-proxy/guardrails/azure-content-safety.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/azure-content-safety/
+  ai-gateway/llm-proxy/guardrails/content-length.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/content-length/
+  ai-gateway/llm-proxy/guardrails/json-schema.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/json-schema/
+  ai-gateway/llm-proxy/guardrails/pii-masking-regex.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/pii-masking-regex/
+  ai-gateway/llm-proxy/guardrails/regex.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/regex/
+  ai-gateway/llm-proxy/guardrails/semantic-prompt-guard.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/semantic-prompt-guard/
+  ai-gateway/llm-proxy/guardrails/sentence-count.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/sentence-count/
+  ai-gateway/llm-proxy/guardrails/url.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/url/
+  ai-gateway/llm-proxy/guardrails/word-count.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/guardrails/word-count/
+  ai-gateway/llm-proxy/llm-templates.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/llm-templates/
+  ai-gateway/llm-proxy/load-balancing/model-round-robin.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/load-balancing/model-round-robin/
+  ai-gateway/llm-proxy/load-balancing/model-weighted-round-robin.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/load-balancing/model-weighted-round-robin/
+  ai-gateway/llm-proxy/prompt-management/prompt-decorator.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/prompt-management/prompt-decorator/
+  ai-gateway/llm-proxy/prompt-management/prompt-template.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/prompt-management/prompt-template/
+  ai-gateway/llm-proxy/quick-start-guide.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/quick-start-guide/
+  ai-gateway/llm-proxy/semantic-caching.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/semantic-caching/
+  ai-gateway/mcp-proxy/policies/mcp-acl-list.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/mcp-proxy/policies/mcp-acl-list/
+  ai-gateway/mcp-proxy/policies/mcp-authentication.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/mcp-proxy/policies/mcp-authentication/
+  ai-gateway/mcp-proxy/policies/mcp-authorization.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/mcp-proxy/policies/mcp-authorization/
+  ai-gateway/mcp-proxy/policies/mcp-rewrite.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/mcp-proxy/policies/mcp-rewrite/
+  ai-gateway/mcp-proxy/quick-start-guide.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/mcp-proxy/quick-start-guide/
+  ai-gateway/observability/logging.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/observability/logging/
+  ai-gateway/observability/tracing.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/observability/tracing/
+  ai-gateway/overview.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/overview/
   api-gateway/analytics/analytics-header-filter.md: api-gateway/1.1.0/analytics/analytics-header-filter.md
   api-gateway/analytics/moesif-analytics.md: api-gateway/1.1.0/analytics/moesif-analytics.md
   api-gateway/deployment/deploying-apis/bottom-up-api-deployment.md: api-gateway/1.1.0/deployment/deploying-apis/bottom-up-api-deployment.md
@@ -95,34 +95,34 @@ redirect_maps:
   administer/settings/create-api-subscription-plans.md: cloud/administer/settings/create-api-subscription-plans.md
 
   # AI Gateway (old cloud section - some paths still exist with new content so only redirect 404ing ones)
-  ai-gateway/analytics/index.md: cloud/ai-gateway/analytics/index.md
-  ai-gateway/gateway-controller-api.md: cloud/ai-gateway/gateway-controller-api.md
-  ai-gateway/llm/guardrails/aws-bedrock-guardrail.md: cloud/ai-gateway/llm/guardrails/aws-bedrock-guardrail.md
-  ai-gateway/llm/guardrails/azure-content-safety.md: cloud/ai-gateway/llm/guardrails/azure-content-safety.md
-  ai-gateway/llm/guardrails/content-length.md: cloud/ai-gateway/llm/guardrails/content-length.md
-  ai-gateway/llm/guardrails/json-schema.md: cloud/ai-gateway/llm/guardrails/json-schema.md
-  ai-gateway/llm/guardrails/pii-masking-regex.md: cloud/ai-gateway/llm/guardrails/pii-masking-regex.md
-  ai-gateway/llm/guardrails/regex.md: cloud/ai-gateway/llm/guardrails/regex.md
-  ai-gateway/llm/guardrails/semantic-prompt-guard.md: cloud/ai-gateway/llm/guardrails/semantic-prompt-guard.md
-  ai-gateway/llm/guardrails/semantic-tool-filtering.md: cloud/ai-gateway/llm/guardrails/semantic-tool-filtering.md
-  ai-gateway/llm/guardrails/sentence-count.md: cloud/ai-gateway/llm/guardrails/sentence-count.md
-  ai-gateway/llm/guardrails/url.md: cloud/ai-gateway/llm/guardrails/url.md
-  ai-gateway/llm/guardrails/word-count.md: cloud/ai-gateway/llm/guardrails/word-count.md
-  ai-gateway/llm/index.md: cloud/ai-gateway/llm/index.md
-  ai-gateway/llm/llm-templates.md: cloud/ai-gateway/llm/llm-templates.md
-  ai-gateway/llm/load-balancing/model-round-robin.md: cloud/ai-gateway/llm/load-balancing/model-round-robin.md
-  ai-gateway/llm/load-balancing/model-weighted-round-robin.md: cloud/ai-gateway/llm/load-balancing/model-weighted-round-robin.md
-  ai-gateway/llm/prompt-management/prompt-decorator.md: cloud/ai-gateway/llm/prompt-management/prompt-decorator.md
-  ai-gateway/llm/prompt-management/prompt-template.md: cloud/ai-gateway/llm/prompt-management/prompt-template.md
-  ai-gateway/llm/quick-start-guide.md: cloud/ai-gateway/llm/quick-start-guide.md
-  ai-gateway/llm/semantic-caching.md: cloud/ai-gateway/llm/semantic-caching.md
-  ai-gateway/mcp/index.md: cloud/ai-gateway/mcp/index.md
-  ai-gateway/mcp/policies/mcp-acl-list.md: cloud/ai-gateway/mcp/policies/mcp-acl-list.md
-  ai-gateway/mcp/policies/mcp-authentication.md: cloud/ai-gateway/mcp/policies/mcp-authentication.md
-  ai-gateway/mcp/policies/mcp-authorization.md: cloud/ai-gateway/mcp/policies/mcp-authorization.md
-  ai-gateway/mcp/policies/mcp-rewrite.md: cloud/ai-gateway/mcp/policies/mcp-rewrite.md
-  ai-gateway/mcp/quick-start-guide.md: cloud/ai-gateway/mcp/quick-start-guide.md
-  ai-gateway/observability/index.md: cloud/ai-gateway/observability/index.md
+  ai-gateway/analytics/index.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/analytics/
+  ai-gateway/gateway-controller-api.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/gateway-controller-api/
+  ai-gateway/llm/guardrails/aws-bedrock-guardrail.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/aws-bedrock-guardrail/
+  ai-gateway/llm/guardrails/azure-content-safety.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/azure-content-safety/
+  ai-gateway/llm/guardrails/content-length.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/content-length/
+  ai-gateway/llm/guardrails/json-schema.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/json-schema/
+  ai-gateway/llm/guardrails/pii-masking-regex.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/pii-masking-regex/
+  ai-gateway/llm/guardrails/regex.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/regex/
+  ai-gateway/llm/guardrails/semantic-prompt-guard.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/semantic-prompt-guard/
+  ai-gateway/llm/guardrails/semantic-tool-filtering.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/semantic-tool-filtering/
+  ai-gateway/llm/guardrails/sentence-count.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/sentence-count/
+  ai-gateway/llm/guardrails/url.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/url/
+  ai-gateway/llm/guardrails/word-count.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/guardrails/word-count/
+  ai-gateway/llm/index.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/
+  ai-gateway/llm/llm-templates.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/llm-templates/
+  ai-gateway/llm/load-balancing/model-round-robin.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/load-balancing/model-round-robin/
+  ai-gateway/llm/load-balancing/model-weighted-round-robin.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/load-balancing/model-weighted-round-robin/
+  ai-gateway/llm/prompt-management/prompt-decorator.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/prompt-management/prompt-decorator/
+  ai-gateway/llm/prompt-management/prompt-template.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/prompt-management/prompt-template/
+  ai-gateway/llm/quick-start-guide.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/quick-start-guide/
+  ai-gateway/llm/semantic-caching.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/semantic-caching/
+  ai-gateway/mcp/index.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/
+  ai-gateway/mcp/policies/mcp-acl-list.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/policies/mcp-acl-list/
+  ai-gateway/mcp/policies/mcp-authentication.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/policies/mcp-authentication/
+  ai-gateway/mcp/policies/mcp-authorization.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/policies/mcp-authorization/
+  ai-gateway/mcp/policies/mcp-rewrite.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/policies/mcp-rewrite/
+  ai-gateway/mcp/quick-start-guide.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/mcp/quick-start-guide/
+  ai-gateway/observability/index.md: https://wso2.com/api-platform/docs/cloud/ai-gateway/observability/
 
   # AI Tools guides moved from Cloud > AI Gateway to Guides > AI and MCP > AI Coding Assistants
   cloud/ai-gateway/llm/ai-tools/claude-code-configuration-with-ai-gateway.md: guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md
@@ -5911,3 +5911,9 @@ redirect_maps:
   ai-gateway/1.2.0/setup/database-setup.md: ai-gateway/1.2.0/setup-and-deployment/database-setup.md
   ai-gateway/analytics/opentelemetry-analytics.md: ai-gateway/1.2.0/analytics/opentelemetry-analytics.md
   ai-gateway/mcp-proxy/policies/mcp-ratelimit.md: ai-gateway/1.2.0/mcp-governance.md
+
+  # Production redirects that were missing on staging. Targets in another deployment are
+  # absolute URLs: mkdocs-redirects skips a .md target that is not in this build.
+  ai-gateway/streaming-responses.md: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/streaming-responses/
+  # The version root: README.md is excluded from the build
+  ai-gateway/1.2.0/index.md: ai-gateway/1.2.0/overview.md

@@ -16,7 +16,7 @@ content_type: "quickstart"
 
 # Quick Start Guide
 
-This guide takes you from a downloaded distribution to a large language model (LLM) request routed through the API Platform AI Gateway. It then shows you how to govern that gateway from [AI Workspace](../../ai-workspace/1.0.0/overview.md), the control plane for AI traffic.
+This guide takes you from a downloaded distribution to a large language model (LLM) request routed through the API Platform AI Gateway. It then shows you how to govern that gateway from [AI Workspace](../../../ai-workspace/1.0.0/overview/), the control plane for AI traffic.
 
 ## Prerequisites
 
@@ -444,12 +444,12 @@ To test LLM provider traffic routing through the gateway, invoke the following r
 
 ## Govern this gateway from AI Workspace
 
-The gateway you just started serves traffic on its own. [AI Workspace](../../ai-workspace/1.0.0/overview.md) is the control plane for AI traffic across your organization. One console manages LLM providers, App LLM proxies, MCP proxies, policies such as guardrails and token-based rate limits, and the credentials behind them. Register this gateway with AI Workspace to govern every AI gateway you run from one place, across every environment.
+The gateway you just started serves traffic on its own. [AI Workspace](../../../ai-workspace/1.0.0/overview/) is the control plane for AI traffic across your organization. One console manages LLM providers, App LLM proxies, MCP proxies, policies such as guardrails and token-based rate limits, and the credentials behind them. Register this gateway with AI Workspace to govern every AI gateway you run from one place, across every environment.
 
 Both directions work, and you can use them together:
 
 - **Top-down.** Configure an artifact in AI Workspace, apply policies to it, then deploy it to one or more gateways.
-- **Bottom-up.** Keep deploying through the management API, as this guide does. The gateway syncs every artifact you create to AI Workspace automatically, where each one appears as a copy the gateway owns. The OpenAI provider from this guide appears there without being re-declared. To see what a synced artifact looks like, and what stays editable, see [Manage Gateway-deployed AI artifacts in AI Workspace](../../ai-workspace/1.0.0/sync-gateway-created-artifacts.md).
+- **Bottom-up.** Keep deploying through the management API, as this guide does. The gateway syncs every artifact you create to AI Workspace automatically, where each one appears as a copy the gateway owns. The OpenAI provider from this guide appears there without being re-declared. To see what a synced artifact looks like, and what stays editable, see [Manage Gateway-deployed AI artifacts in AI Workspace](../../../ai-workspace/1.0.0/sync-gateway-created-artifacts/).
 
 The gateway keeps serving traffic either way. If AI Workspace is unreachable, the gateway carries on and the sync catches up once the connection is restored.
 
@@ -481,6 +481,6 @@ This stops the containers and removes the `controller-data` volume. The next sta
 - Route to more than one provider, with failover: [Multi-provider routing](routing/multi-provider-routing.md)
 - Add guardrails to a proxy, such as [PII masking](https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex) or a [JSON schema guardrail](https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail)
 - Expose an MCP server through the gateway: [MCP proxy](gateway-artifacts/mcp-proxy.md)
-- Govern AI traffic across all your gateways from the control plane: [AI Workspace overview](../../ai-workspace/1.0.0/overview.md)
+- Govern AI traffic across all your gateways from the control plane: [AI Workspace overview](../../../ai-workspace/1.0.0/overview/)
 - Take this gateway to production on Kubernetes: [Production deployment overview](./setup-and-deployment/production-deployment/index.md)
 - Register a production gateway with the control plane: [Connect to AI Workspace](./setup-and-deployment/production-deployment/control-plane-connection.md)

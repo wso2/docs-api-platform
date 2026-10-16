@@ -25,7 +25,7 @@ Authentication and authorization run before a call reaches the server: the first
 
 ## MCP policies
 
-These policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../policy-hub/overview.md).
+These policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../policy-hub/overview/).
 
 | Policy | What it does |
 |--------|--------------|
@@ -40,5 +40,5 @@ These policies are documented in the [Policy Hub](https://wso2.com/api-platform/
 
 - [MCP proxy](gateway-artifacts/mcp-proxy.md) — what an MCP proxy routes, and how to deploy the proxy these policies attach to.
 - [Token based rate limiting](token-based-rate-limiting.md) — how MCP rate limiting compares with the request and token limits on LLM traffic.
-- [Build an AI agent that uses aggregated MCP tools from multiple APIs](../../guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers.md) — connects an agent to three independently governed MCP servers through the gateway.
-- [Convert a REST API into an MCP tool for Claude Desktop](../../guides/ai-and-mcp/convert-rest-api-to-mcp-server.md) — exposes a REST API as a governed MCP server and enforces OAuth2 at the gateway.
+- [Build an AI agent that uses aggregated MCP tools from multiple APIs](../../../guides/ai-and-mcp/build-ai-agent-with-multiple-mcp-servers/) — connects an agent to three independently governed MCP servers through the gateway.
+- [Convert a REST API into an MCP tool for Claude Desktop](../../../guides/ai-and-mcp/convert-rest-api-to-mcp-server/) — exposes a REST API as a governed MCP server and enforces OAuth2 at the gateway.

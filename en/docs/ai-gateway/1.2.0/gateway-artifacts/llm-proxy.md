@@ -134,8 +134,8 @@ The routing policies that select a provider for a proxy, and the failover behavi
 
 ## Related guides
 
-- [Set up a governed multi-model LLM proxy](../../../guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md) — distributes traffic across models behind one proxy, with per-team token budgets, PII masking, and semantic caching.
-- [Enforce a consistent AI persona with the prompt decorator policy](../../../guides/ai-and-mcp/using-prompt-decorator-policy.md) — prepends a persona system message to every request on an LLM proxy, without changing client code.
-- [Configure Claude Code with AI Gateway](../../../guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway.md) — routes Claude Code through an Anthropic provider and an LLM proxy.
-- [Configure Gemini CLI with AI Gateway](../../../guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.md) — routes Google Gemini CLI through a Gemini provider and an LLM proxy.
-- [Configure OpenAI Codex CLI with AI Gateway](../../../guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway.md) — routes OpenAI Codex CLI through an OpenAI provider and an LLM proxy.
+- [Set up a governed multi-model LLM proxy](../../../../guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover/) — distributes traffic across models behind one proxy, with per-team token budgets, PII masking, and semantic caching.
+- [Enforce a consistent AI persona with the prompt decorator policy](../../../../guides/ai-and-mcp/using-prompt-decorator-policy/) — prepends a persona system message to every request on an LLM proxy, without changing client code.
+- [Configure Claude Code with AI Gateway](../../../../guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway/) — routes Claude Code through an Anthropic provider and an LLM proxy.
+- [Configure Gemini CLI with AI Gateway](../../../../guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway/) — routes Google Gemini CLI through a Gemini provider and an LLM proxy.
+- [Configure OpenAI Codex CLI with AI Gateway](../../../../guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway/) — routes OpenAI Codex CLI through an OpenAI provider and an LLM proxy.

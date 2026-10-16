@@ -18,7 +18,7 @@ content_type: "concept"
 
 The AI Gateway routes every request through two policy chains in sequence: the **LLM Proxy chain** and the **LLM Provider chain**. Each chain runs the same four execution phases, but the order in which the two chains execute differs between the request and response paths.
 
-This document covers the dual-hop execution model. For foundational concepts — within-chain policy ordering, streaming mode, and short-circuit behavior — see [Policy execution order](../../../api-gateway/1.2.0/policies/policy-execution-order.md). The same rules apply to each chain individually.
+This document covers the dual-hop execution model. For foundational concepts — within-chain policy ordering, streaming mode, and short-circuit behavior — see [Policy execution order](../../../../api-gateway/1.2.0/policies/policy-execution-order/). The same rules apply to each chain individually.
 
 ## The two chains
 
@@ -105,4 +105,4 @@ The following diagram shows how streaming body chunks flow through the policy ch
 ## Related topics
 
 - [Guardrails overview](index.md)
-- [Policy execution order](../../../api-gateway/1.2.0/policies/policy-execution-order.md) — within-chain ordering, streaming, and short-circuit rules that apply to each chain individually
+- [Policy execution order](../../../../api-gateway/1.2.0/policies/policy-execution-order/) — within-chain ordering, streaming, and short-circuit rules that apply to each chain individually

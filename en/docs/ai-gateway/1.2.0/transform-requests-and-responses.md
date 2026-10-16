@@ -26,7 +26,7 @@ Position in the chain decides what a policy sees. A header removed before a logg
 
 ## Transformation policies
 
-These policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../policy-hub/overview.md).
+These policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../policy-hub/overview/).
 
 | Policy | What it does |
 |--------|--------------|
@@ -34,7 +34,7 @@ These policies are documented in the [Policy Hub](https://wso2.com/api-platform/
 | [Remove Headers](https://wso2.com/api-platform/policy-hub/policies/remove-headers) | Strips specified headers from requests or responses |
 | [Respond](https://wso2.com/api-platform/policy-hub/policies/respond) | Returns an immediate response without forwarding to the upstream backend |
 
-The Policy Hub's Transformation category covers further options that apply to any API: rewriting a request's path, query parameters, or method; overriding the `Host` header sent upstream; routing to a named upstream at runtime; converting payloads between JSON and XML; and calling an external HTTP service during the request or response phase. See the [Policy Hub overview](../../policy-hub/overview.md) for the full category.
+The Policy Hub's Transformation category covers further options that apply to any API: rewriting a request's path, query parameters, or method; overriding the `Host` header sent upstream; routing to a named upstream at runtime; converting payloads between JSON and XML; and calling an external HTTP service during the request or response phase. See the [Policy Hub overview](../../../policy-hub/overview/) for the full category.
 
 To translate an OpenAI-shaped request into another provider's API shape, which is a transformation with its own dedicated policies, see [Multi-provider routing](routing/multi-provider-routing.md).
 

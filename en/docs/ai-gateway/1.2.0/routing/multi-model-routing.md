@@ -83,4 +83,4 @@ For how long the gateway waits before it treats an upstream as failed, see [Time
 - [Load balancing and failover](routing-policies/load-balancing-and-failover.md) — the policy reference for the two round robin policies.
 - [LLM header routing](routing-policies/llm-header-routing.md) — select a provider from a request header instead of distributing across a pool.
 - [Multi-provider routing](multi-provider-routing.md) — the worked configuration for several providers behind one proxy, including the transformer each provider needs.
-- [Set up a governed multi-model LLM proxy](../../../guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md) — distributes traffic across models behind one proxy, with per-team token budgets, PII masking, and semantic caching.
+- [Set up a governed multi-model LLM proxy](../../../../guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover/) — distributes traffic across models behind one proxy, with per-team token budgets, PII masking, and semantic caching.

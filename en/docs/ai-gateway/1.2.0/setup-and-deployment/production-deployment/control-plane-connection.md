@@ -18,12 +18,12 @@ content_type: "how-to"
 !!! note
     This step is optional. The gateway routes large language model (LLM) and Model Context Protocol (MCP) traffic without a control plane. Connect it when you want to govern several gateways from one place.
 
-[AI Workspace](../../../../ai-workspace/1.0.0/overview.md) is the control plane for AI traffic across an organization. One console covers LLM providers, App LLM proxies, MCP proxies, policies such as guardrails and token-based rate limits, and the credentials behind them. A connected gateway keeps serving traffic on its own, and the control plane governs what runs on it.
+[AI Workspace](../../../../../ai-workspace/1.0.0/overview/) is the control plane for AI traffic across an organization. One console covers LLM providers, App LLM proxies, MCP proxies, policies such as guardrails and token-based rate limits, and the credentials behind them. A connected gateway keeps serving traffic on its own, and the control plane governs what runs on it.
 
 The connection works in both directions, and you can use both at once:
 
 - **Top-down.** Configure an artifact in AI Workspace, attach policies, and deploy it to one or more gateways.
-- **Bottom-up.** Keep deploying through the management API. Artifacts created on the gateway sync up to AI Workspace automatically and appear there as copies the gateway owns. See [Manage gateway-deployed AI artifacts](../../../../ai-workspace/1.0.0/sync-gateway-created-artifacts.md).
+- **Bottom-up.** Keep deploying through the management API. Artifacts created on the gateway sync up to AI Workspace automatically and appear there as copies the gateway owns. See [Manage gateway-deployed AI artifacts](../../../../../ai-workspace/1.0.0/sync-gateway-created-artifacts/).
 
 If AI Workspace becomes unreachable, the gateway carries on serving traffic and the sync catches up once the connection is restored.
 
@@ -31,8 +31,8 @@ This page covers a Helm installation. For what connecting adds and which connect
 
 ## Before you begin
 
-- A running AI Workspace deployment. For the control plane side of this connection — reachable addresses, WebSocket traversal, and certificate trust — see [Connect AI gateways in production](../../../../ai-workspace/1.0.0/production/connect-gateways.md).
-- A gateway registered in AI Workspace, which is what produces the registration token. Follow [Set up an AI Gateway](../../../../ai-workspace/1.0.0/ai-gateways/setting-up.md).
+- A running AI Workspace deployment. For the control plane side of this connection — reachable addresses, WebSocket traversal, and certificate trust — see [Connect AI gateways in production](../../../../../ai-workspace/1.0.0/production/connect-gateways/).
+- A gateway registered in AI Workspace, which is what produces the registration token. Follow [Set up an AI Gateway](../../../../../ai-workspace/1.0.0/ai-gateways/setting-up/).
 
 The gateway connects directly to the Platform API. It doesn't go through the AI Workspace user interface, and the workspace never calls the gateway.
 

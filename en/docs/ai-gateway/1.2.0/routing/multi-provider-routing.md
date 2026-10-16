@@ -989,7 +989,7 @@ For automatic traffic distribution across models and providers, see:
 - [Model Round Robin](https://wso2.com/api-platform/policy-hub/policies/model-round-robin)
 - [Model Weighted Round Robin](https://wso2.com/api-platform/policy-hub/policies/model-weighted-round-robin)
 
-AWS Bedrock usage can also be evaluated by the [LLM Cost policy](../../../ai-workspace/1.0.0/policies/overview.md#llm-cost).
+AWS Bedrock usage can also be evaluated by the [LLM Cost policy](../../../../ai-workspace/1.0.0/policies/overview/#llm-cost).
 
 ## Related topics
 

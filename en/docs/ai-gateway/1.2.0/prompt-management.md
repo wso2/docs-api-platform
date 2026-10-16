@@ -28,7 +28,7 @@ Order matters when you combine them. A template that builds the prompt and a dec
 
 ## Prompt policies
 
-These policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../policy-hub/overview.md).
+These policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../policy-hub/overview/).
 
 | Policy | What it does |
 |--------|--------------|
@@ -38,7 +38,7 @@ These policies are documented in the [Policy Hub](https://wso2.com/api-platform/
 
 ## Related topics
 
-- [Enforce a consistent AI persona with the prompt decorator policy](../../guides/ai-and-mcp/using-prompt-decorator-policy.md) — prepends a persona system message to every request on an LLM proxy, without changing client code.
+- [Enforce a consistent AI persona with the prompt decorator policy](../../../guides/ai-and-mcp/using-prompt-decorator-policy/) — prepends a persona system message to every request on an LLM proxy, without changing client code.
 - [Guardrails](guardrails/index.md) — validate, block, or mask content rather than reshaping it.
 - [Cost control and budgets](cost-control-and-budgets.md) — compression reduces the tokens each call is charged for.
 - [Transform requests and responses](transform-requests-and-responses.md) — change the envelope around the prompt rather than the prompt itself.
