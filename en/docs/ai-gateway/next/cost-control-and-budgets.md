@@ -29,7 +29,7 @@ Attach them on an `LlmProvider` for a budget that covers every proxy consuming i
 
 ## Cost and budget policies
 
-These policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../policy-hub/overview.md).
+These policies are documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../policy-hub/overview/).
 
 | Policy | What it does |
 |--------|--------------|
@@ -41,6 +41,6 @@ To cap by token count or request count instead, see [Token based rate limiting](
 
 ## Related topics
 
-- [Set up a governed multi-model LLM proxy](../../guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md) — distributes traffic across models behind one proxy, with per-team token budgets, PII masking, and semantic caching.
+- [Set up a governed multi-model LLM proxy](../../../guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover/) — distributes traffic across models behind one proxy, with per-team token budgets, PII masking, and semantic caching.
 - [Semantic caching](semantic-caching.md) — cut spend by not making the upstream call at all.
 - [Token based rate limiting](token-based-rate-limiting.md) — cap consumption by tokens or requests rather than by spend.

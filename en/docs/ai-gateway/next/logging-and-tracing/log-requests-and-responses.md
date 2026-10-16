@@ -24,7 +24,7 @@ This is a different concern from [Gateway logs](gateway-logs.md), which are what
 
 The gateway offers a gateway-wide route and a per-operation route. They are independent, so you can use either or both.
 
-**Traffic logging** emits a structured log line for every request the gateway handles. You turn it on in the gateway's `config.toml` and choose whether to capture request and response headers, bodies, or neither, with field-exclusion controls for the values you don't want recorded. Because it is configuration rather than a policy, it applies across the gateway instead of being attached to individual resources. For the settings, see [Traffic logging](../../../api-gateway/next/observability/traffic-logging.md) in the API Platform Gateway documentation, and for how `config.toml` is delivered and interpolated, see [Configuration and interpolation](../setup-and-deployment/configuration.md).
+**Traffic logging** emits a structured log line for every request the gateway handles. You turn it on in the gateway's `config.toml` and choose whether to capture request and response headers, bodies, or neither, with field-exclusion controls for the values you don't want recorded. Because it is configuration rather than a policy, it applies across the gateway instead of being attached to individual resources. For the settings, see [Traffic logging](../../../../api-gateway/next/observability/traffic-logging/) in the API Platform Gateway documentation, and for how `config.toml` is delivered and interpolated, see [Configuration and interpolation](../setup-and-deployment/configuration.md).
 
 **The Log Message policy** records the payload and headers of the operations you attach it to. Use it when you want the content of one proxy, or one operation, rather than everything the gateway handles.
 
@@ -38,7 +38,7 @@ Prompts and completions carry whatever your users typed, so a log of them is as 
 
 ## Traffic logging policies
 
-This policy is documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../policy-hub/overview.md).
+This policy is documented in the [Policy Hub](https://wso2.com/api-platform/policy-hub), the versioned reference for every API Platform policy. For policy categories and how policies chain, see the [Policy Hub overview](../../../../policy-hub/overview/).
 
 | Policy | What it does |
 |--------|--------------|

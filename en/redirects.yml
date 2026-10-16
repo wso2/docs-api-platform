@@ -6026,3 +6026,46 @@ redirect_maps:
   ai-gateway/next/llm-proxy/multi-provider-routing.md: ai-gateway/next/routing/multi-provider-routing.md
   ai-gateway/next/llm-proxy/create-and-configure-an-llm-proxy.md: ai-gateway/next/gateway-artifacts/llm-proxy.md
   ai-gateway/next/mcp-proxy/create-an-mcp-proxy.md: ai-gateway/next/gateway-artifacts/mcp-proxy.md
+
+  # Production redirects that were missing on staging. Targets in another deployment are
+  # absolute URLs: mkdocs-redirects skips a .md target that is not in this build.
+  ai-gateway/next/control-content/aws-bedrock-guardrail.md: https://wso2.com/api-platform/policy-hub/policies/aws-bedrock-guardrail
+  ai-gateway/next/control-content/azure-content-safety.md: https://wso2.com/api-platform/policy-hub/policies/azure-content-safety-content-moderation
+  ai-gateway/next/control-content/content-length.md: https://wso2.com/api-platform/policy-hub/policies/content-length-guardrail
+  ai-gateway/next/control-content/json-schema.md: https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail
+  ai-gateway/next/control-content/pii-masking-regex.md: https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex
+  ai-gateway/next/control-content/prompt-decorator.md: https://wso2.com/api-platform/policy-hub/policies/prompt-decorator
+  ai-gateway/next/control-content/prompt-template.md: https://wso2.com/api-platform/policy-hub/policies/prompt-template
+  ai-gateway/next/control-content/regex.md: https://wso2.com/api-platform/policy-hub/policies/regex-guardrail
+  ai-gateway/next/control-content/semantic-prompt-guard.md: https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard
+  ai-gateway/next/control-content/sentence-count.md: https://wso2.com/api-platform/policy-hub/policies/sentence-count-guardrail
+  ai-gateway/next/control-content/url.md: https://wso2.com/api-platform/policy-hub/policies/url-guardrail
+  ai-gateway/next/control-content/word-count.md: https://wso2.com/api-platform/policy-hub/policies/word-count-guardrail
+  ai-gateway/next/control-cost-and-traffic/model-round-robin.md: https://wso2.com/api-platform/policy-hub/policies/model-round-robin
+  ai-gateway/next/control-cost-and-traffic/model-weighted-round-robin.md: https://wso2.com/api-platform/policy-hub/policies/model-weighted-round-robin
+  ai-gateway/next/control-cost-and-traffic/semantic-caching.md: https://wso2.com/api-platform/policy-hub/policies/semantic-cache
+  ai-gateway/next/llm-proxy/guardrails/aws-bedrock-guardrail.md: https://wso2.com/api-platform/policy-hub/policies/aws-bedrock-guardrail
+  ai-gateway/next/llm-proxy/guardrails/azure-content-safety.md: https://wso2.com/api-platform/policy-hub/policies/azure-content-safety-content-moderation
+  ai-gateway/next/llm-proxy/guardrails/content-length.md: https://wso2.com/api-platform/policy-hub/policies/content-length-guardrail
+  ai-gateway/next/llm-proxy/guardrails/json-schema.md: https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail
+  ai-gateway/next/llm-proxy/guardrails/pii-masking-regex.md: https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex
+  ai-gateway/next/llm-proxy/guardrails/regex.md: https://wso2.com/api-platform/policy-hub/policies/regex-guardrail
+  ai-gateway/next/llm-proxy/guardrails/semantic-prompt-guard.md: https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard
+  ai-gateway/next/llm-proxy/guardrails/sentence-count.md: https://wso2.com/api-platform/policy-hub/policies/sentence-count-guardrail
+  ai-gateway/next/llm-proxy/guardrails/url.md: https://wso2.com/api-platform/policy-hub/policies/url-guardrail
+  ai-gateway/next/llm-proxy/guardrails/word-count.md: https://wso2.com/api-platform/policy-hub/policies/word-count-guardrail
+  ai-gateway/next/llm-proxy/load-balancing/model-round-robin.md: https://wso2.com/api-platform/policy-hub/policies/model-round-robin
+  ai-gateway/next/llm-proxy/load-balancing/model-weighted-round-robin.md: https://wso2.com/api-platform/policy-hub/policies/model-weighted-round-robin
+  ai-gateway/next/llm-proxy/prompt-management/prompt-decorator.md: https://wso2.com/api-platform/policy-hub/policies/prompt-decorator
+  ai-gateway/next/llm-proxy/prompt-management/prompt-template.md: https://wso2.com/api-platform/policy-hub/policies/prompt-template
+  ai-gateway/next/llm-proxy/semantic-caching.md: https://wso2.com/api-platform/policy-hub/policies/semantic-cache
+  ai-gateway/next/mcp-proxy/mcp-acl-list.md: https://wso2.com/api-platform/policy-hub/policies/mcp-acl-list
+  ai-gateway/next/mcp-proxy/mcp-authentication.md: https://wso2.com/api-platform/policy-hub/policies/mcp-auth
+  ai-gateway/next/mcp-proxy/mcp-authorization.md: https://wso2.com/api-platform/policy-hub/policies/mcp-authz
+  ai-gateway/next/mcp-proxy/mcp-rewrite.md: https://wso2.com/api-platform/policy-hub/policies/mcp-rewrite
+  ai-gateway/next/mcp-proxy/policies/mcp-acl-list.md: https://wso2.com/api-platform/policy-hub/policies/mcp-acl-list
+  ai-gateway/next/mcp-proxy/policies/mcp-authentication.md: https://wso2.com/api-platform/policy-hub/policies/mcp-auth
+  ai-gateway/next/mcp-proxy/policies/mcp-authorization.md: https://wso2.com/api-platform/policy-hub/policies/mcp-authz
+  ai-gateway/next/mcp-proxy/policies/mcp-rewrite.md: https://wso2.com/api-platform/policy-hub/policies/mcp-rewrite
+  # The version root: README.md is excluded from the build
+  ai-gateway/next/index.md: ai-gateway/next/overview.md
