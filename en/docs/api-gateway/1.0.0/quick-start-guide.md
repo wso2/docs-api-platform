@@ -182,7 +182,7 @@ This stops the containers and removes the `controller-data` volume. The next sta
 Your standalone gateway is now running! Here's what to do next:
 
 - **Configure Policies**: Apply traffic management, security, and transformation [policies](policies/overview.md) to your APIs
-- **Connect to API Platform Cloud**: Run the gateway as a [Self-Hosted Gateway](../../cloud/api-platform-gateway/getting-started.md) connected to the API Platform control plane for centralized management and analytics
+- **Connect to API Platform Cloud**: Run the gateway as a [Self-Hosted Gateway](../../../cloud/api-platform-gateway/getting-started/) connected to the API Platform control plane for centralized management and analytics
 
 ## Advanced Configuration
 
