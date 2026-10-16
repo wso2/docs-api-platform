@@ -169,7 +169,7 @@ Never write the client secret as a literal in `config.toml`. The {% raw %}`{{ en
 export APIP_AP_AUTH_IDP_CLIENT_SECRET=<portal-client-secret>
 ```
 
-In production, prefer a mounted secret file. Swap the token for {% raw %}`'{{ file "/secrets/api-portal/oidc_client_secret" }}'`{% endraw %}, then mount the secret at that path. Both forms fail closed: a missing variable or unreadable file aborts startup rather than falling back to an empty credential. See [Interpolation tokens](../../references/configurations.md#interpolation-tokens).
+In production, prefer a mounted secret file. Swap the token for {% raw %}`'{{ file "/secrets/api-portal/oidc_client_secret" }}'`{% endraw %}, then mount the secret at that path. Both forms fail closed: a missing variable or unreadable file aborts startup rather than falling back to an empty credential. See [Interpolation tokens](../../references/configurations.md).
 
 ## Step 5: Make the organization claim resolve to your organization
 

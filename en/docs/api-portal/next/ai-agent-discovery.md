@@ -118,7 +118,7 @@ The **Try with AI** button on an [API's overview page](discover-apis/browse-apis
 
 Three separate controls decide what agents see:
 
-- **Per-artifact agent visibility.** All published APIs, MCP servers, and workflows are agent-visible by default. Setting an artifact to hidden removes it from `llms.txt`, the catalogs, and every Markdown and specification endpoint, while leaving it visible to human users in the portal. For APIs, see [Make an API AI-Ready](../../cloud/develop-api-proxy/make-api-ai-ready.md). For workflows, see [Managing API Workflows](admin-settings/manage-api-workflows.md).
+- **Per-artifact agent visibility.** All published APIs, MCP servers, and workflows are agent-visible by default. Setting an artifact to hidden removes it from `llms.txt`, the catalogs, and every Markdown and specification endpoint, while leaving it visible to human users in the portal. For APIs, see [Make an API AI-Ready](../../../cloud/develop-api-proxy/make-api-ai-ready/). For workflows, see [Managing API Workflows](admin-settings/manage-api-workflows.md).
 - **Portal-wide AI discoverability.** Turning off **Portal is AI-discoverable** under [LLM Instructions](admin-settings/llm-instructions.md) makes every endpoint on this page return `404`, including `llms.txt` itself.
 - **Served artifact types.** A deployment that doesn't serve a given artifact type returns `404` for that type's catalog, Markdown, and specification endpoints. See [Artifact types](setting-up/artifact-types.md).
 
@@ -127,6 +127,6 @@ Three separate controls decide what agents see:
 - [LLM Instructions](admin-settings/llm-instructions.md): set the portal name and description at the top of `llms.txt`, and toggle AI discoverability
 - [Managing API Workflows](admin-settings/manage-api-workflows.md): publish workflows that guide agents through common multi-step use cases
 - [API Workflows](api-workflows.md): how agents discover and follow published workflows
-- [Make an API AI-Ready](../../cloud/develop-api-proxy/make-api-ai-ready.md): publisher guidance on descriptions, specifications, and visibility settings
+- [Make an API AI-Ready](../../../cloud/develop-api-proxy/make-api-ai-ready/): publisher guidance on descriptions, specifications, and visibility settings
 - [MCP Servers](mcp-servers/overview.md): how MCP servers are published, discovered, and connected to
 - [MCP Registry API](mcp-registry.md): discover the same servers in the Model Context Protocol registry format
