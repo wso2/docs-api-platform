@@ -98,4 +98,4 @@ After assigning paid plans, publish the API so that consumers can discover and s
 Once published, API consumers can view the API and its available paid plans on the Developer Portal and subscribe to a plan that fits their needs.
 
 !!! tip
-    For more details on lifecycle states and transitions, see [Lifecycle Management](../develop-api-proxy/lifecycle-management.md).
+    For more details on lifecycle states and transitions, see [Lifecycle Management](../../cloud/develop-api-proxy/lifecycle-management/).

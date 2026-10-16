@@ -207,10 +207,10 @@ You can also open the `llms.txt` preview in another tab to see the current `llms
 
 ## Next steps
 
-- [Apply policies to an MCP proxy](../../cloud/ai-workspace/mcp-proxies/apply-policies.md).
+- [Apply policies to an MCP proxy](../../../cloud/ai-workspace/mcp-proxies/apply-policies/).
 - [Find and connect to an enterprise MCP server from the MCP Hub](./find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md)
-- [Learn more about LLM Instructions](../../cloud/devportal/admin-settings/llm-instructions/)
-- See guides to get started with standalone [AI Workspace](../../ai-workspace/1.0.0/getting-started.md) and [API Portal and MCP Hub](../../api-portal/1.0.0/quickstart-guide.md).
+- [Learn more about LLM Instructions](../../../cloud/devportal/admin-settings/llm-instructions/)
+- See guides to get started with standalone [AI Workspace](../../../ai-workspace/1.0.0/getting-started/) and [API Portal and MCP Hub](../../../api-portal/1.0.0/quickstart-guide/).
 
 ## Try the sample
 

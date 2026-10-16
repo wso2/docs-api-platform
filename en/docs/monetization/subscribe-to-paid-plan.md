@@ -53,8 +53,8 @@ Before you begin, ensure you have:
 
 After subscribing, generate application keys and invoke the API using the credentials. For detailed instructions, see:
 
-- [Consume an API Secured with OAuth2](../devportal/consuming-services/consume-an-api-secured-with-oauth2.md)
-- [Consume an API Secured with API Key](../devportal/consuming-services/consume-an-api-secured-with-api-key.md)
+- [Consume an API Secured with OAuth2](../../cloud/devportal/consuming-services/consume-an-api-secured-with-oauth2/)
+- [Consume an API Secured with API Key](../../cloud/devportal/consuming-services/consume-an-api-secured-with-api-key/)
 
 ---
 

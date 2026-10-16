@@ -69,7 +69,7 @@ By the end of this guide, you understand:
 - [`arazzo-mcp-gen`](https://github.com/wso2/arazzo-mcp-generator), from the
   releases page.
 - Access to AI Workspace with the **Admin** or **Developer** role.
-- An [AI Gateway](../../cloud/ai-workspace/ai-gateways/setting-up.md) you have set
+- An [AI Gateway](../../../cloud/ai-workspace/ai-gateways/setting-up/) you have set
   up and that shows **Active**.
 
 ## Step 1: Describe the sequence in Arazzo

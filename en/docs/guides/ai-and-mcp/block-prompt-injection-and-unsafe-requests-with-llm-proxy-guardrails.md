@@ -80,7 +80,7 @@ Mistral API
 
 ## Step 1: Create an organization and project
 
-Go to the [WSO2 API Platform console](https://console.bijira.dev) and sign in. If this is your first time, you're prompted to create an organization first. Full walkthrough: [Quick start guide](../../cloud/introduction/quick-start-guide.md).
+Go to the [WSO2 API Platform console](https://console.bijira.dev) and sign in. If this is your first time, you're prompted to create an organization first. Full walkthrough: [Quick start guide](../../../cloud/introduction/quick-start-guide/).
 
 Then create a project with these details:
 
@@ -98,7 +98,7 @@ Then create a project with these details:
 
 ## Step 2: Create and start an AI gateway
 
-The AI gateway is the runtime that hosts your proxy and enforces your guardrails. If you already have one running and shown as **Active**, skip to Step 3. Full reference, including Virtual Machine and Kubernetes install options and gateway management: [Setting up an AI Gateway](../../cloud/ai-workspace/ai-gateways/setting-up.md).
+The AI gateway is the runtime that hosts your proxy and enforces your guardrails. If you already have one running and shown as **Active**, skip to Step 3. Full reference, including Virtual Machine and Kubernetes install options and gateway management: [Setting up an AI Gateway](../../../cloud/ai-workspace/ai-gateways/setting-up/).
 
 1. Click **AI Gateways** > **+ Add AI Gateway**, and enter:
 
@@ -128,7 +128,7 @@ The AI gateway is the runtime that hosts your proxy and enforces your guardrails
 ![AI Gateways list showing my-ai-gateway with an Active status badge](../../assets/img/guides/ai-and-mcp/llm-proxy-guardrails/ai-gateways-list-with-active-gateway.png){.cInlineImage-full}
 
 !!! note
-    If a default gateway port is already in use on your machine, edit the port mappings in the downloaded `docker-compose.yaml` before starting. Once the gateway is **Active**, its registration token becomes single-use — see [Setting up an AI Gateway](../../cloud/ai-workspace/ai-gateways/setting-up.md#gateway-registration-token) if you need to reconnect it later.
+    If a default gateway port is already in use on your machine, edit the port mappings in the downloaded `docker-compose.yaml` before starting. Once the gateway is **Active**, its registration token becomes single-use — see [Setting up an AI Gateway](../../../cloud/ai-workspace/ai-gateways/setting-up/#gateway-registration-token) if you need to reconnect it later.
 
 ## Step 3: Configure the embedding provider
 
@@ -143,7 +143,7 @@ embedding_provider_model = "mistral-embed"
 embedding_provider_api_key = "<YOUR-MISTRAL-API-KEY>"
 ```
 
-Using OpenAI or Azure OpenAI instead? See [Semantic Prompt Guard: Gateway Configuration](../../cloud/ai-workspace/policies/guardrails/semantic-prompt-guard.md#gateway-configuration) for the equivalent values.
+Using OpenAI or Azure OpenAI instead? See [Semantic Prompt Guard: Gateway Configuration](../../../cloud/ai-workspace/policies/guardrails/semantic-prompt-guard/#gateway-configuration) for the equivalent values.
 
 Restart the gateway so it picks up the change:
 
@@ -161,7 +161,7 @@ docker compose --env-file configs/keys.env restart gateway-controller gateway-ru
 
 ## Step 4: Add Mistral as an LLM provider
 
-Registering the provider stores your Mistral API key in the platform, so the gateway can call Mistral on your behalf. Your application never handles this key. LLM providers are managed at the organization level, shared across every project, unlike the project-scoped resources in the other steps. Full reference: [Configure an LLM provider](../../cloud/ai-workspace/llm-providers/configure-provider.md).
+Registering the provider stores your Mistral API key in the platform, so the gateway can call Mistral on your behalf. Your application never handles this key. LLM providers are managed at the organization level, shared across every project, unlike the project-scoped resources in the other steps. Full reference: [Configure an LLM provider](../../../cloud/ai-workspace/llm-providers/configure-provider/).
 
 1. From the project's **Overview** page, under **LLM Service Providers**, click **+ Add New**.
 2. Select **Mistral**, name it **Mistral Provider**, and paste your Mistral API key. Click **Add Provider**.
@@ -176,7 +176,7 @@ Registering the provider stores your Mistral API key in the platform, so the gat
 
 ## Step 5: Create the LLM proxy
 
-The LLM proxy is the endpoint your applications call, and where you attach the four guardrails. Full reference: [Configure an App LLM proxy](../../cloud/ai-workspace/llm-proxies/configure-proxy.md).
+The LLM proxy is the endpoint your applications call, and where you attach the four guardrails. Full reference: [Configure an App LLM proxy](../../../cloud/ai-workspace/llm-proxies/configure-proxy/).
 
 1. Click **App LLM Proxies** > **+ Create App LLM Proxy**, and enter:
 
@@ -435,11 +435,11 @@ Use the API key and invoke URL from Step 12. The invoke URL already includes you
 
 ## Next steps
 
-- [Content length guardrail reference](../../cloud/ai-gateway/llm/guardrails/content-length.md)
-- [Word count guardrail reference](../../cloud/ai-workspace/policies/guardrails/word-count-guardrail.md)
-- [Regex guardrail reference](../../cloud/ai-gateway/llm/guardrails/regex.md) — including supported pattern syntax
-- [Semantic prompt guard reference](../../cloud/ai-workspace/policies/guardrails/semantic-prompt-guard.md) — including similarity threshold guidance
-- [Guardrail execution order](../../ai-gateway/next/guardrails/execution-order.md)
+- [Content length guardrail reference](../../../cloud/ai-gateway/llm/guardrails/content-length/)
+- [Word count guardrail reference](../../../cloud/ai-workspace/policies/guardrails/word-count-guardrail/)
+- [Regex guardrail reference](../../../cloud/ai-gateway/llm/guardrails/regex/) — including supported pattern syntax
+- [Semantic prompt guard reference](../../../cloud/ai-workspace/policies/guardrails/semantic-prompt-guard/) — including similarity threshold guidance
+- [Guardrail execution order](../../../ai-gateway/next/guardrails/execution-order/)
 - [Enforce token-based rate limiting on an LLM proxy](enforce-token-based-rate-limiting-on-an-llm-proxy.md) — cap token consumption on the same proxy
 
 ## Try the sample

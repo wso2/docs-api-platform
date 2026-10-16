@@ -102,7 +102,7 @@ Before you begin, make sure you have the following.
 
 6. Follow the instructions shown on the gateway page to download, configure, and start the gateway.
 
-For more information, see [Set up an AI Gateway in AI Workspace](../../../cloud/ai-workspace/ai-gateways/setting-up.md).
+For more information, see [Set up an AI Gateway in AI Workspace](../../../../cloud/ai-workspace/ai-gateways/setting-up/).
 
 Once the gateway status shows as **Active**, continue to Step 2. The following screenshot shows an active AI Gateway.
 

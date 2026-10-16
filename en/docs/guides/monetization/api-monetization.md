@@ -126,7 +126,7 @@ Connect your Stripe account at the organization level. The platform uses these c
 ![Add Stripe Credentials panel showing Secret Key and Publishable Key fields](../../assets/clips/monetization/api-monetization/add_stripe_creds.gif){.cInlineImage-full}
 
 !!! note
-    You can use a Standard secret key or a Restricted secret key. For Restricted keys, see [Getting Started with API Monetization](../../cloud/api-monetization/getting-started.md) for the minimum permissions required.
+    You can use a Standard secret key or a Restricted secret key. For Restricted keys, see [Getting Started with API Monetization](../../monetization/getting-started.md) for the minimum permissions required.
 
 ---
 
@@ -310,6 +310,6 @@ After making API calls, check your usage, upcoming charges, and invoices from th
 
 ## Next steps
 
-- [Attach and manage policies](../../cloud/develop-api-proxy/policy/attach-and-manage-policies.md) — pair your subscription plans with rate limiting and other policies to protect your backend from overuse.
-- [Manage paid subscription plans](../../cloud/api-monetization/manage-paid-subscription-plans.md) — edit, version, or deactivate your plans as your pricing evolves.
-- [Insights](../../cloud/monitoring-and-insights/insights.md) — track request volume, error rates, and latency per plan in the API Platform Console.
+- [Attach and manage policies](../../../cloud/develop-api-proxy/policy/attach-and-manage-policies/) — pair your subscription plans with rate limiting and other policies to protect your backend from overuse.
+- [Manage paid subscription plans](../../monetization/manage-paid-subscription-plans.md) — edit, version, or deactivate your plans as your pricing evolves.
+- [Insights](../../../cloud/monitoring-and-insights/insights/) — track request volume, error rates, and latency per plan in the API Platform Console.

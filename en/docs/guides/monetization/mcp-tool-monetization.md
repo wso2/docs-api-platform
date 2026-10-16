@@ -131,7 +131,7 @@ Start the sample MCP server, then deploy an MCP proxy that fronts it and require
     docker run -p 3001:3001 --name everything --network ai-gateway_gateway-network rakhitharr/mcp-everything:v3
     ```
 
-2. Deploy the MCP proxy with the `mcp-auth` policy applied. Replace the `issuers` and `jwks` values with your own identity provider details (see [MCP Authentication](../../ai-gateway/1.1.0/mcp-proxy/policies/mcp-authentication.md) for the matching `config.toml` key manager setup):
+2. Deploy the MCP proxy with the `mcp-auth` policy applied. Replace the `issuers` and `jwks` values with your own identity provider details (see [MCP Authentication](../../../ai-gateway/1.1.0/mcp-proxy/policies/mcp-authentication/) for the matching `config.toml` key manager setup):
 
     ```bash
     curl -X POST http://localhost:9090/api/management/v1/mcp-proxies \
@@ -206,7 +206,7 @@ Analytics is configured entirely in the gateway `config.toml` and enabled at the
 **Expected result:** The gateway is configured to publish every MCP tool call as an analytics event to your Moesif application.
 
 !!! note
-    Analytics events are collected asynchronously and batched before publishing, so enabling analytics does not add latency to tool calls. For the full list of publisher and gRPC event server parameters, see [Configure Moesif Analytics](../../api-gateway/1.1.0/analytics/moesif-analytics.md).
+    Analytics events are collected asynchronously and batched before publishing, so enabling analytics does not add latency to tool calls. For the full list of publisher and gRPC event server parameters, see [Configure Moesif Analytics](../../../api-gateway/1.1.0/analytics/moesif-analytics/).
 
 ---
 
@@ -221,7 +221,7 @@ docker compose -p ai-gateway up -d
 **Expected result:** The gateway restarts with analytics enabled. The policy-engine logs show the ALS server listening on the configured `server_port` (18090).
 
 !!! tip "Protect sensitive headers"
-    Before sending production traffic to Moesif, attach the [Analytics Header Filter](../../api-gateway/1.1.0/analytics/analytics-header-filter.md) policy to the MCP proxy to strip authentication tokens and other sensitive headers from the published events. Use `deny` mode to exclude headers such as `Authorization`.
+    Before sending production traffic to Moesif, attach the [Analytics Header Filter](../../../api-gateway/1.1.0/analytics/analytics-header-filter/) policy to the MCP proxy to strip authentication tokens and other sensitive headers from the published events. Use `deny` mode to exclude headers such as `Authorization`.
 
 ---
 
@@ -276,7 +276,7 @@ Connect Moesif to Stripe so metered usage is converted into invoices and payment
 **Expected result:** Moesif reports metered MCP tool usage to Stripe, which issues invoices and collects payment from subscribed consumers. WSO2 API Platform never stores payment details.
 
 !!! note
-    Moesif also integrates with Recurly, Chargebee, and Zuora. The same metered usage data drives billing regardless of the provider you choose. See the [Analytics and Monetization overview](../../analytics-and-monetization/overview.md) for the full list of capabilities.
+    Moesif also integrates with Recurly, Chargebee, and Zuora. The same metered usage data drives billing regardless of the provider you choose. See the [Analytics and Monetization overview](../../monetization/overview.md) for the full list of capabilities.
 
 ---
 
@@ -321,8 +321,8 @@ Connect Moesif to Stripe so metered usage is converted into invoices and payment
 
 ## Next steps
 
-- [MCP Authentication](../../ai-gateway/1.1.0/mcp-proxy/policies/mcp-authentication.md) — configure key managers, scopes, and audiences to control which consumers can call your tools.
-- [Configure Moesif Analytics](../../api-gateway/1.1.0/analytics/moesif-analytics.md) — tune publish intervals, batching, and the gRPC event server for production traffic.
-- [Analytics and Monetization with Moesif](../../analytics-and-monetization/overview.md) — explore quotas, prepaid credits, behavioral alerts, and embedded metrics.
+- [MCP Authentication](../../../ai-gateway/1.1.0/mcp-proxy/policies/mcp-authentication/) — configure key managers, scopes, and audiences to control which consumers can call your tools.
+- [Configure Moesif Analytics](../../../api-gateway/1.1.0/analytics/moesif-analytics/) — tune publish intervals, batching, and the gRPC event server for production traffic.
+- [Analytics and Monetization with Moesif](../../monetization/overview.md) — explore quotas, prepaid credits, behavioral alerts, and embedded metrics.
 - [Monetize a REST API with Stripe](api-monetization.md) — compare the cloud gateway monetization flow for REST APIs.
 

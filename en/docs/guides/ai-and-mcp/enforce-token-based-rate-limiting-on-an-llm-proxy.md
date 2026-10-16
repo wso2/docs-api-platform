@@ -244,8 +244,8 @@ Use the API key and invoke URL from Step 7 for all requests below.
 ## Next steps
 
 - [Set up a governed multi-model LLM proxy with cost controls and failover](set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md) — extend this proxy with model round-robin distribution, PII masking, and semantic caching
-- [Token-based rate limit policy reference](../../cloud/ai-workspace/policies/rate-limit/token-based-rate-limit.md) — configure separate limits for prompt tokens, completion tokens, and total tokens independently
-- [LLM cost-based rate limiting](../../cloud/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit.md) — enforce a monetary spending budget instead of a token count
+- [Token-based rate limit policy reference](../../../cloud/ai-workspace/policies/rate-limit/token-based-rate-limit/) — configure separate limits for prompt tokens, completion tokens, and total tokens independently
+- [LLM cost-based rate limiting](../../../cloud/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit/) — enforce a monetary spending budget instead of a token count
 
 ## Try the sample
 

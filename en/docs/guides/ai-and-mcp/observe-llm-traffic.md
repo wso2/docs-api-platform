@@ -48,15 +48,15 @@ This guide shows you where to find each of those figures and how to read them.
 ## Prerequisites
 
 - A WSO2 API Platform account. [Sign up for free](https://console.bijira.dev).
-- An AI gateway that shows **Active** in the AI Workspace. See [Setting up an AI Gateway](../../cloud/ai-workspace/ai-gateways/setting-up.md).
-- An [LLM provider](../../cloud/ai-workspace/llm-providers/configure-provider.md) deployed to that gateway. Add an [App LLM proxy](../../cloud/ai-workspace/llm-proxies/configure-proxy.md) as well if you want per-application authentication or guardrails.
+- An AI gateway that shows **Active** in the AI Workspace. See [Setting up an AI Gateway](../../../cloud/ai-workspace/ai-gateways/setting-up/).
+- An [LLM provider](../../../cloud/ai-workspace/llm-providers/configure-provider/) deployed to that gateway. Add an [App LLM proxy](../../../cloud/ai-workspace/llm-proxies/configure-proxy/) as well if you want per-application authentication or guardrails.
 - An API key and the invoke URL for the provider or proxy you want to observe.
 - `curl` for sending test traffic.
 
-If you're new to the AI Workspace, [Get started with AI Workspace](../../cloud/ai-workspace/getting-started.md) covers the gateway and provider setup end to end.
+If you're new to the AI Workspace, [Get started with AI Workspace](../../../cloud/ai-workspace/getting-started/) covers the gateway and provider setup end to end.
 
 !!! note
-    Insights in the AI Workspace is powered by [Moesif](https://www.moesif.com/) and comes integrated, so there's nothing to connect. If your organization was created before February 20, 2026 and you already have a Moesif organization you want to use, see [Integrate API Platform with Moesif](../../cloud/monitoring-and-insights/integrate-bijira-with-moesif.md).
+    Insights in the AI Workspace is powered by [Moesif](https://www.moesif.com/) and comes integrated, so there's nothing to connect. If your organization was created before February 20, 2026 and you already have a Moesif organization you want to use, see [Integrate API Platform with Moesif](../../../cloud/monitoring-and-insights/integrate-bijira-with-moesif/).
 
 ## Step 1: Send traffic through your gateway
 
@@ -108,7 +108,7 @@ The Overview dashboard answers one question: is anything wrong right now? Start 
 
 ![Top APIs Across Platform naming each proxy beside a Traffic Breakdown donut](../../assets/img/guides/ai-and-mcp/s5/insights-traffic-panels.png){.cInlineImage-full}
 
-The Overview dashboard also charts traffic intensity by day and hour, client platforms and user agents, new consumer registrations, and request origin on a geographic map. See [Insights overview](../../cloud/monitoring-and-insights/insights.md) for the full list.
+The Overview dashboard also charts traffic intensity by day and hour, client platforms and user agents, new consumer registrations, and request origin on a geographic map. See [Insights overview](../../../cloud/monitoring-and-insights/insights/) for the full list.
 
 ## Step 4: Read LLM usage, tokens, and cost
 
@@ -146,14 +146,14 @@ Then work down the panels:
 | No data on any dashboard | Start the gateway with `docker compose --env-file configs/keys.env up`, using the file generated when you registered the gateway. It holds the key the runtime publishes with. |
 | Every tile reads zero | Set **Environment** to the environment your proxies are deployed to. |
 | You want estimated cost alongside token usage | Cost is calculated from provider pricing, so call a model the pricing data covers. |
-| You want token usage and cost attributed to individual applications | Map the proxy's API keys to a [GenAI application](../../cloud/ai-workspace/genai-applications.md). **AI Application Details** and **Top Applications** then group by that application name. |
+| You want token usage and cost attributed to individual applications | Map the proxy's API keys to a [GenAI application](../../../cloud/ai-workspace/genai-applications/). **AI Application Details** and **Top Applications** then group by that application name. |
 
 ## Next steps
 
-- [Insights overview](../../cloud/monitoring-and-insights/insights.md): every dashboard, metric, and chart available in Insights
+- [Insights overview](../../../cloud/monitoring-and-insights/insights/): every dashboard, metric, and chart available in Insights
 - [Enforce token-based rate limiting on an LLM proxy](enforce-token-based-rate-limiting-on-an-llm-proxy.md): act on the token figures by capping consumption per window
 - [Set up a governed multi-model LLM proxy with cost controls and failover](set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md): distribute traffic across models, then confirm the split in **Traffic Share by Model**
-- [Guardrails overview](../../cloud/ai-workspace/policies/guardrails/overview.md): add guardrails, then watch them in **Guardrail Triggers**
+- [Guardrails overview](../../../cloud/ai-workspace/policies/guardrails/overview/): add guardrails, then watch them in **Guardrail Triggers**
 
 ## Try the samples
 

@@ -289,6 +289,6 @@ Publishing the API makes it discoverable in the Developer Portal so developers c
 
 ## Next steps
 
-- [Gateway federation overview](../../cloud/federation/overview.md) — learn about the full lifecycle of gateway federation in API Platform, including governance and compliance monitoring.
-- [Manage the API lifecycle](../../cloud/develop-api-proxy/lifecycle-management.md) — move an API discovered from an external gateway through the lifecycle states to publish it to the Developer Portal.
-- [Discover APIs in the Developer Portal](../../cloud/devportal/discover-apis/api-search.md) — understand how consumers find and subscribe to APIs you've published, including those from external gateways.
+- [Gateway federation overview](../../../cloud/federation/overview/) — learn about the full lifecycle of gateway federation in API Platform, including governance and compliance monitoring.
+- [Manage the API lifecycle](../../../cloud/develop-api-proxy/lifecycle-management/) — move an API discovered from an external gateway through the lifecycle states to publish it to the Developer Portal.
+- [Discover APIs in the Developer Portal](../../../cloud/devportal/discover-apis/api-search/) — understand how consumers find and subscribe to APIs you've published, including those from external gateways.

@@ -49,15 +49,15 @@ This guide shows you where to find each of those figures and how to read them.
 ## Prerequisites
 
 - A WSO2 API Platform account. [Sign up for free](https://console.bijira.dev).
-- An AI gateway that shows **Active** in the AI Workspace. See [Setting up an AI Gateway](../../cloud/ai-workspace/ai-gateways/setting-up.md).
-- An [MCP proxy](../../cloud/ai-workspace/mcp-proxies/configure-proxy.md) fronting an MCP server, deployed to that gateway.
+- An AI gateway that shows **Active** in the AI Workspace. See [Setting up an AI Gateway](../../../cloud/ai-workspace/ai-gateways/setting-up/).
+- An [MCP proxy](../../../cloud/ai-workspace/mcp-proxies/configure-proxy/) fronting an MCP server, deployed to that gateway.
 - The invoke URL for the proxy, and an API key if the proxy has authentication enabled.
 - `curl` for sending test traffic.
 
-If you're new to the AI Workspace, [Get started with AI Workspace](../../cloud/ai-workspace/getting-started.md) covers the gateway and proxy setup end to end.
+If you're new to the AI Workspace, [Get started with AI Workspace](../../../cloud/ai-workspace/getting-started/) covers the gateway and proxy setup end to end.
 
 !!! note
-    Insights in the AI Workspace is powered by [Moesif](https://www.moesif.com/) and comes integrated, so there's nothing to connect. If your organization was created before February 20, 2026 and you already have a Moesif organization you want to use, see [Integrate API Platform with Moesif](../../cloud/monitoring-and-insights/integrate-bijira-with-moesif.md).
+    Insights in the AI Workspace is powered by [Moesif](https://www.moesif.com/) and comes integrated, so there's nothing to connect. If your organization was created before February 20, 2026 and you already have a Moesif organization you want to use, see [Integrate API Platform with Moesif](../../../cloud/monitoring-and-insights/integrate-bijira-with-moesif/).
 
 ## Step 1: Send traffic through your gateway
 
@@ -156,7 +156,7 @@ The Overview dashboard answers one question: is anything wrong right now? Start 
 
 ![Top APIs Across Platform naming each proxy beside a Traffic Breakdown donut](../../assets/img/guides/ai-and-mcp/s5/insights-traffic-panels.png){.cInlineImage-full}
 
-The Overview dashboard also charts traffic intensity by day and hour, client platforms and user agents, new consumer registrations, and request origin on a geographic map. See [Insights overview](../../cloud/monitoring-and-insights/insights.md) for the full list.
+The Overview dashboard also charts traffic intensity by day and hour, client platforms and user agents, new consumer registrations, and request origin on a geographic map. See [Insights overview](../../../cloud/monitoring-and-insights/insights/) for the full list.
 
 ## Step 4: Read MCP tool activity
 
@@ -201,8 +201,8 @@ Then work through the charts:
 
 ## Next steps
 
-- [Insights overview](../../cloud/monitoring-and-insights/insights.md): every dashboard, metric, and chart available in Insights
-- [Apply policies to MCP proxies](../../cloud/ai-workspace/mcp-proxies/apply-policies.md): add authentication and access control to your tools, then watch the effect on the consumer and error panels
+- [Insights overview](../../../cloud/monitoring-and-insights/insights/): every dashboard, metric, and chart available in Insights
+- [Apply policies to MCP proxies](../../../cloud/ai-workspace/mcp-proxies/apply-policies/): add authentication and access control to your tools, then watch the effect on the consumer and error panels
 - [Convert a REST API into an MCP tool](convert-rest-api-to-mcp-server.md): expose an existing API as a governed MCP server
 - [Find and connect to an enterprise MCP server from the MCP Hub](find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.md): discover MCP servers and connect an agent to them
 

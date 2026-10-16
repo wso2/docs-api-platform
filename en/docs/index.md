@@ -48,7 +48,7 @@ The next question is: **who runs the infrastructure?**
 
     * **What is included:** API Control Plane, AI Workspace, Developer Portal, Moesif Analytics, API Gateway, and AI Gateway, all managed by WSO2.
 
-    * [Cloud documentation](cloud/introduction/what-is-bijira.md)
+    * [Cloud documentation](cloud/introduction/what-is-bijira/)
 
 * **Option B: Hybrid (WSO2 hosts the control plane, you host the gateways)**
     
@@ -61,7 +61,7 @@ The next question is: **who runs the infrastructure?**
 
     * **What is included:** Cloud control plane (AI Workspace, Developer Portal, Moesif) managed by WSO2, plus self-hosted gateways (API Gateway, AI Gateway) in your environment. You can also federate third-party gateways (AWS, Azure, Kong, Envoy) under the same control plane.
 
-    * [Set up hybrid deployment](cloud/api-platform-gateway/getting-started.md)
+    * [Set up hybrid deployment](cloud/api-platform-gateway/getting-started/)
 
 * **Option C: Self-managed (API Manager)**
     
@@ -76,7 +76,7 @@ The next question is: **who runs the infrastructure?**
     
     * **What is included:** Self-hosted control plane (Publisher, Developer Portal), self-hosted gateways (API Gateway, AI Gateway). Moesif analytics can be connected separately. Third-party gateways can be federated.
     
-    * [API Manager documentation](api-manager/overview.md)
+    * [API Manager documentation](api-manager/4.7.0/)
 
 #### How do the three options compare?
 
@@ -121,7 +121,7 @@ There are two standalone gateways:
     For AI traffic. The AI Gateway provides two capabilities:
     * **LLM Proxy** routes traffic to LLM providers such as OpenAI, Anthropic, Azure OpenAI, Mistral, and AWS Bedrock. You can apply guardrails including PII masking, prompt injection protection, and content safety checks. It also supports multi-provider load balancing, failover, semantic caching, and token-based rate limiting.
     * **MCP Proxy** governs how AI agents access your services through the Model Context Protocol. You can generate MCP tools from REST APIs, aggregate tools from multiple servers, and enforce access control and authorization.
-    * [AI Gateway documentation](ai-gateway/1.1.0/overview.md)
+    * [AI Gateway documentation](ai-gateway/1.1.0/overview/)
 
 ## What is the difference between standalone mode and platform mode?
 The API Gateway and AI Gateway can run in two modes: as part of the platform (Cloud, Hybrid, or API Manager) or in standalone mode. These are not different products. They are the same gateway, built on the same Go-based runtime and the same policy engine. The difference is in how you configure and interact with them.
@@ -144,45 +144,45 @@ The following is a complete view of all components and where to find their docum
 ### Control plane components
 | Component | What it does | Docs |
 | :--- | :--- | :--- |
-| **API Control Plane** | Design, publish, version, and govern APIs through the web UI and configuration files. Enforce policies across all connected gateways. | Part of [Cloud](cloud/introduction/what-is-bijira.md) and [API Manager](api-manager/overview.md) |
-| **AI Workspace** | The enterprise control plane for AI. Manage LLM providers, MCP servers, and generative AI (GenAI) applications. Configure cost and token-based rate limits, enforce guardrails, and view AI consumption insights at the organizational level. Connected to one or more AI Gateways. Available in Cloud and as a self-hosted control plane. | <ul><li>[Cloud AI Workspace docs](cloud/ai-workspace/overview.md)</li><li>[Self-hosted AI Workspace docs](ai-workspace/1.0.0/overview.md)</li></ul> |
-| **API Portal and MCP Hub** | Developer-facing portal for API discovery, subscription management, software development kit (SDK) generation, and theming. Includes agentic consumption capabilities for AI agents, such as the `llms.txt` endpoint, MCP registry, and Arazzo workflow support. Available in Cloud and as a self-hosted portal. | <ul><li>[Cloud API Portal docs](cloud/devportal/theming-devportal-with-ai.md)</li><li>[Self-hosted API Portal docs](api-portal/1.0.0/overview.md)</li></ul> |
-| **Analytics and Monetization** | Traffic monitoring, runtime and audit logs, usage tracking, and API monetization with usage-based billing. Powered by Moesif. | [Analytics docs](analytics-and-monetization/overview.md) |
+| **API Control Plane** | Design, publish, version, and govern APIs through the web UI and configuration files. Enforce policies across all connected gateways. | Part of [Cloud](cloud/introduction/what-is-bijira/) and [API Manager](api-manager/4.7.0/) |
+| **AI Workspace** | The enterprise control plane for AI. Manage LLM providers, MCP servers, and generative AI (GenAI) applications. Configure cost and token-based rate limits, enforce guardrails, and view AI consumption insights at the organizational level. Connected to one or more AI Gateways. Available in Cloud and as a self-hosted control plane. | <ul><li>[Cloud AI Workspace docs](cloud/ai-workspace/overview/)</li><li>[Self-hosted AI Workspace docs](ai-workspace/1.0.0/overview.md)</li></ul> |
+| **API Portal and MCP Hub** | Developer-facing portal for API discovery, subscription management, software development kit (SDK) generation, and theming. Includes agentic consumption capabilities for AI agents, such as the `llms.txt` endpoint, MCP registry, and Arazzo workflow support. Available in Cloud and as a self-hosted portal. | <ul><li>[Cloud API Portal docs](cloud/devportal/theming-devportal-with-ai/)</li><li>[Self-hosted API Portal docs](api-portal/1.0.0/overview.md)</li></ul> |
+| **Analytics and Monetization** | Traffic monitoring, runtime and audit logs, usage tracking, and API monetization with usage-based billing. Powered by Moesif. | [Analytics docs](analytics/overview.md) |
 
 ### Gateway components
 | Component | What it does | Docs |
 | :--- | :--- | :--- |
-| **API Gateway** | High-performance, Go-based gateway for API traffic. Handles authentication, rate limiting, transformations, and custom policies. | <ul><li>[Standalone docs](api-gateway/1.1.0/overview.md)</li><li>[Cloud-integrated docs](cloud/api-platform-gateway/getting-started.md)</li></ul> |
-| **AI Gateway** | Route, secure, and govern outbound LLM traffic. Includes guardrails (PII masking, prompt injection, content safety), multi-provider load balancing, failover, semantic caching, and cost governance (via LLM proxies).<br><br>Govern inbound MCP traffic from AI agents. Generate MCP tools from REST APIs, aggregate tools, and enforce access control and authorization (via MCP proxies). | <ul><li>[Standalone docs](ai-gateway/1.1.0/overview.md)</li><li>[Cloud-integrated docs](cloud/ai-gateway/overview.md)</li></ul> |
-| **Third-Party Gateways** | Federate existing gateways (AWS, Azure, Kong, and Envoy) into the WSO2 platform without replacing them. Discover and catalog APIs running on these gateways alongside your WSO2 managed APIs in a single developer portal. Gain unified observability across all gateway environments, and for supported gateways, publish and deploy API configurations directly from the control plane.|<ul><li>[Federation docs](cloud/federation/overview.md)</li></ul> |
+| **API Gateway** | High-performance, Go-based gateway for API traffic. Handles authentication, rate limiting, transformations, and custom policies. | <ul><li>[Standalone docs](api-gateway/1.1.0/overview.md)</li><li>[Cloud-integrated docs](cloud/api-platform-gateway/getting-started/)</li></ul> |
+| **AI Gateway** | Route, secure, and govern outbound LLM traffic. Includes guardrails (PII masking, prompt injection, content safety), multi-provider load balancing, failover, semantic caching, and cost governance (via LLM proxies).<br><br>Govern inbound MCP traffic from AI agents. Generate MCP tools from REST APIs, aggregate tools, and enforce access control and authorization (via MCP proxies). | <ul><li>[Standalone docs](ai-gateway/1.1.0/overview/)</li><li>[Cloud-integrated docs](cloud/ai-gateway/overview/)</li></ul> |
+| **Third-Party Gateways** | Federate existing gateways (AWS, Azure, Kong, and Envoy) into the WSO2 platform without replacing them. Discover and catalog APIs running on these gateways alongside your WSO2 managed APIs in a single developer portal. Gain unified observability across all gateway environments, and for supported gateways, publish and deploy API configurations directly from the control plane.|<ul><li>[Federation docs](cloud/federation/overview/)</li></ul> |
 | **Policy Hub** | API policies and AI guardrails are distributed through the Policy Hub, an open source repository powered by [github.com/wso2/gateway-controllers](https://github.com/wso2/gateway-controllers). The Policy Hub is integrated into Cloud, API Manager (4.7 and above), and the standalone gateways. When a new policy or guardrail is released, it becomes instantly available to all users. |<ul><li>[Policy Hub docs](policy-hub/overview.md)</li></ul> |
 
 ## Choose your path
 
 | I want to... | Start here |
 | :--- | :--- |
-| Get up and running fast with a managed cloud platform | [Cloud](cloud/introduction/what-is-bijira.md) |
-| Use a cloud control plane but keep API traffic in my infrastructure | [Hybrid setup](cloud/api-platform-gateway/getting-started.md) |
-| Run everything on my own infrastructure with a UI | [API Manager](api-manager/overview.md) |
+| Get up and running fast with a managed cloud platform | [Cloud](cloud/introduction/what-is-bijira/) |
+| Use a cloud control plane but keep API traffic in my infrastructure | [Hybrid setup](cloud/api-platform-gateway/getting-started/) |
+| Run everything on my own infrastructure with a UI | [API Manager](api-manager/4.7.0/) |
 | Run a lightweight API gateway with no UI | [API Gateway](api-gateway/1.1.0/overview.md) |
 | Govern LLM traffic (rate limits, guardrails, cost control) | [AI Gateway LLM Proxy](ai-gateway/1.1.0/llm-proxy/quick-start-guide.md) |
 | Expose my APIs as MCP tools for AI agents | [AI Gateway MCP Proxy](ai-gateway/1.1.0/mcp-proxy/quick-start-guide.md) |
 | Govern MCP traffic (inbound + outbound) | [AI Gateway MCP Proxy](ai-gateway/1.1.0/mcp-proxy/quick-start-guide.md) |
-| Manage LLM providers and AI policies at the organizational level | [AI Workspace](cloud/ai-workspace/overview.md) |
+| Manage LLM providers and AI policies at the organizational level | [AI Workspace](cloud/ai-workspace/overview/) |
 | Run a self-hosted control plane for AI gateways, LLM providers, and AI policies | [Self-hosted AI Workspace](ai-workspace/1.0.0/overview.md) |
-| Set up a developer portal for API discovery | [API Portal](cloud/devportal/theming-devportal-with-ai.md) |
+| Set up a developer portal for API discovery | [API Portal](cloud/devportal/theming-devportal-with-ai/) |
 | Run a self-hosted developer portal | [Self-hosted API Portal](api-portal/1.0.0/overview.md) |
-| Monitor traffic and monetize my APIs | [Analytics and Monetization](analytics-and-monetization/overview.md) |
+| Monitor traffic and monetize my APIs | [Analytics and Monetization](analytics/overview.md) |
 | Follow end-to-end scenario walkthroughs | [Guides](guides/overview.md) |
 
 ## Key concepts
 The following concepts apply across the entire platform:
 
-* [**Organizations**](cloud/bijira-concepts/organization.md) — The top-level boundary for your platform instance. All APIs, users, and configurations belong to an organization.
+* [**Organizations**](cloud/bijira-concepts/organization/) — The top-level boundary for your platform instance. All APIs, users, and configurations belong to an organization.
 
-* [**Projects**](cloud/bijira-concepts/project.md) — Logical groupings of APIs and services within an organization. Use projects to separate teams, environments, or business domains.
+* [**Projects**](cloud/bijira-concepts/project/) — Logical groupings of APIs and services within an organization. Use projects to separate teams, environments, or business domains.
 
-* [**Data Planes**](cloud/bijira-concepts/data-planes.md) — The gateway runtime environments where your APIs are deployed and traffic is processed. A data plane can be WSO2 managed (cloud), self-hosted (hybrid or self-managed), or a federated third-party gateway.
+* [**Data Planes**](cloud/bijira-concepts/data-planes/) — The gateway runtime environments where your APIs are deployed and traffic is processed. A data plane can be WSO2 managed (cloud), self-hosted (hybrid or self-managed), or a federated third-party gateway.
 
 ## Already using WSO2?
 **API Manager users (4.6 and below):** Your documentation remains at [apim.docs.wso2.com](https://apim.docs.wso2.com/en/latest/). Starting with version 4.7 (April 2026), API Manager connects to the new Go-based platform gateway, the same runtime used by Cloud and Hybrid. You can migrate at your own pace: new projects can use the platform gateway while existing APIs continue running on the Java-based classic gateway. APIM 4.7 still ships with the classic gateway if you are not ready to switch. See the API Manager section for 4.7 and above documentation.

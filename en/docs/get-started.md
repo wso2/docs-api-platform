@@ -25,10 +25,10 @@ You want the full platform experience: a web console to create, deploy, test, an
 
 | Guide | What you will do |
 | :--- | :--- |
-| [Publish your first API proxy](cloud/introduction/quick-start-guide.md) | Create a REST API proxy, deploy it, and invoke it from the cloud console. Takes about 10 minutes. |
-| [Publish your first LLM proxy](cloud/ai-gateway/llm/quick-start-guide.md) | Set up a managed proxy to an LLM provider (such as OpenAI) with guardrails and rate limiting through the cloud UI. |
-| [Publish your first MCP proxy](cloud/ai-gateway/mcp/quick-start-guide.md) | Expose a REST API as an MCP tool that AI agents can discover and invoke, configured through the cloud console. |
-| [Set up a hybrid gateway](cloud/api-platform-gateway/getting-started.md) | Connect a self-hosted gateway to the cloud control plane so that API traffic stays in your infrastructure. |
+| [Publish your first API proxy](../cloud/introduction/quick-start-guide/) | Create a REST API proxy, deploy it, and invoke it from the cloud console. Takes about 10 minutes. |
+| [Publish your first LLM proxy](../cloud/ai-gateway/llm/quick-start-guide/) | Set up a managed proxy to an LLM provider (such as OpenAI) with guardrails and rate limiting through the cloud UI. |
+| [Publish your first MCP proxy](../cloud/ai-gateway/mcp/quick-start-guide/) | Expose a REST API as an MCP tool that AI agents can discover and invoke, configured through the cloud console. |
+| [Set up a hybrid gateway](../cloud/api-platform-gateway/getting-started/) | Connect a self-hosted gateway to the cloud control plane so that API traffic stays in your infrastructure. |
 
 **If you want to run it yourself (API Manager):**
 
@@ -44,37 +44,37 @@ You want a lightweight gateway that you can download and run immediately. There 
 
 | Guide | What you will do |
 | :--- | :--- |
-| [API Gateway: Getting started](api-gateway/1.1.0/quick-start-guide.md) | Configure your first API proxy using YAML and start routing traffic. |
+| [API Gateway: Getting started](../api-gateway/1.1.0/quick-start-guide/) | Configure your first API proxy using YAML and start routing traffic. |
 
 **For AI traffic (LLMs and MCP):**
 
 | Guide | What you will do |
 | :--- | :--- |
-| [LLM Proxy: Quick start](ai-gateway/1.1.0/llm-proxy/quick-start-guide.md) | Configure an LLM provider, apply a guardrail, and route your first LLM request. |
-| [MCP Proxy: Quick start](ai-gateway/1.1.0/mcp-proxy/quick-start-guide.md) | Expose a REST API as an MCP tool and invoke it through an MCP client. |
+| [LLM Proxy: Quick start](../ai-gateway/1.1.0/llm-proxy/quick-start-guide/) | Configure an LLM provider, apply a guardrail, and route your first LLM request. |
+| [MCP Proxy: Quick start](../ai-gateway/1.1.0/mcp-proxy/quick-start-guide/) | Expose a REST API as an MCP tool and invoke it through an MCP client. |
 
 ### I want to govern AI services at the organizational level
 You already have gateways running and now want centralized management of LLM providers, MCP servers, guardrails, and cost controls across your organization.
 
 | Guide | What you will do |
 | :--- | :--- |
-| [AI Workspace: Getting started](cloud/ai-workspace/getting-started.md) | Set up an AI Workspace, connect it to an AI Gateway, and configure your first LLM provider with guardrails. |
+| [AI Workspace: Getting started](../cloud/ai-workspace/getting-started/) | Set up an AI Workspace, connect it to an AI Gateway, and configure your first LLM provider with guardrails. |
 
 ### I want to monetize my APIs
 You want to track API usage, set up paid subscription plans, and implement usage-based billing.
 
 | Guide | What you will do |
 | :--- | :--- |
-| [Monetization: Getting started](analytics-and-monetization/overview.md) | Connect Moesif, create a paid subscription plan, and start tracking API revenue. |
+| [Monetization: Getting started](monetization/getting-started.md) | Connect Moesif, create a paid subscription plan, and start tracking API revenue. |
 
 ## After your first quick start
 Once you have completed a quick start guide, here is where to go next:
 
 | I want to... | Go here |
 | :--- | :--- |
-| Explore the full feature docs for my product | [Cloud](cloud/introduction/what-is-bijira.md) · [API Manager](api-manager/overview.md) · [API Gateway](api-gateway/1.1.0/overview.md) · [AI Gateway](ai-gateway/1.1.0/overview.md) |
+| Explore the full feature docs for my product | [Cloud](../cloud/introduction/what-is-bijira/) · [API Manager](../api-manager/4.7.0/) · [API Gateway](../api-gateway/1.1.0/overview/) · [AI Gateway](../ai-gateway/1.1.0/overview/) |
 | Follow end-to-end scenarios spanning multiple components | [Guides](guides/overview.md) |
-| Try runnable code samples | [Samples](cloud/samples/samples-overview.md) |
-| Understand platform concepts (organizations, projects, data planes) | [Concepts](cloud/bijira-concepts/organization.md) |
+| Try runnable code samples | [Samples](../cloud/samples/samples-overview/) |
+| Understand platform concepts (organizations, projects, data planes) | [Concepts](../cloud/bijira-concepts/organization/) |
 | Browse reusable policies and guardrails | [Policy Hub](policy-hub/overview.md) |
 | Not sure which product is right for me | [Platform overview](index.md) |

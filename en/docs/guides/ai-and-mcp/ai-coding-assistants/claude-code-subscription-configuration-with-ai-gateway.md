@@ -325,7 +325,7 @@ A Claude subscription charges a flat fee rather than a per-token rate, so use th
 
 [![Claude Code terminal showing prompt retrying with message "Retrying in 2s attempt 6/10" after rate limit reached](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/claude-code-rate-limit-example.png)](../../../assets/img/guides/ai-and-mcp/ai-coding-assistants/claude-code/claude-code-rate-limit-example.png)
 
-For more information, see [Policies overview](../../../ai-workspace/1.0.0/policies/overview.md).
+For more information, see [Policies overview](../../../../ai-workspace/1.0.0/policies/overview/).
 
 ### Prompt Decorator
 

@@ -52,7 +52,7 @@ A *tool* is a single function the agent can choose to call. In this guide, `log_
 
 - The guide [Build a WebSocket-based real-time notification system](build-a-websocket-notification-system.md) completed, with the Stock Notifications API deployed.
 - A WSO2 API Platform Cloud account (the same one from the previous guide). You open AI Workspace from it.
-- An AI gateway set up in AI Workspace and showing as **Active**. See [Set up an AI Gateway](../../ai-workspace/1.0.0/ai-gateways/setting-up.md).
+- An AI gateway set up in AI Workspace and showing as **Active**. See [Set up an AI Gateway](../../../ai-workspace/1.0.0/ai-gateways/setting-up/).
 - A Google AI API key from [Google AI Studio](https://aistudio.google.com/apikey), which the LLM provider uses to call the Gemini API on your behalf.
 - Node.js and npm, to install and run the tool server.
 - Python 3.9 or later, and pip.
@@ -114,7 +114,7 @@ Before you create the MCP proxy, you need a running server that speaks the Model
 
 An MCP proxy isn't callable until you deploy it to an AI gateway.
 
-1. If your project doesn't already have an AI gateway showing as **Active**, set one up first. See [Set up an AI Gateway](../../ai-workspace/1.0.0/ai-gateways/setting-up.md). It walks you through registering a gateway in AI Workspace, then installing and starting the runtime with Docker, a VM, or Kubernetes.
+1. If your project doesn't already have an AI gateway showing as **Active**, set one up first. See [Set up an AI Gateway](../../../ai-workspace/1.0.0/ai-gateways/setting-up/). It walks you through registering a gateway in AI Workspace, then installing and starting the runtime with Docker, a VM, or Kubernetes.
 2. On the MCP proxy's setup page, click **Deploy to Gateway & Test**.
 3. Find your gateway and click **Deploy**.
 4. Wait for the deployment status to show **Active**.
@@ -124,7 +124,7 @@ An MCP proxy isn't callable until you deploy it to an AI gateway.
 ![MCP proxy overview page showing the Deploy to Gateway and Publish to MCP Hub buttons, the selected gateway, and its invoke URL](../../assets/img/guides/websocket/notification-agent/deploy-mcp-proxy.png){.cInlineImage-full}
 
 !!! note
-    For production use, attach the **MCP Authentication** policy from the proxy's **Policies** tab. See [Apply policies to an MCP proxy](../../ai-workspace/1.0.0/mcp-proxies/apply-policies.md). This guide doesn't configure it, to keep `agent.py` simple.
+    For production use, attach the **MCP Authentication** policy from the proxy's **Policies** tab. See [Apply policies to an MCP proxy](../../../ai-workspace/1.0.0/mcp-proxies/apply-policies/). This guide doesn't configure it, to keep `agent.py` simple.
 
 Publishing the proxy to the MCP Hub is optional and only affects discoverability in your organization's MCP catalog. It doesn't change whether `agent.py` can call the proxy, so this guide skips it.
 

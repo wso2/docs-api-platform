@@ -60,7 +60,7 @@ The stock notification server generates a price tick on its own schedule and sen
 
 ## Step 1: Create an organization and project
 
-Sign in to the [API Platform Console](https://console.bijira.dev), and create an organization and a project if you don't already have one. See the [API proxy quick start guide](../../cloud/introduction/quick-start-guide.md) for the full walkthrough.
+Sign in to the [API Platform Console](https://console.bijira.dev), and create an organization and a project if you don't already have one. See the [API proxy quick start guide](../../../cloud/introduction/quick-start-guide/) for the full walkthrough.
 
 ## Step 2: Set up the sample notification backend
 
