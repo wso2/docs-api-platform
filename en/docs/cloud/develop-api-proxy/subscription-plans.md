@@ -33,4 +33,4 @@ To assign subscription plans to an API, follow the steps given below:
 
 When an API has subscription plans assigned to it, API consumers can select the plan that best fits their requirements during the subscription process. You can enable a combination of free and paid subscription plans for the same API to offer tiered access.
 
-For details on setting up paid plans and monetizing APIs, see [API Monetization](../../api-monetization/overview.md).
+For details on setting up paid plans and monetizing APIs, see [API Monetization](../../../monetization/overview/).

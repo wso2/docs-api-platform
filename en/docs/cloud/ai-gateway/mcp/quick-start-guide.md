@@ -26,7 +26,7 @@ Before going through this quickstart, make sure you meet the following prerequis
 - Access to [AI Workspace](https://ai-workspace.bijira.dev/) with the **Admin** or **Developer** role.
 - [Docker](https://docs.docker.com/get-docker/) with the Compose plugin. You can check the installed version with the `docker compose version` command.
 - `curl` and `unzip` commands available in the command line.
-- Port `8443` available on your machine. For more information, see [Default Ports in AI Gateway](../../../../ai-gateway/1.2.0/reference/default-ports.md).
+- Port `8443` available on your machine. For more information, see [Default Ports in AI Gateway](../../../../ai-gateway/1.2.0/reference/default-ports/).
 - An MCP client to connect with once the proxy is live. This guide doesn't require you to run your own MCP server but uses a sample MCP server instead that's accessible.
 
 ## Create an AI Gateway

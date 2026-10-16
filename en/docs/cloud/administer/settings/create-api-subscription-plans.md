@@ -40,7 +40,7 @@ To create an organization-level subscription plan, follow the steps given below:
     ![Create Subscription Plan form showing Name, Description, Rate Limiting with Request Count and Time Unit, Burst Controlling checkbox, and Pricing section with Per Unit model](../../assets/img/administer/settings/create-subscription-plan.png)
 
     !!! note
-        The pricing fields vary by model. For example, Volume and Graduated models require defining price tiers instead of a single unit amount. For details on pricing models and monetization, see [API Monetization](../../../api-monetization/overview.md).
+        The pricing fields vary by model. For example, Volume and Graduated models require defining price tiers instead of a single unit amount. For details on pricing models and monetization, see [API Monetization](../../../../monetization/overview/).
 
 7. Click **Create**. This creates the subscription plan and lists it under **Subscription Plans**.
 

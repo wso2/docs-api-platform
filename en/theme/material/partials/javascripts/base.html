@@ -43,7 +43,7 @@
 
 <script>
   function trackEvent(eventName, properties) {
-    if (typeof moesif !== "undefined" && moesif) {
+    if (typeof moesif !== "undefined" && moesif && typeof moesif.track === "function") {
       moesif.track(eventName, {
         product: "api",
         asset_type: "docs",
