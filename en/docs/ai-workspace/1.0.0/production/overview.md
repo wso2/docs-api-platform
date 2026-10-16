@@ -172,7 +172,7 @@ The API Portal is a separate product that shares this same Platform API control 
 
     Run that chart's own `generate-secrets.sh` first. It provisions the portal's encryption key and session secret. It also reuses the RS256 public key from the Platform API Secret, so the portal can verify the tokens the control plane signs.
 
-Everything else about running the API Portal in production, including its database, its identity provider setup, and its configuration reference, is documented with the product itself. See the [API Portal overview](../../../api-portal/next/overview.md) and its [Setting Up](../../../api-portal/next/setting-up/database.md) section. The rest of this section covers AI Workspace only.
+Everything else about running the API Portal in production, including its database, its identity provider setup, and its configuration reference, is documented with the product itself. See the [API Portal overview](../../../../api-portal/next/overview/) and its [Setting Up](../../../../api-portal/next/setting-up/database/) section. The rest of this section covers AI Workspace only.
 
 ## Related
 

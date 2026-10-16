@@ -3,39 +3,39 @@ redirect_maps:
   # real first page, so it isn't a dead 403 (same fix as apim-4.6.0).
   ai-workspace/1.0.0/index.md: ai-workspace/1.0.0/overview.md
   # AI Workspace docs relocated under cloud/
-  ai-workspace/ai-gateways/setting-up.md: cloud/ai-workspace/ai-gateways/setting-up.md
-  ai-workspace/configure-inbound-auth.md: cloud/ai-workspace/configure-inbound-auth.md
-  ai-workspace/genai-applications.md: cloud/ai-workspace/genai-applications.md
-  ai-workspace/getting-started.md: cloud/ai-workspace/getting-started.md
-  ai-workspace/insights.md: cloud/ai-workspace/insights.md
-  ai-workspace/overview.md: cloud/ai-workspace/overview.md
-  ai-workspace/using-sdks.md: cloud/ai-workspace/using-sdks.md
-  ai-workspace/llm-providers/configure-provider.md: cloud/ai-workspace/llm-providers/configure-provider.md
-  ai-workspace/llm-providers/manage-provider.md: cloud/ai-workspace/llm-providers/manage-provider.md
-  ai-workspace/llm-providers/overview.md: cloud/ai-workspace/llm-providers/overview.md
-  ai-workspace/llm-proxies/configure-proxy.md: cloud/ai-workspace/llm-proxies/configure-proxy.md
-  ai-workspace/llm-proxies/manage-proxy.md: cloud/ai-workspace/llm-proxies/manage-proxy.md
-  ai-workspace/llm-proxies/overview.md: cloud/ai-workspace/llm-proxies/overview.md
-  ai-workspace/mcp-proxies/apply-policies.md: cloud/ai-workspace/mcp-proxies/apply-policies.md
-  ai-workspace/mcp-proxies/configure-proxy.md: cloud/ai-workspace/mcp-proxies/configure-proxy.md
-  ai-workspace/mcp-proxies/overview.md: cloud/ai-workspace/mcp-proxies/overview.md
-  ai-workspace/policies/guardrails/azure-content-safety.md: cloud/ai-workspace/policies/guardrails/azure-content-safety.md
-  ai-workspace/policies/guardrails/overview.md: cloud/ai-workspace/policies/guardrails/overview.md
-  ai-workspace/policies/guardrails/regex-pii-masking.md: cloud/ai-workspace/policies/guardrails/regex-pii-masking.md
-  ai-workspace/policies/guardrails/semantic-prompt-guard.md: cloud/ai-workspace/policies/guardrails/semantic-prompt-guard.md
-  ai-workspace/policies/guardrails/sentence-count-guardrail.md: cloud/ai-workspace/policies/guardrails/sentence-count-guardrail.md
-  ai-workspace/policies/guardrails/word-count-guardrail.md: cloud/ai-workspace/policies/guardrails/word-count-guardrail.md
-  ai-workspace/policies/other-policies/basic-rate-limit.md: cloud/ai-workspace/policies/other-policies/basic-rate-limit.md
-  ai-workspace/policies/other-policies/model-round-robin.md: cloud/ai-workspace/policies/other-policies/model-round-robin.md
-  ai-workspace/policies/other-policies/prompt-decorator.md: cloud/ai-workspace/policies/other-policies/prompt-decorator.md
-  ai-workspace/policies/other-policies/prompt-template.md: cloud/ai-workspace/policies/other-policies/prompt-template.md
-  ai-workspace/policies/other-policies/semantic-cache.md: cloud/ai-workspace/policies/other-policies/semantic-cache.md
-  ai-workspace/policies/other-policies/token-based-rate-limit.md: cloud/ai-workspace/policies/other-policies/token-based-rate-limit.md
-  ai-workspace/policies/overview.md: cloud/ai-workspace/policies/overview.md
-  ai-workspace/policies/rate-limit/llm-cost-based-rate-limit.md: cloud/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit.md
-  ai-workspace/policies/rate-limit/llm-cost.md: cloud/ai-workspace/policies/rate-limit/llm-cost.md
-  ai-workspace/policies/rate-limit/token-based-rate-limit.md: cloud/ai-workspace/policies/rate-limit/token-based-rate-limit.md
-  ai-workspace/policies/writing-an-ai-policy.md: cloud/ai-workspace/policies/writing-an-ai-policy.md
+  ai-workspace/ai-gateways/setting-up.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/ai-gateways/setting-up/
+  ai-workspace/configure-inbound-auth.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/configure-inbound-auth/
+  ai-workspace/genai-applications.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/genai-applications/
+  ai-workspace/getting-started.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/getting-started/
+  ai-workspace/insights.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/insights/
+  ai-workspace/overview.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/overview/
+  ai-workspace/using-sdks.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/using-sdks/
+  ai-workspace/llm-providers/configure-provider.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/configure-provider/
+  ai-workspace/llm-providers/manage-provider.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/manage-provider/
+  ai-workspace/llm-providers/overview.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/overview/
+  ai-workspace/llm-proxies/configure-proxy.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/configure-proxy/
+  ai-workspace/llm-proxies/manage-proxy.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/manage-proxy/
+  ai-workspace/llm-proxies/overview.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/overview/
+  ai-workspace/mcp-proxies/apply-policies.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/apply-policies/
+  ai-workspace/mcp-proxies/configure-proxy.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/configure-proxy/
+  ai-workspace/mcp-proxies/overview.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/overview/
+  ai-workspace/policies/guardrails/azure-content-safety.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/azure-content-safety/
+  ai-workspace/policies/guardrails/overview.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/overview/
+  ai-workspace/policies/guardrails/regex-pii-masking.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/regex-pii-masking/
+  ai-workspace/policies/guardrails/semantic-prompt-guard.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/semantic-prompt-guard/
+  ai-workspace/policies/guardrails/sentence-count-guardrail.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/sentence-count-guardrail/
+  ai-workspace/policies/guardrails/word-count-guardrail.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/word-count-guardrail/
+  ai-workspace/policies/other-policies/basic-rate-limit.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/basic-rate-limit/
+  ai-workspace/policies/other-policies/model-round-robin.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/model-round-robin/
+  ai-workspace/policies/other-policies/prompt-decorator.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/prompt-decorator/
+  ai-workspace/policies/other-policies/prompt-template.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/prompt-template/
+  ai-workspace/policies/other-policies/semantic-cache.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/semantic-cache/
+  ai-workspace/policies/other-policies/token-based-rate-limit.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/token-based-rate-limit/
+  ai-workspace/policies/overview.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/overview/
+  ai-workspace/policies/rate-limit/llm-cost-based-rate-limit.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit/
+  ai-workspace/policies/rate-limit/llm-cost.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/rate-limit/llm-cost/
+  ai-workspace/policies/rate-limit/token-based-rate-limit.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/rate-limit/token-based-rate-limit/
+  ai-workspace/policies/writing-an-ai-policy.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/writing-an-ai-policy/
   # Synced from main
   next/ai-workspace/about-this-release.md: ai-workspace/1.0.0/about-this-release.md
   next/ai-workspace/ai-gateways/setting-up.md: ai-workspace/1.0.0/ai-gateways/setting-up.md

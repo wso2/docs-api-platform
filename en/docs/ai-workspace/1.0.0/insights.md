@@ -76,4 +76,4 @@ See [Policies overview](policies/overview.md) for more on configuring guardrails
 - [Set up an AI Gateway](ai-gateways/setting-up.md)—configure `MOESIF_KEY` on the gateway runtime
 - [Token-based rate limiting](policies/overview.md#token-based-rate-limit)—set token limits and use analytics to monitor usage
 - [Policies overview](policies/overview.md)—monitor guardrail interventions through analytics
-- [Integrate API Platform with Moesif](../../cloud/monitoring-and-insights/integrate-bijira-with-moesif.md)—advanced Moesif integration options for the broader API Platform
+- [Integrate API Platform with Moesif](../../../cloud/monitoring-and-insights/integrate-bijira-with-moesif/)—advanced Moesif integration options for the broader API Platform

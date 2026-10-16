@@ -328,7 +328,7 @@ You can create artifacts on a gateway while it's disconnected, and they reconcil
 
 ## Immutable gateways
 
-Some gateways run in **immutable** mode, where artifacts are loaded from on-disk configuration at startup rather than created through the management API (see [Immutable Gateway](../../ai-gateway/1.0.0/deployment/deployment-modes/immutable-gateway.md)).
+Some gateways run in **immutable** mode, where artifacts are loaded from on-disk configuration at startup rather than created through the management API (see [Immutable Gateway](../../../ai-gateway/1.0.0/deployment/deployment-modes/immutable-gateway/)).
 
 The sync behaves exactly the same for these gateways: artifacts loaded from files are synced up to AI Workspace just like ones created through the management API, with the same read-only copies and the same automatic reconciliation — no extra configuration. An immutable, file-driven gateway is still fully visible in AI Workspace.
 

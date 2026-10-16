@@ -102,7 +102,7 @@ token_ttl        = "1h"
 The user's `scopes` string becomes the `scope` claim of the issued token — trim it to restrict what
 that user can do.
 
-#### Obtaining a token
+#### Obtaining a token { #obtaining-a-token }
 
 `POST /api/portal/v0.9/auth/login` (form-encoded; this path bypasses the auth middleware):
 
