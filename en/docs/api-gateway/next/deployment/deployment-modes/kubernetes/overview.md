@@ -94,7 +94,7 @@ Use this mode when you want operator-managed lifecycle, declarative resources, a
 
 API Platform Kubernetes Gateway V2.0.0 supports attaching policies to APIs deployed in either mode. Policies control request/response mediation, rate limiting, authentication, and other gateway behaviors.
 
-For a full reference on available policies and how to configure them, see [Policy Configuration Overview](https://wso2.com/api-platform/docs/api-gateway/policies/overview/).
+For a full reference on available policies and how to configure them, see [Policy Configuration Overview](../../../policies/overview.md).
 
 ## Next Steps
 

@@ -32,7 +32,7 @@ The `ap` CLI provides a command-line interface for managing gateways, APIs, and 
 - API lifecycle management (apply, list, get, delete)
 - MCP proxy management (generate, list, get, delete)
 
-For the complete list of CLI commands and usage examples, see the [CLI Reference](../../tools/cli/reference.md).
+For the complete list of CLI commands and usage examples, see the [CLI Reference](../../../tools/cli/reference/).
 
 ## Default Ports
 
