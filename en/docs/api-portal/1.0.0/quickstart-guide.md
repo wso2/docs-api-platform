@@ -922,7 +922,7 @@ The `servers` array now includes both versions:
 ## Next steps
 
 - See the [getting started guide for API Portal and MCP Hub](./getting-started.md).
-- To route MCP traffic through a gateway, with authentication and access control, see the [MCP Proxy quickstart guide](../../ai-gateway/1.0.0/mcp-proxy/quick-start-guide.md).
+- To route MCP traffic through a gateway, with authentication and access control, see the [MCP Proxy quickstart guide](../../../ai-gateway/1.0.0/mcp-proxy/quick-start-guide/).
 - See [Manage APIs](admin-settings/manage-apis.md) and [Manage MCP Servers](admin-settings/manage-mcp-servers.md) for the full admin reference for editing, publishing, deprecating, and deleting APIs and MCP servers. 
 - See [MCP Registry API](mcp-registry.md) for the full discovery and publishing reference, including how to update or delete a published version.
 - For information about the consumer side of your published APIs and MCP servers, like subscribing, getting a token, and calling an artifact, see [Manage Subscriptions](consume-an-api/manage-subscriptions.md) and [Connect to an MCP Server](mcp-servers/connect-to-an-mcp-server.md).
