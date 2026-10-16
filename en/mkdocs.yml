@@ -262,6 +262,9 @@ plugins:
   - glightbox
   - open-in-new-tab
   - markdownextradata: {}
+  - exclude:
+      glob:
+        - "ai-gateway/*/README.md"   # the folder's developer README; the version root redirects to overview
   - redirects:
       redirect_maps: {}  # Do not add redirects here. Add them to redirects.yml instead.
 extra_css:

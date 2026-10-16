@@ -29,7 +29,7 @@ For the other ways to run the gateway, see [Immutable Gateway](../deployment-mod
     Every command and configuration key on these pages is taken from the `ai-gateway/v1.1.0` release tag and Helm chart `1.1.5`. Chart fields change between releases, so follow the pages for the AI Gateway version you deploy.
 
 !!! note "AI Workspace needs AI Gateway 1.2.0"
-    [AI Workspace](../../../../ai-workspace/1.0.0/overview.md), the control plane for AI traffic, works with gateway version 1.2 and above. A 1.1.0 gateway can't register with it. See [Connect to a control plane](./control-plane-connection.md).
+    [AI Workspace](../../../../../ai-workspace/1.0.0/overview/), the control plane for AI traffic, works with gateway version 1.2 and above. A 1.1.0 gateway can't register with it. See [Connect to a control plane](./control-plane-connection.md).
 
 ## What you deploy
 
