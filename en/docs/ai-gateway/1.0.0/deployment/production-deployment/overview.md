@@ -33,12 +33,12 @@ For the other ways to run the gateway, see [Immutable Gateway](../deployment-mod
 
     - **An external database**, which lets several controller replicas share state. Added in AI Gateway 1.1.0 with PostgreSQL, extended in 1.2.0 with SQL Server.
     - **Horizontal Pod Autoscaler and Pod Disruption Budget support in the chart.** Added in the 1.1.x chart line.
-    - **[AI Workspace](../../../../ai-workspace/1.0.0/overview.md) governance**, which works with gateway version 1.2 and above.
+    - **[AI Workspace](../../../../../ai-workspace/1.0.0/overview/) governance**, which works with gateway version 1.2 and above.
 
     Deploy the release that covers what you need:
 
-    - For an external database, or for chart support for the Horizontal Pod Autoscaler and Pod Disruption Budget, deploy [AI Gateway 1.1.0](../../../1.1.0/deployment/production-deployment/overview.md) or later.
-    - For SQL Server support or AI Workspace governance, deploy [AI Gateway 1.2.0](../../../1.2.0/setup-and-deployment/production-deployment/index.md).
+    - For an external database, or for chart support for the Horizontal Pod Autoscaler and Pod Disruption Budget, deploy [AI Gateway 1.1.0](../../../../1.1.0/deployment/production-deployment/overview/) or later.
+    - For SQL Server support or AI Workspace governance, deploy [AI Gateway 1.2.0](../../../../1.2.0/setup-and-deployment/production-deployment/).
 
 ## What you deploy
 

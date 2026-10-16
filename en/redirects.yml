@@ -5914,3 +5914,5 @@ redirect_maps:
   ai-gateway/1.2.0/resiliency/timeouts.md: ai-gateway/1.2.0/timeouts-and-resilience.md
   ai-gateway/1.2.0/setup/configuration.md: ai-gateway/1.2.0/setup-and-deployment/configuration.md
   ai-gateway/1.2.0/setup/database-setup.md: ai-gateway/1.2.0/setup-and-deployment/database-setup.md
+  # The version root: README.md is excluded from the build
+  ai-gateway/1.0.0/index.md: ai-gateway/1.0.0/overview.md
