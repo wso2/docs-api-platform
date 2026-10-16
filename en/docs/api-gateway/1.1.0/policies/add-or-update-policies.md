@@ -15,7 +15,7 @@ content_type: "how-to"
 
 # Add or Update Policies in a Gateway
 
-A gateway compiles its policies into the gateway image when the image is built. To add a policy, update a policy to a different version, or remove one, edit the `policies` list in the gateway's `build.yaml` file and rebuild the image with the API Platform CLI (`ap`). This works the same way for managed policies from the [Policy Hub](../../../policy-hub/overview.md) and for your own local policies.
+A gateway compiles its policies into the gateway image when the image is built. To add a policy, update a policy to a different version, or remove one, edit the `policies` list in the gateway's `build.yaml` file and rebuild the image with the API Platform CLI (`ap`). This works the same way for managed policies from the [Policy Hub](../../../../policy-hub/overview/) and for your own local policies.
 
 !!! note
     Policies are part of the gateway image. A policy change takes effect after you rebuild the image and restart the gateway.
