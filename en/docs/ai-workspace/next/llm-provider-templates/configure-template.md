@@ -93,7 +93,7 @@ Built-in templates are already available on the gateway, but a custom template h
     A provider created from a custom template only works after the template is deployed to the gateway that serves the provider.
 
 !!! info
-    You can apply the template manifest through the gateway's management API. See the [LLM provider template Management API reference](../../../api-gateway/next/gateway-controller-management-api/llm-provider-template-management.md) for details.
+    You can apply the template manifest through the gateway's management API. See the [LLM provider template Management API reference](../../../../api-gateway/next/gateway-controller-management-api/llm-provider-template-management/) for details.
 
 ## Next steps
 

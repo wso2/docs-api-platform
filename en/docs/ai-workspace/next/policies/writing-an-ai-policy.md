@@ -255,4 +255,4 @@ policies:
 
 - [Build the gateway with AI policies](build-gateway-with-ai-policies.md): build a gateway image that includes your custom AI policy
 - [Apply AI policies to proxies](apply-ai-policies-to-proxies.md): sync your custom AI policy to the organization and apply it to LLM providers, App LLM proxies, and MCP proxies
-- [Write a custom policy for the self-hosted gateway](../../../cloud/api-platform-gateway/writing-a-custom-policy.md): the general-purpose policy SDK that the AI Gateway's policy engine builds on
+- [Write a custom policy for the self-hosted gateway](../../../../cloud/api-platform-gateway/writing-a-custom-policy/): the general-purpose policy SDK that the AI Gateway's policy engine builds on

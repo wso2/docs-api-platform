@@ -117,7 +117,7 @@ AI Workspace and AI Gateway work together as the control plane and the data plan
 
 The workspace tracks which artifacts are deployed to which gateways. For example, you can deploy a single LLM provider to multiple gateways, and each gateway can serve multiple providers and proxies.
 
-To configure and operate the gateway runtime directly, see the [AI Gateway documentation](../../ai-gateway/next/overview.md).
+To configure and operate the gateway runtime directly, see the [AI Gateway documentation](../../../ai-gateway/next/overview/).
 
 ## Configure AI Workspace
 
