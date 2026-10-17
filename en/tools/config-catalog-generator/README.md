@@ -4,21 +4,22 @@ This is a tool to generate the markdown file of the API Manager server's configu
 
 ## Instructions
 
-1. Clone the `apim-docs` repo.
-2. Navigate to the `docs-apim/en/tools/config-catalog-generator` folder.
+1. Clone the `docs-api-platform` repo.
+2. Navigate to the `docs-api-platform/en/tools/config-catalog-generator` folder.
 3. Run the following command:
 
     ```
     npm install
     ```
 
-4. Open the `data\config.json` file add your content.
-5. Come back to root folder (`docs-apim/en/tools/config-catalog-generator`) and run the following command:
+4. Open the `data/configs.json` file and add your content. If a config section has an example, add it as a `.toml` file in the `data/` folder and reference it from the section's `exampleFile` field.
+5. Come back to root folder (`docs-api-platform/en/tools/config-catalog-generator`) and run the following command:
 
     ```
     npm run build
     ```
 
-6. Go to the `dist/` folder: A markdown file named `config-catalog.md` is created.
-7. Copy the `config-catalog.md` file to the `docs-apim/en/docs/reference` folder.
+6. Go to the `dist/` folder: A markdown file named `config-catalog.md` is created. It includes the page frontmatter, with `last_updated` set to the date of the build.
+7. Copy the `config-catalog.md` file to the `docs-api-platform/en/docs/api-manager/next/reference` folder, replacing the existing file.
 
+> **Note:** The frontmatter (title, description, `canonical_url`, `md_url`, tags and so on) comes from `templates/index.njk`. Edit it there, not in the generated file, or the change is lost on the next build.
