@@ -215,6 +215,7 @@ nav:
         - App LLM Proxies:
             - Overview: cloud/ai-workspace/llm-proxies/overview.md
             - Configure App LLM Proxy: cloud/ai-workspace/llm-proxies/configure-proxy.md
+            - Route to Several Providers: cloud/ai-workspace/llm-proxies/multi-provider.md
             - Manage App LLM Proxy: cloud/ai-workspace/llm-proxies/manage-proxy.md
         - MCP Proxies:
             - Overview: cloud/ai-workspace/mcp-proxies/overview.md
