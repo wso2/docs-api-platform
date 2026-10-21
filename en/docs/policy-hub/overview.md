@@ -8,7 +8,7 @@ tags:
   - policies
   - gateway
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-09-01
+last_updated: 2026-10-15
 content_type: "overview"
 ---
 
@@ -30,13 +30,14 @@ For more information, see [API Platform Policies overview](../api-gateway/next/p
 
 ### Security
 
-Authenticate incoming requests and secure outbound calls to your backend, using mechanisms such as API keys and OAuth 2.0 (OAuth2).
+Authenticate incoming requests and secure outbound calls to your backend, using mechanisms such as API keys, OAuth 2.0 (OAuth2), and mutual TLS (mTLS).
 
 | Policy | What it does |
 | -- | -- |
 | API Key Auth | Protects APIs with pre-shared API keys |
 | Basic Auth | Enforces HTTP Basic Authentication |
 | JWT Auth | Validates JWT access tokens against one or more JWKS providers |
+| Mutual TLS Auth | Authenticates callers by the client certificate they present over mutual TLS, against accepted client certificate authorities |
 | OAuth2 Generator | Generates an OAuth 2.0 or static bearer credential and injects it into a configurable request header before forwarding to the backend |
 | CORS | Handles preflight requests and injects CORS response headers |
 | Subscription Validation | Confirms the caller holds an active subscription for the target API |
