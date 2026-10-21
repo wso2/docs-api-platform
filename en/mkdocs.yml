@@ -221,6 +221,13 @@ nav:
             - Overview: cloud/ai-workspace/mcp-proxies/overview.md
             - Configure Proxy: cloud/ai-workspace/mcp-proxies/configure-proxy.md
             - Apply Policies: cloud/ai-workspace/mcp-proxies/apply-policies.md
+        - Agent Proxies:
+            - Overview: cloud/ai-workspace/agent-proxies/overview.md
+            - Quick Start Guide: cloud/ai-workspace/agent-proxies/quick-start-guide.md
+            - Configure Agent Proxy: cloud/ai-workspace/agent-proxies/configure-proxy.md
+            - Configure the Agent Card: cloud/ai-workspace/agent-proxies/agent-card.md
+            - Apply Policies: cloud/ai-workspace/agent-proxies/apply-policies.md
+            - Manage Agent Proxy: cloud/ai-workspace/agent-proxies/manage-proxy.md
         - MCP Registry:
             - What is an MCP Registry?: cloud/mcp-servers/mcp-registry.md
             - Publish MCP Proxies: cloud/mcp-servers/publish-mcp-proxies.md
@@ -1322,7 +1329,12 @@ nav:
           - Configure Proxy: ai-workspace/next/mcp-proxies/configure-proxy.md
           - Apply Policies: ai-workspace/next/mcp-proxies/apply-policies.md
       - Agent Proxies:
+          - Overview: ai-workspace/next/agent-proxies/overview.md
           - Quick Start Guide: ai-workspace/next/agent-proxies/quick-start-guide.md
+          - Configure Agent Proxy: ai-workspace/next/agent-proxies/configure-proxy.md
+          - Configure the Agent Card: ai-workspace/next/agent-proxies/agent-card.md
+          - Apply Policies: ai-workspace/next/agent-proxies/apply-policies.md
+          - Manage Agent Proxy: ai-workspace/next/agent-proxies/manage-proxy.md
       # Credentials the artifacts above reference.
       - Secrets Management: ai-workspace/next/secrets-management.md
       # The other two ways artifacts get created.
@@ -1359,6 +1371,8 @@ nav:
               - LLM Proxy Deployments: ai-workspace/next/platform-api/llm-proxy-deployments.md
               - MCP Proxies: ai-workspace/next/platform-api/mcp-proxies.md
               - MCP Proxy Deployments: ai-workspace/next/platform-api/mcp-proxy-deployments.md
+              - Agent Proxies: ai-workspace/next/platform-api/agent-proxies.md
+              - Agent Proxy Deployments: ai-workspace/next/platform-api/agent-proxy-deployments.md
               - Applications: ai-workspace/next/platform-api/applications.md
               - API Keys: ai-workspace/next/platform-api/api-keys.md
               - Secrets: ai-workspace/next/platform-api/secrets.md

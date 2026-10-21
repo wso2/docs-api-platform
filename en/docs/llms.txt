@@ -133,6 +133,12 @@
 - [MCP Proxies Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/overview.md): Govern MCP server access through centrally managed MCP proxies in AI Workspace
 - [Configure MCP Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/configure-proxy.md): Create a new MCP proxy in AI Workspace
 - [Apply Policies to MCP Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/apply-policies.md): Attach authentication, authorization, and ACL policies to an MCP proxy
+- [Agent Proxies Overview (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/agent-proxies/overview.md): What an agent proxy is: an AI Gateway endpoint in front of an A2A agent that controls its Agent Card, policies, and API keys
+- [A2A Agent Proxy Quick Start Guide (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/agent-proxies/quick-start-guide.md): Put a sample A2A agent behind an AI Gateway from AI Workspace, call it through the gateway, and secure it with an API key
+- [Configure Agent Proxy (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/agent-proxies/configure-proxy.md): Create an agent proxy from an A2A agent URL, deploy it to a gateway, and find its URL
+- [Configure the Agent Card (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/agent-proxies/agent-card.md): Serve an agent proxy's public and protected Agent Cards in passthrough mode with gateway URLs, or in managed mode from a card you write
+- [Apply Policies to Agent Proxy (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/agent-proxies/apply-policies.md): Attach policies to every A2A operation, to one operation, or to the public Agent Card
+- [Manage Agent Proxy (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/agent-proxies/manage-proxy.md): Edit an agent proxy, issue and delete API keys, and delete a proxy
 - [GenAI Applications](https://wso2.com/api-platform/docs/cloud/ai-workspace/genai-applications.md): Register and track GenAI applications that consume LLM and MCP resources through AI Workspace
 - [Configure Inbound Auth](https://wso2.com/api-platform/docs/cloud/ai-workspace/configure-inbound-auth.md): Configure how client applications authenticate to AI Workspace LLM and MCP proxies
 - [Invoke via SDKs](https://wso2.com/api-platform/docs/cloud/ai-workspace/using-sdks.md): Use OpenAI-compatible SDKs to call LLM proxies managed by AI Workspace
@@ -161,7 +167,12 @@
 - [Manage LLM Provider](https://wso2.com/api-platform/docs/ai-workspace/llm-providers/manage-provider.md): Configure connection, access control, security, rate limiting, guardrails, and models for a deployed provider
 - [App LLM Proxies Overview](https://wso2.com/api-platform/docs/ai-workspace/llm-proxies/overview.md): Application-facing endpoints on top of an LLM provider, with their own guardrails and access rules
 - [MCP Proxies Overview](https://wso2.com/api-platform/docs/ai-workspace/mcp-proxies/overview.md): Connect the AI Gateway to upstream MCP servers through a centrally managed MCP proxy
+- [Agent Proxies Overview](https://wso2.com/api-platform/docs/ai-workspace/agent-proxies/overview.md): What an agent proxy is: an AI Gateway endpoint in front of an A2A agent that controls its Agent Card, policies, and API keys
 - [A2A Agent Proxy Quick Start Guide](https://wso2.com/api-platform/docs/ai-workspace/agent-proxies/quick-start-guide.md): Put a sample A2A agent behind an AI Gateway from AI Workspace, call it through the gateway, and secure it with an API key
+- [Configure Agent Proxy](https://wso2.com/api-platform/docs/ai-workspace/agent-proxies/configure-proxy.md): Create an agent proxy from an A2A agent URL, deploy it to a gateway, and find its URL
+- [Configure the Agent Card](https://wso2.com/api-platform/docs/ai-workspace/agent-proxies/agent-card.md): Serve an agent proxy's public and protected Agent Cards in passthrough mode with gateway URLs, or in managed mode from a card you write
+- [Apply Policies to Agent Proxy](https://wso2.com/api-platform/docs/ai-workspace/agent-proxies/apply-policies.md): Attach policies to every A2A operation, to one operation, or to the public Agent Card
+- [Manage Agent Proxy](https://wso2.com/api-platform/docs/ai-workspace/agent-proxies/manage-proxy.md): Edit an agent proxy, issue and delete API keys, work with gateway-created agent proxies, and delete a proxy
 - [GenAI Applications](https://wso2.com/api-platform/docs/ai-workspace/genai-applications.md): Group API keys under a named application for usage visibility and governance
 - [Secrets Management](https://wso2.com/api-platform/docs/ai-workspace/secrets-management.md): How the standalone AI Workspace encrypts and rotates stored credentials
 - [Authentication in AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/setting-up/authentication/overview.md): File-based sign-in for local use versus an identity provider over OIDC for production

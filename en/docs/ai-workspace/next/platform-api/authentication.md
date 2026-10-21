@@ -261,6 +261,22 @@ login endpoint described under [Obtaining a token](#obtaining-a-token)
 
 |Scope|Scope Description|
 |---|---|
+|ap:agent_proxy:api_key:create|Create an API key for an Agent proxy|
+|ap:agent_proxy:api_key:delete|Revoke an API key of an Agent proxy|
+|ap:agent_proxy:api_key:manage|Full access to an Agent proxy's API keys|
+|ap:agent_proxy:api_key:read|Read an Agent proxy's API key metadata|
+|ap:agent_proxy:api_key:update|Update an API key of an Agent proxy|
+|ap:agent_proxy:create|Create an Agent proxy|
+|ap:agent_proxy:delete|Delete an Agent proxy|
+|ap:agent_proxy:deployment:create|Deploy an Agent proxy|
+|ap:agent_proxy:deployment:delete|Delete an Agent proxy deployment|
+|ap:agent_proxy:deployment:manage|Full access to Agent proxy deployments|
+|ap:agent_proxy:deployment:read|Read Agent proxy deployments|
+|ap:agent_proxy:deployment:restore|Restore an Agent proxy deployment|
+|ap:agent_proxy:deployment:undeploy|Undeploy an Agent proxy deployment|
+|ap:agent_proxy:manage|Full access to Agent proxies|
+|ap:agent_proxy:read|Read Agent proxies|
+|ap:agent_proxy:update|Update an Agent proxy|
 |ap:api_key:read|Read API keys owned by the current user|
 |ap:application:api_key:create|Create an application API key|
 |ap:application:api_key:delete|Delete an application API key|

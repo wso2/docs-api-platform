@@ -68,6 +68,16 @@ Expose and govern Model Context Protocol servers through connected gateways.
 
 Learn more in [MCP Proxies](mcp-proxies/overview.md).
 
+### Agent Proxies
+
+Agent proxies put the AI Gateway in front of AI agents that use the Agent2Agent (A2A) protocol. With an agent proxy, you can:
+
+- Give an A2A agent one governed address on the gateway
+- Serve the agent's Agent Card with gateway addresses, so clients send every request through the gateway
+- Apply policies to every A2A operation, or to one operation, and issue API keys to clients
+
+Learn more in [Agent Proxies](agent-proxies/overview.md).
+
 ### Policies and Guardrails
 
 Configure AI-specific governance controls for providers and proxies.
