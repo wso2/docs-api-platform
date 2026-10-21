@@ -10,7 +10,7 @@ tags:
   - troubleshooting
   - fallback
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-20
+last_updated: 2026-09-30
 content_type: "how-to"
 ---
 
@@ -30,20 +30,11 @@ This is useful when you want to:
 - Apply proxy-level authentication, rate limits, and guardrails consistently across providers
 - Introduce provider selection and model suspension through a routing policy
 
-## Choose a Routing Strategy
+## Choose a routing strategy
 
 Choose one provider-selection strategy for each operation unless you have explicitly designed and tested the precedence between multiple routing policies.
 
-| Capability | Header router | Model round robin | Model weighted round robin |
-|------------|---------------|-------------------|----------------------------|
-| Explicit client or provider choice | Yes | No | No |
-| Selects a provider | Yes | Optional per model entry | Optional per model entry |
-| Selects and rewrites a model | No | Yes | Yes |
-| Uses the primary provider when no provider is selected | Yes | Yes | Yes |
-| Suspends a provider/model pair after `429` or `5xx` | No | Yes | Yes |
-| Weighted traffic distribution | No | No | Yes |
-| Latency-, cost-, or semantic-based routing | No | No | No |
-| Retries the failed request on another target | No | No | No |
+The strategies below are the ones a multi-provider proxy uses. For every routing policy the gateway provides, see [Routing](index.md).
 
 ### Header-based routing
 
@@ -64,7 +55,7 @@ The router has the following selection behavior:
 - Preserves a non-empty provider selection made by an earlier policy
 - Leaves the routing header on the upstream request
 
-The header router publishes provider-selection metadata but does not by itself override the named upstream. An additional provider therefore needs a matching inline transformer, or another policy that explicitly sets its upstream.
+The header router does two things. It sets the selected provider as the upstream, so the request reaches that provider whether or not a transformer is attached. It also records which provider was selected, so only that provider's credential and transformer policies are applied.
 
 ### Model round robin
 
@@ -123,7 +114,7 @@ A multi-provider LLM proxy has:
 - One primary provider in `spec.provider`
 - One or more selectable providers in `spec.additionalProviders`
 - An LLM Header Router policy (`llm-header-router`) that selects a provider from a request header
-- An inline transformer for each additional provider that does not use the OpenAI wire format
+- An inline transformer for any provider whose own format differs from the proxy's inbound interface. That includes the primary provider - a proxy accepting OpenAI requests in front of an Anthropic primary needs one on the primary too.
 
 The request flow is:
 
@@ -153,8 +144,8 @@ The router writes the selected provider name to request metadata. The gateway co
 
 The effective provider name connects routing, transformation, authentication, and upstream selection:
 
-- The primary provider is identified by `spec.provider.id`.
-- An additional provider uses `additionalProviders[].as` when an alias is configured; otherwise, it uses `additionalProviders[].id`.
+- Every provider has an **effective name**: its alias when one is set, otherwise its id. This is true of the primary and of every additional provider alike.
+- In the canonical shape the alias is `providers[].alias`; in the legacy pair it is `provider.as` and `additionalProviders[].as`.
 - Router mappings and model-routing entries must use the effective provider name.
 - When no provider is selected, the proxy uses its primary provider.
 - Authentication and transformation for an additional provider execute only when that provider is selected.
@@ -302,7 +293,7 @@ API key values are returned only when they are created or regenerated. Store the
 
 ### Step 3: Deploy the multi-provider LLM proxy
 
-The following proxy exposes one `/chat/completions` operation. OpenAI is the primary and default provider. Anthropic is an additional selectable provider with an inline request and response transformer.
+The following proxy exposes one `/chat/completions` operation. Every provider is listed under `providers`, and exactly one carries `isPrimary: true`. OpenAI is the primary, so it serves any request that selects no provider. Anthropic speaks a different format, so it carries an inline request and response transformer.
 
 ```bash
 curl -X POST http://localhost:9090/api/management/v1/llm-proxies \
@@ -318,15 +309,16 @@ spec:
   version: v1.0
   context: /openai-multi
 
-  provider:
-    id: openai-provider
-    auth:
-      type: api-key
-      header: X-API-Key
-      value: ${OPENAI_LOOPBACK_KEY}
+  providers:
+    - id: openai-provider
+      isPrimary: true
+      auth:
+        type: api-key
+        header: X-API-Key
+        value: ${OPENAI_LOOPBACK_KEY}
 
-  additionalProviders:
     - id: anthropic-provider
+      isPrimary: false
       auth:
         type: api-key
         header: X-API-Key
@@ -417,7 +409,7 @@ curl -k -X POST https://localhost:8443/openai-multi/chat/completions \
   -H "X-API-Key: ${PROXY_CONSUMER_KEY}" \
   -H "x-provider: anthropic" \
   -d '{
-    "model": "client-model-name",
+    "model": "claude-sonnet-4-5-20250929",
     "messages": [
       {
         "role": "user",
@@ -427,7 +419,7 @@ curl -k -X POST https://localhost:8443/openai-multi/chat/completions \
   }'
 ```
 
-The Anthropic transformer replaces the request's `model` value with the model configured under `transformer.params.model`. It also translates the request to the Anthropic Messages format and translates the response back to the OpenAI response shape.
+The Anthropic transformer uses the model named in the request payload, falling back to `transformer.params.model` when the payload names none. It also translates the request to the Anthropic Messages format and translates the response back to the OpenAI response shape.
 
 Header names and mapped header values are matched case-insensitively. Leading and trailing whitespace in the header value is ignored. If the header is missing, empty, or does not match a mapping, the router selects `defaultProvider`.
 
@@ -530,12 +522,13 @@ mappings:
 
 ### Use provider aliases
 
-Use `as` when the logical upstream name used by routing policies should differ from the deployed provider ID:
+Use `alias` when the logical upstream name used by routing policies should differ from the deployed provider ID. An alias can be set on any provider, the primary included:
 
 ```yaml
-additionalProviders:
+providers:
   - id: anthropic-provider
-    as: anthropic-upstream
+    isPrimary: false
+    alias: anthropic-upstream
     auth:
       type: api-key
       header: X-API-Key
@@ -564,26 +557,66 @@ The alias must:
 
 ### Configuration reference
 
-#### `additionalProviders`
+#### `providers`
 
-This table defines the additional LLM providers that the proxy can route requests to.
+Every provider attached to the proxy, in one list. Exactly one entry carries `isPrimary: true`.
 
 | Field | Required | Description |
 |-------|----------|-------------|
 | `id` | Yes | ID of an already deployed `LlmProvider` |
-| `as` | No | Logical upstream name used by routing policies; defaults to `id` |
+| `isPrimary` | Yes | Whether this is the primary provider. Required on **every** entry, so a non-primary entry states `isPrimary: false` rather than omitting it |
+| `alias` | No | Logical upstream name used by routing policies; defaults to `id` |
 | `auth` | No | API key authentication used by the proxy when calling the provider's internal route |
 | `transformer` | No | Request and response transformer applied only when this provider is selected |
 
+#### `inboundTemplate`
+
+The provider template handle naming the wire format this proxy accepts from client applications - `openai`, `anthropic`, `gemini`, `mistralai`, and so on.
+
+It decides what each attached provider needs translating to: a provider whose own template matches needs no transformer, and one whose template differs needs `{inboundTemplate}-to-{providerTemplate}-transformer`.
+
+**When omitted, the proxy takes the primary provider's own template.** That is the behavior a proxy configured before this field existed already has, so leaving it out changes nothing. Declare it only when the format you want to accept differs from the primary's own - for example, an OpenAI-compatible endpoint in front of an Anthropic primary.
+
+#### `provider` and `additionalProviders` (superseded)
+
+The earlier shape splits providers into a single `provider` and a list of `additionalProviders`. It is retained for compatibility and is **not recommended for new configurations**.
+
+| Legacy | Canonical |
+|--------|-----------|
+| `provider.id` | the `providers` entry with `isPrimary: true` |
+| `provider.as` | `alias` on that entry |
+| `additionalProviders[]` | the remaining `providers` entries, `isPrimary: false` |
+| `additionalProviders[].as` | `alias` |
+
+A configuration uses **one shape or the other**. Supplying `providers` alongside `provider` or `additionalProviders` is rejected.
+
+The canonical list is worth adopting because it can express three things the pair cannot: an alias on the primary, a transformer on the primary, and an inbound interface that differs from the primary's own format. A proxy needing none of those is describable either way, and either way behaves identically.
+
 #### `transformer`
 
-This table defines the transformer configuration for an additional provider.
+This table defines the transformer configuration for a provider. It is available on **every** provider, the primary included.
+
+A provider needs a transformer when its own format differs from the proxy's inbound interface. For the primary that happens whenever `inboundTemplate` names a format other than the primary's own - for example, a proxy accepting OpenAI requests in front of an Anthropic primary. A proxy that declares no inbound interface takes the primary's own format, so its primary never needs one.
 
 | Field | Required | Description |
 |-------|----------|-------------|
 | `type` | Yes | Installed transformer policy name, such as `openai-to-anthropic-transformer` |
 | `version` | Yes | Major policy version, such as `v0` for the installed provider transformers |
 | `params` | No | Transformer-specific parameters, such as `model` or `apiVersion` |
+
+#### Minimum gateway version
+
+The canonical list, an alias or transformer on the primary, and a declared inbound interface all need a gateway at **2026.09.24 or later**. So does routing to a provider that carries no transformer, which earlier gateways reached only by accident.
+
+| Capability | Minimum gateway |
+|------------|-----------------|
+| Several providers, each with its own credential | 1.2.0 |
+| `providers` with `isPrimary` | 2026.09.24 |
+| `alias` or `transformer` on the primary | 2026.09.24 |
+| `inboundTemplate` | 2026.09.24 |
+| Header routing to a provider with no transformer | 2026.09.24 |
+
+A proxy that uses none of these is describable in either shape and deploys to either gateway.
 
 #### LLM Header Router parameters
 
@@ -604,7 +637,7 @@ Expand a provider to see its complete transformation behavior. `Converted` means
 
     **Scope:** The Anthropic transformer targets OpenAI Chat Completions request and response shapes. It does not translate the OpenAI Responses API, embeddings, image generation, audio, assistants, batches, or fine-tuning APIs.
 
-    **Configuration:** `model` is required. `anthropicVersion` is optional and defaults to `2023-06-01`.
+    **Configuration:** `model` is optional and acts as a fallback for a request that names no model. `anthropicVersion` is optional and defaults to `2023-06-01`.
 
     **Capability summary**
 
@@ -621,7 +654,7 @@ Expand a provider to see its complete transformation behavior. `Converted` means
     | OpenAI input | Anthropic behavior |
     |--------------|--------------------|
     | Request path | Rewritten to `/v1/messages` |
-    | `model` | Replaced by the required policy model |
+    | `model` | Taken from the request payload; the policy model is the fallback |
     | Text messages | Converted to Anthropic message content |
     | `system` and `developer` roles | Combined into top-level system text; developer messages are treated as system messages |
     | `assistant.tool_calls` and `tool` results | Converted to tool-use and tool-result blocks |
@@ -775,7 +808,7 @@ Expand a provider to see its complete transformation behavior. `Converted` means
 
     **Scope:** The Gemini transformer targets OpenAI Chat Completions requests and responses and Gemini `generateContent`. It does not translate the OpenAI Responses API, embeddings, image generation, audio, assistants, batches, or fine-tuning APIs.
 
-    **Configuration:** `model` is required. `apiVersion` is optional and defaults to `v1beta`.
+    **Configuration:** `model` is optional and acts as a fallback for a request that names no model. `apiVersion` is optional and defaults to `v1beta`.
 
     **Capability summary**
 
@@ -792,7 +825,7 @@ Expand a provider to see its complete transformation behavior. `Converted` means
     | OpenAI input | Gemini behavior |
     |--------------|-----------------|
     | Request path | Uses `generateContent` or `streamGenerateContent` with the required policy model |
-    | `model` | Replaced by the policy model and used in the path |
+    | `model` | Taken from the request payload, with the policy model as the fallback, and used in the path |
     | Text messages | Converted to Gemini contents and parts |
     | `system` and `developer` roles | Converted to `systemInstruction`; developer messages are treated as system messages |
     | `assistant.tool_calls` and `tool` results | Converted to function-call and function-response parts |
@@ -858,7 +891,7 @@ Expand a provider to see its complete transformation behavior. `Converted` means
     | OpenAI input | Mistral behavior |
     |--------------|------------------|
     | Request path | Rewritten to `/v1/chat/completions` |
-    | `model` | Replaced by the required policy model |
+    | `model` | Taken from the request payload; the policy model is the fallback |
     | Messages, system and developer roles, images, tool history, `max_completion_tokens`, `max_tokens`, `temperature`, `top_p`, `stop`, `stream`, `seed`, `frequency_penalty`, `presence_penalty`, `tools`, `tool_choice`, and `response_format` | Passed through |
     | `n`, `logprobs`, `top_logprobs`, `logit_bias`, `service_tier`, `store`, `metadata`, and `user` | Removed |
 
@@ -906,14 +939,12 @@ The round-robin policies track failures per provider/model pair. The same model 
 - **Chat Completions only:** Cross-provider translation targets the OpenAI `/chat/completions` model.
 - No universal OpenAI streaming conversion: Only AWS Bedrock converts provider-specific streaming events into OpenAI Chat Completions chunk objects. Anthropic and Gemini return valid SSE streams. Their provider-native event payloads are passed through unchanged.
 - **No automatic capability negotiation:** The gateway does not query the selected model for support for vision, tools, schemas, or individual generation parameters.
-- **No automatic routing validation:** Router mappings must match the primary provider ID or an additional provider's effective name.
+- **No automatic routing validation:** Router mappings must match a provider's effective name, and nothing checks that they do.
 - **No request retry or immediate failover:** Suspension removes an unhealthy target from later rotations but does not retry the failing request.
 - **Instance-local state:** Round-robin counters and suspension maps are maintained in memory by each policy instance.
 - **Field loss during full conversion:** Anthropic, AWS Bedrock, and Gemini omit request fields that their transformers do not explicitly map.
 - **Provider restrictions still apply:** Successful conversion does not guarantee that a model accepts images, tools, tool choice, penalties, candidate counts, or other mapped values.
-- **No primary inline transformer:** The inline `transformer` field is available on `additionalProviders`, not on the primary `provider` object. A transformer for another layout must be attached as an operation policy.
 - **One routing strategy is recommended:** Combining routing policies can produce precedence-dependent behavior and should be tested explicitly.
-- **Header selection needs an upstream override:** A header-routed additional provider without a transformer does not automatically change the named upstream.
 
 ## Troubleshooting
 
@@ -945,8 +976,6 @@ Check that:
 - The mapping's `provider` matches the additional provider's `as` value when an alias is configured; otherwise, it matches `id`.
 
 An unknown header value intentionally falls back to `defaultProvider`.
-
-If the mapping selects an additional provider that has no transformer, confirm that another operation policy explicitly sets the named upstream. The header router alone publishes selection metadata.
 
 ### The model router does not move to another provider after a failure
 
