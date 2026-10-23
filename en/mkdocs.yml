@@ -1109,6 +1109,8 @@ nav:
                 - Overview: api-portal/next/setting-up/authentication/overview.md
                 - Connect an Identity Provider: api-portal/next/setting-up/authentication/connect-an-identity-provider.md
                 - Set up Asgardeo: api-portal/next/setting-up/authentication/asgardeo-as-idp.md
+                - Serve Multiple Organizations: api-portal/next/setting-up/authentication/multi-organization.md
+                - Set up WSO2 Identity Server: api-portal/next/setting-up/authentication/wso2-is-as-idp.md
             - Artifact Types: api-portal/next/setting-up/artifact-types.md
         # What a consumer does in the portal, in the order they do it.
         - Discover APIs:
@@ -1200,6 +1202,8 @@ nav:
                 - Overview: api-portal/1.0.0/setting-up/authentication/overview.md
                 - Connect an Identity Provider: api-portal/1.0.0/setting-up/authentication/connect-an-identity-provider.md
                 - Set up Asgardeo: api-portal/1.0.0/setting-up/authentication/asgardeo-as-idp.md
+                - Serve Multiple Organizations: api-portal/1.0.0/setting-up/authentication/multi-organization.md
+                - Set up WSO2 Identity Server: api-portal/1.0.0/setting-up/authentication/wso2-is-as-idp.md
             - Artifact Types: api-portal/1.0.0/setting-up/artifact-types.md
         # What a consumer does in the portal, in the order they do it.
         - Discover APIs:
