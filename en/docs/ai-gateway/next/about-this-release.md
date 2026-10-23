@@ -107,6 +107,8 @@ idle_timeout            = "1h"
 
 ### Fixed
 
+- Fixed the primary provider not being addressable by name: the controller now defines a named upstream for every attached provider, the primary included, and accepts an `alias` and a `transformer` on it ([#3480](https://github.com/wso2/api-platform/pull/3480)).
+- Fixed transformer model resolution ignoring the request: the five `openai-to-*` transformers now take the model from the request payload, with the configured policy model as a fallback ([wso2/gateway-controllers#307](https://github.com/wso2/gateway-controllers/pull/307)).
 - Fixed stale extracted policy artifacts in gateway runtime ([6b07c59c4](https://github.com/wso2/api-platform/commit/6b07c59c4)).
 - Fixed controller behavior for overlapping/same-name LLM policy matches ([746db0ed9](https://github.com/wso2/api-platform/commit/746db0ed9), [14451b47e](https://github.com/wso2/api-platform/commit/14451b47e)).
 - Fixed dynamic endpoint/base path handling in gateway and controller ([7cff05d2f](https://github.com/wso2/api-platform/commit/7cff05d2f), [30a24d2b7](https://github.com/wso2/api-platform/commit/30a24d2b7), [ad921c208](https://github.com/wso2/api-platform/commit/ad921c208)).

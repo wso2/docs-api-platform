@@ -8,7 +8,7 @@ tags:
   - ai-workspace
   - llm-proxies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-10-19
 content_type: "overview"
 ---
 
@@ -40,7 +40,11 @@ Create separate proxies for different Gen AI applications, agents, teams, or env
 **Switch providers without client changes**
 Because applications and agents call the proxy URL rather than the provider directly, you can swap the underlying LLM Provider (e.g., from OpenAI to Azure OpenAI) without any changes on the client side.
 
+**Route to several providers from one endpoint**
+A proxy can front more than one LLM Provider. Applications keep sending one request format to one URL, and select a provider per request. The proxy translates between the format it accepts and each provider's own.
+
 ## Next Steps
 
 - [Configure App LLM Proxy](configure-proxy.md) — Step-by-step guide to create and deploy your first specialized proxy
+- [Route to Several Providers](multi-provider.md) — Attach more than one provider to a single proxy
 - [Manage App LLM Proxy](manage-proxy.md) — Update configuration, guardrails, and resources after deployment

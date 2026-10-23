@@ -8,7 +8,7 @@ tags:
   - ai-workspace
   - llm-proxies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-10-19
 content_type: "how-to"
 ---
 
@@ -34,45 +34,57 @@ Once you create an App LLM Proxy, you can manage its configuration through the p
 
 ## Access Proxy Details
 
-1. Navigate to **LLM** > **Proxies** in the left navigation menu.
+1. Navigate to **LLM** > **App LLM Proxies** in the left navigation menu.
 
 2. Click on a proxy name to open its details page.
 
 The proxy details page displays the following information at the top:
 
-- **Proxy name** (e.g., Test-Openai)
-- **Provider** - The linked LLM service provider
-- **Version** - The proxy version
+- **Proxy name**, with the version shown as a badge beside it
+- **Providers** - The LLM service providers the proxy routes to, primary first. A proxy with more than three shows the first three followed by an ellipsis.
+- **Context** - The base path for the proxy's endpoints
 - **Last updated** - Timestamp of the most recent change
+- **Created by** - The user who created the proxy
 
-The page is organized into four configuration tabs: **Provider**, **Resources**, **Security**, and **Guardrails**. On the right side, you'll find the **Get Started** panel with API key generation and deployed gateway information.
+The page is organized into five configuration tabs: **Overview**, **Definition**, **Providers**, **Security**, and **Guardrails & Policies**. **Definition** precedes **Providers** because the interface a proxy accepts decides what each provider needs translating to. On the right side, you'll find the **Get Started** panel with API key generation and deployed gateway information.
 
 The **Deploy to Gateway** button and a **delete** icon are located in the top-right corner of the page.
 
 ---
 
-## Provider Settings
+## Providers
 
 <div style="border-left: 4px solid #1976d2; padding-left: 16px; margin-bottom: 24px;">
 
-Configure which LLM service provider the proxy connects to and how it authenticates with the provider.
+Configure which LLM service providers the proxy connects to and how it authenticates with each of them. A proxy has at least one provider and may have several — see [Route to Several Providers](multi-provider.md).
 
 </div>
 
-### LLM Service Provider
+### The Provider List
 
-1. Go to the **Provider** tab.
+1. Go to the **Providers** tab.
 
-2. Use the **Provider** dropdown to select or change the linked LLM service provider.
+    The tab shows the proxy's **Inbound interface**, the number of providers attached, and a table listing each one.
 
-    The dropdown lists all service providers that have been configured in your workspace.
+    ![Providers tab of a proxy, showing the inbound interface, the provider count and the provider table](../../../assets/img/ai-workspace/proxy-creation/providers-tab.png)
+
+2. Each row shows the provider's name with its **Provider ID** beneath, its **Transformer policy**, a **Primary** toggle, and row actions.
+
+3. Use **Edit provider** to change a row's credential or transformer, **+ Add Additional LLM Provider** to attach another, and **Remove provider** to detach one. Move the primary marker with the **Primary** toggle.
+
+    The provider selection lists all service providers configured in your workspace that are not already attached.
 
     !!! info
-        Changing the provider updates related settings such as authentication and available resources.
+        Changing a provider updates related settings such as authentication and available resources.
+
+    !!! note
+        The last remaining provider cannot be removed. A proxy always has at least one.
+
+Edits are held on the page until you save, so you can adjust several providers and apply them together. The bar at the bottom of the page reports whether anything is unsaved.
 
 ### API Key Configuration
 
-If your selected provider uses API key authentication, you'll see the **API Key Configuration** section below the provider dropdown.
+If a provider uses API key authentication, its provider panel shows an **API Key** field. Each provider carries its own credential, entered manually or generated from the panel.
 
 | Field | Description |
 |-------|-------------|
@@ -211,7 +223,8 @@ Resource-wise guardrails apply to **specific endpoints** only. This section list
 
 ## Save Changes
 
-After making configuration changes across any tab (Provider, Resources, Security, Guardrails), click the **Save** button at the bottom-right of the page to persist your changes.
+To save changes, click the **Save** button at the bottom-right of the page.
+This saves changes across the **Definition**, **Providers**, **Security**, and **Guardrails & Policies** tabs.
 
 Use the **Cancel** button to discard all unsaved changes and revert to the last saved state.
 
