@@ -60,6 +60,9 @@
     {% for nav_item in nav %}
       {% set path = "__nav_" ~ loop.index %}
       {% set level = 1 %}
+      {% if nav_item.title == "Glossary" and not nav_item.children %}
+        <hr class="md-nav--expanded-section-divider" />
+      {% endif %}
       {% include "partials/nav-item.html" %}
       {% if nav_item.title == "Overview" and not nav_item.children %}
         <hr class="md-nav--expanded-section-divider" />
