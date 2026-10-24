@@ -8,59 +8,60 @@ tags:
   - ai-workspace
   - mcp-proxies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-10-23
 content_type: "how-to"
 ---
 
-# Configure an MCP Proxy
+# Configure an MCP proxy
 
-An MCP Proxy exposes a managed endpoint that your applications use to reach an MCP Server. Once deployed, the proxy handles authentication and various other access controls.
+An MCP proxy exposes a managed endpoint that your applications use to reach an MCP server. Once deployed, the proxy handles authentication and other access controls.
 
 This guide walks you through creating a proxy and deploying it to a gateway.
 
 ## Prerequisites
 
-!!! info "Before You Begin"
+!!! info "Before you begin"
     - Access to AI Workspace with **Admin** or **Developer** role
 
----
-
-## Create a New Proxy
+## Create a new proxy
 
 1. Navigate to **MCP** > **MCP Proxies** in the left navigation menu.
 
-2. Click **+ Create MCP Proxy** button.
+2. Click **+ Create MCP Proxy**.
 
-3. Provide the **MCP Server URL**. Workspace will fetch the server information by connecting with this URL.
+3. Provide the **MCP Server URL**, then click **Fetch Server Info**. AI Workspace connects to that URL and fetches the server information: the tools, resources, and prompts the server exposes, along with the MCP specification versions it reports.
 
-    !!! warning "Protected Servers"
-        If the MCP Server is protected with a set of static credentials, you can provide them under the **Advanced Configurations** section.
-        Workspace will use these credentials when fetching the server information.
+    !!! warning "Protected servers"
+        If the MCP server is protected with static credentials, provide them under **Advanced Configurations**. AI Workspace uses those credentials when it fetches the server information.
 
-4. Click **Next** to proceed to the next step.
+4. Review what the server reported, shown beside the form in two sections:
 
-5. Fill in the required proxy details:
+    - **Upstream server info**: the server's name and version, and under **Supported MCP versions**, the specification versions the server reports.
 
-    1. **Name** (Required): Enter a unique name for the proxy (e.g., `mcp-tools-proxy`, `context-server-proxy`). The Proxy ID is auto-generated from the name (lowercase, hyphen-separated).
+    - **Capabilities**: the **Tools**, **Resources**, and **Prompts** the server exposes.
 
-    2. **Version** (Required): The version is pre-filled (e.g., `v1.0`). You can edit this if needed.
+5. Click **Next** to proceed to the next step.
 
-    3. **Description** (Optional): Add a brief description to identify the proxy's purpose.
+6. Fill in the required proxy details:
 
-    4. **Context** (Optional): Enter the context path (default: `/`). This is the base path for proxy endpoints (normalized with "/" prefix).
+    1. **Name** (required): Enter a unique name for the proxy (for example, `mcp-tools-proxy`, `context-server-proxy`). The Proxy ID is auto-generated from the name (lowercase, hyphen-separated).
 
-    5. **Target** (Required): The MCP Server URL the gateway should call. This will be auto populated based on the URL you provided in the previous step.
+    2. **Version** (required): The version is pre-filled (for example, `v1.0`). You can edit this if needed.
 
-6. Click **Create** to create and save the proxy.
+    3. **Description** (optional): Add a brief description to identify the proxy's purpose.
 
----
+    4. **Context** (optional): Enter the context path (default: `/`). This is the base path for proxy endpoints (normalized with "/" prefix).
 
-## Deploy Proxy to Gateway
+    5. **Target** (required): The MCP server URL the gateway calls. AI Workspace fills this in from the URL you provided in the previous step.
+
+7. Click **Create** to create and save the proxy.
+
+## Deploy proxy to gateway
 
 After creating your proxy, you must deploy it to a gateway before it can be used.
 
-!!! warning "Required Step"
-    Your proxy will not be functional until it is deployed to at least one gateway.
+!!! warning "Required step"
+    The proxy isn't functional until you deploy it to at least one gateway.
 
 1. Click the **Deploy to Gateway** button in the top-right corner of the proxy details page.
 
@@ -76,9 +77,9 @@ After creating your proxy, you must deploy it to a gateway before it can be used
 
     | Field | Description |
     |-------|-------------|
-    | **Deployment Status** | Active or Inactive |
+    | **Deployment Status** | Either Active or Inactive |
     | **Deployment ID** | Unique identifier for the deployment |
-    | **Deployed** | Time since deployment |
+    | **Deployed** | The time since deployment |
     | **Stop** | Button to stop an active deployment |
 
 6. The **API Deployment History** panel on the right shows the deployment timeline:
@@ -91,16 +92,14 @@ Click the **Stop** button next to an active deployment to undeploy the proxy fro
 
 Click **Back to MCP Proxy** to return to the proxy details page.
 
-!!! info "Deployment Status"
+!!! info "Deployment status"
     Monitor deployment progress on this page. Changes take effect within seconds of successful deployment.
 
----
+## Get started
 
-## Get Started
+Once the proxy is deployed, the overview page shows the MCP proxy URL.
 
-Once the proxy is deployed, you will see the MCP Proxy URL in the overview page.
-
-### Connect with an MCP Client
+### Connect with an MCP client
 
 Select a gateway from the **Gateways** dropdown to see the base URL for calling this proxy through that gateway.
 
@@ -110,8 +109,6 @@ The URL follows the format:
 https://{gateway-host}/{proxy-context}/mcp
 ```
 
----
+## Next steps
 
-## Next Steps
-
-- [Apply Policies](apply-policies.md) - Apply policies for MCP Proxies.
+- [Apply policies to an MCP proxy](apply-policies.md): govern MCP traffic with access control, authorization, and rewrite policies.

@@ -8,40 +8,39 @@ tags:
   - ai-workspace
   - genai-applications
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-10-23
 content_type: "concept"
 ---
 
-# GenAI Applications
+# GenAI applications
 
-GenAI Applications let you represent a real AI application inside the AI Workspace and associate existing API keys with it. This gives you application-level visibility and control instead of tracking usage only at the individual key level.
+A GenAI application represents a real AI application inside AI Workspace, with the API keys it uses attached to it. This gives you application-level visibility and control instead of tracking usage only at the individual key level.
 
-Without GenAI Applications, usage is tied only to the API keys generated for LLM Providers or App LLM Proxies. That makes it difficult to understand which application is consuming models, tokens, and cost, especially when multiple developers generate keys for the same project.
+Without GenAI applications, usage is tied only to the API keys generated for large language model (LLM) providers or App LLM proxies. AI Workspace then tracks three metrics—models, tokens, and cost—against each key rather than against an application. That makes attribution hard when several developers generate keys for the same project.
 
-With GenAI Applications, you can:
+With a GenAI application, you can:
 
-- group API keys under a named application
-- view usage and analytics at the application level
-- improve governance and accountability for shared GenAI workloads
-- prepare for application-level limits and controls
+- Group API keys under a named application
+- View usage and analytics at the application level
+- Improve governance and accountability for shared GenAI workloads
 
-## When to Use GenAI Applications
+## When to use GenAI applications
 
-Use a GenAI Application when:
+Use a GenAI application when:
 
-- multiple developers work on the same AI application
-- the application uses more than one API key
-- you want analytics grouped by application instead of by key only
-- platform teams need clearer visibility into which applications are driving usage
+- Multiple developers work on the same AI application
+- The application uses more than one API key
+- You want analytics grouped by application rather than by key alone
+- Platform teams need clearer visibility into which applications drive usage
 
 Examples include customer support copilots, internal knowledge assistants, document analysis apps, or workflow-specific AI agents.
 
-## How It Works
+## How it works
 
 The typical flow is:
 
-1. Generate one or more API keys for an LLM Provider or App LLM Proxy.
-2. Create a GenAI Application in the AI Workspace.
+1. Generate one or more API keys for an LLM provider or App LLM proxy.
+2. Create a GenAI application in the AI Workspace.
 3. Attach the generated API keys to that application.
 4. Invoke the gateway using those mapped keys.
 5. View analytics and usage for that application in Insights.
@@ -50,11 +49,11 @@ The same application can have multiple API keys mapped to it. This is useful whe
 
 ## Prerequisites
 
-- At least one configured [LLM Provider](llm-providers/configure-provider.md) or [App LLM Proxy](llm-proxies/configure-proxy.md)
+- At least one configured [LLM provider](llm-providers/configure-provider.md) or [App LLM proxy](llm-proxies/configure-proxy.md)
 - At least one generated API key
-- Access to the AI Workspace project where the GenAI Application will be created
+- Access to the AI Workspace project that holds the GenAI application
 
-## Create a GenAI Application
+## Create a GenAI application
 
 1. Navigate to **AI Workspace** in your API Platform dashboard.
 2. Open **GenAI Applications** from the left navigation menu.
@@ -68,60 +67,60 @@ The same application can have multiple API keys mapped to it. This is useful whe
 
 The application is created within the current project and becomes the shared representation of that GenAI workload.
 
-## Attach API Keys to an Application
+## Attach API keys to an application
 
 After creating the application, attach the API keys that the application already uses.
 
-1. Open the GenAI Application.
+1. Open the GenAI application.
 2. Go to the **API Keys** section.
 3. Click **Attach API Keys**.
-4. Select one or more API keys generated for your LLM Providers or App LLM Proxies.
+4. Select one or more API keys generated for your LLM providers or App LLM proxies.
 5. Save the mapping.
 
-Only existing keys are mapped. This workflow does not create new keys. It links previously generated keys to the application so usage can be attributed correctly.
+Only existing keys are mapped. This workflow doesn't create new keys. It links previously generated keys to the application so usage can be attributed correctly.
 
-## View and Manage Attached Keys
+## View and manage attached keys
 
-The GenAI Application details page shows the keys currently mapped to the application.
+The GenAI application details page shows the keys mapped to the application.
 
 For each mapped key, you can view details such as:
 
-- the associated provider or proxy
-- key status
-- the user who created the key
-- creation and update timestamps
-- expiry details, when applicable
+- The associated provider or proxy
+- The key status
+- The user who created the key
+- The creation and update timestamps
+- The expiry details, when applicable
 
 You can remove mappings for keys that should no longer be associated with the application.
 
-Removing a mapping only detaches the key from that GenAI Application. It does not delete the underlying key unless you remove it from the provider or proxy separately.
+Removing a mapping only detaches the key from that GenAI application. It doesn't delete the underlying key unless you remove it from the provider or proxy separately.
 
-## Insights for GenAI Applications
+## Insights for GenAI applications
 
-Once a mapped key is used to invoke the gateway, the gateway can identify the owning GenAI Application and publish analytics accordingly.
+Once a mapped key is used to invoke the gateway, the gateway can identify the owning GenAI application and publish analytics accordingly.
 
 This lets you analyze usage by application, including:
 
-- request volume
-- token consumption
-- latency trends
-- error patterns
-- cost and resource usage by application
+- Request volume
+- Token consumption
+- Latency trends
+- Error patterns
+- Cost and resource usage by application
 
 This is especially useful for teams that need to understand which GenAI applications are driving traffic and spend.
 
 See [Insights](insights.md) for more on the analytics experience.
 
-## Best Practices
+## Best practices
 
-- Create one GenAI Application per real application or agent workload, not per developer.
+- Create one GenAI application per real application or agent workload, not per developer.
 - Map all keys used by the same application so analytics stay complete.
 - Use clear names such as `Docs Assistant`, `Support Copilot`, or `Invoice Analyzer`.
 - Review mappings periodically and remove keys that are no longer in use.
-- Combine GenAI Applications with App LLM Proxies when an application also needs its own authentication, guardrails, or routing behavior.
+- Combine GenAI applications with App LLM proxies when an application also needs its own authentication, guardrails, or routing behavior.
 
 ## Related
 
-- [App LLM Proxies](llm-proxies/overview.md) - Create application-specific endpoints and controls
-- [Insights](insights.md) - Analyze usage by application
-- [Invoke via SDKs](using-sdks.md) - Use mapped keys when calling providers and proxies
+- [App LLM proxies overview](llm-proxies/overview.md): create application-specific endpoints and controls
+- [Insights](insights.md): analyze usage by application
+- [Invoke providers and proxies via SDKs](using-sdks.md): use mapped keys when calling providers and proxies

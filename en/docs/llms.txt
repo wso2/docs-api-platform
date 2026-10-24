@@ -134,15 +134,22 @@
 - [LLM Providers Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/overview.md): What an LLM Provider is: a managed connection to an LLM backend with credentials, access control, and org-level policies
 - [Configure LLM Provider](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/configure-provider.md): Add a new LLM provider in AI Workspace
 - [Manage LLM Provider](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/manage-provider.md): Update credentials and monitor usage for an existing LLM provider
+- [LLM Provider Templates Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-provider-templates/overview.md): Reusable blueprints that hold the endpoint, authentication, OpenAPI specification, and token mappings for an upstream LLM service
+- [Create a Custom LLM Provider Template](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-provider-templates/configure-template.md): Create a custom template, configure its connection and token mappings, version it, and deploy it to a gateway
+- [Manage an LLM Provider Template](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-provider-templates/manage-template.md): Create a provider from a template, and edit, enable, disable, or delete template versions
 - [App LLM Proxies Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/overview.md): Per-application LLM endpoints that inherit org-level policies from the parent LLM provider
 - [Configure App LLM Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/configure-proxy.md): Create a new app-level LLM proxy in AI Workspace
 - [Manage App LLM Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/manage-proxy.md): Update and monitor an existing app LLM proxy
 - [MCP Proxies Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/overview.md): Govern MCP server access through centrally managed MCP proxies in AI Workspace
 - [Configure MCP Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/configure-proxy.md): Create a new MCP proxy in AI Workspace
 - [Apply Policies to MCP Proxy](https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/apply-policies.md): Attach authentication, authorization, and ACL policies to an MCP proxy
+- [Agent Proxies Quick Start](https://wso2.com/api-platform/docs/cloud/ai-workspace/agent-proxies/quick-start-guide.md): Expose an AI agent through the gateway as a managed agent proxy with its own authentication and policies
 - [GenAI Applications](https://wso2.com/api-platform/docs/cloud/ai-workspace/genai-applications.md): Register and track GenAI applications that consume LLM and MCP resources through AI Workspace
 - [Configure Inbound Auth](https://wso2.com/api-platform/docs/cloud/ai-workspace/configure-inbound-auth.md): Configure how client applications authenticate to AI Workspace LLM and MCP proxies
 - [Invoke via SDKs](https://wso2.com/api-platform/docs/cloud/ai-workspace/using-sdks.md): Use OpenAI-compatible SDKs to call LLM proxies managed by AI Workspace
+- [Secrets Management](https://wso2.com/api-platform/docs/cloud/ai-workspace/secrets-management.md): Store credentials as encrypted secrets and reference them from AI artifact configurations
+- [Manage Gateway-deployed AI Artifacts](https://wso2.com/api-platform/docs/cloud/ai-workspace/sync-gateway-created-artifacts.md): Bring artifacts a gateway created back into AI Workspace and keep them in sync
+- [Insights](https://wso2.com/api-platform/docs/cloud/ai-workspace/insights.md): Built-in dashboard for traffic, token usage, latency, cost, and guardrail activity across your AI Gateways
 - [AI Policies Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/overview.md): Overview of AI Workspace policies: guardrails, rate limits, prompt management, and semantic caching
 - [Guardrails Overview (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/overview.md): Overview of guardrails in AI Workspace: PII masking, content safety, and prompt injection protection
 - [PII Masking Regex (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/regex-pii-masking.md): Regex-based PII masking guardrail for AI Workspace LLM proxies
@@ -157,6 +164,8 @@
 - [Prompt Template (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/prompt-template.md): Apply reusable, parameterized prompt templates to LLM requests using template:// URI references in AI Workspace
 - [Semantic Cache (AI Workspace)](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/semantic-cache.md): Cache LLM responses by semantic similarity in AI Workspace
 - [Writing an AI Policy](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/writing-an-ai-policy.md): Author a custom AI policy for use in AI Workspace
+- [Building the Gateway with AI Policies](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/build-gateway-with-ai-policies.md): Build a custom AI Gateway image that carries your own AI policies
+- [Apply AI Policies to Proxies](https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/apply-ai-policies-to-proxies.md): Sync a custom AI policy to your organization and attach it to providers and proxies
 
 ## AI Workspace (Standalone)
 
