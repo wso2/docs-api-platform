@@ -1,6 +1,6 @@
 ---
 title: "Production deployment"
-description: "Deploy the API Portal & MCP Hub in production on Kubernetes with Helm or on virtual machines, with an external database and, where you need it, replicated instances."
+description: "Deploy the API Portal & MCP Hub in production on VMs, Kubernetes, or OpenShift, with an external database and, where you need it, replicated instances."
 canonical_url: https://wso2.com/api-platform/docs/api-portal/next/deployment/overview/
 md_url: https://wso2.com/api-platform/docs/api-portal/next/deployment/overview.md
 tags:
@@ -10,17 +10,17 @@ tags:
   - kubernetes
   - devops
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-10-21
 content_type: "how-to"
 ---
 
 # Production deployment
 
-This section covers running the API Portal & MCP Hub in production — on Kubernetes with Helm, or on virtual machines with the Compose distribution. Most of it applies whether you run one instance or several: the hardening, the database setup, and the gateway integration are the same either way. High availability is the one dimension that adds requirements, and they are set out below.
+This section covers running the API Portal & MCP Hub in production — on Kubernetes or OpenShift with Helm, or on virtual machines with the Compose distribution. Most of it applies whether you run one instance or several: the hardening, the database setup, and the gateway integration are the same either way. High availability is the one dimension that adds requirements, and they are set out below.
 
 The portal is a standalone product. A production deployment needs the portal and a database — nothing else. It authenticates users against your identity provider and reaches gateways by emitting signed webhook events to whatever endpoint you register, so it carries no runtime dependency on a control plane.
 
-Every page here carries **Kubernetes** and **Virtual machine** tabs wherever the mechanics differ. The requirements and failure modes are the same on both; only the delivery changes.
+The section has two parts. The Production Readiness pages explain what each part of a production deployment requires, independent of where you run it: [Security Hardening](security-hardening.md), [Database Configuration](database-configuration.md), [Resources & Scaling](resources-and-scaling.md), [Control Plane Connection](control-plane-connection.md), and [Verify & Upgrade](deploy-and-verify.md). The deployment guides then apply them end to end, with the configuration for one platform: [Deploy on VMs](deploy-on-vms.md), [Deploy on Kubernetes](deploy-on-kubernetes.md), and [Deploy on OpenShift](openshift.md). The requirements and failure modes are the same on every platform; only the delivery changes.
 
 The single-instance walkthrough in [Getting started](../getting-started.md) is the right shape for evaluation and development, not for production.
 
@@ -37,38 +37,7 @@ A single production instance is a legitimate deployment — it just has no redun
 
 ## Prerequisites
 
-=== "Kubernetes"
-
-    | Tool | Requirement |
-    |------|-------------|
-    | `kubectl` | Configured against your target cluster |
-    | `helm` | Version 3+ |
-    | `openssl` | Available in your local shell, to generate keys |
-    | Database | An external, highly available PostgreSQL or SQL Server the cluster can reach |
-
-    ```bash
-    kubectl cluster-info
-    kubectl get nodes
-    helm version
-    ```
-
-    The `api-portal` chart is the product package; values for the portal itself nest under the `api-portal-ui` key. It also carries the Platform API as an optional dependency, on by default for the local-auth quickstart. A deployment that authenticates against an identity provider doesn't need it:
-
-    ```yaml
-    platform-api:
-      enabled: false
-    ```
-
-=== "Virtual machine"
-
-    | Requirement | Detail |
-    |---|---|
-    | Two or more VMs | Each running Docker with the Compose plugin |
-    | Load balancer | Fronting the VMs, health-checking `/health` |
-    | `openssl` | Available on the VM you provision secrets from |
-    | Database | An external, highly available PostgreSQL or SQL Server every VM can reach |
-
-    Each VM gets its own copy of the distribution. The bundled Platform API and the SQLite default are both switched off for a production deployment — see [Resources & Scaling](resources-and-scaling.md#instance-count) and [Database Configuration](database-configuration.md).
+Each deployment guide lists the tools and infrastructure it needs: [Deploy on VMs](deploy-on-vms.md#prerequisites), [Deploy on Kubernetes](deploy-on-kubernetes.md#prerequisites), and [Deploy on OpenShift](openshift.md#step-1). In every case, a production deployment needs an external, highly available PostgreSQL or SQL Server that every instance can reach.
 
 ## Architecture
 
@@ -102,41 +71,21 @@ Nothing in the deployment provisions a public entry point — bring your own ing
 - **The portal serves under the `/api-portal` path prefix.** The origin root only redirects there. Route `/api-portal/*` through, and don't strip the prefix — the session cookie is scoped to that exact path, and a mismatch is a silent login loop rather than a visible error.
 - **Set the public base URL.** It is what the portal embeds in generated AI-agent prompts. Behind a proxy it can't be inferred from the request, and a stale value produces prompts pointing at an unreachable host.
 
-=== "Kubernetes"
+On Kubernetes and OpenShift, the chart deploys a `Service`, not an Ingress, and you set the base URL in the Helm values. On VMs, the load balancer points at port `9543` on each VM, and you set the base URL in `config.toml`. See the fronting step in [Deploy on VMs](deploy-on-vms.md#front-the-portal), [Deploy on Kubernetes](deploy-on-kubernetes.md#front-the-portal), and [Deploy on OpenShift](openshift.md#step-6).
 
-    The chart deploys a `Service`, not an Ingress.
-
-    ```yaml
-    api-portal-ui:
-      config:
-        server:
-          baseUrl: https://portal.example.com
-    ```
-
-=== "Virtual machine"
-
-    Point the load balancer at port `9543` on each VM, with its health check on `/health`.
-
-    ```toml
-    [api_portal.server]
-    base_url = "https://portal.example.com"
-    ```
-
-    Set it explicitly whenever the portal sits behind a proxy — it cannot be inferred from the request. See [Change the ports the API Portal uses](../setting-up/ports.md).
-
-Sessions live in the shared database, so no sticky-session configuration is required in either case.
+Sessions live in the shared database, so no sticky-session configuration is required on any platform.
 
 For the portal's own HTTPS listener, see [Security Hardening → TLS configuration](security-hardening.md#tls-configuration).
 
 ## Setup steps
 
-Work through these in order — each builds on the last, and the Kubernetes chart's fail-fast guards assume the earlier ones are done:
-
-1. **[Security Hardening](security-hardening.md)** — provision the secrets, supply a real TLS certificate, switch authentication to your identity provider, and tighten the try-it proxy.
-2. **[Database Configuration](database-configuration.md)** — create the database, apply the schema, and size the connection pool against your instance count.
-3. **[Resources & Scaling](resources-and-scaling.md)** — set resources, spread instances across failure domains, and configure health checks. Skip to the next step if you are running a single instance.
-4. **[Deploy & Verify](deploy-and-verify.md)** — install, then confirm the deployment is serving.
-5. **[Control Plane Connection](control-plane-connection.md)** — register the webhook subscriber so credentials reach your gateways.
+1. **Read the Production Readiness pages** — what each part of a production deployment requires, independent of the platform:
+    - **[Security Hardening](security-hardening.md)** — the secrets, a real TLS certificate, identity-provider authentication, authorization, and the try-it proxy.
+    - **[Database Configuration](database-configuration.md)** — create the database, apply the schema, and size the connection pool against your instance count.
+    - **[Resources & Scaling](resources-and-scaling.md)** — resources, spreading instances across failure domains, and health checks. Skip it if you are running a single instance.
+    - **[Control Plane Connection](control-plane-connection.md)** — the webhook subscriber that gets credentials to your gateways.
+    - **[Verify & Upgrade](deploy-and-verify.md)** — the checks and cautions that hold on every platform.
+2. **Follow the guide for your platform** — each one works through the steps in order, with the configuration for that platform: [Deploy on VMs](deploy-on-vms.md), [Deploy on Kubernetes](deploy-on-kubernetes.md), or [Deploy on OpenShift](openshift.md). On Kubernetes and OpenShift, the chart's fail-fast guards assume the earlier steps are done.
 
 ## Production checklist
 
@@ -152,7 +101,7 @@ Before you take traffic:
 - [ ] The TLS certificate is a real one, not the self-signed pair from setup
 - [ ] Instances spread across failure domains, with a health check on `/health`
 
-Kubernetes adds two: the PodDisruptionBudget is enabled, and CPU requests are set if the HPA is on.
+Kubernetes and OpenShift add two: the PodDisruptionBudget is enabled, and CPU requests are set if the HPA is on.
 
 ## Related
 

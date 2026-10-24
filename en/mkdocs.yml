@@ -368,6 +368,9 @@ nav:
               - Standalone Mode: api-gateway/next/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
               - Kubernetes Operator Mode: api-gateway/next/deployment/deployment-modes/kubernetes/gateway-operator.md
               - Management CRDs: api-gateway/next/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
+            - OpenShift:
+              - Standalone Mode: api-gateway/next/deployment/deployment-modes/openshift/openshift-standalone.md
+              - Gateway Operator Mode: api-gateway/next/deployment/deployment-modes/openshift/gateway-operator.md
           - High-Availability Production Deployment:
             - Overview: api-gateway/next/deployment/high-availability-production-deployment.md
             - Security Hardening: api-gateway/next/deployment/production-deployment/security-hardening.md
@@ -443,6 +446,9 @@ nav:
               - Standalone Mode: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
               - Kubernetes Operator Mode: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator.md
               - Management CRDs: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
+            - OpenShift:
+              - Standalone Mode: api-gateway/1.2.0/deployment/deployment-modes/openshift/openshift-standalone.md
+              - Gateway Operator Mode: api-gateway/1.2.0/deployment/deployment-modes/openshift/gateway-operator.md
           - High-Availability Production Deployment:
             - Overview: api-gateway/1.2.0/deployment/high-availability-production-deployment.md
             - Security Hardening: api-gateway/1.2.0/deployment/production-deployment/security-hardening.md
@@ -682,6 +688,9 @@ nav:
                 - ai-gateway/next/setup-and-deployment/kubernetes/index.md
                 - Standalone Mode: ai-gateway/next/setup-and-deployment/kubernetes/kubernetes-standalone.md
                 - Kubernetes Operator Mode: ai-gateway/next/setup-and-deployment/kubernetes/gateway-operator.md
+            - OpenShift:
+                - Standalone Mode: ai-gateway/next/setup-and-deployment/openshift/openshift-standalone.md
+                - Gateway Operator Mode: ai-gateway/next/setup-and-deployment/openshift/gateway-operator.md
             - Immutable Gateway: ai-gateway/next/setup-and-deployment/immutable-gateway.md
             - Configuration and Interpolation: ai-gateway/next/setup-and-deployment/configuration.md
             - Database: ai-gateway/next/setup-and-deployment/database-setup.md
@@ -914,6 +923,9 @@ nav:
                 - ai-gateway/1.2.0/setup-and-deployment/kubernetes/index.md
                 - Standalone Mode: ai-gateway/1.2.0/setup-and-deployment/kubernetes/kubernetes-standalone.md
                 - Kubernetes Operator Mode: ai-gateway/1.2.0/setup-and-deployment/kubernetes/gateway-operator.md
+            - OpenShift:
+                - Standalone Mode: ai-gateway/1.2.0/setup-and-deployment/openshift/openshift-standalone.md
+                - Gateway Operator Mode: ai-gateway/1.2.0/setup-and-deployment/openshift/gateway-operator.md
             - Immutable Gateway: ai-gateway/1.2.0/setup-and-deployment/immutable-gateway.md
             - Configuration and Interpolation: ai-gateway/1.2.0/setup-and-deployment/configuration.md
             - Database: ai-gateway/1.2.0/setup-and-deployment/database-setup.md
@@ -1151,11 +1163,16 @@ nav:
         # Take it to production.
         - Deployment:
             - Overview: api-portal/next/deployment/overview.md
-            - Security Hardening: api-portal/next/deployment/security-hardening.md
-            - Database Configuration: api-portal/next/deployment/database-configuration.md
-            - Resources & Scaling: api-portal/next/deployment/resources-and-scaling.md
-            - Deploy & Verify: api-portal/next/deployment/deploy-and-verify.md
-            - Control Plane Connection: api-portal/next/deployment/control-plane-connection.md
+            - Production Readiness:
+                - Security Hardening: api-portal/next/deployment/security-hardening.md
+                - Database Configuration: api-portal/next/deployment/database-configuration.md
+                - Resources & Scaling: api-portal/next/deployment/resources-and-scaling.md
+                - Control Plane Connection: api-portal/next/deployment/control-plane-connection.md
+                - Verify & Upgrade: api-portal/next/deployment/deploy-and-verify.md
+            - Deploy on VMs: api-portal/next/deployment/deploy-on-vms.md
+            - Deploy on Kubernetes:
+                - Kubernetes: api-portal/next/deployment/deploy-on-kubernetes.md
+                - OpenShift: api-portal/next/deployment/openshift.md
         - Tutorials:
             - Secured API End to End: api-portal/next/tutorials/secured-api-end-to-end.md
         - References:
@@ -1242,11 +1259,16 @@ nav:
         # Take it to production.
         - Deployment:
             - Overview: api-portal/1.0.0/deployment/overview.md
-            - Security Hardening: api-portal/1.0.0/deployment/security-hardening.md
-            - Database Configuration: api-portal/1.0.0/deployment/database-configuration.md
-            - Resources & Scaling: api-portal/1.0.0/deployment/resources-and-scaling.md
-            - Deploy & Verify: api-portal/1.0.0/deployment/deploy-and-verify.md
-            - Control Plane Connection: api-portal/1.0.0/deployment/control-plane-connection.md
+            - Production Readiness:
+                - Security Hardening: api-portal/1.0.0/deployment/security-hardening.md
+                - Database Configuration: api-portal/1.0.0/deployment/database-configuration.md
+                - Resources & Scaling: api-portal/1.0.0/deployment/resources-and-scaling.md
+                - Control Plane Connection: api-portal/1.0.0/deployment/control-plane-connection.md
+                - Verify & Upgrade: api-portal/1.0.0/deployment/deploy-and-verify.md
+            - Deploy on VMs: api-portal/1.0.0/deployment/deploy-on-vms.md
+            - Deploy on Kubernetes:
+                - Kubernetes: api-portal/1.0.0/deployment/deploy-on-kubernetes.md
+                - OpenShift: api-portal/1.0.0/deployment/openshift.md
         - Tutorials:
             - Secured API End to End: api-portal/1.0.0/tutorials/secured-api-end-to-end.md
         - References:
@@ -1292,16 +1314,20 @@ nav:
               - Set up Asgardeo: ai-workspace/next/setting-up/authentication/asgardeo-setup.md
               - Set up Microsoft Entra ID: ai-workspace/next/setting-up/authentication/entra-id-setup.md
       # Take the same workspace to production, on a VM or on Kubernetes.
-      - Production Deployment:
+      - Deployment:
           - Overview: ai-workspace/next/production/overview.md
-          - Deploy to Production: ai-workspace/next/production/deploy.md
-          - Provision Secrets and Keys: ai-workspace/next/production/secrets-and-keys.md
-          - Secure Traffic with TLS: ai-workspace/next/production/tls.md
-          - Expose AI Workspace: ai-workspace/next/production/expose-the-workspace.md
-          - Run in High Availability: ai-workspace/next/production/high-availability.md
-          - Harden the Deployment: ai-workspace/next/production/harden.md
-          - Connect AI Gateways: ai-workspace/next/production/connect-gateways.md
-          - Operate the Deployment: ai-workspace/next/production/operate.md
+          - Production Readiness:
+              - Provision Secrets and Keys: ai-workspace/next/production/secrets-and-keys.md
+              - Secure Traffic with TLS: ai-workspace/next/production/tls.md
+              - Expose AI Workspace: ai-workspace/next/production/expose-the-workspace.md
+              - Run in High Availability: ai-workspace/next/production/high-availability.md
+              - Harden the Deployment: ai-workspace/next/production/harden.md
+              - Connect AI Gateways: ai-workspace/next/production/connect-gateways.md
+              - Operate the Deployment: ai-workspace/next/production/operate.md
+          - Deploy on VMs: ai-workspace/next/production/deploy-on-vms.md
+          - Deploy on Kubernetes:
+              - Kubernetes: ai-workspace/next/production/deploy-on-kubernetes.md
+              - OpenShift: ai-workspace/next/production/openshift.md
       # Build the artifacts, in the order you create them.
       - AI Gateways:
           - Setting Up: ai-workspace/next/ai-gateways/setting-up.md
@@ -1378,16 +1404,20 @@ nav:
               - Connect an Identity Provider: ai-workspace/1.0.0/setting-up/authentication/connect-an-identity-provider.md
               - Set up Asgardeo: ai-workspace/1.0.0/setting-up/authentication/asgardeo-setup.md
               - Set up Microsoft Entra ID: ai-workspace/1.0.0/setting-up/authentication/entra-id-setup.md
-      - Production Deployment:
+      - Deployment:
           - Overview: ai-workspace/1.0.0/production/overview.md
-          - Deploy to Production: ai-workspace/1.0.0/production/deploy.md
-          - Provision Secrets and Keys: ai-workspace/1.0.0/production/secrets-and-keys.md
-          - Secure Traffic with TLS: ai-workspace/1.0.0/production/tls.md
-          - Expose AI Workspace: ai-workspace/1.0.0/production/expose-the-workspace.md
-          - Run in High Availability: ai-workspace/1.0.0/production/high-availability.md
-          - Harden the Deployment: ai-workspace/1.0.0/production/harden.md
-          - Connect AI Gateways: ai-workspace/1.0.0/production/connect-gateways.md
-          - Operate the Deployment: ai-workspace/1.0.0/production/operate.md
+          - Production Readiness:
+              - Provision Secrets and Keys: ai-workspace/1.0.0/production/secrets-and-keys.md
+              - Secure Traffic with TLS: ai-workspace/1.0.0/production/tls.md
+              - Expose AI Workspace: ai-workspace/1.0.0/production/expose-the-workspace.md
+              - Run in High Availability: ai-workspace/1.0.0/production/high-availability.md
+              - Harden the Deployment: ai-workspace/1.0.0/production/harden.md
+              - Connect AI Gateways: ai-workspace/1.0.0/production/connect-gateways.md
+              - Operate the Deployment: ai-workspace/1.0.0/production/operate.md
+          - Deploy on VMs: ai-workspace/1.0.0/production/deploy-on-vms.md
+          - Deploy on Kubernetes:
+              - Kubernetes: ai-workspace/1.0.0/production/deploy-on-kubernetes.md
+              - OpenShift: ai-workspace/1.0.0/production/openshift.md
       # Build the artifacts, in the order you create them.
       - AI Gateways:
           - Setting Up: ai-workspace/1.0.0/ai-gateways/setting-up.md
@@ -1867,6 +1897,10 @@ plugins:
         ai-gateway/next/llm-proxy/multi-provider-routing.md: ai-gateway/next/routing/multi-provider-routing.md
         ai-gateway/next/llm-proxy/create-and-configure-an-llm-proxy.md: ai-gateway/next/gateway-artifacts/llm-proxy.md
         ai-gateway/next/mcp-proxy/create-an-mcp-proxy.md: ai-gateway/next/gateway-artifacts/mcp-proxy.md
+        # AI Workspace next and 1.0.0: the combined production walkthrough split into
+        # one single-pass guide per platform; Kubernetes is the closest match.
+        ai-workspace/next/production/deploy.md: ai-workspace/next/production/deploy-on-kubernetes.md
+        ai-workspace/1.0.0/production/deploy.md: ai-workspace/1.0.0/production/deploy-on-kubernetes.md
         # AI Workspace self-hosted docs moved from next/ai-workspace to the
         # versioned ai-workspace/<version> layout; 1.0.0 is the latest release.
         next/ai-workspace/index.md: ai-workspace/1.0.0/overview.md

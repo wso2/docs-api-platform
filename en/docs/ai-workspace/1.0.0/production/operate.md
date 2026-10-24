@@ -9,7 +9,7 @@ tags:
   - operations
   - observability
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-10-21
 content_type: "how-to"
 ---
 
@@ -21,52 +21,7 @@ Once AI Workspace is serving traffic, three things keep it that way: logs you ca
 
 Both services log to standard output, so whatever collects container logs on your platform already collects theirs. Switch the format to JavaScript Object Notation (JSON) so a log aggregator can index fields instead of matching text.
 
-=== "Virtual machine"
-    ```toml
-    # configs/config.toml
-    [platform_api.logging]
-    level  = "info"
-    format = "json"
-
-    [ai_workspace.logging]
-    level         = "info"
-    format        = "json"
-    browser_debug = "false"
-    ```
-
-    Point the container runtime at your collector and cap local files so a log burst can't fill the disk:
-
-    ```yaml
-    services:
-      platform-api:
-        logging:
-          driver: json-file
-          options:
-            max-size: "50m"
-            max-file: "5"
-      ai-workspace-ui:
-        logging:
-          driver: json-file
-          options:
-            max-size: "50m"
-            max-file: "5"
-    ```
-
-=== "Kubernetes"
-    ```yaml
-    platform-api:
-      config:
-        logging:
-          level: info
-          format: json
-
-    ai-workspace-ui:
-      config:
-        logging:
-          level: info
-          format: json
-          browserDebug: false
-    ```
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#operate-step-1-emit-structured-logs), [Deploy on Kubernetes](deploy-on-kubernetes.md#step-6-write-the-configuration), and [Deploy on OpenShift](openshift.md#production-step-6).
 
 Keep the level at `info` in production. `debug` is verbose enough to affect throughput and to put request detail in your logs. Leave `browser_debug` off, because it turns on verbose console logging in every user's browser.
 
@@ -100,24 +55,9 @@ Alert on `Heartbeat timeout detected` rather than waiting for the console to sho
 
 ### WebSocket metrics
 
-The Platform API also logs connection metrics on an interval, which is the closest signal to how many gateways are connected:
+The Platform API also logs connection metrics on an interval, which is the closest signal to how many gateways are connected.
 
-=== "Virtual machine"
-    ```toml
-    [platform_api.server.websocket]
-    metrics_log_enabled  = true
-    metrics_log_interval = 10
-    ```
-
-=== "Kubernetes"
-    ```yaml
-    platform-api:
-      config:
-        server:
-          websocket:
-            metricsLogEnabled: true
-            metricsLogInterval: 10
-    ```
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#operate-websocket-metrics), [Deploy on Kubernetes](deploy-on-kubernetes.md#operate-websocket-metrics), and [Deploy on OpenShift](openshift.md#openshift-operate-websocket-metrics).
 
 The Platform API writes this line at `debug` level, so it needs `level = "debug"` as well as `metrics_log_enabled`. At `info` the setting produces no output. Debug logging on the Platform API is verbose, so turn it on to investigate a connection problem rather than leaving it on permanently.
 
@@ -144,28 +84,7 @@ Two things matter, and they're only useful together. A database backup restored 
 | The database | On your organization's schedule for a system of record | Your database backup tooling |
 | The at-rest encryption key | Once, when created, and after any change | Your secret manager, separate from the database backup |
 
-=== "Virtual machine"
-    Back up the database with your standard tooling, and treat the key files as secrets rather than as part of a host backup. This example uses PostgreSQL; use the equivalent for whichever database you run:
-
-    ```bash
-    pg_dump --host postgres.example.com --username platform_api \
-      --format=custom --file platform_api-$(date +%F).dump platform_api
-    ```
-
-    Keep `configs/config.toml` and `docker-compose.yaml` in version control. Keep `api-platform.env`, `resources/keys/`, and `secrets/` out of it.
-
-    If you still run SQLite on a single host, back up the database file with the stack stopped, or through SQLite's own backup command. Copying a file that's being written produces a backup that may not restore.
-
-=== "Kubernetes"
-    Back up the database with your standard tooling. Back up the Secrets separately, into your secret manager rather than into a cluster snapshot.
-
-    The Platform API's persistent volume claim carries a `helm.sh/resource-policy: keep` annotation, so it survives `helm uninstall` and a later install with the same release name re-adopts it. That protects you from an accidental uninstall; it isn't a backup, because it doesn't survive losing the cluster.
-
-    To remove that data deliberately:
-
-    ```bash
-    kubectl -n <namespace> delete pvc <release-name>-platform-api-data
-    ```
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#operate-step-3-back-up-what-you-cant-regenerate), [Deploy on Kubernetes](deploy-on-kubernetes.md#operate-step-3-back-up-what-you-cant-regenerate), and [Deploy on OpenShift](openshift.md#openshift-operate-step-3-back-up-what-you-cant-regenerate).
 
 Test a restore into a non-production environment on a schedule. Only a tested restore proves the backup works.
 
@@ -173,100 +92,17 @@ Test a restore into a non-production environment on a schedule. Only a tested re
 
 Read the release notes first, then back up the database, then upgrade. Both procedures below upgrade the whole stack in one step, so plan the upgrade as a change window that covers both services.
 
-=== "Virtual machine"
-    1. Back up the database, and confirm the backup completed.
-    2. Pin the new image tags in `docker-compose.yaml`.
-    3. Pull the images before you stop anything, so the pull isn't part of your downtime:
-
-        ```bash
-        docker compose pull
-        ```
-
-    4. Recreate the services:
-
-        ```bash
-        docker compose up -d
-        ```
-
-    5. Confirm both services are healthy and check the logs for startup errors.
-
-    Across several hosts, upgrade one at a time. Remove a host from the load balancer, upgrade it, wait for its health check, then return it to rotation before moving to the next.
-
-=== "Kubernetes"
-    1. Back up the database, and confirm the backup completed.
-    2. Resolve the component chart versions:
-
-        ```bash
-        helm dependency update ./ai-workspace
-        ```
-
-    3. Preview what changes before you apply it:
-
-        ```bash
-        umask 077
-        helm template <release-name> ./ai-workspace -n <namespace> \
-          -f values-secrets.yaml -f my_values.yaml > ./next.yaml
-        ```
-
-        The rendered output contains Secret manifests in the clear. Review it, then remove it:
-
-        ```bash
-        shred -u ./next.yaml
-        ```
-
-    4. Upgrade:
-
-        ```bash
-        helm upgrade <release-name> ./ai-workspace -n <namespace> \
-          -f values-secrets.yaml -f my_values.yaml --wait --timeout 10m
-        ```
-
-    5. Confirm the rollout finished and the pods are ready:
-
-        ```bash
-        kubectl -n <namespace> rollout status deploy/<release-name>-platform-api
-        kubectl -n <namespace> rollout status deploy/<release-name>-ai-workspace-ui
-        kubectl -n <namespace> get pods
-        ```
-
-    With two or more replicas and a PodDisruptionBudget in place, the rollout replaces pods gradually and keeps serving. Workspace sessions held by a replaced pod end, so users on that pod sign in again.
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#operate-step-4-upgrade), [Deploy on Kubernetes](deploy-on-kubernetes.md#operate-step-4-upgrade), and [Deploy on OpenShift](openshift.md#openshift-operate-step-4-upgrade).
 
 ## Step 5: Roll back
 
 Roll back the application, then decide separately about the database. The previous version can't always read a schema the upgrade changed, which is why the backup comes first.
 
-=== "Virtual machine"
-    Set the image tags back to the previous version and recreate:
-
-    ```bash
-    docker compose up -d
-    ```
-
-    Restore the database only if the upgrade changed the schema in a way the previous version can't read. Restoring loses everything written since the backup.
-
-=== "Kubernetes"
-    ```bash
-    helm history <release-name> -n <namespace>
-    helm rollback <release-name> <revision> -n <namespace> --wait
-    ```
-
-    A rollback reverts the manifests, not the database. Restore from backup separately if the upgrade changed the schema.
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#operate-step-5-roll-back), [Deploy on Kubernetes](deploy-on-kubernetes.md#operate-step-5-roll-back), and [Deploy on OpenShift](openshift.md#openshift-operate-step-5-roll-back).
 
 ## Step 6: Uninstall
 
-=== "Virtual machine"
-    ```bash
-    docker compose down
-    ```
-
-    Volumes survive. `docker compose down -v` deletes them, including the database when you still run SQLite. Check what a volume holds before you remove it.
-
-=== "Kubernetes"
-    ```bash
-    helm uninstall <release-name> -n <namespace>
-    ```
-
-    The Platform API's persistent volume claim survives, because of its `helm.sh/resource-policy: keep` annotation. Secrets you created outside the chart, including the ones `generate-secrets.sh` made, also survive. Remove them deliberately once you're certain no data depends on them.
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#operate-step-6-uninstall), [Deploy on Kubernetes](deploy-on-kubernetes.md#operate-step-6-uninstall), and [Deploy on OpenShift](openshift.md#openshift-operate-step-6-uninstall).
 
 ## Housekeeping settings
 

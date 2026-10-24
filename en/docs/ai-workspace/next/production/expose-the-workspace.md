@@ -9,7 +9,7 @@ tags:
   - ingress
   - networking
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-10-21
 content_type: "how-to"
 ---
 
@@ -43,126 +43,7 @@ The application bundle sets the prefix at image build time, so it isn't configur
 
 ## Step 1: Publish the workspace URL
 
-=== "Virtual machine"
-    Put a reverse proxy in front of the stack and forward the prefix untouched. This nginx server block terminates TLS and proxies to the AI Workspace HTTPS listener:
-
-    ```nginx
-    server {
-        listen 443 ssl;
-        http2 on;
-        server_name workspace.example.com;
-
-        ssl_certificate     /etc/nginx/tls/cert.pem;
-        ssl_certificate_key /etc/nginx/tls/key.pem;
-
-        location / {
-            proxy_pass https://127.0.0.1:9643;
-
-            # Verify the upstream certificate. Drop these four lines when the
-            # workspace listener serves plain HTTP instead.
-            proxy_ssl_verify       on;
-            proxy_ssl_trusted_certificate /etc/nginx/tls/ca.pem;
-            proxy_ssl_server_name  on;
-            proxy_ssl_name         workspace.example.com;
-
-            proxy_set_header Host              $host;
-            proxy_set_header X-Real-IP         $remote_addr;
-            proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto https;
-
-            # Server-sent events and long-running LLM calls need a generous
-            # read timeout and no response buffering.
-            proxy_http_version 1.1;
-            proxy_buffering    off;
-            proxy_read_timeout 300s;
-        }
-    }
-    ```
-
-    Bind the workspace listener to the loopback interface or a private network so nothing reaches port `9643` except the proxy. Publish only the proxy's port on the host firewall.
-
-    Then set the public address, so the startup banner prints an address an operator can open:
-
-    ```toml
-    # configs/config.toml
-    [ai_workspace]
-    domain = "workspace.example.com"
-    ```
-
-    Set `domain` to the host, or `host:port`, that browsers use, which is the proxy's address rather than the workspace listener's. Omit the port when the proxy serves on 443. Without it, the banner falls back to the listen address, and a listener bound to a wildcard interface prints `localhost`, which nobody outside the host can open.
-
-    The value affects the startup banner only. Redirect URLs, cookies, and CORS are configured separately, so changing `domain` doesn't repoint any of them.
-
-=== "Kubernetes"
-    The charts ship no Ingress resource, so you write one. That keeps the ingress class, annotations, and hostnames under your control.
-
-    First switch the UI Service to `ClusterIP`, because the ingress controller becomes the entry point:
-
-    ```yaml
-    ai-workspace-ui:
-      service:
-        type: ClusterIP
-        port: 9643
-      config:
-        server:
-          domain: workspace.example.com
-    ```
-
-    `config.server.domain` is the host, or `host:port`, that browsers use to reach the workspace. Behind an ingress that's the ingress hostname on 443, not the Service port, so the two differ and the workspace can't infer one from the other. Set it to the ingress hostname and omit the port. Left empty, it defaults to `localhost` on the container port, and the startup banner prints an address that resolves only inside the pod.
-
-    The value affects the startup banner only. Redirect URLs, cookies, and CORS are configured separately, so changing `config.server.domain` doesn't repoint any of them.
-
-    Then apply an Ingress. This example uses the NGINX ingress controller, terminates TLS at the ingress with a cert-manager certificate, and forwards to the workspace's HTTPS listener:
-
-    ```yaml
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: ai-workspace
-      namespace: <namespace>
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-        # The backend listener serves HTTPS. Omit this when you enable the
-        # plain-HTTP listener instead.
-        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-        # Long-running LLM calls stream through this hop.
-        nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
-        nginx.ingress.kubernetes.io/proxy-body-size: "10m"
-    spec:
-      ingressClassName: nginx
-      tls:
-        - hosts:
-            - workspace.example.com
-          secretName: ai-workspace-ingress-tls
-      rules:
-        - host: workspace.example.com
-          http:
-            paths:
-              - path: /ai-workspace
-                pathType: Prefix
-                backend:
-                  service:
-                    name: <release-name>-ai-workspace-ui
-                    port:
-                      number: 9643
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: <release-name>-ai-workspace-ui
-                    port:
-                      number: 9643
-    ```
-
-    Both paths point at the same backend. The `/` rule carries the root redirect and the `/healthz` endpoint. The verification step at the end of this page calls `/healthz` on the public hostname.
-
-    Confirm the Service name before you apply, because it carries the release name:
-
-    ```bash
-    kubectl -n <namespace> get svc
-    ```
-
-    Running more than one workspace replica needs session affinity on this Ingress. See [Run in high availability](high-availability.md).
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#expose-step-1-publish-the-workspace-url), [Deploy on Kubernetes](deploy-on-kubernetes.md#expose-step-1-publish-the-workspace-url), and [Deploy on OpenShift](openshift.md#routes).
 
 ## Step 2: Expose the control plane for gateways
 
@@ -174,63 +55,7 @@ Match the exposure to where your gateways run:
 - **Gateways elsewhere in your network:** an internal load balancer, or a private DNS name resolving to the host.
 - **Gateways outside your network:** a public address restricted by source range, with the registration token as the credential.
 
-=== "Virtual machine"
-    Publish the Platform API port on an interface your gateways reach, and restrict it at the firewall to their source ranges. Then set the address the workspace shows in its gateway setup instructions:
-
-    ```toml
-    # configs/config.toml
-    [ai_workspace.gateway]
-    controlplane_host = "platform-api.example.com:9243"
-    ```
-
-    Put a proxy in front of it only if that proxy passes WebSocket upgrades and doesn't close idle connections. A gateway holds a long-lived connection for configuration updates.
-
-=== "Kubernetes"
-    Expose the Platform API Service through its own Ingress or load balancer, on a hostname distinct from the workspace:
-
-    ```yaml
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: platform-api
-      namespace: <namespace>
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
-        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-        # Gateways hold a long-lived WebSocket connection.
-        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-        # Restrict to the networks your gateways run in.
-        nginx.ingress.kubernetes.io/whitelist-source-range: "203.0.113.0/24"
-    spec:
-      ingressClassName: nginx
-      tls:
-        - hosts:
-            - platform-api.example.com
-          secretName: platform-api-ingress-tls
-      rules:
-        - host: platform-api.example.com
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: <release-name>-platform-api
-                    port:
-                      number: 9243
-    ```
-
-    Then tell the workspace which address to show in its gateway setup instructions:
-
-    ```yaml
-    ai-workspace-ui:
-      config:
-        gateway:
-          controlplaneHost: platform-api.example.com:443
-    ```
-
-    Use `443` when the ingress serves the hostname on the standard port, and `platform-api.example.com:9243` when you expose the Service port directly.
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#expose-step-2-expose-the-control-plane-for-gateways), [Deploy on Kubernetes](deploy-on-kubernetes.md#expose-step-2-expose-the-control-plane-for-gateways), and [Deploy on OpenShift](openshift.md#routes).
 
 !!! note "Two keys that aren't interchangeable"
     `controlplane_host` is display-only. AI Workspace never connects to it. Instead, it substitutes the value into the setup commands it shows an administrator. A wrong value leaves the workspace working and breaks the gateway, which then can't register. The BFF's own hop uses `[ai_workspace.control_plane] url` instead. See [Two keys that aren't interchangeable](../setting-up/ports.md#two-keys-that-arent-interchangeable).
@@ -239,23 +64,7 @@ Match the exposure to where your gateways run:
 
 In OIDC mode, both redirect URLs carry the public hostname and the path prefix. They must match what you registered on the identity provider application, character for character.
 
-=== "Virtual machine"
-    ```toml
-    # configs/config.toml
-    [ai_workspace.auth.oidc]
-    redirect_url             = "https://workspace.example.com/ai-workspace/api/auth/callback"
-    post_logout_redirect_url = "https://workspace.example.com/ai-workspace/login"
-    ```
-
-=== "Kubernetes"
-    ```yaml
-    ai-workspace-ui:
-      config:
-        auth:
-          oidc:
-            redirectUrl: https://workspace.example.com/ai-workspace/api/auth/callback
-            postLogoutRedirectUrl: https://workspace.example.com/ai-workspace/login
-    ```
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#step-6-write-the-configuration), [Deploy on Kubernetes](deploy-on-kubernetes.md#step-6-write-the-configuration), and [Deploy on OpenShift](openshift.md#production-step-6).
 
 The callback is a BFF route, not a page in the application. Register `/ai-workspace/api/auth/callback` on the identity provider. Registering the sign-in page instead makes the code exchange fail. See [Connect an identity provider to AI Workspace](../setting-up/authentication/connect-an-identity-provider.md).
 
@@ -263,25 +72,9 @@ The callback is a BFF route, not a page in the application. Register `/ai-worksp
 
 The Platform API's `allowed_origins` list is empty by default, which disables cross-origin access. Because the BFF proxies browser traffic same-origin, that default is correct for a standard deployment.
 
-Set it only when a browser application other than AI Workspace calls the Platform API directly. List the exact origins:
+Set it only when a browser application other than AI Workspace calls the Platform API directly. List the exact origins.
 
-=== "Virtual machine"
-    ```toml
-    # configs/config.toml
-    [platform_api.server.cors]
-    allowed_origins = "https://workspace.example.com,https://portal.example.com"
-    ```
-
-=== "Kubernetes"
-    ```yaml
-    platform-api:
-      config:
-        server:
-          cors:
-            allowedOrigins:
-              - https://workspace.example.com
-              - https://portal.example.com
-    ```
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#step-6-write-the-configuration), [Deploy on Kubernetes](deploy-on-kubernetes.md#step-6-write-the-configuration), and [Deploy on OpenShift](openshift.md#production-step-6).
 
 A wildcard is rejected at startup, so the service can't run with credentialed cross-origin access open to every origin.
 
