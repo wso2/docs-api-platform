@@ -53,7 +53,7 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
     **Step 5: Verify the installation**
 
     ```bash
-    ap --version
+    ap version
     ```
 
 === "Windows"
