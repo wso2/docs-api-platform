@@ -213,6 +213,10 @@ nav:
             - Overview: cloud/ai-workspace/llm-providers/overview.md
             - Configure Provider: cloud/ai-workspace/llm-providers/configure-provider.md
             - Manage Provider: cloud/ai-workspace/llm-providers/manage-provider.md
+        - LLM Provider Templates:
+            - Overview: cloud/ai-workspace/llm-provider-templates/overview.md
+            - Create a Custom Template: cloud/ai-workspace/llm-provider-templates/configure-template.md
+            - Manage Templates: cloud/ai-workspace/llm-provider-templates/manage-template.md
         - App LLM Proxies:
             - Overview: cloud/ai-workspace/llm-proxies/overview.md
             - Configure App LLM Proxy: cloud/ai-workspace/llm-proxies/configure-proxy.md
@@ -221,6 +225,8 @@ nav:
             - Overview: cloud/ai-workspace/mcp-proxies/overview.md
             - Configure Proxy: cloud/ai-workspace/mcp-proxies/configure-proxy.md
             - Apply Policies: cloud/ai-workspace/mcp-proxies/apply-policies.md
+        - Agent Proxies:
+            - Quick Start Guide: cloud/ai-workspace/agent-proxies/quick-start-guide.md
         - MCP Registry:
             - What is an MCP Registry?: cloud/mcp-servers/mcp-registry.md
             - Publish MCP Proxies: cloud/mcp-servers/publish-mcp-proxies.md
@@ -229,7 +235,9 @@ nav:
         - GenAI Applications: cloud/ai-workspace/genai-applications.md
         - Configure Inbound Auth: cloud/ai-workspace/configure-inbound-auth.md
         - Invoke via SDKs: cloud/ai-workspace/using-sdks.md
-  #      - Insights: cloud/ai-workspace/insights.md
+        - Secrets Management: cloud/ai-workspace/secrets-management.md
+        - Manage Gateway-deployed AI Artifacts: cloud/ai-workspace/sync-gateway-created-artifacts.md
+        - Insights: cloud/ai-workspace/insights.md
         - Policies:
             - Overview: cloud/ai-workspace/policies/overview.md
             - Guardrails:
@@ -250,7 +258,10 @@ nav:
                 - Prompt Decorator: cloud/ai-workspace/policies/other-policies/prompt-decorator.md
                 - Prompt Template: cloud/ai-workspace/policies/other-policies/prompt-template.md
                 - Semantic Cache: cloud/ai-workspace/policies/other-policies/semantic-cache.md
-            - Writing an AI Policy: cloud/ai-workspace/policies/writing-an-ai-policy.md
+            - Custom Policies:
+                - Writing an AI Policy: cloud/ai-workspace/policies/writing-an-ai-policy.md
+                - Building the Gateway with AI Policies: cloud/ai-workspace/policies/build-gateway-with-ai-policies.md
+                - Apply AI Policies to Proxies: cloud/ai-workspace/policies/apply-ai-policies-to-proxies.md
     - Event Gateway:
         - Overview: cloud/event-gateway/overview.md
         - Getting Started: cloud/event-gateway/getting-started.md
