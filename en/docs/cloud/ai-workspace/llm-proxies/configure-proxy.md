@@ -8,7 +8,7 @@ tags:
   - ai-workspace
   - llm-proxies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-10-19
 content_type: "how-to"
 ---
 
@@ -28,23 +28,25 @@ This guide walks you through creating an App LLM Proxy, optionally attaching gua
 
 ## Create a New App LLM Proxy
 
-1. Navigate to **LLM** > **Proxies** in the left navigation menu.
+1. Navigate to **LLM** > **App LLM Proxies** in the left navigation menu.
 
-2. Click **+ Create Proxy** button.
+2. Click **Create App LLM Proxy**.
 
 3. Fill in the required proxy details:
 
     1. **Name*** (Required): Enter a unique name for the proxy (e.g., `support-chat-api`, `sales-agent-proxy`). The Proxy ID is auto-generated from the name (lowercase, hyphen-separated).
 
-    2. **LLM Service Provider*** (Required): Select the LLM provider this proxy will route to from the dropdown (defaults to the latest updated provider).
+    2. **LLM Provider*** (Required): Under **Provider Configuration**, select the LLM provider this proxy routes to. This becomes the proxy's **primary** provider — use **+ Add Additional LLM Provider** to attach more, which is covered in [Route to Several Providers](multi-provider.md).
 
     3. **Version*** (Required): The version is pre-filled (e.g., `v1.0`). You can edit this if needed.
 
     4. **Description** (Optional): Add a brief description to identify the Gen AI application or agent use case this proxy is created for.
 
-    5. **Context** (Optional): Enter the context path (default: `/`). This is the base path for proxy endpoints (normalized with "/" prefix).
+    5. **Context** (Optional): The context path is derived from the name as you type, for example `/test/multi-provider-demo`. Edit it if you need a different base path for the proxy's endpoints (normalized with a "/" prefix).
 
-4. Click **Create Proxy** to save the proxy.
+4. Optionally expand **Advanced Configurations** to set the **Inbound Interface** — the request format the proxy accepts from client applications. Leave it alone unless you need a format other than the selected provider's own; see [Choose the inbound interface](multi-provider.md#choose-the-inbound-interface).
+
+5. Click **Create Proxy** to save the proxy.
 
 ---
 
@@ -148,5 +150,6 @@ The **Deployed Gateways** section lists all gateways this proxy is deployed to, 
 ## Next Steps
 
 - [Invoke via SDKs](../using-sdks.md) - Connect to your proxy from Python using provider-native SDKs
+- [Route to Several Providers](multi-provider.md) - Attach more than one provider and choose the format the proxy accepts
 - [Manage Your App LLM Proxy](manage-proxy.md) - Configure provider, resources, security, and guardrails
 - [Apply Policies](../policies/overview.md) - Learn about available policies for rate limiting and caching
