@@ -18,7 +18,7 @@ You can run the AI Gateway on your own machine, on a virtual machine, in Docker,
 
 This page installs a gateway and starts it, and nothing else. For a walkthrough that also deploys an LLM provider and an LLM proxy and routes a request through them, see the [quick start guide](../quick-start-guide.md).
 
-The commands below use version `1.2.0`. Substitute the API Platform AI Gateway release version you want to run in the download URL, the archive name, and the directory name. The PowerShell commands require PowerShell 7.3 or later.
+The commands below use version `2026.09.24`. Substitute the API Platform AI Gateway release version you want to run in the download URL, the archive name, and the directory name. The PowerShell commands require PowerShell 7.3 or later.
 
 ## Install and start the gateway
 
@@ -34,22 +34,22 @@ Select the context you're installing in, then follow the steps in that tab.
 
     ```bash
     # Download distribution.
-    curl -fL -o wso2apip-ai-gateway-1.2.0.zip https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip
+    curl -fL -o wso2apip-ai-gateway-2026.09.24.zip https://github.com/wso2/api-platform/releases/download/ai-gateway/v2026.09.24/wso2apip-ai-gateway-2026.09.24.zip
 
     # Unzip the downloaded distribution.
-    unzip wso2apip-ai-gateway-1.2.0.zip
+    unzip wso2apip-ai-gateway-2026.09.24.zip
 
-    cd wso2apip-ai-gateway-1.2.0/
+    cd wso2apip-ai-gateway-2026.09.24/
     ```
 
     On Windows, download and unpack the distribution with PowerShell:
 
     ```powershell
-    Invoke-WebRequest -Uri https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip -OutFile wso2apip-ai-gateway-1.2.0.zip
+    Invoke-WebRequest -Uri https://github.com/wso2/api-platform/releases/download/ai-gateway/v2026.09.24/wso2apip-ai-gateway-2026.09.24.zip -OutFile wso2apip-ai-gateway-2026.09.24.zip
 
-    Expand-Archive -Path wso2apip-ai-gateway-1.2.0.zip -DestinationPath .
+    Expand-Archive -Path wso2apip-ai-gateway-2026.09.24.zip -DestinationPath .
 
-    Set-Location wso2apip-ai-gateway-1.2.0
+    Set-Location wso2apip-ai-gateway-2026.09.24
     ```
 
     **Step 2: Run the one-time setup**
@@ -106,22 +106,22 @@ Select the context you're installing in, then follow the steps in that tab.
 
     ```bash
     # Download distribution.
-    curl -fL -o wso2apip-ai-gateway-1.2.0.zip https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip
+    curl -fL -o wso2apip-ai-gateway-2026.09.24.zip https://github.com/wso2/api-platform/releases/download/ai-gateway/v2026.09.24/wso2apip-ai-gateway-2026.09.24.zip
 
     # Unzip the downloaded distribution.
-    unzip wso2apip-ai-gateway-1.2.0.zip
+    unzip wso2apip-ai-gateway-2026.09.24.zip
 
-    cd wso2apip-ai-gateway-1.2.0/
+    cd wso2apip-ai-gateway-2026.09.24/
     ```
 
     On Windows, download and unpack the distribution with PowerShell:
 
     ```powershell
-    Invoke-WebRequest -Uri https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip -OutFile wso2apip-ai-gateway-1.2.0.zip
+    Invoke-WebRequest -Uri https://github.com/wso2/api-platform/releases/download/ai-gateway/v2026.09.24/wso2apip-ai-gateway-2026.09.24.zip -OutFile wso2apip-ai-gateway-2026.09.24.zip
 
-    Expand-Archive -Path wso2apip-ai-gateway-1.2.0.zip -DestinationPath .
+    Expand-Archive -Path wso2apip-ai-gateway-2026.09.24.zip -DestinationPath .
 
-    Set-Location wso2apip-ai-gateway-1.2.0
+    Set-Location wso2apip-ai-gateway-2026.09.24
     ```
 
     **Step 2: Run the one-time setup**
@@ -181,22 +181,22 @@ Select the context you're installing in, then follow the steps in that tab.
 
     ```bash
     # Download distribution.
-    curl -fL -o wso2apip-ai-gateway-1.2.0.zip https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip
+    curl -fL -o wso2apip-ai-gateway-2026.09.24.zip https://github.com/wso2/api-platform/releases/download/ai-gateway/v2026.09.24/wso2apip-ai-gateway-2026.09.24.zip
 
     # Unzip the downloaded distribution.
-    unzip wso2apip-ai-gateway-1.2.0.zip
+    unzip wso2apip-ai-gateway-2026.09.24.zip
 
-    cd wso2apip-ai-gateway-1.2.0/
+    cd wso2apip-ai-gateway-2026.09.24/
     ```
 
     On Windows, download and unpack the distribution with PowerShell:
 
     ```powershell
-    Invoke-WebRequest -Uri https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip -OutFile wso2apip-ai-gateway-1.2.0.zip
+    Invoke-WebRequest -Uri https://github.com/wso2/api-platform/releases/download/ai-gateway/v2026.09.24/wso2apip-ai-gateway-2026.09.24.zip -OutFile wso2apip-ai-gateway-2026.09.24.zip
 
-    Expand-Archive -Path wso2apip-ai-gateway-1.2.0.zip -DestinationPath .
+    Expand-Archive -Path wso2apip-ai-gateway-2026.09.24.zip -DestinationPath .
 
-    Set-Location wso2apip-ai-gateway-1.2.0
+    Set-Location wso2apip-ai-gateway-2026.09.24
     ```
 
     **Step 2: Run the one-time setup**

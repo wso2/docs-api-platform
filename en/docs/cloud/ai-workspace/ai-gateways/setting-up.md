@@ -92,37 +92,39 @@ The Get Started section provides setup instructions for multiple deployment opti
     Run this command in your terminal to download the gateway:
 
     ```bash
-    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.0.0/wso2apip-ai-gateway-1.0.0.zip && \
-    unzip wso2apip-ai-gateway-1.0.0.zip
+    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip && \
+    unzip wso2apip-ai-gateway-1.2.0.zip
     ```
 
-    **Step 2: Configure the Gateway**
+    **Step 2: Set up the Gateway**
 
-    Run this command to create the environment configuration file with the required environment variables:
+    Navigate into the gateway folder and run the setup script. It provisions the listener TLS certificate, the AES-256 at-rest encryption key, and the `api-platform.env` file:
 
     ```bash
-    cat > wso2apip-ai-gateway-1.0.0/configs/keys.env << 'ENVFILE'
+    cd wso2apip-ai-gateway-1.2.0 && ./scripts/setup.sh
+    ```
+
+    **Step 3: Configure the Gateway**
+
+    Run this command to add the control plane connection settings to `api-platform.env`:
+
+    ```bash
+    cat >> api-platform.env << 'ENVFILE'
     MOESIF_KEY=<your-moesif-key>
-    GATEWAY_CONTROLPLANE_HOST=connect.bijira.dev
-    GATEWAY_REGISTRATION_TOKEN=<your-gateway-token>
+    APIP_GW_CONTROLLER_CONTROLPLANE_HOST=connect.bijira.dev
+    APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=<your-gateway-token>
     ENVFILE
     ```
 
-    Replace `<your-gateway-token>` with the token from the Get Started section.
+    Run this command to create the environment configuration file with the required environment variables: Replace `<your-gateway-token>` with the token from the Get Started section.
 
-    **Step 3: Start the Gateway**
+    **Step 4: Start the Gateway**
 
-    1. Navigate to the gateway folder:
+    From the gateway folder, run this command to start the gateway using the `api-platform.env` file:
 
-        ```bash
-        cd wso2apip-ai-gateway-1.0.0
-        ```
-
-    2. Run this command to start the gateway using the environment file created in Step 2:
-
-        ```bash
-        docker compose --env-file configs/keys.env up
-        ```
+    ```bash
+    docker compose --env-file api-platform.env up
+    ```
 
 === "Virtual Machine"
     **Prerequisites:**
@@ -147,27 +149,39 @@ The Get Started section provides setup instructions for multiple deployment opti
     Run this command in your terminal to download the gateway:
 
     ```bash
-    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.1.0/wso2apip-ai-gateway-1.1.0.zip && \
-    unzip wso2apip-ai-gateway-1.1.0.zip
+    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip && \
+    unzip wso2apip-ai-gateway-1.2.0.zip
     ```
 
-    **Step 2: Configure the Gateway**
+    **Step 2: Set up the Gateway**
+
+    Navigate into the gateway folder and run the setup script. It provisions the listener TLS certificate, the AES-256 at-rest encryption key, and the `api-platform.env` file:
+
+    ```bash
+    cd wso2apip-ai-gateway-1.2.0 && ./scripts/setup.sh
+    ```
+
+    **Step 3: Configure the Gateway**
+
+    Run this command to add the control plane connection settings to `api-platform.env`:
+
+    ```bash
+    cat >> api-platform.env << 'ENVFILE'
+    MOESIF_KEY=<your-moesif-key>
+    APIP_GW_CONTROLLER_CONTROLPLANE_HOST=connect.bijira.dev
+    APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=<your-gateway-token>
+    ENVFILE
+    ```
 
     The registration token is single-use. If you need to reconfigure the gateway, click **Reconfigure** to generate a new token — this will revoke the old token and disconnect the gateway from the control plane.
 
-    **Step 3: Start the Gateway**
+    **Step 4: Start the Gateway**
 
-    1. Navigate to the gateway folder:
+    From the gateway folder, run this command to start the gateway using the `api-platform.env` file:
 
-        ```bash
-        cd wso2apip-ai-gateway-1.1.0
-        ```
-
-    2. Run this command to start the gateway using the environment file created in Step 2:
-
-        ```bash
-        docker compose --env-file configs/keys.env up
-        ```
+    ```bash
+    docker compose --env-file api-platform.env up
+    ```
 
 === "Docker"
     **Prerequisites:**
@@ -180,27 +194,39 @@ The Get Started section provides setup instructions for multiple deployment opti
     Run this command in your terminal to download the gateway:
 
     ```bash
-    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.1.0/wso2apip-ai-gateway-1.1.0.zip && \
-    unzip wso2apip-ai-gateway-1.1.0.zip
+    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip && \
+    unzip wso2apip-ai-gateway-1.2.0.zip
     ```
 
-    **Step 2: Configure the Gateway**
+    **Step 2: Set up the Gateway**
+
+    Navigate into the gateway folder and run the setup script. It provisions the listener TLS certificate, the AES-256 at-rest encryption key, and the `api-platform.env` file:
+
+    ```bash
+    cd wso2apip-ai-gateway-1.2.0 && ./scripts/setup.sh
+    ```
+
+    **Step 3: Configure the Gateway**
+
+    Run this command to add the control plane connection settings to `api-platform.env`:
+
+    ```bash
+    cat >> api-platform.env << 'ENVFILE'
+    MOESIF_KEY=<your-moesif-key>
+    APIP_GW_CONTROLLER_CONTROLPLANE_HOST=connect.bijira.dev
+    APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=<your-gateway-token>
+    ENVFILE
+    ```
 
     The registration token is single-use. If you need to reconfigure the gateway, click **Reconfigure** to generate a new token — this will revoke the old token and disconnect the gateway from the control plane.
 
-    **Step 3: Start the Gateway**
+    **Step 4: Start the Gateway**
 
-    1. Navigate to the gateway folder:
+    From the gateway folder, run this command to start the gateway using the `api-platform.env` file:
 
-        ```bash
-        cd wso2apip-ai-gateway-1.1.0
-        ```
-
-    2. Run this command to start the gateway using the environment file created in Step 2:
-
-        ```bash
-        docker compose --env-file configs/keys.env up
-        ```
+    ```bash
+    docker compose --env-file api-platform.env up
+    ```
 
 === "Kubernetes"
     **Prerequisites:**

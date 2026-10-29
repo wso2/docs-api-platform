@@ -188,7 +188,6 @@ Your standalone gateway is now running! Here's what to do next:
 
 For production environments or specific infrastructure requirements, see the detailed setup guides:
 
-- [Gateway Artifact Templating](setup/artifact-templating.md): Customize gateway artifacts using templates
 - [Configuring External Storage and Backends](setup/storage-and-backends.md): Set up external storage and backend connections
 - [Gateway Upstream Timeouts](setup/upstream-timeouts.md): Configure timeout settings for upstream services
 

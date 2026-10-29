@@ -26,7 +26,7 @@ CRUD operations for LLM Proxy configurations
 
 ```shell
 
-curl -X POST http://localhost:9090/api/management/v0.9/llm-proxies \
+curl -X POST http://localhost:9090/llm-proxies \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -121,7 +121,7 @@ Required roles: `admin`, `developer`
 
 ```shell
 
-curl -X GET http://localhost:9090/api/management/v0.9/llm-proxies \
+curl -X GET http://localhost:9090/llm-proxies \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -275,7 +275,7 @@ Status Code **200**
 
 ```shell
 
-curl -X GET http://localhost:9090/api/management/v0.9/llm-proxies/{id} \
+curl -X GET http://localhost:9090/llm-proxies/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -346,7 +346,7 @@ Required roles: `admin`, `developer`
 
 ```shell
 
-curl -X PUT http://localhost:9090/api/management/v0.9/llm-proxies/{id} \
+curl -X PUT http://localhost:9090/llm-proxies/{id} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -442,7 +442,7 @@ Required roles: `admin`, `developer`
 
 ```shell
 
-curl -X DELETE http://localhost:9090/api/management/v0.9/llm-proxies/{id} \
+curl -X DELETE http://localhost:9090/llm-proxies/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -505,7 +505,7 @@ Status Code **200**
 
 ```shell
 
-curl -X POST http://localhost:9090/api/management/v0.9/llm-proxies/{id}/api-keys \
+curl -X POST http://localhost:9090/llm-proxies/{id}/api-keys \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -582,7 +582,7 @@ Required roles: `admin`, `consumer`
 
 ```shell
 
-curl -X GET http://localhost:9090/api/management/v0.9/llm-proxies/{id}/api-keys \
+curl -X GET http://localhost:9090/llm-proxies/{id}/api-keys \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -647,7 +647,7 @@ Required roles: `admin`, `consumer`
 
 ```shell
 
-curl -X POST http://localhost:9090/api/management/v0.9/llm-proxies/{id}/api-keys/{apiKeyName}/regenerate \
+curl -X POST http://localhost:9090/llm-proxies/{id}/api-keys/{apiKeyName}/regenerate \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -722,7 +722,7 @@ Required roles: `admin`, `consumer`
 
 ```shell
 
-curl -X PUT http://localhost:9090/api/management/v0.9/llm-proxies/{id}/api-keys/{apiKeyName} \
+curl -X PUT http://localhost:9090/llm-proxies/{id}/api-keys/{apiKeyName} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -800,7 +800,7 @@ Required roles: `admin`, `consumer`
 
 ```shell
 
-curl -X DELETE http://localhost:9090/api/management/v0.9/llm-proxies/{id}/api-keys/{apiKeyName} \
+curl -X DELETE http://localhost:9090/llm-proxies/{id}/api-keys/{apiKeyName} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 

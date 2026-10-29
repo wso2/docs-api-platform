@@ -137,7 +137,7 @@ artifacts/
 The recommended GitOps approach is to build a custom gateway-controller image with artifacts copied in at build time:
 
 ```dockerfile
-FROM ghcr.io/wso2/api-platform/gateway-controller:1.0.0
+FROM ghcr.io/wso2/api-platform/gateway-controller:1.2.0
 
 COPY ./artifacts /etc/api-platform-gateway/immutable_gateway/artifacts
 

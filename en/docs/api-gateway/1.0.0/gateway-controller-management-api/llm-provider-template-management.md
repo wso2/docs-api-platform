@@ -26,7 +26,7 @@ CRUD operations for LLM Provider Template configurations
 
 ```shell
 
-curl -X POST http://localhost:9090/api/management/v0.9/llm-provider-templates \
+curl -X POST http://localhost:9090/llm-provider-templates \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -155,7 +155,7 @@ Required roles: `admin`
 
 ```shell
 
-curl -X GET http://localhost:9090/api/management/v0.9/llm-provider-templates \
+curl -X GET http://localhost:9090/llm-provider-templates \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -315,7 +315,7 @@ Status Code **200**
 
 ```shell
 
-curl -X GET http://localhost:9090/api/management/v0.9/llm-provider-templates/{id} \
+curl -X GET http://localhost:9090/llm-provider-templates/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -402,7 +402,7 @@ Required roles: `admin`
 
 ```shell
 
-curl -X PUT http://localhost:9090/api/management/v0.9/llm-provider-templates/{id} \
+curl -X PUT http://localhost:9090/llm-provider-templates/{id} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -532,7 +532,7 @@ Required roles: `admin`
 
 ```shell
 
-curl -X DELETE http://localhost:9090/api/management/v0.9/llm-provider-templates/{id} \
+curl -X DELETE http://localhost:9090/llm-provider-templates/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 

@@ -26,7 +26,7 @@ CRUD operations for MCPProxies
 
 ```shell
 
-curl -X POST http://localhost:9090/api/management/v0.9/mcp-proxies \
+curl -X POST http://localhost:9090/mcp-proxies \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -127,7 +127,7 @@ Required roles: `admin`, `developer`
 
 ```shell
 
-curl -X GET http://localhost:9090/api/management/v0.9/mcp-proxies \
+curl -X GET http://localhost:9090/mcp-proxies \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -337,7 +337,7 @@ Status Code **200**
 
 ```shell
 
-curl -X GET http://localhost:9090/api/management/v0.9/mcp-proxies/{id} \
+curl -X GET http://localhost:9090/mcp-proxies/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -415,7 +415,7 @@ Required roles: `admin`, `developer`
 
 ```shell
 
-curl -X PUT http://localhost:9090/api/management/v0.9/mcp-proxies/{id} \
+curl -X PUT http://localhost:9090/mcp-proxies/{id} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -521,7 +521,7 @@ Required roles: `admin`, `developer`
 
 ```shell
 
-curl -X DELETE http://localhost:9090/api/management/v0.9/mcp-proxies/{id} \
+curl -X DELETE http://localhost:9090/mcp-proxies/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 

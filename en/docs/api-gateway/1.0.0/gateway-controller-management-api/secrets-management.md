@@ -26,7 +26,7 @@ CRUD operations for Secrets
 
 ```shell
 
-curl -X GET http://localhost:9090/api/management/v0.9/secrets \
+curl -X GET http://localhost:9090/secrets \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -90,7 +90,7 @@ Required roles: `admin`
 
 ```shell
 
-curl -X POST http://localhost:9090/api/management/v0.9/secrets \
+curl -X POST http://localhost:9090/secrets \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -191,7 +191,7 @@ Required roles: `admin`
 
 ```shell
 
-curl -X GET http://localhost:9090/api/management/v0.9/secrets/{id} \
+curl -X GET http://localhost:9090/secrets/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -274,7 +274,7 @@ Required roles: `admin`
 
 ```shell
 
-curl -X PUT http://localhost:9090/api/management/v0.9/secrets/{id} \
+curl -X PUT http://localhost:9090/secrets/{id} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -377,7 +377,7 @@ Required roles: `admin`
 
 ```shell
 
-curl -X DELETE http://localhost:9090/api/management/v0.9/secrets/{id} \
+curl -X DELETE http://localhost:9090/secrets/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 

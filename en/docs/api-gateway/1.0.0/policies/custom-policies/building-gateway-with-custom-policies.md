@@ -245,7 +245,7 @@ docker compose up -d
 ## Deploy the API
 
 ```sh
-curl -X POST http://localhost:9090/api/management/v0.9/rest-apis \
+curl -X POST http://localhost:9090/rest-apis \
   -u admin:admin \
   -H "Content-Type: application/yaml" \
   --data-binary @- <<'EOF'

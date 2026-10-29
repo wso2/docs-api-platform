@@ -118,21 +118,21 @@ If you are using the [bottom-up deployment](./deploying-apis/bottom-up-api-deplo
 Download the default `values.yaml` for the gateway Helm chart and use it as the starting point for your production configuration. All steps in this guide reference fields within this file.
 
 ```bash
-curl -o values.yaml https://raw.githubusercontent.com/wso2/api-platform/refs/tags/gateway/v1.1.0/kubernetes/helm/gateway-helm-chart/values.yaml
+curl -o values.yaml https://raw.githubusercontent.com/wso2/api-platform/refs/tags/gateway/v1.2.0/kubernetes/helm/gateway-helm-chart/values.yaml
 ```
 
 ### Pin the Image Versions
 
-Before making any other changes, set the controller and runtime image tags to the release you want to deploy. The latest stable release is **1.1.0**.
+Before making any other changes, set the controller and runtime image tags to the release you want to deploy. The latest stable release is **1.2.0**.
 
 ```yaml
 gateway:
   controller:
     image:
-      tag: "1.1.0"
+      tag: "1.2.0"
   gatewayRuntime:
     image:
-      tag: "1.1.0"
+      tag: "1.2.0"
 ```
 
 !!! tip
@@ -142,7 +142,7 @@ gateway:
     It is strongly recommended to use the same version tag for both the controller and runtime components to ensure compatibility and avoid unexpected behavior.
 
 !!! note "WSO2 Subscription Users"
-    If you have a WSO2 subscription, use image tags that include the **U2 update version (4th digit)**, for example `1.1.0.1`, instead of the base release `1.1.0`.
+    If you have a WSO2 subscription, use image tags that include the **U2 update version (4th digit)**, for example `1.2.0.1`, instead of the base release `1.2.0`.
 
     The 4th digit represents **patch-level (U2) updates**, which include the latest fixes and security updates delivered through the WSO2 private registry. See [WSO2 Subscription Users](#wso2-subscription-users) below for registry configuration.
 

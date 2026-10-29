@@ -68,7 +68,7 @@ Check the controller's health endpoint. The admin server listens on port 9092:
 
 ```bash
 kubectl exec -n ai-gateway deploy/ai-gateway-controller -- \
-  wget -qO- http://localhost:9092/api/admin/v0.9/health
+  wget -qO- http://localhost:9092/health
 ```
 
 Confirm the runtime is ready to accept traffic. The router serves its readiness route on the HTTPS listener:
@@ -102,7 +102,7 @@ Deploy an LLM provider. Read the provider key with `read -rs`, which keeps it of
 ```bash
 read -rsp "OpenAI API key: " OPENAI_API_KEY && echo
 
-curl --fail --show-error -X POST http://localhost:9090/api/management/v0.9/llm-providers \
+curl --fail --show-error -X POST http://localhost:9090/llm-providers \
   -H "Content-Type: application/yaml" \
   --netrc-file controller.netrc \
   --data-binary @- <<EOF
@@ -148,7 +148,7 @@ unset OPENAI_API_KEY
 Deploy a proxy that consumes it:
 
 ```bash
-curl --fail --show-error -X POST http://localhost:9090/api/management/v0.9/llm-proxies \
+curl --fail --show-error -X POST http://localhost:9090/llm-proxies \
   -H "Content-Type: application/yaml" \
   --netrc-file controller.netrc \
   --data-binary @- <<'EOF'

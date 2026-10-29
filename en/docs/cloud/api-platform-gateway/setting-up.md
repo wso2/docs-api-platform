@@ -46,43 +46,45 @@ This guide provides detailed instructions for deploying the API Platform Self-Ho
     Run this command in your terminal to download the gateway:
 
     ```bash
-    curl -sLO https://github.com/wso2/api-platform/releases/download/gateway/v1.0.0/wso2apip-api-gateway-1.0.0.zip && \
-    unzip wso2apip-api-gateway-1.0.0.zip
+    curl -sLO https://github.com/wso2/api-platform/releases/download/gateway/v1.2.0/wso2apip-api-gateway-1.2.0.zip && \
+    unzip wso2apip-api-gateway-1.2.0.zip
     ```
 
-    ### Step 2: Configure the Gateway
+    ### Step 2: Set up the Gateway
 
-    Run this command to create `wso2apip-api-gateway-1.0.0/configs/keys.env` with the required environment variables:
+    Navigate into the gateway folder and run the setup script. It provisions the listener TLS certificate, the AES-256 at-rest encryption key, and the `api-platform.env` file:
 
     ```bash
-    cat > wso2apip-api-gateway-1.0.0/configs/keys.env << 'ENVFILE'
+    cd wso2apip-api-gateway-1.2.0 && ./scripts/setup.sh
+    ```
+
+    ### Step 3: Configure the Gateway
+
+    Run this command to add the control plane connection settings to `api-platform.env`:
+
+    ```bash
+    cat >> api-platform.env << 'ENVFILE'
     MOESIF_KEY=<your-moesif-key>
-    GATEWAY_CONTROLPLANE_HOST=connect.bijira.dev
-    GATEWAY_REGISTRATION_TOKEN=<your-gateway-token>
+    APIP_GW_CONTROLLER_CONTROLPLANE_HOST=connect.bijira.dev
+    APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=<your-gateway-token>
     ENVFILE
     ```
 
-    ### Step 3: Start the Gateway
+    ### Step 4: Start the Gateway
 
-    1. Navigate to the gateway folder:
+    From the gateway folder, run this command to start the gateway:
 
-        ```bash
-        cd wso2apip-api-gateway-1.0.0
-        ```
-
-    2. Run this command to start the gateway using the `configs/keys.env` file created in Step 2:
-
-        ```bash
-        docker compose --env-file configs/keys.env up
-        ```
+    ```bash
+    docker compose up
+    ```
 
     To run in detached mode (background):
 
     ```bash
-    docker compose --env-file configs/keys.env up -d
+    docker compose up -d
     ```
 
-    ### Step 4: Verify the Gateway
+    ### Step 5: Verify the Gateway
 
     Check that the gateway is running:
 
@@ -111,46 +113,48 @@ This guide provides detailed instructions for deploying the API Platform Self-Ho
     Run this command in your terminal to download the gateway:
 
     ```bash
-    curl -sLO https://github.com/wso2/api-platform/releases/download/gateway/v1.0.0/wso2apip-api-gateway-1.0.0.zip && \
-    unzip wso2apip-api-gateway-1.0.0.zip
+    curl -sLO https://github.com/wso2/api-platform/releases/download/gateway/v1.2.0/wso2apip-api-gateway-1.2.0.zip && \
+    unzip wso2apip-api-gateway-1.2.0.zip
     ```
 
-    ### Step 2: Configure the Gateway
+    ### Step 2: Set up the Gateway
 
-    Run this command to create `wso2apip-api-gateway-1.0.0/configs/keys.env` with the required environment variables:
+    Navigate into the gateway folder and run the setup script. It provisions the listener TLS certificate, the AES-256 at-rest encryption key, and the `api-platform.env` file:
 
     ```bash
-    cat > wso2apip-api-gateway-1.0.0/configs/keys.env << 'ENVFILE'
+    cd wso2apip-api-gateway-1.2.0 && ./scripts/setup.sh
+    ```
+
+    ### Step 3: Configure the Gateway
+
+    Run this command to add the control plane connection settings to `api-platform.env`:
+
+    ```bash
+    cat >> api-platform.env << 'ENVFILE'
     MOESIF_KEY=<your-moesif-key>
-    GATEWAY_CONTROLPLANE_HOST=connect.bijira.dev
-    GATEWAY_REGISTRATION_TOKEN=<your-gateway-token>
+    APIP_GW_CONTROLLER_CONTROLPLANE_HOST=connect.bijira.dev
+    APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=<your-gateway-token>
     ENVFILE
     ```
 
     !!! warning "Important"
         Replace `<your-gateway-token>` with the Gateway Registration Token from the API Platform Console. This token is shown only once, so ensure you copy it before leaving the page.
 
-    ### Step 3: Start the Gateway
+    ### Step 4: Start the Gateway
 
-    1. Navigate to the gateway folder:
+    From the gateway folder, run this command to start the gateway:
 
-        ```bash
-        cd wso2apip-api-gateway-1.0.0
-        ```
-
-    2. Run this command to start the gateway using the `configs/keys.env` file created in Step 2:
-
-        ```bash
-        docker compose --env-file configs/keys.env up
-        ```
+    ```bash
+    docker compose up
+    ```
 
     To run in detached mode (background):
 
     ```bash
-    docker compose --env-file configs/keys.env up -d
+    docker compose up -d
     ```
 
-    ### Step 4: Verify the Gateway
+    ### Step 5: Verify the Gateway
 
     Check that the gateway is running:
 

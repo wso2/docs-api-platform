@@ -27,7 +27,7 @@ Manage custom TLS certificates for HTTPS upstream verification
 
 ```shell
 
-curl -X GET http://localhost:9090/api/management/v0.9/certificates \
+curl -X GET http://localhost:9090/certificates \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -86,7 +86,7 @@ Required roles: `admin`, `developer`
 
 ```shell
 
-curl -X POST http://localhost:9090/api/management/v0.9/certificates \
+curl -X POST http://localhost:9090/certificates \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -155,7 +155,7 @@ Required roles: `admin`, `developer`
 
 ```shell
 
-curl -X DELETE http://localhost:9090/api/management/v0.9/certificates/{id} \
+curl -X DELETE http://localhost:9090/certificates/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 
@@ -218,7 +218,7 @@ Status Code **200**
 
 ```shell
 
-curl -X POST http://localhost:9090/api/management/v0.9/certificates/reload \
+curl -X POST http://localhost:9090/certificates/reload \
   -u {username}:{password} \
   -H 'Accept: application/json'
 

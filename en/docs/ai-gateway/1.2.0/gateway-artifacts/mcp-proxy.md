@@ -63,7 +63,7 @@ spec:
   context: /everything
   specVersion: "2025-06-18"
   upstream:
-    url: http://everything:3001
+    url: http://everything:3001/mcp
   tools: []
   resources: []
   prompts: []

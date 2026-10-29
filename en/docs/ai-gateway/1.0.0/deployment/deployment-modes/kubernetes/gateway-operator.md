@@ -33,7 +33,7 @@ The operator watches these CRs, runs Helm for the gateway runtime, and deploys A
 |----------|---------|
 | `GatewayClass` | Cluster-scoped class your `Gateway` references (`spec.gatewayClassName` must match the operator allowlist). |
 | `Gateway` (`gateway.networking.k8s.io`) | Triggers the same Helm-based gateway deployment as `APIGateway`; controller endpoint is registered for discovery by routes. |
-| `HTTPRoute` | Parents attach to a `Gateway`; `backendRefs` target a Kubernetes `Service`. The operator maps the route to `APIConfigData` and calls gateway-controller **`/api/management/v0.9/rest-apis`** (same outcome as `RestApi`, different user surface). |
+| `HTTPRoute` | Parents attach to a `Gateway`; `backendRefs` target a Kubernetes `Service`. The operator maps the route to `APIConfigData` and calls gateway-controller **`/rest-apis`** (same outcome as `RestApi`, different user surface). |
 | `APIPolicy` (optional) | Rule or API-level policies for Gateway API flows; same CRD as HTTPRoute policy demos in-repo. |
 
 **Hands-on walkthrough:** manifests are in **[Kubernetes Gateway API path](#kubernetes-gateway-api-path)** below.
@@ -286,7 +286,7 @@ Wait until the **Gateway** is **Programmed** and gateway workloads are **Ready**
 ### 5. HTTPRoute (`hello-api`)
 
 ```yaml
-# Operator maps this route to APIConfigData and calls gateway-controller /api/management/v0.9/rest-apis.
+# Operator maps this route to APIConfigData and calls gateway-controller /rest-apis.
 # Default REST handle is namespace-name: gateway-api-demo-hello-api (override with gateway.api-platform.wso2.com/api-handle).
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -393,7 +393,7 @@ curl -X GET "https://raw.githubusercontent.com/wso2/api-platform/refs/heads/main
 
 ```sh
 cert_path="/tmp/test-backend.crt"
-curl -X POST http://localhost:9090/api/management/v0.9/certificates -u "admin:admin" \
+curl -X POST http://localhost:9090/certificates -u "admin:admin" \
   -H "Content-Type: application/json" \
   -d "{\"certificate\":$(jq -Rs . < $cert_path),\"filename\":\"my-cert.pem\", \"name\":\"test\"}"
 ```

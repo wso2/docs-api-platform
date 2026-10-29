@@ -207,7 +207,7 @@ Choose an authentication strategy based on your organizational requirements.
     Set `audience` to the value your IDP puts in the `aud` claim of tokens it issues for the gateway controller. If you leave `audience` empty, the controller accepts tokens issued for any audience and logs a warning at startup. For details on `audience`, `roles_claim`, and `role_mapping`, see [Authenticate to the Management API](../../gateway-controller-management-api/authentication.md).
 
     !!! note
-        Role mapping values must correspond to claims present in the JWT issued by your IDP. See the [Gateway Controller OpenAPI reference](https://raw.githubusercontent.com/wso2/api-platform/refs/tags/gateway/v1.1.0/gateway/gateway-controller/api/management-openapi.yaml) for the full list of supported roles and their permissions.
+        Role mapping values must correspond to claims present in the JWT issued by your IDP. See the [Gateway Controller OpenAPI reference](https://raw.githubusercontent.com/wso2/api-platform/refs/tags/gateway/v1.2.0/gateway/gateway-controller/api/management-openapi.yaml) for the full list of supported roles and their permissions.
 
 === "Option B: Basic Auth with Bcrypt"
 

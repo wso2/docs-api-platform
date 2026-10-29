@@ -107,7 +107,7 @@ The `build.yaml` file is already included in the unzipped gateway package. It de
 ```yaml
 version: v1
 gateway:
-  version: 1.0.0
+  version: 1.2.0
 policies:
   - name: <policy-name>
     gomodule: <go-module-path>@<version>   # for policy hub managed policies
@@ -162,11 +162,11 @@ You can override any of them independently by adding an `images` block under `ga
 ```yaml
 version: v1
 gateway:
-  version: 1.0.0
+  version: 1.2.0
   images:   # optional — if omitted, the public GHCR images above are used
-    builder: ghcr.io/wso2/api-platform/gateway-builder:1.0.0
-    controller: ghcr.io/wso2/api-platform/gateway-controller:1.0.0
-    runtime: ghcr.io/wso2/api-platform/gateway-runtime:1.0.0
+    builder: ghcr.io/wso2/api-platform/gateway-builder:1.2.0
+    controller: ghcr.io/wso2/api-platform/gateway-controller:1.2.0
+    runtime: ghcr.io/wso2/api-platform/gateway-runtime:1.2.0
 policies:
   - name: set-headers
     gomodule: github.com/wso2/gateway-controllers/policies/set-headers@v1
@@ -175,18 +175,18 @@ policies:
 Each key is resolved independently, so you can override only the ones you need; any key left out falls back to its default public GHCR image. The resolved images are printed at the start of the build under **Resolved images**, so you can confirm which ones were used.
 
 !!! note "WSO2 Subscription Users"
-    If you have a WSO2 subscription, use image tags that include the **U2 update version (4th digit)**, for example `1.1.0.0`, instead of the base release `1.1.0`. The 4th digit represents **patch-level (U2) updates**, which include the latest fixes and security updates delivered through the WSO2 private registry (`registry.wso2.com`).
+    If you have a WSO2 subscription, use image tags that include the **U2 update version (4th digit)**, for example `1.2.0.1`, instead of the base release `1.2.0`. The 4th digit represents **patch-level (U2) updates**, which include the latest fixes and security updates delivered through the WSO2 private registry (`registry.wso2.com`).
 
     Because these images are not published to the public GHCR registry, set **all three** keys explicitly to the `registry.wso2.com/wso2-api-platform/` path:
 
     ```yaml
     version: v1
     gateway:
-      version: "1.1.0.0"
+      version: "1.2.0.1"
       images:
-        builder: registry.wso2.com/wso2-api-platform/gateway-builder:1.1.0.0
-        controller: registry.wso2.com/wso2-api-platform/gateway-controller:1.1.0.0
-        runtime: registry.wso2.com/wso2-api-platform/gateway-runtime:1.1.0.0
+        builder: registry.wso2.com/wso2-api-platform/gateway-builder:1.2.0.1
+        controller: registry.wso2.com/wso2-api-platform/gateway-controller:1.2.0.1
+        runtime: registry.wso2.com/wso2-api-platform/gateway-runtime:1.2.0.1
     policies:
       - name: set-headers
         gomodule: github.com/wso2/gateway-controllers/policies/set-headers@v1
@@ -212,8 +212,8 @@ Once the build completes, the output lists the two image names produced. For exa
 
 ```text
 ✓ Built gateway images with 1 policies:
-  • ghcr.io/wso2/api-platform/gateway-v1.0.0-gateway-runtime:1.0.0
-  • ghcr.io/wso2/api-platform/gateway-v1.0.0-gateway-controller:1.0.0
+  • ghcr.io/wso2/api-platform/gateway-v1.2.0-gateway-runtime:1.2.0
+  • ghcr.io/wso2/api-platform/gateway-v1.2.0-gateway-controller:1.2.0
 ```
 
 A `build-manifest.yaml` file is also written alongside `build.yaml`, recording the resolved versions of all policies included in the build.
@@ -227,10 +227,10 @@ Locate the `gateway-controller` and `gateway-runtime` services and replace their
 ```yaml
 services:
   gateway-controller:
-    image: ghcr.io/wso2/api-platform/gateway-v1.0.0-gateway-controller:1.0.0  # (1)
+    image: ghcr.io/wso2/api-platform/gateway-v1.2.0-gateway-controller:1.2.0  # (1)
 
   gateway-runtime:
-    image: ghcr.io/wso2/api-platform/gateway-v1.0.0-gateway-runtime:1.0.0     # (2)
+    image: ghcr.io/wso2/api-platform/gateway-v1.2.0-gateway-runtime:1.2.0     # (2)
 ```
 
 1. Replace with the `gateway-controller` image name from your build output.

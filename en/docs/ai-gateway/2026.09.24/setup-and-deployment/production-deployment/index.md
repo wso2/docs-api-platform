@@ -16,7 +16,7 @@ content_type: "concept"
 
 # Production deployment overview
 
-This section is for platform engineers and site reliability engineers who run API Platform AI Gateway 1.2.0 for an organization. It covers a highly available Helm deployment on Kubernetes:
+This section is for platform engineers and site reliability engineers who run API Platform AI Gateway 2026.09.24 for an organization. It covers a highly available Helm deployment on Kubernetes:
 
 - Hardened security.
 - An external database shared by every controller replica.
@@ -26,7 +26,7 @@ This section is for platform engineers and site reliability engineers who run AP
 For a single-host evaluation, follow the [quick start guide](../../quick-start-guide.md) instead. For the other ways to run the gateway, see [Immutable Gateway](../immutable-gateway.md) and [Kubernetes deployment modes](../kubernetes/index.md).
 
 !!! info "Version-pinned instructions"
-    Every command and configuration key on these pages is taken from the `ai-gateway/v1.2.0` release tag and Helm chart `1.2.0`. Chart fields change between releases, so follow the pages for the AI Gateway version you deploy.
+    Every command and configuration key on these pages is taken from the `ai-gateway/v2026.09.24` release tag and Helm chart `1.2.0`. Chart fields change between releases, so follow the pages for the AI Gateway version you deploy.
 
 ## What you deploy
 
@@ -103,31 +103,31 @@ helm version
 
 ### Start with the base values file
 
-Download the `values.yaml` that ships with the 1.2.0 gateway chart and use it as the starting point. Every field referenced in this section lives in this file.
+Download the `values.yaml` that ships with the 2026.09.24 gateway chart and use it as the starting point. Every field referenced in this section lives in this file.
 
 ```bash
-curl -o values.yaml https://raw.githubusercontent.com/wso2/api-platform/refs/tags/ai-gateway/v1.2.0/kubernetes/helm/gateway-helm-chart/values.yaml
+curl -o values.yaml https://raw.githubusercontent.com/wso2/api-platform/refs/tags/ai-gateway/v2026.09.24/kubernetes/helm/gateway-helm-chart/values.yaml
 ```
 
 ### Pin the image versions
 
-Set the controller and runtime image tags to 1.2.0 before changing anything else.
+Set the controller and runtime image tags to 2026.09.24 before changing anything else.
 
 ```yaml
 gateway:
   controller:
     image:
-      tag: "1.2.0"
+      tag: "2026.09.24"
   gatewayRuntime:
     image:
-      tag: "1.2.0"
+      tag: "2026.09.24"
 ```
 
 !!! note
     Use the same tag for both components. Mixed versions between the controller and the runtime aren't supported. Keep the major version of the image tags aligned with the major version of the Helm chart.
 
 !!! note "WSO2 subscription users"
-    With a WSO2 subscription, use image tags that carry the U2 update version as a fourth digit, such as `1.2.0.1`, instead of the base `1.2.0` release. The fourth digit carries patch-level updates delivered through the WSO2 private registry.
+    With a WSO2 subscription, use image tags that carry the U2 update version as a fourth digit, such as `2026.09.24.1`, instead of the base `2026.09.24` release. The fourth digit carries patch-level updates delivered through the WSO2 private registry.
 
 ### Pull images from the WSO2 private registry
 

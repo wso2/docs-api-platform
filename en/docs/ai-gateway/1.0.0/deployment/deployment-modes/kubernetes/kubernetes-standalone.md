@@ -213,13 +213,13 @@ kubectl port-forward svc/ap-gateway-controller 9090:9090
 
 ### Verify gateway controller admin endpoint is running
 ```bash
-curl http://localhost:9094/api/admin/v0.9/health
+curl http://localhost:9094/health
 ```
 
 ### Deploy an API configuration
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v0.9/rest-apis \
+curl -X POST http://localhost:9090/rest-apis \
   -u admin:admin \
   -H "Content-Type: application/yaml" \
   --data-binary @- <<'EOF'

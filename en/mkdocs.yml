@@ -573,7 +573,6 @@ nav:
         - Overview: api-gateway/1.0.0/overview.md
         - Setup:
           - Storage & Backends: api-gateway/1.0.0/setup/storage-and-backends.md
-          - Artifact Templating: api-gateway/1.0.0/setup/artifact-templating.md
           - Upstream Timeouts: api-gateway/1.0.0/setup/upstream-timeouts.md
         - Quick Start Guide: api-gateway/1.0.0/quick-start-guide.md
         - Policies:
@@ -585,7 +584,6 @@ nav:
             - Building Gateway with Custom Policies: api-gateway/1.0.0/policies/custom-policies/building-gateway-with-custom-policies.md
         - Deployment:
           - Deployment Modes:
-            - Immutable Gateway: api-gateway/1.0.0/deployment/deployment-modes/immutable-gateway.md
             - Kubernetes:
               - Overview: api-gateway/1.0.0/deployment/deployment-modes/kubernetes/overview.md
               - Standalone Mode: api-gateway/1.0.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
@@ -631,8 +629,6 @@ nav:
           - LLM Provider Management: api-gateway/1.0.0/gateway-controller-management-api/llm-provider-management.md
           - LLM Proxy Management: api-gateway/1.0.0/gateway-controller-management-api/llm-proxy-management.md
           - Secrets Management: api-gateway/1.0.0/gateway-controller-management-api/secrets-management.md
-          - WebSub API Management: api-gateway/1.0.0/gateway-controller-management-api/websub-api-management.md
-          - WebBroker API Management: api-gateway/1.0.0/gateway-controller-management-api/webbroker-api-management.md
           - Schemas: api-gateway/1.0.0/gateway-controller-management-api/schemas.md
   - AI Gateway:
     - "next":
@@ -1086,7 +1082,6 @@ nav:
                 - MCP Rewrite: ai-gateway/1.0.0/mcp-proxy/policies/mcp-rewrite.md
         - Deployment:
           - Deployment Modes:
-            - Immutable Gateway: ai-gateway/1.0.0/deployment/deployment-modes/immutable-gateway.md
             - Kubernetes:
               - Overview: ai-gateway/1.0.0/deployment/deployment-modes/kubernetes/overview.md
               - Standalone Mode: ai-gateway/1.0.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
@@ -1597,6 +1592,12 @@ plugins:
   - markdownextradata: {}
   - redirects:
       redirect_maps:
+        # 1.0.0: features added in 1.1.0 (artifact templating, immutable gateway, WebSub, WebBroker)
+        api-gateway/1.0.0/setup/artifact-templating.md: api-gateway/1.1.0/setup/artifact-templating.md
+        api-gateway/1.0.0/deployment/deployment-modes/immutable-gateway.md: api-gateway/1.1.0/deployment/deployment-modes/immutable-gateway.md
+        api-gateway/1.0.0/gateway-controller-management-api/websub-api-management.md: api-gateway/1.1.0/gateway-controller-management-api/websub-api-management.md
+        api-gateway/1.0.0/gateway-controller-management-api/webbroker-api-management.md: api-gateway/1.1.0/gateway-controller-management-api/webbroker-api-management.md
+        ai-gateway/1.0.0/deployment/deployment-modes/immutable-gateway.md: ai-gateway/1.1.0/deployment/deployment-modes/immutable-gateway.md
         # API Portal: overview + documentation pages merged into Browse APIs
         api-portal/next/discover-apis/api-overview.md: api-portal/next/discover-apis/browse-apis.md
         api-portal/next/discover-apis/api-documentations.md: api-portal/next/discover-apis/browse-apis.md
@@ -1615,7 +1616,7 @@ plugins:
         api-portal/next/mcp-servers/discover-mcp-servers.md: api-portal/next/mcp-servers/browse-mcp-servers.md
         api-portal/next/admin-settings/managing-api-workflows.md: api-portal/next/admin-settings/manage-api-workflows.md
         # AI Gateway: deployment-modes nested under deployment/ to match API Gateway
-        ai-gateway/1.0.0/deployment-modes/immutable-gateway.md: ai-gateway/1.0.0/deployment/deployment-modes/immutable-gateway.md
+        ai-gateway/1.0.0/deployment-modes/immutable-gateway.md: ai-gateway/1.1.0/deployment/deployment-modes/immutable-gateway.md
         ai-gateway/1.0.0/deployment-modes/kubernetes/gateway-operator.md: ai-gateway/1.0.0/deployment/deployment-modes/kubernetes/gateway-operator.md
         ai-gateway/1.0.0/deployment-modes/kubernetes/kubernetes-standalone.md: ai-gateway/1.0.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
         ai-gateway/1.0.0/deployment-modes/kubernetes/overview.md: ai-gateway/1.0.0/deployment/deployment-modes/kubernetes/overview.md
@@ -1632,92 +1633,92 @@ plugins:
         ai-gateway/next/deployment-modes/kubernetes/kubernetes-standalone.md: ai-gateway/next/setup-and-deployment/kubernetes/kubernetes-standalone.md
         ai-gateway/next/deployment-modes/kubernetes/overview.md: ai-gateway/next/setup-and-deployment/kubernetes/index.md
         # AI/API Gateway versioning restructuring (per-product Cloud/Self-Hosted variants)
-        ai-gateway/ai-gateway-rest-api/authentication.md: ai-gateway/1.1.0/ai-gateway-rest-api/authentication.md
-        ai-gateway/analytics/analytics-header-filter.md: ai-gateway/1.1.0/analytics/analytics-header-filter.md
-        ai-gateway/analytics/moesif-analytics.md: ai-gateway/1.1.0/analytics/moesif-analytics.md
+        ai-gateway/ai-gateway-rest-api/authentication.md: ai-gateway/1.2.0/setup-and-deployment/secure-the-management-api.md
+        ai-gateway/analytics/analytics-header-filter.md: ai-gateway/1.2.0/analytics/analytics-header-filter.md
+        ai-gateway/analytics/moesif-analytics.md: ai-gateway/1.2.0/analytics/moesif-analytics.md
         ai-gateway/analytics/opentelemetry-analytics.md: ai-gateway/1.2.0/analytics/opentelemetry-analytics.md
-        ai-gateway/deployment-modes/immutable-gateway.md: ai-gateway/1.1.0/deployment/deployment-modes/immutable-gateway.md
-        ai-gateway/deployment-modes/kubernetes/gateway-operator.md: ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator.md
-        ai-gateway/deployment-modes/kubernetes/kubernetes-standalone.md: ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
-        ai-gateway/deployment-modes/kubernetes/overview.md: ai-gateway/1.1.0/deployment/deployment-modes/kubernetes/overview.md
-        ai-gateway/llm-proxy/guardrails/aws-bedrock-guardrail.md: ai-gateway/1.1.0/llm-proxy/guardrails/aws-bedrock-guardrail.md
-        ai-gateway/llm-proxy/guardrails/azure-content-safety.md: ai-gateway/1.1.0/llm-proxy/guardrails/azure-content-safety.md
-        ai-gateway/llm-proxy/guardrails/content-length.md: ai-gateway/1.1.0/llm-proxy/guardrails/content-length.md
-        ai-gateway/llm-proxy/guardrails/json-schema.md: ai-gateway/1.1.0/llm-proxy/guardrails/json-schema.md
-        ai-gateway/llm-proxy/guardrails/pii-masking-regex.md: ai-gateway/1.1.0/llm-proxy/guardrails/pii-masking-regex.md
-        ai-gateway/llm-proxy/guardrails/regex.md: ai-gateway/1.1.0/llm-proxy/guardrails/regex.md
-        ai-gateway/llm-proxy/guardrails/semantic-prompt-guard.md: ai-gateway/1.1.0/llm-proxy/guardrails/semantic-prompt-guard.md
-        ai-gateway/llm-proxy/guardrails/sentence-count.md: ai-gateway/1.1.0/llm-proxy/guardrails/sentence-count.md
-        ai-gateway/llm-proxy/guardrails/url.md: ai-gateway/1.1.0/llm-proxy/guardrails/url.md
-        ai-gateway/llm-proxy/guardrails/word-count.md: ai-gateway/1.1.0/llm-proxy/guardrails/word-count.md
-        ai-gateway/llm-proxy/llm-templates.md: ai-gateway/1.1.0/llm-proxy/llm-templates.md
-        ai-gateway/llm-proxy/load-balancing/model-round-robin.md: ai-gateway/1.1.0/llm-proxy/load-balancing/model-round-robin.md
-        ai-gateway/llm-proxy/load-balancing/model-weighted-round-robin.md: ai-gateway/1.1.0/llm-proxy/load-balancing/model-weighted-round-robin.md
-        ai-gateway/llm-proxy/prompt-management/prompt-decorator.md: ai-gateway/1.1.0/llm-proxy/prompt-management/prompt-decorator.md
-        ai-gateway/llm-proxy/prompt-management/prompt-template.md: ai-gateway/1.1.0/llm-proxy/prompt-management/prompt-template.md
-        ai-gateway/llm-proxy/quick-start-guide.md: ai-gateway/1.1.0/llm-proxy/quick-start-guide.md
-        ai-gateway/llm-proxy/semantic-caching.md: ai-gateway/1.1.0/llm-proxy/semantic-caching.md
-        ai-gateway/mcp-proxy/policies/mcp-acl-list.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-acl-list.md
-        ai-gateway/mcp-proxy/policies/mcp-authentication.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-authentication.md
-        ai-gateway/mcp-proxy/policies/mcp-authorization.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-authorization.md
+        ai-gateway/deployment-modes/immutable-gateway.md: ai-gateway/1.2.0/setup-and-deployment/immutable-gateway.md
+        ai-gateway/deployment-modes/kubernetes/gateway-operator.md: ai-gateway/1.2.0/setup-and-deployment/kubernetes/gateway-operator.md
+        ai-gateway/deployment-modes/kubernetes/kubernetes-standalone.md: ai-gateway/1.2.0/setup-and-deployment/kubernetes/kubernetes-standalone.md
+        ai-gateway/deployment-modes/kubernetes/overview.md: ai-gateway/1.2.0/setup-and-deployment/kubernetes/index.md
+        ai-gateway/llm-proxy/guardrails/aws-bedrock-guardrail.md: https://wso2.com/api-platform/policy-hub/policies/aws-bedrock-guardrail
+        ai-gateway/llm-proxy/guardrails/azure-content-safety.md: https://wso2.com/api-platform/policy-hub/policies/azure-content-safety-content-moderation
+        ai-gateway/llm-proxy/guardrails/content-length.md: https://wso2.com/api-platform/policy-hub/policies/content-length-guardrail
+        ai-gateway/llm-proxy/guardrails/json-schema.md: https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail
+        ai-gateway/llm-proxy/guardrails/pii-masking-regex.md: https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex
+        ai-gateway/llm-proxy/guardrails/regex.md: https://wso2.com/api-platform/policy-hub/policies/regex-guardrail
+        ai-gateway/llm-proxy/guardrails/semantic-prompt-guard.md: https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard
+        ai-gateway/llm-proxy/guardrails/sentence-count.md: https://wso2.com/api-platform/policy-hub/policies/sentence-count-guardrail
+        ai-gateway/llm-proxy/guardrails/url.md: https://wso2.com/api-platform/policy-hub/policies/url-guardrail
+        ai-gateway/llm-proxy/guardrails/word-count.md: https://wso2.com/api-platform/policy-hub/policies/word-count-guardrail
+        ai-gateway/llm-proxy/llm-templates.md: ai-gateway/1.2.0/reference/llm-templates.md
+        ai-gateway/llm-proxy/load-balancing/model-round-robin.md: https://wso2.com/api-platform/policy-hub/policies/model-round-robin
+        ai-gateway/llm-proxy/load-balancing/model-weighted-round-robin.md: https://wso2.com/api-platform/policy-hub/policies/model-weighted-round-robin
+        ai-gateway/llm-proxy/prompt-management/prompt-decorator.md: https://wso2.com/api-platform/policy-hub/policies/prompt-decorator
+        ai-gateway/llm-proxy/prompt-management/prompt-template.md: https://wso2.com/api-platform/policy-hub/policies/prompt-template
+        ai-gateway/llm-proxy/quick-start-guide.md: ai-gateway/1.2.0/quick-start-guide.md
+        ai-gateway/llm-proxy/semantic-caching.md: https://wso2.com/api-platform/policy-hub/policies/semantic-cache
+        ai-gateway/mcp-proxy/policies/mcp-acl-list.md: https://wso2.com/api-platform/policy-hub/policies/mcp-acl-list
+        ai-gateway/mcp-proxy/policies/mcp-authentication.md: https://wso2.com/api-platform/policy-hub/policies/mcp-auth
+        ai-gateway/mcp-proxy/policies/mcp-authorization.md: https://wso2.com/api-platform/policy-hub/policies/mcp-authz
         ai-gateway/mcp-proxy/policies/mcp-ratelimit.md: ai-gateway/1.2.0/mcp-governance.md
-        ai-gateway/mcp-proxy/policies/mcp-rewrite.md: ai-gateway/1.1.0/mcp-proxy/policies/mcp-rewrite.md
-        ai-gateway/mcp-proxy/quick-start-guide.md: ai-gateway/1.1.0/mcp-proxy/quick-start-guide.md
-        ai-gateway/observability/logging.md: ai-gateway/1.1.0/observability/logging.md
-        ai-gateway/observability/tracing.md: ai-gateway/1.1.0/observability/tracing.md
-        ai-gateway/overview.md: ai-gateway/1.1.0/overview.md
-        ai-gateway/streaming-responses.md: ai-gateway/1.1.0/streaming-responses.md
-        api-gateway/analytics/analytics-header-filter.md: api-gateway/1.1.0/analytics/analytics-header-filter.md
-        api-gateway/analytics/moesif-analytics.md: api-gateway/1.1.0/analytics/moesif-analytics.md
+        ai-gateway/mcp-proxy/policies/mcp-rewrite.md: https://wso2.com/api-platform/policy-hub/policies/mcp-rewrite
+        ai-gateway/mcp-proxy/quick-start-guide.md: ai-gateway/1.2.0/gateway-artifacts/mcp-proxy.md
+        ai-gateway/observability/logging.md: ai-gateway/1.2.0/logging-and-tracing/gateway-logs.md
+        ai-gateway/observability/tracing.md: ai-gateway/1.2.0/logging-and-tracing/tracing.md
+        ai-gateway/overview.md: ai-gateway/1.2.0/overview.md
+        ai-gateway/streaming-responses.md: ai-gateway/1.2.0/streaming-responses.md
+        api-gateway/analytics/analytics-header-filter.md: api-gateway/1.2.0/analytics/analytics-header-filter.md
+        api-gateway/analytics/moesif-analytics.md: api-gateway/1.2.0/analytics/moesif-analytics.md
         api-gateway/analytics/opentelemetry-analytics.md: api-gateway/1.2.0/analytics/opentelemetry-analytics.md
-        api-gateway/deployment/deploying-apis/bottom-up-api-deployment.md: api-gateway/1.1.0/deployment/deploying-apis/bottom-up-api-deployment.md
-        api-gateway/deployment/deployment-modes/immutable-gateway.md: api-gateway/1.1.0/deployment/deployment-modes/immutable-gateway.md
-        api-gateway/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
-        api-gateway/deployment/deployment-modes/kubernetes/gateway-operator.md: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator.md
-        api-gateway/deployment/deployment-modes/kubernetes/kubernetes-standalone.md: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
-        api-gateway/deployment/deployment-modes/kubernetes/overview.md: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/overview.md
-        api-gateway/deployment/high-availability-production-deployment.md: api-gateway/1.1.0/deployment/high-availability-production-deployment.md
-        api-gateway/deployment/production-deployment/control-plane-connection.md: api-gateway/1.1.0/deployment/production-deployment/control-plane-connection.md
-        api-gateway/deployment/production-deployment/database-configuration.md: api-gateway/1.1.0/deployment/production-deployment/database-configuration.md
-        api-gateway/deployment/production-deployment/deploy-and-verify.md: api-gateway/1.1.0/deployment/production-deployment/deploy-and-verify.md
-        api-gateway/deployment/production-deployment/resources-and-scaling.md: api-gateway/1.1.0/deployment/production-deployment/resources-and-scaling.md
-        api-gateway/deployment/production-deployment/security-hardening.md: api-gateway/1.1.0/deployment/production-deployment/security-hardening.md
-        api-gateway/gateway-controller-management-api/authentication.md: api-gateway/1.1.0/gateway-controller-management-api/authentication.md
-        api-gateway/gateway-controller-management-api/certificate-management.md: api-gateway/1.1.0/gateway-controller-management-api/certificate-management.md
-        api-gateway/gateway-controller-management-api/llm-provider-management.md: api-gateway/1.1.0/gateway-controller-management-api/llm-provider-management.md
-        api-gateway/gateway-controller-management-api/llm-provider-template-management.md: api-gateway/1.1.0/gateway-controller-management-api/llm-provider-template-management.md
-        api-gateway/gateway-controller-management-api/llm-proxy-management.md: api-gateway/1.1.0/gateway-controller-management-api/llm-proxy-management.md
-        api-gateway/gateway-controller-management-api/mcp-proxy-management.md: api-gateway/1.1.0/gateway-controller-management-api/mcp-proxy-management.md
-        api-gateway/gateway-controller-management-api/overview.md: api-gateway/1.1.0/gateway-controller-management-api/overview.md
-        api-gateway/gateway-controller-management-api/rest-api-management.md: api-gateway/1.1.0/gateway-controller-management-api/rest-api-management.md
-        api-gateway/gateway-controller-management-api/schemas.md: api-gateway/1.1.0/gateway-controller-management-api/schemas.md
-        api-gateway/gateway-controller-management-api/secrets-management.md: api-gateway/1.1.0/gateway-controller-management-api/secrets-management.md
+        api-gateway/deployment/deploying-apis/bottom-up-api-deployment.md: api-gateway/1.2.0/deployment/deploying-apis/bottom-up-api-deployment.md
+        api-gateway/deployment/deployment-modes/immutable-gateway.md: api-gateway/1.2.0/deployment/deployment-modes/immutable-gateway.md
+        api-gateway/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.md
+        api-gateway/deployment/deployment-modes/kubernetes/gateway-operator.md: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator.md
+        api-gateway/deployment/deployment-modes/kubernetes/kubernetes-standalone.md: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
+        api-gateway/deployment/deployment-modes/kubernetes/overview.md: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/overview.md
+        api-gateway/deployment/high-availability-production-deployment.md: api-gateway/1.2.0/deployment/high-availability-production-deployment.md
+        api-gateway/deployment/production-deployment/control-plane-connection.md: api-gateway/1.2.0/deployment/production-deployment/control-plane-connection.md
+        api-gateway/deployment/production-deployment/database-configuration.md: api-gateway/1.2.0/deployment/production-deployment/database-configuration.md
+        api-gateway/deployment/production-deployment/deploy-and-verify.md: api-gateway/1.2.0/deployment/production-deployment/deploy-and-verify.md
+        api-gateway/deployment/production-deployment/resources-and-scaling.md: api-gateway/1.2.0/deployment/production-deployment/resources-and-scaling.md
+        api-gateway/deployment/production-deployment/security-hardening.md: api-gateway/1.2.0/deployment/production-deployment/security-hardening.md
+        api-gateway/gateway-controller-management-api/authentication.md: api-gateway/1.2.0/gateway-controller-management-api/authentication.md
+        api-gateway/gateway-controller-management-api/certificate-management.md: api-gateway/1.2.0/gateway-controller-management-api/certificate-management.md
+        api-gateway/gateway-controller-management-api/llm-provider-management.md: api-gateway/1.2.0/gateway-controller-management-api/llm-provider-management.md
+        api-gateway/gateway-controller-management-api/llm-provider-template-management.md: api-gateway/1.2.0/gateway-controller-management-api/llm-provider-template-management.md
+        api-gateway/gateway-controller-management-api/llm-proxy-management.md: api-gateway/1.2.0/gateway-controller-management-api/llm-proxy-management.md
+        api-gateway/gateway-controller-management-api/mcp-proxy-management.md: api-gateway/1.2.0/gateway-controller-management-api/mcp-proxy-management.md
+        api-gateway/gateway-controller-management-api/overview.md: api-gateway/1.2.0/gateway-controller-management-api/overview.md
+        api-gateway/gateway-controller-management-api/rest-api-management.md: api-gateway/1.2.0/gateway-controller-management-api/rest-api-management.md
+        api-gateway/gateway-controller-management-api/schemas.md: api-gateway/1.2.0/gateway-controller-management-api/schemas.md
+        api-gateway/gateway-controller-management-api/secrets-management.md: api-gateway/1.2.0/gateway-controller-management-api/secrets-management.md
         api-gateway/gateway-controller-management-api/webbroker-api-management.md: api-gateway/1.1.0/gateway-controller-management-api/webbroker-api-management.md
         api-gateway/gateway-controller-management-api/websub-api-management.md: api-gateway/1.1.0/gateway-controller-management-api/websub-api-management.md
-        api-gateway/observability/logging.md: api-gateway/1.1.0/observability/logging.md
-        api-gateway/observability/metrics/alternative-backends.md: api-gateway/1.1.0/observability/metrics/alternative-backends.md
-        api-gateway/observability/metrics/best-practices-and-troubleshooting.md: api-gateway/1.1.0/observability/metrics/best-practices-and-troubleshooting.md
-        api-gateway/observability/metrics/configuration.md: api-gateway/1.1.0/observability/metrics/configuration.md
-        api-gateway/observability/metrics/enabling-metrics.md: api-gateway/1.1.0/observability/metrics/enabling-metrics.md
-        api-gateway/observability/metrics/metric-reference.md: api-gateway/1.1.0/observability/metrics/metric-reference.md
-        api-gateway/observability/metrics/overview.md: api-gateway/1.1.0/observability/metrics/overview.md
-        api-gateway/observability/metrics/prometheus-queries.md: api-gateway/1.1.0/observability/metrics/prometheus-queries.md
-        api-gateway/observability/metrics/viewing-metrics-in-grafana.md: api-gateway/1.1.0/observability/metrics/viewing-metrics-in-grafana.md
-        api-gateway/observability/tracing/alternative-backends.md: api-gateway/1.1.0/observability/tracing/alternative-backends.md
-        api-gateway/observability/tracing/best-practices-and-troubleshooting.md: api-gateway/1.1.0/observability/tracing/best-practices-and-troubleshooting.md
-        api-gateway/observability/tracing/configuration.md: api-gateway/1.1.0/observability/tracing/configuration.md
-        api-gateway/observability/tracing/enabling-tracing.md: api-gateway/1.1.0/observability/tracing/enabling-tracing.md
-        api-gateway/observability/tracing/overview.md: api-gateway/1.1.0/observability/tracing/overview.md
-        api-gateway/observability/tracing/viewing-traces-in-jaeger.md: api-gateway/1.1.0/observability/tracing/viewing-traces-in-jaeger.md
-        api-gateway/overview.md: api-gateway/1.1.0/overview.md
+        api-gateway/observability/logging.md: api-gateway/1.2.0/observability/logging.md
+        api-gateway/observability/metrics/alternative-backends.md: api-gateway/1.2.0/observability/metrics/alternative-backends.md
+        api-gateway/observability/metrics/best-practices-and-troubleshooting.md: api-gateway/1.2.0/observability/metrics/best-practices-and-troubleshooting.md
+        api-gateway/observability/metrics/configuration.md: api-gateway/1.2.0/observability/metrics/configuration.md
+        api-gateway/observability/metrics/enabling-metrics.md: api-gateway/1.2.0/observability/metrics/enabling-metrics.md
+        api-gateway/observability/metrics/metric-reference.md: api-gateway/1.2.0/observability/metrics/metric-reference.md
+        api-gateway/observability/metrics/overview.md: api-gateway/1.2.0/observability/metrics/overview.md
+        api-gateway/observability/metrics/prometheus-queries.md: api-gateway/1.2.0/observability/metrics/prometheus-queries.md
+        api-gateway/observability/metrics/viewing-metrics-in-grafana.md: api-gateway/1.2.0/observability/metrics/viewing-metrics-in-grafana.md
+        api-gateway/observability/tracing/alternative-backends.md: api-gateway/1.2.0/observability/tracing/alternative-backends.md
+        api-gateway/observability/tracing/best-practices-and-troubleshooting.md: api-gateway/1.2.0/observability/tracing/best-practices-and-troubleshooting.md
+        api-gateway/observability/tracing/configuration.md: api-gateway/1.2.0/observability/tracing/configuration.md
+        api-gateway/observability/tracing/enabling-tracing.md: api-gateway/1.2.0/observability/tracing/enabling-tracing.md
+        api-gateway/observability/tracing/overview.md: api-gateway/1.2.0/observability/tracing/overview.md
+        api-gateway/observability/tracing/viewing-traces-in-jaeger.md: api-gateway/1.2.0/observability/tracing/viewing-traces-in-jaeger.md
+        api-gateway/overview.md: api-gateway/1.2.0/overview.md
         api-gateway/policies/add-or-update-policies.md: api-gateway/1.2.0/policies/add-or-update-policies.md
-        api-gateway/policies/custom-policies/building-gateway-with-custom-policies.md: api-gateway/1.1.0/policies/custom-policies/building-gateway-with-custom-policies.md
-        api-gateway/policies/custom-policies/writing-a-custom-policy.md: api-gateway/1.1.0/policies/custom-policies/writing-a-custom-policy.md
-        api-gateway/policies/overview.md: api-gateway/1.1.0/policies/overview.md
-        api-gateway/quick-start-guide.md: api-gateway/1.1.0/quick-start-guide.md
-        api-gateway/setup/artifact-templating.md: api-gateway/1.1.0/setup/artifact-templating.md
-        api-gateway/setup/storage-and-backends.md: api-gateway/1.1.0/setup/storage-and-backends.md
-        api-gateway/setup/upstream-timeouts.md: api-gateway/1.1.0/setup/upstream-timeouts.md
+        api-gateway/policies/custom-policies/building-gateway-with-custom-policies.md: api-gateway/1.2.0/policies/custom-policies/building-gateway-with-custom-policies.md
+        api-gateway/policies/custom-policies/writing-a-custom-policy.md: api-gateway/1.2.0/policies/custom-policies/writing-a-custom-policy.md
+        api-gateway/policies/overview.md: api-gateway/1.2.0/policies/overview.md
+        api-gateway/quick-start-guide.md: api-gateway/1.2.0/quick-start-guide.md
+        api-gateway/setup/artifact-templating.md: api-gateway/1.2.0/setup/artifact-templating.md
+        api-gateway/setup/storage-and-backends.md: api-gateway/1.2.0/setup/database-setup.md
+        api-gateway/setup/upstream-timeouts.md: api-gateway/1.2.0/resiliency/timeouts.md
         # AI Gateway revamp phase 0: the two quick starts merged into one canonical page
         ai-gateway/next/llm-proxy/quick-start-guide.md: ai-gateway/next/quick-start-guide.md
         # AI Gateway revamp phase 1: job-oriented nav
@@ -2064,16 +2065,16 @@ plugins:
         api-platform-gateway/publish-apis/subscription-based-apis.md: cloud/api-platform-gateway/publish-apis/subscription-based-apis.md
         api-platform-gateway/publish-apis/subscription-less-apis.md: cloud/api-platform-gateway/publish-apis/subscription-less-apis.md
         # API Gateway deployment restructuring
-        api-gateway/deploying-apis/bottom-up-api-deployment.md: api-gateway/1.1.0/deployment/deploying-apis/bottom-up-api-deployment.md
-        api-gateway/deploying-apis/gateway-operator.md: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator.md
-        api-gateway/deployment-modes/immutable-gateway.md: api-gateway/1.1.0/deployment/deployment-modes/immutable-gateway.md
-        api-gateway/deployment-modes/kubernetes/gateway-operator.md: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/gateway-operator.md
-        api-gateway/deployment-modes/kubernetes/kubernetes-standalone.md: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
-        api-gateway/deployment-modes/kubernetes/overview.md: api-gateway/1.1.0/deployment/deployment-modes/kubernetes/overview.md
-        api-gateway/setup/immutable-gateway.md: api-gateway/1.1.0/deployment/deployment-modes/immutable-gateway.md
+        api-gateway/deploying-apis/bottom-up-api-deployment.md: api-gateway/1.2.0/deployment/deploying-apis/bottom-up-api-deployment.md
+        api-gateway/deploying-apis/gateway-operator.md: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator.md
+        api-gateway/deployment-modes/immutable-gateway.md: api-gateway/1.2.0/deployment/deployment-modes/immutable-gateway.md
+        api-gateway/deployment-modes/kubernetes/gateway-operator.md: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/gateway-operator.md
+        api-gateway/deployment-modes/kubernetes/kubernetes-standalone.md: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/kubernetes-standalone.md
+        api-gateway/deployment-modes/kubernetes/overview.md: api-gateway/1.2.0/deployment/deployment-modes/kubernetes/overview.md
+        api-gateway/setup/immutable-gateway.md: api-gateway/1.2.0/deployment/deployment-modes/immutable-gateway.md
         # API Gateway observability split (single pages -> section overview)
-        api-gateway/observability/tracing.md: api-gateway/1.1.0/observability/tracing/overview.md
-        api-gateway/observability/metrics.md: api-gateway/1.1.0/observability/metrics/overview.md
+        api-gateway/observability/tracing.md: api-gateway/1.2.0/observability/tracing/overview.md
+        api-gateway/observability/metrics.md: api-gateway/1.2.0/observability/metrics/overview.md
         # Bijira Concepts
         bijira-concepts/data-planes.md: cloud/bijira-concepts/data-planes.md
         bijira-concepts/deployment-tracks.md: cloud/bijira-concepts/deployment-tracks.md

@@ -127,7 +127,7 @@ The guardrail supports JSONPath expressions to extract specific text from reques
 Deploy an LLM provider that blocks prompts similar to prohibited phrases:
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v0.9/llm-providers \
+curl -X POST http://localhost:9090/llm-providers \
   -H "Content-Type: application/yaml" \
   -H "Authorization: Basic YWRtaW46YWRtaW4=" \
   --data-binary @- <<'EOF'
@@ -207,7 +207,7 @@ curl -X POST http://openai:8080/chat/completions \
 Deploy an LLM provider that only allows prompts similar to approved phrases:
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v0.9/llm-providers \
+curl -X POST http://localhost:9090/llm-providers \
   -H "Content-Type: application/yaml" \
   -H "Authorization: Basic YWRtaW46YWRtaW4=" \
   --data-binary @- <<'EOF'

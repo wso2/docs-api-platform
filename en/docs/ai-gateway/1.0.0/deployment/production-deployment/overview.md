@@ -21,7 +21,7 @@ This section is for platform engineers and site reliability engineers who run AP
 - Replicated gateway runtimes.
 - The tuning that large language model (LLM) and Model Context Protocol (MCP) traffic needs.
 
-For the other ways to run the gateway, see [Immutable Gateway](../deployment-modes/immutable-gateway.md) and [Kubernetes deployment modes](../deployment-modes/kubernetes/overview.md).
+For the other ways to run the gateway, see [Kubernetes deployment modes](../deployment-modes/kubernetes/overview.md).
 
 !!! info "Version-pinned instructions"
     Every command and configuration key on these pages is taken from the `ai-gateway/v1.0.0` release tag and Helm chart `1.0.1`. Chart fields change between releases, so follow the pages for the AI Gateway version you deploy.

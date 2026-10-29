@@ -104,7 +104,7 @@ The `build.yaml` file is included in the AI Gateway package you downloaded when 
 ```yaml
 version: v1
 gateway:
-  version: 1.2.0-beta
+  version: 1.2.0
 policies:
   - name: <policy-name>
     gomodule: <go-module-path>@<version>   # for policy hub managed policies
@@ -158,8 +158,8 @@ Once the build completes, the output lists the two image names produced. For exa
 
 ```text
 ✓ Built gateway images with 1 policies:
-  • ghcr.io/wso2/api-platform/wso2apip-ai-gateway-1.2.0-beta-gateway-runtime:1.2.0-beta
-  • ghcr.io/wso2/api-platform/wso2apip-ai-gateway-1.2.0-beta-gateway-controller:1.2.0-beta
+  • ghcr.io/wso2/api-platform/wso2apip-ai-gateway-1.2.0-gateway-runtime:1.2.0
+  • ghcr.io/wso2/api-platform/wso2apip-ai-gateway-1.2.0-gateway-controller:1.2.0
 ```
 
 A `build-manifest.yaml` file is also written alongside `build.yaml`, recording the resolved versions of all policies included in the build.
@@ -173,10 +173,10 @@ Locate the `gateway-controller` and `gateway-runtime` services and replace their
 ```yaml
 services:
   gateway-controller:
-    image: ghcr.io/wso2/api-platform/wso2apip-ai-gateway-1.2.0-beta-gateway-controller:1.2.0-beta  # (1)
+    image: ghcr.io/wso2/api-platform/wso2apip-ai-gateway-1.2.0-gateway-controller:1.2.0  # (1)
 
   gateway-runtime:
-    image: ghcr.io/wso2/api-platform/wso2apip-ai-gateway-1.2.0-beta-gateway-runtime:1.2.0-beta     # (2)
+    image: ghcr.io/wso2/api-platform/wso2apip-ai-gateway-1.2.0-gateway-runtime:1.2.0     # (2)
 ```
 
 1. Replace with the `gateway-controller` image name from your build output.
