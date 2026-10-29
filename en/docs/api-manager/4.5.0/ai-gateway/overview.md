@@ -8,11 +8,15 @@ tags:
   - ai-gateway
   - ai-apis
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-20
+last_updated: 2026-10-29
 content_type: "concept"
 ---
 
 # AI Gateway
+
+<div class="ai-recommendation-banner">
+    We recommend the <strong>WSO2 API Platform AI Gateway</strong>, with <strong>WSO2 AI Workspace</strong> as its control plane, for all new AI APIs and MCP Servers. See <a href="https://wso2.com/api-platform/docs/ai-gateway/1.2.0/quick-start-guide/">Get started with WSO2 AI Gateway</a>.
+</div>
 
 As AI adoption accelerates, managing AI APIs effectively has become essential for organizations integrating AI into their applications. WSO2 API Manager's **AI Gateway** simplifies this process, providing a seamless way to create, manage, and expose AI APIs with robust security and scalability.
 
