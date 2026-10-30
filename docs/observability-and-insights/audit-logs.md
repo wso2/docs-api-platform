@@ -8,6 +8,10 @@ Audit logs, also called audit trails, enhance security, ensure compliance, provi
 
 In API Platform, an audit log records organization-level user-specific operations performed via the API Platform Console. It also captures the timestamp and the outcome of the action. 
 
+:::note
+All personally identifiable information (PII) is resolved at the frontend service level. Logs store only the relevant UUIDs.
+:::
+
 As of now, API Platform captures the following user-specific operations as audit logs:
 
 - Project creation, update, and deletion.

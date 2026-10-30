@@ -24,9 +24,9 @@ const sidebars = {
     doc("overview", "Overview"),
     doc("key-concepts", "Key Concepts"),
     group("API Control Plane", [
+      doc("api-control-plane/overview", "Overview"),
       doc("getting-started/api-proxy", "Quick Start Guide"),
       group("Create", [
-        doc("create-api-proxy/overview", "Overview"),
         group("REST APIs", [
           doc("create-api-proxy/rest-apis/start-from-scratch", "Start from Scratch"),
           doc("create-api-proxy/rest-apis/start-with-a-contract", "Start with a Contract"),
@@ -68,17 +68,19 @@ const sidebars = {
         doc("publish-api-proxy/deprecate-or-unpublish", "Deprecate or Unpublish an API"),
         doc("publish-api-proxy/make-an-api-ai-ready", "Make an API AI-Ready"),
       ]),
-      group("Observability and Insights", [
-        group("Logs", [
-          doc("observability-and-insights/overview", "Overview"),
-          doc("observability-and-insights/runtime-logs", "Runtime Logs"),
-          doc("observability-and-insights/audit-logs", "Audit Logs"),
-        ]),
-        doc("observability-and-insights/insights", "Insights"),
+      group("Administer", [
+        doc("administer/managing-users", "Manage Users"),
+        doc("administer/role-based-access-control", "Configure Role-Based Access Control"),
+        doc("administer/managing-environments", "Manage Environments"),
+        doc("gateways", "Manage Gateways"),
+        doc("portals", "Manage Portals"),
+        doc("developer-portal/theming-developer-portal", "Customize the Portal Theme"),
+        doc("administer/creating-subscription-plans", "Manage Subscription Plans"),
       ]),
-      doc("gateways", "Gateways"),
-      doc("portals", "Portals"),
     ]),
+    // AI Workspace is hidden for now. Its pages still build and can be
+    // opened by URL. Remove the comment markers to show it again.
+    /*
     group("AI Workspace", [
       doc("ai-workspace/getting-started", "Quick Start Guide"),
       group("LLM Providers", [
@@ -128,37 +130,39 @@ const sidebars = {
       ]),
       doc("ai-workspace/insights", "Insights"),
     ]),
+    */
     group("Developer Portal", [
+      doc("developer-portal/overview", "Overview"),
       doc("developer-portal/getting-started", "Quick Start Guide"),
-      group("Discover APIs", [
-        doc("developer-portal/discover-apis/searching", "Searching"),
-        doc("developer-portal/discover-apis/documentation", "Documentation"),
+      group("Discover", [
+        doc("developer-portal/discover-apis/searching", "Search APIs"),
+        doc("developer-portal/discover-apis/documentation", "API Documentation"),
+        doc("developer-portal/discover-mcp-servers", "MCP Servers"),
+        doc("developer-portal/ai-agent-discovery", "AI Agents"),
       ]),
-      doc("developer-portal/discover-mcp-servers", "Discover MCP Proxies"),
-      doc("developer-portal/ai-agent-discovery", "Discover AI Agents"),
       doc("developer-portal/consume-an-api", "Consume an API"),
       doc("developer-portal/manage-applications", "Manage Applications"),
       doc("developer-portal/manage-subscriptions", "Manage Subscriptions"),
-      doc("developer-portal/theming-developer-portal", "Theming"),
     ]),
-    section("Hybrid Gateways"),
     group("API Gateway", [
       group("Self-Hosted Gateway", [
         doc("hybrid-gateways/api-gateway/getting-started", "Quick Start Guide"),
         group("Policies", [
-          doc("hybrid-gateways/api-gateway/manage-policies", "Adding and Managing Policies"),
+          doc("hybrid-gateways/api-gateway/manage-policies", "Add and Manage Policies"),
           group("Custom Policies", [
             doc("hybrid-gateways/api-gateway/writing-a-custom-policy", "Writing a Custom Policy"),
             doc("hybrid-gateways/api-gateway/build-gateway-with-custom-policies", "Building the Gateway with Custom Policies"),
             doc("hybrid-gateways/api-gateway/apply-custom-policies-to-apis", "Apply Custom Policies to APIs"),
           ]),
         ]),
-        doc("hybrid-gateways/api-gateway/publish-apis/overview", "Publishing APIs"),
       ]),
-      group("Third Party Gateways", [
+      group("Third-Party Gateways", [
         doc("hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws", "AWS API Gateway"),
       ]),
     ]),
+    // AI Gateway is hidden for now. Its pages still build and can be
+    // opened by URL. Remove the comment markers to show it again.
+    /*
     group("AI Gateway", [
       {
         type: 'category',
@@ -215,25 +219,16 @@ const sidebars = {
         ],
       },
     ]),
-    sectionEnd(),
-    {
-      type: 'category',
-      label: 'Monitoring and Analytics',
-      // The group's own page (docs/monitoring-and-analytics.md).
-      link: {type: 'doc', id: 'monitoring-and-analytics'},
-      items: [
-        doc("monitoring-and-analytics/alerts", "Alerts"),
-        doc("monitoring-and-analytics/gateway-metrics", "Gateway Metrics"),
-      ],
-    },
-    group("Administer", [
-      doc("administer/overview", "Overview"),
-      doc("administer/managing-users", "Managing Users"),
-      doc("administer/role-based-access-control", "Role Based Access Control"),
-      doc("administer/managing-environments", "Managing Environments"),
-      doc("administer/creating-subscription-plans", "Creating Subscription Plans"),
-      doc("administer/creating-application-templates", "Creating Application Templates"),
-      doc("administer/managing-api-consumers", "Managing API Consumers"),
+    */
+    group("Monitor", [
+      doc("monitor/overview", "Overview"),
+      doc("monitoring-and-analytics", "Insights"),
+      group("Logs", [
+        doc("observability-and-insights/runtime-logs", "Runtime Logs"),
+        doc("observability-and-insights/audit-logs", "Audit Logs"),
+      ]),
+      doc("monitoring-and-analytics/alerts", "Alerts"),
+      doc("monitoring-and-analytics/gateway-metrics", "Gateway Metrics"),
     ]),
     doc("tutorials", "Tutorials"),
   ],

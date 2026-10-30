@@ -7,6 +7,10 @@ API Platform Cloud runtime logs provide organization-level visibility into appli
 
 Any organization member can view runtime logs from the **Logs** page. You can filter logs by type, environment, and log level to narrow down the results and find relevant entries.
 
+:::note
+All personally identifiable information (PII) is resolved at the frontend service level. Logs store only the relevant UUIDs.
+:::
+
 ## Open runtime logs
 
 1. Sign in to API Platform Cloud and open your organization.
