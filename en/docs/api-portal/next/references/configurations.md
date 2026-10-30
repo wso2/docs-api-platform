@@ -8,7 +8,7 @@ tags:
   - api-portal
   - configuration
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-07-24
+last_updated: 2026-10-13
 content_type: "reference"
 ---
 
@@ -89,11 +89,14 @@ session_secret = ""     # 64-char hex — express-session signing secret
 ```toml
 [api_portal.auth]
 mode = "local"          # local | idp
+# idp_org_id = "default"  # the organization claim value your IdP asserts; defaults to the handle
 
 [api_portal.auth.claim_mappings]
 organization = "org_name"   # claim carrying the org ID
 roles = "roles"             # claim carrying the user's roles
 groups = "groups"
+# org_name = "org_name"     # optional: names organizations provisioned in multi-organization mode
+# org_handle = "org_handle" # optional: their URL handle
 
 [api_portal.auth.local]
 platform_api_url = ""
@@ -101,8 +104,9 @@ public_key_path = ""    # path to the Platform API's RS256 public key PEM
 tls_skip_verify = false
 
 # The [api_portal.auth.idp] endpoints describe your own identity provider and have
-# no default. issuer, authorization_url, token_url, client_id, and callback_url are
-# required when mode = "idp"; the portal refuses to start without them.
+# no default. authorization_url, token_url, client_id, callback_url, and jwks_url are
+# required when mode = "idp"; the portal refuses to start without them. issuer is
+# recommended.
 [api_portal.auth.idp]
 name = "my-idp"        # friendly name, used in logs
 issuer = ""
@@ -111,7 +115,7 @@ token_url = ""
 user_info_url = ""
 client_id = ""
 client_secret = ""
-audience = ""
+audience = ""          # required when multi_organization.enabled = true
 callback_url = ""
 scope = "openid profile email"
 sign_up_url = ""
@@ -187,7 +191,7 @@ These three keys describe the organization the instance serves:
 
 | Key | Description |
 |---|---|
-| `organization.handle` | The URL slug of the single organization this instance serves, and the pin every route is scoped against. Anything resolving to a different organization is rejected. In local-auth mode it must match the Platform API's organization id. In IDP mode it's also what the token's organization claim has to resolve to—see the note below |
+| `organization.handle` | The URL slug of the single organization this instance serves, and the pin every route is scoped against. Anything resolving to a different organization is rejected. In local-auth mode it must match the Platform API's organization id. In IDP mode it's also what the token's organization claim has to resolve to—see the note below. In [multi-organization mode](#multi-organization), it's the default organization, which a token without an organization claim acts in |
 | `organization.display_name` | Used only when seeding the organization for the first time. Never overwrites an existing name, so an admin's later edit in the settings UI survives restarts. Empty means "use the handle" |
 | `organization.auto_create_subscription_plans` | Seeds Bronze, Silver, Gold, Unlimited, and AsyncUnlimited alongside the organization |
 
@@ -197,11 +201,24 @@ Seeding runs on startup only if the organization doesn't already exist, so it's 
     The two authentication modes resolve it differently, so don't assume one claim covers both.
 
     - **Local auth** reads a fixed `org_handle` claim and compares it to `organization.handle`.
-    - **IDP mode** reads the claim named by `auth.claim_mappings.organization` (default `org_name`) and resolves it, accepting the organization's handle or its display name. The organization's IDP reference ID is seeded from `handle` and can't be changed afterward, so `handle` is the value to align the claim with—see [Make the organization claim resolve to your organization](../setting-up/authentication/connect-an-identity-provider.md#step-5-make-the-organization-claim-resolve-to-your-organization).
+    - **IDP mode** reads the claim named by `auth.claim_mappings.organization` (default `org_name`) and resolves it, accepting the organization's handle, its display name, or its IdP reference ID. The IdP reference ID defaults to `handle`; set `auth.idp_org_id` to the value your IdP asserts when it differs. A token without the claim acts in this organization—see [Make the organization claim resolve to your organization](../setting-up/authentication/connect-an-identity-provider.md#step-5-make-the-organization-claim-resolve-to-your-organization).
 
 
 !!! note
     `organization.default_name` is a deprecated alias for `handle`. It still resolves, with a startup warning—use `handle` in new configuration.
+
+## Multi-organization
+
+```toml
+[api_portal.multi_organization]
+enabled = false
+```
+
+| Key | Description |
+|---|---|
+| `multi_organization.enabled` | `true` serves every organization under `organization.portal_id` from this instance, and provisions an organization from a verified token's organization claim the first time one of its users signs in. Needs `auth.mode = "idp"` and `auth.idp.audience`; without the audience, the portal refuses to start. With local authentication, the setting has no effect and the portal logs a warning. Any value other than `true` or `false` stops the portal from starting |
+
+See [Serve multiple organizations from one API Portal](../setting-up/authentication/multi-organization.md) for the deployment requirements, provisioning rules, and sign-in behavior.
 
 ## Artifacts
 
