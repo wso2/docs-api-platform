@@ -10,7 +10,7 @@ tags:
   - troubleshooting
   - opentelemetry
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-20
+last_updated: 2026-10-27
 content_type: "how-to"
 ---
 
@@ -33,8 +33,8 @@ The default tracing stack consists of:
 
 ### How It Works
 
-1. Gateway components (gateway-controller, policy-engine, router) are configured to export traces via OTLP (OpenTelemetry Protocol)
-2. Components send trace spans to the OpenTelemetry Collector via gRPC (port 4317) or HTTP (port 4318)
+1. The router and the policy-engine export traces via OTLP (OpenTelemetry Protocol), and the gateway-controller generates the router's tracing configuration
+2. The router and the policy-engine send trace spans to the OpenTelemetry Collector via gRPC (port 4317) or HTTP (port 4318)
 3. The OTLP Collector processes traces (batching, adding resource attributes, etc.)
 4. The OTLP Collector forwards traces to Jaeger for storage and visualization
 5. Users can view and analyze traces through the Jaeger UI
@@ -81,7 +81,7 @@ docker compose --profile tracing up -d
 ```
 
 This starts:
-- Core gateway services (gateway-controller, policy-engine, router) - *which export traces to OTLP collector*
+- Core gateway services (gateway-controller, policy-engine, router) - *the router and policy-engine export traces to the OTLP collector; the gateway-controller generates the router's tracing configuration*
 - OpenTelemetry Collector - *receives and processes traces*
 - Jaeger - *stores and visualizes traces*
 
