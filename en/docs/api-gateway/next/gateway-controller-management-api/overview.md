@@ -1,6 +1,6 @@
 ---
 title: "Gateway Controller Management API"
-description: "Overview of the API Platform Gateway Controller REST API for managing REST APIs, MCP proxies, LLM providers, certificates, and secrets."
+description: "Overview of the API Platform Gateway Controller REST API for managing REST APIs, GraphQL APIs, MCP proxies, LLM providers, certificates, and secrets."
 canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/gateway-controller-management-api/overview/
 md_url: https://wso2.com/api-platform/docs/api-gateway/next/gateway-controller-management-api/overview.md
 tags:
@@ -53,6 +53,19 @@ The API exposes the following endpoints:
 - [Get a subscription by ID](rest-api-management.md#get-a-subscription-by-id)
 - [Update a subscription](rest-api-management.md#update-a-subscription)
 - [Delete a subscription](rest-api-management.md#delete-a-subscription)
+
+### [GraphQL API Management](graphql-api-management.md)
+
+- [Create a new GraphQLApi](graphql-api-management.md#create-a-new-graphqlapi)
+- [List all GraphQLApis](graphql-api-management.md#list-all-graphqlapis)
+- [Get GraphQLApi by id](graphql-api-management.md#get-graphqlapi-by-id)
+- [Update an existing GraphQLApi](graphql-api-management.md#update-an-existing-graphqlapi)
+- [Delete a GraphQLApi](graphql-api-management.md#delete-a-graphqlapi)
+- [Create a new API key for a GraphQL API](graphql-api-management.md#create-a-new-api-key-for-a-graphql-api)
+- [Get the list of API keys for a GraphQL API](graphql-api-management.md#get-the-list-of-api-keys-for-a-graphql-api)
+- [Regenerate API key for a GraphQL API](graphql-api-management.md#regenerate-api-key-for-a-graphql-api)
+- [Update an API key with a new regenerated value](graphql-api-management.md#update-an-api-key-with-a-new-regenerated-value)
+- [Revoke an API key](graphql-api-management.md#revoke-an-api-key)
 
 ### [MCP Proxy Management](mcp-proxy-management.md)
 
