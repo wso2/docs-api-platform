@@ -8,7 +8,7 @@ tags:
   - observability
   - tracing
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-17
+last_updated: 2026-10-26
 content_type: "how-to"
 ---
 
@@ -94,6 +94,12 @@ After configuring and starting the gateway:
 4. Use **Time Series** to analyze API usage trends
 5. Set up **Alerts** for error rates, latency, or custom conditions
 
+Moesif's trace explorer shows the request and policy spans:
+
+![Moesif API Gateway trace showing router, policy-engine, and upstream spans.](../../../../assets/img/api-gateway/tracing/moesif-api-overview.png)
+
+Internal spans can display status `0`; the ingress span shows the HTTP response status.
+
 ### Moesif Features
 
 - **API Analytics**: Request volume, response times, error rates
@@ -152,6 +158,10 @@ exporters:
 
 Access Zipkin UI at `http://localhost:9411`
 
+Zipkin shows the trace timeline and the selected span's HTTP attributes:
+
+![Zipkin API Gateway trace showing router, policy-engine, and upstream spans.](../../../../assets/img/api-gateway/tracing/zipkin-api-overview.png)
+
 ## Grafana Tempo
 
 For a Prometheus-style tracing backend:
@@ -189,6 +199,10 @@ Configure gateway to send directly to Tempo:
 tracing:
   endpoint: tempo:4317
 ```
+
+Grafana Explore displays the trace's router, policy-engine, and upstream spans from Tempo:
+
+![Grafana Tempo API Gateway trace showing router, policy-engine, and upstream spans.](../../../../assets/img/api-gateway/tracing/tempo-api-overview.png)
 
 ## Cloud-Native Tracing Solutions
 
@@ -268,6 +282,10 @@ tracing:
   endpoint: datadog-agent:4317
 ```
 
+Datadog APM displays the request's HTTP status and expanded span waterfall:
+
+![Datadog APM API Gateway trace showing router, policy-engine, and upstream spans.](../../../../assets/img/api-gateway/tracing/datadog-api-overview.png)
+
 ### New Relic
 
 Configure OTLP Collector to export to New Relic:
@@ -280,6 +298,10 @@ exporters:
       api-key: ${NEW_RELIC_LICENSE_KEY}
 ```
 
+New Relic displays the gateway's request, policy execution, and upstream spans:
+
+![New Relic API Gateway trace showing router, policy-engine, and upstream spans.](../../../../assets/img/api-gateway/tracing/newrelic-api-overview.png)
+
 ### Honeycomb
 
 ```yaml
@@ -289,6 +311,10 @@ exporters:
     headers:
       x-honeycomb-team: ${HONEYCOMB_API_KEY}
 ```
+
+Honeycomb displays the trace timeline alongside the selected span's attributes:
+
+![Honeycomb API Gateway trace showing router, policy-engine, and upstream spans.](../../../../assets/img/api-gateway/tracing/honeycomb-api-overview.png)
 
 ### Lightstep
 
