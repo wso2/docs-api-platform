@@ -68,6 +68,8 @@ const sidebars = {
         doc("publish-api-proxy/deprecate-or-unpublish", "Deprecate or Unpublish an API"),
         doc("publish-api-proxy/make-an-api-ai-ready", "Make an API AI-Ready"),
       ]),
+      doc("api-control-plane/observability", "Observability"),
+      doc("api-control-plane/insights", "Insights"),
       group("Administer", [
         doc("administer/managing-users", "Manage Users"),
         doc("administer/role-based-access-control", "Configure Role-Based Access Control"),
@@ -147,6 +149,7 @@ const sidebars = {
     group("API Gateway", [
       doc("api-gateway/overview", "Overview"),
       group("Self-Hosted Gateway", [
+        doc("hybrid-gateways/api-gateway/architecture", "Architecture"),
         doc("hybrid-gateways/api-gateway/getting-started", "Quick Start Guide"),
         group("Policies", [
           doc("hybrid-gateways/api-gateway/manage-policies", "Add and Manage Policies"),
@@ -160,6 +163,12 @@ const sidebars = {
       group("Third-Party Gateways", [
         doc("hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws", "AWS API Gateway"),
       ]),
+      group("Observability", [
+        doc("api-gateway/observability", "Overview"),
+        doc("hybrid-gateways/ai-gateway/observability/logging", "Gateway Logging"),
+        doc("hybrid-gateways/ai-gateway/observability/tracing", "Gateway Tracing"),
+      ]),
+      doc("api-gateway/insights", "Insights"),
     ]),
     // AI Gateway is hidden for now. Its pages still build and can be
     // opened by URL. Remove the comment markers to show it again.
@@ -221,9 +230,8 @@ const sidebars = {
       },
     ]),
     */
-    group("Monitor", [
-      doc("monitor/overview", "Overview"),
-      doc("monitoring-and-analytics", "Insights"),
+    group("Observability", [
+      doc("observability/overview", "Overview"),
       group("Logs", [
         doc("observability-and-insights/runtime-logs", "Runtime Logs"),
         doc("observability-and-insights/audit-logs", "Audit Logs"),
@@ -231,7 +239,13 @@ const sidebars = {
       doc("monitoring-and-analytics/alerts", "Alerts"),
       doc("monitoring-and-analytics/gateway-metrics", "Gateway Metrics"),
     ]),
-    doc("tutorials", "Tutorials"),
+    group("Insights", [
+      doc("insights/overview", "Overview"),
+      doc("monitoring-and-analytics", "Dashboards"),
+    ]),
+    group("Monetization", [
+      doc("monetization/overview", "Overview"),
+    ]),
   ],
 };
 

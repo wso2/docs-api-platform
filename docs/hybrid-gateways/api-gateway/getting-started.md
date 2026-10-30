@@ -175,7 +175,7 @@ To redeploy, navigate to the **Deploy page** of the API Proxy and click **Deploy
 ## Next Steps
 
 - [Add and Manage Policies](./manage-policies.md) - Apply policies to the APIs on your gateway
-- [Monitor](../../monitor/overview.md) - Track the traffic, logs, and health of your APIs and gateways
+- [Observability](../../observability/overview.md) - Track the logs, alerts, and health of your APIs and gateways
 
 ## Troubleshooting
 
