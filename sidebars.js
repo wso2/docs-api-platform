@@ -145,6 +145,7 @@ const sidebars = {
       doc("developer-portal/manage-subscriptions", "Manage Subscriptions"),
     ]),
     group("API Gateway", [
+      doc("api-gateway/overview", "Overview"),
       group("Self-Hosted Gateway", [
         doc("hybrid-gateways/api-gateway/getting-started", "Quick Start Guide"),
         group("Policies", [

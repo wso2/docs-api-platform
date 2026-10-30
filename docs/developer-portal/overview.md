@@ -26,4 +26,4 @@ To use an API from the Developer Portal, follow these steps.
 
 ## Get Started
 
-To set up a Developer Portal and publish your first API to it, follow the [Quick Start Guide](./getting-started.md). To create and manage the portals of your organization, see [Manage Portals](../portals.md).
+To create a portal, publish an API to it, and find the API in the portal, follow the [Quick Start Guide](./getting-started.md). To create and manage the portals of your organization, see [Manage Portals](../portals.md).

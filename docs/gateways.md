@@ -1,31 +1,26 @@
 ---
 title: "Gateways"
-description: "Run your API proxies on WSO2-managed gateways or on a Self-Hosted Gateway in your own infrastructure, and discover APIs from third-party gateways."
+description: "View the gateways in your organization and add Self-Hosted Gateways from the API Control Plane."
 ---
 
-A gateway is the runtime that receives API traffic, applies your policies, and routes requests to your backends. Every request that a consumer sends to your API proxy passes through a gateway, which enforces security, rate limits, and other policies before forwarding the request.
+You manage all the gateways in your organization from the API Control Plane, regardless of where they run. For the types of gateways and how they work, see [API Gateway](./api-gateway/overview.md).
 
-You deploy your API proxies to a gateway, and manage all your gateways centrally from the API Platform Console, regardless of where they run.
-
-## Gateway Options
-
-| Gateway | Use it to | Guide |
-|:--------|:----------|:------|
-| **WSO2-managed gateway** | Run your API proxies on gateways that WSO2 provisions and operates. No setup is required. | |
-| **Self-Hosted Gateway** | Run your API proxies on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, to keep API traffic within your network or close to your backends. | [Quick Start Guide](./hybrid-gateways/api-gateway/getting-started.md) |
-| **Third-party gateway** | Discover APIs that already run on a gateway from another vendor, instead of moving them to an API Platform gateway. | [AWS API Gateway](./hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws.md) |
-
-Your organization has a WSO2-managed gateway by default, so you can deploy and test API proxies without setting up any infrastructure. Add a Self-Hosted Gateway when you need to control where your API traffic runs.
-
-## Gateways and Environments
-
-Each gateway belongs to one environment, such as development or production, and you select the environment when you add the gateway. An environment can have more than one gateway. You can mark one of them as the default gateway for the environment.
-
-## View Your Gateways
+## Open the Gateways Page
 
 1. Sign in to the [API Platform Console](https://console.bijira.dev).
 2. In the left navigation menu, click **Gateways**.
 
-The **Gateways** page lists all the gateways in your organization, including the WSO2-managed gateway and any Self-Hosted Gateways you have added. Click a gateway to view its details.
+The **Gateways** page lists all the gateways in your organization, including the cloud gateway and any Self-Hosted Gateways that you have added.
 
-To add a gateway that runs on your own infrastructure, see the [Self-Hosted Gateway Quick Start Guide](./hybrid-gateways/api-gateway/getting-started.md).
+## View a Gateway
+
+On the **Gateways** page, click a gateway to view its details.
+
+## Add a Self-Hosted Gateway
+
+To add a gateway that runs on your own infrastructure, click **Add Self-Hosted Gateway** on the **Gateways** page. For the full steps, including how to run the gateway and connect it to the API Control Plane, see the [Self-Hosted Gateway Quick Start Guide](./hybrid-gateways/api-gateway/getting-started.md).
+
+## Next Steps
+
+- [Manage Environments](./administer/managing-environments.md) - Create the environments that gateways belong to
+- [Publish an API](./publish-api-proxy/publish-an-api.md) - Publish an API proxy that is deployed to a gateway
