@@ -8,7 +8,7 @@ tags:
   - policies
   - gateway
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-15
+last_updated: 2026-10-29
 content_type: "overview"
 ---
 
@@ -34,15 +34,16 @@ Authenticate incoming requests and secure outbound calls to your backend, using 
 
 | Policy | What it does |
 | -- | -- |
-| API Key Auth | Protects APIs with pre-shared API keys |
-| Basic Auth | Enforces HTTP Basic Authentication |
-| JWT Auth | Validates JWT access tokens against one or more JWKS providers |
-| Mutual TLS Auth | Authenticates callers by the client certificate they present over mutual TLS, against accepted client certificate authorities |
-| OAuth2 Generator | Generates an OAuth 2.0 or static bearer credential and injects it into a configurable request header before forwarding to the backend |
-| CORS | Handles preflight requests and injects CORS response headers |
-| Subscription Validation | Confirms the caller holds an active subscription for the target API |
-| Rate Limit — Basic | Caps requests per time window |
-| Rate Limit — Advanced | Multi-dimensional quotas with GCRA or fixed-window algorithms, Redis backend support, and weighted limiting |
+| [API Key Auth](https://wso2.com/api-platform/policy-hub/policies/api-key-auth) | Protects APIs with pre-shared API keys |
+| [Basic Auth](https://wso2.com/api-platform/policy-hub/policies/basic-auth) | Enforces HTTP Basic Authentication |
+| [JWT Auth](https://wso2.com/api-platform/policy-hub/policies/jwt-auth) | Validates JWT access tokens against one or more JWKS providers |
+| [Mutual TLS Auth](https://wso2.com/api-platform/policy-hub/policies/mtls-auth) | Authenticates callers by the client certificate they present over mutual TLS, against accepted client certificate authorities |
+| [OAuth2 Generator](https://wso2.com/api-platform/policy-hub/policies/oauth2-generator) | Generates an OAuth 2.0 or static bearer credential and injects it into a configurable request header before forwarding to the backend |
+| [OAuth2 Token Exchange](https://wso2.com/api-platform/policy-hub/policies/oauth2-token-exchange) | Exchanges the caller's credential for a backend-specific token from an external OAuth2 authorization server |
+| [CORS](https://wso2.com/api-platform/policy-hub/policies/cors) | Handles preflight requests and injects CORS response headers |
+| [Subscription Validation](https://wso2.com/api-platform/policy-hub/policies/subscription-validation) | Confirms the caller holds an active subscription for the target API |
+| [Rate Limit - Basic](https://wso2.com/api-platform/policy-hub/policies/basic-ratelimit) | Caps requests per time window |
+| [Rate Limit - Advanced](https://wso2.com/api-platform/policy-hub/policies/advanced-ratelimit) | Multi-dimensional quotas with GCRA or fixed-window algorithms, Redis backend support, and weighted limiting |
 
 ### Guardrails
 
@@ -50,17 +51,19 @@ Control what goes into and out of AI models. Guardrail policies block unsafe pro
 
 | Policy | What it does |
 | -- | -- |
-| AWS Bedrock Guardrail | Validates content against AWS Bedrock Guardrails |
-| Azure Content Safety | Screens content against Azure Content Safety API |
-| Semantic Prompt Guard | Blocks or allows prompts based on semantic similarity to configured allow/deny phrases |
-| Semantic Tool Filtering | Filters MCP tools to only those semantically relevant to the user query |
-| PII Masking | Masks or redacts PII from request/response bodies using configurable regex patterns |
-| JSON Schema Guardrail | Enforces a JSON Schema on request or response payloads |
-| Regex Guardrail | Validates content against a regular expression |
-| URL Guardrail | Validates URLs found in request or response bodies |
-| Content Length Guardrail | Enforces byte-length limits on payloads |
-| Word Count Guardrail | Enforces word-count limits on payloads |
-| Sentence Count Guardrail | Enforces sentence-count limits on payloads |
+| [AWS Bedrock Guardrail](https://wso2.com/api-platform/policy-hub/policies/aws-bedrock-guardrail) | Validates content against AWS Bedrock Guardrails |
+| [Azure Content Safety](https://wso2.com/api-platform/policy-hub/policies/azure-content-safety-content-moderation) | Screens content against Azure Content Safety API |
+| [TypeSafe Jev Content Safety](https://wso2.com/api-platform/policy-hub/policies/typesafe-jev-content-safety) | Screens request or response content using TypeSafe AI's Jev System One model |
+| [Semantic Prompt Guard](https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard) | Blocks or allows prompts based on semantic similarity to configured allow/deny phrases |
+| [Semantic Tool Filtering](https://wso2.com/api-platform/policy-hub/policies/semantic-tool-filtering) | Filters MCP tools to only those semantically relevant to the user query |
+| [TypeSafe Jev Tool Filtering](https://wso2.com/api-platform/policy-hub/policies/typesafe-jev-tool-filtering) | Narrows the tools sent to an LLM to those relevant to the user prompt, using TypeSafe AI's Jev System One model |
+| [PII Masking](https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex) | Masks or redacts PII from request/response bodies using configurable regex patterns |
+| [JSON Schema Guardrail](https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail) | Enforces a JSON Schema on request or response payloads |
+| [Regex Guardrail](https://wso2.com/api-platform/policy-hub/policies/regex-guardrail) | Validates content against a regular expression |
+| [URL Guardrail](https://wso2.com/api-platform/policy-hub/policies/url-guardrail) | Validates URLs found in request or response bodies |
+| [Content Length Guardrail](https://wso2.com/api-platform/policy-hub/policies/content-length-guardrail) | Enforces byte-length limits on payloads |
+| [Word Count Guardrail](https://wso2.com/api-platform/policy-hub/policies/word-count-guardrail) | Enforces word-count limits on payloads |
+| [Sentence Count Guardrail](https://wso2.com/api-platform/policy-hub/policies/sentence-count-guardrail) | Enforces sentence-count limits on payloads |
 
 ### AI and LLM
 
@@ -68,16 +71,17 @@ Policies designed specifically for the characteristics of AI APIs — cost, toke
 
 | Policy | What it does |
 | -- | -- |
-| LLM Cost | Calculates the monetary cost of each LLM call and stores it for downstream policies |
-| LLM Cost-Based Rate Limit | Enforces monetary budget quotas on LLM usage |
-| Token-Based Rate Limit | Caps usage by token count rather than request count |
-| Semantic Cache | Caches LLM responses using vector similarity, returning cached results for semantically equivalent prompts |
-| Prompt Decorator | Injects system instructions or context into prompts at the gateway layer |
-| Prompt Template | Applies configurable templates to transform prompts before they reach the model |
-| Prompt Compressor | Compresses prompt text to reduce token usage before upstream calls |
-| Model Round Robin | Distributes requests evenly across a pool of AI model endpoints |
-| Model Weighted Round Robin | Distributes requests across model endpoints according to configured weights |
-| Respond | Returns an immediate response without forwarding to the upstream backend |
+| [LLM Cost](https://wso2.com/api-platform/policy-hub/policies/llm-cost) | Calculates the monetary cost of each LLM call and stores it for downstream policies |
+| [LLM Cost-Based Rate Limit](https://wso2.com/api-platform/policy-hub/policies/llm-cost-based-ratelimit) | Enforces monetary budget quotas on LLM usage |
+| [Token-Based Rate Limit](https://wso2.com/api-platform/policy-hub/policies/token-based-ratelimit) | Caps usage by token count rather than request count |
+| [Semantic Cache](https://wso2.com/api-platform/policy-hub/policies/semantic-cache) | Caches LLM responses using vector similarity, returning cached results for semantically equivalent prompts |
+| [Prompt Decorator](https://wso2.com/api-platform/policy-hub/policies/prompt-decorator) | Injects system instructions or context into prompts at the gateway layer |
+| [Prompt Template](https://wso2.com/api-platform/policy-hub/policies/prompt-template) | Applies configurable templates to transform prompts before they reach the model |
+| [Prompt Compressor](https://wso2.com/api-platform/policy-hub/policies/prompt-compressor) | Compresses prompt text to reduce token usage before upstream calls |
+| [Model Round Robin](https://wso2.com/api-platform/policy-hub/policies/model-round-robin) | Distributes requests evenly across a pool of AI model endpoints |
+| [Model Weighted Round Robin](https://wso2.com/api-platform/policy-hub/policies/model-weighted-round-robin) | Distributes requests across model endpoints according to configured weights |
+| [TypeSafe Jev Model Routing](https://wso2.com/api-platform/policy-hub/policies/typesafe-jev-model-routing) | Routes AI/LLM requests to different models using TypeSafe AI's Jev System One model |
+| [Respond](https://wso2.com/api-platform/policy-hub/policies/respond) | Returns an immediate response without forwarding to the upstream backend |
 
 ### MCP (Model Context Protocol)
 
@@ -85,10 +89,12 @@ A dedicated policy tier for securing and controlling MCP servers — the emergin
 
 | Policy | What it does |
 | -- | -- |
-| MCP Authentication | Secures MCP server traffic per the MCP specification authorization profile |
-| MCP Authorization | Validates access to MCP tools, resources, and prompts using JWT claims or OAuth scopes |
-| MCP Access Control | Controls which tools, resources, and prompts a caller can reach using allow/deny lists |
-| MCP Rewrite | Defines user-facing tool names and maps them to backend capability names |
+| [MCP Authentication](https://wso2.com/api-platform/policy-hub/policies/mcp-auth) | Secures MCP server traffic per the MCP specification authorization profile |
+| [MCP Authorization](https://wso2.com/api-platform/policy-hub/policies/mcp-authz) | Validates access to MCP tools, resources, and prompts using JWT claims or OAuth scopes |
+| [MCP Access Control](https://wso2.com/api-platform/policy-hub/policies/mcp-acl-list) | Controls which tools, resources, and prompts a caller can reach using allow/deny lists |
+| [MCP Rewrite](https://wso2.com/api-platform/policy-hub/policies/mcp-rewrite) | Defines user-facing tool names and maps them to backend capability names |
+| [TypeSafe Jev MCP Tool Intent Verification](https://wso2.com/api-platform/policy-hub/policies/typesafe-jev-mcp-tool-intent-verification) | Screens MCP tool calls using TypeSafe AI's Jev System One model |
+| [TypeSafe Jev MCP Tool Result Screening](https://wso2.com/api-platform/policy-hub/policies/typesafe-jev-mcp-tool-result-screening) | Screens MCP tool results using TypeSafe AI's Jev System One model before the agent reads them |
 
 ### Transformation
 
@@ -96,20 +102,20 @@ Modify requests and responses in flight.
 
 | Policy | What it does |
 | -- | -- |
-| Request Rewrite | Rewrites path, query parameters, and HTTP method before forwarding upstream |
-| Host Rewrite | Overrides the `Host`/`:authority` header sent to the upstream |
-| Dynamic Endpoint | Routes a request to a named upstream at runtime |
-| Set Headers | Adds or overwrites headers on requests or responses |
-| Remove Headers | Strips specified headers from requests or responses |
-| JSON/XML Mediator | Converts payloads between JSON and XML formats |
-| Interceptor Service | Calls a user-defined HTTP service during the request and/or response phase |
+| [Request Rewrite](https://wso2.com/api-platform/policy-hub/policies/request-rewrite) | Rewrites path, query parameters, and HTTP method before forwarding upstream |
+| [Host Rewrite](https://wso2.com/api-platform/policy-hub/policies/host-rewrite) | Overrides the `Host`/`:authority` header sent to the upstream |
+| [Dynamic Endpoint](https://wso2.com/api-platform/policy-hub/policies/dynamic-endpoint) | Routes a request to a named upstream at runtime |
+| [Set Headers](https://wso2.com/api-platform/policy-hub/policies/set-headers) | Adds or overwrites headers on requests or responses |
+| [Remove Headers](https://wso2.com/api-platform/policy-hub/policies/remove-headers) | Strips specified headers from requests or responses |
+| [JSON/XML Mediator](https://wso2.com/api-platform/policy-hub/policies/json-xml-mediator) | Converts payloads between JSON and XML formats |
+| [Interceptor Service](https://wso2.com/api-platform/policy-hub/policies/interceptor-service) | Calls a user-defined HTTP service during the request and/or response phase |
 
 ### Logging, Analytics, and Monitoring
 
 | Policy | What it does |
 | -- | -- |
-| Log Message | Logs request/response payload and headers |
-| Analytics Header Filter | Controls which headers appear in analytics data using allow or deny mode |
+| [Log Message](https://wso2.com/api-platform/policy-hub/policies/log-message) | Logs request/response payload and headers |
+| [Analytics Header Filter](https://wso2.com/api-platform/policy-hub/policies/analytics-header-filter) | Controls which headers appear in analytics data using allow or deny mode |
 
 ## Common Use Cases
 
