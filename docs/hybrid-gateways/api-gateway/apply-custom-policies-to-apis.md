@@ -90,7 +90,6 @@ After syncing, the custom policy appears in the policy list when configuring an 
 
 For detailed instructions on attaching and configuring policies on an API, see [Adding and Managing Policies](./manage-policies.md).
 
-## What's Next?
+## Next Steps
 
-- [Publish APIs Overview](./publish-apis/overview.md): Learn about publishing APIs on the self-hosted gateway
-- [Publishing APIs](./publish-apis/overview.md): Publish APIs with or without subscriptions, and manage their lifecycle
+- [Publish an API](../../publish-api-proxy/publish-an-api.md) - Publish the API to a Developer Portal so consumers can discover and use it

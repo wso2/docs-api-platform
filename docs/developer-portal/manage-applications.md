@@ -58,7 +58,7 @@ Associating a key with an application enables usage analytics for that applicati
 Deleting an application cannot be undone.
 :::
 
-## Next steps
+## Next Steps
 
-- [Consume an API](./consume-an-api.md) - Generate a key, then use it to call an API
 - [Manage Subscriptions](./manage-subscriptions.md) - Subscribe the application to an API
+- [Consume an API](./consume-an-api.md) - Generate a key, then use it to call an API

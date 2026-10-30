@@ -40,9 +40,6 @@ To add policies to an API deployed on your Self-Hosted Gateway:
 
 Navigate to [API Platform Policy Hub](https://wso2.com/api-platform/policy-hub/) to discover available policies.
 
-## What's Next?
+## Next Steps
 
-- [Writing a Custom Policy](./writing-a-custom-policy.md): Learn how to build a custom policy using the gateway SDK
-- Writing an AI Policy: Learn how to write policies for LLM traffic
-- Analytics: Monitor API traffic and performance
-- Troubleshooting: Common issues and solutions
+- [Writing a Custom Policy](./writing-a-custom-policy.md) - Build a custom policy using the gateway SDK

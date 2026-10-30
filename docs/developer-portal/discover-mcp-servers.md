@@ -31,9 +31,3 @@ Scroll down to the capabilities section. The server's tools, resources, and prom
 - **Tools**: Each tool panel shows the tool name, description, and its input schema with the parameters the tool accepts. Expand a tool to see the full schema before connecting.
 - **Resources**: Each resource panel shows the resource name, description, URI, and MIME type.
 - **Prompts**: Each prompt panel shows the prompt name, description, and the arguments it accepts.
-
-## Related Topics
-
-- What is an MCP Registry?
-- Publish MCP Proxies
-- Use the MCP Registry API

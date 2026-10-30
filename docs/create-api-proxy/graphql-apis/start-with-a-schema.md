@@ -66,4 +66,10 @@ For more information, see the [GraphQL Console](../../test-api-proxy/graphql-con
 
 Publishing makes the API available to developers through a developer portal, where they can discover the API and access its documentation.
 
-See the [API publishing guide] for instructions on configuring a portal and publishing the API.
+See [Publish an API](../../publish-api-proxy/publish-an-api.md).
+
+## Next Steps
+
+- [Secure API Access](../../develop-api-proxy/security/secure-api-access/overview.md) - Control who can invoke the API
+- [Attach and Manage Policies](../../develop-api-proxy/policy/attach-and-manage-policies.md) - Add capabilities such as rate limiting or header changes to the API
+- [Documents](../../develop-api-proxy/documents.md) - Add documents that help consumers use the API

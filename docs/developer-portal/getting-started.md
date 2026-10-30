@@ -235,12 +235,12 @@ curl -k -X POST "https://localhost:9543/api-portal/api/v0.9/apis" \
 
 Refresh the portal—the **Books API** now appears in the catalog. Select the **Books API** card to open its documentation and **Try It** console.
 
-## What's next
+## Next Steps
 
-- Browse APIs: browse and search the catalog
-- [MCP Servers](./discover-mcp-servers.md): publish and connect to Model Context Protocol servers
-- [AI Agent Discovery](./ai-agent-discovery.md): the `llms.txt` and Markdown endpoints agents use
-- [Manage Applications](./manage-applications.md): set up a container for OAuth2 credentials
-- [Manage Subscriptions](./manage-subscriptions.md): subscribe to a published API under a plan
-- [Consume an API Secured with an API Key](./consume-an-api.md) or [Consume an API Secured with OAuth2](./consume-an-api.md)
-- [Theming](./theming-developer-portal.md): customize the portal's look and feel
+- [Search APIs](./discover-apis/searching.md) - Browse and search the API catalog
+- [MCP Servers](./discover-mcp-servers.md) - Explore MCP servers and their tools, resources, and prompts
+- [AI Agents](./ai-agent-discovery.md) - Learn about the `llms.txt` and Markdown endpoints that AI agents use
+- [Manage Applications](./manage-applications.md) - Create an application to hold your credentials
+- [Manage Subscriptions](./manage-subscriptions.md) - Subscribe an application to a published API under a plan
+- [Consume an API](./consume-an-api.md) - Invoke an API secured with OAuth2 or an API key
+- [Customize the Portal Theme](./theming-developer-portal.md) - Customize the portal's look and feel

@@ -174,10 +174,8 @@ To redeploy, navigate to the **Deploy page** of the API Proxy and click **Deploy
 
 ## Next Steps
 
-Your Self-Hosted Gateway is now running! Here's what to do next:
-
-- **Configure Policies**: Apply policies through the [Adding and Managing Policies](./manage-policies.md) guide
-- **Monitor**: View gateway health and metrics using Analytics
+- [Add and Manage Policies](./manage-policies.md) - Apply policies to the APIs on your gateway
+- [Monitor](../../monitor/overview.md) - Track the traffic, logs, and health of your APIs and gateways
 
 ## Troubleshooting
 

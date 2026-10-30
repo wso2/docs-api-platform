@@ -4,7 +4,9 @@ description: "Create, develop, test, and publish API proxies in API Platform Clo
 slug: /api-control-plane
 ---
 
-The API Control Plane is where you build and manage API proxies. An API proxy sits in front of your backend service, secures it, applies policies to its traffic, and controls who can use it.
+The API Control Plane is the central place to manage your APIs and the resources they depend on. From it, you build, deploy, and publish API proxies, and administer the users, environments, gateways, and portals of your organization.
+
+An API proxy sits in front of your backend service, secures it, applies policies to its traffic, and controls who can use it.
 
 You create and configure API proxies in the control plane. You then deploy them to gateways that run in the data plane, and publish them to Developer Portals where consumers can find and use them. For more on how the two planes work together, see [Control Plane and Data Planes](../key-concepts.md#control-plane-and-data-planes).
 

@@ -189,6 +189,6 @@ Once updated, start the gateway as usual:
 docker compose --env-file configs/keys.env up
 ```
 
-## What's Next?
+## Next Steps
 
-- [Apply Custom Policies to APIs](./apply-custom-policies-to-apis.md): Sync your custom policy to the organization and apply it to APIs
+- [Apply Custom Policies to APIs](./apply-custom-policies-to-apis.md) - Sync your custom policy to the organization and apply it to APIs

@@ -55,6 +55,6 @@ On the portal card, click **Open Portal**. The portal opens in a new browser tab
 Deleting a portal is permanent.
 :::
 
-## Next steps
+## Next Steps
 
 - [Publish an API](./publish-api-proxy/publish-an-api.md) - Publish an API proxy to a portal so consumers can discover it

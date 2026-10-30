@@ -24,3 +24,7 @@ To subscribe to an API via an application, follow these steps:
     :::
 
 Once you subscribe to an API, you can invoke it using the application keys.
+
+## Next Steps
+
+- [Consume an API](./consume-an-api.md) - Generate keys for the application and invoke the API

@@ -98,3 +98,9 @@ Review the response to confirm that the API behaves as expected.
 Publishing makes the API available in a Developer Portal, where consumers can discover it and read its documentation.
 
 See [Publish an API](../publish-api-proxy/publish-an-api.md).
+
+## Next Steps
+
+- [Secure API Access](../develop-api-proxy/security/secure-api-access/overview.md) - Control who can invoke the API
+- [Attach and Manage Policies](../develop-api-proxy/policy/attach-and-manage-policies.md) - Add capabilities such as rate limiting or header changes to the API
+- [Consume an API](../developer-portal/consume-an-api.md) - Generate keys in the Developer Portal and invoke the API
