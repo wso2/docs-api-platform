@@ -111,9 +111,9 @@ Use the arrow buttons between the two panels to move resources:
 - **`<`** — Move selected resource(s) back
 - **`<<`** — Move all resources back
 
-### Import Resources
+### Update the OpenAPI Definition
 
-Click **Import resources from specification** to load or refresh the resource list from the provider's OpenAPI specification.
+To load or refresh the resource list from an OpenAPI specification, click **Update OpenAPI Definition**, and then import the specification in the dialog.
 
 ---
 
@@ -132,17 +132,17 @@ Set up the API key that client applications must provide:
 | Field | Description | Example |
 |-------|-------------|---------|
 | **Authentication Type** | Authentication method | `apiKey` (default) |
-| **API Key Name** | Header or query parameter name | `x-api-key`, `apikey`, `Authorization` |
-| **Key Location** | Where clients send the key | `Header` (recommended) or `Query` |
+| **API Key Name** | Header name | `x-api-key`, `apikey`, `Authorization` |
+| **Key Location** | Where clients send the key | `Header` |
+| **API Key Value Prefix** | Optional text that clients send before the key in the header value | `Bearer` |
 
 **To configure:**
 
 1. Select **Authentication Type**: `apiKey`
 2. Enter **API Key Name** that applications will use
-3. Choose **Key Location**:
-    - **Header** - Sent in HTTP request header (most secure)
-    - **Query** - Sent as URL query parameter (less secure)
-4. Click **Save**
+3. Keep **Key Location** as **Header**.
+4. Optional: In **API Key Value Prefix**, enter the text that clients send before the key, such as `Bearer`. For example, with the API key name `Authorization` and the prefix `Bearer`, clients send `Authorization: Bearer <api-key>`.
+5. Click **Save**
 
 ---
 
@@ -156,13 +156,10 @@ Control request and token consumption to prevent cost overruns and ensure fair u
 
 The Rate Limiting tab provides two independent sections: **Backend** and **Per Consumer**.
 
-| Section | Controls | Protects | Status |
-|---------|----------|----------|--------|
-| **Backend** | Requests from the gateway to the upstream LLM provider | Your provider API credentials and total spend | Available |
-| **Per Consumer** | Requests from client applications to the gateway | Fair usage across all consumers | *Coming soon* |
-
-!!! info "Per Consumer Rate Limiting — Coming Soon"
-    Per consumer rate limiting is not yet available. Only the **Backend** section is currently configurable.
+| Section | Controls | Protects |
+|---------|----------|----------|
+| **Backend** | Requests from the gateway to the upstream LLM provider | Your provider API credentials and total spend |
+| **Per Consumer** | Requests from each client application to the gateway | Fair usage across all consumers |
 
 Both sections support two configuration modes:
 
@@ -180,20 +177,20 @@ Each section lets you configure:
 |-----------|-------------|
 | **Request Count** | Maximum number of requests within the reset duration |
 | **Token Count** | Maximum number of tokens (prompt + completion) within the reset duration |
-| **Cost** | Cost-based limiting *(Coming soon)* |
+| **Cost** | Maximum spend, in US dollars, within the reset duration |
 
-For each enabled criterion, set the **Quota** and **Reset Duration** (`second`, `minute`, or `hour`).
+For each enabled criterion, set the **Quota** and **Reset Duration** (`hour`, `day`, `week`, or `month`).
 
 ### Provider-wide Configuration
 
-1. Select **Provider-wide** in the Backend section.
-2. Enable **Request Count** and/or **Token Count**.
+1. Select **Provider-wide** in the **Backend** or **Per Consumer** section.
+2. Enable **Request Count**, **Token Count**, or **Cost**.
 3. Enter the **Quota** and select the **Reset Duration** for each criterion.
 4. Click **Save**.
 
 ### Per Resource Configuration
 
-1. Select **Per Resource** in the Backend section.
+1. Select **Per Resource** in the **Backend** or **Per Consumer** section.
 2. Expand **Limit per Resource** to set default limits for all endpoints:
     - Enable the criteria and configure **Quota** and **Reset Duration**.
 3. To override limits for a specific endpoint, expand that resource row and configure it separately.

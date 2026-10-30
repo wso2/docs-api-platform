@@ -126,7 +126,7 @@ Connect your Stripe account at the organization level. The platform uses these c
 ![Add Stripe Credentials panel showing Secret Key and Publishable Key fields](../../assets/clips/monetization/api-monetization/add_stripe_creds.gif){.cInlineImage-full}
 
 !!! note
-    You can use a Standard secret key or a Restricted secret key. For Restricted keys, see [Getting Started with API Monetization](../../cloud/api-monetization/getting-started.md) for the minimum permissions required.
+    You can use a Standard secret key or a Restricted secret key. For Restricted keys, see [Connect Stripe](../../monetization/getting-started.md) for the minimum permissions required.
 
 ---
 

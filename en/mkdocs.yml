@@ -205,8 +205,7 @@ nav:
           - Analytics Header Filter: cloud/ai-gateway/analytics/analytics-header-filter.md
     - AI Workspace:
         - Overview: cloud/ai-workspace/overview.md
-        - Quickstart: cloud/ai-workspace/quickstart.md
-        - Getting Started: cloud/ai-workspace/getting-started.md
+        - Quick Start Guide: cloud/ai-workspace/quickstart.md
         - AI Gateways:
             - Setting Up: cloud/ai-workspace/ai-gateways/setting-up.md
         - LLM Providers:
@@ -254,7 +253,7 @@ nav:
             - Writing an AI Policy: cloud/ai-workspace/policies/writing-an-ai-policy.md
     - Event Gateway:
         - Overview: cloud/event-gateway/overview.md
-        - Getting Started: cloud/event-gateway/getting-started.md
+        - Quick Start Guide: cloud/event-gateway/getting-started.md
         - Setting Up: cloud/event-gateway/setting-up.md
         - Publish APIs:
           - Overview: cloud/event-gateway/publish-apis/overview.md
@@ -267,7 +266,7 @@ nav:
         # - API Platform Cloud Gateway: cloud/api-platform-gateway/cloud-gateway.md
         - Self-Hosted Gateway:
             - Architecture: cloud/api-platform-gateway/architecture.md
-            - Getting Started: cloud/api-platform-gateway/getting-started.md
+            - Quick Start Guide: cloud/api-platform-gateway/getting-started.md
             - Setting Up: cloud/api-platform-gateway/setting-up.md
             - Adding and Managing Policies: cloud/api-platform-gateway/manage-policies.md
             - Custom Policies:
@@ -315,6 +314,7 @@ nav:
     - API Platform Samples:
         - Samples Overview: cloud/samples/samples-overview.md
     - Developer Portal:
+        - Quick Start Guide: guides/developer-portal/api-discovery-and-tryout.md
         - Theming Developer Portal:
             - Theming with AI: cloud/devportal/theming-devportal-with-ai.md
             - Theming Manually:
@@ -803,7 +803,7 @@ nav:
             - LLM Proxy: ai-gateway/next/gateway-artifacts/llm-proxy.md
             - MCP Proxy: ai-gateway/next/gateway-artifacts/mcp-proxy.md
         - CLI and Extensibility:
-            - CLI Quick Start: tools/cli/quick-start-guide.md
+            - CLI Quick Start Guide: tools/cli/quick-start-guide.md
             - CLI Reference: tools/cli/reference.md
             - Customizing Gateway Policies: tools/cli/customizing-gateway-policies.md
         - Guides:
@@ -1051,7 +1051,7 @@ nav:
             - LLM Proxy: ai-gateway/2026.09.24/gateway-artifacts/llm-proxy.md
             - MCP Proxy: ai-gateway/2026.09.24/gateway-artifacts/mcp-proxy.md
         - CLI and Extensibility:
-            - CLI Quick Start: tools/cli/quick-start-guide.md
+            - CLI Quick Start Guide: tools/cli/quick-start-guide.md
             - CLI Reference: tools/cli/reference.md
             - Customizing Gateway Policies: tools/cli/customizing-gateway-policies.md
         - Guides:
@@ -1164,7 +1164,7 @@ nav:
             - LLM Proxy: ai-gateway/1.2.0/gateway-artifacts/llm-proxy.md
             - MCP Proxy: ai-gateway/1.2.0/gateway-artifacts/mcp-proxy.md
         - CLI and Extensibility:
-            - CLI Quick Start: tools/cli/quick-start-guide.md
+            - CLI Quick Start Guide: tools/cli/quick-start-guide.md
             - CLI Reference: tools/cli/reference.md
             - Customizing Gateway Policies: tools/cli/customizing-gateway-policies.md
         - Guides:
@@ -1316,7 +1316,6 @@ nav:
         - Concepts: api-portal/next/concepts.md
         - Quick Start Guide: api-portal/next/quickstart-guide.md
         # Stand the portal up, in the order an operator does it.
-        - Getting Started: api-portal/next/getting-started.md
         - Setting Up:
             - Configuration & Interpolation: api-portal/next/setting-up/configuration.md
             - Minimum resource requirements: api-portal/next/setting-up/resource-requirement.md
@@ -1412,7 +1411,6 @@ nav:
         - Concepts: api-portal/1.0.0/concepts.md
         - Quick Start Guide: api-portal/1.0.0/quickstart-guide.md
         # Stand the portal up, in the order an operator does it.
-        - Getting Started: api-portal/1.0.0/getting-started.md
         - Setting Up:
             - Configuration & Interpolation: api-portal/1.0.0/setting-up/configuration.md
             - Minimum resource requirements: api-portal/1.0.0/setting-up/resource-requirement.md
@@ -1506,7 +1504,7 @@ nav:
     - "next":
       - Overview: ai-workspace/next/overview.md
       - About this Release: ai-workspace/next/about-this-release.md
-      - Getting Started: ai-workspace/next/getting-started.md
+      - Quick Start Guide: ai-workspace/next/getting-started.md
       # Set up the workspace itself.
       - Setting Up:
           - Configuration & Interpolation: ai-workspace/next/setting-up/configuration.md
@@ -1598,7 +1596,7 @@ nav:
     - "1.0.0":
       - Overview: ai-workspace/1.0.0/overview.md
       - About this Release: ai-workspace/1.0.0/about-this-release.md
-      - Getting Started: ai-workspace/1.0.0/getting-started.md
+      - Quick Start Guide: ai-workspace/1.0.0/getting-started.md
       # Set up the workspace itself.
       - Setting Up:
           - Configuration & Interpolation: ai-workspace/1.0.0/setting-up/configuration.md
@@ -1688,7 +1686,7 @@ nav:
   - Monetization:
     - Overview: monetization/overview.md
     - Monetizing APIs:
-        - Getting Started: monetization/getting-started.md
+        - Connect Stripe: monetization/getting-started.md
         - Manage Paid Subscription Plans: monetization/manage-paid-subscription-plans.md
     - Consume Monetized APIs:
         - Subscribe to a Paid Plan: monetization/subscribe-to-paid-plan.md
@@ -1746,7 +1744,7 @@ nav:
         - Customizing Gateway Policies: tools/cli/customizing-gateway-policies.md
         - Reference: tools/cli/reference.md
     - VS Code for API Design:
-        - Getting Started: tools/vscode-api-design/getting-started.md
+        - Quick Start Guide: tools/vscode-api-design/getting-started.md
         - Design APIs: tools/vscode-api-design/design-apis.md
         - Govern APIs: tools/vscode-api-design/govern-apis.md
         - End-to-End Tutorial: tools/vscode-api-design/end-to-end-tutorial.md
@@ -1754,7 +1752,8 @@ nav:
         - Quick Start Guide: tools/arazzo-mcp-gen-cli/quick-start-guide.md
         - Reference: tools/arazzo-mcp-gen-cli/reference.md
     - VS Code Arazzo Visualizer:
-        - Getting Started: tools/vscode-arazzo-visualizer/getting-started.md
+        - Overview: tools/vscode-arazzo-visualizer/getting-started.md
+        - Quick Start Guide: tools/vscode-arazzo-visualizer/quick-start-guide.md
   - FAQ: faq.md
   - Glossary: glossary.md
 
@@ -1801,6 +1800,11 @@ plugins:
   - markdownextradata: {}
   - redirects:
       redirect_maps:
+        # Cloud AI Workspace: Getting Started merged into the quick start guide
+        cloud/ai-workspace/getting-started.md: cloud/ai-workspace/quickstart.md
+        # API Portal: Getting Started merged into the quick start guide
+        api-portal/1.0.0/getting-started.md: api-portal/1.0.0/quickstart-guide.md
+        api-portal/next/getting-started.md: api-portal/next/quickstart-guide.md
         # API Portal: overview + documentation pages merged into Browse APIs
         api-portal/next/discover-apis/api-overview.md: api-portal/next/discover-apis/browse-apis.md
         api-portal/next/discover-apis/api-documentations.md: api-portal/next/discover-apis/browse-apis.md
@@ -2216,7 +2220,7 @@ plugins:
         ai-workspace/ai-gateways/setting-up.md: cloud/ai-workspace/ai-gateways/setting-up.md
         ai-workspace/configure-inbound-auth.md: cloud/ai-workspace/configure-inbound-auth.md
         ai-workspace/genai-applications.md: cloud/ai-workspace/genai-applications.md
-        ai-workspace/getting-started.md: cloud/ai-workspace/getting-started.md
+        ai-workspace/getting-started.md: cloud/ai-workspace/quickstart.md
         ai-workspace/insights.md: cloud/ai-workspace/insights.md
         ai-workspace/overview.md: cloud/ai-workspace/overview.md
         ai-workspace/using-sdks.md: cloud/ai-workspace/using-sdks.md

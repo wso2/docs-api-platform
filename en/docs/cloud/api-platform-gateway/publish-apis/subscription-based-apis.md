@@ -22,7 +22,7 @@ This model fits APIs where you need tiered access, usage limits, or clear commer
 ## Before you begin
 
 - Organization administrators have created subscription plans. See [Create API Subscription Plans](../../administer/settings/create-api-subscription-plans.md).
-- The API proxy is deployed to your **Self-Hosted Gateway** and behaves correctly. See [Getting Started with Self-Hosted Gateway](../getting-started.md).
+- The API proxy is deployed to your **Self-Hosted Gateway** and behaves correctly. See [Self-hosted gateway quick start guide](../getting-started.md).
 
 ## Assign subscription plans to the API
 

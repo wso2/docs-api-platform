@@ -16,10 +16,13 @@ content_type: "overview"
 
 The AI Gateway is the standalone runtime plane for routing, securing, and observing AI traffic. It handles Large Language Model (LLM) APIs and Model Context Protocol (MCP) servers, and can run independently or connect to the AI Workspace control plane for centralized management.
 
-## Quick Start
+!!! note "A self-hosted gateway in API Platform Cloud"
+    In API Platform Cloud, the AI Gateway is a self-hosted gateway. You run it in your infrastructure, and it connects to AI Workspace in the cloud, which manages it as its control plane. It's the same runtime as the standalone [AI Gateway](../../ai-gateway/1.2.0/overview.md). API Platform Cloud also supports a self-hosted [API Gateway](../api-platform-gateway/architecture.md) and [Event Gateway](../event-gateway/overview.md).
 
-- [LLM Quick Start Guide](llm/quick-start-guide.md) - Set up the gateway, verify the controller admin health endpoint, and route traffic to LLM providers like OpenAI
-- [MCP Quick Start Guide](mcp/quick-start-guide.md) - Set up the gateway, verify the controller admin health endpoint, and route traffic to MCP servers
+## Quick start guides
+
+- [LLM quick start guide](llm/quick-start-guide.md) - Set up the gateway, check its health through the controller's admin endpoint, and route traffic to LLM providers like OpenAI
+- [MCP quick start guide](mcp/quick-start-guide.md) - Set up the gateway, check its health through the controller's admin endpoint, and route traffic to MCP servers
 
 ## Key Concepts
 

@@ -475,4 +475,4 @@ The same holds for the subscription side, where a rejection reads as **403** rat
 - [Webhook Integration](../admin-settings/webhook-integration.md): registering a subscriber from the Settings UI
 - [Consume an API](../consume-an-api/overview.md): which credentials an API expects, and how to tell
 - [Manage Subscriptions](../consume-an-api/manage-subscriptions.md) and [Manage API Keys](../consume-an-api/manage-api-keys.md): the consumer-side lifecycles
-- [Getting Started](../getting-started.md): the portal on its own, without a gateway
+- [Quick start guide](../quickstart-guide.md): the portal on its own, without a gateway

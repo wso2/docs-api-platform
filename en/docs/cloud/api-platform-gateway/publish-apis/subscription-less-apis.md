@@ -21,7 +21,7 @@ Use subscription-less publishing when you want the API to be discoverable in the
 
 ## Before you begin
 
-- The API proxy is deployed to your **Self-Hosted Gateway** and works as expected in your environments. See [Getting Started with Self-Hosted Gateway](../getting-started.md).
+- The API proxy is deployed to your **Self-Hosted Gateway** and works as expected in your environments. See [Self-hosted gateway quick start guide](../getting-started.md).
 - You have permission to change the API lifecycle (typically **API publisher** or equivalent).
 
 ## Do not assign subscription plans
@@ -74,4 +74,4 @@ If any plan is enabled for the API, consumers may be guided through subscription
 
 - [Publish APIs overview](overview.md)
 - [Subscription-based APIs](subscription-based-apis.md)
-- [Getting Started with Self-Hosted Gateway](../getting-started.md)
+- [Self-hosted gateway quick start guide](../getting-started.md)

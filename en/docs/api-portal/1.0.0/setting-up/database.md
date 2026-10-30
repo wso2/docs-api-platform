@@ -186,6 +186,6 @@ With `verify-full`, the portal verifies the server certificate against the certi
 
 - Set the required [security keys](../references/configurations.md#security) before starting the portal.
 - Configure [authentication](authentication/overview.md).
-- Return to the [Getting Started](../getting-started.md) guide to run the portal.
+- Return to the [quick start guide](../quickstart-guide.md) to run the portal.
 
 {% endraw %}

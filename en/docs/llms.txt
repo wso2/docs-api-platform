@@ -19,8 +19,8 @@
 ## Cloud Platform
 
 - [What is API Platform Cloud?](https://wso2.com/api-platform/docs/cloud/introduction/what-is-bijira.md): Overview of the managed SaaS offering and its core capabilities
-- [Quick Start: API Proxy](https://wso2.com/api-platform/docs/cloud/introduction/quick-start-guide.md): Create and invoke your first REST API Proxy on the cloud platform in under 10 minutes
-- [Quick Start: MCP Server](https://wso2.com/api-platform/docs/cloud/introduction/quick-start-guide-mcp.md): Create and publish your first MCP server from the cloud console
+- [API Proxy Quick Start Guide](https://wso2.com/api-platform/docs/cloud/introduction/quick-start-guide.md): Create and invoke your first REST API Proxy on the cloud platform in under 10 minutes
+- [MCP Server Quick Start Guide](https://wso2.com/api-platform/docs/cloud/introduction/quick-start-guide-mcp.md): Create and publish your first MCP server from the cloud console
 - [Organizations](https://wso2.com/api-platform/docs/cloud/bijira-concepts/organization.md): The top-level resource boundary: users, roles, groups, and organization identifiers
 - [Projects](https://wso2.com/api-platform/docs/cloud/bijira-concepts/project.md): Logical groupings of APIs and services within an organization
 - [Data Planes](https://wso2.com/api-platform/docs/cloud/bijira-concepts/data-planes.md): Gateway runtime environments: WSO2-managed (cloud), self-hosted (hybrid), or federated third-party
@@ -130,8 +130,7 @@
 ## AI Workspace
 
 - [AI Workspace Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/overview.md): The organizational control plane for AI: manage LLM providers, MCP proxies, GenAI applications, and AI policies centrally across connected AI Gateways
-- [AI Workspace Getting Started](https://wso2.com/api-platform/docs/cloud/ai-workspace/getting-started.md): Set up an AI Workspace, connect it to an AI Gateway, and configure your first LLM provider
-- [AI Workspace Quickstart](https://wso2.com/api-platform/docs/cloud/ai-workspace/quickstart.md): Connect an AI Gateway to AI Workspace, configure an LLM provider and an MCP proxy, and call both through the AI Gateway
+- [AI Workspace Quick Start Guide](https://wso2.com/api-platform/docs/cloud/ai-workspace/quickstart.md): Connect an AI Gateway to AI Workspace, configure an LLM provider and an MCP proxy, and call both through the AI Gateway
 - [Setting Up AI Gateways](https://wso2.com/api-platform/docs/cloud/ai-workspace/ai-gateways/setting-up.md): Connect a self-hosted AI Gateway runtime to the AI Workspace control plane
 - [LLM Providers Overview](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/overview.md): What an LLM Provider is: a managed connection to an LLM backend with credentials, access control, and org-level policies
 - [Configure LLM Provider](https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/configure-provider.md): Add a new LLM provider in AI Workspace
@@ -164,7 +163,7 @@
 
 - [AI Workspace Overview](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/overview.md): The self-hosted control plane for AI: manage LLM providers, MCP proxies, GenAI applications, and AI policies, deployed with Docker Compose
 - [About this release](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/about-this-release.md): Features, compatible product versions, key considerations, and known limitations of WSO2 AI Workspace 1.0.0.
-- [AI Workspace Get Started](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/getting-started.md): Run AI Workspace locally with Docker Compose, connect an AI Gateway, configure an LLM provider, and run a real prompt through it
+- [AI Workspace Quick Start Guide](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/getting-started.md): Run AI Workspace locally with Docker Compose, connect an AI Gateway, configure an LLM provider, and run a real prompt through it
 - [AI Workspace configuration and environment interpolation](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/setting-up/configuration.md): How AI Workspace and the Platform API load config.toml, inject environment values and mounted files through interpolation tokens, and keep secrets out of it.
 - [Change the ports AI Workspace uses](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/setting-up/ports.md): Move the AI Workspace and Platform API off their default ports, either by remapping the published host port or by changing the port each service listens on.
 - [Connect a database to the Platform API](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/setting-up/database.md): Move the Platform API from SQLite onto PostgreSQL or SQL Server: create the database, configure the connection, secure it with TLS, and tune the pool.
@@ -220,7 +219,7 @@
 - [Secure traffic with TLS](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/production/tls.md): Give AI Workspace and the Platform API certificates from your own CA, decide where TLS terminates, and make the backend-for-frontend verify the control plane.
 - [Expose AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/production/expose-the-workspace.md): Publish AI Workspace on a public hostname with an ingress resource or a reverse proxy, expose the control plane for gateways, and keep redirect URLs and CORS consistent.
 - [Run in high availability](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/production/high-availability.md): Scale AI Workspace and the Platform API beyond one instance: move to a shared database, add replicas, keep sessions working with affinity, and survive node and host failures.
-- [Harden the deployment](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/production/harden.md): Close the gaps a quickstart leaves open: delegate login to an identity provider, keep authorization enforced, bound connections, and restrict what each container can do and reach.
+- [Harden the deployment](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/production/harden.md): Close the gaps the quick start guide leaves open: delegate login to an identity provider, keep authorization enforced, bound connections, and restrict what each container can do and reach.
 - [Connect AI gateways in production](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/production/connect-gateways.md): Register production AI gateways with the control plane: reachable addresses, registration tokens kept out of shell history, certificate trust, and registration checks.
 - [Operate the deployment](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/production/operate.md): Run AI Workspace day to day: structured logs, health signals and alerts, tested backups, and an upgrade path with a rollback behind it.
 - [Deploy on Kubernetes](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/production/deploy-on-kubernetes.md): Deploy AI Workspace in production on Kubernetes with the ai-workspace Helm chart: database, identity provider, secrets, TLS, scaling, and gateways.
@@ -252,7 +251,7 @@
 
 ## Self-Hosted and Third-Party Gateways
 
-- [Self-Hosted Gateway Getting Started](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/getting-started.md): Connect a self-hosted gateway to the cloud control plane (hybrid deployment)
+- [Self-Hosted Gateway Quick Start Guide](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/getting-started.md): Connect a self-hosted gateway to the cloud control plane (hybrid deployment)
 - [Self-Hosted Gateway Architecture](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/architecture.md): Architecture of a self-hosted gateway connected to the cloud control plane
 - [Self-Hosted Gateway Setting Up](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/setting-up.md): Configure environment, certificates, and networking for a self-hosted gateway
 - [Adding and Managing Policies](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/manage-policies.md): Apply and manage policies on a self-hosted gateway
@@ -270,7 +269,7 @@
 ## Event Gateway
 
 - [Event Gateway Overview](https://wso2.com/api-platform/docs/cloud/event-gateway/overview.md): Gateway for event-driven APIs: bridges WebSocket, WebHook, and SSE with message brokers like Kafka, MQTT, and Solace
-- [Event Gateway Getting Started](https://wso2.com/api-platform/docs/cloud/event-gateway/getting-started.md): Set up and publish your first event-driven API through the Event Gateway
+- [Event Gateway Quick Start Guide](https://wso2.com/api-platform/docs/cloud/event-gateway/getting-started.md): Set up and publish your first event-driven API through the Event Gateway
 - [Event Gateway Setting Up](https://wso2.com/api-platform/docs/cloud/event-gateway/setting-up.md): Deploy the Event Gateway in production environments
 - [Publish APIs Overview (Event Gateway)](https://wso2.com/api-platform/docs/cloud/event-gateway/publish-apis/overview.md): How to publish event-driven APIs through the Event Gateway
 - [Subscription Based APIs (Event Gateway)](https://wso2.com/api-platform/docs/cloud/event-gateway/publish-apis/subscription-based-apis.md): Publish subscription-gated event APIs
@@ -295,7 +294,7 @@
 ## Monetization
 
 - [API Monetization Overview](https://wso2.com/api-platform/docs/monetization/overview.md): Generate revenue from APIs with Stripe-powered paid subscription plans and flexible pricing models
-- [Monetization Getting Started](https://wso2.com/api-platform/docs/monetization/getting-started.md): Connect a Stripe account and set up your first paid subscription plan
+- [Connect Stripe](https://wso2.com/api-platform/docs/monetization/getting-started.md): Connect a Stripe account to API Platform, including the permissions for restricted keys
 - [Manage Paid Subscription Plans](https://wso2.com/api-platform/docs/monetization/manage-paid-subscription-plans.md): Create and configure paid subscription tiers
 - [Subscribe to a Paid Plan](https://wso2.com/api-platform/docs/monetization/subscribe-to-paid-plan.md): How consumers subscribe to a paid API subscription plan via Stripe checkout
 - [View Billing and Usage](https://wso2.com/api-platform/docs/monetization/view-billing-and-usage.md): View consumption metrics and billing statements for paid subscriptions
@@ -331,7 +330,7 @@
 ## API Gateway (Standalone)
 
 - [API Gateway Overview](https://wso2.com/api-platform/docs/api-gateway/1.2.0/overview.md): Overview of the standalone Go-based gateway for REST, WebSocket, and GraphQL APIs
-- [API Gateway Quick Start](https://wso2.com/api-platform/docs/api-gateway/1.2.0/quick-start-guide.md): Configure your first API Proxy using YAML and start routing traffic
+- [API Gateway Quick Start Guide](https://wso2.com/api-platform/docs/api-gateway/1.2.0/quick-start-guide.md): Configure your first API Proxy using YAML and start routing traffic
 - [Gateway Configuration and Environment Interpolation](https://wso2.com/api-platform/docs/api-gateway/1.2.0/setup/configuration.md): How the API Platform Gateway loads its config.toml, injects environment values through interpolation tokens, and bootstraps required keys and certificates with the setup script.
 - [Setting Up the Database](https://wso2.com/api-platform/docs/api-gateway/1.2.0/setup/database-setup.md): Create the database and apply the Gateway Controller schema scripts for PostgreSQL or SQL Server before starting the gateway
 - [Artifact Templating](https://wso2.com/api-platform/docs/api-gateway/1.2.0/setup/artifact-templating.md): Use Go text template expressions in API Platform Gateway YAML artifacts to inject environment variables and dynamic values at startup
@@ -393,7 +392,7 @@
 ## AI Gateway (Standalone)
 
 - [AI Gateway Overview](https://wso2.com/api-platform/docs/ai-gateway/1.2.0/overview.md): Overview of the standalone AI Gateway: LLM proxy, MCP proxy, deployment, and observability
-- [AI Gateway Quick Start](https://wso2.com/api-platform/docs/ai-gateway/1.2.0/quick-start-guide.md): Deploy the standalone AI Gateway and route your first LLM request
+- [AI Gateway Quick Start Guide](https://wso2.com/api-platform/docs/ai-gateway/1.2.0/quick-start-guide.md): Deploy the standalone AI Gateway and route your first LLM request
 - [Authenticate Clients](https://wso2.com/api-platform/docs/ai-gateway/1.2.0/authenticate-clients.md): Protect an LLM proxy or provider with the api-key-auth policy, issue consumer API keys through the management API, and manage the key lifecycle.
 - [Guardrails](https://wso2.com/api-platform/docs/ai-gateway/1.2.0/guardrails.md): AI Gateway guardrails: LLM-aware policies for content filtering, safety, and compliance, with per-policy reference in the WSO2 API Platform Policy Hub.
 - [Guardrails Catalogue](https://wso2.com/api-platform/docs/ai-gateway/1.2.0/guardrails/guardrails-catalogue.md): Every guardrail policy the AI Gateway ships, what each one checks, and how to extend the gateway with a guardrail of your own.
@@ -474,8 +473,7 @@
 - [API Portal & MCP Hub overview](https://wso2.com/api-platform/docs/api-portal/1.0.0/overview.md): The API Portal & MCP Hub is a portal where API publishers expose APIs and MCP servers, and developers discover, subscribe, and consume them.
 - [About this release](https://wso2.com/api-platform/docs/api-portal/1.0.0/about-this-release.md): What's included in API Portal & MCP Hub 1.0.0: the API and MCP catalog, API workflows, MCP registry, applications, authentication, theming, and the admin UI.
 - [API Portal concepts](https://wso2.com/api-platform/docs/api-portal/1.0.0/concepts.md): The key building blocks of the API Portal & MCP Hub—organization, views, labels, APIs, MCP servers, API workflows, subscription plans, applications, subscriptions, API keys, and more—and how they relate to each other.
-- [Quick start for API Portal and MCP Hub](https://wso2.com/api-platform/docs/api-portal/1.0.0/quickstart-guide.md): Install the API Portal and MCP Hub with Docker, then add an API and an MCP server through the admin UI and through GitOps.
-- [Get started with API Portal & MCP Hub](https://wso2.com/api-platform/docs/api-portal/1.0.0/getting-started.md): Run the API Portal & MCP Hub locally with Docker Compose, sign in, and publish your first API to the catalog.
+- [API Portal and MCP Hub Quick Start Guide](https://wso2.com/api-platform/docs/api-portal/1.0.0/quickstart-guide.md): Install the API Portal and MCP Hub with Docker, then add an API and an MCP server through the admin UI and through GitOps.
 - [API Portal configuration and environment interpolation](https://wso2.com/api-platform/docs/api-portal/1.0.0/setting-up/configuration.md): How the API Portal & MCP Hub loads its config.toml, injects environment values and mounted files through interpolation tokens, and keeps sensitive values out of the config file.
 - [Change the ports the API Portal uses](https://wso2.com/api-platform/docs/api-portal/1.0.0/setting-up/ports.md): Move the API Portal & MCP Hub and the Platform API off their default ports, either through the APIP_AP_SERVER_PORT variable or by editing the Compose port mappings.
 - [Set up the database](https://wso2.com/api-platform/docs/api-portal/1.0.0/setting-up/database.md): Configure the API Portal & MCP Hub to run on SQLite, PostgreSQL, or Microsoft SQL Server: connection settings, schema, and Transport Layer Security (TLS).
@@ -589,13 +587,14 @@
 
 ## Tools
 
-- [API Platform CLI Quick Start](https://wso2.com/api-platform/docs/tools/cli/quick-start-guide.md): Get started with the `ap` command-line interface
+- [API Platform CLI Quick Start Guide](https://wso2.com/api-platform/docs/tools/cli/quick-start-guide.md): Get started with the `ap` command-line interface
 - [Customizing Gateway Policies with CLI](https://wso2.com/api-platform/docs/tools/cli/customizing-gateway-policies.md): Use the CLI to add and remove policies from a gateway image
 - [API Platform CLI Reference](https://wso2.com/api-platform/docs/tools/cli/reference.md): Full command reference for the `ap` CLI
-- [VS Code API Designer: Getting Started](https://wso2.com/api-platform/docs/tools/vscode-api-design/getting-started.md): Install and configure the WSO2 VS Code extension for API design
+- [VS Code API Designer Quick Start Guide](https://wso2.com/api-platform/docs/tools/vscode-api-design/getting-started.md): Install and configure the WSO2 VS Code extension for API design
 - [VS Code: Design APIs](https://wso2.com/api-platform/docs/tools/vscode-api-design/design-apis.md): Design and edit OpenAPI specifications with AI assistance in VS Code
 - [VS Code: Govern APIs](https://wso2.com/api-platform/docs/tools/vscode-api-design/govern-apis.md): Apply governance rules to API designs directly from VS Code
 - [VS Code: End-to-End Tutorial](https://wso2.com/api-platform/docs/tools/vscode-api-design/end-to-end-tutorial.md): Full walkthrough: draft, design, govern, and fix an OpenAPI specification using API Designer and GitHub Copilot
-- [Arazzo MCP Generator CLI Quick Start](https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/quick-start-guide.md): Convert an Arazzo specification into a Dockerized Python MCP server using the arazzo-mcp-gen CLI
+- [Arazzo MCP Generator CLI Quick Start Guide](https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/quick-start-guide.md): Convert an Arazzo specification into a Dockerized Python MCP server using the arazzo-mcp-gen CLI
 - [Arazzo MCP Generator CLI Reference](https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/reference.md): Full command reference for arazzo-mcp-gen: validate, inspect, visualize, and mcp-server generate
-- [VS Code Arazzo Visualizer: Getting Started](https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/getting-started.md): Visualize, edit, and run Arazzo workflow specifications as interactive diagrams directly inside VS Code
+- [VS Code Arazzo Visualizer: Overview](https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/getting-started.md): Visualize, edit, and run Arazzo workflow specifications as interactive diagrams directly inside VS Code
+- [VS Code Arazzo Visualizer Quick Start Guide](https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/quick-start-guide.md): Install the extension, open a sample Arazzo workflow as a diagram, and run it with Try with curl

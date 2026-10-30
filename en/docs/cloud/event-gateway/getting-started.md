@@ -1,5 +1,5 @@
 ---
-title: "Get started with Event Gateway"
+title: "Event Gateway quick start guide"
 description: "Create an Event Gateway in the API Platform Console, deploy a WebSub API proxy, and test it end to end."
 canonical_url: https://wso2.com/api-platform/docs/cloud/event-gateway/getting-started/
 md_url: https://wso2.com/api-platform/docs/cloud/event-gateway/getting-started.md
@@ -12,7 +12,7 @@ last_updated: 2026-06-23
 content_type: "quickstart"
 ---
 
-# Getting Started with Event Gateway
+# Event Gateway quick start guide
 
 This guide walks you through setting up an API Platform Event Gateway in your environment. Follow these quick steps to get your gateway running and connected to API Platform's control plane.
 

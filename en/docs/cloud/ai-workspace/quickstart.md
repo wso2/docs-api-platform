@@ -1,5 +1,5 @@
 ---
-title: "Get started with AI Workspace"
+title: "AI Workspace quick start guide"
 description: "Connect an AI Gateway to AI Workspace, configure an LLM provider and an MCP proxy, and call both through the AI Gateway."
 canonical_url: https://wso2.com/api-platform/docs/cloud/ai-workspace/quickstart/
 md_url: https://wso2.com/api-platform/docs/cloud/ai-workspace/quickstart.md
@@ -16,7 +16,7 @@ last_updated: 2026-09-09
 content_type: "quickstart"
 ---
 
-# Get started with AI Workspace
+# AI Workspace quick start guide
 
 AI Workspace, hosted by WSO2, provides a central control plane for your AI infrastructure. It lets you manage:
 
@@ -88,16 +88,19 @@ An AI Gateway is the runtime that enforces authentication, rate limits, and guar
 ### Step 3: Register the gateway
 
 1. Navigate to **AI Gateways** in the left navigation menu.
-2. Click **Add AI Gateway**.
+2. Click **Add Gateway**.
 3. Fill in the gateway details:
+    - **Gateway Version**: keep the latest version, for example `AI-Gateway v1.2`.
+    - **Environment**: select **Development**.
     - **Name**: a unique name, for example `dev-ai-gateway`.
     - **Description**: optional.
-    - **URL**: keep the pre-filled `https://localhost:8443`. This is the address the gateway is reachable at once it's running. AI Workspace uses this to build the Invoke URL and MCP Proxy URL you'll call from your own terminal later in this guide. Use an address your terminal can actually reach, not `host.docker.internal`. That hostname only resolves from inside a container, not from your host machine.
-    - **Associated Environment**: select **Development**.
+    - **URL**: enter `https://localhost:8443`. This is the address the gateway is reachable at once it's running. AI Workspace uses this to build the Invoke URL and MCP Proxy URL you'll call from your own terminal later in this guide. Use an address your terminal can actually reach, not `host.docker.internal`. That hostname only resolves from inside a container, not from your host machine.
 
-    ![Add AI Gateway form with a name, the localhost URL, and the Development environment](../../assets/img/ai-gateway/ai-workspace/quickstart/add-ai-gateway-form.png)
+    The completed form looks like this:
 
-4. Click **Add Gateway**.
+    ![Add AI Gateway form with AI-Gateway v1.2, the Development environment, a name, and the localhost URL](../../assets/img/ai-gateway/ai-workspace/quickstart/add-ai-gateway-form.png)
+
+4. Click **Add AI Gateway**.
 
 !!! note "Environment dropdown empty?"
     The **AI Service** onboarding in Part 1 didn't finish. Complete it in the Console, then come back to this step.
@@ -114,25 +117,32 @@ Run these on the machine where the gateway will run. Copy each command from the 
 1. **Download the gateway:**
 
     ```bash
-    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.1.0/wso2apip-ai-gateway-1.1.0.zip && \
-    unzip wso2apip-ai-gateway-1.1.0.zip
+    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip && \
+    unzip wso2apip-ai-gateway-1.2.0.zip
     ```
 
-2. **Configure the gateway.** Create `wso2apip-ai-gateway-1.1.0/configs/keys.env`. Copying from the **Quick Start** tab fills in the registration token and the analytics key:
+2. **Set up the gateway.** Run the one-time setup script:
 
     ```bash
-    MOESIF_KEY=<filled in for you>
-    GATEWAY_CONTROLPLANE_HOST=connect.bijira.dev
-    GATEWAY_REGISTRATION_TOKEN=<filled in for you>
+    cd wso2apip-ai-gateway-1.2.0 && ./scripts/setup.sh
     ```
 
-    `MOESIF_KEY` is optional and enables usage analytics. On Windows, create this file in a text editor, or run these commands from Git Bash or Windows Subsystem for Linux (WSL).
-
-3. **Start the gateway.** It runs in the foreground, so use a second terminal for the rest of this guide:
+3. **Configure the gateway.** Append the control plane settings to `api-platform.env`. Copying from the **Quick Start** tab fills in the registration token and the analytics key:
 
     ```bash
-    cd wso2apip-ai-gateway-1.1.0
-    docker compose --env-file configs/keys.env up
+    cat >> api-platform.env << 'ENVFILE'
+    MOESIF_KEY=<your-moesif-key>
+    APIP_GW_CONTROLLER_CONTROLPLANE_HOST=connect.bijira.dev
+    APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=<filled in for you>
+    ENVFILE
+    ```
+
+    On Windows, run these commands from Git Bash or Windows Subsystem for Linux (WSL).
+
+4. **Start the gateway.** It runs in the foreground, so use a second terminal for the rest of this guide:
+
+    ```bash
+    docker compose --env-file api-platform.env up
     ```
 
 The gateway connects to the control plane, and its logs show `Control plane connection established`. Back in AI Workspace, the gateway's status changes from **Inactive** to **Active**, and the page shows **Your gateway is connected successfully**:
@@ -369,7 +379,7 @@ If something doesn't work as expected, check here before anything else:
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| Gateway stays **Inactive** | Can't reach `connect.bijira.dev`, or the token in `keys.env` is incorrect. | Check the `docker compose` logs. Click **Reconfigure** on the gateway's page for a new token, update `keys.env`, and restart. See [Set up an AI Gateway](ai-gateways/setting-up.md). |
+| Gateway stays **Inactive** | Can't reach `connect.bijira.dev`, or the token in `api-platform.env` is incorrect. | Check the `docker compose` logs. Click **Reconfigure** on the gateway's page for a new token, update `api-platform.env`, and restart. See [Set up an AI Gateway](ai-gateways/setting-up.md). |
 | First LLM request returns `504 upstream request timeout` | The gateway hasn't received the latest configuration yet. | Wait about a minute and retry. |
 | LLM request returns `401` | The `X-API-Key` header is missing or incorrect. | Use the key from [Part 3](#part-3-configure-an-llm-provider), exactly as generated. |
 | MCP `initialize` request fails or times out | The gateway isn't running, or the URL is wrong. | Confirm `docker compose` is still running, and that you copied the full **MCP Proxy URL**. |

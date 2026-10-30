@@ -1,6 +1,6 @@
 ---
-title: "Get started with Arazzo Visualizer for VS Code"
-description: "Install Arazzo Visualizer, visualize Arazzo workflows as diagrams, and run them directly inside VS Code."
+title: "Arazzo Visualizer for VS Code overview"
+description: "Learn what Arazzo Visualizer for VS Code does: visualize Arazzo workflows as diagrams, run them from the editor, and work with them using GitHub Copilot."
 canonical_url: https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/getting-started/
 md_url: https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/getting-started.md
 tags:
@@ -9,7 +9,7 @@ tags:
   - arazzo
 author: WSO2 API Platform Documentation Team
 last_updated: 2026-06-23
-content_type: "quickstart"
+content_type: "concept"
 ---
 
 # Arazzo Visualizer for VS Code
@@ -18,12 +18,9 @@ Arazzo Visualizer helps you understand, edit, and run Arazzo Specification workf
 
 It turns Arazzo files into interactive diagrams, keeps the diagram in sync with your code, and includes a built-in runner engine so you can try workflows against real APIs without leaving the editor.
 
-## Quick Start
+## Quick start guide
 
-- Install the extension from the VS Code Marketplace.
-- Open an Arazzo file, such as .arazzo.yaml, .arazzo.yml, or .arazzo.json.
-- Click the Arazzo Overview icon in the editor toolbar, or open the Command Palette (Ctrl+Shift+P / Cmd+Shift+P) and run ArazzoDesigner: Open Arazzo Visualizer.
-- The visualizer opens beside your file and updates as you edit.
+To install the extension and run a sample workflow, see the [Arazzo Visualizer quick start guide](quick-start-guide.md).
 
 ## Main Features
 
@@ -40,7 +37,6 @@ Read complex API flows as a clear diagram instead of scanning long YAML or JSON 
 
 The extension adds helpful actions above workflow definitions.
 
-- Visualize: Open the selected workflow in the visualizer.
 - ▶ Try with curl: Execute the workflow directly from the editor and see the result in a terminal. If the workflow has input fields, a panel opens so you can fill them in before running.
 - ▶ Try with AI: Hand the workflow off to GitHub Copilot and run it through a natural language conversation.
 

@@ -54,7 +54,7 @@ This guide shows you where to find each of those figures and how to read them.
 - The invoke URL for the proxy, and an API key if the proxy has authentication enabled.
 - `curl` for sending test traffic.
 
-If you're new to the AI Workspace, [Get started with AI Workspace](../../cloud/ai-workspace/getting-started.md) covers the gateway and proxy setup end to end.
+If you're new to the AI Workspace, [AI Workspace quick start guide](../../cloud/ai-workspace/quickstart.md) covers the gateway and proxy setup end to end.
 
 !!! note
     Insights in the AI Workspace is powered by [Moesif](https://www.moesif.com/) and comes integrated, so there's nothing to connect. If your organization was created before February 20, 2026 and you already have a Moesif organization you want to use, see [Integrate API Platform with Moesif](../../cloud/monitoring-and-insights/integrate-bijira-with-moesif.md).

@@ -105,7 +105,7 @@ Within your [organization](admin-settings/organization-settings.md) you can defi
 
 ## Setting up
 
-Beyond the Docker Compose quick start, a production deployment typically needs:
+Beyond the Docker Compose setup in the quick start guide, a production deployment typically needs:
 
 | Topic | Covers |
 |---|---|
@@ -123,6 +123,6 @@ Beyond the Docker Compose quick start, a production deployment typically needs:
 
 ## Getting started
 
-To start using the API Portal & MCP Hub, follow the [Getting Started](getting-started.md) guide.
+To start using the API Portal & MCP Hub, follow the [quick start guide](quickstart-guide.md).
 
 For a summary of what this release includes, see [About this release](about-this-release.md).

@@ -31,7 +31,9 @@ By monetizing APIs through API Platform, organizations gain a streamlined way to
 
 ## Getting Started
 
-1. **Configure Stripe:** Add your Stripe credentials at the organization level to enable payment processing.
-2. **Create Paid Subscription Plans:** Define subscription plans with the appropriate pricing model for your APIs.
-3. **Enable Plans for APIs:** Assign paid subscription plans to specific APIs to make them available for consumers.
-4. **Consumer Subscription:** API consumers discover and subscribe to paid plans through the Developer Portal.
+1. **[Configure Stripe](getting-started.md):** Add your Stripe credentials at the organization level to enable payment processing.
+2. **[Create Paid Subscription Plans](manage-paid-subscription-plans.md):** Define subscription plans with the appropriate pricing model for your APIs.
+3. **[Enable Plans for APIs](manage-paid-subscription-plans.md#step-2-assign-paid-plans-to-an-api):** Assign paid subscription plans to specific APIs to make them available for consumers.
+4. **[Consumer Subscription](subscribe-to-paid-plan.md):** API consumers discover and subscribe to paid plans through the Developer Portal.
+
+For an end-to-end walkthrough, see [Monetize a REST API with Stripe](../guides/monetization/api-monetization.md).

@@ -41,7 +41,7 @@ In WSO2 Cloud, API Platform creates the Stripe products and prices for your plan
 
 Add your Stripe publishable key and a secret key at the organization level.
 
-- [Get started with API monetization](../../monetization/getting-started.md) <span class="vendor-meta">Monetization</span>
+- [Connect Stripe](../../monetization/getting-started.md) <span class="vendor-meta">Monetization</span>
 - [API monetization overview](../../monetization/overview.md) <span class="vendor-meta">Monetization</span>
 
 </div>
@@ -77,7 +77,7 @@ See what each subscriber used and what they were billed.
 </div>
 
 !!! tip "Use a restricted key"
-    Create a restricted Stripe secret key with only the permissions listed in [Get started with API monetization](../../monetization/getting-started.md), instead of a standard secret key with full access to your Stripe account.
+    Create a restricted Stripe secret key with only the permissions listed in [Connect Stripe](../../monetization/getting-started.md), instead of a standard secret key with full access to your Stripe account.
 
 ## Architecture and responsibility model
 

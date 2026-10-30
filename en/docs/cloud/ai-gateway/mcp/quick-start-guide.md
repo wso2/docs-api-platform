@@ -21,7 +21,7 @@ This guide is for developers setting up their first MCP Proxy on Cloud. You'll c
 
 ## Before you start
 
-Before going through this quickstart, make sure you meet the following prerequisites:
+Before going through this quick start guide, make sure you meet the following prerequisites:
 
 - Access to [AI Workspace](https://ai-workspace.bijira.dev/) with the **Admin** or **Developer** role.
 - [Docker](https://docs.docker.com/get-docker/) with the Compose plugin. You can check the installed version with the `docker compose version` command.
@@ -40,17 +40,18 @@ Open [AI Workspace](https://ai-workspace.bijira.dev/) and sign in. Then create a
 ### Step 2: Add a gateway
 
 1. Click **AI Gateways** in the left navigation menu.
-2. Click **Add AI Gateway**.
+2. Click **Add Gateway**.
 3. Fill in the gateway details:
 
     | Field | Value |
     |---|---|
+    | **Gateway Version** | Keep the latest version, for example `AI-Gateway v1.2` |
+    | **Environment** | Select an environment, for example `Development` |
     | **Name** | A unique name for the gateway |
     | **Description** | An optional description of the gateway |
     | **URL** | The gateway URL. The gateway runtime is accessible at this endpoint, for example `https://localhost:8443` |
-    | **Associated Environment** | Select an environment, for example `Development` |
 
-4. Click **Add Gateway**.
+4. Click **Add AI Gateway**.
 
 The gateway detail screen opens.
 
@@ -61,25 +62,32 @@ Select the __Quick Start__ tab in the detail page of the newly added gateway's *
 1. Download and unzip the gateway distribution:
 
     ```bash
-    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.1.0/wso2apip-ai-gateway-1.1.0.zip && \
-    unzip wso2apip-ai-gateway-1.1.0.zip
+    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip && \
+    unzip wso2apip-ai-gateway-1.2.0.zip
     ```
 
-2. Create the environment file with your registration token:
+2. Run the one-time setup script:
 
     ```bash
-    cat > wso2apip-ai-gateway-1.1.0/configs/keys.env << 'ENVFILE'
+    cd wso2apip-ai-gateway-1.2.0 && ./scripts/setup.sh
+    ```
+
+3. Add the control plane settings to the environment file. The setup script in the previous step creates `api-platform.env` with the other settings the gateway needs, so this command appends to it with `cat >>`. Don't create the file with only these three settings, or the gateway can't connect to AI Workspace.
+
+    Copy this command from the **Quick Start** tab on the gateway's detail page. The copied command already contains your Moesif key (`MOESIF_KEY`) and gateway registration token (`APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN`), so you don't need to replace the placeholders shown here:
+
+    ```bash
+    cat >> api-platform.env << 'ENVFILE'
     MOESIF_KEY=<your-moesif-key>
-    GATEWAY_CONTROLPLANE_HOST=connect.bijira.dev
-    GATEWAY_REGISTRATION_TOKEN=<your-gateway-token>
+    APIP_GW_CONTROLLER_CONTROLPLANE_HOST=connect.bijira.dev
+    APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=<your-gateway-token>
     ENVFILE
     ```
 
-3. Start the runtime:
+4. Start the runtime:
 
     ```bash
-    cd wso2apip-ai-gateway-1.1.0 && \
-    docker compose --env-file configs/keys.env up
+    docker compose --env-file api-platform.env up
     ```
 
 ### Step 4: Verify the gateway is active

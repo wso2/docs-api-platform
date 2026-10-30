@@ -17,6 +17,9 @@ content_type: "concept"
 
 The self-hosted gateway runs in a customer-managed private data plane while connecting to the API Platform Control Plane hosted in the cloud. This architecture allows organizations to manage APIs centrally while keeping API traffic, runtime execution, and backend connectivity within their own environment.
 
+!!! note "Self-hosted gateways in API Platform Cloud"
+    API Platform Cloud supports three self-hosted gateways that use this architecture: the API Gateway, the [AI Gateway](../ai-gateway/overview.md), and the [Event Gateway](../event-gateway/overview.md). The API Gateway is the same runtime as the standalone [API Gateway](../../api-gateway/1.2.0/overview.md).
+
 ## Cloud Control Plane
 
 The **API Platform Control Plane** is hosted in the cloud and provides centralized API management capabilities. It is used to configure, publish, and manage APIs and policies.

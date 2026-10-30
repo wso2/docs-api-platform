@@ -16,10 +16,17 @@ content_type: "concept"
 
 A gateway for managing and securing AI traffic, including Large Language Model (LLM) APIs and Model Context Protocol (MCP) servers.
 
-## Quick Start
+## Quick start guides
 
-- [LLM Quick Start Guide](./llm-proxy/quick-start-guide.md)—Install the gateway, confirm the Gateway Controller admin health endpoint reports it healthy, and route traffic to an LLM provider such as OpenAI.
-- [MCP Quick Start Guide](./mcp-proxy/quick-start-guide.md)—Install the gateway, confirm the Gateway Controller admin health endpoint reports it healthy, and route traffic to an MCP server.
+- [LLM quick start guide](./llm-proxy/quick-start-guide.md)—Install the gateway, confirm the Gateway Controller admin health endpoint reports it healthy, and route traffic to an LLM provider such as OpenAI.
+- [MCP quick start guide](./mcp-proxy/quick-start-guide.md)—Install the gateway, confirm the Gateway Controller admin health endpoint reports it healthy, and route traffic to an MCP server.
+
+## Deployment options
+
+You can run the AI Gateway in two ways:
+
+- **Standalone:** You configure LLM providers, LLM proxies, and MCP proxies through YAML files or the gateway's REST API. The gateway doesn't need a control plane.
+- **Connected to a control plane:** The gateway still runs in your infrastructure, and it receives artifacts from API Platform Cloud or WSO2 API Manager. To set up the connection, see [Connect to a control plane](deployment/production-deployment/control-plane-connection.md). AI Workspace works with AI Gateway 1.2.0 and later, so a 1.0.0 gateway can't register with it.
 
 ## Key Concepts
 

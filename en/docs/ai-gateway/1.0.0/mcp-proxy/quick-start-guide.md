@@ -12,10 +12,10 @@ last_updated: 2026-08-05
 content_type: "quickstart"
 ---
 
-## Quick Start
+## MCP proxy quick start guide
 
 !!! info "Watch the video walkthrough"
-    [Check out this quick start on YouTube](https://youtu.be/xt6RIax__dU?rel=0) or watch below.
+    [Check out this quick start guide on YouTube](https://youtu.be/xt6RIax__dU?rel=0) or watch below.
 
 <iframe 
   width="100%" 
@@ -51,14 +51,14 @@ docker compose version
 
 ```bash
 # Download distribution.
-wget https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.1.0/wso2apip-ai-gateway-1.1.0.zip
+wget https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.0.0/wso2apip-ai-gateway-1.0.0.zip
 
 # Unzip the downloaded distribution.
-unzip wso2apip-ai-gateway-1.1.0.zip
+unzip wso2apip-ai-gateway-1.0.0.zip
 
 
 # Start the complete stack
-cd wso2apip-ai-gateway-1.1.0/
+cd wso2apip-ai-gateway-1.0.0/
 docker compose -p ai-gateway up -d
 
 # Verify gateway controller admin endpoint is running
@@ -90,13 +90,13 @@ curl http://localhost:9094/health
 Start the sample MCP server
 
 ```bash
-docker run -p 3001:3001 --name everything --network ai-gateway_gateway-network rakhitharr/mcp-everything:v3
+docker run -d -p 3001:3001 --name everything --network ai-gateway_gateway-network rakhitharr/mcp-everything:v3
 ```
 
 Run the following command to deploy the MCP proxy.
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v0.9/mcp-proxies \
+curl -X POST http://localhost:9090/mcp-proxies \
   -H "Content-Type: application/yaml" \
   -H "Authorization: Basic YWRtaW46YWRtaW4=" \
   --data-binary @- <<'EOF'

@@ -12,10 +12,10 @@ last_updated: 2026-08-05
 content_type: "quickstart"
 ---
 
-## Quick Start
+## LLM proxy quick start guide
 
 !!! info "Watch the video walkthrough"
-    [Check out this quick start on YouTube](https://youtu.be/p5xBXZWt5GU?rel=0) or watch below.
+    [Check out this quick start guide on YouTube](https://youtu.be/p5xBXZWt5GU?rel=0) or watch below.
 
 <iframe 
   width="100%" 
@@ -52,14 +52,14 @@ docker compose version
 <!-- Replace ${version} with the actual release version of the API Platform Gateway. -->
 ```bash
 # Download distribution.
-wget https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.1.0/wso2apip-ai-gateway-1.1.0.zip
+wget https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.0.0/wso2apip-ai-gateway-1.0.0.zip
 
 # Unzip the downloaded distribution.
-unzip wso2apip-ai-gateway-1.1.0.zip
+unzip wso2apip-ai-gateway-1.0.0.zip
 
 
 # Start the complete stack
-cd wso2apip-ai-gateway-1.1.0/
+cd wso2apip-ai-gateway-1.0.0/
 docker compose up -d
 
 # Verify gateway controller admin endpoint is running
@@ -91,7 +91,7 @@ curl http://localhost:9094/health
 The API Platform Gateway currently includes first-class support for the OpenAI LLM provider. As a platform administrator, replace `<openai-apikey>` with your openai API key and run the following command to deploy a sample OpenAI LLM provider.
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v0.9/llm-providers \
+curl -X POST http://localhost:9090/llm-providers \
   -H "Content-Type: application/yaml" \
   -H "Authorization: Basic YWRtaW46YWRtaW4=" \
   --data-binary @- <<'EOF'
@@ -109,7 +109,7 @@ spec:
     auth:
       type: api-key
       header: Authorization
-      value: <openai-apikey>
+      value: Bearer <openai-apikey>
   accessControl:
     mode: deny_all
     exceptions:
@@ -143,7 +143,7 @@ curl -X POST https://localhost:8443/openai/latest/chat/completions \
 The API Platform Gateway provides first-class support for configuring and deploying LLM proxies. As an AI developer, run the following command to deploy a sample LLM proxy that consumes the OpenAI LLM provider previously deployed by the platform administrator.
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v0.9/llm-proxies \
+curl -X POST http://localhost:9090/llm-proxies \
   -H "Content-Type: application/yaml" \
   -H "Authorization: Basic YWRtaW46YWRtaW4=" \
   --data-binary @- <<'EOF'

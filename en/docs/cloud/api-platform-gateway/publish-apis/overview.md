@@ -27,11 +27,11 @@ This section describes two ways to expose published APIs:
 Both approaches use the same high-level flow in the console: deploy the API to your gateway, then use **Manage** → **Lifecycle** to **Publish** the API when it is ready.
 
 !!! note
-    Self-hosted gateway support for creating and routing traffic to APIs follows the same REST proxy constraints described in [Getting Started with Self-Hosted Gateway](../getting-started.md). Publishing and subscription behavior on the gateway is aligned with organization-level subscription plans configuration.
+    Self-hosted gateway support for creating and routing traffic to APIs follows the same REST proxy constraints described in [Self-hosted gateway quick start guide](../getting-started.md). Publishing and subscription behavior on the gateway is aligned with organization-level subscription plans configuration.
 
 ## Related documentation
 
-- [Getting Started with Self-Hosted Gateway](../getting-started.md): Create the gateway, add an API proxy, and deploy
+- [Self-hosted gateway quick start guide](../getting-started.md): Create the gateway, add an API proxy, and deploy
 - [Assign Subscription Plans to APIs](../../develop-api-proxy/subscription-plans.md): Enable subscription plans on an API
 - [Create API Subscription Plans](../../administer/settings/create-api-subscription-plans.md): Define plans at organization level
 - [Manage Lifecycle of API](lifecycle-management.md): Manage API Lifecycles

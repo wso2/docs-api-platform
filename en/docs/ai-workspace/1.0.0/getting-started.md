@@ -1,5 +1,5 @@
 ---
-title: "Get started with AI Workspace"
+title: "AI Workspace quick start guide"
 description: "Run AI Workspace locally with Docker Compose, connect an AI Gateway, configure an LLM provider, and run your first prompt through it."
 canonical_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/getting-started/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/1.0.0/getting-started.md
@@ -13,7 +13,7 @@ last_updated: 2026-08-31
 content_type: "quickstart"
 ---
 
-# Get started with AI Workspace
+# AI Workspace quick start guide
 
 AI Workspace lets you manage the AI Gateways and large language model (LLM) providers your applications call. It's the control plane that configures those gateways and providers, then deploys the configuration to the gateway.
 

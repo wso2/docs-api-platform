@@ -86,7 +86,7 @@ Check that the gateway controller is up and healthy:
 docker compose ps
 
 # Check gateway health
-curl http://localhost:9094/api/admin/v0.9/health
+curl http://localhost:9094/health
 ```
 
 A successful response confirms the gateway is running and ready to accept API configurations.
@@ -98,7 +98,7 @@ A successful response confirms the gateway is running and ready to accept API co
 Use the gateway's management API to deploy a sample Reading List REST API:
 
 ```bash
-curl -X POST http://localhost:9090/api/management/v0.9/rest-apis \
+curl -X POST http://localhost:9090/rest-apis \
   -u admin:admin \
   -H "Content-Type: application/yaml" \
   --data-binary @- <<'EOF'

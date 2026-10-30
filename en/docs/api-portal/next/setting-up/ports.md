@@ -154,4 +154,4 @@ There is no self-signed fallback: with HTTPS enabled, `cert_file` and `key_file`
 ## Related
 
 - [Configurations](../references/configurations.md) — how interpolation tokens deliver values into `config.toml`
-- [Getting started](../getting-started.md) — the quickstart these defaults come from
+- [Quick start guide](../quickstart-guide.md) — the guide these defaults come from
