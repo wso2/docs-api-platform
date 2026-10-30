@@ -4246,6 +4246,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wso2.com/bijira/docs/api-gateway/next/setup/signing-keys-and-jwks/</loc>
+         <lastmod>2026-10-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wso2.com/bijira/docs/api-manager/overview/</loc>
          <lastmod>2026-10-30</lastmod>
          <changefreq>daily</changefreq>
