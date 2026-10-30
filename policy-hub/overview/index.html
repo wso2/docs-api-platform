@@ -95,39 +95,43 @@
 </thead>
 <tbody>
 <tr>
-<td>API Key Auth</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/api-key-auth">API Key Auth</a></td>
 <td>Protects APIs with pre-shared API keys</td>
 </tr>
 <tr>
-<td>Basic Auth</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/basic-auth">Basic Auth</a></td>
 <td>Enforces HTTP Basic Authentication</td>
 </tr>
 <tr>
-<td>JWT Auth</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/jwt-auth">JWT Auth</a></td>
 <td>Validates JWT access tokens against one or more JWKS providers</td>
 </tr>
 <tr>
-<td>Mutual TLS Auth</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/mtls-auth">Mutual TLS Auth</a></td>
 <td>Authenticates callers by the client certificate they present over mutual TLS, against accepted client certificate authorities</td>
 </tr>
 <tr>
-<td>OAuth2 Generator</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/oauth2-generator">OAuth2 Generator</a></td>
 <td>Generates an OAuth 2.0 or static bearer credential and injects it into a configurable request header before forwarding to the backend</td>
 </tr>
 <tr>
-<td>CORS</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/oauth2-token-exchange">OAuth2 Token Exchange</a></td>
+<td>Exchanges the caller's credential for a backend-specific token from an external OAuth2 authorization server</td>
+</tr>
+<tr>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/cors">CORS</a></td>
 <td>Handles preflight requests and injects CORS response headers</td>
 </tr>
 <tr>
-<td>Subscription Validation</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/subscription-validation">Subscription Validation</a></td>
 <td>Confirms the caller holds an active subscription for the target API</td>
 </tr>
 <tr>
-<td>Rate Limit — Basic</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/basic-ratelimit">Rate Limit - Basic</a></td>
 <td>Caps requests per time window</td>
 </tr>
 <tr>
-<td>Rate Limit — Advanced</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/advanced-ratelimit">Rate Limit - Advanced</a></td>
 <td>Multi-dimensional quotas with GCRA or fixed-window algorithms, Redis backend support, and weighted limiting</td>
 </tr>
 </tbody>
@@ -143,47 +147,55 @@
 </thead>
 <tbody>
 <tr>
-<td>AWS Bedrock Guardrail</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/aws-bedrock-guardrail">AWS Bedrock Guardrail</a></td>
 <td>Validates content against AWS Bedrock Guardrails</td>
 </tr>
 <tr>
-<td>Azure Content Safety</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/azure-content-safety-content-moderation">Azure Content Safety</a></td>
 <td>Screens content against Azure Content Safety API</td>
 </tr>
 <tr>
-<td>Semantic Prompt Guard</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/typesafe-jev-content-safety">TypeSafe Jev Content Safety</a></td>
+<td>Screens request or response content using TypeSafe AI's Jev System One model</td>
+</tr>
+<tr>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard">Semantic Prompt Guard</a></td>
 <td>Blocks or allows prompts based on semantic similarity to configured allow/deny phrases</td>
 </tr>
 <tr>
-<td>Semantic Tool Filtering</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/semantic-tool-filtering">Semantic Tool Filtering</a></td>
 <td>Filters MCP tools to only those semantically relevant to the user query</td>
 </tr>
 <tr>
-<td>PII Masking</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/typesafe-jev-tool-filtering">TypeSafe Jev Tool Filtering</a></td>
+<td>Narrows the tools sent to an LLM to those relevant to the user prompt, using TypeSafe AI's Jev System One model</td>
+</tr>
+<tr>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex">PII Masking</a></td>
 <td>Masks or redacts PII from request/response bodies using configurable regex patterns</td>
 </tr>
 <tr>
-<td>JSON Schema Guardrail</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail">JSON Schema Guardrail</a></td>
 <td>Enforces a JSON Schema on request or response payloads</td>
 </tr>
 <tr>
-<td>Regex Guardrail</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/regex-guardrail">Regex Guardrail</a></td>
 <td>Validates content against a regular expression</td>
 </tr>
 <tr>
-<td>URL Guardrail</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/url-guardrail">URL Guardrail</a></td>
 <td>Validates URLs found in request or response bodies</td>
 </tr>
 <tr>
-<td>Content Length Guardrail</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/content-length-guardrail">Content Length Guardrail</a></td>
 <td>Enforces byte-length limits on payloads</td>
 </tr>
 <tr>
-<td>Word Count Guardrail</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/word-count-guardrail">Word Count Guardrail</a></td>
 <td>Enforces word-count limits on payloads</td>
 </tr>
 <tr>
-<td>Sentence Count Guardrail</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/sentence-count-guardrail">Sentence Count Guardrail</a></td>
 <td>Enforces sentence-count limits on payloads</td>
 </tr>
 </tbody>
@@ -199,43 +211,47 @@
 </thead>
 <tbody>
 <tr>
-<td>LLM Cost</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/llm-cost">LLM Cost</a></td>
 <td>Calculates the monetary cost of each LLM call and stores it for downstream policies</td>
 </tr>
 <tr>
-<td>LLM Cost-Based Rate Limit</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/llm-cost-based-ratelimit">LLM Cost-Based Rate Limit</a></td>
 <td>Enforces monetary budget quotas on LLM usage</td>
 </tr>
 <tr>
-<td>Token-Based Rate Limit</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/token-based-ratelimit">Token-Based Rate Limit</a></td>
 <td>Caps usage by token count rather than request count</td>
 </tr>
 <tr>
-<td>Semantic Cache</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/semantic-cache">Semantic Cache</a></td>
 <td>Caches LLM responses using vector similarity, returning cached results for semantically equivalent prompts</td>
 </tr>
 <tr>
-<td>Prompt Decorator</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/prompt-decorator">Prompt Decorator</a></td>
 <td>Injects system instructions or context into prompts at the gateway layer</td>
 </tr>
 <tr>
-<td>Prompt Template</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/prompt-template">Prompt Template</a></td>
 <td>Applies configurable templates to transform prompts before they reach the model</td>
 </tr>
 <tr>
-<td>Prompt Compressor</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/prompt-compressor">Prompt Compressor</a></td>
 <td>Compresses prompt text to reduce token usage before upstream calls</td>
 </tr>
 <tr>
-<td>Model Round Robin</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/model-round-robin">Model Round Robin</a></td>
 <td>Distributes requests evenly across a pool of AI model endpoints</td>
 </tr>
 <tr>
-<td>Model Weighted Round Robin</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/model-weighted-round-robin">Model Weighted Round Robin</a></td>
 <td>Distributes requests across model endpoints according to configured weights</td>
 </tr>
 <tr>
-<td>Respond</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/typesafe-jev-model-routing">TypeSafe Jev Model Routing</a></td>
+<td>Routes AI/LLM requests to different models using TypeSafe AI's Jev System One model</td>
+</tr>
+<tr>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/respond">Respond</a></td>
 <td>Returns an immediate response without forwarding to the upstream backend</td>
 </tr>
 </tbody>
@@ -251,20 +267,28 @@
 </thead>
 <tbody>
 <tr>
-<td>MCP Authentication</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/mcp-auth">MCP Authentication</a></td>
 <td>Secures MCP server traffic per the MCP specification authorization profile</td>
 </tr>
 <tr>
-<td>MCP Authorization</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/mcp-authz">MCP Authorization</a></td>
 <td>Validates access to MCP tools, resources, and prompts using JWT claims or OAuth scopes</td>
 </tr>
 <tr>
-<td>MCP Access Control</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/mcp-acl-list">MCP Access Control</a></td>
 <td>Controls which tools, resources, and prompts a caller can reach using allow/deny lists</td>
 </tr>
 <tr>
-<td>MCP Rewrite</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/mcp-rewrite">MCP Rewrite</a></td>
 <td>Defines user-facing tool names and maps them to backend capability names</td>
+</tr>
+<tr>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/typesafe-jev-mcp-tool-intent-verification">TypeSafe Jev MCP Tool Intent Verification</a></td>
+<td>Screens MCP tool calls using TypeSafe AI's Jev System One model</td>
+</tr>
+<tr>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/typesafe-jev-mcp-tool-result-screening">TypeSafe Jev MCP Tool Result Screening</a></td>
+<td>Screens MCP tool results using TypeSafe AI's Jev System One model before the agent reads them</td>
 </tr>
 </tbody>
 </table>
@@ -279,31 +303,31 @@
 </thead>
 <tbody>
 <tr>
-<td>Request Rewrite</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/request-rewrite">Request Rewrite</a></td>
 <td>Rewrites path, query parameters, and HTTP method before forwarding upstream</td>
 </tr>
 <tr>
-<td>Host Rewrite</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/host-rewrite">Host Rewrite</a></td>
 <td>Overrides the <code>Host</code>/<code>:authority</code> header sent to the upstream</td>
 </tr>
 <tr>
-<td>Dynamic Endpoint</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/dynamic-endpoint">Dynamic Endpoint</a></td>
 <td>Routes a request to a named upstream at runtime</td>
 </tr>
 <tr>
-<td>Set Headers</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/set-headers">Set Headers</a></td>
 <td>Adds or overwrites headers on requests or responses</td>
 </tr>
 <tr>
-<td>Remove Headers</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/remove-headers">Remove Headers</a></td>
 <td>Strips specified headers from requests or responses</td>
 </tr>
 <tr>
-<td>JSON/XML Mediator</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/json-xml-mediator">JSON/XML Mediator</a></td>
 <td>Converts payloads between JSON and XML formats</td>
 </tr>
 <tr>
-<td>Interceptor Service</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/interceptor-service">Interceptor Service</a></td>
 <td>Calls a user-defined HTTP service during the request and/or response phase</td>
 </tr>
 </tbody>
@@ -318,11 +342,11 @@
 </thead>
 <tbody>
 <tr>
-<td>Log Message</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/log-message">Log Message</a></td>
 <td>Logs request/response payload and headers</td>
 </tr>
 <tr>
-<td>Analytics Header Filter</td>
+<td><a href="https://wso2.com/api-platform/policy-hub/policies/analytics-header-filter">Analytics Header Filter</a></td>
 <td>Controls which headers appear in analytics data using allow or deny mode</td>
 </tr>
 </tbody>
