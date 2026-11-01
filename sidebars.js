@@ -64,9 +64,11 @@ const sidebars = {
         doc("publish-api-proxy/deprecate-or-unpublish", "Deprecate or Unpublish an API"),
         doc("publish-api-proxy/make-an-api-ai-ready", "Make an API AI-Ready"),
       ]),
-      doc("api-control-plane/observability", "Observability"),
+      group("Observability", [
+        doc("api-control-plane/logs", "Logs"),
+        doc("api-control-plane/metrics", "Metrics"),
+      ]),
       group("Insights", [
-        doc("api-control-plane/insights", "Overview"),
         doc("api-control-plane/api-insights", "API Insights"),
         doc("api-control-plane/compliance", "Compliance"),
       ]),
@@ -230,19 +232,6 @@ const sidebars = {
       },
     ]),
     */
-    group("Observability", [
-      doc("observability/overview", "Overview"),
-      group("Logs", [
-        doc("observability-and-insights/runtime-logs", "Runtime Logs"),
-        doc("observability-and-insights/audit-logs", "Audit Logs"),
-      ]),
-      doc("monitoring-and-analytics/alerts", "Alerts"),
-      doc("monitoring-and-analytics/gateway-metrics", "Gateway Metrics"),
-    ]),
-    group("Insights", [
-      doc("insights/overview", "Overview"),
-      doc("monitoring-and-analytics", "Dashboards"),
-    ]),
     group("Monetization", [
       doc("monetization/overview", "Overview"),
     ]),
