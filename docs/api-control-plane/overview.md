@@ -37,8 +37,8 @@ Administrators set up the resources that API developers and consumers rely on.
 | [Customize the Portal Theme](../developer-portal/theming-developer-portal.md) | Customize the look and feel of your portals. |
 | [Manage Subscription Plans](../administer/creating-subscription-plans.md) | Create the subscription plans that define how consumers can use your APIs. |
 
-To track the logs, alerts, and health of your API proxies, see [Observability](../observability/overview.md). To analyze API traffic and usage, see [Insights](../insights/overview.md).
+To track the logs, alerts, and health of your API proxies, see [Observability](./observability.md). To analyze API traffic and usage, see [Insights](./insights.md).
 
 ## Get Started
 
-To build your first API proxy and publish it to the API Portal and AI Hub, follow the [Quick Start Guide](../getting-started/api-proxy.md).
+To build your first API proxy and publish it to the API Portal, follow the [Quick Start Guide](../getting-started/api-proxy.md).

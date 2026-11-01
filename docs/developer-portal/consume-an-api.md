@@ -16,7 +16,7 @@ Once you create an application, you can generate credentials for it. API Platfor
 
 To generate an access token for **testing purposes**, follow these steps:
 
-1. Navigate to the [API Portal and AI Hub](https://devportal.bijira.dev) and sign in.
+1. Navigate to the [API Portal](https://devportal.bijira.dev) and sign in.
 
 2. Click on **Applications** in the portal sidebar.
 
@@ -68,7 +68,7 @@ Before proceeding, ensure you have [Created an Application](./manage-application
 
 ### Creating an API Key
 
-To consume an API secured with an API key, ensure that the desired API has API Key authentication enabled. Then create an application in the API Portal and AI Hub and subscribe it to the API under a defined usage policy. The API key will then be associated with that specific application.
+To consume an API secured with an API key, ensure that the desired API has API Key authentication enabled. Then create an application in the API Portal and subscribe it to the API under a defined usage policy. The API key will then be associated with that specific application.
 
 ---
 
@@ -76,7 +76,7 @@ To consume an API secured with an API key, ensure that the desired API has API K
 
 1. Ensure the desired API has API Key authentication enabled.
 
-2. Navigate to the [API Portal and AI Hub](https://devportal.bijira.dev) and sign in.
+2. Navigate to the [API Portal](https://devportal.bijira.dev) and sign in.
 
 3. Click on **Applications** in the portal sidebar.
 

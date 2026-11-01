@@ -25,7 +25,7 @@ Powered by the proven foundation of WSO2 API Manager and enriched with key innov
 
 ### Developer Experience and API Discoverability
 
-- **API Portal and AI Hub:** Offer a branded, self-service portal for API discovery, subscription, and interactive testing.
+- **API Portal:** Offer a branded, self-service portal for API discovery, subscription, and interactive testing.
 - **Auto-Generated Documentation:** Improve usability and adoption with dynamic, always up-to-date API docs.
 
 ### Analytics and Monitoring

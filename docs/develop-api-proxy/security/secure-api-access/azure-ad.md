@@ -50,7 +50,7 @@ You can provide fine-grained access control to your API resources with Permissio
 8. Once the permissions are configured, click **Add** and **Save** the policies and then the API.
 9. From the left navigation menu, click **Deploy** and deploy the API and promote to the production environment.
 10. In the left navigation menu, click **Develop** and then **Lifecycle**.
-11. Click **Publish** and continue to publish your API to the API Portal and AI Hub.
+11. Click **Publish** and continue to publish your API to the API Portal.
 
 ## Step 2: Create a web API on Azure AD
 
@@ -130,7 +130,7 @@ For more information, refer to the Azure documentation: [Add a Client Secret](ht
 ## Step 5: Create an application in API Platform Devportal
 Follow the steps below to consume the API Platform API through external key manager for authentication:
 
-1. Sign in to the [API Portal and AI Hub](https://devportal.bijira.dev/).
+1. Sign in to the [API Portal](https://devportal.bijira.dev/).
 2. Click **Applications** tab and then click **+Create**.
 3. Enter a name for the application.
 4. Click **Create** and **Subscribe** to the API you assigned scopes.
@@ -139,7 +139,7 @@ Follow the steps below to consume the API Platform API through external key mana
 
 You can now invoke the API Platform API using the authorization code grant. API Platform will authenticate the user with Azure AD and provide access to the resource.
 
-1. In the API Portal and AI Hub, go to your application.
+1. In the API Portal, go to your application.
 2. In the overview, under **OAuth2 Credentials**, click **View**.
 3. Copy the **Authorize Endpoint** URL.
 4. Invoke the authorization endpoint as follows:
@@ -162,7 +162,7 @@ You can now invoke the API Platform API using the authorization code grant. API 
     </Tabs>
 7. Review the consent in the login screens that prompt and continue.
 8. After you log in, you will receive an authorization code in the URL. Copy the authorization code and use it to get an access token from Azure AD by following the next steps.
-9. In the API Portal and AI Hub, go to your application.
+9. In the API Portal, go to your application.
 10. In the overview, under **OAuth2 Credentials**, click **View**.
 11. Copy the **Token Endpoint** URL.
 12. Invoke the token endpoint as follows:

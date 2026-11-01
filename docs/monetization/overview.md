@@ -14,4 +14,4 @@ When you create a subscription plan, you select one of the following pricing mod
 
 1. An administrator [creates subscription plans](../administer/creating-subscription-plans.md) for the organization.
 2. An API publisher [assigns subscription plans to an API](../publish-api-proxy/subscription-plans-and-billing.md) for each portal that the API is published to.
-3. Consumers [subscribe to the API](../developer-portal/manage-subscriptions.md) under a plan in the API Portal and AI Hub.
+3. Consumers [subscribe to the API](../developer-portal/manage-subscriptions.md) under a plan in the API Portal.

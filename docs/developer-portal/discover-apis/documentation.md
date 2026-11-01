@@ -1,6 +1,6 @@
 ---
 title: "Documentation"
-description: "View endpoint, schema, security, and base URL details for a published API's documentation in the API Portal and AI Hub."
+description: "View endpoint, schema, security, and base URL details for a published API's documentation in the API Portal."
 ---
 
 The API documentation page provides essential information such as endpoints, schemas, security mechanisms, and the base URL.
