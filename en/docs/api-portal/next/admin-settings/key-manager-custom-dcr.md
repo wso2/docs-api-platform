@@ -9,7 +9,7 @@ tags:
   - key-manager
   - keycloak
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-30
+last_updated: 2026-11-01
 content_type: "how-to"
 ---
 
