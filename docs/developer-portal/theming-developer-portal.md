@@ -1,5 +1,5 @@
 ---
-title: "Theming"
+title: "Customize the Portal Theme"
 ---
 
 ## Theming Developer Portal with AI for your Organization

@@ -1,10 +1,10 @@
 ---
 title: "API Control Plane"
-description: "Create, develop, test, and publish API proxies in API Platform Cloud, and administer the users, environments, gateways, and portals of your organization."
+description: "Create, develop, test, and publish API proxies in API Platform Cloud, and administer the environments, gateways, and portals of your organization."
 slug: /api-control-plane
 ---
 
-The API Control Plane is the central place to manage your APIs and the resources they depend on. From it, you build, deploy, and publish API proxies, and administer the users, environments, gateways, and portals of your organization.
+The API Control Plane is the central place to manage your APIs and the resources they depend on. From it, you build, deploy, and publish API proxies, and administer the environments, gateways, and portals of your organization.
 
 An API proxy sits in front of your backend service, secures it, applies policies to its traffic, and controls who can use it.
 
@@ -29,9 +29,8 @@ Administrators set up the resources that API developers and consumers rely on.
 
 | Task | What You Do |
 |:-----|:------------|
-| [Manage Users](../administer/managing-users.md) | Invite users to your organization, and manage their access. |
-| [Configure Role-Based Access Control](../administer/role-based-access-control.md) | Control what each user can do by assigning roles. |
 | [Manage Environments](../administer/managing-environments.md) | Create and delete the environments that API proxies are deployed to and promoted through. |
+| [Manage Pipelines](../administer/managing-pipelines.md) | Create, edit, and delete the pipelines that define how API proxies are promoted through environments. |
 | [Manage Gateways](../gateways.md) | View and manage the gateways that run your API proxies. |
 | [Manage Portals](../portals.md) | Create, edit, and delete the portals that you publish APIs to. |
 | [Customize the Portal Theme](../developer-portal/theming-developer-portal.md) | Customize the look and feel of your portals. |

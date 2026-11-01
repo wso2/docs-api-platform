@@ -1,5 +1,5 @@
 ---
-title: "Gateways"
+title: "Manage Gateways"
 description: "View the gateways in your organization and add Self-Hosted Gateways from the API Control Plane."
 ---
 

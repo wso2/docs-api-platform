@@ -1,5 +1,5 @@
 ---
-title: "Creating Subscription Plans"
+title: "Manage Subscription Plans"
 description: "Define rate limits, burst control, and pricing models for organization-level API subscription plans in API Platform."
 ---
 

@@ -73,9 +73,8 @@ const sidebars = {
         doc("api-control-plane/compliance", "Compliance"),
       ]),
       group("Administer", [
-        doc("administer/managing-users", "Manage Users"),
-        doc("administer/role-based-access-control", "Configure Role-Based Access Control"),
         doc("administer/managing-environments", "Manage Environments"),
+        doc("administer/managing-pipelines", "Manage Pipelines"),
         doc("gateways", "Manage Gateways"),
         doc("portals", "Manage Portals"),
         doc("developer-portal/theming-developer-portal", "Customize the Portal Theme"),
