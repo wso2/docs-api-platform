@@ -1,24 +1,44 @@
 ---
 title: "Manage Gateways"
-description: "View the gateways in your organization and add Self-Hosted Gateways from the API Control Plane."
+description: "View, add, edit, and delete the gateways in your organization from the API Control Plane."
 ---
 
 You manage all the gateways in your organization from the API Control Plane, regardless of where they run. For the types of gateways and how they work, see [API Gateway](./api-gateway/overview.md).
 
-## Open the Gateways Page
+## View Gateways
 
 1. Sign in to the [API Platform Console](https://console.bijira.dev).
+
 2. In the left navigation menu, click **Gateways**.
 
-The **Gateways** page lists all the gateways in your organization, including the cloud gateway and any Self-Hosted Gateways that you have added.
+The **Gateways** page groups the gateways of your organization into two tabs. Each tab shows how many of its gateways are active and inactive.
 
-## View a Gateway
+| Tab | Gateways |
+|:----|:---------|
+| **WSO2 managed gateways** | Gateways that WSO2 hosts and operates in the cloud. |
+| **Self-hosted gateways** | Gateways that run on your infrastructure and connect to the API Control Plane. |
 
-On the **Gateways** page, click a gateway to view its details.
+Each tab lists its gateways with the following details. To find a gateway by name, type in **Search gateways**.
+
+| Column | Description |
+|:-------|:------------|
+| **Name** | The name of the gateway. The default gateway is marked **Default**. |
+| **Description** | A description of the gateway. |
+| **Type** | The type of the gateway, such as **API Gateway**. |
+| **Status** | Whether the gateway is **Active** or inactive. |
+| **Environment** | The environment that the gateway belongs to. |
 
 ## Add a Self-Hosted Gateway
 
-To add a gateway that runs on your own infrastructure, click **Add Self-Hosted Gateway** on the **Gateways** page. For the full steps, including how to run the gateway and connect it to the API Control Plane, see the [Self-Hosted Gateway Quick Start Guide](./hybrid-gateways/api-gateway/getting-started.md).
+To add a gateway that runs on your own infrastructure, click **Add Gateway** on the **Gateways** page. For the full steps, including how to run the gateway and connect it to the API Control Plane, see the [Self-Hosted Gateway Quick Start Guide](./hybrid-gateways/api-gateway/getting-started.md).
+
+## Edit, Configure, or Delete a Gateway
+
+In the **Actions** column of a gateway, do one of the following.
+
+- To edit the gateway, click the edit icon.
+- To configure the settings of the gateway, click the settings icon.
+- To delete the gateway, click the delete icon.
 
 ## Next Steps
 
