@@ -1,6 +1,6 @@
 ---
 title: "Searching"
-description: "Search published APIs in the Developer Portal by name, type, version, or description."
+description: "Search published APIs in the API Portal and AI Hub by name, type, version, or description."
 ---
 
 You can search for APIs in the API Portal that have already been published from API Platform Cloud.

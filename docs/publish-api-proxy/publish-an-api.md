@@ -1,16 +1,16 @@
 ---
 title: "Publish an API"
-description: "Publish an API proxy to one or more Developer Portals so that consumers can discover, subscribe to, and use it."
+description: "Publish an API proxy to one or more portals so that consumers can discover, subscribe to, and use it."
 ---
 
-When your API proxy is ready for consumers, publish it to a Developer Portal. Consumers can then discover the API in the portal, read its documentation, subscribe to it, and invoke it.
+When your API proxy is ready for consumers, publish it to a portal. Consumers can then discover the API in the portal, read its documentation, subscribe to it, and invoke it.
 
 You publish an API to each portal separately, so you can publish the same API to more than one portal and prepare a different listing for each.
 
 ## Prerequisites
 
 - An API proxy that is deployed to a gateway. See [Gateways](../gateways.md).
-- At least one Developer Portal in your organization. See [Portals](../portals.md).
+- At least one portal in your organization. See [Portals](../portals.md).
 
 ## Publish an API to a Portal
 

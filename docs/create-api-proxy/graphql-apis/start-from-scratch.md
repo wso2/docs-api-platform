@@ -7,7 +7,7 @@ A GraphQL API proxy operates based on the GraphQL query language specification. 
 
 Unlike traditional REST APIs that require multiple endpoints for different resources, GraphQL uses a single endpoint and a type system to define the API's capabilities. This enables clients to compose complex queries that fetch related data in a single request, reducing over-fetching and under-fetching of data. GraphQL is ideal for applications that need flexible data fetching and efficient data aggregation.
 
-This walks you through creating a GraphQL API using a sample backend, deploying it to a gateway, testing it, and publishing it to a developer portal.
+This walks you through creating a GraphQL API using a sample backend, deploying it to a gateway, testing it, and publishing it to a portal.
 
 ## Prerequisites
 
@@ -63,7 +63,7 @@ For more information, see the [GraphQL Console](../../test-api-proxy/graphql-con
 
 ## Publish the API
 
-Publishing makes the API available to developers through a developer portal, where they can discover the API and access its documentation.
+Publishing makes the API available to developers through a portal, where they can discover the API and access its documentation.
 
 See [Publish an API](../../publish-api-proxy/publish-an-api.md).
 

@@ -17,7 +17,7 @@ An **organization** is the top-level container for everything you create in API 
 
 ## Projects
 
-A **project** in API Platform is a logical grouping of API Proxies that typically work together to deliver a business capability. Projects help organize development, deployment, and management workflows for cloud-native applications. Each project is isolated from others, ensuring clear boundaries for resources, permissions, and deployments.
+A **project** in API Platform is a logical grouping of API Proxies that typically work together to deliver a business capability. Projects help organize development, deployment, and management workflows. Each project is isolated from others, ensuring clear boundaries for resources, permissions, and deployments.
 
 ## Gateways
 
@@ -25,7 +25,7 @@ A **gateway** is the runtime that receives API traffic, applies the policies you
 
 API Platform supports the following kinds of gateways:
 
-- **WSO2-managed gateways:** Run in the cloud data plane and are provisioned and operated by WSO2.
+- **WSO2-managed gateways:** Run in a data plane that WSO2 provisions and operates.
 - **Self-hosted gateways:** Run on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connect to the API Platform control plane for configuration and management. See [Self-Hosted Gateway](./hybrid-gateways/api-gateway/getting-started.md).
 - **Third-party gateways:** Gateways from other vendors, such as AWS API Gateway, whose APIs you can discover and manage from API Platform. See [AWS API Gateway](./hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws.md).
 
@@ -43,6 +43,6 @@ Promoting the same build, rather than rebuilding it for each environment, ensure
 
 API Platform's architecture is built around two core components, namely the control plane and the data plane.
 
-The **control plane** manages organizations and projects, and orchestrates the API proxy lifecycle, from creation and deployment to governance, observability, and publishing to the Developer Portal.
+The **control plane** manages organizations and projects, and orchestrates the API proxy lifecycle, from creation and deployment to governance, observability, and publishing to the API Portal and AI Hub.
 
 The **data plane** is where deployed API proxies run, based on the configuration defined in the control plane. All API traffic stays within the data plane, so user data remains securely contained.

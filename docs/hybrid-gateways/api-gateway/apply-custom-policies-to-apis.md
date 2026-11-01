@@ -92,4 +92,4 @@ For detailed instructions on attaching and configuring policies on an API, see [
 
 ## Next Steps
 
-- [Publish an API](../../publish-api-proxy/publish-an-api.md) - Publish the API to a Developer Portal so consumers can discover and use it
+- [Publish an API](../../publish-api-proxy/publish-an-api.md) - Publish the API to a portal so consumers can discover and use it

@@ -1,5 +1,5 @@
 // Navigation for API Platform Cloud: API Control Plane content at the top
-// level, with AI Workspace and Developer Portal as their own sections.
+// level, with AI Workspace and API Portal and AI Hub as their own sections.
 
 const doc = (id, label) => ({type: 'doc', id, label});
 const group = (label, items) => ({type: 'category', label, items});
@@ -133,7 +133,7 @@ const sidebars = {
       doc("ai-workspace/insights", "Insights"),
     ]),
     */
-    group("Developer Portal", [
+    group("API Portal and AI Hub", [
       doc("developer-portal/overview", "Overview"),
       doc("developer-portal/getting-started", "Quick Start Guide"),
       group("Discover", [

@@ -1,9 +1,9 @@
 ---
 title: "Quick Start Guide"
-description: "Create a Developer Portal from the API Control Plane, publish an API to it, and find the API in the portal."
+description: "Create a portal from the API Control Plane, publish an API to it, and find the API in the portal."
 ---
 
-In this guide, you create a Developer Portal for your organization, publish an API to it, and then find the API in the portal the way consumers do.
+In this guide, you create a portal for your organization, publish an API to it, and then find the API in the portal the way consumers do.
 
 ## Prerequisites
 

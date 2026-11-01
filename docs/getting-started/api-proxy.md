@@ -1,9 +1,9 @@
 ---
 title: "Quick Start Guide"
-description: "Create a REST API from a backend URL, deploy it to a gateway, test it, and publish it to a Developer Portal."
+description: "Create a REST API from a backend URL, deploy it to a gateway, test it, and publish it to a portal."
 ---
 
-In API Platform Cloud, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, deploy the API to a gateway, test it, and publish it to a Developer Portal.
+In API Platform Cloud, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, deploy the API to a gateway, test it, and publish it to a portal.
 
 This guide uses the sample Reading List API backend.
 
@@ -95,7 +95,7 @@ Review the response to confirm that the API behaves as expected.
 
 ## Publish the API
 
-Publishing makes the API available in a Developer Portal, where consumers can discover it and read its documentation.
+Publishing makes the API available in a portal, where consumers can discover it and read its documentation.
 
 See [Publish an API](../publish-api-proxy/publish-an-api.md).
 
@@ -103,4 +103,4 @@ See [Publish an API](../publish-api-proxy/publish-an-api.md).
 
 - [Secure API Access](../develop-api-proxy/security/secure-api-access/overview.md) - Control who can invoke the API
 - [Attach and Manage Policies](../develop-api-proxy/policy/attach-and-manage-policies.md) - Add capabilities such as rate limiting or header changes to the API
-- [Consume an API](../developer-portal/consume-an-api.md) - Generate keys in the Developer Portal and invoke the API
+- [Consume an API](../developer-portal/consume-an-api.md) - Generate keys in the API Portal and AI Hub and invoke the API
