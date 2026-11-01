@@ -1359,7 +1359,10 @@ nav:
                 - API Content: api-portal/next/admin-settings/api-content.md
                 - LLM Instructions: api-portal/next/admin-settings/llm-instructions.md
             - Integrations:
-                - Key Manager Integration: api-portal/next/admin-settings/key-manager-integration.md
+                - Key Manager Integration:
+                    - Key Managers: api-portal/next/admin-settings/key-manager-integration.md
+                    - Set Up ThunderID as a Key Manager: api-portal/next/admin-settings/key-manager-thunder.md
+                    - Set Up Any DCR-Compatible Key Manager: api-portal/next/admin-settings/key-manager-custom-dcr.md
                 - Webhook Integration: api-portal/next/admin-settings/webhook-integration.md
             - Appearance:
                 - Theming: api-portal/next/admin-settings/theming.md
