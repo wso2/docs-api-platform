@@ -65,7 +65,11 @@ const sidebars = {
         doc("publish-api-proxy/make-an-api-ai-ready", "Make an API AI-Ready"),
       ]),
       doc("api-control-plane/observability", "Observability"),
-      doc("api-control-plane/insights", "Insights"),
+      group("Insights", [
+        doc("api-control-plane/insights", "Overview"),
+        doc("api-control-plane/api-insights", "API Insights"),
+        doc("api-control-plane/compliance", "Compliance"),
+      ]),
       group("Administer", [
         doc("administer/managing-users", "Manage Users"),
         doc("administer/role-based-access-control", "Configure Role-Based Access Control"),

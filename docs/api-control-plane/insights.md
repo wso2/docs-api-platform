@@ -1,12 +1,19 @@
 ---
 title: "Insights"
-description: "Analyze the usage of your API proxies from the API Control Plane."
+description: "View API usage and compliance reporting for your APIs from the API Control Plane, powered by Moesif."
 ---
 
-From the API Control Plane, you can see how consumers use your API proxies.
+With insights you can see how your APIs are used directly from the console. You can monitor API traffic and overall platform health. Insights helps you move from raw event data to operational insight, by showing how traffic is distributed, where failures occur, which consumers are most active, and how usage changes over time.
 
-| Task | Description |
-|:-----|:------------|
-| [Analyze API usage](../monitoring-and-analytics.md#apis) | View the traffic, errors, and performance of your APIs, and see which consumers are most active, in the Insights dashboards. |
+For each API, the API Control Plane provides the following options under **Insights**.
 
-For all the Insights dashboards, see [Insights](../insights/overview.md).
+| Option | Description |
+|:-------|:------------|
+| [API Insights](./api-insights.md) | View how the API is used, such as its traffic, errors, and performance. |
+| [Compliance](./compliance.md) | View compliance reporting for the API. |
+
+:::note
+API Insights and Compliance are coming soon.
+:::
+
+To view the Insights dashboards for your organization, see [Insights](../insights/overview.md).
