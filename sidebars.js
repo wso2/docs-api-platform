@@ -38,16 +38,12 @@ const sidebars = {
       ]),
       group("Develop", [
         group("Security", [
-          group("Secure API Access", [
-            doc("develop-api-proxy/security/secure-api-access/overview", "Overview"),
-            doc("develop-api-proxy/security/secure-api-access/api-platform-sts", "API Platform STS"),
-            doc("develop-api-proxy/security/secure-api-access/asgardeo", "Asgardeo"),
-            doc("develop-api-proxy/security/secure-api-access/azure-ad", "Microsoft Entra ID (Azure AD)"),
-            doc("develop-api-proxy/security/secure-api-access/external-key-manager", "External Key Manager"),
-          ]),
-          group("Secure Backend Communication", [
-            doc("develop-api-proxy/security/secure-backend-communication/oauth2", "OAuth2"),
-            doc("develop-api-proxy/security/secure-backend-communication/mutual-tls", "Mutual TLS"),
+          doc("develop-api-proxy/security/overview", "Overview"),
+          doc("develop-api-proxy/security/api-key-authentication", "API Key Authentication"),
+          group("OAuth2 Authentication", [
+            doc("develop-api-proxy/security/secure-api-access/api-platform-sts", "Use API Platform STS"),
+            doc("develop-api-proxy/security/secure-api-access/asgardeo", "Use Asgardeo"),
+            doc("develop-api-proxy/security/secure-api-access/external-key-manager", "Use an External Key Manager"),
           ]),
         ]),
         group("Policies", [

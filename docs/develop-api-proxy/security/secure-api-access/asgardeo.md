@@ -1,5 +1,5 @@
 ---
-title: "Secure API Access with Asgardeo"
+title: "Use Asgardeo"
 description: "Authenticate API invocations in WSO2 API Platform with Asgardeo configured as an external key manager."
 ---
 

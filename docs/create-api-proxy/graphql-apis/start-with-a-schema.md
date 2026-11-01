@@ -70,6 +70,6 @@ See [Publish an API](../../publish-api-proxy/publish-an-api.md).
 
 ## Next Steps
 
-- [Secure API Access](../../develop-api-proxy/security/secure-api-access/overview.md) - Control who can invoke the API
+- [Security](../../develop-api-proxy/security/overview.md) - Control who can invoke the API
 - [Attach and Manage Policies](../../develop-api-proxy/policy/attach-and-manage-policies.md) - Add capabilities such as rate limiting or header changes to the API
 - [Documents](../../develop-api-proxy/documents.md) - Add documents that help consumers use the API

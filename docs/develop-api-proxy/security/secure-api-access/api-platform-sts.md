@@ -1,5 +1,5 @@
 ---
-title: "Secure API Access with API Platform STS"
+title: "Use API Platform STS"
 description: "Authenticate API invocations in WSO2 API Platform with the built-in API Platform security token service."
 ---
 

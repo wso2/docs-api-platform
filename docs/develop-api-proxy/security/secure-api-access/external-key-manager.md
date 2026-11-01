@@ -1,5 +1,5 @@
 ---
-title: "Secure API Access with an External Key Manager"
+title: "Use an External Key Manager"
 description: "Authenticate API invocations in WSO2 API Platform with an external key manager."
 ---
 
