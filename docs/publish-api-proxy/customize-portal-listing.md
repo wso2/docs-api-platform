@@ -1,6 +1,6 @@
 ---
 title: "Customize the Portal Listing"
-description: "Set the details, specification, subscription plans, documentation, and landing page that consumers see when you publish an API to a Developer Portal."
+description: "Set the details, specification, subscription plans, documentation, and landing page that consumers see when you publish an API to a portal."
 ---
 
 When you publish an API to a portal, you prepare a listing for it, the information that consumers see in that portal. You prepare the listing in the tabs of the API's publish page for that portal. Each portal has its own listing, so you can present the same API differently in different portals.

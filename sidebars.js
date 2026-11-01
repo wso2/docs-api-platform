@@ -1,5 +1,5 @@
 // Navigation for API Platform Cloud: API Control Plane content at the top
-// level, with AI Workspace and Developer Portal as their own sections.
+// level, with AI Workspace and API Portal as their own sections.
 
 const doc = (id, label) => ({type: 'doc', id, label});
 const group = (label, items) => ({type: 'category', label, items});
@@ -38,16 +38,12 @@ const sidebars = {
       ]),
       group("Develop", [
         group("Security", [
-          group("Secure API Access", [
-            doc("develop-api-proxy/security/secure-api-access/overview", "Overview"),
-            doc("develop-api-proxy/security/secure-api-access/api-platform-sts", "API Platform STS"),
-            doc("develop-api-proxy/security/secure-api-access/asgardeo", "Asgardeo"),
-            doc("develop-api-proxy/security/secure-api-access/azure-ad", "Microsoft Entra ID (Azure AD)"),
-            doc("develop-api-proxy/security/secure-api-access/external-key-manager", "External Key Manager"),
-          ]),
-          group("Secure Backend Communication", [
-            doc("develop-api-proxy/security/secure-backend-communication/oauth2", "OAuth2"),
-            doc("develop-api-proxy/security/secure-backend-communication/mutual-tls", "Mutual TLS"),
+          doc("develop-api-proxy/security/overview", "Overview"),
+          doc("develop-api-proxy/security/api-key-authentication", "API Key Authentication"),
+          group("OAuth2 Authentication", [
+            doc("develop-api-proxy/security/secure-api-access/api-platform-sts", "Use API Platform STS"),
+            doc("develop-api-proxy/security/secure-api-access/asgardeo", "Use Asgardeo"),
+            doc("develop-api-proxy/security/secure-api-access/external-key-manager", "Use an External Key Manager"),
           ]),
         ]),
         group("Policies", [
@@ -68,12 +64,17 @@ const sidebars = {
         doc("publish-api-proxy/deprecate-or-unpublish", "Deprecate or Unpublish an API"),
         doc("publish-api-proxy/make-an-api-ai-ready", "Make an API AI-Ready"),
       ]),
-      doc("api-control-plane/observability", "Observability"),
-      doc("api-control-plane/insights", "Insights"),
+      group("Observability", [
+        doc("api-control-plane/logs", "Logs"),
+        doc("api-control-plane/metrics", "Metrics"),
+      ]),
+      group("Insights", [
+        doc("api-control-plane/api-insights", "API Insights"),
+        doc("api-control-plane/compliance", "Compliance"),
+      ]),
       group("Administer", [
-        doc("administer/managing-users", "Manage Users"),
-        doc("administer/role-based-access-control", "Configure Role-Based Access Control"),
         doc("administer/managing-environments", "Manage Environments"),
+        doc("administer/managing-pipelines", "Manage Pipelines"),
         doc("gateways", "Manage Gateways"),
         doc("portals", "Manage Portals"),
         doc("developer-portal/theming-developer-portal", "Customize the Portal Theme"),
@@ -133,7 +134,7 @@ const sidebars = {
       doc("ai-workspace/insights", "Insights"),
     ]),
     */
-    group("Developer Portal", [
+    group("API Portal", [
       doc("developer-portal/overview", "Overview"),
       doc("developer-portal/getting-started", "Quick Start Guide"),
       group("Discover", [
@@ -230,19 +231,6 @@ const sidebars = {
       },
     ]),
     */
-    group("Observability", [
-      doc("observability/overview", "Overview"),
-      group("Logs", [
-        doc("observability-and-insights/runtime-logs", "Runtime Logs"),
-        doc("observability-and-insights/audit-logs", "Audit Logs"),
-      ]),
-      doc("monitoring-and-analytics/alerts", "Alerts"),
-      doc("monitoring-and-analytics/gateway-metrics", "Gateway Metrics"),
-    ]),
-    group("Insights", [
-      doc("insights/overview", "Overview"),
-      doc("monitoring-and-analytics", "Dashboards"),
-    ]),
     group("Monetization", [
       doc("monetization/overview", "Overview"),
     ]),

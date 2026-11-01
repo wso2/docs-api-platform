@@ -1,5 +1,5 @@
 ---
-title: "Portals"
+title: "Manage Portals"
 description: "Create a portal for your organization, open it, and edit or delete it. A portal is where you publish APIs for consumers."
 ---
 

@@ -5,7 +5,7 @@ description: "Create a REST API in API Platform Cloud by importing an OpenAPI co
 
 In API Platform Cloud, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, customize its operations, and deploy it to a gateway.
 
-This walks you through creating a REST API using a sample contract, deploying it to a gateway, testing it, and publishing it to a developer portal.
+This walks you through creating a REST API using a sample contract, deploying it to a gateway, testing it, and publishing it to a portal.
 ## Prerequisites
 
 1. Open the API Platform Cloud Console and sign in using Google or GitHub.
@@ -71,12 +71,12 @@ After the deployment succeeds, the gateway status changes to **Active**. The API
 
 ## Publish the API
 
-Publishing makes the API available to developers through a developer portal, where they can discover the API and access its documentation.
+Publishing makes the API available to developers through a portal, where they can discover the API and access its documentation.
 
 See [Publish an API](../../publish-api-proxy/publish-an-api.md).
 
 ## Next Steps
 
-- [Secure API Access](../../develop-api-proxy/security/secure-api-access/overview.md) - Control who can invoke the API
+- [Security](../../develop-api-proxy/security/overview.md) - Control who can invoke the API
 - [Attach and Manage Policies](../../develop-api-proxy/policy/attach-and-manage-policies.md) - Add capabilities such as rate limiting or header changes to the API
 - [Documents](../../develop-api-proxy/documents.md) - Add documents that help consumers use the API

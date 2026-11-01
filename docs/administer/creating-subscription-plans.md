@@ -1,38 +1,54 @@
 ---
-title: "Creating Subscription Plans"
-description: "Define rate limits, burst control, and pricing models for organization-level API subscription plans in API Platform."
+title: "Manage Subscription Plans"
+description: "Create organization-level subscription plans that define the rate and quota tiers, and the pricing, that applications can subscribe to."
 ---
 
-API subscription plans are essential to control and manage access to APIs. These plans define the rules and limitations on how clients can interact with APIs, ensuring efficient resource utilization and robust security. With the option to set rate limits, burst control, and pricing models, subscription plans allow API providers to manage traffic, prevent misuse, offer tiered service levels, and monetize APIs. Organizations can implement subscription plans to provide varying levels of API access, accommodating different user needs and business models, while ensuring optimal performance and security.
+A subscription plan defines how many requests an application can make in a time window. You create subscription plans at the organization level, and then enable them on the APIs that you publish. When consumers subscribe an application to an API in a portal, the portal lists the plans that are enabled for the API, so that they can choose one.
 
-In API Platform, users with the administrator role can create, update, and delete subscription plans at the organization level.
+You configure the subscription plans for a specific API when you publish it to a portal. For more information, see [Customize the Portal Listing](../publish-api-proxy/customize-portal-listing.md).
+
+A plan can be free or paid.
 
 :::tip
 Deleting a subscription plan is only possible if there are no active subscriptions associated with it.
 :::
 
-To create an organization-level subscription plan, follow the steps given below:
+## View Subscription Plans
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev/).
-2. In the API Platform Console header, go to the **Organization** list and select your organization.
-3. In the left navigation menu, click **Admin** and then click **Settings**. This opens the organization-level settings page.
-4. Click the **Subscription Plans** tab (here you can see the already available subscription plans).
+1. Sign in to the [API Platform Console](https://console.bijira.dev).
 
-    ![Subscription Plans tab listing plans including Bronze, Gold, Silver, and Unlimited with pricing model and quota columns](/img/cloud/administer/settings/subscription-plans-listing.png)
+2. Go to the organization level. In the header, select your organization from the **Organizations** list.
 
-5. Click **+ Create**.
-6. In the **Create Subscription Plan** pane, enter the plan details:
+3. In the left navigation menu, click **Settings**, then click **Subscription Plans**.
 
-    - **Name** and **Description** for the plan. The name is unique and cannot be changed after creation.
-    - **Rate Limiting:** Set the **Request Count** (must be greater than 0) and the **Request Count Time Unit** (Minute, Hour, or Day). Enable **Burst Control** to protect your backend from sudden request spikes — the burst limit is enforced over a shorter time unit than the one you selected.
-    - **Pricing:** Select a **Pricing Model** (Free, Flat, Unit, Volume, or Graduated), **Currency**, **Billing Period**, and the price amount.
+The **Subscription Plans** page lists the plans in your organization, with their limits, pricing, and status. To find a plan by name, type in **Search plans**.
 
-    ![Create Subscription Plan form showing Name, Description, Rate Limiting with Request Count and Time Unit, Burst Controlling checkbox, and Pricing section with Per Unit model](/img/cloud/administer/settings/create-subscription-plan.png)
+## Create a Subscription Plan
 
-    :::note
-    The pricing fields vary by model. For example, Volume and Graduated models require defining price tiers instead of a single unit amount. For details on pricing models and monetization, see API Monetization.
-    :::
+1. On the **Subscription Plans** page, click **Create plan**.
 
-7. Click **Create**. This creates the subscription plan and lists it under **Subscription Plans**.
+2. In the **Add subscription plan** dialog, enter the following details.
 
-After creating subscription plans, users with the API publisher role can [assign subscription plans to APIs](../publish-api-proxy/subscription-plans-and-billing.md). API consumers can then choose the appropriate subscription plan during the subscription process depending on their requirements.
+    | Field | Description |
+    |:------|:------------|
+    | **Name** | A name for the plan, such as `Gold`. |
+    | **Limits** | The limits of the plan. To add a limit, click **Add limit**, select what to limit, such as **Request count**, and enter the number allowed per time unit, such as 100 per **Minute**. To remove a limit, click the remove icon next to it. Leave **Limits** empty for an unlimited plan. |
+    | **Block requests when quota is reached** | Turn on to reject the requests that exceed the limit. This is on by default. |
+    | **Expiry date** | Optional. The date after which the plan stops accepting subscriptions. |
+    | **Paid plan** | Turn on to make the plan paid. Subscribers pay through each portal that the plan is published to. A portal gets the pricing of the plan when the plan is first published there. Leave this off for a free plan. |
+
+3. Click **Add plan**.
+
+The plan appears on the **Subscription Plans** page, where its **Pricing** shows whether it is free or paid.
+
+## Edit or Delete a Subscription Plan
+
+On the **Subscription Plans** page, find the plan, and do one of the following.
+
+- To turn the plan on or off, click the toggle in the **Status** column.
+- To edit the plan, click the edit icon.
+- To delete the plan, click the delete icon.
+
+## Next Steps
+
+- [Subscription Plans](../publish-api-proxy/subscription-plans-and-billing.md) - Enable subscription plans on an API

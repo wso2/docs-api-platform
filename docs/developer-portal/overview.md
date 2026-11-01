@@ -1,10 +1,10 @@
 ---
-title: "Developer Portal"
+title: "API Portal"
 description: "Discover, subscribe to, and consume the APIs and MCP servers published from API Platform Cloud."
 slug: /developer-portal
 ---
 
-The Developer Portal is where consumers find and use the APIs that your organization publishes from the [API Control Plane](../api-control-plane/overview.md). Application developers browse the API catalog, read the documentation, subscribe to the APIs they need, and get the credentials to invoke them. AI agents can discover the same APIs through machine-readable endpoints.
+The API Portal is where consumers find and use the APIs that your organization publishes from the [API Control Plane](../api-control-plane/overview.md). Application developers browse the API catalog, read the documentation, subscribe to the APIs they need, and get the credentials to invoke them. AI agents can discover the same APIs through machine-readable endpoints.
 
 ## What You Can Do
 
@@ -17,7 +17,7 @@ The Developer Portal is where consumers find and use the APIs that your organiza
 
 ## Consume an API
 
-To use an API from the Developer Portal, follow these steps.
+To use an API from the API Portal, follow these steps.
 
 1. Find the API in the catalog, and review its documentation.
 2. Create an application.

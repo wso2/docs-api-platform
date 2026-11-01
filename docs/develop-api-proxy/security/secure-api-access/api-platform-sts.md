@@ -1,5 +1,5 @@
 ---
-title: "Secure API Access with API Platform STS"
+title: "Use API Platform STS"
 description: "Authenticate API invocations in WSO2 API Platform with the built-in API Platform security token service."
 ---
 
@@ -25,7 +25,7 @@ It is important to note that API Platform STS token can be only be used for clie
 
 Follow the steps below to consume the API Platform API using API Platform STS.
 
-1. Sign in to your organization in the API Platform Developer Portal at [https://devportal.bijira.dev](https://devportal.bijira.dev).
+1. Sign in to your organization in the API Portal at [https://devportal.bijira.dev](https://devportal.bijira.dev).
 2. Click **Applications**, and then click **+Create**.
 3. Enter a name for the application. 
 4. Click **Create**.

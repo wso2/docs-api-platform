@@ -1,5 +1,5 @@
 ---
-title: "Managing Environments"
+title: "Manage Environments"
 description: "Create and delete development and production environments for your organization's data planes in API Platform."
 ---
 

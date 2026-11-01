@@ -1,6 +1,6 @@
 ---
 title: "Deprecate or Unpublish an API"
-description: "Deprecate an API to discourage new usage, or unpublish it to remove it from a Developer Portal."
+description: "Deprecate an API to discourage new usage, or unpublish it to remove it from a portal."
 ---
 
 When an API is replaced by a newer version, or should no longer be offered to consumers, you can deprecate or unpublish it in each portal that it is published to.

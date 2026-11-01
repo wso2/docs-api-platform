@@ -1,5 +1,5 @@
 ---
-title: "Secure API Access with an External Key Manager"
+title: "Use an External Key Manager"
 description: "Authenticate API invocations in WSO2 API Platform with an external key manager."
 ---
 
@@ -26,7 +26,7 @@ To follow this guide, you need to satisfy the following prerequisites:
 
 Follow the steps below to consume the API Platform API and use an external key manager for authentication:
 
-1. Sign in to your organization in the API Platform Developer Portal at [https://devportal.bijira.dev](https://devportal.bijira.dev).
+1. Sign in to your organization in the API Portal at [https://devportal.bijira.dev](https://devportal.bijira.dev).
 2. Click **Applications**, and then click **+Create**.
 3. Enter a name for the application. 
 4. Click **Create**.
@@ -46,7 +46,7 @@ Follow the steps below to consume the API Platform API and use an external key m
 
 ## Step 2: Invoke the API Platform API
 
-1. On the API Platform Developer Portal, go to your application. 
+1. In the API Portal, go to your application. 
 2. On the top of the page, under **OAuth2**, click **View** to see the **Token Endpoint** URL.
 3. Obtain an access token by invoking the token endpoint as follows:
 
