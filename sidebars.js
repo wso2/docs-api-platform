@@ -232,6 +232,12 @@ const sidebars = {
       },
     ]),
     */
+    group("Insights", [
+      doc("insights/overview", "Overview"),
+    ]),
+    group("Observability", [
+      doc("observability/overview", "Overview"),
+    ]),
     group("Monetization", [
       doc("monetization/overview", "Overview"),
     ]),

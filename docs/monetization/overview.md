@@ -6,6 +6,10 @@ slug: /monetization
 
 API monetization lets you generate revenue from your APIs by offering paid subscription plans to consumers. API Platform Cloud uses Stripe as the payment provider, so you can define pricing models and manage billing for API usage from the API Platform Console.
 
+:::note
+Monetization is coming soon.
+:::
+
 ## What You Can Do
 
 | Task | Description |
