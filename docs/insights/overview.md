@@ -10,28 +10,6 @@ Insights is powered by Moesif Basic, which is included with your WSO2 subscripti
 Insights is coming soon.
 :::
 
-## Open Insights
-
-In API Platform Cloud, Insights is available as soon as you create an organization. No extra setup is required.
-
-1. Sign in to the [API Platform Console](https://console.bijira.dev).
-2. In the left navigation menu, click **Insights**, then click **API Insights**.
-
-See [API Insights](../api-control-plane/api-insights.md) for traffic, errors, and performance, and [Compliance](../api-control-plane/compliance.md) for compliance reporting. For the APIs that run on your gateways, see [Insights](../api-gateway/insights.md).
-
-On a Self-Hosted Gateway, the gateway setup provides a Moesif key. See the [Self-Hosted Gateway Quick Start Guide](../hybrid-gateways/api-gateway/getting-started.md).
-
-## Real-Time Alerts
-
-You can define threshold alerts for a metric and receive them by email. An alert rule specifies:
-
-- The API
-- The metric to observe
-- The threshold that triggers the alert
-- The email address that receives the notification
-
-For example, an alert can fire when an API returns too many `400 Bad Request` responses, or when the 90th percentile latency exceeds 10 seconds. You can review the alert rules and the history of alerts that have fired.
-
 ## Analytics Dashboards
 
 The **Overview** dashboard summarizes usage for your APIs, LLM proxies, and MCP servers in the selected time period. Open a specific dashboard to filter by API, LLM proxy, or MCP server.

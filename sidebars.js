@@ -78,7 +78,7 @@ const sidebars = {
         doc("administer/managing-pipelines", "Manage Pipelines"),
         doc("gateways", "Manage Gateways"),
         doc("administer/managing-portals", "Manage Portals"),
-        doc("developer-portal/theming-developer-portal", "Customize the Portal Theme"),
+        // doc("developer-portal/theming-developer-portal", "Customize the Portal Theme"),
         doc("administer/creating-subscription-plans", "Manage Subscription Plans"),
       ]),
     ]),
@@ -162,13 +162,13 @@ const sidebars = {
           ]),
         ]),
       ]),
-      group("Third-Party Gateways", [
-        doc("hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws", "AWS API Gateway"),
-      ]),
+      // group("Third-Party Gateways", [
+      //   doc("hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws", "AWS API Gateway"),
+      // ]),
       group("Observability", [
         doc("api-gateway/observability", "Overview"),
-        doc("hybrid-gateways/ai-gateway/observability/logging", "Gateway Logging"),
-        doc("hybrid-gateways/ai-gateway/observability/tracing", "Gateway Tracing"),
+        doc("hybrid-gateways/api-gateway/observability/logging", "Gateway Logging"),
+        doc("hybrid-gateways/api-gateway/observability/tracing", "Gateway Tracing"),
       ]),
       doc("api-gateway/insights", "Insights"),
     ]),
@@ -224,10 +224,10 @@ const sidebars = {
       {
         type: 'category',
         label: 'Observability',
-        link: {type: 'doc', id: 'hybrid-gateways/ai-gateway/observability/index'},
+        link: {type: 'doc', id: 'hybrid-gateways/api-gateway/observability/index'},
         items: [
-          doc("hybrid-gateways/ai-gateway/observability/logging", "Logging"),
-          doc("hybrid-gateways/ai-gateway/observability/tracing", "Tracing"),
+          doc("hybrid-gateways/api-gateway/observability/logging", "Logging"),
+          doc("hybrid-gateways/api-gateway/observability/tracing", "Tracing"),
         ],
       },
     ]),
