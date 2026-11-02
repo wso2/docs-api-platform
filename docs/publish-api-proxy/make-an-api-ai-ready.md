@@ -3,7 +3,7 @@ title: "Make an API AI-Ready"
 description: "Write clear descriptions, structure OpenAPI specs, add documents, and control agent visibility so AI agents can discover and use your API."
 ---
 
-When you publish an API to the API Portal, it is automatically included in the portal's machine readable surfaces including `llms.txt`, the API catalog Markdown, and per API documentation endpoints. These surfaces are what AI agents use to discover, understand, and invoke your APIs.
+When you publish an API to the API Portal and AI Hub, it is automatically included in the portal's machine readable surfaces including `llms.txt`, the API catalog Markdown, and per API documentation endpoints. These surfaces are what AI agents use to discover, understand, and invoke your APIs.
 
 This page explains what you can do as an API publisher to make your API as useful as possible for AI agents.
 

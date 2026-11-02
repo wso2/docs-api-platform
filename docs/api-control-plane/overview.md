@@ -40,4 +40,4 @@ To track the logs, alerts, and health of your API proxies, see [Logs](./logs.md)
 
 ## Get Started
 
-To build your first API proxy and publish it to the API Portal, follow the [Quick Start Guide](../getting-started/api-proxy.md).
+To build your first API proxy and publish it to the API Portal and AI Hub, follow the [Quick Start Guide](../getting-started/api-proxy.md).

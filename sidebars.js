@@ -1,5 +1,5 @@
 // Navigation for API Platform Cloud: API Control Plane content at the top
-// level, with AI Workspace and API Portal as their own sections.
+// level, with AI Workspace and API Portal and AI Hub as their own sections.
 
 const doc = (id, label) => ({type: 'doc', id, label});
 const group = (label, items) => ({type: 'category', label, items});
@@ -43,7 +43,6 @@ const sidebars = {
           doc("develop-api-proxy/security/api-key-authentication", "API Key Authentication"),
           group("OAuth2 Authentication", [
             doc("develop-api-proxy/security/secure-api-access/api-platform-sts", "Use API Platform STS"),
-            doc("develop-api-proxy/security/secure-api-access/asgardeo", "Use Asgardeo"),
             doc("develop-api-proxy/security/secure-api-access/external-key-manager", "Use an External Key Manager"),
           ]),
         ]),
@@ -135,7 +134,7 @@ const sidebars = {
       doc("ai-workspace/insights", "Insights"),
     ]),
     */
-    group("API Portal", [
+    group("API Portal and AI Hub", [
       doc("developer-portal/overview", "Overview"),
       doc("developer-portal/getting-started", "Quick Start Guide"),
       group("Discover", [
@@ -150,7 +149,7 @@ const sidebars = {
     ]),
     group("API Gateway", [
       doc("api-gateway/overview", "Overview"),
-      group("Self-Hosted Gateway", [
+      group("Self-Hosted Gateways", [
         doc("hybrid-gateways/api-gateway/architecture", "Architecture"),
         doc("hybrid-gateways/api-gateway/getting-started", "Quick Start Guide"),
         group("Policies", [
@@ -162,9 +161,6 @@ const sidebars = {
           ]),
         ]),
       ]),
-      // group("Third-Party Gateways", [
-      //   doc("hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws", "AWS API Gateway"),
-      // ]),
       group("Observability", [
         doc("api-gateway/observability", "Overview"),
         doc("hybrid-gateways/api-gateway/observability/logging", "Gateway Logging"),
