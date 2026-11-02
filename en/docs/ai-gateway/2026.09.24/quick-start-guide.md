@@ -1,8 +1,8 @@
 ---
 title: "AI Gateway Quick Start Guide"
 description: "Run the AI Gateway with Docker Compose, deploy an LLM provider, route your first LLM request, and govern the gateway from AI Workspace."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/quick-start-guide/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/next/quick-start-guide.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/quick-start-guide/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/quick-start-guide.md
 tags:
   - ai-gateway
   - llm
@@ -67,7 +67,7 @@ The commands below use version `2026.09.24`. Substitute the API Platform AI Gate
     export ADMIN_PASSWORD='<the password scripts/setup.sh printed>'
 
     # Start the complete stack
-    docker compose up
+    docker compose up -d
 
     # Verify gateway controller admin endpoint is running
     curl http://localhost:9094/api/admin/v1/health
@@ -95,7 +95,7 @@ The commands below use version `2026.09.24`. Substitute the API Platform AI Gate
     $env:ADMIN_PASSWORD='<the password setup.ps1 printed>'
 
     # Start the complete stack
-    docker compose up
+    docker compose up -d
 
     # Verify gateway controller admin endpoint is running
     curl.exe http://localhost:9094/api/admin/v1/health
@@ -363,7 +363,7 @@ As a platform administrator, deploy an LLM provider for the vendor whose API key
           name: bedrock-api-key
         spec:
           displayName: AWS Bedrock API Key
-          value: "${AWS_BEARER_TOKEN_BEDROCK}"
+          value: "${env:AWS_BEARER_TOKEN_BEDROCK}"
         "@ | Set-Content -Path bedrock-secret.yaml -Encoding utf8
 
         curl.exe -X POST http://localhost:9090/api/management/v1/secrets `
@@ -388,7 +388,7 @@ As a platform administrator, deploy an LLM provider for the vendor whose API key
           template: awsbedrock
           context: /bedrock
           upstream:
-            url: https://bedrock-runtime.${AWS_REGION}.amazonaws.com
+            url: https://bedrock-runtime.${env:AWS_REGION}.amazonaws.com
             auth:
               type: api-key
               header: Authorization

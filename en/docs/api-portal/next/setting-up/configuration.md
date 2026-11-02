@@ -15,9 +15,9 @@ content_type: "reference"
 
 # API Portal configuration and environment interpolation
 
-The API Portal & MCP Hub reads its configuration from a TOML file (`config.toml`) layered over built-in defaults. The quickstart runs it alongside a Platform API, which reads the same file, so both are covered here — a standalone production deployment needs only the portal's own section.
+The API Portal & MCP Hub reads its configuration from a TOML file (`config.toml`) layered over built-in defaults. The quick start guide runs it alongside a Platform API, which reads the same file, so both are covered here — a standalone production deployment needs only the portal's own section.
 
-This page explains how each service loads its config file. It also covers how environment values and mounted files are injected through interpolation tokens, and how to keep sensitive values out of the file. For the full reference of every supported key, see [Configurations](../references/configurations.md). For provisioning the keys, certificates, and credentials those tokens resolve to, see [Getting started](../getting-started.md).
+This page explains how each service loads its config file. It also covers how environment values and mounted files are injected through interpolation tokens, and how to keep sensitive values out of the file. For the full reference of every supported key, see [Configurations](../references/configurations.md). For provisioning the keys, certificates, and credentials those tokens resolve to, see the [quick start guide](../quickstart-guide.md).
 
 ## How configuration is loaded
 
@@ -102,12 +102,12 @@ A {% raw %}`{{ file }}`{% endraw %} path must live under an allowed directory �
 
 Provisioning the keys, certificates, and credentials the tokens resolve to is part of setting the stack up, not part of how the config loader works. For those steps, see:
 
-- [Run the setup script](../getting-started.md#step-2-run-the-setup-script) — what a fresh stack is given, and where each artifact lands under `resources/certificates/` and `resources/keys/`.
+- [Run the setup script](../quickstart-guide.md#step-2-run-the-setup-script) — what a fresh stack is given, and where each artifact lands under `resources/certificates/` and `resources/keys/`.
 - The script is idempotent: re-running it fills in only what's missing. To rotate a secret, remove it from `api-platform.env` or delete the relevant file, then re-run.
 - `api-platform.env` is the file Compose loads into every container, so it's where an environment value a token names is set.
 
 ## Related
 
 - [Configurations](../references/configurations.md): the full reference of every supported key
-- [Getting started](../getting-started.md): provision the keys, certificates, and credentials the tokens resolve to
+- [Quick start guide](../quickstart-guide.md): provision the keys, certificates, and credentials the tokens resolve to
 - [Change the ports the API Portal uses](ports.md): move the stack off its default ports

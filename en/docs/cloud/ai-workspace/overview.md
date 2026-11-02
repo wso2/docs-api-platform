@@ -95,4 +95,4 @@ AI Workspace is the control plane. The [AI Gateway](../ai-gateway/overview.md) i
 
 ## Getting Started
 
-To start using the control plane, follow the [Getting Started](getting-started.md) guide.
+To start using the control plane, follow the [quick start guide](quickstart.md).

@@ -22,7 +22,7 @@ The portal is a standalone product. A production deployment needs the portal and
 
 The section has two parts. The Production Readiness pages explain what each part of a production deployment requires, independent of where you run it: [Security Hardening](security-hardening.md), [Database Configuration](database-configuration.md), [Resources & Scaling](resources-and-scaling.md), [Control Plane Connection](control-plane-connection.md), and [Verify & Upgrade](deploy-and-verify.md). The deployment guides then apply them end to end, with the configuration for one platform: [Deploy on VMs](deploy-on-vms.md), [Deploy on Kubernetes](deploy-on-kubernetes.md), and [Deploy on OpenShift](openshift.md). The requirements and failure modes are the same on every platform; only the delivery changes.
 
-The single-instance walkthrough in [Getting started](../getting-started.md) is the right shape for evaluation and development, not for production.
+The single-instance walkthrough in the [quick start guide](../quickstart-guide.md) is the right shape for evaluation and development, not for production.
 
 ## Running more than one instance
 
@@ -31,7 +31,7 @@ Replication is what turns a production deployment into a highly available one. W
 A production deployment runs against an external database — PostgreSQL or SQL Server. Both support replication, so either works whether you run one instance or several.
 
 !!! note "Change the shipped default"
-    The distribution ships pointing at SQLite so the quickstart works with no external dependency. That is an evaluation default; move to PostgreSQL or SQL Server before you deploy. See [Database Configuration](database-configuration.md).
+    The distribution ships pointing at SQLite so the quick start guide works with no external dependency. That is an evaluation default; move to PostgreSQL or SQL Server before you deploy. See [Database Configuration](database-configuration.md).
 
 A single production instance is a legitimate deployment — it just has no redundancy, so every restart, upgrade, and host failure is an outage. Everything in this section except [Resources & Scaling](resources-and-scaling.md) applies to it unchanged.
 

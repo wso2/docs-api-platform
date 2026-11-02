@@ -1,5 +1,5 @@
 ---
-title: "Getting Started with Self-Hosted Gateway"
+title: "Self-hosted gateway quick start guide"
 description: "Set up an API Platform Self-Hosted Gateway in your own infrastructure and connect it to the API Platform Cloud control plane."
 canonical_url: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/getting-started/
 md_url: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/getting-started.md
@@ -12,7 +12,7 @@ last_updated: 2026-06-11
 content_type: "quickstart"
 ---
 
-# Getting Started with Self-Hosted Gateway
+# Self-hosted gateway quick start guide
 
 This guide walks you through setting up an API Platform Self-Hosted Gateway in your environment. Follow these quick steps to get your gateway running and connected to API Platform's control plane.
 
@@ -45,12 +45,16 @@ Before you begin, ensure you have:
 5. Click **+ Add Self-Hosted Gateway**.
 6. Provide the following details:
 
+    - **Type**: Select **API Gateway**
+    - **Gateway Version**: Select **api-gateway v1.2**
     - **Name**: A unique name for your gateway
     - **Description**: Optional description
     - **URL**: The URL where your gateway will be accessible (e.g., `https://localhost:8443`)
     - **Associated Environment**: Select the environment for this gateway
 
-    ![Add Self-Hosted Gateway form with API Gateway type selected, name, description, URL, and Associated Environment fields](../../assets/img/api-platform-gateway/gateway/gateway-add.png)
+    The completed form looks like this:
+
+    ![Add Self-Hosted Gateway form with API Gateway type selected, Gateway Version set to api-gateway v1.2, and the name, URL, and environment fields](../../assets/img/api-platform-gateway/gateway/gateway-add.png)
 
 7. Click **Add** and you will be navigated to the Gateway View Page.
 
@@ -61,8 +65,10 @@ Before you begin, ensure you have:
     !!! note
         Be sure to copy the commands from the Quick Start section, since the keys are auto-generated for you.
 
+    The **Quick Start** tab shows the download command in step 1, and the setup, configuration, and start commands in steps 2 to 4:
+
     ![Gateway detail page showing Configurations tab with Quick Start, Virtual Machine, Docker, and Kubernetes tabs and Step 1 download command](../../assets/img/api-platform-gateway/gateway/gateway-view1.png)
-    ![Gateway setup steps 2 and 3 showing configure keys.env and docker compose start commands](../../assets/img/api-platform-gateway/gateway/gateway-view2.png)
+    ![Gateway setup steps 2 to 4 showing the setup script, the api-platform.env configuration command, and the docker compose start command](../../assets/img/api-platform-gateway/gateway/gateway-view2.png)
 
 
     ### Step 1: Download the Gateway
@@ -70,31 +76,32 @@ Before you begin, ensure you have:
     Run this command in your terminal to download the gateway:
 
     ```bash
-    curl -sLO https://github.com/wso2/api-platform/releases/download/gateway/v1.0.0/wso2apip-api-gateway-1.0.0.zip && \
-    unzip wso2apip-api-gateway-1.0.0.zip
+    curl -sLO https://github.com/wso2/api-platform/releases/download/gateway/v1.2.0/wso2apip-api-gateway-1.2.0.zip && \
+    unzip wso2apip-api-gateway-1.2.0.zip
     ```
 
     ### Step 2: Configure the Gateway
 
-    Run this command to create the gateway configuration with your environment variables:
+    Run the one-time setup script, then add your control plane settings to the `api-platform.env` file it creates:
 
     ```bash
-    cat > wso2apip-api-gateway-1.0.0/configs/keys.env << 'ENVFILE'
+    cd wso2apip-api-gateway-1.2.0 && ./scripts/setup.sh
+
+    cat >> api-platform.env << 'ENVFILE'
     MOESIF_KEY=<your-moesif-key>
-    GATEWAY_CONTROLPLANE_HOST=connect.bijira.dev
-    GATEWAY_REGISTRATION_TOKEN=<your-gateway-token>
+    APIP_GW_CONTROLLER_CONTROLPLANE_HOST=connect.bijira.dev
+    APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=<your-gateway-token>
     ENVFILE
     ```
 
-    Once you copy the above command from the screen, the `<your-moesif-key>` and `<your-gateway-token>` placeholders will be populated and the `wso2apip-api-gateway-1.0.0/configs/keys.env` file will be created with these environment variables.
+    Once you copy the above command from the screen, the `<your-moesif-key>` and `<your-gateway-token>` placeholders are populated.
 
     ### Step 3: Start the Gateway
 
-    Navigate to the gateway directory and start it using Docker Compose:
+    Start the gateway using Docker Compose:
 
     ```bash
-    cd wso2apip-api-gateway-1.0.0
-    docker compose --env-file configs/keys.env up
+    docker compose up
     ```
 
     ### Step 4: Verify the Gateway
@@ -106,7 +113,7 @@ Before you begin, ensure you have:
     docker compose ps
 
     # Check gateway health
-    curl http://localhost:9002/health
+    curl http://localhost:9094/api/admin/v1/health
     ```
 
     The gateway should show as **Active** in the API Platform Console under **Gateways**.
@@ -192,7 +199,7 @@ For production environments or specific infrastructure requirements, see the det
 
 If the gateway doesn't connect:
 
-1. **Verify the token**: Ensure the gateway token is correctly set in `keys.env`
+1. **Verify the token**: Ensure the gateway token is correctly set in `api-platform.env`
 2. **Check network connectivity**: The gateway needs outbound HTTPS access to `*.bijira.dev`
 3. **View logs**: Run `docker compose logs -f` to see gateway logs
 4. **Check firewall**: Ensure port 8443 is accessible
