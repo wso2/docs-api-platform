@@ -43,7 +43,6 @@ const sidebars = {
           doc("develop-api-proxy/security/api-key-authentication", "API Key Authentication"),
           group("OAuth2 Authentication", [
             doc("develop-api-proxy/security/secure-api-access/api-platform-sts", "Use API Platform STS"),
-            doc("develop-api-proxy/security/secure-api-access/asgardeo", "Use Asgardeo"),
             doc("develop-api-proxy/security/secure-api-access/external-key-manager", "Use an External Key Manager"),
           ]),
         ]),
