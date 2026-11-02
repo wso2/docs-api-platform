@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+pagination_label: "Policies"
 description: "How policies work on API proxies in WSO2 API Platform, and the Policy Hub categories of policies you can attach."
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Security"
+pagination_label: "Security"
 description: "Control who can invoke your API proxies with API keys or OAuth2 access tokens."
 ---
 

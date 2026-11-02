@@ -1,5 +1,6 @@
 ---
 title: "Observability"
+pagination_label: "Observability"
 description: "View logs and metrics in the API Control Plane, and collect logs and traces from the API Gateway."
 slug: /observability
 ---

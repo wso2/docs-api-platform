@@ -1,5 +1,6 @@
 ---
 title: "Discover AI Agents"
+pagination_label: "Discover AI Agents"
 description: "Expose published APIs and workflows through llms.txt and machine-readable Markdown endpoints so AI agents can discover and invoke them."
 ---
 

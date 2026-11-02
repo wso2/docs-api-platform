@@ -1,5 +1,6 @@
 ---
 title: "Discover MCP Proxies"
+pagination_label: "Discover MCP Proxies"
 description: "Explore MCP servers registered in your organization's MCP Hub and view their tools, resources, and prompts."
 ---
 

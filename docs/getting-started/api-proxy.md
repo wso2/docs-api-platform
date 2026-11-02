@@ -1,9 +1,10 @@
 ---
 title: "Quick Start Guide"
+pagination_label: "API Control Plane Quick Start"
 description: "Create a REST API from a backend URL, deploy it to a gateway, test it, and publish it to a portal."
 ---
 
-In API Platform Cloud, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, deploy the API to a gateway, test it, and publish it to a API Portal.
+In the API Control Plane, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, deploy the API to a gateway, test it, and publish it to the API Portal.
 
 This guide uses the sample Reading List API backend.
 

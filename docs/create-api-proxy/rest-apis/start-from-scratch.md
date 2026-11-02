@@ -1,19 +1,20 @@
 ---
 title: "Start from scratch"
-description: "Create a REST API in API Platform Cloud from a backend URL, then deploy, test, and publish it."
+pagination_label: "REST: Start from Scratch"
+description: "Create a REST API in the API Control Plane from a backend URL, then deploy, test, and publish it."
 ---
 
 # Create a REST API from scratch
 
-In API Platform Cloud, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, customize its operations, and deploy it to a gateway.
+In the API Control Plane, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, customize its operations, and deploy it to a gateway.
 
 This walks you through creating a REST API using a sample backend, deploying it to a gateway, testing it, and publishing it to a portal.
 
 ## Prerequisites
 
-Before you begin, make sure you have access to API Platform Cloud.
+Before you begin, make sure you have access to API Platform.
 
-1. Open the API Platform Cloud Console and sign in using Google or GitHub.
+1. Open the [API Platform Console](https://console.bijira.dev) and sign in using Google or GitHub.
 2. Open your organization and select the **Default project**, or create a new project.
 
 ## Create the REST API

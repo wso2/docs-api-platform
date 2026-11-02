@@ -1,6 +1,7 @@
 ---
 title: "Insights"
-description: "Analyze API, LLM, and MCP traffic in API Platform Cloud with Moesif Basic."
+pagination_label: "Insights"
+description: "Analyze API, LLM, and MCP traffic in API Platform with Moesif Basic."
 slug: /insights
 ---
 

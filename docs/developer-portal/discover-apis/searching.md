@@ -3,7 +3,7 @@ title: "Searching"
 description: "Search published APIs in the API Portal and AI Hub by name, type, version, or description."
 ---
 
-You can search for APIs in the API Portal that have already been published from API Platform Cloud.
+You can search for APIs in the API Portal that have already been published from the API Control Plane.
 
 1. Click **APIs** from the sidebar.APIs list can be seen
 

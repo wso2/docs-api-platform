@@ -1,5 +1,6 @@
 ---
 title: "API Gateway"
+pagination_label: "API Gateway"
 description: "Run your API proxies on a WSO2 Managed Gateway or on a Self-Hosted Gateway in your own infrastructure, all managed from API Platform Cloud."
 slug: /api-gateway
 ---
