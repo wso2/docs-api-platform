@@ -25,9 +25,8 @@ A **gateway** is the runtime that receives API traffic, applies the policies you
 
 API Platform supports the following kinds of gateways:
 
-- **WSO2-managed gateways:** Run in a data plane that WSO2 provisions and operates.
-- **Self-hosted gateways:** Run on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connect to the API Platform control plane for configuration and management. See [Self-Hosted Gateway](./hybrid-gateways/api-gateway/getting-started.md).
-- **Third-party gateways:** Gateways from other vendors, such as AWS API Gateway, whose APIs you can discover and manage from API Platform. See [AWS API Gateway](./hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws.md).
+- **WSO2 Managed Gateways:** Run in a data plane that WSO2 hosts and operates.
+- **Self-Hosted Gateways:** Run on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connect to the API Platform control plane for configuration and management. See [Self-Hosted Gateway](./hybrid-gateways/api-gateway/getting-started.md).
 
 ## Environments
 

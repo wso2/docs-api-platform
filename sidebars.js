@@ -150,7 +150,7 @@ const sidebars = {
     ]),
     group("API Gateway", [
       doc("api-gateway/overview", "Overview"),
-      group("Self-Hosted Gateway", [
+      group("Self-Hosted Gateways", [
         doc("hybrid-gateways/api-gateway/architecture", "Architecture"),
         doc("hybrid-gateways/api-gateway/getting-started", "Quick Start Guide"),
         group("Policies", [
@@ -162,9 +162,6 @@ const sidebars = {
           ]),
         ]),
       ]),
-      // group("Third-Party Gateways", [
-      //   doc("hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws", "AWS API Gateway"),
-      // ]),
       group("Observability", [
         doc("api-gateway/observability", "Overview"),
         doc("hybrid-gateways/api-gateway/observability/logging", "Gateway Logging"),

@@ -1,16 +1,11 @@
 ---
-title: "Writing a Custom Policy for the Self-Hosted Gateway"
+title: "Writing a Custom Policy"
 description: "Build a custom policy for the API Platform Self-Hosted Gateway using the Go-based policy SDK, including streaming support."
 ---
 
-This guide shows how to build a custom policy using the gateway SDK.
+This guide shows how to write a custom policy in API Platform Gateway.
 
 For full API details, see the [API Platform Gateway's Custom Policy SDK Documentation](https://pkg.go.dev/github.com/wso2/api-platform/sdk/core/policy/v1alpha2).
-
-## What is a Policy?
-
-Policies allow you to enforce security, rate limiting, transformation, and other governance requirements on your APIs.
-
 
 ## How It Works
 
@@ -71,7 +66,7 @@ import (
 )
 
 type MyPolicy struct {
-    // your config fields
+    maxBodySize int // your config fields
 }
 
 // Mode declares which phases this policy participates in and how bodies
