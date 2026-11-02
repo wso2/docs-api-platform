@@ -41,10 +41,7 @@ const sidebars = {
         group("Security", [
           doc("develop-api-proxy/security/overview", "Overview"),
           doc("develop-api-proxy/security/api-key-authentication", "API Key Authentication"),
-          group("OAuth2 Authentication", [
-            doc("develop-api-proxy/security/secure-api-access/api-platform-sts", "Use API Platform STS"),
-            doc("develop-api-proxy/security/secure-api-access/external-key-manager", "Use an External Key Manager"),
-          ]),
+          doc("develop-api-proxy/security/oauth2-authentication", "OAuth2 Authentication"),
         ]),
         group("Policies", [
           doc("develop-api-proxy/policy/overview", "Overview"),
@@ -143,9 +140,15 @@ const sidebars = {
         doc("developer-portal/discover-apis/discover-mcp-servers", "MCP Servers"),
         doc("developer-portal/discover-apis/ai-agent-discovery", "AI Agents"),
       ]),
-      doc("developer-portal/consume-an-api", "Consume an API"),
-      doc("developer-portal/manage-applications", "Manage Applications"),
-      doc("developer-portal/manage-subscriptions", "Manage Subscriptions"),
+      group("Applications and Credentials", [
+        doc("developer-portal/which-credentials-you-need", "Which Credentials You Need"),
+        doc("developer-portal/manage-applications", "Manage Applications"),
+        doc("developer-portal/manage-subscriptions", "Manage Subscriptions"),
+        doc("developer-portal/manage-api-keys", "Manage API Keys"),
+        doc("developer-portal/call-oauth2-secured-api", "Call an OAuth2-Secured API"),
+        doc("developer-portal/call-api-key-secured-api", "Call an API-Key-Secured API"),
+      ]),
+      doc("developer-portal/manage-key-managers", "Manage Key Managers"),
     ]),
     group("API Gateway", [
       doc("api-gateway/overview", "Overview"),

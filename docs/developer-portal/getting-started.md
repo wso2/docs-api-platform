@@ -48,5 +48,5 @@ To find APIs by name, type, version, or description, see [Search APIs](./discove
 
 - [Manage Applications](./manage-applications.md) - Create an application to hold your credentials
 - [Manage Subscriptions](./manage-subscriptions.md) - Subscribe an application to a published API under a plan
-- [Consume an API](./consume-an-api.md) - Invoke an API secured with OAuth2 or an API key
+- [Which Credentials You Need](./which-credentials-you-need.md) - Invoke an API secured with OAuth2 or an API key
 - [Customize the Portal Theme](./theming-developer-portal.md) - Customize the portal's look and feel
