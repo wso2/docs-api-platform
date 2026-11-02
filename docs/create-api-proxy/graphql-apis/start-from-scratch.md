@@ -37,7 +37,7 @@ This walks you through creating a GraphQL API using a sample backend, deploying 
    | **Identifier** | `countries` |
    | **Version** | `1.0` |
    | **Context** | `/countries/v1.0/graphql` |
-   | **Description** | Empty |
+   | **Description** | Sample description |
    | **Query and Mutation URL** | `https://countries.trevorblades.com/graphql` |
 
    Ensure that the **Identifier** is unique across your organization. Update the generated values if needed.

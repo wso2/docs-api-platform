@@ -27,6 +27,7 @@ const sidebars = {
       doc("api-control-plane/overview", "Overview"),
       doc("getting-started/api-proxy", "Quick Start Guide"),
       group("Create", [
+        doc("create-api-proxy/overview", "Overview"),
         group("REST APIs", [
           doc("create-api-proxy/rest-apis/start-from-scratch", "Start from Scratch"),
           doc("create-api-proxy/rest-apis/start-with-a-contract", "Start with a Contract"),
@@ -76,8 +77,8 @@ const sidebars = {
         doc("administer/managing-environments", "Manage Environments"),
         doc("administer/managing-pipelines", "Manage Pipelines"),
         doc("gateways", "Manage Gateways"),
-        doc("portals", "Manage Portals"),
-        doc("developer-portal/theming-developer-portal", "Customize the Portal Theme"),
+        doc("administer/managing-portals", "Manage Portals"),
+        // doc("developer-portal/theming-developer-portal", "Customize the Portal Theme"),
         doc("administer/creating-subscription-plans", "Manage Subscription Plans"),
       ]),
     ]),
@@ -140,8 +141,8 @@ const sidebars = {
       group("Discover", [
         doc("developer-portal/discover-apis/searching", "Search APIs"),
         doc("developer-portal/discover-apis/documentation", "API Documentation"),
-        doc("developer-portal/discover-mcp-servers", "MCP Servers"),
-        doc("developer-portal/ai-agent-discovery", "AI Agents"),
+        doc("developer-portal/discover-apis/discover-mcp-servers", "MCP Servers"),
+        doc("developer-portal/discover-apis/ai-agent-discovery", "AI Agents"),
       ]),
       doc("developer-portal/consume-an-api", "Consume an API"),
       doc("developer-portal/manage-applications", "Manage Applications"),
@@ -161,13 +162,13 @@ const sidebars = {
           ]),
         ]),
       ]),
-      group("Third-Party Gateways", [
-        doc("hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws", "AWS API Gateway"),
-      ]),
+      // group("Third-Party Gateways", [
+      //   doc("hybrid-gateways/api-gateway/third-party-gateways/api-discovery-aws", "AWS API Gateway"),
+      // ]),
       group("Observability", [
         doc("api-gateway/observability", "Overview"),
-        doc("hybrid-gateways/ai-gateway/observability/logging", "Gateway Logging"),
-        doc("hybrid-gateways/ai-gateway/observability/tracing", "Gateway Tracing"),
+        doc("hybrid-gateways/api-gateway/observability/logging", "Gateway Logging"),
+        doc("hybrid-gateways/api-gateway/observability/tracing", "Gateway Tracing"),
       ]),
       doc("api-gateway/insights", "Insights"),
     ]),
@@ -223,14 +224,20 @@ const sidebars = {
       {
         type: 'category',
         label: 'Observability',
-        link: {type: 'doc', id: 'hybrid-gateways/ai-gateway/observability/index'},
+        link: {type: 'doc', id: 'hybrid-gateways/api-gateway/observability/index'},
         items: [
-          doc("hybrid-gateways/ai-gateway/observability/logging", "Logging"),
-          doc("hybrid-gateways/ai-gateway/observability/tracing", "Tracing"),
+          doc("hybrid-gateways/api-gateway/observability/logging", "Logging"),
+          doc("hybrid-gateways/api-gateway/observability/tracing", "Tracing"),
         ],
       },
     ]),
     */
+    group("Insights", [
+      doc("insights/overview", "Overview"),
+    ]),
+    group("Observability", [
+      doc("observability/overview", "Overview"),
+    ]),
     group("Monetization", [
       doc("monetization/overview", "Overview"),
     ]),

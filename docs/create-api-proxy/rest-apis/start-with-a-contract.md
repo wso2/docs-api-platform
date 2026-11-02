@@ -3,7 +3,7 @@ title: "Start with a contract"
 description: "Create a REST API in API Platform Cloud by importing an OpenAPI contract, then deploy, test, and publish it."
 ---
 
-In API Platform Cloud, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, customize its operations, and deploy it to a gateway.
+In API Platform Cloud, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start with a contract, you provide a contract URL, and the console generates the initial API details for you. You can then review the API definition, customize its operations, and deploy it to a gateway.
 
 This walks you through creating a REST API using a sample contract, deploying it to a gateway, testing it, and publishing it to a portal.
 ## Prerequisites
@@ -57,7 +57,9 @@ This walks you through creating a REST API using a sample contract, deploying it
 
 After the deployment succeeds, the gateway status changes to **Active**. The API overview page lists the gateway under **Deployed gateways** and displays its **Invoke URL**.
 
-**Note:** If the API is already deployed to a gateway, that gateway remains selected in the deployment configuration. Undeploy the API before clearing that gateway selection.
+:::note
+If the API is already deployed to a gateway, that gateway remains selected in the deployment configuration. Undeploy the API before clearing that gateway selection.
+:::
 
 ## Test the API
 

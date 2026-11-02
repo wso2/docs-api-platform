@@ -3,7 +3,7 @@ title: "Quick Start Guide"
 description: "Create a REST API from a backend URL, deploy it to a gateway, test it, and publish it to a portal."
 ---
 
-In API Platform Cloud, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, deploy the API to a gateway, test it, and publish it to a portal.
+In API Platform Cloud, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, deploy the API to a gateway, test it, and publish it to a API Portal.
 
 This guide uses the sample Reading List API backend.
 
@@ -32,7 +32,7 @@ This guide uses the sample Reading List API backend.
 1. On the project home page, click **Create API**.
 2. Select **REST API**, then click **Continue**.
 3. Select **Start from scratch**.
-4. Under **Backend endpoint**, enter your backend URL in **Endpoint URL**. To use the sample Reading List API, click **Try with Sample URL**.
+4. Under **Backend endpoint**, enter your backend URL in Endpoint URL. To use the sample Reading List API, click **Try with Sample URL**.
 
     The sample URL is:
 
@@ -41,7 +41,7 @@ This guide uses the sample Reading List API backend.
     ```
 
 5. Click **Continue**.
-6. On **Configure and create**, review **Basic information** and **Backend endpoint**. The console fills **Name** with `Untitled API` and derives **Identifier** and **Context** from that name.
+6. On **Configure and create**, review **Basic information** and **Backend endpoint**. The console fills **Name** and derives **Identifier** and **Context** from that name.
 
 
     For this sample, set **Name** to `Reading List API`. The identifier becomes `reading-list-api`, and the context includes your project identifier, for example `/default/reading-list-api/v1.0.0`.
@@ -57,7 +57,7 @@ This guide uses the sample Reading List API backend.
 
 7. Click **Create**.
 
-The REST API is added to the project. Its overview lists the generated operations, such as `GET /*`, `POST /*`, `PATCH /*`, and `DELETE /*`, and the backend endpoint.
+The REST API is added to the project. Its overview lists the generated operations, such as `GET /`, `POST /`, `PATCH /`, and `DELETE /`, and the backend endpoint.
 
 To view or edit the API definition, open the API and in the left navigation menu click **Develop**, then **Definition**. You can view the OpenAPI definition as **YAML** or **JSON**, or click **Edit** to change the operations.
 
@@ -88,14 +88,14 @@ After the API is deployed, test an operation to confirm that requests go through
 2. Select the gateway where the API is deployed. The endpoint for that gateway appears next to the gateway selector.
 3. Choose one of the following:
 
-    - **Console view:** Expand an operation, such as `GET /books` for the Reading List API. Choose **Through proxy** to send the request through the gateway, or **Direct** to send it to the backend. Click **Execute**. See [API Console](../test-api-proxy/api-console.md).
+    - **Console view:** Expand an operation, such as `GET /books` for the Reading List API. Choose **Through proxy** to send the request through the gateway. Click **Execute**. See [API Console](../test-api-proxy/api-console.md).
     - **cURL view:** Select the HTTP method and path, set any query parameters, headers, or request body, and copy the cURL command to run from a terminal. See [cURL](../test-api-proxy/curl.md).
 
 Review the response to confirm that the API behaves as expected.
 
 ## Publish the API
 
-Publishing makes the API available in a portal, where consumers can discover it and read its documentation.
+Publishing makes the API available in API Portal, where consumers can discover it and read its documentation.
 
 See [Publish an API](../publish-api-proxy/publish-an-api.md).
 

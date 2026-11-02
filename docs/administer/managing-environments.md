@@ -1,48 +1,47 @@
 ---
 title: "Manage Environments"
-description: "Create and delete development and production environments for your organization's data planes in API Platform."
+description: "Create and delete the deployment environments of your organization in the API Platform Console."
 ---
 
-By default, all projects created in the cloud data planes (irrespective of the data plane region) are provisioned with two environments (i.e., development and production).
+An environment is a deployment target in your organization, such as development or production. You deploy an API proxy to an environment, and a [pipeline](./managing-pipelines.md) promotes that build from one environment to the next.
 
-The environments are listed in the order of deployment and promotion. The initial deployment takes place in the first environment and you can proceed to promote a component to subsequent environments.
+## View Environments
 
-## Create a new environment
+1. Sign in to the [API Platform Console](https://console.bijira.dev).
 
-To create a new environment, follow the steps given below:
+2. In the left navigation menu, click **Environments**.
 
-1. Sign in to [API Platform](https://console.bijira.dev/).
-2. In the API Platform Console, go to the top navigation menu and click **Organization**. Then select your organization.
-3. In the left navigation menu, click **Admin** and then click **Environments**.
-4. On the **Environments** page, click **Create** and specify the following details to create a new environment:
+The **Environments** page lists the environments in your organization. To find an environment by name, type in **Search Environments**.
 
-   - **Name**: A display name for the new environment.
-   - **Data Plane** - The data plane to create the new environment.
+| Column | Description |
+|:-------|:------------|
+| **Name** | The name of the environment. |
+| **Type** | **Critical Environment** or **Non-Critical Environment**. |
+| **Created** | When the environment was created. |
 
-:::tip
-  The **Data Plane** list displays all the private data planes registered under your organization.
+## Create an Environment
 
-- **DNS Prefix**: A DNS prefix to identify the exposed APIs in the environment. Here, the base domain depends on the custom domain attached to the API gateways provisioned on the selected data plane.
-- **Mark environment as a Production environment**: Select if you want this environment to be a production environment.
-:::
+1. On the **Environments** page, click **Create**.
 
-![Create Environment form with Name, Data Plane, DNS Prefix fields, generated DNS URL preview, and Mark as Production checkbox](/img/cloud/administer/settings/add-environment.png)
+2. In **Create Environment**, enter the environment details.
 
-:::tip
-In API Platform, you can have multiple non-production and production environments. To work in a production environment, you must have privileged permissions to access and deploy to production environments.
-:::
+    | Field | Description |
+    |:------|:------------|
+    | **Name** | Required. Lowercase letters, numbers, and hyphens only. The name cannot be changed later. |
+    | **Critical environment** | Turn on for a production-grade environment. Critical environments require greater care. Leave this off for a non-critical environment, such as development. |
 
-## Delete an environment
+3. Click **Create**. **Create** stays unavailable until you enter a name. Click **Cancel** to leave without creating the environment.
 
-To delete an environment, follow the steps given below:
+The environment is added to the list. Its **Type** is **Critical Environment** when **Critical environment** is on, and **Non-Critical Environment** when it is off.
 
-:::warning
-Environment deletion is a permanent, non-reversible operation.
-:::
+## Delete an Environment
 
-1. Sign in to [API Platform](https://console.bijira.dev/).
-2. In the API Platform Console, go to the top navigation menu and click **Organization**. Then select your organization.
-3. In the left navigation menu, click **Admin** and then click **Environments**.
-4. In the **Environments** list, click the delete icon corresponding to the environment you want to delete. This displays a confirmation dialog with details on the impact of deletion.
-5. Review the details, then type the environment name to confirm the deletion.
-6. Click **Delete**.
+1. In the **Actions** column of the environment, click the delete icon.
+
+2. In **Delete Environment**, confirm that you want to delete the named environment.
+
+3. Click **Delete**. Click **Cancel** to keep the environment.
+
+## Next Steps
+
+- [Manage Pipelines](./managing-pipelines.md) - Order environments into the path an API proxy follows to production

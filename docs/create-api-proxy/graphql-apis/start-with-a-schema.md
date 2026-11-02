@@ -19,7 +19,7 @@ This walks you through creating a GraphQL API using a sample GraphQL schema, dep
 2. select **GraphQL API**., keep **Start with a schema**. It is selected by default.
 5. Provide the schema in one of these ways:
 
-   - **URL.** Select **URL**, enter the **Schema URL**, or click **Try with Sample Schema**. The sample URL is:
+   - **URL:** Select **URL**, enter the **Schema URL**, or click **Try with Sample Schema**. The sample URL is:
 
      ```text
      https://raw.githubusercontent.com/graphql/swapi-graphql/master/schema.graphql
@@ -27,7 +27,7 @@ This walks you through creating a GraphQL API using a sample GraphQL schema, dep
 
      Wait until validation finishes.
 
-   - **Upload.** Select **Upload**, then drag and drop a file or click to select one. Accepted file types are `.graphql`, `.gql`, and `.json`.
+   - **Upload:** Select **Upload**, then drag and drop a file or click to select one. Accepted file types are `.graphql`, `.gql`, and `.json`.
 
 6. Click **Continue**.
 7. On **Configure and create**, review **Basic information** and **Endpoint**. For the sample schema URL, the console fills in:
@@ -38,12 +38,10 @@ This walks you through creating a GraphQL API using a sample GraphQL schema, dep
    | **Identifier** | `raw` |
    | **Version** | `1.0` |
    | **Context** | `/raw/v1.0/graphql` |
-   | **Description** | Empty |
+   | **Description** | Sample Description |
    | **Query and Mutation URL** | Enter the backend URL that serves queries and mutations. |
 
 8. Click **Create**.
-
-The sample schema was not created. **Query and Mutation URL** was still empty, so this API was not deployed or tested.
 
 ## Deploy the API
 
