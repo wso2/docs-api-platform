@@ -77,7 +77,7 @@ const sidebars = {
         doc("administer/managing-environments", "Manage Environments"),
         doc("administer/managing-pipelines", "Manage Pipelines"),
         doc("gateways", "Manage Gateways"),
-        doc("portals", "Manage Portals"),
+        doc("administer/managing-portals", "Manage Portals"),
         doc("developer-portal/theming-developer-portal", "Customize the Portal Theme"),
         doc("administer/creating-subscription-plans", "Manage Subscription Plans"),
       ]),

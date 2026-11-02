@@ -20,7 +20,7 @@ You create portals from the API Control Plane.
 
 While the portal is being created, its card shows **Creating portal**. When the portal is ready, **Open Portal** is available on the card.
 
-For more on creating, editing, and deleting portals, see [Manage Portals](../portals.md).
+For more on creating, editing, and deleting portals, see [Manage Portals](../administer/managing-portals.md).
 
 ## Step 2: Publish an API to the Portal
 

@@ -10,7 +10,7 @@ API portal is where consumers discover your APIs, read the documentation, and re
 1. Sign in to the API Platform Console.
 2. In the left navigation menu, click **Portals**.
 
-The **Portals** page lists the portals in your organization. Each portal shows its name, its **Environment**, and when it was last updated. Use **Search Portals...** to find a portal.
+The **Portals** page lists the portals in your organization. Each portal shows its name, its **Environment**, and when it was last updated. Use **"Search Portals"** to find a portal.
 
 ## Create a portal
 
@@ -29,7 +29,7 @@ The **Portals** page lists the portals in your organization. Each portal shows i
 
 While the portal is being created, its card shows **Creating portal**. When the portal is ready, **Open Portal** is available.
 
-Creating a portal lets you publish APIs to that portal. Consumers can then discover the APIs, read their documentation, and request access. See [Publish an API](./publish-api-proxy/publish-an-api.md).
+Creating a portal lets you publish APIs to that portal. Consumers can then discover the APIs, read their documentation, and request access. See [Publish an API](../publish-api-proxy/publish-an-api.md).
 
 ## Open a portal
 
@@ -57,4 +57,4 @@ Deleting a portal is permanent.
 
 ## Next Steps
 
-- [Publish an API](./publish-api-proxy/publish-an-api.md) - Publish an API proxy to a portal so consumers can discover it
+- [Publish an API](../publish-api-proxy/publish-an-api.md) - Publish an API proxy to a portal so consumers can discover it
