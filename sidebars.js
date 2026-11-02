@@ -27,6 +27,7 @@ const sidebars = {
       doc("api-control-plane/overview", "Overview"),
       doc("getting-started/api-proxy", "Quick Start Guide"),
       group("Create", [
+        doc("create-api-proxy/overview", "Overview"),
         group("REST APIs", [
           doc("create-api-proxy/rest-apis/start-from-scratch", "Start from Scratch"),
           doc("create-api-proxy/rest-apis/start-with-a-contract", "Start with a Contract"),

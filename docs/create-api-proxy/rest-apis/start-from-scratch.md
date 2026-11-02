@@ -20,7 +20,7 @@ Before you begin, make sure you have access to API Platform Cloud.
 
 1. On the project home page, click **Create API**.
 2. Select **REST API**, then choose **Start from scratch**.
-3. Under **Backend endpoint**, enter your backend URL in the **Endpoint URL** field. Alternatively, click **Try with Sample URL** to use the sample Reading List API backend.
+3. Under **Backend endpoint**, enter your backend URL in the Endpoint URL field. Alternatively, click **Try with Sample URL** to use the sample Reading List API backend.
 
    The sample URL is:
 
@@ -64,8 +64,9 @@ Deploy the API to a gateway to make it accessible through the gateway's endpoint
 
 After the deployment succeeds, the gateway status changes to **Active**. The API overview page lists the gateway under **Deployed gateways** and displays the corresponding **Invoke URL**.
 
-
-**Note:** If the API is already deployed to a gateway, that gateway remains selected in the deployment configuration. Undeploy the API before clearing that gateway selection.
+:::note
+If the API is already deployed to a gateway, that gateway remains selected in the deployment configuration. Undeploy the API before clearing that gateway selection.
+:::
 
 ## Test the API
 
@@ -83,7 +84,7 @@ Review the response to verify that the API behaves as expected.
 
 ## Publish the API
 
-Publishing makes the API available to developers through a portal, where they can discover the API and access its documentation.
+Publishing makes the API available to developers through API portal, where they can discover the API and access its documentation.
 
 See [Publish an API](../../publish-api-proxy/publish-an-api.md).
 
