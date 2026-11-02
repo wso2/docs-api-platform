@@ -1,6 +1,6 @@
 ---
 title: "Manage Subscriptions"
-description: "Subscribe an application to a published API in the API Portal to generate credentials and invoke the API."
+description: "Subscribe an application to a published API in the API Portal and AI Hub to generate credentials and invoke the API."
 ---
 
 To use a published API in your application, you must subscribe to it. When you subscribe to an API, your subscription covers all minor versions within the API's major version.
@@ -9,7 +9,7 @@ The subscription process ensures secure authentication of API requests using app
 
 To subscribe to an API via an application, follow these steps:
 
-1. Go to the [API Portal](https://devportal.bijira.dev) and sign in to your organization.
+1. Go to the [API Portal and AI Hub](https://devportal.bijira.dev) and sign in to your organization.
 
 2. To navigate to applications, in the portal sidebar, click **Applications**.
 

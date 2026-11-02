@@ -1,9 +1,9 @@
 ---
 title: "Manage Applications"
-description: "Create an application in the API Portal and associate an existing key with it."
+description: "Create an application in the API Portal and AI Hub and associate an existing key with it."
 ---
 
-An application holds the API keys and subscriptions you use to call APIs. Create one in the API Portal, then associate an existing key so its usage is counted for that application.
+An application holds the API keys and subscriptions you use to call APIs. Create one in the API Portal and AI Hub, then associate an existing key so its usage is counted for that application.
 
 ## Open Applications
 

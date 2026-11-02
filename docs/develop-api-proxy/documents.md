@@ -1,9 +1,9 @@
 ---
 title: "Documents"
-description: "Add guides, samples, and support resources to an API proxy so consumers can understand and use it in the API Portal."
+description: "Add guides, samples, and support resources to an API proxy so consumers can understand and use it in the API Portal and AI Hub."
 ---
 
-When API consumers browse APIs in the API Portal, they need more than the API name and version to decide whether to use an API. Documents let you provide that information, such as,
+When API consumers browse APIs in the API Portal and AI Hub, they need more than the API name and version to decide whether to use an API. Documents let you provide that information, such as,
 
 - A brief description of the API.
 - How to invoke the API.

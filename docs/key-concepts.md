@@ -42,6 +42,6 @@ Promoting the same build, rather than rebuilding it for each environment, ensure
 
 API Platform's architecture is built around two core components, namely the control plane and the data plane.
 
-The **control plane** manages organizations and projects, and orchestrates the API proxy lifecycle, from creation and deployment to governance, observability, and publishing to the API Portal.
+The **control plane** manages organizations and projects, and orchestrates the API proxy lifecycle, from creation and deployment to governance, observability, and publishing to the API Portal and AI Hub.
 
 The **data plane** is where deployed API proxies run, based on the configuration defined in the control plane. All API traffic stays within the data plane, so user data remains securely contained.
