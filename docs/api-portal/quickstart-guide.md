@@ -43,11 +43,11 @@ For details on each step, and on preparing how the API appears in the portal, se
 2. In the portal, click **APIs** in the sidebar. The API you published appears in the list.
 3. Select the API to view its overview and documentation.
 
-To find APIs by name, type, version, or description, see [Search APIs](./discover-apis/searching.md). To learn what the documentation of an API shows, see [API Documentation](./discover-apis/documentation.md).
+To find APIs by name, type, version, or description, see [Search APIs](./discover-apis/browse-apis.md). To learn what the documentation of an API shows, see [API Documentation](./discover-apis/documentation.md).
 
 ## Next Steps
 
-- [Manage Applications](./manage-applications.md) - Create an application to hold your credentials
-- [Manage Subscriptions](./manage-subscriptions.md) - Subscribe an application to a published API under a plan
-- [Which Credentials You Need](./which-credentials-you-need.md) - Invoke an API secured with OAuth2 or an API key
-- [Customize the Portal Theme](./theming-developer-portal.md) - Customize the portal's look and feel
+- [Manage Applications](./consume-an-api/manage-applications.md) - Create an application to hold your credentials
+- [Manage Subscriptions](./consume-an-api/manage-subscriptions.md) - Subscribe an application to a published API under a plan
+- [Which Credentials You Need](./consume-an-api/overview.md) - Invoke an API secured with OAuth2 or an API key
+- [Customize the Portal Theme](../administer/customizing-portal-theme.md) - Customize the portal's look and feel

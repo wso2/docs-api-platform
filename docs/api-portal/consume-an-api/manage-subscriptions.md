@@ -27,4 +27,4 @@ Once you subscribe to an API, you can invoke it using the application keys.
 
 ## Next Steps
 
-- [Which Credentials You Need](./which-credentials-you-need.md) - Generate keys for the application and invoke the API
+- [Which Credentials You Need](./overview.md) - Generate keys for the application and invoke the API

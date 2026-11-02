@@ -33,10 +33,10 @@ The overview page of the API also shows this:
 | Credential | How to Get It |
 |:-----------|:--------------|
 | **Subscription token** | Subscribe to the API under a plan. See [Manage Subscriptions](./manage-subscriptions.md). |
-| **API key** | Generate a key on the **API Keys** page of the API. See [Manage API Keys](./manage-api-keys.md) and [Call an API-Key-Secured API](./call-api-key-secured-api.md). |
-| **OAuth2 access token** | Create or add an OAuth2 key, and get a token with it. See [Call an OAuth2-Secured API](./call-oauth2-secured-api.md). |
+| **API key** | Generate a key on the **API Keys** page of the API. See [Manage API Keys](./manage-api-keys.md) and [Call an API-Key-Secured API](./api-key.md). |
+| **OAuth2 access token** | Create or add an OAuth2 key, and get a token with it. See [Call an OAuth2-Secured API](./oauth2.md). |
 
 ## Next Steps
 
-- [Call an OAuth2-Secured API](./call-oauth2-secured-api.md) - Get an access token and invoke an OAuth2-secured API
-- [Call an API-Key-Secured API](./call-api-key-secured-api.md) - Invoke an API with an API key
+- [Call an OAuth2-Secured API](./oauth2.md) - Get an access token and invoke an OAuth2-secured API
+- [Call an API-Key-Secured API](./api-key.md) - Invoke an API with an API key

@@ -8,7 +8,7 @@ You can secure an API proxy with access tokens issued by an external key manager
 ## Prerequisites
 
 - An API proxy that is deployed and published. To create one, follow the [Quick Start Guide](../../getting-started/api-proxy.md).
-- An administrator has registered the key manager in the API Portal and AI Hub. For more information, see [Manage Key Managers](../../developer-portal/manage-key-managers.md).
+- An administrator has registered the key manager in the API Portal and AI Hub. For more information, see [Manage Key Managers](../../api-portal/admin-settings/key-manager-integration.md).
 
 ## How It Works
 
@@ -20,4 +20,4 @@ You can secure an API proxy with access tokens issued by an external key manager
 
 4. The consumer sends the access token as a bearer token when invoking the API.
 
-For the steps that consumers follow, see [Call an OAuth2-Secured API](../../developer-portal/call-oauth2-secured-api.md).
+For the steps that consumers follow, see [Call an OAuth2-Secured API](../../api-portal/consume-an-api/oauth2.md).

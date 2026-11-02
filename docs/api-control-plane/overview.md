@@ -34,7 +34,7 @@ Administrators set up the resources that API developers and consumers rely on.
 | [Manage Pipelines](../administer/managing-pipelines.md) | Create, edit, and delete the pipelines that define how API proxies are promoted through environments. |
 | [Manage Gateways](../gateways.md) | View and manage the gateways that run your API proxies. |
 | [Manage Portals](../administer/managing-portals.md) | Create, edit, and delete the portals that you publish APIs to. |
-| [Customize the Portal Theme](../developer-portal/theming-developer-portal.md) | Customize the look and feel of your portals. |
+| [Customize the Portal Theme](../administer/customizing-portal-theme.md) | Customize the look and feel of your portals. |
 | [Manage Subscription Plans](../administer/creating-subscription-plans.md) | Create the subscription plans that define how consumers can use your APIs. |
 
 To track the logs, alerts, and health of your API proxies, see [Logs](./logs.md) and [Metrics](./metrics.md). To analyze API traffic and usage, see [API Insights](./api-insights.md).
