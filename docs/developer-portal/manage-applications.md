@@ -45,7 +45,7 @@ Associating a key with an application enables usage analytics for that applicati
 
 1. Open the application.
 2. Under **OAuth2 keys**, click **Associate existing key**.
-3. Select the **Key**. Only keys that belong to you are listed. If the key is already associated with another application, it is moved to the current application. A key can be associated with only one application at a time.
+3. Select the **Key**. Only keys that belong to you are listed.
 4. Click **Associate** to associate the key with the application. This button remains unavailable until you select a key. Click **Cancel** to close the dialog without associating a key.
 
 ## Delete an application

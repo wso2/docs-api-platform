@@ -3,15 +3,15 @@ title: "Discover MCP Proxies"
 description: "Explore MCP servers registered in your organization's MCP Hub and view their tools, resources, and prompts."
 ---
 
-The MCP Hub is the visual catalog for your organization's MCP registry. Use it to explore available MCP servers, review their capabilities, and get the connection details needed to wire them into an AI client or agent.
+The AI Hub is the visual catalog for your organization's MCP registry. Use it to explore available MCP servers, review their capabilities, and get the connection details needed to wire them into an AI client or agent.
 
 ## Prerequisites
 
-- You have access to your organization's MCP Hub.
+- You have access to your organization's API Portal and AI Hub.
 
-## Step 1: Open the MCP Hub
+## Step 1: Open the API Portal and AI Hu
 
-1. Navigate to the [MCP Hub](https://devportal.bijira.dev).
+1. Navigate to the [API Portal and AI Hu](https://devportal.bijira.dev).
 2. In the left navigation, select **MCP Servers**.
 
 ![MCP Hub Developer Portal page with a banner promoting MCP-powered tools and an Everything MCP server card showing version 1.0 and MCP tag](/img/cloud/ai-gateway/ai-workspace/mcp-proxies/mcphub.png)

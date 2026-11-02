@@ -141,8 +141,8 @@ const sidebars = {
       group("Discover", [
         doc("developer-portal/discover-apis/searching", "Search APIs"),
         doc("developer-portal/discover-apis/documentation", "API Documentation"),
-        doc("developer-portal/discover-mcp-servers", "MCP Servers"),
-        doc("developer-portal/ai-agent-discovery", "AI Agents"),
+        doc("developer-portal/discover-apis/discover-mcp-servers", "MCP Servers"),
+        doc("developer-portal/discover-apis/ai-agent-discovery", "AI Agents"),
       ]),
       doc("developer-portal/consume-an-api", "Consume an API"),
       doc("developer-portal/manage-applications", "Manage Applications"),

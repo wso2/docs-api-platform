@@ -10,7 +10,7 @@ The API Portal is where consumers find and use the APIs that your organization p
 
 | Task | Description |
 |:-----|:------------|
-| Discover | [Search for APIs](./discover-apis/searching.md), [view an API's documentation](./discover-apis/documentation.md), [explore MCP servers](./discover-mcp-servers.md) in the MCP Hub, and let [AI agents](./ai-agent-discovery.md) discover your APIs through `llms.txt` and machine-readable endpoints. |
+| Discover | [Search for APIs](./discover-apis/searching.md), [view an API's documentation](./discover-apis/documentation.md), [explore MCP servers](./discover-apis/discover-mcp-servers.md) in the MCP Hub, and let [AI agents](./discover-apis/ai-agent-discovery.md) discover your APIs through `llms.txt` and machine-readable endpoints. |
 | [Consume an API](./consume-an-api.md) | Generate keys and invoke an API secured with OAuth2 or an API key. |
 | [Manage Applications](./manage-applications.md) | Create an application that represents the app, service, or device that calls the APIs. |
 | [Manage Subscriptions](./manage-subscriptions.md) | Subscribe an application to an API under a subscription plan. |
