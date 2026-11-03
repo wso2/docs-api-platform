@@ -66,8 +66,7 @@ const sidebars = {
         doc("api-control-plane/metrics", "Metrics"),
       ]),
       group("Insights", [
-        doc("api-control-plane/api-insights", "API Insights"),
-        doc("api-control-plane/compliance", "Compliance"),
+        doc("api-control-plane/api-insights", "Overview"),
       ]),
       group("Administer", [
         doc("administer/managing-environments", "Manage Environments"),

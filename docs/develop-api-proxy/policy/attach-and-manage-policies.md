@@ -15,15 +15,15 @@ An API level policy applies to every resource in the API proxy. To attach one, f
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 
-    ![Policies page showing the Global policies (API level) drop area, Resource-wise policies for each resource, and the Available policies pane with search, category filter, and policy versions](/img/cloud/develop-api-proxy/policy/policies-page.png)
+    ![Policies page showing the Global policies drop area, Resource policies for each resource, and the Available policies pane with search, category filter, and policy versions](/img/cloud/develop-api-proxy/policy/policies-page.png)
 
-4. In the **Available policies** pane, find the policy you want to attach. You can type a policy name in **Search policies**, or select a category from the **Categories** list to filter the policies.
+4. In the **Available policies** pane, find the policy you want to attach. You can type a policy name in **Search policies**, or select a category from the **All** list to filter the policies.
 
     :::tip
     Each policy shows its version. To view the details and configuration of a policy, click **Policy Hub** at the top of the pane.
     :::
 
-5. Drag the policy and drop it in the **Global policies (API level)** section.
+5. Drag the policy and drop it in the **Global policies** section.
 6. Configure the policy parameters, if any, and click **Add**.
 7. To attach more policies, repeat steps 4 to 6. The policies run in the order they appear in the section, and you can drag them to change the order.
 8. Click **Save** to apply the policies to the API.
@@ -35,10 +35,10 @@ A resource level policy applies only to the resource you attach it to. To attach
 1. Sign in to the [API Platform Console](https://console.bijira.dev).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Policies**.
-4. In the **Resource-wise policies** section, find the resource you want to attach a policy to. You can type a path in **Search resources**, or select an HTTP method from the **All methods** list to filter the resources.
+4. In the **Resource policies** section, find the resource you want to attach a policy to. You can type a path in **Search resources by path**, or select an HTTP method from the **All methods** list to filter the resources.
 5. Click the resource to expand it.
 
-    ![Policies page with the GET /books resource expanded under Resource-wise policies, showing an empty drop area and the Available policies pane](/img/cloud/develop-api-proxy/policy/resource-level-policies.png)
+    ![Policies page with the GET /* resource expanded under Resource policies, showing an empty drop area and the Available policies pane](/img/cloud/develop-api-proxy/policy/resource-level-policies.png)
 
 6. In the **Available policies** pane, find the policy you want to attach by searching for it or filtering by category.
 7. Drag the policy from the **Available policies** pane and drop it in the area below the resource.
