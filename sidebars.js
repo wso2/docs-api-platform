@@ -144,8 +144,10 @@ const sidebars = {
         doc("api-portal/consume-an-api/manage-applications", "Manage Applications"),
         doc("api-portal/consume-an-api/manage-subscriptions", "Manage Subscriptions"),
         doc("api-portal/consume-an-api/manage-api-keys", "Manage API Keys"),
-        doc("api-portal/consume-an-api/oauth2", "Call an OAuth2-Secured API"),
-        doc("api-portal/consume-an-api/api-key", "Call an API-Key-Secured API"),
+      ]),
+      group("Consume an API", [
+        doc("api-portal/consume-an-api/oauth2", "Consume an OAuth2-Secured API"),
+        doc("api-portal/consume-an-api/api-key", "Consume an API-Key-Secured API"),
       ]),
       doc("api-portal/admin-settings/key-manager-integration", "Manage Key Managers"),
     ]),

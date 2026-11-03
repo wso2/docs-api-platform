@@ -1,53 +1,57 @@
 ---
 title: "Quick Start Guide"
 pagination_label: "API Portal Quick Start"
-description: "Create a portal from the API Control Plane, publish an API to it, and find the API in the portal."
+description: "Sign in to the API Portal and AI Hub, find an API, subscribe to it under a plan, and invoke the API."
 ---
 
-In this guide, you create a portal for your organization, publish an API to it, and then find the API in the portal the way consumers do.
+In this guide, you sign in to the API Portal and AI Hub, find an API, subscribe to it under a plan, and invoke it.
 
 ## Prerequisites
 
-- Access to the [API Platform Console](https://console.bijira.dev/).
-- An API proxy that is deployed to a gateway. To create and deploy one, follow the [API Control Plane Quick Start Guide](../getting-started/api-proxy.md).
+- A portal in your organization. See [Manage Portals](../administer/managing-portals.md).
+- The API is published to the portal with at least one subscription plan. See [Publish an API](../publish-api-proxy/publish-an-api.md) and [Subscription Plans](../publish-api-proxy/subscription-plans-and-billing.md).
 
-## Step 1: Create a Portal
+## Step 1: Sign In to the Portal
 
-You create portals from the API Control Plane.
+1. Open the portal. To find its URL, see [Open the Portal](./overview.md#open-the-portal).
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev/).
-2. In the left navigation menu, click **Portals**.
-3. Click **Add Portal**, enter a **Name** for the portal, select an **Environment**, and click **Add Portal**.
+2. Click **Log In**, and sign in with your username and password. If you don't have an account in the portal, click **Sign up** to create one.
 
-While the portal is being created, its card shows **Creating portal**. When the portal is ready, **Open Portal** is available on the card.
+## Step 2: Find the API
 
-For more on creating, editing, and deleting portals, see [Manage Portals](../administer/managing-portals.md).
+1. In the portal, click **APIs** in the sidebar. Find the API in the list, or search for it.
 
-## Step 2: Publish an API to the Portal
+2. Click the API to open it. The page shows the endpoints, resources, and subscription plans of the API.
 
-1. In the header, select the project from the **Projects** list and the API from the **APIs** list.
-2. In the left navigation menu, click **Publish**.
-3. On the portal that you created, click **Go to Publish**.
-4. Review the details of the API, and click **Publish**.
+3. Click **Documentation** to view the API definition.
 
-The status of the API in the portal changes to **Published**.
+For more, see [Browse APIs](./discover-apis/browse-apis.md) and [API Documentation](./discover-apis/documentation.md).
 
-For details on each step, and on preparing how the API appears in the portal, see [Publish an API](../publish-api-proxy/publish-an-api.md) and [Customize the Portal Listing](../publish-api-proxy/customize-portal-listing.md).
+## Step 3: Subscribe to the API
 
-## Step 3: Discover the API in the Portal
+1. On the page of the API, under **Subscription plans**, click **Subscribe** on the plan that you want.
 
-1. On the **Publish** page, click **View in Portal** on the portal. The portal opens in a new browser tab.
+2. Copy the subscription token, and click **Done**.
 
-    You can also open the portal from the **Portals** page by clicking **Open Portal** on the portal card.
+The plan is marked as subscribed. To view the subscription token again, regenerate it, suspend the subscription, or unsubscribe, click **View subscription** on the plan. For more, see [Manage Subscriptions](./consume-an-api/manage-subscriptions.md).
 
-2. In the portal, click **APIs** in the sidebar. The API you published appears in the list.
-3. Select the API to view its overview and documentation.
+## Step 4: Invoke the API
 
-To find APIs by name, type, version, or description, see [Search APIs](./discover-apis/browse-apis.md). To learn what the documentation of an API shows, see [API Documentation](./discover-apis/documentation.md).
+1. On the page of the API, under **Endpoints**, copy the **Production** endpoint.
+
+2. Send a request to the endpoint with the subscription token in the `Subscription-Key` header.
+
+    ```bash
+    curl -X GET "<endpoint>/<resource-path>" \
+      -H "Subscription-Key: <subscription-token>"
+    ```
+
+:::note
+This request works when the subscription token is the only credential the API requires. If the API has other policies attached, such as API key or OAuth2 authentication, send the credentials that those policies expect as well. See [Which Credentials You Need](./consume-an-api/overview.md).
+:::
 
 ## Next Steps
 
-- [Manage Applications](./consume-an-api/manage-applications.md) - Create an application to hold your credentials
-- [Manage Subscriptions](./consume-an-api/manage-subscriptions.md) - Subscribe an application to a published API under a plan
-- [Which Credentials You Need](./consume-an-api/overview.md) - Invoke an API secured with OAuth2 or an API key
-- [Customize the Portal Theme](../administer/customizing-portal-theme.md) - Customize the portal's look and feel
+- [Which Credentials You Need](./consume-an-api/overview.md) - Find out which other credentials an API can require, such as an API key or an OAuth2 access token
+- [Consume an OAuth2-Secured API](./consume-an-api/oauth2.md) - Get an access token and invoke an OAuth2-secured API
+- [Discover AI Agents](./ai-agent-discovery.md) - Let AI agents discover and call the API

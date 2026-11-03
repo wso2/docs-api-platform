@@ -1,30 +1,49 @@
 ---
 title: "Manage Subscriptions"
-description: "Subscribe an application to a published API in the API Portal and AI Hub to generate credentials and invoke the API."
+description: "Subscribe to an API under a subscription plan in the API Portal and AI Hub, and view, regenerate, suspend, or cancel the subscription."
 ---
 
-To use a published API in your application, you must subscribe to it. When you subscribe to an API, your subscription covers all minor versions within the API's major version.
+A subscription gives you access to an API under a subscription plan, which sets the rate limits that apply to your calls. When you subscribe, the portal issues a subscription token, which you send with every call to the API in the `Subscription-Key` header.
 
-The subscription process ensures secure authentication of API requests using application keys. While you can generate credentials for an API without subscribing to an application, this approach limits advanced configuration options such as access token expiry time, revoke token expiry time, ID token expiry time, and enabling access to the API without a secret. Generating keys directly in the API is suitable for testing or short-term use but is not recommended for long-term production usage.
+You can subscribe to an API only if it has subscription plans in the portal.
 
-To subscribe to an API via an application, follow these steps:
+## Subscribe to an API
 
-1. Go to the [API Portal and AI Hub](https://devportal.bijira.dev) and sign in to your organization.
+1. Sign in to the API Portal and AI Hub.
 
-2. To navigate to applications, in the portal sidebar, click **Applications**.
+2. In the sidebar, click **APIs**, and open the API.
 
-3. On the **Applications** page, click on the application you want to use to subscribe to an API.
+3. Under **Subscription plans**, click **Subscribe** on the plan that you want.
 
-4. Under the **Subscribed API Proxies** section, click **Explore more**.
+4. Copy the subscription token, and click **Done**.
 
-5. In the **APIs** page, click **Subscribe** to subscribe to an API. You can subscribe to one or more APIs based on your requirements.
+The plan is marked as subscribed.
 
-    :::tip
-    When a new minor version of an API is published, the major version-based invocation URL automatically routes to the latest minor version within the subscribed API's major version. This ensures that existing client applications continue to function without disruption while benefiting from improvements or additions in the newer minor version.
-    :::
+## Use the Subscription Token
 
-Once you subscribe to an API, you can invoke it using the application keys.
+Send the subscription token in the `Subscription-Key` header when you invoke the API.
+
+```bash
+curl -X GET "<endpoint>/<resource-path>" \
+  -H "Subscription-Key: <subscription-token>"
+```
+
+If the API also requires other credentials, such as an API key or an OAuth2 access token, send them as well. See [Which Credentials You Need](./overview.md).
+
+:::tip
+When a new minor version of an API is published, the major version-based invocation URL automatically routes to the latest minor version within the subscribed API's major version. Existing client applications continue to work without disruption.
+:::
+
+## View and Manage a Subscription
+
+The **Subscriptions** page in the sidebar lists the APIs and MCP servers that you are subscribed to.
+
+To manage a subscription, open the API, and click **View subscription** on the plan that you are subscribed to. The dialog shows the status of the subscription and the subscription token. From the dialog, you can do the following.
+
+- **Regenerate** the subscription token. The old token stops working, so update the applications that use it.
+- **Suspend** the subscription to stop calls to the API without cancelling the subscription.
+- **Unsubscribe** from the API. The subscription token stops working. You can subscribe again at any time to get a new token.
 
 ## Next Steps
 
-- [Which Credentials You Need](./overview.md) - Generate keys for the application and invoke the API
+- [Which Credentials You Need](./overview.md) - Find out which other credentials an API requires, and how to get them
