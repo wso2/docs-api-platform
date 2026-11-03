@@ -241,6 +241,17 @@ const sidebars = {
     group("Monetization", [
       doc("monetization/overview", "Overview"),
     ]),
+        group("Policy Hub", [
+      doc("policy-hub/overview", "Overview"),
+    ]),
+    group("Tools", [
+      group("API Designer for VS Code", [
+        doc("tools/vscode-api-design/getting-started", "Get Started"),
+        doc("tools/vscode-api-design/design-apis", "Design APIs"),
+        doc("tools/vscode-api-design/govern-apis", "Govern APIs"),
+        doc("tools/vscode-api-design/end-to-end-tutorial", "End-to-End Tutorial"),
+      ]),
+    ]),
   ],
 };
 
