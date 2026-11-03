@@ -183,14 +183,14 @@ window.openConsoleSignIn = (function () {
   return function () {
     var utm = {
       utm_source: 'docs',
-      utm_medium: 'top_cta',
-      utm_campaign: 'docs_signup',
+      utm_medium: 'header-cta',
+      utm_campaign: 'docs_cta',
       utm_content: pageSlug(),
     };
 
     // Record the click with the same UTM values. 
     try {
-      if (typeof trackEvent === 'function') trackEvent('Docs-CTA-Clicked', utm);
+      if (typeof trackEvent === 'function') trackEvent('CTA-Clicked', Object.assign({ page_title: document.title }, utm));
     } catch (e) {
       console.error('Failed to track CTA click:', e);
     }
