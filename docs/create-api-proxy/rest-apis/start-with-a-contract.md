@@ -1,14 +1,14 @@
 ---
 title: "Start with a contract"
-description: "Create a REST API in API Platform Cloud by importing an OpenAPI contract, then deploy, test, and publish it."
+description: "Create a REST API in the API Control Plane by importing an OpenAPI contract, then deploy, test, and publish it."
 ---
 
-In API Platform Cloud, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start with a contract, you provide a contract URL, and the console generates the initial API details for you. You can then review the API definition, customize its operations, and deploy it to a gateway.
+In the API Control Plane, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start with a contract, you provide a contract URL, and the console generates the initial API details for you. You can then review the API definition, customize its operations, and deploy it to a gateway.
 
 This walks you through creating a REST API using a sample contract, deploying it to a gateway, testing it, and publishing it to a portal.
 ## Prerequisites
 
-1. Open the API Platform Cloud Console and sign in using Google or GitHub.
+1. Open the [API Platform Console](https://console.bijira.dev) and sign in using Google or GitHub.
 2. Open your organization, then select the **Default project** or create a new project.
 
 ## Create the API

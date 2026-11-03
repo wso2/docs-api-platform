@@ -1,5 +1,6 @@
 ---
 title: "Quick Start Guide"
+pagination_label: "API Portal Quick Start"
 description: "Create a portal from the API Control Plane, publish an API to it, and find the API in the portal."
 ---
 

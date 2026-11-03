@@ -1,5 +1,6 @@
 ---
 title: "Observability"
+pagination_label: "Gateway Observability"
 description: "Track the health of your gateways, view gateway logs, and collect logs and traces from Self-Hosted Gateways."
 ---
 

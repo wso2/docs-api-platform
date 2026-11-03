@@ -7,7 +7,7 @@ An application holds the API keys and subscriptions you use to call APIs. Create
 
 ## Open Applications
 
-1. Sign in to the API Platform Cloud API Portal associated to your organization.
+1. Sign in to the API Portal for your organization.
 2. In the left navigation menu, click **Applications**.
 
 The **Applications** page lists your applications. Each card shows the application name and description.

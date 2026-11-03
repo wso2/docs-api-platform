@@ -1,5 +1,6 @@
 ---
 title: "Insights"
+pagination_label: "Gateway Insights"
 description: "View analytics for the API traffic on your gateways in the API Platform Console, and configure the analytics that a Self-Hosted Gateway publishes."
 ---
 

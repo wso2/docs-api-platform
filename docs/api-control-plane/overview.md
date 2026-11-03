@@ -1,5 +1,6 @@
 ---
 title: "API Control Plane"
+pagination_label: "API Control Plane"
 description: "Create, develop, test, and publish API proxies in API Platform Cloud, and administer the environments, gateways, and portals of your organization."
 slug: /api-control-plane
 ---

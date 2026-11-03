@@ -1,5 +1,6 @@
 ---
 title: "Quick Start Guide"
+pagination_label: "Self-Hosted Gateway Quick Start"
 description: "Set up an API Platform Self-Hosted Gateway in your own infrastructure and connect it to the API Platform Cloud control plane."
 ---
 

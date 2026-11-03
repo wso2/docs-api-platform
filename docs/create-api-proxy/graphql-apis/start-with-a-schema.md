@@ -1,6 +1,6 @@
 ---
 title: "Start with a schema"
-description: "Create a GraphQL API in API Platform Cloud by importing a schema from a URL or a file."
+description: "Create a GraphQL API in the API Control Plane by importing a schema from a URL or a file."
 ---
 A GraphQL API proxy operates based on the GraphQL query language specification. GraphQL provides a flexible and efficient approach to API development by allowing clients to request exactly the data they need, nothing more and nothing less.
 
@@ -10,7 +10,7 @@ This walks you through creating a GraphQL API using a sample GraphQL schema, dep
 
 ## Prerequisites
 
-1. Go to API Platform Cloud Console and sign in with Google or GitHub.
+1. Go to the [API Platform Console](https://console.bijira.dev) and sign in with Google or GitHub.
 2. Open your organization, then select the **Default project** or create a new project.
 
 ## Create the API

@@ -1,5 +1,6 @@
 ---
 title: "What is API Platform?"
+pagination_label: "What is API Platform?"
 description: "AI-native SaaS solution for full-lifecycle API management: design, secure, govern, and monitor APIs wherever they run."
 ---
 

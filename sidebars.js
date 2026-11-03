@@ -163,6 +163,8 @@ const sidebars = {
             doc("hybrid-gateways/api-gateway/apply-custom-policies-to-apis", "Apply Custom Policies to APIs"),
           ]),
         ]),
+        doc("hybrid-gateways/api-gateway/high-availability", "High Availability"),
+
       ]),
       group("Observability", [
         doc("api-gateway/observability", "Overview"),

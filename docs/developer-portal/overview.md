@@ -1,5 +1,6 @@
 ---
 title: "API Portal and AI Hub"
+pagination_label: "API Portal and AI Hub"
 description: "Discover, subscribe to, and consume the APIs and MCP servers published from API Platform Cloud."
 slug: /developer-portal
 ---
