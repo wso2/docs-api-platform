@@ -9,7 +9,7 @@ tags:
   - gateway
   - policies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-23
+last_updated: 2026-11-03
 content_type: "how-to"
 ---
 
@@ -71,8 +71,8 @@ Even an output directory is not explicitly specified, the built images are cache
 
 ### Non-Self-Explanatory Flags
 
-- `--name` (`-n`): Sets the gateway name. If not provided, the current directory name is used by default.
-- `--path`: Specifies the directory containing `build.yaml`. By default, this is the current working directory.
-- `push`: Pushes the built images to Docker.
-- `no-cache`: Disables Docker build cache usage.
-- `--platform`: Specifies the target platform. By default, the host platform is used.
+- `--name`: Sets the gateway name. By default, the command uses the name of the directory that contains `build.yaml`.
+- `--path` (`-p`): Specifies the directory containing `build.yaml`. By default, this is the current working directory.
+- `--push`: Pushes the built images to the repository set by `--repository`.
+- `--no-cache`: Disables Docker build cache usage.
+- `--platform`: Builds the images for the given platform with `docker buildx`, and always pushes them. By default, the images match the build machine's architecture. To build for another architecture, also set the `DOCKER_DEFAULT_PLATFORM` environment variable. For details, see [Target architecture](reference.md#target-architecture).
