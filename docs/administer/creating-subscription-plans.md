@@ -7,7 +7,7 @@ A subscription plan defines how many requests an application can make in a time 
 
 You configure the subscription plans for a specific API when you publish it to a portal. For more information, see [Customize the Portal Listing](../publish-api-proxy/customize-portal-listing.md).
 
-A plan can be free or paid.
+A plan can be free or paid. Paid plans are coming soon.
 
 :::tip
 Deleting a subscription plan is only possible if there are no active subscriptions associated with it.
@@ -19,7 +19,7 @@ Deleting a subscription plan is only possible if there are no active subscriptio
 
 2. Go to the organization level. In the header, select your organization from the **Organizations** list.
 
-3. In the left navigation menu, click **Settings**, then click **Subscription Plans**.
+3. In the left navigation menu, click **Manage**, then click **Subscription Plans**.
 
 The **Subscription Plans** page lists the plans in your organization, with their limits, pricing, and status. To find a plan by name, type in **Search plans**.
 
@@ -31,13 +31,16 @@ The **Subscription Plans** page lists the plans in your organization, with their
 
     | Field | Description |
     |:------|:------------|
-    | **Name** | A name for the plan, such as `Gold`. |
+    | **Plan name** | Required. A name for the plan, such as `Gold`. |
     | **Limits** | The limits of the plan. To add a limit, click **Add limit**, select what to limit, such as **Request count**, and enter the number allowed per time unit, such as 100 per **Minute**. To remove a limit, click the remove icon next to it. Leave **Limits** empty for an unlimited plan. |
     | **Block requests when quota is reached** | Turn on to reject the requests that exceed the limit. This is on by default. |
     | **Expiry date** | Optional. The date after which the plan stops accepting subscriptions. |
-    | **Paid plan** | Turn on to make the plan paid. Subscribers pay through each portal that the plan is published to. A portal gets the pricing of the plan when the plan is first published there. Leave this off for a free plan. |
 
 3. Click **Add plan**.
+
+:::note
+Paid plans are coming soon. With a paid plan, subscribers pay through each portal that the plan is published to, and a portal gets the pricing of the plan when the plan is first published there.
+:::
 
 The plan appears on the **Subscription Plans** page, where its **Pricing** shows whether it is free or paid.
 

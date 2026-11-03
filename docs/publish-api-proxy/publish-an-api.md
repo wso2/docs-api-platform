@@ -26,7 +26,7 @@ You publish an API to each portal separately, so you can publish the same API to
 
 4. On the portal you want to publish the API to, click **Go to Publish**.
 
-    The publish page of the API opens. Its title shows the API name and the portal you are publishing to, for example, **Publish New API** to **Sample Portal**. Use the tabs on the page to prepare how the API appears in the portal. See [Customize the Portal Listing](./customize-portal-listing.md).
+    The publish page of the API opens. Its title shows the API name and the portal you are publishing to, for example, **Publish Reading List API**, followed by the name of the portal. Use the tabs on the page to prepare how the API appears in the portal. See [Customize the Portal Listing](./customize-portal-listing.md).
 
     ![Publish page of an API showing the API Details, Specification, Subscription Plans, Documentation, and Landing Page tabs, the Draft and Published views, and the Save Draft and Publish buttons](/img/cloud/publish-api-proxy/publish-api-details.png)
 
@@ -43,7 +43,7 @@ The page shows when the listing was last edited, for example, **Edited 7 minutes
 
 ## Update a Published API
 
-To change a published API, edit the listing in the **Draft** view, and click **Publish** again. Consumers see the changes only after you publish them.
+To change a published API, edit the listing in the **Draft** view, and click **Republish**. Consumers see the changes only after you republish them. The **Published** view shows the listing that consumers currently see, and you cannot edit it. To make changes, switch to the **Draft** view.
 
 ## Next Steps
 

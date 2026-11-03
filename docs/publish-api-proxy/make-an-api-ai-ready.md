@@ -17,11 +17,11 @@ The API description is the primary signal an AI agent uses to decide whether an 
 - The kinds of operations it supports (read, write, or both)
 - Any significant constraints agents should know upfront (authentication requirements, rate limits, environment differences)
 
-The description appears in `llms.txt` and in the agent-readable API catalog (`apis.md`), so it is often the first thing an agent reads about your API.
+The description appears in `llms.txt` and in the agent-readable API catalog (`apis.md`), so it is often the first thing an agent reads about your API. You set the description for each portal in the **API Details** tab of the publish page. See [Customize the Portal Listing](./customize-portal-listing.md).
 
 ## Use a Well-Structured API Specification
 
-Publishing a complete, accurate API specification is one of the most impactful things you can do for AI discoverability. 
+Publishing a complete, accurate API specification is one of the most impactful things you can do for AI discoverability. You can refine the specification for each portal in the **Specification** tab of the publish page.
 
 For REST APIs, follow these practices in your OpenAPI spec to improve agent accuracy.
 
@@ -55,11 +55,11 @@ To control whether AI agents can discover an API, follow the steps given below.
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Publish**.
 4. On the portal, click **Go to Publish**.
-5. On the **API Details** tab, turn the **Make this API discoverable by AI agents** toggle on or off.
+5. In the **Draft** view, on the **API Details** tab, turn the **Make this API discoverable by AI agents** toggle on or off.
 
     ![API Details tab of the publish page with the Make this API discoverable by AI agents toggle turned on, and its tooltip saying that agents in the API Portal can discover and invoke the API on behalf of users](/img/cloud/publish-api-proxy/ai-agent-discovery.png)
 
-6. Click **Publish**.
+6. Click **Publish**, or **Republish** if the API is already published to the portal.
 
 When you turn off the toggle, the API is excluded from `llms.txt`, `apis.md`, and the per API Markdown and specification endpoints of the portal. It remains visible to human users in the portal.
 

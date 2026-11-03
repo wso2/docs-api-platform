@@ -19,7 +19,7 @@ No key manager is involved, and an application is optional. You can associate a 
 
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 
-4. In the **Available policies** pane, find the **API Key Auth** policy, and drag it to the **Global policies (API level)** section.
+4. In the **Available policies** pane, find the **API Key Auth** policy, and drag it to the **Global policies** section.
 
 5. Configure where requests carry the API key, such as a header and its name, and click **Add**.
 
