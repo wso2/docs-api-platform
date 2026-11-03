@@ -116,7 +116,3 @@ Modify requests and responses in flight.
 ## Independent Versioning
 
 Every policy in the hub is versioned on its own track. When a new version ships, prior versions remain available, so existing deployments do not break.
-
-## Extending the Hub
-
-You can [build a custom gateway image](../hybrid-gateways/api-gateway/build-gateway-with-custom-policies.md) that bundles any combination of hub policies and policies you write yourself. So you can fill your requirement gaps, if any, with local implementations, and contribute them to Policy Hub.

@@ -26,6 +26,5 @@ Your organization does not have a default gateway. Before you deploy an API prox
 |:-----|:------------|
 | [Set up a Self-Hosted Gateway](../hybrid-gateways/api-gateway/getting-started.md) | Add a Self-Hosted Gateway in the API Control Plane, run it on your infrastructure, and deploy an API proxy to it. |
 | [Add and manage policies](../hybrid-gateways/api-gateway/manage-policies.md) | Apply policies to the APIs on a Self-Hosted Gateway. |
-| [Write custom policies](../hybrid-gateways/api-gateway/writing-a-custom-policy.md) | Build your own policies, [build a gateway that includes them](../hybrid-gateways/api-gateway/build-gateway-with-custom-policies.md), and [apply them to APIs](../hybrid-gateways/api-gateway/apply-custom-policies-to-apis.md). |
 
 To view the gateways in your organization from the API Control Plane, see [Manage Gateways](../administer/managing-gateways.md).
