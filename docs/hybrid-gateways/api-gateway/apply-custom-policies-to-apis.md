@@ -7,10 +7,14 @@ After [building the gateway with your custom policies](./build-gateway-with-cust
 
 ## Step 1: View the Gateway Policies
 
-1. Sign in to [API Platform Console](https://console.bijira.dev).
-2. Go to **Organization Level** in API Platform.
-3. From the left navigation, select **Admin** → **Gateways**.
-4. Select your gateway to open the gateway detail view.
+1. Sign in to the [API Platform Console](https://console.bijira.dev).
+
+2. Go to the organization level. In the header, select your organization from the **Organizations** list.
+
+3. In the left navigation menu, click **Gateways**.
+
+4. Click the **Self-hosted gateways** tab, and select your gateway to open its details.
+
 5. Click the **Policies** tab.
 
 :::note
@@ -60,9 +64,9 @@ Once synced, the custom policy is available organization-wide and can be applied
 
 After syncing, the custom policy appears in the **Custom Policies** section on the main Gateways page. To view it:
 
-1. From the left navigation, select **Admin** → **Gateways**.
-2. Select the **API Platform** tab to ensure the Hybrid Gateways view is active.
-3. Scroll down to the **Custom Policies** section below the gateway list.
+1. At the organization level, in the left navigation menu, click **Gateways**.
+
+2. Scroll down to the **Custom Policies** section below the gateway list.
 
 This section lists all custom policies available in the organization with the following details:
 
@@ -83,12 +87,19 @@ To delete a synced custom policy, none of the APIs in the organization should be
 
 After syncing, the custom policy appears in the policy list when configuring an API proxy. To apply it:
 
-1. Navigate to your API proxy.
-2. Go to the **Policies** page.
-3. Select your custom policy from the available policies and configure it.
-4. Deploy the API.
+1. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 
-For detailed instructions on attaching and configuring policies on an API, see [Adding and Managing Policies](./manage-policies.md).
+2. In the left navigation menu, click **Develop**, then click **Policies**.
+
+3. In the **Available policies** pane, find your custom policy, and drag it to the **Global policies** section, or to a resource under **Resource policies**.
+
+4. Configure the policy parameters, if any, and click **Add**.
+
+5. Click **Save**.
+
+6. Deploy the API to your Self-Hosted Gateway, so that the policy takes effect.
+
+For detailed instructions on attaching and configuring policies on an API, see [Add and Manage Policies](./manage-policies.md).
 
 ## Next Steps
 

@@ -1,7 +1,7 @@
 ---
 title: "API Gateway"
 pagination_label: "API Gateway"
-description: "Run your API proxies on a WSO2 Managed Gateway or on a Self-Hosted Gateway in your own infrastructure, all managed from API Platform Cloud."
+description: "Run your API proxies on a Self-Hosted Gateway in your own infrastructure or on a WSO2 Managed Gateway, all managed from API Platform Cloud."
 slug: /api-gateway
 ---
 
@@ -11,16 +11,14 @@ Gateways run in the data plane, while you configure and manage them centrally fr
 
 ## Gateway Options
 
-| Gateway | Where It Runs | Use It To |
-|:--------|:--------------|:----------|
-| **WSO2 Managed Gateway** | On infrastructure that WSO2 hosts and operates. | Deploy and test API proxies without setting up any infrastructure. |
-| **Self-Hosted Gateway** | On your own infrastructure, such as a virtual machine, Docker, or Kubernetes. | Keep API traffic within your network or close to your backends. |
+| Gateway | Description | Traffic Via | Best For |
+|:--------|:------------|:------------|:---------|
+| **Self-Hosted Gateway** | Runs on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connects to the control plane. Traffic and data stay within your network. | Your infrastructure | Enterprise and compliance requirements |
+| **WSO2 Managed Gateway** | Runs on fully managed cloud infrastructure. WSO2 runs, scales, and upgrades the gateway, so you have no infrastructure to maintain. | WSO2 cloud | A fast start and proofs of concept |
 
-Your organization has a WSO2 Managed Gateway by default. Add a Self-Hosted Gateway when you need to control where your API traffic runs.
-
-## Gateways and Environments
-
-Each gateway belongs to one [environment](../key-concepts.md#environments), such as development or production. An environment can have more than one gateway, and one of them can be the default gateway for the environment.
+:::info
+Your organization does not have a default gateway. Before you deploy an API proxy, create a gateway in the API Control Plane. To set up a Self-Hosted Gateway, follow the [Self-Hosted Gateway Quick Start Guide](../hybrid-gateways/api-gateway/getting-started.md). To add a WSO2 Managed Gateway instead, see [Manage Gateways](../gateways.md).
+:::
 
 ## What You Can Do
 
