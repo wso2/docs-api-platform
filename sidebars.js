@@ -159,14 +159,7 @@ const sidebars = {
       group("Self-Hosted Gateways", [
         doc("hybrid-gateways/api-gateway/architecture", "Architecture"),
         doc("hybrid-gateways/api-gateway/getting-started", "Quick Start Guide"),
-        group("Policies", [
-          doc("hybrid-gateways/api-gateway/manage-policies", "Add and Manage Policies"),
-          group("Custom Policies", [
-            doc("hybrid-gateways/api-gateway/writing-a-custom-policy", "Writing a Custom Policy"),
-            doc("hybrid-gateways/api-gateway/build-gateway-with-custom-policies", "Building the Gateway with Custom Policies"),
-            doc("hybrid-gateways/api-gateway/apply-custom-policies-to-apis", "Apply Custom Policies to APIs"),
-          ]),
-        ]),
+        doc("hybrid-gateways/api-gateway/manage-policies", "Add and Manage Policies"),
         doc("hybrid-gateways/api-gateway/high-availability", "High Availability"),
 
       ]),

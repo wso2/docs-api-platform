@@ -51,12 +51,8 @@ A resource level policy applies only to the resource you attach it to. To attach
 
 The policies stay inactive until you deploy the API. Deploy it so the Self-Hosted Gateway receives the updated policy chain.
 
-1. In the left navigation menu, click **Deploy**.
-2. Click **Deploy**.
+1. In the left navigation menu, click **Deploy** to open the **Deploy** page of the API.
+
+2. Select your Self-Hosted Gateway, and click the **Deploy** button.
 
 When the deployment is active, the gateway runs the policies in the order you arranged them.
-
-## Next Steps
-
-- [Writing a Custom Policy](./writing-a-custom-policy.md) - Build a custom policy using the gateway SDK
-- [Apply Custom Policies to APIs](./apply-custom-policies-to-apis.md) - Sync a custom policy from your Self-Hosted Gateway, then attach it from the same **Policies** page

@@ -110,4 +110,4 @@ func (p *MyAIPolicy) OnResponseBody(
 
 ## Learn More
 
-- [Writing a Custom Policy for the Self-Hosted Gateway](../../hybrid-gateways/api-gateway/writing-a-custom-policy.md)
+- [Writing a Custom Policy for the Self-Hosted Gateway](https://wso2.com/api-platform/docs/api-gateway/1.2.0/policies/custom-policies/writing-a-custom-policy/)
