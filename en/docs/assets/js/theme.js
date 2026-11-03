@@ -136,7 +136,7 @@ onFirstPage(function () {
       return;
     }
 
-    // Clicking outside an open menu closes the menu 
+    // Clicking outside an open menu closes the menu
     document.querySelectorAll('.md-content__copy.open').forEach(function (openContainer) {
       if (!openContainer.contains(event.target)) {
         openContainer.classList.remove('open');
@@ -144,6 +144,64 @@ onFirstPage(function () {
     });
   });
 });
+
+/*
+ * "Try WSO2 API Platform" header button (see partials/community.html)
+ *
+ * Opens the Console sign-in page with UTM parameters to record Console's sign-up
+ * events in Moesif. The header stays in place across instant navigation. So the 
+ * page slug is read when we click the button.
+ *
+ */
+window.openConsoleSignIn = (function () {
+  // Same site root resolution as the search breadcrumbs below.
+  var scope = window.__md_scope ||
+    (document.querySelector('base') ? new URL(document.querySelector('base').href) : new URL('/', location));
+  var basePath = scope.pathname;
+  if (basePath.charAt(basePath.length - 1) !== '/') basePath += '/';
+
+  // The page path relative to the site root, lowercased, with each run of
+  // characters other than letters and digits replaced by one underscore:
+  // /api-gateway/1.2.0/quick-start-guide/ becomes
+  // api_gateway_1_2_0_quick_start_guide. The site root becomes "home".
+  function pageSlug() {
+    var path = location.pathname;
+    try {
+      path = decodeURIComponent(path);
+    } catch (e) {
+      // Keep the raw path if it isn't valid percent-encoding.
+    }
+    if (path.indexOf(basePath) === 0) path = path.slice(basePath.length);
+    var slug = path
+      .replace(/index\.html$/, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+    return slug || 'home';
+  }
+
+  return function () {
+    var utm = {
+      utm_source: 'docs',
+      utm_medium: 'top_cta',
+      utm_campaign: 'docs_signup',
+      utm_content: pageSlug(),
+    };
+
+    // Record the click with the same UTM values. 
+    try {
+      if (typeof trackEvent === 'function') trackEvent('Docs-CTA-Clicked', utm);
+    } catch (e) {
+      console.error('Failed to track CTA click:', e);
+    }
+
+    var url = new URL('https://console.bijira.dev/login/');
+    Object.keys(utm).forEach(function (key) {
+      url.searchParams.set(key, utm[key]);
+    });
+    window.open(url.toString(), '_blank', 'noopener');
+  };
+})();
 
 // Content tab styling and navigation sidebar state: both are re-rendered on
 // every navigation, so this runs per page.
