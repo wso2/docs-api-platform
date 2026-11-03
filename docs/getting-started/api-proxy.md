@@ -62,43 +62,28 @@ The REST API is added to the project. Its overview lists the generated operation
 
 To view or edit the API definition, open the API and in the left navigation menu click **Develop**, then **Definition**. You can view the OpenAPI definition as **YAML** or **JSON**, or click **Edit** to change the operations.
 
-## Deploy the API to a gateway
+## Deploy the API
 
-Deploy the API so requests can be sent through a gateway.
+Deploying places a build of the API on a gateway so requests can reach the backend through that gateway.
 
-1. Open the API you created.
-2. In the left navigation menu, click **Deploy**. You can also click **Deploy to Gateway** on the API overview.
-3. In **Build Area**, click **Build and deploy**.
-
-    The page lists the gateways in the environment, such as **development**.
-
-4. In **Deploy to development**, confirm the deployment:
-
-    1. Under **Gateways**, keep the gateway marked **Default** selected. All selected gateways receive the same build.
-    2. Confirm the **Endpoint URL**.
-    3. Click **Deploy**.
-
-
-When the deployment finishes, that gateway is no longer marked **Not deployed**. The API overview lists it under the deployed gateways and shows the invoke URL.
+1. Create a gateway. See [Manage Gateways](../administer/managing-gateways.md).
+2. Go to the **Deploy** section and deploy the API to a gateway. For more information, see [Deploy an API](../deploy-api-proxy/overview.md).
 
 ## Test the API
 
-After the API is deployed, test an operation to confirm that requests go through the gateway.
+After deploying the API, test its operations to verify that requests can be sent through the gateway.
 
-1. Open the API and click **Test** in the left navigation menu.
-2. Select the gateway where the API is deployed. The endpoint for that gateway appears next to the gateway selector.
-3. Choose one of the following:
+1. In the left navigation menu, click **Test**.
+2. Use the API Console or cURL to send a request through the gateway and inspect the response.
 
-    - **Console view:** Expand an operation, such as `GET /books` for the Reading List API. Choose **Through proxy** to send the request through the gateway. Click **Execute**. See [API Console](../test-api-proxy/api-console.md).
-    - **cURL view:** Select the HTTP method and path, set any query parameters, headers, or request body, and copy the cURL command to run from a terminal. See [cURL](../test-api-proxy/curl.md).
-
-Review the response to confirm that the API behaves as expected.
+For more information, see [API Console](../test-api-proxy/api-console.md) and [cURL](../test-api-proxy/curl.md).
 
 ## Publish the API
 
-Publishing makes the API available in API Portal, where consumers can discover it and read its documentation.
+Publishing makes the API available in the API Portal, where consumers can discover it and read its documentation.
 
-See [Publish an API](../publish-api-proxy/publish-an-api.md).
+1. Create a portal first if the organization does not have one. See [Manage Portals](../administer/managing-portals.md).
+2. Publish the API. See [Publish an API](../publish-api-proxy/publish-an-api.md).
 
 ## Next Steps
 

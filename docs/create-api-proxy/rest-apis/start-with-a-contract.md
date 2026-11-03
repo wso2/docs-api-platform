@@ -44,38 +44,28 @@ This walks you through creating a REST API using a sample contract, deploying it
 
 8. Click **Create**.
 
-## Deploy the API to a gateway
+## Deploy the API
 
-1. Open the API you created.
-2. In the left navigation menu, click **Deploy**. Alternatively, click **Deploy to Gateway** on the API overview page.
-3. In the **Build Area**, click **Deploy**. You can also select **Build and Deploy** if you need to build the API before deployment.
-4. In the **Deploy to development** dialog, configure the deployment:
+Deploying places a build of the API on a gateway so requests can reach the backend through that gateway.
 
-   1. **Select the gateway:** Choose the gateway to deploy the API to. **Default** represents your organization's default gateway.
-   2. **Confirm the Endpoint URL:** Verify that the backend URL is correct. For the Petstore sample, use `https://petstore3.swagger.io/api/v3`.
-   3. **Confirm the build:** Review the build details and click **Deploy**.
-
-After the deployment succeeds, the gateway status changes to **Active**. The API overview page lists the gateway under **Deployed gateways** and displays its **Invoke URL**.
-
-:::note
-If the API is already deployed to a gateway, that gateway remains selected in the deployment configuration. Undeploy the API before clearing that gateway selection.
-:::
+1. Create a gateway. See [Manage Gateways](../../administer/managing-gateways.md).
+2. Go to the **Deploy** section and deploy the API to a gateway. For more information, see [Deploy an API](../../deploy-api-proxy/overview.md).
 
 ## Test the API
 
+After deploying the API, test its operations to verify that requests can be sent through the gateway.
+
 1. In the left navigation menu, click **Test**.
-2. Select the gateway where the API is deployed. The endpoint associated with the selected gateway appears next to the gateway selector.
-3. Choose one of the following testing options:
+2. Use the API Console or cURL to send a request through the gateway and inspect the response.
 
-   - **Console view:** Expand an operation from the imported contract. Choose **Through proxy** to send the request through the gateway, or **Direct** to send it directly to the backend. Click **Execute** to run the request. For more information, see [API Console](../../test-api-proxy/api-console.md).
-
-   - **cURL view:** Select the HTTP method and path, configure any required query parameters, headers, or request body, and copy the generated cURL command to run it from your terminal. For more information, see [cURL](../../test-api-proxy/curl.md).
+For more information, see [API Console](../../test-api-proxy/api-console.md) and [cURL](../../test-api-proxy/curl.md).
 
 ## Publish the API
 
 Publishing makes the API available to developers through a portal, where they can discover the API and access its documentation.
 
-See [Publish an API](../../publish-api-proxy/publish-an-api.md).
+1. Create a portal first if the organization does not have one. See [Manage Portals](../../administer/managing-portals.md).
+2. Publish the API. See [Publish an API](../../publish-api-proxy/publish-an-api.md).
 
 ## Next Steps
 

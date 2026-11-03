@@ -49,6 +49,9 @@ const sidebars = {
         ]),
         doc("develop-api-proxy/documents", "Documents"),
       ]),
+      group("Deploy", [
+        doc("deploy-api-proxy/overview", "Overview"),
+      ]),
       group("Test", [
         doc("test-api-proxy/api-console", "API Console"),
         doc("test-api-proxy/graphql-console", "GraphQL Console"),
@@ -71,7 +74,7 @@ const sidebars = {
       group("Administer", [
         doc("administer/managing-environments", "Manage Environments"),
         doc("administer/managing-pipelines", "Manage Pipelines"),
-        doc("gateways", "Manage Gateways"),
+        doc("administer/managing-gateways", "Manage Gateways"),
         doc("administer/managing-portals", "Manage Portals"),
         // doc("administer/customizing-portal-theme", "Customize the Portal Theme"),
         doc("administer/creating-subscription-plans", "Manage Subscription Plans"),

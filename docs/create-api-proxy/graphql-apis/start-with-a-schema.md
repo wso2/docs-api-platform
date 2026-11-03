@@ -45,15 +45,14 @@ This walks you through creating a GraphQL API using a sample GraphQL schema, dep
 
 ## Deploy the API
 
-A newly created GraphQL API does not have a build yet. Deploying the API prepares a build and deploys it to the selected gateway.
+Deploying places a build of the API on a gateway so requests can reach the backend through that gateway.
 
-1. Open the API.
-2. In the left navigation menu, click **Deploy**. Alternatively, click **Deploy to Gateway** on the API overview page.
-3. In the **Deploy to development** dialog, select the gateway. **Default** is selected by default. Click **Deploy**.
-
-   Check the gateway's deployment status to confirm that the deployment succeeds before proceeding.
+1. Create a gateway. See [Manage Gateways](../../administer/managing-gateways.md).
+2. Go to the **Deploy** section and deploy the API to a gateway. For more information, see [Deploy an API](../../deploy-api-proxy/overview.md).
 
 ## Test the API
+
+After deploying the API, test its operations to verify that requests can be sent through the gateway.
 
 1. In the left navigation menu, click **Test**.
 2. Use the GraphQL Console to execute queries against the deployed API and inspect the responses.
@@ -64,7 +63,8 @@ For more information, see the [GraphQL Console](../../test-api-proxy/graphql-con
 
 Publishing makes the API available to developers through a portal, where they can discover the API and access its documentation.
 
-See [Publish an API](../../publish-api-proxy/publish-an-api.md).
+1. Create a portal first if the organization does not have one. See [Manage Portals](../../administer/managing-portals.md).
+2. Publish the API. See [Publish an API](../../publish-api-proxy/publish-an-api.md).
 
 ## Next Steps
 

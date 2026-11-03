@@ -9,7 +9,7 @@ You publish an API to each portal separately, so you can publish the same API to
 
 ## Prerequisites
 
-- An API proxy that is deployed to a gateway. See [Gateways](../gateways.md).
+- An API proxy that is deployed to a gateway. See [Manage Gateways](../administer/managing-gateways.md).
 - At least one portal in your organization. See [Manage Portals](../administer/managing-portals.md).
 
 ## Publish an API to a Portal

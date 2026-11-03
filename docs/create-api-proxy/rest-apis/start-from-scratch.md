@@ -49,45 +49,28 @@ The REST API is now added to your project. You can review its generated definiti
 
 To view or edit the API definition, open the API and navigate to **Develop** > **Definition**. You can view the OpenAPI definition in YAML or JSON format, or click **Edit** to modify the API operations.
 
-## Deploy the API to a gateway
+## Deploy the API
 
-Deploy the API to a gateway to make it accessible through the gateway's endpoint.
+Deploying places a build of the API on a gateway so requests can reach the backend through that gateway.
 
-1. Open the API you created.
-2. In the left navigation menu, click **Deploy**. Alternatively, click **Deploy to Gateway** on the API overview page.
-3. In the **Build Area**, click **Deploy**. You can also use **Build and Deploy** if you need to build the API before deploying it.
-
-4. In the **Deploy to development** dialog, configure the deployment:
-
-   1. **Select the gateway:** Choose the gateway to which you want to deploy the API. **Default** represents your organization's default gateway.
-   2. **Confirm the endpoint URL:** Verify that the backend endpoint is correct.
-   3. **Confirm the build:** Review the build details and click **Deploy**.
-
-After the deployment succeeds, the gateway status changes to **Active**. The API overview page lists the gateway under **Deployed gateways** and displays the corresponding **Invoke URL**.
-
-:::note
-If the API is already deployed to a gateway, that gateway remains selected in the deployment configuration. Undeploy the API before clearing that gateway selection.
-:::
+1. Create a gateway. See [Manage Gateways](../../administer/managing-gateways.md).
+2. Go to the **Deploy** section and deploy the API to a gateway. For more information, see [Deploy an API](../../deploy-api-proxy/overview.md).
 
 ## Test the API
 
 After deploying the API, test its operations to verify that requests can be sent through the gateway.
 
-1. Open the API and click **Test** in the left navigation menu.
-2. Select the gateway where the API is deployed. The endpoint associated with the selected gateway appears next to the gateway selector.
-3. Choose one of the following testing options:
+1. In the left navigation menu, click **Test**.
+2. Use the API Console or cURL to send a request through the gateway and inspect the response.
 
-   - **Console view:** Expand an operation, such as `GET /books` for the Reading List API. Choose **Through proxy** to send the request through the gateway, or **Direct** to send it directly to the backend. Click **Execute** to run the request. For more information, see [API Console](../../test-api-proxy/api-console.md).
-
-   - **cURL view:** Select the HTTP method and path, configure any required query parameters, headers, or request body, and copy the generated cURL command to run the request from your terminal. For more information, see [cURL](../../test-api-proxy/curl.md).
-
-Review the response to verify that the API behaves as expected.
+For more information, see [API Console](../../test-api-proxy/api-console.md) and [cURL](../../test-api-proxy/curl.md).
 
 ## Publish the API
 
-Publishing makes the API available to developers through API portal, where they can discover the API and access its documentation.
+Publishing makes the API available to developers through a portal, where they can discover the API and access its documentation.
 
-See [Publish an API](../../publish-api-proxy/publish-an-api.md).
+1. Create a portal first if the organization does not have one. See [Manage Portals](../../administer/managing-portals.md).
+2. Publish the API. See [Publish an API](../../publish-api-proxy/publish-an-api.md).
 
 ## Next Steps
 
