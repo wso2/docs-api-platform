@@ -63,4 +63,4 @@ To remove the association, click **Remove** next to the key in the **API Keys** 
 
 ## Next Steps
 
-- [Call an API-Key-Secured API](./call-api-key-secured-api.md) - Invoke an API with an API key
+- [Call an API-Key-Secured API](./api-key.md) - Invoke an API with an API key

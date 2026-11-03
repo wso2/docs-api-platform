@@ -30,7 +30,7 @@ The application is added to the list. Open it to edit the name or the descriptio
 
 ## Associate an existing key
 
-Generate the key before associating it with an application. See [Which Credentials You Need](./which-credentials-you-need.md) for instructions.
+Generate the key before associating it with an application. See [Which Credentials You Need](./overview.md) for instructions.
 
 Associating a key with an application enables usage analytics for that application. It does not affect the key's validity.
 
@@ -61,4 +61,4 @@ Deleting an application cannot be undone.
 ## Next Steps
 
 - [Manage Subscriptions](./manage-subscriptions.md) - Subscribe the application to an API
-- [Which Credentials You Need](./which-credentials-you-need.md) - Generate a key, then use it to call an API
+- [Which Credentials You Need](./overview.md) - Generate a key, then use it to call an API

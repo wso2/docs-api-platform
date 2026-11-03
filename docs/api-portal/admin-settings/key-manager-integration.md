@@ -81,4 +81,4 @@ When a developer updates or deletes a key that the portal registered, the portal
 
 ## Next Steps
 
-- [Call an OAuth2-Secured API](./call-oauth2-secured-api.md) - Get an access token and invoke an OAuth2-secured API
+- [Call an OAuth2-Secured API](../consume-an-api/oauth2.md) - Get an access token and invoke an OAuth2-secured API

@@ -12,7 +12,7 @@ The portal never stores your consumer secret. The key manager returns it once, w
 
 ## Prerequisites
 
-- A key manager that your organization has registered. For more information, see [Manage Key Managers](./manage-key-managers.md).
+- A key manager that your organization has registered. For more information, see [Manage Key Managers](../admin-settings/key-manager-integration.md).
 - A subscription to the API, if the API has subscription plans. For more information, see [Manage Subscriptions](./manage-subscriptions.md).
 
 ## Get an OAuth2 Key
