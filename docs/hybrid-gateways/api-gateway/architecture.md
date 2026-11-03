@@ -67,3 +67,5 @@ The router receives the request and identifies the matching API route. It then a
 ## Key Benefits
 
 This architecture provides centralized API management while keeping runtime execution close to backend services. It helps organizations maintain control over API traffic, reduce exposure of internal systems, and apply consistent policies across APIs managed through the API Control Plane.
+
+To keep serving APIs when a controller or runtime replica is unavailable, run more than one of each. See [High Availability](./high-availability.md).
