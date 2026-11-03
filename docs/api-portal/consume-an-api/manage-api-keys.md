@@ -1,44 +1,27 @@
 ---
 title: "Manage API Keys"
-description: "Generate, regenerate, and revoke API keys for an API in the API Portal and AI Hub, and associate them with applications."
+description: "View, regenerate, and revoke your API keys in the API Portal and AI Hub, and associate them with applications for usage analytics."
 ---
 
-An API key is bound to a specific API. You generate a key directly for an API, and the key authenticates your requests to that API. You do not need an application.
+An API key is bound to a specific API, and it authenticates your requests to that API. You send the key in the header that the **API Key Auth** policy of the API expects.
 
-## Prerequisites
+API keys for an API are created in the API Platform Console. On the **Overview** page of the API, in the **API Keys** section, click **Add**. See [API Key Authentication](../../develop-api-proxy/security/api-key-authentication.md).
 
-- The API has API key authentication enabled. Check the API's documentation or the security section of its specification.
-- A subscription to the API, if the API requires one. For more information, see [Manage Subscriptions](./manage-subscriptions.md).
+## View Your API Keys
 
-## Generate an API Key
+1. Sign in to the API Portal and AI Hub.
 
-1. Sign in to the [API Portal and AI Hub](https://devportal.bijira.dev).
+2. In the sidebar, click **Keys**, then click **API Keys**.
 
-2. In the sidebar, click **APIs**, and open the API that you want to invoke.
-
-3. In the submenu of the API, click **API Keys**.
-
-4. Click **Generate API key**.
-
-5. In the **Generate API key** dialog, enter a **Name** for the key, such as `my-prod-key`. Optionally, set an **Expires at** date.
-
-6. Click **Generate**.
-
-7. Copy the API key. You cannot view it again after you close the dialog.
-
-8. Click **Done**.
-
-The **API Keys** page lists the keys of the API, with their name, status, expiry date, and the application that each key is associated with.
+The page lists the API keys that you have generated across all APIs.
 
 ## Regenerate an API Key
 
 Regenerate a key if it is compromised, or to rotate it regularly.
 
-1. On the **API Keys** page of the API, click **Regenerate** next to the key.
+1. On the **API Keys** page, click **Regenerate** next to the key, and confirm.
 
-2. Optionally, change the **Name** or **Expires at** date, and confirm.
-
-3. Copy the new key from the dialog.
+2. Copy the new key. You cannot view it again after you close the dialog.
 
 :::warning
 The old key stops working as soon as you regenerate it. Update all the services that use the old key.
@@ -46,21 +29,24 @@ The old key stops working as soon as you regenerate it. Update all the services 
 
 ## Revoke an API Key
 
-1. On the **API Keys** page of the API, click **Revoke** next to the key.
+On the **API Keys** page, click **Revoke** next to the key, and confirm.
 
-2. Confirm the revocation.
-
-You cannot recover a revoked key. To get access again, generate a new key.
+You cannot recover a revoked key.
 
 ## Associate an API Key with an Application
 
-You can associate an API key with an application to group its usage under the application in analytics. The association does not change how the key works.
+You can associate an API key with an application to attribute its usage to the application in analytics. The association has no effect on the validity of the key.
 
-- **From the key:** On the **API Keys** page of the API, click **Associate app**, or **Change app** if the key already has one, and select the application.
-- **From the application:** Open the application, go to the **API Keys** tab, and click **Associate existing key**. Select the **API** that the key belongs to and the **Key**, and click **Associate**.
+1. In the sidebar, click **Applications**, and open the application.
 
-To remove the association, click **Remove** next to the key in the **API Keys** tab of the application. The key stays active.
+2. Under **API keys**, click **Associate existing key**.
+
+3. Select the **API**, and then select the **Key**.
+
+4. Click **Associate**.
+
+For more on applications, see [Manage Applications](./manage-applications.md).
 
 ## Next Steps
 
-- [Call an API-Key-Secured API](./api-key.md) - Invoke an API with an API key
+- [Which Credentials You Need](./overview.md) - Find out which credentials an API requires, and how to send them

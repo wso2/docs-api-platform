@@ -1,29 +1,50 @@
 ---
 title: "API Portal and AI Hub"
 pagination_label: "API Portal and AI Hub"
-description: "Discover, subscribe to, and consume the APIs and MCP servers published from API Platform Cloud."
+description: "Discover, subscribe to, and consume the APIs, MCP servers, and API workflows published from API Platform Cloud."
 slug: /api-portal
 ---
 
-The API Portal and AI Hub is where consumers find and use the APIs that your organization publishes from the [API Control Plane](../api-control-plane/overview.md). Application developers browse the API catalog, read the documentation, subscribe to the APIs they need, and get the credentials to invoke them. AI agents can discover the same APIs through machine-readable endpoints.
+The API Portal and AI Hub is where consumers find and use the APIs, MCP servers, and API workflows that your organization publishes from the [API Control Plane](../api-control-plane/overview.md). It is built for both application developers and AI agents. Developers browse the catalog, read the documentation, subscribe to what they need, and get the credentials to invoke it. AI agents discover the same APIs through machine-readable endpoints.
+
+## Open the Portal
+
+You can open a portal from the API Platform Console in either of the following ways.
+
+- In the left navigation menu, click **Portals**, and then click **Open Portal** on the portal. See [Manage Portals](../administer/managing-portals.md).
+- On the **Publish** page of an API, click **View in Portal** on the portal that the API is published to. See [Publish an API](../publish-api-proxy/publish-an-api.md).
+
+Share the portal URL with your consumers so that they can open it directly.
+
+## Sign In or Sign Up
+
+To sign in, click **Log In** in the portal, and enter your username and password.
+
+Anyone can create an account in a portal by clicking **Sign up** on the sign-in page. An administrator can also add users to the portal.
 
 ## What You Can Do
 
-| Task | Description |
+| Area | Description |
 |:-----|:------------|
-| Discover | [Search for APIs](./discover-apis/browse-apis.md), [view an API's documentation](./discover-apis/documentation.md), [explore MCP servers](./mcp-servers/browse-mcp-servers.md) in the MCP Hub, and let [AI agents](./ai-agent-discovery.md) discover your APIs through `llms.txt` and machine-readable endpoints. |
-| [Which Credentials You Need](./consume-an-api/overview.md) | Generate keys and invoke an API secured with OAuth2 or an API key. |
-| [Manage Applications](./consume-an-api/manage-applications.md) | Create an application that represents the app, service, or device that calls the APIs. |
-| [Manage Subscriptions](./consume-an-api/manage-subscriptions.md) | Subscribe an application to an API under a subscription plan. |
+| **APIs** | [Browse and search the APIs](./discover-apis/browse-apis.md) in the portal, and [read their documentation](./discover-apis/documentation.md). |
+| **MCP Servers** | [Explore the MCP servers](./mcp-servers/browse-mcp-servers.md) that you can connect your AI agents to. |
+| **API Workflows** | Find pre-configured workflows that AI agents follow to use your APIs correctly. |
+| **AI agents** | Let [AI agents discover the portal](./ai-agent-discovery.md), or a single API, with a ready-made prompt that you can run in an AI agent such as Claude. APIs that agents can discover are marked **AI Ready**. |
+| **Applications** | [Create applications](./consume-an-api/manage-applications.md) that hold the API keys and subscriptions you use to call APIs. |
+| **Subscriptions** | [Subscribe your applications](./consume-an-api/manage-subscriptions.md) to APIs and MCP servers, and view your subscriptions. |
+| **Keys** | Generate and manage the [API keys](./consume-an-api/manage-api-keys.md) and [OAuth2 keys](./consume-an-api/oauth2.md) that you use to call APIs. |
 
 ## Consume an API
 
 To use an API from the API Portal and AI Hub, follow these steps.
 
 1. Find the API in the catalog, and review its documentation.
+
 2. Create an application.
+
 3. Subscribe the application to the API.
-4. Generate credentials for the application, and invoke the API.
+
+4. Get the credentials that the API expects, and invoke the API. See [Which Credentials You Need](./consume-an-api/overview.md).
 
 ## Get Started
 

@@ -7,8 +7,8 @@ To call an API that is published in the API Portal and AI Hub, you need the endp
 
 | Credential | What It Proves | Where It Comes From | Header |
 |:-----------|:---------------|:--------------------|:-------|
-| **Subscription token** | You are subscribed to the API under a plan, so the gateway knows which rate limit to apply. | Subscribing to a plan of the API. | The header named in the API's specification, commonly `Subscription-Key`. |
-| **API key** | You are an authorized caller of the API. | The **API Keys** page of the API. | `apikey`, or the header named in the API's specification. |
+| **Subscription token** | You are subscribed to the API under a plan, so the gateway knows which rate limit to apply. | Subscribing to a plan of the API in the portal. | `Subscription-Key` |
+| **API key** | You are an authorized caller of the API. | The **API Keys** section on the **Overview** page of the API in the API Platform Console. | The header configured in the **API Key Auth** policy of the API. |
 | **OAuth2 access token** | You hold valid client credentials on a key manager. | A key manager, through an OAuth2 key under **Keys** › **OAuth2 Keys**. | `Authorization: Bearer <token>` |
 
 ## Find Out What an API Expects
@@ -21,22 +21,19 @@ The API's specification defines which credentials the API requires.
 
 3. In the `security` entries, check what the API requires. A root-level `security` block applies to every operation, and an operation can override it with its own. A scheme that is defined but not referenced in `security` is not required.
 
-4. Check whether the specification declares a subscription key parameter. If it does, the portal shows a subscription token after you subscribe, along with the header to send it in.
+4. Check whether the API has subscription plans. If it does, you need a subscription token to call it.
 
-The overview page of the API also shows this:
-
-- An **API Keys** button appears for REST, WebSocket, and WebSub APIs whose specification declares API key security.
-- A **Subscription plans** panel appears only for APIs that have subscription plans.
+The page of the API also shows a **Subscription plans** panel when the API has subscription plans.
 
 ## Get Each Credential
 
 | Credential | How to Get It |
 |:-----------|:--------------|
-| **Subscription token** | Subscribe to the API under a plan. See [Manage Subscriptions](./manage-subscriptions.md). |
-| **API key** | Generate a key on the **API Keys** page of the API. See [Manage API Keys](./manage-api-keys.md) and [Call an API-Key-Secured API](./api-key.md). |
-| **OAuth2 access token** | Create or add an OAuth2 key, and get a token with it. See [Call an OAuth2-Secured API](./oauth2.md). |
+| **Subscription token** | On the page of the API, under **Subscription plans**, click **Subscribe** on a plan, and copy the token. To view the token later, click **View subscription** on the plan. See [Manage Subscriptions](./manage-subscriptions.md). |
+| **API key** | Get a key from the API publisher, who creates keys in the **API Keys** section on the **Overview** page of the API in the API Platform Console. See [Manage API Keys](./manage-api-keys.md) and [API Key Authentication](../../develop-api-proxy/security/api-key-authentication.md). |
+| **OAuth2 access token** | Create or add an OAuth2 key, and get a token with it. See [Consume an OAuth2-Secured API](./oauth2.md). |
 
 ## Next Steps
 
-- [Call an OAuth2-Secured API](./oauth2.md) - Get an access token and invoke an OAuth2-secured API
-- [Call an API-Key-Secured API](./api-key.md) - Invoke an API with an API key
+- [Consume an OAuth2-Secured API](./oauth2.md) - Get an access token and invoke an OAuth2-secured API
+- [Consume an API-Key-Secured API](./api-key.md) - Invoke an API with an API key

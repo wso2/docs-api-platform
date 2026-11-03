@@ -20,4 +20,4 @@ You can secure an API proxy with access tokens issued by an external key manager
 
 4. The consumer sends the access token as a bearer token when invoking the API.
 
-For the steps that consumers follow, see [Call an OAuth2-Secured API](../../api-portal/consume-an-api/oauth2.md).
+For the steps that consumers follow, see [Consume an OAuth2-Secured API](../../api-portal/consume-an-api/oauth2.md).
