@@ -22,6 +22,7 @@ const sectionEnd = () => ({
 const sidebars = {
   docsSidebar: [
     doc("overview", "Overview"),
+    doc("get-started", "Get Started"),
     doc("key-concepts", "Key Concepts"),
     group("API Control Plane", [
       doc("api-control-plane/overview", "Overview"),
