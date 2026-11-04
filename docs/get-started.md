@@ -1,7 +1,7 @@
 ---
 title: "Get Started"
 pagination_label: "Get Started"
-description: "Find the quick start guide for your goal: manage APIs, run a self-hosted gateway, publish APIs to a portal, consume APIs, or monetize APIs."
+description: "Find the quick start guide for your goal: manage APIs, run a self-hosted gateway, publish APIs to a portal, or consume APIs."
 ---
 
 Not sure where to begin? This page helps you find the right quick start guide based on what you are trying to do.
@@ -44,14 +44,6 @@ You want to find an API in the portal, subscribe to it, and invoke it.
 |:------|:-----------------|
 | [API Portal and AI Hub Quick Start Guide](./api-portal/quickstart-guide.md) | Sign in to the portal, find an API, subscribe to it under a plan, and invoke it. |
 | [Which Credentials You Need](./api-portal/consume-an-api/overview.md) | Find out which credentials an API requires, and how to get them. |
-
-### I Want to Monetize My APIs
-
-You want to track API usage and charge consumers for it.
-
-| Guide | What You Will Do |
-|:------|:-----------------|
-| [Monetization](./monetization/overview.md) | Learn how monetization works, and set up paid subscription plans. |
 
 ## After Your First Quick Start Guide
 

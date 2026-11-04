@@ -50,7 +50,6 @@ Both options use the same gateway technology, and you can use both in the same o
 |:----------|:-------------|:-----|
 | **API Control Plane** | Create, develop, test, publish, and govern API proxies through the web console. Manage environments, pipelines, gateways, portals, and subscription plans. | [API Control Plane](./api-control-plane/overview.md) |
 | **API Portal and AI Hub** | The developer-facing portal where developers discover APIs and MCP servers, subscribe to them, and get credentials. AI agents discover the same APIs through machine-readable endpoints such as `llms.txt`. | [API Portal and AI Hub](./api-portal/overview.md) |
-| **Monetization** | Track API usage and charge consumers for it with subscription plans. | [Monetization](./monetization/overview.md) |
 
 ### Gateway Components
 
@@ -68,7 +67,6 @@ Both options use the same gateway technology, and you can use both in the same o
 | Secure an API with API keys or OAuth2 | [Security](./api-control-plane/develop-api-proxy/security/overview.md) |
 | Publish an API for developers and AI agents | [Publish an API](./api-control-plane/publish-api-proxy/publish-an-api.md) |
 | Discover, subscribe to, and consume an API as a developer | [API Portal and AI Hub Quick Start Guide](./api-portal/quickstart-guide.md) |
-| Charge consumers for API usage | [Monetization](./monetization/overview.md) |
 
 For a list of quick start guides by goal, see [Get Started](./get-started.md).
 
