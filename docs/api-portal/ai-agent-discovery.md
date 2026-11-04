@@ -80,4 +80,4 @@ A typical agent discovery flow looks like this:
 
 By default, all published APIs and MCP servers are agent-visible. API publishers can hide specific APIs from agent-facing surfaces without affecting their visibility to human users in the portal. Portal admins can also disable AI discoverability across the entire portal.
 
-For details on how visibility is controlled, see [Make an API AI-Ready](../publish-api-proxy/make-an-api-ai-ready.md).
+For details on how visibility is controlled, see [Make an API AI-Ready](../api-control-plane/publish-api-proxy/make-an-api-ai-ready.md).

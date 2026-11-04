@@ -11,8 +11,8 @@ The API Portal and AI Hub is where consumers find and use the APIs, MCP servers,
 
 You can open a portal from the API Platform Console in either of the following ways.
 
-- In the left navigation menu, click **Portals**, and then click **Open Portal** on the portal. See [Manage Portals](../administer/managing-portals.md).
-- On the **Publish** page of an API, click **View in Portal** on the portal that the API is published to. See [Publish an API](../publish-api-proxy/publish-an-api.md).
+- In the left navigation menu, click **Portals**, and then click **Open Portal** on the portal. See [Manage Portals](../api-control-plane/administer/managing-portals.md).
+- On the **Publish** page of an API, click **View in Portal** on the portal that the API is published to. See [Publish an API](../api-control-plane/publish-api-proxy/publish-an-api.md).
 
 Share the portal URL with your consumers so that they can open it directly.
 
@@ -48,4 +48,4 @@ To use an API from the API Portal and AI Hub, follow these steps.
 
 ## Get Started
 
-To create a portal, publish an API to it, and find the API in the portal, follow the [Quick Start Guide](./quickstart-guide.md). To create and manage the portals of your organization, see [Manage Portals](../administer/managing-portals.md).
+To create a portal, publish an API to it, and find the API in the portal, follow the [Quick Start Guide](./quickstart-guide.md). To create and manage the portals of your organization, see [Manage Portals](../api-control-plane/administer/managing-portals.md).

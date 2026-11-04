@@ -8,8 +8,8 @@ In this guide, you sign in to the API Portal and AI Hub, find an API, subscribe 
 
 ## Prerequisites
 
-- A portal in your organization. See [Manage Portals](../administer/managing-portals.md).
-- The API is published to the portal with at least one subscription plan. See [Publish an API](../publish-api-proxy/publish-an-api.md) and [Subscription Plans](../publish-api-proxy/subscription-plans-and-billing.md).
+- A portal in your organization. See [Manage Portals](../api-control-plane/administer/managing-portals.md).
+- The API is published to the portal with at least one subscription plan. See [Publish an API](../api-control-plane/publish-api-proxy/publish-an-api.md) and [Subscription Plans](../api-control-plane/publish-api-proxy/subscription-plans-and-billing.md).
 
 ## Step 1: Sign In to the Portal
 

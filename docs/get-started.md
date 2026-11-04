@@ -14,8 +14,8 @@ You want a web console to create, deploy, test, and govern API proxies.
 
 | Guide | What You Will Do |
 |:------|:-----------------|
-| [API Control Plane Quick Start Guide](./getting-started/api-proxy.md) | Create a REST API proxy, deploy it to a gateway, and invoke it from the API Platform Console. |
-| [Create an API Proxy](./create-api-proxy/overview.md) | Create a REST or GraphQL API proxy from scratch, or from a contract or schema. |
+| [API Control Plane Quick Start Guide](./api-control-plane/quickstart-guide.md) | Create a REST API proxy, deploy it to a gateway, and invoke it from the API Platform Console. |
+| [Create an API Proxy](./api-control-plane/create-api-proxy/overview.md) | Create a REST or GraphQL API proxy from scratch, or from a contract or schema. |
 
 ### I Want to Keep API Traffic in My Own Infrastructure
 
@@ -32,9 +32,9 @@ You want a portal where developers and AI agents discover, subscribe to, and try
 
 | Guide | What You Will Do |
 |:------|:-----------------|
-| [Manage Portals](./administer/managing-portals.md) | Create a portal for your organization. |
-| [Publish an API](./publish-api-proxy/publish-an-api.md) | Publish an API proxy to a portal, and prepare how it appears to consumers. |
-| [Make an API AI-Ready](./publish-api-proxy/make-an-api-ai-ready.md) | Help AI agents discover and use your API. |
+| [Manage Portals](./api-control-plane/administer/managing-portals.md) | Create a portal for your organization. |
+| [Publish an API](./api-control-plane/publish-api-proxy/publish-an-api.md) | Publish an API proxy to a portal, and prepare how it appears to consumers. |
+| [Make an API AI-Ready](./api-control-plane/publish-api-proxy/make-an-api-ai-ready.md) | Help AI agents discover and use your API. |
 
 ### I Want to Consume an API
 

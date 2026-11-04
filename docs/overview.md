@@ -63,10 +63,10 @@ Both options use the same gateway technology, and you can use both in the same o
 
 | I Want To | Start Here |
 |:----------|:-----------|
-| Create, deploy, and invoke my first API proxy | [API Control Plane Quick Start Guide](./getting-started/api-proxy.md) |
+| Create, deploy, and invoke my first API proxy | [API Control Plane Quick Start Guide](./api-control-plane/quickstart-guide.md) |
 | Keep API traffic in my own infrastructure | [Self-Hosted Gateway Quick Start Guide](./api-gateway/getting-started.md) |
-| Secure an API with API keys or OAuth2 | [Security](./develop-api-proxy/security/overview.md) |
-| Publish an API for developers and AI agents | [Publish an API](./publish-api-proxy/publish-an-api.md) |
+| Secure an API with API keys or OAuth2 | [Security](./api-control-plane/develop-api-proxy/security/overview.md) |
+| Publish an API for developers and AI agents | [Publish an API](./api-control-plane/publish-api-proxy/publish-an-api.md) |
 | Discover, subscribe to, and consume an API as a developer | [API Portal and AI Hub Quick Start Guide](./api-portal/quickstart-guide.md) |
 | Charge consumers for API usage | [Monetization](./monetization/overview.md) |
 

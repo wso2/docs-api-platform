@@ -30,7 +30,7 @@ The page of the API also shows a **Subscription plans** panel when the API has s
 | Credential | How to Get It |
 |:-----------|:--------------|
 | **Subscription token** | On the page of the API, under **Subscription plans**, click **Subscribe** on a plan, and copy the token. To view the token later, click **View subscription** on the plan. See [Manage Subscriptions](./manage-subscriptions.md). |
-| **API key** | Get a key from the API publisher, who creates keys in the **API Keys** section on the **Overview** page of the API in the API Platform Console. See [Manage API Keys](./manage-api-keys.md) and [API Key Authentication](../../develop-api-proxy/security/api-key-authentication.md). |
+| **API key** | Get a key from the API publisher, who creates keys in the **API Keys** section on the **Overview** page of the API in the API Platform Console. See [Manage API Keys](./manage-api-keys.md) and [API Key Authentication](../../api-control-plane/develop-api-proxy/security/api-key-authentication.md). |
 | **OAuth2 access token** | Create or add an OAuth2 key, and get a token with it. See [Consume an OAuth2-Secured API](./oauth2.md). |
 
 ## Next Steps
