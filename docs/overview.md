@@ -25,7 +25,7 @@ WSO2 runs the control plane, and you run the gateways on your own infrastructure
 
 - **Best for:** Enterprises that need centralized governance with data privacy, and organizations that cannot allow API traffic to flow through third-party infrastructure.
 - **What is included:** The API Control Plane and the API Portal and AI Hub, managed by WSO2, and Self-Hosted Gateways in your environment.
-- **Get started:** [Set up a Self-Hosted Gateway](./hybrid-gateways/api-gateway/getting-started.md)
+- **Get started:** [Set up a Self-Hosted Gateway](./api-gateway/getting-started.md)
 
 ### How Do the Options Compare?
 
@@ -64,7 +64,7 @@ Both options use the same gateway technology, and you can use both in the same o
 | I Want To | Start Here |
 |:----------|:-----------|
 | Create, deploy, and invoke my first API proxy | [API Control Plane Quick Start Guide](./getting-started/api-proxy.md) |
-| Keep API traffic in my own infrastructure | [Self-Hosted Gateway Quick Start Guide](./hybrid-gateways/api-gateway/getting-started.md) |
+| Keep API traffic in my own infrastructure | [Self-Hosted Gateway Quick Start Guide](./api-gateway/getting-started.md) |
 | Secure an API with API keys or OAuth2 | [Security](./develop-api-proxy/security/overview.md) |
 | Publish an API for developers and AI agents | [Publish an API](./publish-api-proxy/publish-an-api.md) |
 | Discover, subscribe to, and consume an API as a developer | [API Portal and AI Hub Quick Start Guide](./api-portal/quickstart-guide.md) |

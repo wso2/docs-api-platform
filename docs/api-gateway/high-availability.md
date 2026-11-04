@@ -17,7 +17,7 @@ Every Gateway Controller replica then works from the same deployment state, and 
 | PostgreSQL database | Shared source of truth for API metadata, deployment state, and gateway configuration. |
 | Gateway Runtime | Receives configuration from its connected Gateway Controller and enforces API gateway policies on traffic. |
 
-![Highly available Self-Hosted Gateway with two Gateway Controller replicas sharing PostgreSQL and two Gateway Runtime replicas behind an ingress](/img/cloud/api-platform-gateway/gateway/high-availability-architecture.png)
+![Highly available Self-Hosted Gateway with two Gateway Controller replicas sharing PostgreSQL and two Gateway Runtime replicas behind an ingress](/img/cloud/api-gateway/high-availability-architecture.png)
 
 Each Gateway Controller replica can manage one or more Gateway Runtime replicas.
 

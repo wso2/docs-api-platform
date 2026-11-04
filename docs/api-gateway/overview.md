@@ -17,14 +17,14 @@ Gateways run in the data plane, while you configure and manage them centrally fr
 | **WSO2 Managed Gateway** | Runs on fully managed cloud infrastructure. WSO2 runs, scales, and upgrades the gateway, so you have no infrastructure to maintain. | WSO2 cloud | A fast start and proofs of concept |
 
 :::info
-Your organization does not have a default gateway. Before you deploy an API proxy, create a gateway in the API Control Plane. To set up a Self-Hosted Gateway, follow the [Self-Hosted Gateway Quick Start Guide](../hybrid-gateways/api-gateway/getting-started.md). To add a WSO2 Managed Gateway instead, see [Manage Gateways](../administer/managing-gateways.md).
+Your organization does not have a default gateway. Before you deploy an API proxy, create a gateway in the API Control Plane. To set up a Self-Hosted Gateway, follow the [Self-Hosted Gateway Quick Start Guide](./getting-started.md). To add a WSO2 Managed Gateway instead, see [Manage Gateways](../administer/managing-gateways.md).
 :::
 
 ## What You Can Do
 
 | Task | Description |
 |:-----|:------------|
-| [Set up a Self-Hosted Gateway](../hybrid-gateways/api-gateway/getting-started.md) | Add a Self-Hosted Gateway in the API Control Plane, run it on your infrastructure, and deploy an API proxy to it. |
-| [Add and manage policies](../hybrid-gateways/api-gateway/manage-policies.md) | Apply policies to the APIs on a Self-Hosted Gateway. |
+| [Set up a Self-Hosted Gateway](./getting-started.md) | Add a Self-Hosted Gateway in the API Control Plane, run it on your infrastructure, and deploy an API proxy to it. |
+| [Add and manage policies](./manage-policies.md) | Apply policies to the APIs on a Self-Hosted Gateway. |
 
 To view the gateways in your organization from the API Control Plane, see [Manage Gateways](../administer/managing-gateways.md).

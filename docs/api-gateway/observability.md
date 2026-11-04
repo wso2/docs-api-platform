@@ -17,5 +17,5 @@ You can track how your gateways behave from the API Platform Console. For a Self
 
 | Task | Description |
 |:-----|:------------|
-| [Collect gateway logs](../hybrid-gateways/api-gateway/observability/logging.md) | Send the logs of the gateway components to a central logging stack, such as OpenSearch, Elastic, or Grafana Loki. |
-| [Trace requests](../hybrid-gateways/api-gateway/observability/tracing.md) | Follow requests across the gateway components with OpenTelemetry, and export traces to a backend such as Jaeger. |
+| [Collect gateway logs](./observability/logging.md) | Send the logs of the gateway components to a central logging stack, such as OpenSearch, Elastic, or Grafana Loki. |
+| [Trace requests](./observability/tracing.md) | Follow requests across the gateway components with OpenTelemetry, and export traces to a backend such as Jaeger. |
