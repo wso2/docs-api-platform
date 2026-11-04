@@ -46,7 +46,7 @@ A self-hosted gateway runs on your own infrastructure and connects to the API Co
 
 4. Click **Add**.
 
-The console opens the gateway so you can download it and connect it to the API Control Plane. For those steps, see the [Self-Hosted Gateway Quick Start Guide](../hybrid-gateways/api-gateway/getting-started.md).
+The console opens the gateway so you can download it and connect it to the API Control Plane. For those steps, see the [Self-Hosted Gateway Quick Start Guide](../api-gateway/getting-started.md).
 
 ## Create a managed gateway
 
