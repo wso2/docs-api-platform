@@ -10,7 +10,7 @@ API portal is where consumers discover your APIs, read the documentation, and re
 1. Sign in to the API Platform Console.
 2. In the left navigation menu, click **Portals**.
 
-The **Portals** page lists the portals in your organization. Each portal shows its name, its **Environment**, and when it was last updated. Use **"Search Portals"** to find a portal.
+The **Portals** page lists the portals in your organization. Each portal shows its name, its **Login environment**, and when it was last updated. Use **Search Portals** to find a portal.
 
 ## Create a portal
 
@@ -21,11 +21,11 @@ The **Portals** page lists the portals in your organization. Each portal shows i
     |---|---|
     | **Name** | Required. The name of the portal. |
     | **Description** | Optional. A short description of the portal. |
-    | **Environment** | The list shows the environments in your organization. |
+    | **Allow self sign-up** | Turned on by default. Consumers can create their own accounts in the portal. |
 
 3. Click **Add Portal**. **Add Portal** stays unavailable until you enter a name. Click **Cancel** to leave without creating the portal.
 
-    ![Add Portal form with the name Docs Portal, an empty description, the login environment set to prod, and the Cancel and Add Portal buttons](/img/cloud/portals/add-portal.png)
+    ![Add Portal form with the name Docs Portal, an empty description, Allow self sign-up turned on, and the Cancel and Add Portal buttons](/img/cloud/portals/add-portal.png)
 
 While the portal is being created, its card shows **Creating portal**. When the portal is ready, **Open Portal** is available.
 
@@ -35,15 +35,14 @@ Creating a portal lets you publish APIs to that portal. Consumers can then disco
 
 On the portal card, click **Open Portal**. The portal opens in a new browser tab.
 
-![Portal card showing the login environment, when the portal was updated, the edit icon, Open Portal, and the delete icon](/img/cloud/portals/portal-card.png)
+![Portals page with a portal card showing the login environment, when the portal was updated, the edit icon, Open Portal, and the delete icon](/img/cloud/portals/portal-card.png)
 
 ## Edit a portal
 
 1. On the portal card, click the edit icon.
-2. Update the **Name**, **Description**, or **Environment**.
+2. Update the **Name**, **Description**, **Login environment**, or **Allow self sign-up**.
 3. Click **Save Changes**. Click **Cancel** to keep the current values.
 
-    ![Edit Portal form with the name Docs Portal, an empty description, the login environment set to development, and the Cancel and Save Changes buttons](/img/cloud/portals/edit-portal.png)
 
 ## Delete a portal
 

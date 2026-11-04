@@ -16,7 +16,7 @@ This walks you through creating a GraphQL API using a sample GraphQL schema, dep
 ## Create the API
 
 1. On the project home page, click **Create API**.
-2. select **GraphQL API**., keep **Start with a schema**. It is selected by default.
+2. Select **GraphQL API**., keep **Start with a schema**. It is selected by default.
 5. Provide the schema in one of these ways:
 
    - **URL:** Select **URL**, enter the **Schema URL**, or click **Try with Sample Schema**. The sample URL is:

@@ -22,11 +22,13 @@ The **Applications** page lists your applications. Each card shows the applicati
     | **Application name** | Required. The name of the application. |
     | **Description** | Optional. What this application is for. |
 
-3. Click **Create**. **Create** stays unavailable until you enter a name. Click **Cancel** to leave without creating the application.
+3. Click **Create**. **Create** stays unavailable until you enter a name. Click **Cancel** to leave without creating the application. 
+
+The application is added to the list. Open it to edit the name or the description.
+
 
     ![Create application dialog with the name Reading List App, a description, and the Cancel and Create buttons](/img/cloud/devportal/create-application.png)
 
-The application is added to the list. Open it to edit the name or the description.
 
 ## Associate an existing key
 

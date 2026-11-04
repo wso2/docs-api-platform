@@ -64,5 +64,5 @@ Design view shows validation results directly in the editor:
 
 ## Related topics
 
-- [Govern APIs using API Designer](./govern-apis.md) — report cards, findings, and fixes
-- [End-to-end tutorial](./end-to-end-tutorial.md) — full workflow from draft to fixes
+- [Govern APIs using API Designer](./govern-apis.md) - report cards, findings, and fixes
+- [End-to-end tutorial](./end-to-end-tutorial.md) - full workflow from draft to fixes
