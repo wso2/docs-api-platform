@@ -23,8 +23,8 @@ You want WSO2 to run the control plane, and you run the gateway.
 
 | Guide | What You Will Do |
 |:------|:-----------------|
-| [Self-Hosted Gateway Quick Start Guide](./api-gateway/getting-started.md) | Add a Self-Hosted Gateway, run it on your infrastructure, and deploy and test an API proxy on it. |
-| [Add and Manage Policies](./api-gateway/manage-policies.md) | Attach policies to the APIs that run on your Self-Hosted Gateway. |
+| [Self-Hosted Gateway Quick Start Guide](./api-gateway/self-hosted-gateways/quickstart-guide.md) | Add a Self-Hosted Gateway, run it on your infrastructure, and deploy and test an API proxy on it. |
+| [Add and Manage Policies](./api-gateway/self-hosted-gateways/manage-policies.md) | Attach policies to the APIs that run on your Self-Hosted Gateway. |
 
 ### I Want to Publish APIs to Developers and AI Agents
 

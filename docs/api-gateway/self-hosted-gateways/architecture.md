@@ -3,7 +3,7 @@ title: "Architecture"
 description: "Learn how the Self-Hosted Gateway connects to the API Control Plane through the Gateway Controller and Gateway Runtime components."
 ---
 
-A Self-Hosted Gateway runs in a private data plane that you manage, and connects to the [API Control Plane](../api-control-plane/overview.md) in the cloud. This architecture allows organizations to manage APIs centrally while keeping API traffic, runtime execution, and backend connectivity within their own environment.
+A Self-Hosted Gateway runs in a private data plane that you manage, and connects to the [API Control Plane](../../api-control-plane/overview.md) in the cloud. This architecture allows organizations to manage APIs centrally while keeping API traffic, runtime execution, and backend connectivity within their own environment.
 
 ## API Control Plane
 

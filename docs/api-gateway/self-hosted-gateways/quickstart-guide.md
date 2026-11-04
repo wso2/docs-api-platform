@@ -114,7 +114,7 @@ If you change the API proxy later, deploy it again.
 ## Next Steps
 
 - [Add and Manage Policies](./manage-policies.md) - Apply policies to the APIs on your gateway
-- [Observability](./observability.md) - Collect the logs and traces of your gateway
+- [Observability](../observability/overview.md) - Collect the logs and traces of your gateway
 
 ## Troubleshooting
 
