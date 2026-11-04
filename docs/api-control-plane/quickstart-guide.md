@@ -10,7 +10,7 @@ This guide uses the sample Reading List API backend.
 
 ## Prerequisites
 
-1. Sign in to the API Platform Console.
+1. Sign in to the API Management Console.
 2. Create an organization:
 
     1. Enter a **Display name**.
@@ -87,7 +87,7 @@ Deploying places a build of the API on a gateway so requests can reach the backe
 
     The console gives you a registration token and the setup commands to run the gateway on your infrastructure. Run those commands. The gateway stays inactive until it connects to the control plane.
 
-    You can also use a managed gateway instead of a self-hosted gateway. For more on gateways, see [Manage Gateways](../administer/managing-gateways.md).
+    You can also use a managed gateway instead of a self-hosted gateway. For more on gateways, see [Manage Gateways](./administer/managing-gateways.md).
 
 5. Open the API, and in the left navigation menu click **Deploy**.
 6. In **Build Area**, click **Deploy**.
@@ -102,7 +102,7 @@ Deploying places a build of the API on a gateway so requests can reach the backe
     4. Click **Deploy**.
 
 
-After the deployment succeeds, the API overview lists the gateway under **Deployed gateways**. For more on deployment, see [Deploy an API](../deploy-api-proxy/overview.md).
+After the deployment succeeds, the API overview lists the gateway under **Deployed gateways**. For more on deployment, see [Deploy an API](./deploy-api-proxy/overview.md).
 
 ## Test the API
 
@@ -117,7 +117,7 @@ After the API is deployed, use the API Console to send a request through the gat
 
     ![API Console with the gateway selected and the generated operations](/img/cloud/getting-started/qs-test-console.png)
 
-For more on the console, see [API Console](../test-api-proxy/api-console.md).
+For more on the console, see [API Console](./test-api-proxy/api-console.md).
 
 ## Publish the API
 
@@ -132,7 +132,7 @@ Publishing makes the API available in the API Portal, where consumers can discov
 
     ![Add Portal form with the name, description, and Allow self sign-up switch](/img/cloud/getting-started/qs-add-portal.png)
 
-    For more on portals, see [Manage Portals](../administer/managing-portals.md).
+    For more on portals, see [Manage Portals](./administer/managing-portals.md).
 
 2. Open the API, and in the left navigation menu click **Publish**.
 
@@ -144,7 +144,7 @@ Publishing makes the API available in the API Portal, where consumers can discov
 
   ![Publishing the API to the created Portal](/img/cloud/getting-started/qs-publish-api.png)
 
-The status of the API in that portal changes to **Published**. To open the portal listing, click **View in Portal**. For more on publishing, see [Publish an API](../publish-api-proxy/publish-an-api.md).
+The status of the API in that portal changes to **Published**. To open the portal listing, click **View in Portal**. For more on publishing, see [Publish an API](./publish-api-proxy/publish-an-api.md).
 
 ## Next Steps
 

@@ -1,16 +1,16 @@
 ---
-title: "What is API Platform?"
-pagination_label: "What is API Platform?"
-description: "Overview of WSO2 API Platform, how you can run it, its components, and where to start."
+title: "What is API Management?"
+pagination_label: "What is API Management?"
+description: "Overview of API Management, how you can run it, its components, and where to start."
 ---
 
-WSO2 API Platform helps you manage, secure, and govern your APIs and AI services. You can design and publish REST and GraphQL API proxies, apply policies to them, publish them to a portal where developers and AI agents discover and consume them, and monetize their usage.
+API Management helps you manage, secure, and govern your APIs and AI services. You can design and publish REST and GraphQL API proxies, apply policies to them, publish them to a portal where developers and AI agents discover and consume them, and monetize their usage.
 
-This page explains what the platform offers, how you can run it, and where to start.
+This page explains what it offers, how you can run it, and where to start.
 
-## How You Can Run API Platform
+## How You Can Perform API Management
 
-API Platform gives you a web console to create APIs, apply policies, set up portals, manage subscriptions, and monitor traffic. WSO2 runs the control plane, where you design and manage your APIs. You choose who runs the gateways, where your API traffic flows.
+You get a web console to create APIs, apply policies, set up portals, manage subscriptions, and monitor traffic. WSO2 runs the control plane, where you design and manage your APIs. You choose who runs the gateways, where your API traffic flows.
 
 ### WSO2 Managed Gateways
 
@@ -42,7 +42,7 @@ WSO2 runs the control plane, and you run the gateways on your own infrastructure
 Both options use the same gateway technology, and you can use both in the same organization. Your organization does not have a default gateway, so you add a gateway before you deploy your first API proxy. See [API Gateway](./api-gateway/overview.md).
 :::
 
-## Platform Components
+## Components
 
 ### Control Plane Components
 
@@ -74,7 +74,7 @@ For a list of quick start guides by goal, see [Get Started](./get-started.md).
 
 ## Key Concepts
 
-The following concepts apply across the platform:
+The following concepts apply across all components:
 
 - [**Organizations**](./key-concepts.md#organizations) - The top-level boundary for your APIs, users, and configurations.
 - [**Projects**](./key-concepts.md#projects) - Logical groupings of APIs within an organization, such as for a team or business domain.
@@ -83,6 +83,6 @@ The following concepts apply across the platform:
 
 For more, see [Key Concepts](./key-concepts.md).
 
-## Other Ways to Run WSO2 API Platform
+## Other Ways to Perform API Management
 
-If you want to run the entire platform on your own infrastructure, or only need a standalone gateway without a web console, see the [WSO2 API Platform documentation](https://wso2.com/api-platform/docs/).
+If you want to run all the components on your own infrastructure, or only need a standalone gateway without a web console, see the [WSO2 documentation](https://wso2.com/api-platform/docs/).

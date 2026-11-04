@@ -9,11 +9,11 @@ No key manager is involved, and an application is optional. You can associate a 
 
 ## Prerequisites
 
-- An API proxy in API Platform. To create one, follow the [Quick Start Guide](../../quickstart-guide.md).
+- An API proxy. To create one, follow the [Quick Start Guide](../../quickstart-guide.md).
 
 ## Step 1: Attach the API Key Auth Policy
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev).
+1. Sign in to the [API Management Console](https://console.bijira.dev).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 

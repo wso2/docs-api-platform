@@ -1,11 +1,11 @@
 ---
 title: "Monetization"
 pagination_label: "Monetization"
-description: "Charge consumers for API usage with Stripe and subscription plans that define pricing models, billing periods, and usage limits in API Platform."
+description: "Charge consumers for API usage with Stripe and subscription plans that define pricing models, billing periods, and usage limits."
 slug: /monetization
 ---
 
-API monetization lets you generate revenue from your APIs by offering paid subscription plans to consumers. API Platform uses Stripe as the payment provider, so you can define pricing models and manage billing for API usage from the API Platform Console.
+API monetization lets you generate revenue from your APIs by offering paid subscription plans to consumers. Stripe is the payment provider, so you can define pricing models and manage billing for API usage from the API Management Console.
 
 :::note
 Monetization is coming soon.
@@ -15,7 +15,7 @@ Monetization is coming soon.
 
 | Task | Description |
 |:-----|:------------|
-| Connect Stripe | Add your Stripe credentials at the organization level so API Platform can process payments and billing. |
+| Connect Stripe | Add your Stripe credentials at the organization level to process payments and billing. |
 | Define pricing models | Create subscription plans with a pricing model that matches how you want to charge for an API. |
 | Enable monetization per API | Choose which APIs offer paid plans. |
 | Manage subscriptions | Consumers discover and subscribe to paid plans in the API Portal. |

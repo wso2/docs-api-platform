@@ -14,7 +14,7 @@ You want a web console to create, deploy, test, and govern API proxies.
 
 | Guide | What You Will Do |
 |:------|:-----------------|
-| [API Control Plane Quick Start Guide](./api-control-plane/quickstart-guide.md) | Create a REST API proxy, deploy it to a gateway, and invoke it from the API Platform Console. |
+| [API Control Plane Quick Start Guide](./api-control-plane/quickstart-guide.md) | Create a REST API proxy, deploy it to a gateway, and invoke it from the API Management Console. |
 | [Create an API Proxy](./api-control-plane/create-api-proxy/overview.md) | Create a REST or GraphQL API proxy from scratch, or from a contract or schema. |
 
 ### I Want to Keep API Traffic in My Own Infrastructure
@@ -58,6 +58,6 @@ You want to track API usage and charge consumers for it.
 | I Want To | Go Here |
 |:----------|:--------|
 | Explore the full feature docs | [API Control Plane](./api-control-plane/overview.md) · [API Portal and AI Hub](./api-portal/overview.md) · [API Gateway](./api-gateway/overview.md) |
-| Understand platform concepts, such as organizations, projects, and environments | [Key Concepts](./key-concepts.md) |
+| Understand key concepts, such as organizations, projects, and environments | [Key Concepts](./key-concepts.md) |
 | Browse reusable policies | [Policy Hub](./policy-hub/overview.md) |
-| Find out how the platform fits together | [What is API Platform?](./overview.md) |
+| Find out how the components fit together | [What is API Management?](./overview.md) |

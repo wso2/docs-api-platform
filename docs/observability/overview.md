@@ -5,7 +5,7 @@ description: "View logs and metrics in the API Control Plane, and collect logs a
 slug: /observability
 ---
 
-Observability is how you see what your API proxies and gateways are doing. From the API Platform Console you can read logs and metrics. On a Self-Hosted Gateway you can also collect component logs and traces with your own tools.
+Observability is how you see what your API proxies and gateways are doing. From the API Management Console you can read logs and metrics. On a Self-Hosted Gateway you can also collect component logs and traces with your own tools.
 
 :::note
 Observability is coming soon.

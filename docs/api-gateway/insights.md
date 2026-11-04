@@ -1,12 +1,12 @@
 ---
 title: "Insights"
 pagination_label: "Gateway Insights"
-description: "View analytics for the API traffic on your gateways in the API Platform Console, and configure the analytics that a Self-Hosted Gateway publishes."
+description: "View analytics for the API traffic on your gateways in the API Management Console, and configure the analytics that a Self-Hosted Gateway publishes."
 ---
 
-Insights shows how the APIs on your gateways are used. WSO2 gateways send analytics to Moesif, which powers Insights in the API Platform Console. For a Self-Hosted Gateway, you can also control which request and response data the gateway captures.
+Insights shows how the APIs on your gateways are used. WSO2 gateways send analytics to Moesif, which powers Insights in the API Management Console. For a Self-Hosted Gateway, you can also control which request and response data the gateway captures.
 
-## In the API Platform Console
+## In the API Management Console
 
 Insights is powered by Moesif Basic, which is included with your WSO2 subscription. The following dashboards show the API traffic on your gateways.
 
@@ -27,7 +27,7 @@ A Self-Hosted Gateway publishes analytics for the API traffic that it handles. T
 
 ### How Analytics Is Set Up
 
-A Self-Hosted Gateway publishes analytics to Moesif, which powers Insights in API Platform. When you add a Self-Hosted Gateway, the command that creates the `keys.env` file includes your organization's Moesif key in the `MOESIF_KEY` variable. The gateway uses this key to publish analytics for your organization.
+A Self-Hosted Gateway publishes analytics to Moesif, which powers Insights. When you add a Self-Hosted Gateway, the command that creates the `keys.env` file includes your organization's Moesif key in the `MOESIF_KEY` variable. The gateway uses this key to publish analytics for your organization.
 
 The gateway reads its analytics settings from its `config.toml` file. The following sections describe the settings that you can change.
 

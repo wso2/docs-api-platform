@@ -7,7 +7,7 @@ A pipeline is the ordered sequence of environments that an API proxy moves throu
 
 ## View Pipelines
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev).
+1. Sign in to the [API Management Console](https://console.bijira.dev).
 
 2. In the left navigation menu, click **Pipelines**.
 

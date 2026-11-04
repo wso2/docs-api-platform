@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'API Platform Cloud Documentation',
-  tagline: 'Documentation for WSO2 API Platform Cloud',
+  title: 'API Management Cloud Documentation',
+  tagline: 'Documentation for API Management',
   favicon: 'img/favicon.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -75,9 +75,9 @@ const config = {
         },
       },
       navbar: {
-        title: 'API Platform Documentation',
+        title: 'API Management Documentation',
         logo: {
-          alt: 'WSO2 API Platform',
+          alt: 'API Management',
           src: 'img/api-platform-logo.svg',
           srcDark: 'img/api-platform-logo-dark.svg',
         },

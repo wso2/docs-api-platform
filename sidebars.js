@@ -1,4 +1,4 @@
-// Navigation for API Platform Cloud: API Control Plane content at the top
+// Navigation for API Management Cloud: API Control Plane content at the top
 // level, with API Portal and AI Hub as its own section.
 
 const doc = (id, label) => ({type: 'doc', id, label});

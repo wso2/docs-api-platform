@@ -1,7 +1,7 @@
 ---
 title: "API Portal and AI Hub"
 pagination_label: "API Portal and AI Hub"
-description: "Discover, subscribe to, and consume the APIs, MCP servers, and API workflows published from API Platform Cloud."
+description: "Discover, subscribe to, and consume the APIs, MCP servers, and API workflows published from API Management Cloud."
 slug: /api-portal
 ---
 
@@ -9,7 +9,7 @@ The API Portal and AI Hub is where consumers find and use the APIs, MCP servers,
 
 ## Open the Portal
 
-You can open a portal from the API Platform Console in either of the following ways.
+You can open a portal from the API Management Console in either of the following ways.
 
 - In the left navigation menu, click **Portals**, and then click **Open Portal** on the portal. See [Manage Portals](../api-control-plane/administer/managing-portals.md).
 - On the **Publish** page of an API, click **View in Portal** on the portal that the API is published to. See [Publish an API](../api-control-plane/publish-api-proxy/publish-an-api.md).
@@ -29,7 +29,7 @@ Anyone can create an account in a portal by clicking **Sign up** on the sign-in 
 | **APIs** | [Browse and search the APIs](./discover-apis/browse-apis.md) in the portal, and [read their documentation](./discover-apis/documentation.md). |
 | **MCP Servers** | [Explore the MCP servers](./mcp-servers/browse-mcp-servers.md) that you can connect your AI agents to. |
 | **API Workflows** | Find pre-configured workflows that AI agents follow to use your APIs correctly. |
-| **AI agents** | Let [AI agents discover the portal](./ai-agent-discovery.md), or a single API, with a ready-made prompt that you can run in an AI agent such as Claude. APIs that agents can discover are marked **AI Ready**. |
+| **AI agents** | Let [AI agents discover the portal](./discover-apis/ai-agent-discovery.md), or a single API, with a ready-made prompt that you can run in an AI agent such as Claude. APIs that agents can discover are marked **AI Ready**. |
 | **Applications** | [Create applications](./consume-an-api/manage-applications.md) that hold the API keys and subscriptions you use to call APIs. |
 | **Subscriptions** | [Subscribe your applications](./consume-an-api/manage-subscriptions.md) to APIs and MCP servers, and view your subscriptions. |
 | **Keys** | Generate and manage the [API keys](./consume-an-api/manage-api-keys.md) and [OAuth2 keys](./consume-an-api/oauth2.md) that you use to call APIs. |

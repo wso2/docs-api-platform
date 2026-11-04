@@ -1,9 +1,9 @@
 ---
 title: "Attach and Manage Policies"
-description: "Attach policies to an API proxy at the API level or the resource level in WSO2 API Platform."
+description: "Attach policies to an API proxy at the API level or the resource level in API Management."
 ---
 
-You can easily attach one or more policies to an API proxy component implementation via the API Platform Console. If necessary, you can also rearrange or swap the policies you attach.
+You can easily attach one or more policies to an API proxy component implementation via the API Management Console. If necessary, you can also rearrange or swap the policies you attach.
 
 ## Attach a Policy
 
@@ -11,7 +11,7 @@ You can easily attach one or more policies to an API proxy component implementat
 
 An API level policy applies to every resource in the API proxy. To attach one, follow the steps given below.
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev).
+1. Sign in to the [API Management Console](https://console.bijira.dev).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 
@@ -32,7 +32,7 @@ An API level policy applies to every resource in the API proxy. To attach one, f
 
 A resource level policy applies only to the resource you attach it to. To attach one, follow the steps given below.
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev).
+1. Sign in to the [API Management Console](https://console.bijira.dev).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 4. In the **Resource policies** section, find the resource you want to attach a policy to. You can type a path in **Search resources by path**, or select an HTTP method from the **All methods** list to filter the resources.

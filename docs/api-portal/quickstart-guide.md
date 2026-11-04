@@ -54,4 +54,4 @@ This request works when the subscription token is the only credential the API re
 
 - [Which Credentials You Need](./consume-an-api/overview.md) - Find out which other credentials an API can require, such as an API key or an OAuth2 access token
 - [Consume an OAuth2-Secured API](./consume-an-api/oauth2.md) - Get an access token and invoke an OAuth2-secured API
-- [Discover AI Agents](./ai-agent-discovery.md) - Let AI agents discover and call the API
+- [Discover AI Agents](./discover-apis/ai-agent-discovery.md) - Let AI agents discover and call the API
