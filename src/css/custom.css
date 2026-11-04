@@ -1,9 +1,8 @@
 /**
  * API Management Documentation theme
  *
- * Matches the API Management Console: a soft grey canvas with a
- * faint warm (peach) and cool (lavender) glow, a grey sidebar where the
- * current page is a rounded grey pill, white translucent cards with
+ * Matches the API Management Console: a soft grey canvas, a grey
+ * sidebar where the current page is a rounded grey pill, white translucent cards with
  * hairline borders, Inter throughout with light-weight headings, and
  * orange only on actions and links.
  *
@@ -40,9 +39,6 @@
   --apd-heading-color: #232328;
 
   --apd-canvas: #F6F6F7;
-  --apd-glow:
-    radial-gradient(ellipse 55% 50% at 62% 18%, rgba(252, 196, 160, 0.32), transparent 70%),
-    radial-gradient(ellipse 45% 55% at 18% 70%, rgba(205, 205, 238, 0.30), transparent 70%);
   --apd-card: rgba(255, 255, 255, 0.75);
   --apd-card-solid: #FFFFFF;
   --apd-surface-border: #E6E6E9;
@@ -123,9 +119,6 @@
   --apd-heading-color: #EDEDEF;
 
   --apd-canvas: #131315;
-  --apd-glow:
-    radial-gradient(ellipse 55% 50% at 62% 18%, rgba(238, 111, 45, 0.08), transparent 70%),
-    radial-gradient(ellipse 45% 55% at 18% 70%, rgba(120, 120, 200, 0.07), transparent 70%);
   --apd-card: rgba(255, 255, 255, 0.03);
   --apd-card-solid: #1C1C1F;
   --apd-surface-border: #2C2C31;
@@ -158,11 +151,16 @@
   --docusaurus-highlighted-code-line-bg: rgba(238, 111, 45, 0.16);
 }
 
-/* The canvas: soft grey with the console's warm and cool glow. */
-body {
+/* The canvas: soft grey. */
+/* The canvas colour is painted on html, which fills the whole page. body
+   stays transparent: it is only as tall as the viewport, so a background on
+   it would end in a hard edge partway down long pages. */
+html {
   background-color: var(--apd-canvas);
-  background-image: var(--apd-glow);
-  background-attachment: fixed;
+}
+
+body {
+  background-color: transparent;
 }
 
 h1, h2, h3, h4, h5, h6 {
