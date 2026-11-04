@@ -105,14 +105,14 @@ const sidebars = {
     group("API Gateway", [
       doc("api-gateway/overview", "Overview"),
       group("Self-Hosted Gateways", [
-        doc("api-gateway/architecture", "Architecture"),
-        doc("api-gateway/getting-started", "Quick Start Guide"),
-        doc("api-gateway/manage-policies", "Add and Manage Policies"),
-        doc("api-gateway/high-availability", "High Availability"),
+        doc("api-gateway/self-hosted-gateways/architecture", "Architecture"),
+        doc("api-gateway/self-hosted-gateways/quickstart-guide", "Quick Start Guide"),
+        doc("api-gateway/self-hosted-gateways/manage-policies", "Add and Manage Policies"),
+        doc("api-gateway/self-hosted-gateways/high-availability", "High Availability"),
 
       ]),
       group("Observability", [
-        doc("api-gateway/observability", "Overview"),
+        doc("api-gateway/observability/overview", "Overview"),
         doc("api-gateway/observability/logging", "Gateway Logging"),
         doc("api-gateway/observability/tracing", "Gateway Tracing"),
       ]),

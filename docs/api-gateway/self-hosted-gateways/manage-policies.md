@@ -21,7 +21,7 @@ An API level policy applies to every resource in the API proxy. To attach one, f
 4. In the **Available policies** pane, find the policy you want to attach. You can type a policy name in **Search policies**, or select a category from the **All** list to filter the policies.
 
     :::tip
-    Each policy shows its version. To view the details and configuration of a policy, click **Policy Hub** at the top of the pane. The [Policy Hub](../policy-hub/overview.md) lists the policies you can attach.
+    Each policy shows its version. To view the details and configuration of a policy, click **Policy Hub** at the top of the pane. The [Policy Hub](../../policy-hub/overview.md) lists the policies you can attach.
     :::
 
 5. Drag the policy and drop it in the **Global policies** section.
