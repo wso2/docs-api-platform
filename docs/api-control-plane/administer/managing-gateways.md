@@ -3,7 +3,7 @@ title: "Manage Gateways"
 description: "Create a self-hosted gateway or a managed gateway, and view, edit, or delete the gateways in your organization from the API Control Plane."
 ---
 
-You manage all the gateways in your organization from the API Control Plane, regardless of where they run. For the types of gateways and how they work, see [API Gateway](../api-gateway/overview.md).
+You manage all the gateways in your organization from the API Control Plane, regardless of where they run. For the types of gateways and how they work, see [API Gateway](../../api-gateway/overview.md).
 
 ## View Gateways
 
@@ -46,7 +46,7 @@ A self-hosted gateway runs on your own infrastructure and connects to the API Co
 
 4. Click **Add**.
 
-The console opens the gateway so you can download it and connect it to the API Control Plane. For those steps, see the [Self-Hosted Gateway Quick Start Guide](../api-gateway/getting-started.md).
+The console opens the gateway so you can download it and connect it to the API Control Plane. For those steps, see the [Self-Hosted Gateway Quick Start Guide](../../api-gateway/getting-started.md).
 
 ## Create a managed gateway
 

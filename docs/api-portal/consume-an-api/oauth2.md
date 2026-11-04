@@ -13,7 +13,7 @@ The key manager displays the client secret only once, when the key is created, s
 
 ## Prerequisites
 
-- An API that is secured with OAuth2 authentication in the API Control Plane, and published to the portal. See [OAuth2 Authentication](../../develop-api-proxy/security/oauth2-authentication.md).
+- An API that is secured with OAuth2 authentication in the API Control Plane, and published to the portal. See [OAuth2 Authentication](../../api-control-plane/develop-api-proxy/security/oauth2-authentication.md).
 - A key manager that your organization has connected. Your administrator sets up key managers. See [Manage Key Managers](../admin-settings/key-manager-integration.md). The configuration of the key manager determines which of the two ways to get a key are available to you.
 - A subscription to the API, if the API has subscription plans. Subscriptions are made to the API, independently of any application. See [Manage Subscriptions](./manage-subscriptions.md).
 

@@ -5,7 +5,7 @@ description: "Browse the curated, versioned library of gateway policies for APIs
 slug: /policy-hub
 ---
 
-The [Policy Hub](https://wso2.com/api-platform/policy-hub) is the official, curated collection of [gateway policies](../develop-api-proxy/policy/overview.md) for API Platform. It gives you a growing library of production-ready, versioned policy implementations that you can apply to any API or MCP server without writing custom code.
+The [Policy Hub](https://wso2.com/api-platform/policy-hub) is the official, curated collection of [gateway policies](../api-control-plane/develop-api-proxy/policy/overview.md) for API Platform. It gives you a growing library of production-ready, versioned policy implementations that you can apply to any API or MCP server without writing custom code.
 
 Policies are self-contained units of behavior that plug into the gateway's request and response pipeline. You compose them, like stacking authentication on top of rate limiting on top of a guardrail, as opposed to building each concern from scratch. If your requisites exceed what the hub provides, you can author and ship your own policies alongside hub ones.
 
@@ -15,7 +15,7 @@ The Policy Hub is powered by an [open source repository on GitHub](https://githu
 
 A policy attaches to an API, covering all operations, or to a specific operation, and runs on the request phase, the response phase, or both. Multiple policies chain together on the same API, each one processing the message in sequence before it reaches the next. The gateway evaluates the chain at runtime. 
 
-For more information, see [Policies](../develop-api-proxy/policy/overview.md).
+For more information, see [Policies](../api-control-plane/develop-api-proxy/policy/overview.md).
 
 ## Policy categories
 

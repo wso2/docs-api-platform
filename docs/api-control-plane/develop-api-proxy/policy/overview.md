@@ -16,7 +16,7 @@ When you attach multiple policies, the gateway chains them together at runtime. 
 
 ## Policy Categories
 
-Policies come from the [Policy Hub](../../policy-hub/overview.md), the official, curated collection of production-ready, versioned gateway policies for API Platform. They are grouped into the following categories:
+Policies come from the [Policy Hub](../../../policy-hub/overview.md), the official, curated collection of production-ready, versioned gateway policies for API Platform. They are grouped into the following categories:
 
 | Category | What it covers | Example policies |
 |:---------|:---------------|:-----------------|
@@ -28,7 +28,7 @@ Policies come from the [Policy Hub](../../policy-hub/overview.md), the official,
 | **Logging, Analytics, and Monitoring** | Records request and response data, and controls which headers appear in analytics. | Log Message, Analytics Header Filter |
 
 :::note
-The Policy Hub is powered by an [open source repository on GitHub](https://github.com/wso2/gateway-controllers), where the full source and documentation of each policy live. Every policy is versioned independently. See the [Policy Hub](../../policy-hub/overview.md) for the full list of policies in each category, their configuration, and their latest versions.
+The Policy Hub is powered by an [open source repository on GitHub](https://github.com/wso2/gateway-controllers), where the full source and documentation of each policy live. Every policy is versioned independently. See the [Policy Hub](../../../policy-hub/overview.md) for the full list of policies in each category, their configuration, and their latest versions.
 :::
 
 For details on attaching and managing one or more policies to an API proxy component implementation via the API Platform Console, see [Attach and Manage Policies](./attach-and-manage-policies.md).

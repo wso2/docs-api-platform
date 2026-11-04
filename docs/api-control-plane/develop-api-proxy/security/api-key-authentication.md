@@ -9,7 +9,7 @@ No key manager is involved, and an application is optional. You can associate a 
 
 ## Prerequisites
 
-- An API proxy in API Platform. To create one, follow the [Quick Start Guide](../../getting-started/api-proxy.md).
+- An API proxy in API Platform. To create one, follow the [Quick Start Guide](../../quickstart-guide.md).
 
 ## Step 1: Attach the API Key Auth Policy
 

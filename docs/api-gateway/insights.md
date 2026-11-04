@@ -87,7 +87,7 @@ responseHeadersToFilter:
     - "content-type"
 ```
 
-The policy works only when analytics is enabled for the gateway, and only on the APIs that you attach it to. To attach the policy to an API, see [Attach and Manage Policies](../develop-api-proxy/policy/attach-and-manage-policies.md).
+The policy works only when analytics is enabled for the gateway, and only on the APIs that you attach it to. To attach the policy to an API, see [Attach and Manage Policies](../api-control-plane/develop-api-proxy/policy/attach-and-manage-policies.md).
 
 ### Send Analytics to an OpenTelemetry Backend
 

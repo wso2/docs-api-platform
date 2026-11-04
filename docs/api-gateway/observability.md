@@ -10,8 +10,8 @@ You can track how your gateways behave from the API Platform Console. For a Self
 
 | Task | Description |
 |:-----|:------------|
-| [View gateway metrics](../api-control-plane/metrics.md) | Track the health and resource usage of your gateways. |
-| [View gateway logs](../api-control-plane/logs.md) | Search the access and activity logs of your gateways, and filter them by environment and log level. |
+| [View gateway metrics](../api-control-plane/observability/metrics.md) | Track the health and resource usage of your gateways. |
+| [View gateway logs](../api-control-plane/observability/logs.md) | Search the access and activity logs of your gateways, and filter them by environment and log level. |
 
 ## For a Self-Hosted Gateway
 

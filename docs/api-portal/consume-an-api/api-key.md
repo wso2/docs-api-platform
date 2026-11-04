@@ -7,7 +7,7 @@ An API key is bound to one API, and it authenticates your requests to that API o
 
 ## Prerequisites
 
-- An API that is secured with API key authentication in the API Control Plane, and published to the portal. See [API Key Authentication](../../develop-api-proxy/security/api-key-authentication.md).
+- An API that is secured with API key authentication in the API Control Plane, and published to the portal. See [API Key Authentication](../../api-control-plane/develop-api-proxy/security/api-key-authentication.md).
 - An API key for the API. See [Get an API Key](#get-an-api-key).
 - A subscription to the API, if the API has subscription plans. The subscription token is a separate credential from the API key, and you send both. See [Manage Subscriptions](./manage-subscriptions.md).
 
@@ -29,7 +29,7 @@ API keys are created in the API Platform Console. If you don't have access to th
     The key is shown only once. It is stored hashed and pushed to the deployed gateways, so you cannot view it again after you close the dialog.
     :::
 
-For more, see [API Key Authentication](../../develop-api-proxy/security/api-key-authentication.md).
+For more, see [API Key Authentication](../../api-control-plane/develop-api-proxy/security/api-key-authentication.md).
 
 ## Invoke the API
 

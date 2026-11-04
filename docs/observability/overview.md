@@ -15,8 +15,8 @@ Observability is coming soon.
 
 | Task | Description |
 |:-----|:------------|
-| [Logs](../api-control-plane/logs.md) | Search organization-level gateway runtime logs, and filter them by type, environment, and log level. |
-| [Metrics](../api-control-plane/metrics.md) | Track the health and resource usage of your gateways. |
+| [Logs](../api-control-plane/observability/logs.md) | Search organization-level gateway runtime logs, and filter them by type, environment, and log level. |
+| [Metrics](../api-control-plane/observability/metrics.md) | Track the health and resource usage of your gateways. |
 
 ## API Gateway
 
