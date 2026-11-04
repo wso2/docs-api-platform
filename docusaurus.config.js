@@ -59,6 +59,31 @@ const config = {
     ],
   ],
 
+  // Temporary local search: the index is built with the site, so no external
+  // service is needed. Search works on `npm run build` and `npm run serve`,
+  // not on the dev server.
+  themes: [
+    [
+      '@easyops-cn/docusaurus-search-local',
+      /** @type {import('@easyops-cn/docusaurus-search-local').PluginOptions} */
+      ({
+        hashed: true,
+        docsRouteBasePath: '/',
+        indexBlog: false,
+        indexPages: false,
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        searchBarShortcutHint: true,
+        // Pages that are not in the sidebar.
+        ignoreFiles: [
+          /administer\/creating-application-templates/,
+          /administer\/customizing-portal-theme/,
+          /administer\/managing-api-consumers/,
+        ],
+      }),
+    ],
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -82,6 +107,8 @@ const config = {
           srcDark: 'img/api-platform-logo-dark.svg',
         },
         items: [
+          // Search sits first on the right, before the icon links.
+          {type: 'search', position: 'right'},
           // Icon-only links, styled as round buttons (.navbar-icon-link).
           {
             type: 'html',
