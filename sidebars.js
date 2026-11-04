@@ -1,5 +1,5 @@
 // Navigation for API Platform Cloud: API Control Plane content at the top
-// level, with AI Workspace and API Portal and AI Hub as their own sections.
+// level, with API Portal and AI Hub as its own section.
 
 const doc = (id, label) => ({type: 'doc', id, label});
 const group = (label, items) => ({type: 'category', label, items});
@@ -81,59 +81,6 @@ const sidebars = {
         doc("administer/creating-subscription-plans", "Manage Subscription Plans"),
       ]),
     ]),
-    // AI Workspace is hidden for now. Its pages still build and can be
-    // opened by URL. Remove the comment markers to show it again.
-    /*
-    group("AI Workspace", [
-      doc("ai-workspace/getting-started", "Quick Start Guide"),
-      group("LLM Providers", [
-        doc("ai-workspace/llm-providers/overview", "Overview"),
-        doc("ai-workspace/llm-providers/configure-and-consume-provider", "Configure and Consume Provider"),
-        doc("ai-workspace/llm-providers/manage-provider", "Manage Provider"),
-      ]),
-      group("App LLM Proxies", [
-        doc("ai-workspace/app-llm-proxies/overview", "Overview"),
-        doc("ai-workspace/app-llm-proxies/configure-proxy", "Configure App LLM Proxy"),
-        doc("ai-workspace/app-llm-proxies/manage-proxy", "Manage App LLM Proxy"),
-        doc("ai-workspace/app-llm-proxies/multi-provider", "Route to several providers"),
-      ]),
-      group("MCP Proxies", [
-        doc("ai-workspace/mcp-proxies/overview", "Overview"),
-        doc("ai-workspace/mcp-proxies/configure-proxy", "Configure Proxy"),
-        doc("ai-workspace/mcp-proxies/apply-policies", "Apply Policies"),
-      ]),
-      group("Agent Proxies", [
-        doc("ai-workspace/agent-proxies/overview", "Overview"),
-        doc("ai-workspace/agent-proxies/configure-proxy", "Configure Agent Proxy"),
-        doc("ai-workspace/agent-proxies/manage-proxy", "Manage Agent Proxy"),
-      ]),
-      doc("ai-workspace/gen-ai-applications", "Gen AI Applications"),
-      doc("ai-workspace/ai-gateway/setting-up", "AI Gateways"),
-      group("Policies", [
-        doc("ai-workspace/policies/overview", "Overview"),
-        group("Guardrails", [
-          doc("ai-workspace/policies/guardrails/overview", "Overview"),
-          doc("ai-workspace/policies/guardrails/regex-pii-masking", "PII Masking Regex"),
-          doc("ai-workspace/policies/guardrails/azure-content-safety", "Azure Content Safety"),
-          doc("ai-workspace/policies/guardrails/word-count-guardrail", "Word Count"),
-          doc("ai-workspace/policies/guardrails/sentence-count-guardrail", "Sentence Count"),
-        ]),
-        group("Rate Limit", [
-          doc("ai-workspace/policies/rate-limit/llm-cost", "LLM Cost"),
-          doc("ai-workspace/policies/rate-limit/token-based-rate-limit", "Token-Based Rate Limit"),
-          doc("ai-workspace/policies/rate-limit/llm-cost-based-rate-limit", "LLM Cost-Based Rate Limit"),
-        ]),
-        group("Other Policies", [
-          doc("ai-workspace/policies/other-policies/model-round-robin", "Model Round Robin"),
-          doc("ai-workspace/policies/other-policies/prompt-decorator", "Prompt Decorator"),
-          doc("ai-workspace/policies/other-policies/prompt-template", "Prompt Template"),
-          doc("ai-workspace/policies/other-policies/semantic-cache", "Semantic Cache"),
-        ]),
-        doc("ai-workspace/policies/writing-an-ai-policy", "Writing an AI Policy"),
-      ]),
-      doc("ai-workspace/insights", "Insights"),
-    ]),
-    */
     group("API Portal and AI Hub", [
       doc("api-portal/overview", "Overview"),
       doc("api-portal/quickstart-guide", "Quick Start Guide"),
@@ -171,66 +118,6 @@ const sidebars = {
       ]),
       doc("api-gateway/insights", "Insights"),
     ]),
-    // AI Gateway is hidden for now. Its pages still build and can be
-    // opened by URL. Remove the comment markers to show it again.
-    /*
-    group("AI Gateway", [
-      {
-        type: 'category',
-        label: 'LLM',
-        link: {type: 'doc', id: 'hybrid-gateways/ai-gateway/llm/index'},
-        items: [
-          doc("hybrid-gateways/ai-gateway/llm/quick-start-guide", "Quick Start Guide"),
-          doc("hybrid-gateways/ai-gateway/llm/llm-templates", "LLM Provider Templates"),
-          group("Guardrails", [
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/aws-bedrock-guardrail", "AWS Bedrock Guardrail"),
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/azure-content-safety", "Azure Content Safety"),
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/content-length", "Content Length Guardrail"),
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/json-schema", "JSON Schema Guardrail"),
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/pii-masking-regex", "PII Masking Regex Guardrail"),
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/regex", "Regex Guardrail"),
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/semantic-prompt-guard", "Semantic Prompt Guardrail"),
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/semantic-tool-filtering", "Semantic Tool Filtering"),
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/sentence-count", "Sentence Count Guardrail"),
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/url", "URL Guardrail"),
-            doc("hybrid-gateways/ai-gateway/llm/guardrails/word-count", "Word Count Guardrail"),
-          ]),
-          group("Load Balancing", [
-            doc("hybrid-gateways/ai-gateway/llm/load-balancing/model-round-robin", "Model Round Robin"),
-            doc("hybrid-gateways/ai-gateway/llm/load-balancing/model-weighted-round-robin", "Model Weighted Round Robin"),
-          ]),
-          group("Prompt Management", [
-            doc("hybrid-gateways/ai-gateway/llm/prompt-management/prompt-decorator", "Prompt Decorator"),
-            doc("hybrid-gateways/ai-gateway/llm/prompt-management/prompt-template", "Prompt Template"),
-          ]),
-          doc("hybrid-gateways/ai-gateway/llm/semantic-caching", "Semantic Caching"),
-        ],
-      },
-      {
-        type: 'category',
-        label: 'MCP',
-        link: {type: 'doc', id: 'hybrid-gateways/ai-gateway/mcp/index'},
-        items: [
-          doc("hybrid-gateways/ai-gateway/mcp/quick-start-guide", "Quick Start Guide"),
-          group("Policies", [
-            doc("hybrid-gateways/ai-gateway/mcp/policies/mcp-acl-list", "MCP Access Control List"),
-            doc("hybrid-gateways/ai-gateway/mcp/policies/mcp-authentication", "MCP Authentication"),
-            doc("hybrid-gateways/ai-gateway/mcp/policies/mcp-authorization", "MCP Authorization"),
-            doc("hybrid-gateways/ai-gateway/mcp/policies/mcp-rewrite", "MCP Rewrite"),
-          ]),
-        ],
-      },
-      {
-        type: 'category',
-        label: 'Observability',
-        link: {type: 'doc', id: 'hybrid-gateways/api-gateway/observability/index'},
-        items: [
-          doc("hybrid-gateways/api-gateway/observability/logging", "Logging"),
-          doc("hybrid-gateways/api-gateway/observability/tracing", "Tracing"),
-        ],
-      },
-    ]),
-    */
     group("Insights", [
       doc("insights/overview", "Overview"),
     ]),
