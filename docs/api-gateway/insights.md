@@ -19,8 +19,6 @@ Insights is coming soon.
 | **Analytics Overview** | Unique users, total requests, and total errors, the top applications and APIs, and traffic intensity, latency, and geographic distribution over time. |
 | **API Analytics** | Total requests, average latency, error rate, and unique consumers, traffic by API type, such as REST, GraphQL, and gRPC, and latency, traffic, and errors over time. |
 
-For all the Insights dashboards, see [Insights](../insights/overview.md).
-
 ## For a Self-Hosted Gateway
 
 A Self-Hosted Gateway publishes analytics for the API traffic that it handles. The gateway collects analytics data asynchronously, after the response reaches the client, so analytics does not add latency to API calls.

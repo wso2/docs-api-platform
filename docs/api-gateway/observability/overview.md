@@ -1,16 +1,15 @@
 ---
 title: "Observability"
 pagination_label: "Gateway Observability"
-description: "Track the health of your gateways, view gateway logs, and collect logs and traces from Self-Hosted Gateways."
+description: "View gateway logs, and collect logs and traces from Self-Hosted Gateways."
 ---
 
-You can track how your gateways behave from the API Management Console. For a Self-Hosted Gateway, you can also collect the logs and traces of its components with your own tools.
+You can view gateway logs from the API Management Console. For a Self-Hosted Gateway, you can also collect the logs and traces of its components with your own tools.
 
 ## In the API Management Console
 
 | Task | Description |
 |:-----|:------------|
-| [View gateway metrics](../../api-control-plane/observability/metrics.md) | Track the health and resource usage of your gateways. |
 | [View gateway logs](../../api-control-plane/observability/logs.md) | Search the access and activity logs of your gateways, and filter them by environment and log level. |
 
 ## For a Self-Hosted Gateway

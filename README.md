@@ -32,7 +32,7 @@ under `static/img/cloud/`.
 | API Control Plane | `docs/api-control-plane/` (`create-api-proxy/`, `develop-api-proxy/`, `deploy-api-proxy/`, `test-api-proxy/`, `publish-api-proxy/`, `observability/`, `insights/`, `administer/`) |
 | API Portal and AI Hub | `docs/api-portal/` (paths and file names match the API Portal `next` docs) |
 | API Gateway | `docs/api-gateway/` (`self-hosted-gateways/`, `observability/`) |
-| Insights, Observability, Monetization | `docs/insights/`, `docs/observability/`, `docs/monetization/` |
+| Observability | `docs/observability/` |
 | Policy Hub | `docs/policy-hub/` |
 | Tools | `docs/tools/` |
 

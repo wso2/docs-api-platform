@@ -38,7 +38,7 @@ Administrators set up the resources that API developers and consumers rely on.
 | [Customize the Portal Theme](./administer/customizing-portal-theme.md) | Customize the look and feel of your portals. |
 | [Manage Subscription Plans](./administer/creating-subscription-plans.md) | Create the subscription plans that define how consumers can use your APIs. |
 
-To track the logs, alerts, and health of your API proxies, see [Logs](./observability/logs.md) and [Metrics](./observability/metrics.md). To analyze API traffic and usage, see [Insights](./insights/api-insights.md).
+To track the logs of your API proxies, see [Logs](./observability/logs.md). To analyze API traffic and usage, see [Insights](./insights/api-insights.md).
 
 ## Get Started
 

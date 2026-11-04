@@ -67,11 +67,10 @@ const sidebars = {
       ]),
       group("Observability", [
         doc("api-control-plane/observability/logs", "Logs"),
-        doc("api-control-plane/observability/metrics", "Metrics"),
       ]),
-      group("Insights", [
-        doc("api-control-plane/insights/api-insights", "Overview"),
-      ]),
+      // group("Insights", [
+      //   doc("api-control-plane/insights/api-insights", "Overview"),
+      // ]),
       group("Administer", [
         doc("api-control-plane/administer/managing-environments", "Manage Environments"),
         doc("api-control-plane/administer/managing-pipelines", "Manage Pipelines"),
@@ -116,16 +115,13 @@ const sidebars = {
         doc("api-gateway/observability/logging", "Gateway Logging"),
         doc("api-gateway/observability/tracing", "Gateway Tracing"),
       ]),
-      doc("api-gateway/insights", "Insights"),
+      // doc("api-gateway/insights", "Insights"),
     ]),
-    group("Insights", [
-      doc("insights/overview", "Overview"),
-    ]),
+    // group("Insights", [
+    //   doc("insights/overview", "Overview"),
+    // ]),
     group("Observability", [
       doc("observability/overview", "Overview"),
-    ]),
-    group("Monetization", [
-      doc("monetization/overview", "Overview"),
     ]),
         group("Policy Hub", [
       doc("policy-hub/overview", "Overview"),
