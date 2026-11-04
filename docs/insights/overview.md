@@ -1,11 +1,11 @@
 ---
 title: "Insights"
 pagination_label: "Insights"
-description: "Analyze API, LLM, and MCP traffic in API Platform with Moesif Basic."
+description: "Analyze API, LLM, and MCP traffic with Moesif Basic."
 slug: /insights
 ---
 
-Insights is powered by Moesif Basic, which is included with your WSO2 subscription. WSO2 gateways send telemetry to Moesif, so you can monitor traffic, review how the platform is used, and diagnose latency without setting up a separate analytics pipeline.
+Insights is powered by Moesif Basic, which is included with your WSO2 subscription. WSO2 gateways send telemetry to Moesif, so you can monitor traffic, review overall usage, and diagnose latency without setting up a separate analytics pipeline.
 
 :::note
 Insights is coming soon.
@@ -19,7 +19,7 @@ The **Overview** dashboard summarizes usage for your APIs, LLM proxies, and MCP 
 
 - Unique users, total requests, and total errors
 - LLM traffic and MCP traffic
-- Overall platform metrics and the consumer onboarding trend
+- Overall metrics and the consumer onboarding trend
 - Top applications and top APIs
 - Traffic breakdown across APIs, LLM proxies, and MCP
 - Traffic intensity by hour, top platforms and user agents, average latency over time, and geographic heatmaps

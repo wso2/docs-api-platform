@@ -1,13 +1,13 @@
 ---
 title: "Manage Environments"
-description: "Create and delete the deployment environments of your organization in the API Platform Console."
+description: "Create and delete the deployment environments of your organization in the API Management Console."
 ---
 
 An environment is a deployment target in your organization, such as development or production. You deploy an API proxy to an environment, and a [pipeline](./managing-pipelines.md) promotes that build from one environment to the next.
 
 ## View Environments
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev).
+1. Sign in to the [API Management Console](https://console.bijira.dev).
 
 2. In the left navigation menu, click **Environments**.
 

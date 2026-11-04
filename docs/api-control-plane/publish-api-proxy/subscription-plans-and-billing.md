@@ -1,17 +1,17 @@
 ---
 title: "Subscription Plans"
-description: "Assign existing subscription plans to an API proxy in WSO2 API Platform to control access levels and pricing tiers for consumers."
+description: "Assign existing subscription plans to an API proxy in API Management to control access levels and pricing tiers for consumers."
 ---
 
 API subscription plans allow API publishers to control and manage access to APIs. These plans define the rules, limitations, and pricing for how clients can interact with APIs, ensuring efficient resource utilization and robust security.
 
-API Platform allows users with the administrator role to create, update, and delete subscription plans at the organization level. For instructions on creating subscription plans, see [Manage Subscription Plans](../administer/creating-subscription-plans.md).
+Users with the administrator role can create, update, and delete subscription plans at the organization level. For instructions on creating subscription plans, see [Manage Subscription Plans](../administer/creating-subscription-plans.md).
 
-Once created, API Platform allows API publishers to assign subscription plans to APIs, providing different levels of access and pricing based on user needs.
+Once created, API publishers can assign subscription plans to APIs, providing different levels of access and pricing based on user needs.
 
 You assign subscription plans to an API separately for each portal that you publish it to. To assign subscription plans to an API, follow the steps given below:
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev/).
+1. Sign in to the [API Management Console](https://console.bijira.dev/).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 

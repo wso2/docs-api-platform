@@ -1,6 +1,6 @@
-# API Platform Cloud documentation
+# API Management Cloud documentation
 
-Docusaurus site for the WSO2 API Platform Cloud documentation, served at
+Docusaurus site for the API Management Cloud documentation, served at
 `/api-platform/docs/cloud/`.
 
 ## Prerequisites

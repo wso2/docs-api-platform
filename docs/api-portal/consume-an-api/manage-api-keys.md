@@ -5,7 +5,7 @@ description: "View, regenerate, and revoke your API keys in the API Portal and A
 
 An API key is bound to a specific API, and it authenticates your requests to that API. You send the key in the header that the **API Key Auth** policy of the API expects.
 
-API keys for an API are created in the API Platform Console. On the **Overview** page of the API, in the **API Keys** section, click **Add**. See [API Key Authentication](../../api-control-plane/develop-api-proxy/security/api-key-authentication.md).
+API keys for an API are created in the API Management Console. On the **Overview** page of the API, in the **API Keys** section, click **Add**. See [API Key Authentication](../../api-control-plane/develop-api-proxy/security/api-key-authentication.md).
 
 ## View Your API Keys
 

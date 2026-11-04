@@ -2,7 +2,7 @@
 title: "Key Concepts"
 ---
 
-Key concepts are the core building blocks of API Platform that define how your resources and runtime infrastructure are organized and managed.
+Key concepts are the core building blocks that define how your resources and runtime infrastructure are organized and managed.
 
 - [Organizations](#organizations)
 - [Projects](#projects)
@@ -13,20 +13,20 @@ Key concepts are the core building blocks of API Platform that define how your r
 
 ## Organizations
 
-An **organization** is the top-level container for everything you create in API Platform, including projects, API proxies, gateways, and environments. Resources in one organization are isolated from those in another.
+An **organization** is the top-level container for everything you create, including projects, API proxies, gateways, and environments. Resources in one organization are isolated from those in another.
 
 ## Projects
 
-A **project** in API Platform is a logical grouping of API Proxies that typically work together to deliver a business capability. Projects help organize development, deployment, and management workflows. Each project is isolated from others, ensuring clear boundaries for resources, permissions, and deployments.
+A **project** is a logical grouping of API Proxies that typically work together to deliver a business capability. Projects help organize development, deployment, and management workflows. Each project is isolated from others, ensuring clear boundaries for resources, permissions, and deployments.
 
 ## Gateways
 
 A **gateway** is the runtime that receives API traffic, applies the policies you configure, and routes requests to your backend services. You deploy API proxies to gateways, and each gateway is associated with an environment.
 
-API Platform supports the following kinds of gateways:
+You can use the following kinds of gateways:
 
 - **WSO2 Managed Gateways:** Run on fully managed cloud infrastructure. WSO2 runs, scales, and upgrades the gateway.
-- **Self-Hosted Gateways:** Run on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connect to the API Platform control plane for configuration and management. Traffic and data stay within your network. See [Self-Hosted Gateway](./api-gateway/self-hosted-gateways/quickstart-guide.md).
+- **Self-Hosted Gateways:** Run on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connect to the control plane for configuration and management. Traffic and data stay within your network. See [Self-Hosted Gateway](./api-gateway/self-hosted-gateways/quickstart-guide.md).
 
 ## Environments
 
@@ -40,7 +40,7 @@ Promoting the same build, rather than rebuilding it for each environment, ensure
 
 ## Control Plane and Data Planes
 
-API Platform's architecture is built around two core components, namely the control plane and the data plane.
+The architecture is built around two core components, namely the control plane and the data plane.
 
 The **control plane** manages organizations and projects, and orchestrates the API proxy lifecycle, from creation and deployment to governance, observability, and publishing to the API Portal and AI Hub.
 

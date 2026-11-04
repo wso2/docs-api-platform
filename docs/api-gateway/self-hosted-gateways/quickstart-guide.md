@@ -1,10 +1,10 @@
 ---
 title: "Quick Start Guide"
 pagination_label: "Self-Hosted Gateway Quick Start"
-description: "Set up an API Platform Self-Hosted Gateway in your own infrastructure and connect it to the API Platform Cloud control plane."
+description: "Set up a Self-Hosted Gateway in your own infrastructure and connect it to the API Management Cloud control plane."
 ---
 
-This guide walks you through setting up an API Platform Self-Hosted Gateway in your environment. Follow these quick steps to get your gateway running and connected to API Platform's control plane.
+This guide walks you through setting up a Self-Hosted Gateway in your environment. Follow these quick steps to get your gateway running and connected to the control plane.
 
 :::note
 This feature is currently available in the **US region** only.
@@ -13,7 +13,7 @@ This feature is currently available in the **US region** only.
 
 ## Overview
 
-The Self-Hosted Gateway enables you to run the API Platform API Gateway in your own infrastructure while maintaining centralized management through API Platform's control plane. This guide covers the fastest way to get started.
+The Self-Hosted Gateway enables you to run the API Gateway in your own infrastructure while maintaining centralized management through the control plane. This guide covers the fastest way to get started.
 
 ## Prerequisites
 
@@ -26,9 +26,9 @@ Before you begin, ensure you have:
 
 ## Step 1: Add a Self-Hosted Gateway
 
-Your organization does not have a default gateway, so you add the gateway in the API Platform Console first.
+Your organization does not have a default gateway, so you add the gateway in the API Management Console first.
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev).
+1. Sign in to the [API Management Console](https://console.bijira.dev).
 
 2. Go to the organization level. In the header, select your organization from the **Organizations** list.
 

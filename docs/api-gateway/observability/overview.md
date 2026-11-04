@@ -4,9 +4,9 @@ pagination_label: "Gateway Observability"
 description: "Track the health of your gateways, view gateway logs, and collect logs and traces from Self-Hosted Gateways."
 ---
 
-You can track how your gateways behave from the API Platform Console. For a Self-Hosted Gateway, you can also collect the logs and traces of its components with your own tools.
+You can track how your gateways behave from the API Management Console. For a Self-Hosted Gateway, you can also collect the logs and traces of its components with your own tools.
 
-## In the API Platform Console
+## In the API Management Console
 
 | Task | Description |
 |:-----|:------------|

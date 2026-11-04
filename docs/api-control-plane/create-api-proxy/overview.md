@@ -4,7 +4,7 @@ pagination_label: "Create an API"
 description: "Create a REST or GraphQL API in the API Control Plane from a backend or a contract."
 ---
 
-API Platform enables you to create API proxies that secure your APIs, enforce policies, and control access to backend services. An API proxy acts as an intermediary between clients and your backend, allowing you to manage how requests are handled before they reach your services.
+You can create API proxies that secure your APIs, enforce policies, and control access to backend services. An API proxy acts as an intermediary between clients and your backend, allowing you to manage how requests are handled before they reach your services.
 
 Choose an API type below to get started.
 

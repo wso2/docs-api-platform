@@ -7,7 +7,7 @@ You manage all the gateways in your organization from the API Control Plane, reg
 
 ## View Gateways
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev).
+1. Sign in to the [API Management Console](https://console.bijira.dev).
 
 2. In the left navigation menu, click **Gateways**.
 
