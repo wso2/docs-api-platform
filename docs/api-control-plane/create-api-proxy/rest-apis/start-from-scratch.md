@@ -14,7 +14,7 @@ This walks you through creating a REST API using a sample backend, deploying it 
 
 Before you begin, make sure you have access to API Platform.
 
-1. Open the [API Platform Console](https://console.bijira.dev) and sign in using Google or GitHub.
+1. Open the API Platform Console and sign in using Google or GitHub.
 2. Open your organization and select the **Default project**, or create a new project.
 
 ## Create the REST API

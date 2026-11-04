@@ -88,7 +88,7 @@ const sidebars = {
         doc("api-portal/discover-apis/browse-apis", "Search APIs"),
         doc("api-portal/discover-apis/documentation", "API Documentation"),
         doc("api-portal/mcp-servers/browse-mcp-servers", "MCP Servers"),
-        doc("api-portal/ai-agent-discovery", "AI Agents"),
+        doc("api-portal/discover-apis/ai-agent-discovery", "AI Agents"),
       ]),
       group("Applications and Credentials", [
         doc("api-portal/consume-an-api/overview", "Which Credentials You Need"),

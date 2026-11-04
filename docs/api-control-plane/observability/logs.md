@@ -9,7 +9,7 @@ Any organization member can view runtime logs from the **Logs** page. You can fi
 
 ## Open runtime logs
 
-1. Sign in to the [API Platform Console](https://console.bijira.dev) and open your organization.
+1. Sign in to the API Platform Console and open your organization.
 2. In the left navigation menu, click **Observability**, then click **Logs**.
 
 By default, the page displays runtime logs from the past three days. You can adjust the time range and apply filters to find logs that match your requirements.
