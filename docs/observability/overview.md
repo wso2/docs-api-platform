@@ -1,11 +1,20 @@
 ---
 title: "Observability"
 pagination_label: "Observability"
-description: "View logs in the API Control Plane, and collect logs and traces from the API Gateway."
+description: "View cloud runtime logs and alerts, API Control Plane logs, and logs and traces from the API Gateway."
 slug: /observability
 ---
 
-Observability is how you see what your API proxies and gateways are doing. From the API Management Console you can read logs. On a Self-Hosted Gateway you can also collect component logs and traces with your own tools.
+Observability is how you see what your applications, API proxies, and gateways are doing. From the WSO2 Cloud Console you can read application runtime logs and alerts. From the API Management Console you can read gateway logs. On a Self-Hosted Gateway you can also collect component logs and traces with your own tools.
+
+## WSO2 Cloud Console
+
+Open **Observability** to see the runtime logs and alerts for the applications in that Organization.
+
+| What you can view | Description |
+|:------------------|:------------|
+| **Runtime logs** | Logs that your applications wrote. Logs are kept for 3 days. Filter them by time range and log level. |
+| **Alerts** | Alert history, alert rules for your components, and the channels that receive notifications. A channel can be a webhook or an email address. |
 
 ## API Control Plane
 
