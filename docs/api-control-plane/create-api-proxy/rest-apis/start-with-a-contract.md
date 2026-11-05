@@ -8,7 +8,7 @@ In the API Control Plane, you can expose an existing HTTP backend through a gate
 This walks you through creating a REST API using a sample contract, deploying it to a gateway, testing it, and publishing it to a portal.
 ## Prerequisites
 
-1. Open the API Management Console and sign in using Google or GitHub.
+1. Open the API Control Plane and sign in using Google or GitHub.
 2. Open your organization, then select the **Default project** or create a new project.
 
 ## Create the API

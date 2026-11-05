@@ -3,11 +3,11 @@ title: "Manage Portals"
 description: "Create a portal for your organization, open it, and edit or delete it. A portal is where you publish APIs for consumers."
 ---
 
-API portal is where consumers discover your APIs, read the documentation, and request access. You create portals for your organization from the API Management Console, then publish APIs to them.
+API portal is where consumers discover your APIs, read the documentation, and request access. You create portals for your organization from the API Control Plane, then publish APIs to them.
 
 ## Open the Portals page
 
-1. Sign in to the API Management Console.
+1. Sign in to the API Control Plane.
 2. In the left navigation menu, click **Portals**.
 
 The **Portals** page lists the portals in your organization. Each portal shows its name, its **Login environment**, and when it was last updated. Use **Search Portals** to find a portal.

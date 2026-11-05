@@ -1,11 +1,11 @@
 ---
 title: "Manage Pipelines"
-description: "Create, edit, and delete deployment pipelines in the WSO2 Cloud Console. The API Management Console promotes builds through that order."
+description: "Create, edit, and delete deployment pipelines in the WSO2 Cloud Console. The API Control Plane promotes builds through that order."
 ---
 
 A pipeline is the ordered sequence of environments that an API proxy moves through on its way to production, for example from development to production. You deploy an API proxy to the first environment in the pipeline, test it, and then promote the same build to the next environment.
 
-You create pipelines in the WSO2 Cloud Console. After you create a pipeline, the API Management Console uses that order.
+You create pipelines in the WSO2 Cloud Console. After you create a pipeline, the API Control Plane uses that order.
 
 ## View pipelines
 
@@ -43,7 +43,7 @@ Follow these steps to promote an API using this pipeline:
 
 2. **Configure the pipeline.** Create a pipeline that starts with development and continues with production.
 
-3. **Deploy the API to development.** In the API Management Console, deploy the API to a gateway in the development environment. This creates a build on the development gateway.
+3. **Deploy the API to development.** In the API Control Plane, deploy the API to a gateway in the development environment. This creates a build on the development gateway.
 
 4. **Test the API in development.** Invoke the API using the development gateway's invoke URL. The backend URL for development can point to a test service, allowing you to validate the API before promoting it.
 

@@ -14,7 +14,7 @@ You want a web console to create, deploy, test, and govern API proxies.
 
 | Guide | What You Will Do |
 |:------|:-----------------|
-| [API Control Plane Quick Start Guide](./api-control-plane/quickstart-guide.md) | Create a REST API proxy, deploy it to a gateway, and invoke it from the API Management Console. |
+| [API Control Plane Quick Start Guide](./api-control-plane/quickstart-guide.md) | Create a REST API proxy, deploy it to a gateway, and invoke it from the API Control Plane. |
 | [Create an API Proxy](./api-control-plane/create-api-proxy/overview.md) | Create a REST or GraphQL API proxy from scratch, or from a contract or schema. |
 
 ### I Want to Keep API Traffic in My Own Infrastructure

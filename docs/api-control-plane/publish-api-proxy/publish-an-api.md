@@ -14,7 +14,7 @@ You publish an API to each portal separately, so you can publish the same API to
 
 ## Publish an API to a Portal
 
-1. Sign in to the [API Management Console](https://console.bijira.dev/).
+1. Sign in to the [API Control Plane](https://console.bijira.dev/).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Publish**.
 
