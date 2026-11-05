@@ -149,6 +149,19 @@ Get these values right:
 
 The organization keying in this example uses the Identity Server organization handle. It keeps the portal's `org` login hint working: a login from `/api-portal/acme/...` sends `org=acme`, which Identity Server routes straight to that organization's login page. To key on the organization's UUID instead, set `organization = "org_id"` and `idp_org_id` to the root organization's `org_id`. With `org_id` keying, users choose their organization on the Identity Server login page.
 
+### Accept tokens from an organization's own token endpoint
+
+Scripts and other API clients often get a token straight from an organization's own token endpoint, `https://localhost:9443/o/<organization-id>/oauth2/token`, for example with the organization's copy of **API Portal**. Identity Server 7.3 issues those tokens under the organization's own issuer and signs them with the organization's own key. To accept them, add the per-organization issuer to `[api_portal.auth.idp]`:
+
+```toml
+[api_portal.auth.idp]
+issuer_template    = "https://localhost:9443/o/{org}/oauth2/token"
+jwks_url_template  = "https://host.docker.internal:9443/o/{org}/oauth2/jwks"
+template_org_claim = "org_id"   # {org} is the org_id; this example keys organizations on org_handle
+```
+
+Like `issuer`, `issuer_template` uses the host name Identity Server puts in its tokens. Like `jwks_url`, `jwks_url_template` uses the host the container reaches. If you set `audience`, also add the client ID of each organization's copy of **API Portal**, shown on that shared app's **Protocol** tab, because these tokens carry it as their audience. See [Accept tokens from per-organization issuers](multi-organization.md#accept-tokens-from-per-organization-issuers).
+
 ### Trust the Identity Server certificate
 
 The portal verifies Identity Server's TLS certificate on every call to `token_url` and `jwks_url`, and it provisions organizations only over verified TLS. Don't turn verification off with `NODE_TLS_REJECT_UNAUTHORIZED=0`: it disables provisioning as well.
@@ -236,7 +249,7 @@ These symptoms are the common ones with Identity Server:
 | The Identity Server administrator lands in an organization named `Super` | `auth.idp_org_id` doesn't match the root organization's claim—see [Map the root organization](#map-the-root-organization) |
 | `Org claim matches more than one organization's idp_ref_id` | Two portal organizations share an Identity Server organization's ID, typically a leftover `Super` organization |
 | A new organization's first sign-in gets `403`, and the portal logs `Refused to provision an organization from an org claim` | The portal doesn't verify Identity Server's certificate—see [Trust the Identity Server certificate](#trust-the-identity-server-certificate) |
-| A bearer token is rejected with `no applicable key found in the JSON Web Key Set` | The token came from an organization's own token endpoint, `.../o/<orgId>/oauth2/token`, which Identity Server 7.3 signs with that organization's key. Get bearer tokens through the root application's login instead |
+| A bearer token is rejected with `no applicable key found in the JSON Web Key Set` | The token came from an organization's own token endpoint, `.../o/<orgId>/oauth2/token`, which Identity Server 7.3 signs with that organization's key. Add the per-organization issuer—see [Accept tokens from an organization's own token endpoint](#accept-tokens-from-an-organizations-own-token-endpoint) |
 
 ## Related topics
 

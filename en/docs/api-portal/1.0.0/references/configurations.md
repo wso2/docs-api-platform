@@ -126,9 +126,13 @@ jwks_url = ""
 token_refresh_timeout_ms = 10000
 silent_sso = true      # Enable silent SSO
 org_callback = false   # Redirect to the org's own landing page after login
+# Multi-organization mode only: per-organization issuers
+issuer_template = ""
+jwks_url_template = ""
+template_org_claim = ""
 ```
 
-See [Authentication](../setting-up/authentication/overview.md) for the authentication modes, and [Connect an identity provider](../setting-up/authentication/connect-an-identity-provider.md) for the value each `[api_portal.auth.idp]` key has to match in the IdP.
+See [Authentication](../setting-up/authentication/overview.md) for the authentication modes, and [Connect an identity provider](../setting-up/authentication/connect-an-identity-provider.md) for the value each `[api_portal.auth.idp]` key has to match in the IdP. For `issuer_template`, `jwks_url_template`, and `template_org_claim`, see [Accept tokens from per-organization issuers](../setting-up/authentication/multi-organization.md#accept-tokens-from-per-organization-issuers).
 
 ### Authorization
 
