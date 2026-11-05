@@ -17,7 +17,7 @@ content_type: "how-to"
 
 ## Install the AP CLI Tool
 
-The `ap` CLI tool is used to build a custom gateway image with your own policies. Download the binary for your platform from the [`ap` CLI v0.9.1 release page](https://github.com/wso2/api-platform/releases/tag/ap%2Fv0.9.1) and follow the steps below to install it.
+The `ap` CLI tool is used to build a custom gateway image with your own policies. Download the binary for your platform from the [`ap` CLI v0.8.1 release page](https://github.com/wso2/api-platform/releases/tag/ap%2Fv0.8.1) and follow the steps below to install it.
 
 === "macOS / Linux"
 
@@ -26,7 +26,7 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
     After downloading the zip file for your platform, extract it:
 
     ```bash
-    unzip ap-<os>-<arch>-v0.9.1.zip   # replace with the file you downloaded
+    unzip ap-<os>-<arch>-v0.8.1.zip   # replace with the file you downloaded
     ```
 
     Extracting the archive creates a folder of the same name that contains the `ap` binary.
@@ -35,7 +35,7 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
 
     ```bash
     mkdir -p ~/bin
-    mv ap-<os>-<arch>-v0.9.1/ap ~/bin/
+    mv ap-<os>-<arch>-v0.8.1/ap ~/bin/
     ```
 
     **Step 3: Add to PATH**
@@ -65,7 +65,7 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
     After downloading the zip file, right-click it and select **Extract All**, or run in PowerShell:
 
     ```powershell
-    Expand-Archive -Path ap-windows-<arch>-v0.9.1.zip -DestinationPath .
+    Expand-Archive -Path ap-windows-<arch>-v0.8.1.zip -DestinationPath .
     ```
 
     Extracting the archive creates a folder of the same name that contains `ap.exe`.
@@ -74,7 +74,7 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
 
     ```powershell
     New-Item -ItemType Directory -Force -Path "$HOME\bin"
-    Move-Item ap-windows-<arch>-v0.9.1\ap.exe "$HOME\bin\ap.exe"
+    Move-Item ap-windows-<arch>-v0.8.1\ap.exe "$HOME\bin\ap.exe"
     ```
 
     **Step 3: Add to PATH**
