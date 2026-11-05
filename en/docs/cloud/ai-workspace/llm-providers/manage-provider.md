@@ -8,7 +8,7 @@ tags:
   - ai-workspace
   - llm-providers
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-23
+last_updated: 2026-11-05
 content_type: "how-to"
 ---
 
@@ -94,9 +94,9 @@ Use the arrow buttons between the two panels to move resources:
 - **`<`** — Move the selected resources back
 - **`<<`** — Move all resources back
 
-### Import resources
+### Update the OpenAPI definition
 
-Click **Import resources from specification** to load or refresh the resource list from the provider's OpenAPI specification.
+To load or refresh the resource list from an OpenAPI specification, click **Update OpenAPI Definition**, and then import the specification in the dialog.
 
 ## Security
 
@@ -110,26 +110,32 @@ Set the API key that client applications must provide:
 |-------|-------------|---------|
 | **Authentication Type** | Authentication method | `apiKey` (default) |
 | **API Key** | The name of the request header that must carry the API key | `x-api-key`, `apikey`, `Authorization` |
-| **Key Location** | Where clients send the key. `header` is the only supported option. | `header` |
-| **API Key Value Prefix** | An optional prefix prepended to the value clients must send, so that clients send `Bearer <key>` | `Bearer` |
+| **Key Location** | Where clients send the key. `Header` is the only supported option. | `Header` |
+| **API Key Value Prefix** | Optional text that clients send before the key in the header value | `Bearer` |
 
 **To configure:**
 
 1. Select **Authentication Type**: `apiKey`
 2. Enter the **API Key** header name your applications use.
-3. Optionally set an **API Key Value Prefix**, for example `Bearer`, if clients send the key with a scheme prefix.
-4. Click **Save**.
+3. Keep **Key Location** as **Header**.
+4. Optional: in **API Key Value Prefix**, enter the text that clients send before the key, such as `Bearer`. With the API key name `Authorization` and the prefix `Bearer`, clients send `Authorization: Bearer <api-key>`.
+5. Click **Save**.
 
 ## Rate limiting
 
 Control request and token consumption to prevent cost overruns and keep usage fair across all consumers.
 
-Configure rate limits in the **Backend** section, which controls requests from the gateway to the upstream LLM provider. Limiting that traffic protects your provider API credentials and caps total spend.
+The **Rate Limiting** tab has two sections:
 
-The Backend section supports two configuration modes:
+| Section | Controls | Protects |
+|---------|----------|----------|
+| **Backend** | Requests from the gateway to the upstream LLM provider | Your provider API credentials and total spend |
+| **Per Consumer** | Requests from each client application to the gateway | Fair usage across all consumers |
 
-- **Provider-wide** — A single limit applied across all API endpoints. The limit maintains **one shared counter**: traffic on any endpoint draws down the same allowance, so exhausting the limit via one endpoint rejects requests on all endpoints.
-- **Per Resource** — Individual limits per API endpoint (for example, chat completions vs. embeddings). Each endpoint maintains its **own independent counter**.
+Both sections support two configuration modes:
+
+- **Provider-wide** — A single limit applied across all API endpoints. The limit maintains **one shared counter**: traffic on any endpoint draws down the same allowance, so exhausting the limit through one endpoint rejects requests on all endpoints.
+- **Per Resource** — Individual limits per API endpoint, for example chat completions compared with embeddings. Each endpoint maintains its **own independent counter**.
 
 The Backend section of the Rate Limiting tab presents both the Provider-wide and Per Resource modes:
 
@@ -143,25 +149,26 @@ The Backend section of the Rate Limiting tab presents both the Provider-wide and
 
 ### Limit criteria
 
-Configure either of these criteria, or both:
+Configure any of these criteria:
 
 | Criterion | Description |
 |-----------|-------------|
 | **Request Count** | Maximum number of requests within the reset duration |
 | **Token Count** | Maximum number of tokens (prompt plus completion) within the reset duration |
+| **Cost** | Maximum spend, in US dollars, within the reset duration |
 
-For each enabled criterion, set the **Quota** and **Reset Duration** (`second`, `minute`, or `hour`).
+For each enabled criterion, set the **Quota** and **Reset Duration** (`hour`, `day`, `week`, or `month`).
 
 ### Provider-wide configuration
 
-1. Select **Provider-wide** in the Backend section.
-2. Enable **Request Count**, **Token Count**, or both.
+1. Select **Provider-wide** in the **Backend** or **Per Consumer** section.
+2. Enable **Request Count**, **Token Count**, or **Cost**.
 3. Enter the **Quota** and select the **Reset Duration** for each criterion.
 4. Click **Save**.
 
 ### Per-resource configuration
 
-1. Select **Per Resource** in the Backend section.
+1. Select **Per Resource** in the **Backend** or **Per Consumer** section.
 2. Expand **Limit per Resource** to set default limits for all endpoints:
     - Enable the criteria and configure **Quota** and **Reset Duration**.
 3. To override limits for a specific endpoint, expand that resource row and configure it separately.

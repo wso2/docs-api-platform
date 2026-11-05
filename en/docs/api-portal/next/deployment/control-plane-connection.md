@@ -9,7 +9,7 @@ tags:
   - deployment
   - platform-api
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-10-21
 content_type: "how-to"
 ---
 
@@ -58,38 +58,9 @@ A delivery whose pod dies mid-flight is not lost: one left `IN_FLIGHT` for more 
 
 ## Local authentication (development only)
 
-This is the portal's one and only outbound call to a Platform API, and production deployments don't make it. The built-in login form posts credentials to the Platform API's portal login endpoint and verifies the returned RS256 token against that component's public key:
+This is the portal's one and only outbound call to a Platform API, and production deployments don't make it. The built-in login form posts credentials to the Platform API's portal login endpoint and verifies the returned RS256 token against that component's public key. The portal needs the Platform API's URL, reached over the cluster or Compose network by its Service name and container port, and the Platform API's public key. For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#local-authentication), [Deploy on Kubernetes](deploy-on-kubernetes.md#local-authentication), and [Deploy on OpenShift](openshift.md#local-authentication).
 
-=== "Kubernetes"
-
-    ```yaml
-    api-portal-ui:
-      config:
-        platformApi:
-          baseUrl: ""        # "" derives the in-cluster URL
-          insecure: false
-        auth:
-          publicKeyPath: /etc/devportal/keys/jwt_public.pem
-      secrets:
-        hasPublicKey: true
-    ```
-
-    `baseUrl` must use the in-cluster Service name and **container** port, because the portal connects over the cluster network rather than through a published port or ingress. Pointing it at an externally published address makes every login fail while the Platform API itself looks healthy.
-
-    `generate-secrets.sh` copies the public key out of the Platform API's own Secret, so the two stay on the same keypair. Set `hasPublicKey: false` when you have no local-auth path at all.
-
-=== "Virtual machine"
-
-    ```toml
-    [api_portal.auth.local]
-    platform_api_url = "https://platform-api:9243"
-    public_key_path  = "/etc/api-portal/keys/jwt_public.pem"
-    tls_skip_verify  = false
-    ```
-
-    When the Platform API runs in the same Compose stack, use its service name and container port — the portal reaches it over the Compose network, not through a published host port. `setup.sh` writes the keypair to `resources/keys/`, and the compose file mounts the public half into the portal.
-
-Leave `platform_api_url` empty and local authentication is disabled outright.
+Leave the Platform API URL empty (`platform_api_url` in `config.toml`) and local authentication is disabled outright.
 
 Two details matter if you do run it. Skipping TLS verification on that hop (`insecure` / `tls_skip_verify`) exists for local development against a self-signed certificate and belongs nowhere near production. And the public key is what makes the portal verify the token rather than trust the transport — if it's missing, bearer-token requests fail closed rather than being accepted unverified. In `idp` mode tokens are verified against your identity provider's JWKS endpoint instead, and the key goes unused.
 

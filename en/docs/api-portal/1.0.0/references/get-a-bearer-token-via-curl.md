@@ -18,7 +18,7 @@ content_type: "how-to"
 When the API Portal & MCP Hub is configured with an external identity provider (IdP) such as Asgardeo, REST API calls to `/api-portal/api/v0.9/*` must include an `Authorization: Bearer <token>` header. This guide obtains that token from the terminal, without going through the portal UI. One step still opens a browser: the IdP's own login and redirect.
 
 !!! note
-    If you're running in **local auth mode** instead (the default for local development), get a token from the Platform API directly—see [Getting Started](../getting-started.md)—no PKCE flow needed.
+    If you're running in **local auth mode** instead (the default for local development), get a token from the Platform API directly—see the [quick start guide](../quickstart-guide.md)—no PKCE flow needed.
 
 ## Prerequisites
 

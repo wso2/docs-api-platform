@@ -1,5 +1,5 @@
 ---
-title: "Quick start for API Portal and MCP Hub"
+title: "API Portal and MCP Hub quick start guide"
 description: "Install the API Portal and MCP Hub with Docker, then add an API and an MCP server through the admin UI and through GitOps."
 canonical_url: https://wso2.com/api-platform/docs/api-portal/next/quickstart-guide/
 md_url: https://wso2.com/api-platform/docs/api-portal/next/quickstart-guide.md
@@ -13,7 +13,7 @@ last_updated: 2026-09-11
 content_type: "quickstart"
 ---
 
-# Quick start for API Portal and MCP Hub
+# API Portal and MCP Hub quick start guide
 
 API Portal and MCP Hub allows developers to discover, subscribe to, and consume the APIs and Model Context Protocol (MCP) servers you publish. This guide is for developers who want to publish to it end to end. You'll install the Portal with Docker, then add one API and one MCP server in two ways: 
 
@@ -30,7 +30,7 @@ This guide assumes basic familiarity with Docker, YAML, and the command line. Se
 - Subscription plan
 
 ## Before you start
-Before going through this quickstart, complete the following prerequisites:
+Before going through this quick start guide, complete the following prerequisites:
 
 - Install [Docker](https://docs.docker.com/get-docker/) with the Compose plugin. You can check the installed version with the `docker compose version` command.
 - `openssl`, `curl`, `unzip`, and `jq` are available to use in the command line.
@@ -70,7 +70,14 @@ The script prompts you for an admin username and password. Press <kbd>Enter</kbd
 !!! warning "Save the printed admin credentials"
     The script shows the admin password once and never stores it in plain text. If you lose it, remove the `APIP_CP_ADMIN_USERNAME` and `APIP_CP_ADMIN_PASSWORD_HASH` variables from the `api-platform.env` file. Then run `./scripts/setup.sh` to generate a new one.
 
-For more information about the script and the resources it provisions, [see the getting started guide](getting-started.md#step-2-run-the-setup-script).
+The script provisions everything the containers need to start:
+
+- A self-signed TLS certificate under `resources/certificates/`.
+- The API Portal and Platform API secrets (the encryption keys, the session secret, and the RS256 JWT signing key pair), written as files under `resources/keys/`.
+- Your admin username in `APIP_CP_ADMIN_USERNAME` and the bcrypt hash of your admin password in `APIP_CP_ADMIN_PASSWORD_HASH`, both in `api-platform.env`.
+
+!!! note "Re-running the script"
+    The script is idempotent. Re-running it only fills in what's missing and never overwrites an existing value. To rotate a secret, remove it from `api-platform.env`, or delete the relevant file under `resources/certificates/` or `resources/keys/`, then run the script again.
 
 ### Step 3: Start the portal
 
@@ -79,6 +86,8 @@ Start the Portal with the following command:
 ```bash
 docker compose up
 ```
+
+The portal uses SQLite by default. On first start, it creates the database schema and a default organization (`default`) with a `default` view.
 
 Then verify the health of the Platform API sidecar:
 
@@ -765,7 +774,7 @@ Look for an entry in the `servers` array for the server you just added:
       "server": {
         "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
         "name": "Everything MCP Server",
-        "version": "1.0",
+        "version": "v1.0",
         "description": "A reference MCP server that exercises the whole protocol — tools, prompts, resources, and sampling. Built for developers testing an MCP client, with a pizza-ordering flow standing in for a real workload.",
         "remotes": [
           {
@@ -878,7 +887,7 @@ The `servers` array now includes both versions:
       "server": {
         "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
         "name": "Everything MCP Server",
-        "version": "1.0",
+        "version": "v1.0",
         "description": "A reference MCP server that exercises the whole protocol — tools, prompts, resources, and sampling. Built for developers testing an MCP client, with a pizza-ordering flow standing in for a real workload.",
         "remotes": [
           {
@@ -923,9 +932,11 @@ The `servers` array now includes both versions:
 
 ## Next steps
 
-- See the [getting started guide for API Portal and MCP Hub](./getting-started.md).
 - To route MCP traffic through a gateway, with authentication and access control, see the [MCP proxy documentation](../../ai-gateway/next/gateway-artifacts/mcp-proxy.md).
 - See [Manage APIs](admin-settings/manage-apis.md) and [Manage MCP Servers](admin-settings/manage-mcp-servers.md) for the full admin reference for editing, publishing, deprecating, and deleting APIs and MCP servers. 
 - See [MCP Registry API](mcp-registry.md) for the full discovery and publishing reference, including how to update or delete a published version.
 - For information about the consumer side of your published APIs and MCP servers, like subscribing, getting a token, and calling an artifact, see [Manage Subscriptions](consume-an-api/manage-subscriptions.md) and [Connect to an MCP Server](mcp-servers/connect-to-an-mcp-server.md).
 - See [AI Agent Discovery](ai-agent-discovery.md) for information about `llms.txt` and Markdown endpoints AI agents use to find APIs and MCP servers
+- To see the portal as a consumer, see [Browse APIs](discover-apis/browse-apis.md), [Manage Applications](consume-an-api/manage-applications.md), and [Consume an API Secured with an API Key](consume-an-api/api-key.md) or [with OAuth2](consume-an-api/oauth2.md).
+- To customize the portal's look and feel, see [Theming](admin-settings/theming.md).
+- To add the rest of the bundled sample APIs and MCP servers to the catalog, run `./scripts/seed-samples.sh` from the distribution directory. It skips samples that already exist, such as the ones you added in this guide. It prompts for the admin username and password, or reads them from `ADMIN_USERNAME` and `ADMIN_PASSWORD`, and needs `curl`, `jq`, and `zip`.

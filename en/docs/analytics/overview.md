@@ -33,12 +33,23 @@ When you create an organization using the Console, you can start using Moesif Ba
 
 For self-hosted Platform API and AI gateways, follow these instructions:
 
-* [Moesif Analytics in API Gateway](https://wso2.com/api-platform/docs/api-gateway/analytics/moesif-analytics/)  
-* [Moesif Analytics in AI Gateway](https://wso2.com/api-platform/docs/ai-gateway/analytics/moesif-analytics/) 
+* [Moesif Analytics in API Gateway](../api-gateway/1.2.0/analytics/moesif-analytics.md)  
+* [Moesif Analytics in AI Gateway](../ai-gateway/1.2.0/analytics/moesif-analytics.md) 
 
 ### Self-Managed WSO2 API Manager
 
 Follow the instructions in [Moesif Analytics Integration in API Manager docs](https://apim.docs.wso2.com/en/latest/monitoring/api-analytics/moesif-analytics/moesif-integration-guide/).
+
+## Get started with Moesif
+
+To see your first API calls in Moesif, follow these steps:
+
+1. Deploy an API and invoke it. Follow the quick start guide for [API Platform Cloud](../cloud/introduction/quick-start-guide.md), the [API Gateway](../api-gateway/1.2.0/quick-start-guide.md), or the [AI Gateway](../ai-gateway/1.2.0/quick-start-guide.md).
+2. Set up Moesif for your deployment, as described in [Setup and access configurations](#setup-and-access-configurations). For a self-hosted gateway, add the Moesif configuration to the gateway's `config.toml` file and restart the gateway.
+3. Send a few more requests through your gateway.
+4. Open the analytics dashboards. In API Platform Cloud, select **Insights**, then **API Insights**. For a self-hosted gateway, open your Moesif dashboard.
+
+New to Moesif? Start with the [Moesif overview](https://www.moesif.com/docs/getting-started/overview/) and [API observability](https://www.moesif.com/docs/getting-started/api-observability/) guides.
 
 ## How to Use Moesif Basic 
 

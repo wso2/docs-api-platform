@@ -9,7 +9,7 @@ tags:
   - security
   - secrets
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-10-21
 content_type: "how-to"
 ---
 
@@ -35,154 +35,13 @@ The following table maps each secret to the service that consumes it, when it's 
 
 The encryption key is a single 32-byte value supplied as 64 hexadecimal characters or as base64.
 
-=== "Virtual machine"
-    Generate the values into the directories the containers mount. Set a restrictive umask so no other account on the host can read them:
-
-    ```bash
-    umask 077
-
-    # At-rest encryption key.
-    openssl rand -hex 32 > resources/keys/encryption.key
-
-    # Database password and OIDC client secret, read from prompts so they stay
-    # out of your shell history.
-    mkdir -p secrets
-    read -rsp 'OIDC client secret: ' v && printf '%s' "$v" > secrets/oidc_client_secret && unset v && echo
-    read -rsp 'Database password: ' v && printf '%s' "$v" > secrets/postgres_password && unset v && echo
-    ```
-
-    Confirm the permissions, then restrict the directories too:
-
-    ```bash
-    chmod 600 resources/keys/* secrets/*
-    chmod 700 resources/keys secrets
-    ```
-
-    The distribution's `./scripts/setup.sh` generates the same artifacts. Use it if you want the stack running before you wire in managed secrets, then replace each generated file with the managed value. Keep `api-platform.env`, `resources/keys/`, and `secrets/` out of source control.
-
-=== "Kubernetes"
-    The chart never creates or embeds a secret value. It reads a Secret you created and referenced by name.
-
-    Produce the encryption key yourself, or take it from your secret manager. It has no rotation path, so you need a copy of it outside the cluster before anything runs:
-
-    ```bash
-    umask 077
-    openssl rand -hex 32 | tr -d '\n' > encryption.key
-    ```
-
-    Read the database password and the client secret from a prompt, so neither reaches your shell history or the host's process list:
-
-    ```bash
-    read -rsp 'Database password: ' v && printf '%s' "$v" > db_password && unset v && echo
-    read -rsp 'OIDC client secret: ' v && printf '%s' "$v" > oidc_client_secret && unset v && echo
-    ```
-
-    Create the two Secrets, using the key names the chart expects:
-
-    ```bash
-    kubectl -n <namespace> create secret generic <release-name>-platform-api-secrets \
-      --from-file=ENCRYPTION_KEY=./encryption.key \
-      --from-file=DATABASE_PASSWORD=./db_password
-
-    kubectl -n <namespace> create secret generic <release-name>-ai-workspace-ui-secrets \
-      --from-file=OIDC_CLIENT_SECRET=./oidc_client_secret
-    ```
-
-    Remove the local files once the Secrets exist:
-
-    ```bash
-    shred -u db_password oidc_client_secret
-    ```
-
-    Remove `encryption.key` too, but only after you confirm that an independent copy is in your secret manager. The key has no recovery path, and the Kubernetes Secret is not a backup:
-
-    ```bash
-    shred -u encryption.key
-    ```
-
-    Then reference the Secrets by name in `values-secrets.yaml`, which holds no values and is safe to commit:
-
-    ```yaml
-    platform-api:
-      secrets:
-        existingSecret: <release-name>-platform-api-secrets
-    ai-workspace-ui:
-      secrets:
-        existingSecret: <release-name>-ai-workspace-ui-secrets
-    ```
-
-    The chart also ships a `generate-secrets.sh` that invents the key material, creates both Secrets, and writes the same file. It takes the database password and the client secret on its command line, where they land in your shell history, and it leaves you with an encryption key you never saw and can't restore. Keep it to a trial cluster.
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#secrets-step-1-generate-the-values), [Deploy on Kubernetes](deploy-on-kubernetes.md#secrets-step-1-generate-the-values), and [Deploy on OpenShift](openshift.md#openshift-secrets-step-1-generate-the-values).
 
 ## Step 2: Reference the secrets from configuration
 
 Never write a secret value into `config.toml` or a values file. Reference it instead, so the value stays in the store you chose.
 
-=== "Virtual machine"
-    `config.toml` is the only source of configuration. A value reaches it through an interpolation token, resolved once at startup. Prefer the `file` token: the value never enters the process environment, so it can't leak through a process listing or a crash dump.
-
-    {% raw %}
-
-    ```toml
-    # configs/config.toml
-    [platform_api.security]
-    encryption_key = '{{ file "/etc/platform-api/keys/encryption.key" }}'
-
-    [platform_api.database]
-    password = '{{ file "/secrets/platform-api/postgres_password" }}'
-
-    [ai_workspace.auth.oidc]
-    client_secret = '{{ file "/secrets/ai-workspace/oidc_client_secret" }}'
-    ```
-
-    {% endraw %}
-
-    `[platform_api.auth.jwt]` doesn't appear here, because `idp` mode doesn't use it. If you run `file` or `internal_token` mode, set `public_key_file` and `private_key_file` to mounted paths. They're the exception to the token rule: each is a path, and the service reads and parses the PEM file itself.
-
-    Mount each file read-only at the path its token names:
-
-    ```yaml
-    services:
-      platform-api:
-        volumes:
-          - ./resources/keys:/etc/platform-api/keys:ro
-          - ./secrets/postgres_password:/secrets/platform-api/postgres_password:ro
-
-      ai-workspace:
-        volumes:
-          - ./secrets/oidc_client_secret:/secrets/ai-workspace/oidc_client_secret:ro
-    ```
-
-    A `file` token reads only from an allowed directory: `/etc/platform-api` and `/secrets/platform-api` for the Platform API, `/etc/ai-workspace` and `/secrets/ai-workspace` for AI Workspace. Set `APIP_CONFIG_FILE_SOURCE_ALLOWLIST` to a comma-separated list to replace those defaults.
-
-=== "Kubernetes"
-    Point each component at the Secret that holds its values. The chart injects them as environment variables:
-
-    ```yaml
-    # values-secrets.yaml
-    platform-api:
-      secrets:
-        existingSecret: <release-name>-platform-api-secrets
-    ai-workspace-ui:
-      secrets:
-        existingSecret: <release-name>-ai-workspace-ui-secrets
-    ```
-
-    Rendering fails when `platform-api.secrets.existingSecret` is unset, so a release can't reach the cluster without its secrets in place.
-
-    The `keys` map names each key inside the Secret. Override an entry only when your Secret uses different key names:
-
-    ```yaml
-    platform-api:
-      secrets:
-        existingSecret: my-platform-api-secret
-        keys:
-          encryptionKey: ENCRYPTION_KEY
-          databasePassword: DATABASE_PASSWORD
-          jwtPublicKey: jwt_public.pem
-          jwtPrivateKey: jwt_private.pem
-          adminUsername: ADMIN_USERNAME
-          adminPasswordHash: ADMIN_PASSWORD_HASH
-    ```
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#secrets-step-2-reference-the-secrets-from-configuration), [Deploy on Kubernetes](deploy-on-kubernetes.md#secrets-step-2-reference-the-secrets-from-configuration), and [Deploy on OpenShift](openshift.md#openshift-secrets-step-2-reference-the-secrets-from-configuration).
 
 Resolution fails closed in both deployment shapes. A missing file, a file outside the allowed directories, or an unset variable with no default stops startup rather than running with an empty credential.
 
@@ -212,29 +71,7 @@ Resolution fails closed in both deployment shapes. A missing file, a file outsid
 
 Start the stack and confirm no service reports a missing requirement.
 
-=== "Virtual machine"
-    ```bash
-    docker compose up -d
-    docker compose ps
-    docker compose logs platform-api ai-workspace | grep -i -E 'error|fail'
-    ```
-
-    Both containers should reach a healthy state. A message naming a config key or a file path means that value didn't resolve. Check the mount path and the allowed directories.
-
-=== "Kubernetes"
-    ```bash
-    kubectl -n <namespace> get pods
-    kubectl -n <namespace> logs deploy/<release-name>-platform-api | grep -i -E 'error|fail'
-    ```
-
-    A pod in `CreateContainerConfigError` means the referenced Secret or one of its keys is missing. Confirm the key names:
-
-    ```bash
-    kubectl -n <namespace> get secret <release-name>-platform-api-secrets \
-      -o json | jq -r '.data | keys[]'
-    ```
-
-    This prints the key names only. Don't print `.data` itself: the values are base64-encoded, not encrypted, and they land in your terminal scrollback.
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#step-7-start-the-deployment), [Deploy on Kubernetes](deploy-on-kubernetes.md#secrets-verify), and [Deploy on OpenShift](openshift.md#openshift-secrets-verify).
 
 ## Related
 

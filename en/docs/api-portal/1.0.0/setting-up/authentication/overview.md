@@ -8,7 +8,7 @@ tags:
   - api-portal
   - authentication
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-07-24
+last_updated: 2026-10-13
 content_type: "concept"
 ---
 
@@ -81,6 +81,8 @@ When `mode = "idp"`, the portal reads the `[api_portal.auth.idp]` block for the 
 
 [Connect an identity provider to the API Portal](connect-an-identity-provider.md) covers the configuration every IdP needs. For a worked example against one specific provider, see [Set up Asgardeo as your identity provider](asgardeo-as-idp.md).
 
+In identity provider mode, one portal can also serve every organization your IdP holds, provisioning each one on its users' first sign-in. See [Serve multiple organizations from one API Portal](multi-organization.md), and [Set up WSO2 Identity Server for multiple organizations](wso2-is-as-idp.md) for a worked example.
+
 ## Authorization is configured separately
 
 Authentication decides who a caller is. Authorization decides what they may do. The two are configured in different places.
@@ -94,4 +96,4 @@ That section holds the role-to-scope mapping, the switch for Management API scop
 
 ## Choosing a mode
 
-Use local authentication when you're trying out the API Portal & MCP Hub, running a demo, or don't yet have an identity provider available. Move to an identity provider before you deploy to a shared or production environment, need to serve multiple organizations, or want single sign-on with an existing identity system.
+Use local authentication when you're trying out the API Portal & MCP Hub, running a demo, or don't yet have an identity provider available. Move to an identity provider before you deploy to a shared or production environment, need to [serve multiple organizations](multi-organization.md), or want single sign-on with an existing identity system.

@@ -19,7 +19,7 @@ API Platform provides a complete solution for transforming existing APIs into in
 In this tutorial, you will use API Platform to create an MCP Server from an HTTP backend, test it using the MCP Playground, publish it, and connect it with an MCP client.
 
 !!! info "Watch the video walkthrough"
-    [Check out this quick start on YouTube](https://youtu.be/xwa-7ZUfxRc?rel=0) or watch below.
+    [Check out this quick start guide on YouTube](https://youtu.be/xwa-7ZUfxRc?rel=0) or watch below.
 
 <iframe 
   width="100%" 
@@ -109,9 +109,11 @@ Now that your MCP Server is deployed in both development and production environm
 
 ## Step 5: Publish the MCP Server
 
-1. In the left navigation menu, click **Develop** and then click **Lifecycle**. This opens the **Lifecycle** page, where you can see the different lifecycle stages of the MCP Server. The current lifecycle stage is **Created**.
+1. In the left navigation menu, click **Manage** and then click **Lifecycle**. This opens the **Lifecycle** page, where you can see the different lifecycle stages of the MCP Server. The current lifecycle stage is **Created**.
 2. Click **Publish**.
-3. In the **Publish MCP Server** dialog, click **Confirm** to publish the MCP Server with the specified display name. If you want to change the display name, make the necessary changes and then click **Confirm**. This changes the lifecycle state to **Published**.
+3. In the **Publish MCP Server** dialog, select the **Production Endpoint URL**.
+4. Optional: Change the display name.
+5. Click **Confirm**. This changes the lifecycle state to **Published**.
     
     !!! Info
         If you want to configure the Developer Portal as an MCP Hub, follow the [Developer Portal Mode](../devportal/developer-portal-mode.md) documentation.
@@ -127,20 +129,19 @@ MCP Servers in API Platform are secured by OAuth2 by default. To access an MCP S
     ![Lifecycle page showing MCP Server in Published state with lifecycle flow diagram and Go to Devportal button highlighted in the top right corner](../../assets/img/introduction/mcp-go-to-developer-portal.png)
 
 2. Subscribe to the MCP Server and generate credentials.
-    1. In the Developer Portal left navigation menu, click **Applications** and then click **Create**.
-    2. Enter an application name and click **Create**. Click the application name to open its home page.
-    3. Click **Explore More** under the **Subscribed MCP Servers** section. This will navigate you to the MCP Server listing page.
-    4. From the MCP Server card, choose the Application and click **Subscribe**. Now your application is subscribed to the published MCP Server with your selected subscription plan.
-    5. Open the created application by selecting **Applications** from the left menu, and click on the application name.
-    6. In the Application detail banner, click **Manage Keys**. This opens the **Manage Keys** page.
-    7. On the **Manage Keys** page, select either the **Production** or **Sandbox** tab based on your requirement.
+    1. On the MCP Server page, click **Subscribe**. This takes you to the **Subscription Plans** section.
+    2. In the subscription plan you want, open the application drop-down list and enter a name for a new application. Then select **Create application "&lt;name&gt;"**. To use an existing application, select it instead.
+    3. Click **Subscribe**. The plan shows **SUBSCRIBED**, and your application is subscribed to the MCP Server with that plan.
+    4. In the left navigation menu, click **Applications**, and then click your application name.
+    5. In the Application detail banner, click **Manage Keys**. This opens the **Manage Keys** page.
+    6. On the **Manage Keys** page, select either **Production** or **Sandbox** based on your requirement.
 
         !!!info
             Sandbox keys can only be used in the sandbox environment.
 
-    8. Click **Generate** and wait for the keys to be generated. If you want to configure Advanced Configurations, click on the **Modify** button once the keys are generated and configure the values. API Platform generates new tokens and populates the **Consumer Key** and **Consumer Secret** fields.
-    9. Close the dialog.
-    10. Click **Generate** to generate an access token. Copy the generated access token.
+    7. Click **Generate Key** and wait for the keys to be generated. If you want to configure Advanced Configurations, click on the **Modify** button once the keys are generated and configure the values. API Platform generates new tokens and populates the **Consumer Key** and **Consumer Secret** fields.
+    8. Close the dialog.
+    9. Click **Generate** to generate an access token. Copy the generated access token.
 
 3. Invoke the MCP Server:
     1. Go to the MCP Server listing page using the left navigation menu.
