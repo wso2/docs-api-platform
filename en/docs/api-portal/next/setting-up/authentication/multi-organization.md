@@ -123,7 +123,7 @@ The portal reads roles and groups from the access token first, then from the ID 
 
 ## Bearer tokens for the Management API
 
-The portal verifies bearer tokens exactly as in single-organization mode: signed by the keys at `auth.idp.jwks_url` or the pinned `auth.idp.certificate`, issued by `auth.idp.issuer`, and issued for `auth.idp.audience`. The organization is then the one the token's organization claim names.
+The portal verifies bearer tokens exactly as in single-organization mode: signed by the keys at `auth.idp.jwks_url` or the pinned `auth.idp.certificate`, and issued for one of the values in `auth.idp.audience`, which multi-organization mode requires: the portal doesn't start without it. When `auth.idp.issuer` is set, the token must also be issued by it, which is recommended. The organization is then the one the token's organization claim names.
 
 A token issued under an organization's own issuer is rejected—for example, one obtained directly from a WSO2 Identity Server or Asgardeo sub-organization's token endpoint, `.../o/<orgId>/oauth2/token`. Browser sign-ins to every organization go through the configured issuer, so they're unaffected.
 
@@ -137,7 +137,7 @@ APIs published from the Platform API always land in the configured organization.
 
 ## Claim names for common identity providers
 
-Check each value against your IdP, because claim names and issuer formats vary by version and configuration. Decode a real token—for example, with `jq -R 'split(".")[1] | @base64d | fromjson'`—to confirm `iss` and the organization claims before relying on them.
+Check each value against your IdP, because claim names and issuer formats vary by version and configuration. Decode a real token—for example, with `jq -R 'split(".")[1] | gsub("-"; "+") | gsub("_"; "/") | @base64d | fromjson'`—to confirm `iss` and the organization claims before relying on them.
 
 | Identity provider | `organization` | `org_name` | `org_handle` | Notes |
 |---|---|---|---|---|

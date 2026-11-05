@@ -135,6 +135,12 @@ subscriber = "dp_subscriber"
 
 {% endraw %}
 
+`client_secret` reads the client secret from the `APIP_AP_AUTH_IDP_CLIENT_SECRET` environment variable, and the portal doesn't start while it's unset. With the distribution's Docker Compose file, add it to `api-platform.env`, which the containers load at start:
+
+```bash
+APIP_AP_AUTH_IDP_CLIENT_SECRET=<api-portal-client-secret>
+```
+
 Get these values right:
 
 - **`scope` includes `roles`.** Identity Server 7.3 releases the `roles` claim only when the `roles` scope is requested. Without it, users sign in with no role, and an administrator doesn't see **Settings**.
@@ -160,15 +166,24 @@ Users of the root organization, including the Identity Server administrator, sig
 
 If you leave `idp_org_id` unset, the configured organization's IdP reference ID defaults to its handle, which no token carries. The first root user's sign-in then provisions a separate organization named `Super`, and root users land there instead of in the configured organization.
 
-Confirm the value on your Identity Server by decoding a root user's token, for example with `jq -R 'split(".")[1] | @base64d | fromjson | .org_handle'`. The portal applies `idp_org_id` to the configured organization at startup, so an existing deployment picks up a change on restart, and root users signed in before the change must sign in again.
+Confirm the value on your Identity Server by decoding a root user's token, for example with `jq -R 'split(".")[1] | gsub("-"; "+") | gsub("_"; "/") | @base64d | fromjson | .org_handle'`. The portal applies `idp_org_id` to the configured organization at startup, so an existing deployment picks up a change on restart, and root users signed in before the change must sign in again.
 
 !!! important "Retire a provisioned Super organization first"
-    If a `Super` organization was already provisioned, retire it before that restart. Otherwise, two organizations carry the root organization's ID, and root sign-ins are refused as ambiguous. The portal can't delete organizations, so give the provisioned one an IdP reference ID that no token carries. It keeps its data, and nobody can sign in to it:
+    If a `Super` organization was already provisioned, retire it before that restart. Otherwise, two organizations carry the root organization's ID, and root sign-ins are refused as ambiguous. The portal can't delete organizations, so give the provisioned one an IdP reference ID that no token carries. It keeps its data, and nobody can sign in to it.
+
+    Find it first: it's the organization that carries the root organization's claim value, other than the configured organization (`default` in the query; use your `organization.handle`). Its handle varies—for example `carbon.super`, `super`, or one with a suffix—so look it up rather than assuming it:
+
+    ```sql
+    SELECT uuid, handle, display_name, idp_ref_id FROM organizations
+     WHERE idp_ref_id IN ('carbon.super', '10084a8d-113f-4211-a0d5-efe36b082211')
+       AND handle <> 'default';
+    ```
+
+    Then retire it by the `uuid` the query returned:
 
     ```sql
     UPDATE organizations SET idp_ref_id = 'retired-super'
-     WHERE handle IN ('super', 'carbon.super')
-       AND idp_ref_id IN ('carbon.super', '10084a8d-113f-4211-a0d5-efe36b082211');
+     WHERE uuid = '<uuid-from-the-query>';
     ```
 
 Restart the portal after you change the configuration:

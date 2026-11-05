@@ -201,7 +201,7 @@ Seeding runs on startup only if the organization doesn't already exist, so it's 
     The two authentication modes resolve it differently, so don't assume one claim covers both.
 
     - **Local auth** reads a fixed `org_handle` claim and compares it to `organization.handle`.
-    - **IDP mode** reads the claim named by `auth.claim_mappings.organization` (default `org_name`) and resolves it, accepting the organization's handle, its display name, or its IdP reference ID. The IdP reference ID defaults to `handle`; set `auth.idp_org_id` to the value your IdP asserts when it differs. A token without the claim acts in this organization—see [Make the organization claim resolve to your organization](../setting-up/authentication/connect-an-identity-provider.md#step-5-make-the-organization-claim-resolve-to-your-organization).
+    - **IDP mode** reads the claim named by `auth.claim_mappings.organization` (default `org_name`). In single-organization mode, the claim may name the organization's handle, its display name, or its IdP reference ID. In [multi-organization mode](#multi-organization), it must match an organization's IdP reference ID exactly. The IdP reference ID defaults to `handle`; set `auth.idp_org_id` to the value your IdP asserts when it differs. A token without the claim acts in this organization—see [Make the organization claim resolve to your organization](../setting-up/authentication/connect-an-identity-provider.md#step-5-make-the-organization-claim-resolve-to-your-organization).
 
 
 !!! note
