@@ -273,7 +273,7 @@ Required scopes (the token must carry at least one of): `dp:mcp_server_content:r
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|type|query|string|true|Stored type of the file, matched exactly: `MARKETING` for text files and `IMAGE` for image files under `web/` in an uploaded content ZIP; `DOC_<folder>` for files under `docs/<folder>/`, for example `DOC_HowTo` (files directly under `docs/`, and documents uploaded with the MCP server, are `DOC_Other`); and `SCHEMA_DEFINITION` for the MCP server's tools schema.|
+|type|query|string|true|Stored type of the file, matched exactly: `MARKETING` for the MCP server's landing page content and theming, such as its Markdown body and Handlebars template; `IMAGE` for images, such as the MCP server icon; `DOC_<category>` for documents, for example `DOC_HowTo` (`DOC_Other` for documents without a category); and `SCHEMA_DEFINITION` for the MCP server's tools schema.|
 |fileName|query|string|true|Stored file name to retrieve. For `SCHEMA_DEFINITION`, use the name the tools schema was stored under: `definition.yaml`, `definition.yml`, or `definition.json` when it came from an MCP server artifact ZIP, or the uploaded file's own name when it was sent in the `definition` field.|
 |mcpServerId|path|string|true|The MCP server's handle (unique per org).|
 
@@ -375,7 +375,7 @@ Required scopes (the token must carry at least one of): `dp:mcp_server_content:d
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|type|query|string|true|Stored type of the files to delete: `MARKETING` for text files and `IMAGE` for image files under `web/` in an uploaded content ZIP; `DOC_<folder>` for files under `docs/<folder>/`, for example `DOC_HowTo` (files directly under `docs/`, and documents uploaded with the MCP server, are `DOC_Other`); and `SCHEMA_DEFINITION` for the MCP server's tools schema.|
+|type|query|string|true|Stored type of the files to delete: `MARKETING` for the MCP server's landing page content and theming, such as its Markdown body and Handlebars template; `IMAGE` for images, such as the MCP server icon; `DOC_<category>` for documents, for example `DOC_HowTo` (`DOC_Other` for documents without a category); and `SCHEMA_DEFINITION` for the MCP server's tools schema.|
 |fileName|query|string|false|File name selector used to delete a single stored API content file.|
 |mcpServerId|path|string|true|The MCP server's handle (unique per org).|
 

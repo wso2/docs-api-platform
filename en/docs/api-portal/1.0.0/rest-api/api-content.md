@@ -284,7 +284,7 @@ session: an anonymous request for a non-image type is rejected.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|type|query|string|true|Stored type of the file, matched exactly: `MARKETING` for text files and `IMAGE` for image files under `web/` in an uploaded content ZIP; `DOC_<folder>` for files under `docs/<folder>/`, for example `DOC_HowTo` (files directly under `docs/`, and documents uploaded with the API, are `DOC_Other`); and `API_DEFINITION` for the API's definition.|
+|type|query|string|true|Stored type of the file, matched exactly: `MARKETING` for the API's landing page content and theming, such as its Markdown body and Handlebars template; `IMAGE` for images, such as the API icon; `DOC_<category>` for documents, for example `DOC_HowTo` (`DOC_Other` for documents without a category); and `API_DEFINITION` for the API's definition.|
 |fileName|query|string|true|Stored file name to retrieve. For `API_DEFINITION`, use the name the definition was stored under: `definition.yaml`, `definition.yml`, or `definition.json` when it came from an API artifact ZIP, the uploaded file's own name when it was sent in the `definition` field, and `definition.graphql` for a GraphQL schema.|
 |orgId|query|string|false|Deprecated and ignored. Accepted only so existing callers (the portal's own image-URL rewrite appends it) are not rejected. The organization is always this instance's own — from the session when there is one, otherwise from `organization.handle` configuration. It was previously honoured on this unauthenticated endpoint, which made it a selector for any organization's API icons in a shared database.|
 |apiId|path|string|true|The API's handle (unique per org). Resolves only to REST, SOAP, WebSocket, WebSub, and GraphQL APIs. Model Context Protocol (MCP) servers are addressed via `/mcp-servers`.|
@@ -390,7 +390,7 @@ Required scopes (the token must carry at least one of): `dp:api_content:delete`,
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|type|query|string|true|Stored type of the files to delete: `MARKETING` for text files and `IMAGE` for image files under `web/` in an uploaded content ZIP; `DOC_<folder>` for files under `docs/<folder>/`, for example `DOC_HowTo` (files directly under `docs/`, and documents uploaded with the API, are `DOC_Other`); and `API_DEFINITION` for the API's definition.|
+|type|query|string|true|Stored type of the files to delete: `MARKETING` for the API's landing page content and theming, such as its Markdown body and Handlebars template; `IMAGE` for images, such as the API icon; `DOC_<category>` for documents, for example `DOC_HowTo` (`DOC_Other` for documents without a category); and `API_DEFINITION` for the API's definition.|
 |fileName|query|string|false|File name selector used to delete a single stored API content file.|
 |apiId|path|string|true|The API's handle (unique per org). Resolves only to REST, SOAP, WebSocket, WebSub, and GraphQL APIs. Model Context Protocol (MCP) servers are addressed via `/mcp-servers`.|
 
