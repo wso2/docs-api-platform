@@ -26,9 +26,9 @@ Before you begin, ensure you have:
 
 ## Step 1: Add a Self-Hosted Gateway
 
-Your organization does not have a default gateway, so you add the gateway in the API Management Console first.
+Your organization does not have a default gateway, so you add the gateway in the API Control Plane first.
 
-1. Sign in to the [API Management Console](https://console.bijira.dev).
+1. Sign in to the [API Control Plane](https://console.bijira.dev).
 
 2. Go to the organization level. In the header, select your organization from the **Organizations** list.
 

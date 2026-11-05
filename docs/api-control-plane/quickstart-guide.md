@@ -10,7 +10,7 @@ This guide uses the sample Reading List API backend.
 
 ## Prerequisites
 
-1. Sign in to the API Management Console.
+1. Sign in to the API Control Plane.
 2. Create an organization:
 
     1. Enter a **Display name**.
