@@ -230,6 +230,7 @@ The following table presents the available policies alphabetically.
 | [Content Length Guardrail](https://wso2.com/api-platform/policy-hub/policies/content-length-guardrail) | Guardrails, AI | Validates the byte length of request or response body content. |
 | [CORS](https://wso2.com/api-platform/policy-hub/policies/cors) | Security, AI, MCP | Cross-Origin Resource Sharing (CORS) policy that handles preflight requests and adds appropriate CORS headers to responses. |
 | [Dynamic Endpoint](https://wso2.com/api-platform/policy-hub/policies/dynamic-endpoint) | Transformation | Routes requests to a named upstream definition at request time. |
+| [Error Response Formatter](https://wso2.com/api-platform/policy-hub/policies/error-response-formatter) | Mediation, Fault Handling | Renders a failed request's error in a shape you choose, such as a canonical JSON body, an OpenAI-style error or a SOAP fault. Used only as a fault policy. |
 | [Host Rewrite](https://wso2.com/api-platform/policy-hub/policies/host-rewrite) | Transformation | Sets the Host/:authority header sent to the upstream. |
 | [Interceptor Service](https://wso2.com/api-platform/policy-hub/policies/interceptor-service) | Transformation | Invokes a user-defined HTTP interceptor service in the request phase, the response phase, or both. |
 | [JSON Schema Guardrail](https://wso2.com/api-platform/policy-hub/policies/json-schema-guardrail) | Guardrails, AI | Validates request or response body content against a JSON Schema. |
