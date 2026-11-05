@@ -109,7 +109,7 @@ spec:
         fault:
           payload: true
           headers: true
-          excludeHeaders: ["Authorization"]
+          excludeHeaders: ["Set-Cookie"]
   operations:
     - method: POST
       path: /submit
@@ -117,7 +117,7 @@ spec:
 
 The guardrail checks the `description` field of the request body. A `POST /orders/v1.0/submit` request with `{"description": "Two blue pens"}` passes. A request with `{"description": "Two blue pens!"}` is rejected: it still returns `422` to the client, and the gateway also logs the failure. A successful request is not logged.
 
-Each fault policy takes its own parameters. For example, the Log Message policy takes a `fault` block when it is attached as a fault policy, instead of the `request` and `response` blocks it takes as an ordinary policy.
+Each fault policy takes its own parameters. For example, the Log Message policy takes a `fault` block when it is attached as a fault policy, instead of the `request` and `response` blocks it takes as an ordinary policy. With `headers: true`, Log Message logs the headers of the error response. Exclude any header that carries a secret, such as `Set-Cookie`, with `excludeHeaders`.
 
 ### Attach fault policies to an operation
 
@@ -216,7 +216,7 @@ faultPolicies:
 ```
 
 !!! note
-    `fault.Status`, `fault.Source`, and `fault.RouteKey` are always set. `fault.Code`, `fault.Type`, `fault.Direction`, and `fault.Message` are set only when the policy that caused the failure described it. They are empty for a backend error, and for a rejection by a policy that does not describe its failures. A condition such as `fault.Code == "900902"` evaluates to `false` for those failures, and the fault policy does not run. To run a fault policy for every failure of a kind, write the condition on `fault.Status` or `fault.Source` instead.
+    `fault.Status`, `fault.Source`, and `fault.RouteKey` are always set. `fault.Code`, `fault.Type`, `fault.Direction`, and `fault.Message` are set only when the failure was described: by the policy that caused it, or by the gateway for a router failure such as an unreachable backend (see [Handle upstream and backend errors](#handle-upstream-and-backend-errors)). They are empty for an error the backend returned, and for a rejection by a policy that does not describe its failures. A condition such as `fault.Code == "900902"` evaluates to `false` for those failures, and the fault policy does not run. To run a fault policy for every failure of a kind, write the condition on `fault.Status` or `fault.Source` instead.
 
 ## Format the error response
 

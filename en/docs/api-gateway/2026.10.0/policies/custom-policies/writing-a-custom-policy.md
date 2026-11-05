@@ -363,13 +363,13 @@ policies:
     gomodule: github.com/abc/policy-repo/policies/my-policy@v1
 ```
 
-## Write a Fault Policy
+## Write a fault policy
 
 A **fault policy** runs only when a request fails, over the error response the client is about to receive. Use one to notify an external system, record a failure, or change the error. Users attach fault policies under the API's `faultPolicies` list instead of `policies`. For how fault policies are attached and when they run, see [Fault policies](../fault-policies.md).
 
 Fault policy support requires `github.com/wso2/api-platform/sdk/core` v0.4.2 or later.
 
-### Step 1: Implement OnFault
+### Step 1: Implement `OnFault`
 
 A policy becomes usable as a fault policy by implementing the `FaultPolicy` interface, which has one method, `OnFault`. The gateway checks for it when it builds the API's policy chain. If a policy without `OnFault` is attached as a fault policy, the gateway skips it and logs `skipping fault-policies policy that does not implement OnFault`.
 
@@ -419,7 +419,7 @@ A policy can implement `OnFault` alongside its ordinary phase methods. Each atta
 
 `OnFault` must not fail the request. The client is already receiving an error, so if `OnFault` panics or returns something the gateway cannot use, the client receives the original error and the failure is logged.
 
-### Step 2: Read the Failure
+### Step 2: Read the failure
 
 `FaultContext` carries the error response, the request that produced it, and a description of the failure:
 
@@ -435,9 +435,9 @@ A policy can implement `OnFault` alongside its ordinary phase methods. Each atta
 | `RouteKey` | The matched route. |
 | `Upstream` | The backend the request was routed to. `Upstream.Response` is `nil` when the request never reached the backend. |
 
-`Fault.Description` is an internal reason that never reaches the client. For a guardrail rejection it can contain the content the guardrail blocked, so do not send it to an external system.
+`Fault.Description` is an internal reason. The gateway never sends it to the client, and no Error Response Formatter preset includes it. A custom formatter template can include it with `${Description}`, so do not add it to a template that guardrail failures reach. For a guardrail rejection it can contain the content the guardrail blocked, so do not send it to an external system either.
 
-### Step 3: Change the Error Response
+### Step 3: Change the error response
 
 Return `nil` to leave the error unchanged. To change it, return a `FaultResponse` and set only the fields you want to change:
 
@@ -473,7 +473,7 @@ Returning a `FaultResponse` does not stop the other fault policies. Every fault 
 !!! tip
     Fault policies run when something is already going wrong, and the client waits for them to finish. Keep `OnFault` fast, and give any outbound call, such as a notification webhook, a short timeout.
 
-### Python Fault Policies
+### Python fault policies
 
 A Python policy supports the fault path by implementing `FaultPolicy` from `apip_sdk_core`:
 
@@ -493,7 +493,7 @@ class MyFaultPolicy(FaultPolicy):
 
 `FaultContext` and `FaultResponse` have the same fields as in Go, in snake case, for example `ctx.response_status`, `ctx.fault`, and `FaultResponse(status_code=503, headers_to_set={...})`.
 
-## Describe Failures from Your Policy
+## Describe failures from your policy
 
 When your policy rejects a request, describe the failure so that fault policies, conditions, and analytics can tell what went wrong. Set `IsFault` and `Fault` on the response your policy already returns:
 
@@ -520,7 +520,7 @@ return policy.ImmediateResponse{
 | `Fault.Type` | The failure class, from the `policy.FaultType*` constants, for example `policy.FaultTypeAuthentication`, `policy.FaultTypeValidation`, or `policy.FaultTypeGuardrail`. |
 | `Fault.Direction` | `policy.DirectionRequest` or `policy.DirectionResponse`: which side of the exchange was rejected. |
 | `Fault.Message` | A client-safe summary. |
-| `Fault.Description` | The internal reason. It is passed to fault policies but never sent to the client or recorded in analytics. |
+| `Fault.Description` | The internal reason. It is passed to fault policies, never recorded in analytics, and not sent to the client unless a custom Error Response Formatter template includes `${Description}`. |
 
 `Fault` is metadata. Setting it does not change the status, headers, or body your policy returns, so keep writing the body your policy already returns. Fault policies can use it to change the error: for example, the [Error Response Formatter](../fault-policies.md#format-the-error-response) renders the fault's code, type, and message in the shape the API is configured with.
 
