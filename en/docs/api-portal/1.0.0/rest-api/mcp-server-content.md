@@ -252,7 +252,7 @@ At least one of `web/` or `docs/` must exist at the ZIP root.
 
 ```shell
 
-curl -X GET https://localhost:9543/api-portal/api/v0.9/mcp-servers/{mcpServerId}/assets?type=document&fileName=getting-started.md \
+curl -X GET https://localhost:9543/api-portal/api/v0.9/mcp-servers/{mcpServerId}/assets?type=DOC_HowTo&fileName=getting-started.md \
   -H 'Authorization: Bearer {access_token}' \
   -H 'Accept: text/markdown'
 
@@ -273,8 +273,8 @@ Required scopes (the token must carry at least one of): `dp:mcp_server_content:r
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|type|query|string|true|Stored API content type selector. Common values are `web`, `document`, `image`, and `link`, depending on how the uploaded ZIP content was classified.|
-|fileName|query|string|true|Stored API content file name to retrieve.|
+|type|query|string|true|Stored type of the file, matched exactly: `MARKETING` for text files and `IMAGE` for image files under `web/` in an uploaded content ZIP; `DOC_<folder>` for files under `docs/<folder>/`, for example `DOC_HowTo` (files directly under `docs/`, and documents uploaded with the MCP server, are `DOC_Other`); and `SCHEMA_DEFINITION` for the MCP server's tools schema.|
+|fileName|query|string|true|Stored file name to retrieve. For `SCHEMA_DEFINITION`, use the name the tools schema was stored under: `definition.yaml`, `definition.yml`, or `definition.json` when it came from an MCP server artifact ZIP, or the uploaded file's own name when it was sent in the `definition` field.|
 |mcpServerId|path|string|true|The MCP server's handle (unique per org).|
 
 > Example responses
@@ -354,7 +354,7 @@ Required scopes (the token must carry at least one of): `dp:mcp_server_content:r
 
 ```shell
 
-curl -X DELETE https://localhost:9543/api-portal/api/v0.9/mcp-servers/{mcpServerId}/assets?type=document \
+curl -X DELETE https://localhost:9543/api-portal/api/v0.9/mcp-servers/{mcpServerId}/assets?type=DOC_HowTo \
   -H 'Authorization: Bearer {access_token}' \
   -H 'Accept: application/json'
 
@@ -375,7 +375,7 @@ Required scopes (the token must carry at least one of): `dp:mcp_server_content:d
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|type|query|string|true|Stored API content type selector. Common values are `web`, `document`, `image`, and `link`, depending on how the uploaded ZIP content was classified.|
+|type|query|string|true|Stored type of the files to delete: `MARKETING` for text files and `IMAGE` for image files under `web/` in an uploaded content ZIP; `DOC_<folder>` for files under `docs/<folder>/`, for example `DOC_HowTo` (files directly under `docs/`, and documents uploaded with the MCP server, are `DOC_Other`); and `SCHEMA_DEFINITION` for the MCP server's tools schema.|
 |fileName|query|string|false|File name selector used to delete a single stored API content file.|
 |mcpServerId|path|string|true|The MCP server's handle (unique per org).|
 

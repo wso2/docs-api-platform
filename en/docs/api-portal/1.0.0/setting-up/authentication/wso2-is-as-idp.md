@@ -21,7 +21,7 @@ This tutorial configures a self-hosted WSO2 Identity Server (IS) 7.1 or later as
 The setup works like this:
 
 1. One application, **API Portal**, is registered in the Identity Server root organization and shared with every organization. Each organization gets its own copy, shown as a shared app in that organization.
-2. A portal organization maps to one Identity Server organization through the `org_id` claim in the tokens Identity Server issues for it. The portal stores that value as the organization's IdP reference ID, and creates the organization itself the first time one of its users signs in.
+2. A portal organization maps to one Identity Server organization through the `org_handle` claim in the tokens Identity Server issues for it (step 3 also shows how to key on `org_id` instead). The portal stores that value as the organization's IdP reference ID, and creates the organization itself the first time one of its users signs in.
 3. Two roles, `dp_admin` and `dp_subscriber`, are created once on the root application and appear in every organization automatically. Assigning a user one of them gives that user the portal's administrator or subscriber tier.
 4. Onboarding an organization is then a matter of creating the Identity Server organization, adding its users, and assigning them roles. Its first sign-in to the portal provisions it.
 
