@@ -263,7 +263,7 @@ At least one of `web/` or `docs/` must exist at the ZIP root.
 
 ```shell
 
-curl -X GET https://localhost:9543/api-portal/api/v0.9/apis/{apiId}/assets?type=document&fileName=getting-started.md \
+curl -X GET https://localhost:9543/api-portal/api/v0.9/apis/{apiId}/assets?type=DOC_HowTo&fileName=getting-started.md \
   -u {username}:{password} \
   -H 'Accept: text/markdown'
 
@@ -284,8 +284,8 @@ session: an anonymous request for a non-image type is rejected.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|type|query|string|true|Stored API content type selector. Common values are `web`, `document`, `image`, and `link`, depending on how the uploaded ZIP content was classified.|
-|fileName|query|string|true|Stored API content file name to retrieve.|
+|type|query|string|true|Stored type of the file, matched exactly: `MARKETING` for the API's landing page content and theming, such as its Markdown body and Handlebars template; `IMAGE` for images, such as the API icon; `DOC_<category>` for documents, for example `DOC_HowTo` (`DOC_Other` for documents without a category); and `API_DEFINITION` for the API's definition.|
+|fileName|query|string|true|Stored file name to retrieve. For `API_DEFINITION`, use the name the definition was stored under: `definition.yaml`, `definition.yml`, or `definition.json` when it came from an API artifact ZIP, the uploaded file's own name when it was sent in the `definition` field, and `definition.graphql` for a GraphQL schema.|
 |orgId|query|string|false|Deprecated and ignored. Accepted only so existing callers (the portal's own image-URL rewrite appends it) are not rejected. The organization is always this instance's own — from the session when there is one, otherwise from `organization.handle` configuration. It was previously honoured on this unauthenticated endpoint, which made it a selector for any organization's API icons in a shared database.|
 |apiId|path|string|true|The API's handle (unique per org). Resolves only to REST, SOAP, WebSocket, WebSub, and GraphQL APIs. Model Context Protocol (MCP) servers are addressed via `/mcp-servers`.|
 
@@ -366,7 +366,7 @@ session: an anonymous request for a non-image type is rejected.
 
 ```shell
 
-curl -X DELETE https://localhost:9543/api-portal/api/v0.9/apis/{apiId}/assets?type=document \
+curl -X DELETE https://localhost:9543/api-portal/api/v0.9/apis/{apiId}/assets?type=DOC_HowTo \
   -H 'Authorization: Bearer {access_token}' \
   -H 'Accept: application/json'
 
@@ -390,7 +390,7 @@ Required scopes (the token must carry at least one of): `dp:api_content:delete`,
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|type|query|string|true|Stored API content type selector. Common values are `web`, `document`, `image`, and `link`, depending on how the uploaded ZIP content was classified.|
+|type|query|string|true|Stored type of the files to delete: `MARKETING` for the API's landing page content and theming, such as its Markdown body and Handlebars template; `IMAGE` for images, such as the API icon; `DOC_<category>` for documents, for example `DOC_HowTo` (`DOC_Other` for documents without a category); and `API_DEFINITION` for the API's definition.|
 |fileName|query|string|false|File name selector used to delete a single stored API content file.|
 |apiId|path|string|true|The API's handle (unique per org). Resolves only to REST, SOAP, WebSocket, WebSub, and GraphQL APIs. Model Context Protocol (MCP) servers are addressed via `/mcp-servers`.|
 
