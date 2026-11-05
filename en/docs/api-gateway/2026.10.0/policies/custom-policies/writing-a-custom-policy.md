@@ -365,7 +365,7 @@ policies:
 
 ## Write a fault policy
 
-A **fault policy** runs only when a request fails, over the error response the client is about to receive. Use one to notify an external system, record a failure, or change the error. Users attach fault policies under the API's `faultPolicies` list instead of `policies`. For how fault policies are attached and when they run, see [Fault policies](../fault-policies.md).
+A **fault policy** runs only when a request fails, over the error response the client is about to receive. Use one to notify an external system, record a failure, or change the error. Users attach fault policies to an API or an operation through the API type's fault policy field instead of `policies`: `faultPolicies` for REST APIs and MCP proxies, and `globalFaultPolicies` and `operationFaultPolicies` for LLM providers and proxies. For how fault policies are attached, see [Attach fault policies to an API](../fault-policies.md#attach-fault-policies-to-an-api), and for when they run, see [Fault policies](../fault-policies.md).
 
 Fault policy support requires `github.com/wso2/api-platform/sdk/core` v0.4.2 or later.
 
@@ -386,7 +386,7 @@ import (
 type MyFaultPolicy struct{}
 
 // A policy that runs only as a fault policy takes part in no request or
-// response phase, so it adds no work to successful requests.
+// response phase, so its own hooks do no work on successful requests.
 func (p *MyFaultPolicy) Mode() policy.ProcessingMode {
     return policy.ProcessingMode{
         RequestHeaderMode:  policy.HeaderModeSkip,
@@ -468,7 +468,7 @@ return &policy.FaultResponse{
 }
 ```
 
-Returning a `FaultResponse` does not stop the other fault policies. Every fault policy in the list runs, in order, and each one sees the changes made before it. If two fault policies set a body, the later one wins.
+Returning a `FaultResponse` does not stop the other fault policies. Every fault policy in the list runs, in order, except an entry whose `executionCondition` is false, and each one sees the changes made before it. If two fault policies set a body, the later one wins.
 
 !!! tip
     Fault policies run when something is already going wrong, and the client waits for them to finish. Keep `OnFault` fast, and give any outbound call, such as a notification webhook, a short timeout.

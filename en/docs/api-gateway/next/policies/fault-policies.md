@@ -15,7 +15,7 @@ content_type: "concept"
 
 # Fault policies
 
-**Fault policies** are an ordered list of policies that the gateway runs **only when a request fails**. Use them to act on a failure (log it, notify an external system, or change the error the client receives) without adding any work to successful requests.
+**Fault policies** are an ordered list of policies that the gateway runs **only when a request fails**. Use them to act on a failure: log it, notify an external system, or change the error the client receives. Fault policies never run on a successful response, but declaring them turns on response body processing for the API's routes, which successful requests also go through (see [Limitations](#limitations)).
 
 A fault policy runs after the failure has happened. For example, when an authentication policy rejects a request with `401` or a guardrail blocks a response with `422`, the gateway runs the API's fault policies before it sends that error to the client. A successful response never runs a fault policy.
 
@@ -32,7 +32,7 @@ Client ──► [Policy 1] ──► [Policy 2] ✗ rejects (401)
 Client ◄────────────────────────┘ error response
 ```
 
-Each fault policy can read the failure (its status, the policy that caused it, a fault code and type, the request that produced it) and either leave the error unchanged or change its status, headers, or body. Every fault policy in the list runs, and each one sees the changes made by the fault policies before it.
+Each fault policy can read the failure (its status, the policy that caused it, a fault code and type, the request that produced it) and either leave the error unchanged or change its status, headers, or body. Every fault policy in the list runs, except an entry whose `executionCondition` is false, and each one sees the changes made by the fault policies before it.
 
 The gateway guarantees the following:
 
@@ -118,6 +118,9 @@ spec:
 The guardrail checks the `description` field of the request body. A `POST /orders/v1.0/submit` request with `{"description": "Two blue pens"}` passes. A request with `{"description": "Two blue pens!"}` is rejected: it still returns `422` to the client, and the gateway also logs the failure. A successful request is not logged.
 
 Each fault policy takes its own parameters. For example, the Log Message policy takes a `fault` block when it is attached as a fault policy, instead of the `request` and `response` blocks it takes as an ordinary policy. With `headers: true`, Log Message logs the headers of the error response. Exclude any header that carries a secret, such as `Set-Cookie`, with `excludeHeaders`.
+
+!!! warning
+    With `payload: true`, Log Message logs the error body. For a guardrail rejection, the body can include the content the guardrail blocked, such as secrets or personal data. Enable `payload` only where your logs are approved to hold that content.
 
 ### Attach fault policies to an operation
 
@@ -359,7 +362,7 @@ The failure's internal description and a guardrail's assessments are never recor
 
 - A request that matches no API does not run fault policies, because no API, and therefore no fault policy list, applies to it.
 - A fault policy cannot change a streamed response that the client has already started receiving. It can still log or report the failure.
-- Declaring fault policies enables response body processing for the API's routes, because fault policies run in that phase.
+- Declaring fault policies enables response body processing for the API's routes, because fault policies run in that phase. Successful requests on those routes go through that processing too, although no fault policy runs for them.
 
 ## Related topics
 
