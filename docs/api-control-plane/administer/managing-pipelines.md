@@ -10,8 +10,12 @@ You create pipelines in the WSO2 Cloud Console. After you create a pipeline, the
 ## View pipelines
 
 1. Sign in to the WSO2 Cloud Console.
+
 2. Open your organization.
-3. In the left navigation menu, under **Infrastructure**, click **Deployment Pipelines**.
+
+3. In the header, click the settings icon (cog wheel).
+
+4. In the left navigation menu, under **Infrastructure**, click **Deployment Pipelines**.
 
 The **Deployment Pipelines** page lists how deployments are promoted between the environments of the organization. Each pipeline shows its name, how many environments it contains, and its status. Expand a pipeline to see the environments in promotion order. The pipeline your organization starts with is marked **Default**. To find a pipeline by name, type in **Search pipelines**.
 

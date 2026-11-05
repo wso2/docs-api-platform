@@ -1,9 +1,13 @@
 ---
 title: "Manage Applications"
-description: "Create an application in the API Portal and AI Hub and associate an existing key with it."
+description: "Optionally group your API keys and OAuth2 keys into an application in the API Portal and AI Hub to track their usage and analytics."
 ---
 
-An application holds the API keys and subscriptions you use to call APIs. Create one in the API Portal and AI Hub, then associate an existing key so its usage is counted for that application.
+:::info
+Applications are optional. You do not need an application to invoke an API.
+:::
+
+An application groups your API keys and OAuth2 keys so that you can track their usage and see analytics for them. Create an application, then associate existing keys with it.
 
 ## Open Applications
 
@@ -32,9 +36,9 @@ The application is added to the list. Open it to edit the name or the descriptio
 
 ## Associate an existing key
 
-Generate the key before associating it with an application. See [Which Credentials You Need](./overview.md) for instructions.
+Get the key before associating it with an application. See [OAuth2 Keys](../manage-keys/oauth2-keys.md) and [API Keys](../manage-keys/api-keys.md).
 
-Associating a key with an application enables usage analytics for that application. It does not affect the key's validity.
+Associating a key with an application is used only for tracking and analytics. It does not affect the key's validity.
 
 ### API keys
 
@@ -53,14 +57,11 @@ Associating a key with an application enables usage analytics for that applicati
 ## Delete an application
 
 1. On the application card, click the delete icon.
-2. In **Delete application**, confirm that you want to delete the named application. Its API keys and subscriptions will be revoked.
-3. Click **Delete**. Click **Cancel** to keep the application.
+2. Click **Delete** to confirm. Click **Cancel** to keep the application.
 
-:::warning
-Deleting an application cannot be undone.
-:::
+Deleting an application cannot be undone. The keys that were associated with it stay usable, and become unassociated.
 
 ## Next Steps
 
-- [Manage Subscriptions](./manage-subscriptions.md) - Subscribe the application to an API
-- [Which Credentials You Need](./overview.md) - Generate a key, then use it to call an API
+- [Manage Subscriptions](./manage-subscriptions.md) - Subscribe to an API under a subscription plan
+- [Which Credentials You Need](../consume-an-api/overview.md) - Generate a key, then use it to call an API

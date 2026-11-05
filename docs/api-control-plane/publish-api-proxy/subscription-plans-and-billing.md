@@ -25,6 +25,6 @@ You assign subscription plans to an API separately for each portal that you publ
 
 7. Click **Publish** to make the plans available to consumers in the portal, or click **Save Draft** to keep your selection and publish it later.
 
-When an API has subscription plans assigned to it, API consumers can select the plan that best fits their requirements during the subscription process. You can enable a combination of free and paid subscription plans for the same API to offer tiered access. Paid plans are coming soon.
+When an API has subscription plans assigned to it, API consumers can select the plan that best fits their requirements during the subscription process. You can enable more than one subscription plan for the same API to offer tiered access.
 
 For the other tabs of the publish page, see [Customize the Portal Listing](./customize-portal-listing.md).
