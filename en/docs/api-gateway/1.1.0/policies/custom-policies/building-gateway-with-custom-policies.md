@@ -9,7 +9,7 @@ tags:
   - custom-policies
   - cli
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-24
+last_updated: 2026-11-05
 content_type: "how-to"
 ---
 

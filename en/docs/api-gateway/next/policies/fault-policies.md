@@ -1,6 +1,6 @@
 ---
 title: "Fault policies"
-description: "Attach policies that run only when a request fails, to log, notify on, or reshape errors from policy rejections, upstream failures, and backend errors, without touching the success path."
+description: "Run policies only when a request fails, to log, notify on, or reshape errors from policy rejections, upstream failures, and backend errors."
 canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/fault-policies/
 md_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/fault-policies.md
 tags:
@@ -9,7 +9,7 @@ tags:
   - fault-policies
   - error-handling
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-04
+last_updated: 2026-11-05
 content_type: "concept"
 ---
 
@@ -101,7 +101,7 @@ spec:
         request:
           enabled: true
           regex: "^[A-Za-z0-9 ]+$"
-          jsonPath: "$"
+          jsonPath: "$.description"
   faultPolicies:
     - name: log-message
       version: v1
@@ -115,7 +115,7 @@ spec:
       path: /submit
 ```
 
-A `POST /orders/v1.0/submit` request that the guardrail rejects still returns `422` to the client, and the gateway also logs the failure. A successful request is not logged.
+The guardrail checks the `description` field of the request body. A `POST /orders/v1.0/submit` request with `{"description": "Two blue pens"}` passes. A request with `{"description": "Two blue pens!"}` is rejected: it still returns `422` to the client, and the gateway also logs the failure. A successful request is not logged.
 
 Each fault policy takes its own parameters. For example, the Log Message policy takes a `fault` block when it is attached as a fault policy, instead of the `request` and `response` blocks it takes as an ordinary policy.
 

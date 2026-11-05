@@ -1,6 +1,6 @@
 ---
 title: "Write a Custom Gateway Policy"
-description: "Write a custom policy for API Platform Gateway using the Go SDK: implement request and response hooks in the policy chain, and fault hooks that run when a request fails."
+description: "Write a custom API Platform Gateway policy with the Go SDK: request and response hooks, and fault hooks that run when a request fails."
 canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/custom-policies/writing-a-custom-policy/
 md_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/custom-policies/writing-a-custom-policy.md
 tags:
@@ -8,7 +8,7 @@ tags:
   - policies
   - custom-policies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-04
+last_updated: 2026-11-05
 content_type: "how-to"
 ---
 
@@ -522,7 +522,7 @@ return policy.ImmediateResponse{
 | `Fault.Message` | A client-safe summary. |
 | `Fault.Description` | The internal reason. It is passed to fault policies but never sent to the client or recorded in analytics. |
 
-`Fault` is metadata. It does not change the status, headers, or body the client receives, so keep writing the body your policy already returns.
+`Fault` is metadata. Setting it does not change the status, headers, or body your policy returns, so keep writing the body your policy already returns. Fault policies can use it to change the error: for example, the [Error Response Formatter](../fault-policies.md#format-the-error-response) renders the fault's code, type, and message in the shape the API is configured with.
 
 `DownstreamResponseModifications` has the same `IsFault` and `Fault` fields, for a policy that rejects a response.
 

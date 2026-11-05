@@ -8,7 +8,7 @@ tags:
   - policies
   - extensibility
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-15
+last_updated: 2026-11-05
 content_type: "concept"
 ---
 
