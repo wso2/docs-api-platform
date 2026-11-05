@@ -5,7 +5,7 @@ description: "Search published APIs in the API Portal and AI Hub by name, type, 
 
 You can search for APIs in the API Portal that have already been published from the API Control Plane.
 
-1. Click **APIs** from the sidebar.APIs list can be seen
+1. Click **APIs** from the sidebar. APIs list can be seen
 
     ![API Portal APIs list showing multiple API cards with name, version, type, and Subscribe button](/img/cloud/devportal/apis-list.png)
 

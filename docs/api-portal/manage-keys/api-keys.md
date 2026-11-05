@@ -1,5 +1,5 @@
 ---
-title: "Manage API Keys"
+title: "API Keys"
 description: "View, regenerate, and revoke your API keys in the API Portal and AI Hub, and associate them with applications for usage analytics."
 ---
 
@@ -35,7 +35,7 @@ You cannot recover a revoked key.
 
 ## Associate an API Key with an Application
 
-You can associate an API key with an application to attribute its usage to the application in analytics. The association has no effect on the validity of the key.
+This step is optional. Associate an API key with an application to track its usage in analytics. The association has no effect on the validity of the key, and you do not need it to invoke the API.
 
 1. In the sidebar, click **Applications**, and open the application.
 
@@ -45,8 +45,8 @@ You can associate an API key with an application to attribute its usage to the a
 
 4. Click **Associate**.
 
-For more on applications, see [Manage Applications](./manage-applications.md).
+For more on applications, see [Manage Applications](../manage-usage/manage-applications.md).
 
 ## Next Steps
 
-- [Which Credentials You Need](./overview.md) - Find out which credentials an API requires, and how to send them
+- [Which Credentials You Need](../consume-an-api/overview.md) - Find out which credentials an API requires, and how to send them

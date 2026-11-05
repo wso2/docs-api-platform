@@ -3,9 +3,21 @@ title: "Manage Subscriptions"
 description: "Subscribe to an API under a subscription plan in the API Portal and AI Hub, and view, regenerate, suspend, or cancel the subscription."
 ---
 
-A subscription gives you access to an API under a subscription plan, which sets the rate limits that apply to your calls. When you subscribe, the portal issues a subscription token, which you send with every call to the API in the `Subscription-Key` header.
+:::info
+Subscribe to an API only when it has subscription plans. Otherwise, you can invoke the API without subscribing.
+:::
 
-You can subscribe to an API only if it has subscription plans in the portal.
+A subscription gives you access to an API under a subscription plan. When you subscribe, the portal issues a subscription token, which you send with every call to the API in the `Subscription-Key` header.
+
+## Subscription Plans
+
+The API publisher's organization defines subscription plans, and enables them on each API. The plans of an API are listed under **Subscription plans** on the page of the API.
+
+- **Limits:** A plan sets usage limits for your calls, such as 50 requests per minute. A plan without limits allows unlimited requests.
+
+- **Requests over the limit:** Depending on the plan, requests that exceed the limit are rejected, or allowed.
+
+- **Expiry:** A plan can have an expiry date, after which it no longer accepts subscriptions.
 
 ## Subscribe to an API
 
@@ -28,7 +40,7 @@ curl -X GET "<endpoint>/<resource-path>" \
   -H "Subscription-Key: <subscription-token>"
 ```
 
-If the API also requires other credentials, such as an API key or an OAuth2 access token, send them as well. See [Which Credentials You Need](./overview.md).
+If the API also requires other credentials, such as an API key or an OAuth2 access token, send them as well. See [Which Credentials You Need](../consume-an-api/overview.md).
 
 :::tip
 When a new minor version of an API is published, the major version-based invocation URL automatically routes to the latest minor version within the subscribed API's major version. Existing client applications continue to work without disruption.
@@ -46,4 +58,4 @@ To manage a subscription, open the API, and click **View subscription** on the p
 
 ## Next Steps
 
-- [Which Credentials You Need](./overview.md) - Find out which other credentials an API requires, and how to get them
+- [Which Credentials You Need](../consume-an-api/overview.md) - Find out which other credentials an API requires, and how to get them

@@ -9,7 +9,6 @@ An API key is bound to one API, and it authenticates your requests to that API o
 
 - An API that is secured with API key authentication in the API Control Plane, and published to the portal. See [API Key Authentication](../../api-control-plane/develop-api-proxy/security/api-key-authentication.md).
 - An API key for the API. See [Get an API Key](#get-an-api-key).
-- A subscription to the API, if the API has subscription plans. The subscription token is a separate credential from the API key, and you send both. See [Manage Subscriptions](./manage-subscriptions.md).
 
 ## Get an API Key
 
@@ -48,21 +47,13 @@ For more, see [API Key Authentication](../../api-control-plane/develop-api-proxy
 The header name comes from the API, not from the portal. Use the header name that is configured in the **API Key Auth** policy of the API, or named in the `apiKey` security scheme of the API's specification.
 :::
 
-### When the API Also Requires a Subscription
-
-Send the subscription token in the `Subscription-Key` header along with the API key.
-
-```bash
-curl -X GET "https://api.example.com/orders/v1/orders" \
-  -H "<api-key-header>: <YOUR_API_KEY>" \
-  -H "Subscription-Key: <YOUR_SUBSCRIPTION_TOKEN>"
-```
-
-The two credentials answer different questions. The API key identifies you as an authorized caller, and the subscription token tells the gateway which rate limit of a plan applies to you.
+:::note
+If the API has a subscription rate limiting policy, also send your subscription token in the `Subscription-Key` header. See [Manage Subscriptions](../manage-usage/manage-subscriptions.md).
+:::
 
 ## Next Steps
 
 - [Which Credentials You Need](./overview.md) - Find out which credentials an API expects, and how to tell
-- [Manage API Keys](./manage-api-keys.md) - View your API keys, and associate them with an application
-- [Manage Subscriptions](./manage-subscriptions.md) - Get a subscription token
+- [API Keys](../manage-keys/api-keys.md) - View your API keys, and associate them with an application
+- [Manage Subscriptions](../manage-usage/manage-subscriptions.md) - Subscribe to an API that has a subscription rate limiting policy
 - [Consume an OAuth2-Secured API](./oauth2.md) - Invoke an API secured with OAuth2

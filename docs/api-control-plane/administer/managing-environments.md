@@ -10,8 +10,12 @@ You create environments in the WSO2 Cloud Console. After you create an environme
 ## View environments
 
 1. Sign in to the WSO2 Cloud Console.
+
 2. Open your organization.
-3. In the left navigation menu, under **Infrastructure**, click **Environments**.
+
+3. In the header, click the settings icon (cog wheel).
+
+4. In the left navigation menu, under **Infrastructure**, click **Environments**.
 
 The **Environments** page lists the deployment environments shared by every product in the organization. To find an environment by name, type in **Search environments**.
 
