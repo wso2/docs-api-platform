@@ -27,6 +27,28 @@ The **Deployment Pipelines** page lists how deployments are promoted between the
 
 On the **Deployment Pipelines** page, click the edit icon. Click **Save Changes**, or **Cancel** to keep the current order.
 
+## Promote APIs across environments using a pipeline
+
+You can use a pipeline to promote an API across multiple environments in a defined sequence, such as development, testing, and production. Each environment has its own gateways and invoke URLs, allowing you to test the API in one environment before promoting it to the next.
+
+For example, you can use the default development environment and create a production environment to test an API before making it available to production users.
+
+Follow these steps to promote an API using this pipeline:
+
+1. **Create the production environment.** Create a production environment and create a appropriate gateway to it. The default development environment is already available.
+
+2. **Configure the pipeline.** Create a pipeline that starts with development and continues with production.
+
+3. **Deploy the API to development.** In the API Management Console, deploy the API to a gateway in the development environment. This creates a build on the development gateway.
+
+4. **Test the API in development.** Invoke the API using the development gateway's invoke URL. The backend URL for development can point to a test service, allowing you to validate the API before promoting it.
+
+5. **Promote the API to production.** Once you are satisfied with the tested build, promote it to production. This deploys the same build you tested in development without creating a new build from the current API definition.
+
+6. **Invoke the API in production.** Use the production gateway's invoke URL to access the API. The production backend URL can point to the live service.
+
+The pipeline ensures that APIs follow the defined sequence across environments and that the revision deployed to production is the same revision that was tested in development.
+
 ## Next Steps
 
 - [Manage Environments](./managing-environments.md) - Create the environments that a pipeline moves API proxies through
