@@ -54,7 +54,7 @@ Associating a key with an application is used only for tracking and analytics. I
 3. Select the **Key**. Only keys that belong to you are listed.
 4. Click **Associate** to associate the key with the application. This button remains unavailable until you select a key. Click **Cancel** to close the dialog without associating a key.
 
-The following rules apply to OAuth2 keys:
+The following rules apply to OAuth2 keys.
 
 - A key belongs to at most one application. Associating it with another application moves it there.
 

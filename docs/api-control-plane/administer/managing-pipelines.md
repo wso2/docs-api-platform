@@ -37,7 +37,7 @@ You can use a pipeline to promote an API across multiple environments in a defin
 
 For example, you can use the default development environment and create a production environment to test an API before making it available to production users.
 
-Follow these steps to promote an API using this pipeline:
+Follow these steps to promote an API using this pipeline.
 
 1. **Create the production environment.** Create a production environment and create a appropriate gateway to it. The default development environment is already available.
 

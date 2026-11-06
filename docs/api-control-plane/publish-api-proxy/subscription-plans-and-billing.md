@@ -9,7 +9,7 @@ Users with the administrator role can create, update, and delete subscription pl
 
 Once created, API publishers can assign subscription plans to APIs, providing different levels of access and pricing based on user needs.
 
-You assign subscription plans to an API separately for each portal that you publish it to. To assign subscription plans to an API, follow the steps given below:
+You assign subscription plans to an API separately for each portal that you publish it to. To assign subscription plans to an API, follow the steps given below.
 
 1. Sign in to the [API Control Plane](https://console.bijira.dev/).
 

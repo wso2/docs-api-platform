@@ -74,7 +74,7 @@ This step is optional. Associate a key with an application to track its usage in
 
 - **From the application:** Open the application, and in the **OAuth2 keys** section, click **Associate existing OAuth2 key**.
 
-The following rules apply:
+The following rules apply.
 
 - A key belongs to at most one application. Associating it with another application moves it there.
 

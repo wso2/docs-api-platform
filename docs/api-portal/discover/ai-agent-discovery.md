@@ -18,7 +18,7 @@ The portal dynamically generates an `llms.txt` file - a plain-text Markdown inde
 GET /{orgName}/views/{viewName}/llms.txt
 ```
 
-**What it contains:**
+**What it contains**
 
 - The portal's name, description, and any LLM Instructions configured by the portal admin
 - A list of all agent visible APIs, each with its name, description, and a link to its Markdown documentation
@@ -68,7 +68,7 @@ Beyond `llms.txt`, the portal exposes all content as clean Markdown and raw spec
 
 ## How Agents Navigate the Portal
 
-A typical agent discovery flow looks like this:
+A typical agent discovery flow looks like this.
 
 1. **Start at `llms.txt`** - the agent fetches the portal's `llms.txt` to get an overview of available APIs and workflows.
 2. **Browse the API catalog** - if the agent needs more detail, it fetches `apis.md` to read descriptions of all APIs at once.

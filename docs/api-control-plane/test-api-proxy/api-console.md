@@ -5,7 +5,7 @@ description: "Test a deployed REST API from the Console view in the API Control 
 
 The integrated OpenAPI Console lets you test REST endpoints for API proxies after deploying them to a gateway.
 
-Follow these steps to test a REST endpoint from the Console view:
+Follow these steps to test a REST endpoint from the Console view.
 
 1. Sign in to the API Control Plane.
 2. Select the project and API proxy you want to test.

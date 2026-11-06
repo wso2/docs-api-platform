@@ -9,7 +9,7 @@ You can search for APIs in the API Portal that have already been published from 
 
     ![API Portal APIs list showing multiple API cards with name, version, type, and Subscribe button](/img/cloud/devportal/apis-list.png)
 
-2. Use one of the following methods to search:
+2. Use one of the following methods to search.
 
     | **Category**     | **Explanation**                          |
     |------------------|------------------------------------------|

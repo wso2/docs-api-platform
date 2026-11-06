@@ -11,7 +11,7 @@ A workflow serves two audiences from the same definition. Developers read it in 
 
 Click **API Workflows** in the sidebar. The page shows a card for each published workflow. If no workflows are published, the page shows **No workflows yet**.
 
-Each card shows the following:
+Each card shows the following.
 
 - The name and description of the workflow.
 
@@ -37,7 +37,7 @@ On the page of the workflow, click **Try with AI**. The portal generates an agen
 
 **Try with AI** appears only when the workflow is visible to AI agents.
 
-The prompt has two sections, and tells the agent which one applies:
+The prompt has two sections, and tells the agent which one applies.
 
 | Section | For | What It Instructs |
 |:--------|:----|:------------------|

@@ -44,7 +44,7 @@ To add more documents, click **Create Document** at the top of the page.
 ## Edit or Delete a Document
 
 1. On the **Documents** page, under **All documents**, click the document.
-2. Do one of the following:
+2. Do one of the following.
 
     - To edit the document, click the edit (pencil) icon, make your changes, and save them.
     - To delete the document, click the delete (trash) icon and confirm the deletion.
