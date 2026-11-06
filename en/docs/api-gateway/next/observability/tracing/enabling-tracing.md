@@ -8,7 +8,7 @@ tags:
   - observability
   - tracing
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-17
+last_updated: 2026-10-27
 content_type: "how-to"
 ---
 
@@ -49,7 +49,7 @@ docker compose --profile tracing up -d
 ```
 
 This starts:
-- Core gateway services (gateway-controller, policy-engine, router) - *which export traces to OTLP collector*
+- Core gateway services (gateway-controller, policy-engine, router) - *the router and policy-engine export traces to the OTLP collector; the gateway-controller generates the router's tracing configuration*
 - OpenTelemetry Collector - *receives and processes traces*
 - Jaeger - *stores and visualizes traces*
 
