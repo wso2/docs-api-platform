@@ -54,6 +54,14 @@ Associating a key with an application is used only for tracking and analytics. I
 3. Select the **Key**. Only keys that belong to you are listed.
 4. Click **Associate** to associate the key with the application. This button remains unavailable until you select a key. Click **Cancel** to close the dialog without associating a key.
 
+The following rules apply to OAuth2 keys:
+
+- A key belongs to at most one application. Associating it with another application moves it there.
+
+- An application holds at most one key of each key type: one production key and one sandbox key. If the application already has a key of the same type, the association is refused with a `409 Conflict` error. Remove the association of the existing key first.
+
+- Associating a key with the application that it already belongs to succeeds, and leaves the association unchanged.
+
 ## Delete an application
 
 1. On the application card, click the delete icon.

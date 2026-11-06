@@ -13,7 +13,7 @@ The buttons on the **OAuth2 Keys** page depend on how the key managers of your o
 
 | Option | What Happens | Available When |
 |:-------|:-------------|:---------------|
-| **Generate key** | The portal registers a new OAuth2 client on the key manager, and returns its client ID and secret. | The key manager lets the portal create applications, as ThunderID does by default. |
+| **Register OAuth2 Client** | The portal registers a new OAuth2 client on the key manager, and returns its client ID and secret. | The key manager lets the portal create applications, as ThunderID does by default. |
 | **Add existing key** | You create the OAuth2 application in the key manager, and add its client ID to the portal. | The key manager is configured for imported client IDs. See [Configure a Custom Key Manager](../administer/key-managers/custom-key-manager.md). |
 
 ### Key Details
@@ -74,7 +74,17 @@ This step is optional. Associate a key with an application to track its usage in
 
 - **From the application:** Open the application, and in the **OAuth2 keys** section, click **Associate existing OAuth2 key**.
 
-A key belongs to at most one application. Associating it again moves it to the other application. Removing the association, or deleting the application, leaves the key usable and unassociated. See [Manage Applications](../manage-usage/manage-applications.md).
+The following rules apply:
+
+- A key belongs to at most one application. Associating it with another application moves it there.
+
+- An application holds at most one key of each key type: one production key and one sandbox key. If the application already has a key of the same type, the association is refused with a `409 Conflict` error. Remove the association of the existing key first.
+
+- Associating a key with the application that it already belongs to succeeds, and leaves the association unchanged.
+
+- Removing the association, or deleting the application, leaves the key usable and unassociated.
+
+See [Manage Applications](../manage-usage/manage-applications.md).
 
 ## Edit or Delete a Key
 

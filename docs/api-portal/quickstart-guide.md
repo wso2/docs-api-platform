@@ -29,9 +29,9 @@ For more, see [Browse APIs](./discover/browse-apis.md) and [API Documentation](.
 
 ## Step 3: Generate an OAuth2 Key
 
-1. Go to **Keys** › **OAuth2 Keys**, and click **Generate key**.
+1. Go to **Keys** › **OAuth2 Keys**, and click **Register OAuth2 Client**.
 
-2. In the **Generate OAuth2 key** dialog, enter the following details, and leave the other fields as they are.
+2. In the dialog box that opens, enter the following details, and leave the other fields as they are.
 
     | Field | Value |
     |:------|:------|
