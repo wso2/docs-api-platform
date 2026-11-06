@@ -11,7 +11,7 @@ This page explains what you can do as an API publisher to make your API as usefu
 
 The API description is the primary signal an AI agent uses to decide whether an API is relevant to the task it is trying to accomplish. A vague or empty description leads to missed discovery or incorrect usage.
 
-**What to include:**
+**What to include**
 
 - What the API does and the domain it covers (e.g., order management, product catalog, identity)
 - The kinds of operations it supports (read, write, or both)

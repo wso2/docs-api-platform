@@ -78,6 +78,7 @@ const config = {
         ignoreFiles: [
           /administer\/creating-application-templates/,
           /administer\/customizing-portal-theme/,
+          /insights/,
         ],
       }),
     ],

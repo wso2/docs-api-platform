@@ -20,7 +20,7 @@ Use the search box to find log entries containing specific text. The search is c
 
 ## Filter runtime logs
 
-You can filter runtime logs using the following criteria:
+You can filter runtime logs using the following criteria.
 
 | Filter | Options |
 |:-------|:--------|

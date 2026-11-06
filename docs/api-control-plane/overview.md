@@ -37,7 +37,7 @@ Administrators set up the resources that API developers and consumers rely on.
 | [Manage Portals](./administer/managing-portals.md) | Create, edit, and delete the portals that you publish APIs to. |
 | [Manage Subscription Plans](./administer/creating-subscription-plans.md) | Create the subscription plans that define how consumers can use your APIs. |
 
-To track the logs of your API proxies, see [Logs](./observability/logs.md). To analyze API traffic and usage, see [Insights](./insights/api-insights.md).
+To track the logs of your API proxies, see [Logs](./observability/logs.md).
 
 ## Get Started
 
