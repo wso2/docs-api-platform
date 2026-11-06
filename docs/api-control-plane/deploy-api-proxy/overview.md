@@ -19,7 +19,7 @@ A self-hosted gateway runs on your own infrastructure and connects to the API Co
 1. Open the API.
 2. In the left navigation menu, click **Deploy**. You can also click **Deploy to Gateway** on the API overview page.
 3. In the **Build Area**, click **Deploy**. You can also click **Build and Deploy** if the API still needs a build.
-4. In the **Deploy to development** dialog, configure the deployment:
+4. In the dialog box that opens, configure the deployment:
 
     1. **Select the gateway.** Choose the self-hosted gateway you created.
     2. **Confirm the endpoint URL.** Verify that the backend endpoint is correct.
@@ -34,7 +34,7 @@ A managed gateway is a gateway that WSO2 hosts and operates. Create one before y
 1. Open the API.
 2. In the left navigation menu, click **Deploy**. You can also click **Deploy to Gateway** on the API overview page.
 3. In the **Build Area**, click **Deploy**. You can also click **Build and Deploy** if the API still needs a build.
-4. In the **Deploy to development** dialog, configure the deployment:
+4. In the dialog box that opens, configure the deployment:
 
     1. **Select the gateway.** Choose the managed gateway you created.
     2. **Confirm the endpoint URL.** Verify that the backend endpoint is correct.

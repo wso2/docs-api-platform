@@ -37,7 +37,7 @@ You can generate an API key for an API proxy that is deployed to a gateway. The 
 
 2. In the **API Keys** section, click **Add**.
 
-3. In the **Add API key** dialog, enter the following details, and click **Create key**.
+3. In the dialog box that opens, enter the following details, and click **Create key**.
 
     | Field | Description |
     |:------|:------------|

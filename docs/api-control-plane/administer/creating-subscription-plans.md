@@ -25,7 +25,7 @@ The **Subscription Plans** page lists the plans in your organization, with their
 
 1. On the **Subscription Plans** page, click **Create plan**.
 
-2. In the **Add subscription plan** dialog, enter the following details.
+2. In the dialog box that opens, enter the following details.
 
     | Field | Description |
     |:------|:------------|
