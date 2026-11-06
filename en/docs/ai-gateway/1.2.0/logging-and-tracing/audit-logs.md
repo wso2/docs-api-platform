@@ -42,7 +42,7 @@ For the settings, the record format, and the Helm configuration, see [Audit logg
 
 ## Handle audit records carefully
 
-Each record names the user who made the change. To keep user names out of the log lines your outputs receive, set `mask_sensitive_fields = true`; the `audit` table keeps the user regardless. Credentials for an HTTP receiver come from an environment variable or a mounted file, never from `config.toml` itself.
+Each record names the user who made the change. To keep user names out of the log lines your outputs receive, set `mask_sensitive_fields = true`; the `audit` table keeps the user regardless. Credentials for an HTTP receiver come from an environment variable, never from `config.toml` itself.
 
 ## Related topics
 
