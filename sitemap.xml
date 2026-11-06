@@ -5336,12 +5336,42 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/secrets-management/</loc>
+         <lastmod>2026-11-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/sync-gateway-created-artifacts/</loc>
+         <lastmod>2026-11-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/using-sdks/</loc>
          <lastmod>2026-11-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/agent-proxies/quick-start-guide/</loc>
+         <lastmod>2026-11-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/ai-gateways/setting-up/</loc>
+         <lastmod>2026-11-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/llm-provider-templates/configure-template/</loc>
+         <lastmod>2026-11-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/llm-provider-templates/manage-template/</loc>
+         <lastmod>2026-11-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/llm-provider-templates/overview/</loc>
          <lastmod>2026-11-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -5392,6 +5422,16 @@
     </url>
     <url>
          <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/mcp-proxies/overview/</loc>
+         <lastmod>2026-11-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/policies/apply-ai-policies-to-proxies/</loc>
+         <lastmod>2026-11-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wso2.com/bijira/docs/cloud/ai-workspace/policies/build-gateway-with-ai-policies/</loc>
          <lastmod>2026-11-06</lastmod>
          <changefreq>daily</changefreq>
     </url>

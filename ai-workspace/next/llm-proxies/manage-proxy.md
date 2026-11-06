@@ -25,7 +25,7 @@ Once you create an App LLM proxy, manage its configuration through the proxy det
 The proxy details page displays the following information at the top:
 
 - **Proxy name**, with the version shown as a badge beside it
-- **Provider**: the proxy's primary LLM service provider
+- **Providers**: the LLM service providers the proxy routes to, primary first. A proxy with more than three shows the first three followed by an ellipsis.
 - **Context**: the base path for the proxy's endpoints
 - **Last updated**: the timestamp of the most recent change
 - **Created by**: the user who created the proxy
