@@ -1,21 +1,23 @@
 ---
 title: "Configure Audit Logging"
-description: "Record who changed what on the API Platform AI Gateway through its management API — in the gateway's database and, optionally, as JSON lines to stdout, a rotating file, or an HTTP log receiver."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/observability/audit-logging/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/1.1.0/observability/audit-logging.md
+description: "Record who changed what on the API Platform Gateway through its management API — in the gateway's database and, optionally, as JSON lines to stdout, a rotating file, or an HTTP log receiver."
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/audit-logging/
+md_url: https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/audit-logging.md
 tags:
-  - ai-gateway
+  - api-gateway
   - observability
   - audit
   - security
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-05
+last_updated: 2026-11-06
 content_type: "how-to"
 ---
+
+{% raw %}
 # Audit Logging
 
 !!! info "Note"
-    Audit logging is available from **update level 1.1.0.&lt;N&gt;** onwards. It is **off by default**,
+    Audit logging is available from **update level 1.2.0.&lt;N&gt;** onwards. It is **off by default**,
     so applying the update changes nothing until you turn it on.
 
 ## Overview
@@ -42,11 +44,10 @@ A record is written for every successful change made through the management API:
 | Resource               | `resourceType`          | Actions                                                   |
 | ---------------------- | ------------------------- | --------------------------------------------------------- |
 | REST APIs              | `rest_api`              | `CREATE`, `UPDATE`, `DELETE`                        |
-| WebSub APIs            | `websub_api`            | `CREATE`, `UPDATE`, `DELETE`                        |
 | API keys               | `api_key`               | `CREATE`, `UPDATE` (update or regenerate), `REVOKE` |
 | Subscriptions          | `subscription`          | `CREATE`, `UPDATE`, `DELETE`                        |
 | Subscription plans     | `subscription_plan`     | `CREATE`, `UPDATE`, `DELETE`                        |
-| Certificates           | `certificate`           | `CREATE` (upload), `DELETE`                           |
+| Certificates           | `certificate`           | `CREATE` (upload), `UPDATE`, `DELETE`               |
 | MCP proxies            | `mcp_proxy`             | `CREATE`, `UPDATE`, `DELETE`                        |
 | LLM providers          | `llm_provider`          | `CREATE`, `UPDATE`, `DELETE`                        |
 | LLM proxies            | `llm_proxy`             | `CREATE`, `UPDATE`, `DELETE`                        |
@@ -104,7 +105,7 @@ To turn audit logging off again, set `enabled: false` (or `enabled = false`) and
 | Parameter    | Type             | Default   | Description                                                                                                |
 | ------------ | ---------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
 | `enabled`  | boolean          | `false` | Record changes made through the management API. While `false`, nothing is recorded.                      |
-| `mask_pii` | boolean          | `false` | Show `****` instead of the user in the output lines. The `audit` table always keeps the user.          |
+| `mask_sensitive_fields` | boolean          | `false` | Show `****` instead of the user in the output lines. The `audit` table always keeps the user.          |
 | `outputs`  | array of strings | `[]`    | Where to send each record in addition to the `audit` table: any of `"stdout"`, `"file"`, `"http"`. |
 
 The `file` and `http` outputs have their own settings, described in
@@ -148,8 +149,7 @@ The same line is sent to every output you configure.
 
 ### The `audit` table
 
-The gateway controller creates the table when it starts, on both SQLite and PostgreSQL, so there is no
-database script to run. The table holds the same information as the JSON line:
+The table holds the same information as the JSON line:
 
 | Column             | Holds                                                    |
 | ------------------ | -------------------------------------------------------- |
@@ -161,8 +161,20 @@ database script to run. The table holds the same information as the JSON line:
 | `resource_name`  | `resourceName`                                         |
 | `resource_type`  | `resourceType`                                         |
 | `outcome`        | `outcome`                                              |
-| `performed_by`   | The user — never masked, even with `mask_pii = true`. |
+| `performed_by`   | The user — never masked, even with `mask_sensitive_fields = true`. |
 | `performed_at`   | `time`                                                 |
+
+### Database setup
+
+On **SQLite**, the gateway controller adds the `audit` table to its database when it starts.
+
+On **PostgreSQL** and **SQL Server**, the gateway controller doesn't change the database schema. Before
+you enable audit logging, apply this release's schema script (`gateway-controller-db.postgres.sql` or
+`gateway-controller-db.sqlserver.sql`) to the database, as described in
+[Setting Up the Database](../setup/database-setup.md). The script is safe to re-run and creates only what
+is missing, so on an existing database it adds the `audit` table. Until the table exists, records are
+still sent to your outputs, but they aren't saved to the database, and the gateway controller logs
+`Failed to save audit record`.
 
 ## The `file` output
 
@@ -246,33 +258,23 @@ Set `type` to choose how the gateway authenticates to the receiver:
 | `"basic"`          | `Authorization: Basic <username:password, Base64-encoded>`                                         |
 | `"header"`         | `<name>: <value>` — any header your receiver needs, for example `Authorization: Splunk <token>` |
 
-Set the type and any non-secret fields in `config.toml`, and set the secret through an environment
-variable on the gateway controller, which takes precedence over `config.toml`:
+Don't write a credential into `config.toml`. Set it with a token that the gateway controller resolves
+when it starts; the gateway never writes the resolved value to its logs:
 
-| Variable                                              | Use it for                                 |
-| ----------------------------------------------------- | ------------------------------------------ |
-| `APIP_GW_CONTROLLER_AUDIT_HTTP_AUTH_BEARER_TOKEN`   | The token, with `type = "bearer"`        |
-| `APIP_GW_CONTROLLER_AUDIT_HTTP_AUTH_BASIC_USERNAME` | The username, with `type = "basic"`      |
-| `APIP_GW_CONTROLLER_AUDIT_HTTP_AUTH_BASIC_PASSWORD` | The password, with `type = "basic"`      |
-| `APIP_GW_CONTROLLER_AUDIT_HTTP_AUTH_HEADER_VALUE`   | The header value, with `type = "header"` |
+| Token                          | Resolves from                                                                                                                                                                            |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `{{ env "VAR_NAME" }}`       | An environment variable on the gateway controller.                                                                                                                                       |
+| `{{ file "/path/to/secret" }}` | The contents of a file, such as a mounted Kubernetes `Secret`. Files are read only from `/etc/gateway-controller` and `/secrets/gateway-controller` (change this with `APIP_CONFIG_FILE_SOURCE_ALLOWLIST`). |
 
-!!! warning
-    Don't put credentials in `config.toml`. Set them through these environment variables, for example
-    from a Kubernetes `Secret`. The gateway never writes the credential to its logs.
+The header `value` can start with fixed text before the token, for example
+`'Splunk {{ env "APIP_GW_AUDIT_HEC_TOKEN" }}'`.
 
-With Docker Compose, add the variable to the gateway controller's `environment:` list in
-`docker-compose.yaml`, next to the entries already there, and take its value from your shell or from a
-`.env` file beside `docker-compose.yaml`:
-
-```yaml
-services:
-  gateway-controller:
-    environment:
-      - APIP_GW_CONTROLLER_AUDIT_HTTP_AUTH_BEARER_TOKEN=${AUDIT_HTTP_TOKEN:-}
-```
+With Docker Compose, add the variable to `api-platform.env`, next to `docker-compose.yaml`, and restart
+the gateway controller (`setup.sh --force` rewrites this file, so add the variable again after it):
 
 ```sh
-AUDIT_HTTP_TOKEN=<token> docker compose up -d --force-recreate gateway-controller
+echo 'APIP_GW_AUDIT_HTTP_TOKEN=<token>' >> api-platform.env
+docker compose up -d --force-recreate gateway-controller
 ```
 
 On Kubernetes, set it from a `Secret`, as shown in [Kubernetes (Helm)](#kubernetes-helm).
@@ -289,7 +291,9 @@ On Kubernetes, set it from a `Secret`, as shown in [Kubernetes (Helm)](#kubernet
 
     [controller.audit.http.auth]
     type = "bearer"
-    # token: set APIP_GW_CONTROLLER_AUDIT_HTTP_AUTH_BEARER_TOKEN
+
+    [controller.audit.http.auth.bearer]
+    token = '{{ env "APIP_GW_AUDIT_HTTP_TOKEN" }}'
     ```
 
 === "Splunk HEC"
@@ -307,7 +311,7 @@ On Kubernetes, set it from a `Secret`, as shown in [Kubernetes (Helm)](#kubernet
 
     [controller.audit.http.auth.header]
     name = "Authorization"
-    # value: set APIP_GW_CONTROLLER_AUDIT_HTTP_AUTH_HEADER_VALUE to "Splunk <HEC token>"
+    value = 'Splunk {{ env "APIP_GW_AUDIT_HEC_TOKEN" }}'
     ```
 
 === "Basic"
@@ -325,7 +329,7 @@ On Kubernetes, set it from a `Secret`, as shown in [Kubernetes (Helm)](#kubernet
 
     [controller.audit.http.auth.basic]
     username = "gateway"
-    # password: set APIP_GW_CONTROLLER_AUDIT_HTTP_AUTH_BASIC_PASSWORD
+    password = '{{ file "/secrets/gateway-controller/audit-password" }}'
     ```
 
 === "Fluent Bit (no auth)"
@@ -374,15 +378,16 @@ version and key exchange in use (`Audit HTTP output connected`).
 
 ## Kubernetes (Helm)
 
-Configure audit logging under `gateway.config.controller.audit` in your values file. Set credentials
-from a `Secret` through `gateway.controller.deployment.extraEnv`.
+Configure audit logging under `gateway.config.controller.audit` in your values file. Set the credential
+to an `{{ env }}` token, and set the variable from a `Secret` through
+`gateway.controller.deployment.extraEnv`.
 
 ```yaml
 gateway:
   controller:
     deployment:
       extraEnv:
-        - name: APIP_GW_CONTROLLER_AUDIT_HTTP_AUTH_BEARER_TOKEN
+        - name: APIP_GW_AUDIT_HTTP_TOKEN
           valueFrom:
             secretKeyRef:
               name: audit-http-token
@@ -398,6 +403,8 @@ gateway:
           endpoint: https://logs.example.com/ingest
           auth:
             type: bearer
+            bearer:
+              token: '{{ env "APIP_GW_AUDIT_HTTP_TOKEN" }}'
 ```
 
 Create the `Secret` first:
@@ -406,10 +413,14 @@ Create the `Secret` first:
 kubectl create secret generic audit-http-token --from-literal=token=<token>
 ```
 
-!!! warning "Credentials in values are refused"
-    The chart stops with an error if you set `auth.bearer.token`, `auth.basic.password`, or
-    `auth.header.value` in your values file, because the gateway configuration is stored in a
-    ConfigMap that isn't encrypted. Use `extraEnv` as shown above.
+To use a `{{ file }}` token instead, mount the `Secret` under `/secrets/gateway-controller` through
+`gateway.controller.deployment.extraVolumes` and `extraVolumeMounts`.
+
+!!! warning "Literal credentials in values are refused"
+    The gateway configuration is stored in a ConfigMap, which isn't encrypted. The chart therefore stops
+    with an error if `auth.bearer.token`, `auth.basic.password`, or `auth.header.value` holds a literal
+    value instead of an `{{ env }}` or `{{ file }}` token. For local development only, set
+    `gateway.config.controller.audit.http.auth.allow_plaintext_credentials: true` to turn this check off.
 
 ### Storage for the `file` output
 
@@ -449,11 +460,16 @@ once every 30 seconds for each output). The change itself is never affected.
 | The gateway controller doesn't start: `path is required when the "file" output is selected`                   | The `file` output is on, but `file.path` isn't set.                                            | Set `file.path` to an absolute path.                                                                    |
 | The gateway controller doesn't start: `has permissions 0644, which allow group/other access`                  | The audit log file already exists and other users can read it.                                     | Run `chmod 600 <path>` and restart.                                                                     |
 | The gateway controller doesn't start: `endpoint uses plaintext http:// but allow_insecure_transport is false` | The endpoint uses `http://`.                                                                     | Use `https://`, or set `allow_insecure_transport = true` for a trusted collector on the same network. |
-| The gateway controller doesn't start: `bearer.token is required when type is "bearer"`                        | The credential isn't set.                                                                          | Set `APIP_GW_CONTROLLER_AUDIT_HTTP_AUTH_BEARER_TOKEN` (or the variable for your `type`).              |
+| The gateway controller doesn't start: `bearer.token is required when type is "bearer"`                        | The credential isn't set.                                                                          | Set the credential for your `type` with an `{{ env }}` or `{{ file }}` token.                            |
+| The gateway controller doesn't start: `required env var "..." is not found`                                   | The variable an `{{ env }}` token refers to isn't set, or is empty.                                | Set the variable on the gateway controller.                                                              |
+| The gateway controller doesn't start: `is not in an allowed source directory`                                 | A `{{ file }}` token refers to a file outside the allowed directories.                             | Put the file under `/secrets/gateway-controller` or `/etc/gateway-controller`.                           |
 | The gateway controller doesn't start: `failed to read CA bundle` or `failed to load client certificate`     | A TLS file is missing or invalid, or the certificate and key don't match.                          | Check the paths in `[controller.audit.http.tls]` and the files.                                         |
-| `helm upgrade` fails: `would be written in plaintext into the gateway ConfigMap`                            | A credential is set in the values file.                                                            | Remove it and set it through `extraEnv`, as shown in [Kubernetes (Helm)](#kubernetes-helm).              |
+| `helm upgrade` fails: `would be written in plaintext into the gateway ConfigMap`                            | A credential in the values file is a literal value.                                                | Use an `{{ env }}` or `{{ file }}` token, as shown in [Kubernetes (Helm)](#kubernetes-helm).              |
 | `helm upgrade` fails: `is not under gateway.controller.auditLogVolume.mountPath`                            | `file.path` is outside the audit log volume.                                                     | Move `file.path` under `/var/log/wso2` (or your `mountPath`).                                       |
 | No records at all                                                                                               | `enabled` is `false`, the change was made from the control plane, or the gateway is immutable. | Check `enabled`. Changes made from the control plane are recorded by the control plane.                 |
+| Records reach the outputs, but the log shows `Failed to save audit record`                                    | On PostgreSQL or SQL Server, the `audit` table doesn't exist.                                      | Apply the schema script, as described in [Database setup](#database-setup).                              |
 | Records are in the `audit` table but not in the logs                                                          | `outputs` is empty.                                                                              | Add `stdout`, `file`, or `http` to `outputs`.                                                     |
-| `performedBy` shows `****`                                                                                  | `mask_pii = true`.                                                                               | Expected. The `audit` table keeps the user.                                                             |
+| `performedBy` shows `****`                                                                                  | `mask_sensitive_fields = true`.                                                                               | Expected. The `audit` table keeps the user.                                                             |
 | The receiver gets the same record twice                                                                         | A batch was resent after a lost response.                                                          | Deduplicate on `id`.                                                                                    |
+
+{% endraw %}

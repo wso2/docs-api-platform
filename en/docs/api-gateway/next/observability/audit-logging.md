@@ -106,7 +106,7 @@ To turn audit logging off again, set `enabled: false` (or `enabled = false`) and
 | Parameter    | Type             | Default   | Description                                                                                                |
 | ------------ | ---------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
 | `enabled`  | boolean          | `false` | Record changes made through the management API. While `false`, nothing is recorded.                      |
-| `mask_pii` | boolean          | `false` | Show `****` instead of the user in the output lines. The `audit` table always keeps the user.          |
+| `mask_sensitive_fields` | boolean          | `false` | Show `****` instead of the user in the output lines. The `audit` table always keeps the user.          |
 | `outputs`  | array of strings | `[]`    | Where to send each record in addition to the `audit` table: any of `"stdout"`, `"file"`, `"http"`. |
 
 The `file` and `http` outputs have their own settings, described in
@@ -162,7 +162,7 @@ The table holds the same information as the JSON line:
 | `resource_name`  | `resourceName`                                         |
 | `resource_type`  | `resourceType`                                         |
 | `outcome`        | `outcome`                                              |
-| `performed_by`   | The user — never masked, even with `mask_pii = true`. |
+| `performed_by`   | The user — never masked, even with `mask_sensitive_fields = true`. |
 | `performed_at`   | `time`                                                 |
 
 ### Database setup
@@ -470,7 +470,7 @@ once every 30 seconds for each output). The change itself is never affected.
 | No records at all                                                                                               | `enabled` is `false`, the change was made from the control plane, or the gateway is immutable. | Check `enabled`. Changes made from the control plane are recorded by the control plane.                 |
 | Records reach the outputs, but the log shows `Failed to save audit record`                                    | On PostgreSQL or SQL Server, the `audit` table doesn't exist.                                      | Apply the schema script, as described in [Database setup](#database-setup).                              |
 | Records are in the `audit` table but not in the logs                                                          | `outputs` is empty.                                                                              | Add `stdout`, `file`, or `http` to `outputs`.                                                     |
-| `performedBy` shows `****`                                                                                  | `mask_pii = true`.                                                                               | Expected. The `audit` table keeps the user.                                                             |
+| `performedBy` shows `****`                                                                                  | `mask_sensitive_fields = true`.                                                                               | Expected. The `audit` table keeps the user.                                                             |
 | The receiver gets the same record twice                                                                         | A batch was resent after a lost response.                                                          | Deduplicate on `id`.                                                                                    |
 
 {% endraw %}
