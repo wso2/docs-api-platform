@@ -399,6 +399,7 @@ nav:
           - Logging:
             - Centralized Logging: api-gateway/next/observability/logging.md
             - Traffic Logging: api-gateway/next/observability/traffic-logging.md
+            - Audit Logging: api-gateway/next/observability/audit-logging.md
           - Tracing:
             - Overview: api-gateway/next/observability/tracing/overview.md
             - Enabling and Disabling Tracing: api-gateway/next/observability/tracing/enabling-tracing.md
@@ -557,6 +558,7 @@ nav:
           - Logging:
             - Centralized Logging: api-gateway/1.2.0/observability/logging.md
             - Traffic Logging: api-gateway/1.2.0/observability/traffic-logging.md
+            - Audit Logging: api-gateway/1.2.0/observability/audit-logging.md
           - Tracing:
             - Overview: api-gateway/1.2.0/observability/tracing/overview.md
             - Enabling and Disabling Tracing: api-gateway/1.2.0/observability/tracing/enabling-tracing.md
@@ -765,6 +767,7 @@ nav:
             - ai-gateway/next/logging-and-tracing/index.md
             - Gateway Logs: ai-gateway/next/logging-and-tracing/gateway-logs.md
             - Log Requests and Responses: ai-gateway/next/logging-and-tracing/log-requests-and-responses.md
+            - Audit Logs: ai-gateway/next/logging-and-tracing/audit-logs.md
             - Tracing: ai-gateway/next/logging-and-tracing/tracing.md
         - Analytics:
             - ai-gateway/next/analytics/index.md
@@ -1126,6 +1129,7 @@ nav:
             - ai-gateway/1.2.0/logging-and-tracing/index.md
             - Gateway Logs: ai-gateway/1.2.0/logging-and-tracing/gateway-logs.md
             - Log Requests and Responses: ai-gateway/1.2.0/logging-and-tracing/log-requests-and-responses.md
+            - Audit Logs: ai-gateway/1.2.0/logging-and-tracing/audit-logs.md
             - Tracing: ai-gateway/1.2.0/logging-and-tracing/tracing.md
         - Analytics:
             - ai-gateway/1.2.0/analytics/index.md
