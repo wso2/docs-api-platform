@@ -9,7 +9,7 @@ tags:
   - audit
   - security
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-05
+last_updated: 2026-11-06
 content_type: "how-to"
 ---
 
@@ -259,16 +259,18 @@ Set `type` to choose how the gateway authenticates to the receiver:
 | `"basic"`          | `Authorization: Basic <username:password, Base64-encoded>`                                         |
 | `"header"`         | `<name>: <value>` — any header your receiver needs, for example `Authorization: Splunk <token>` |
 
-Don't write a credential into `config.toml`. Set it with a token that the gateway controller resolves
-when it starts; the gateway never writes the resolved value to its logs:
+Don't write a credential into `config.toml`. Set it with an environment variable token that has an empty
+default, `{{ env "VAR_NAME" "" }}`. The gateway controller resolves it when it starts and never writes the
+resolved value to its logs.
 
-| Token                          | Resolves from                                                                                                                                                                            |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `{{ env "VAR_NAME" }}`       | An environment variable on the gateway controller.                                                                                                                                       |
-| `{{ file "/path/to/secret" }}` | The contents of a file, such as a mounted Kubernetes `Secret`. Files are read only from `/etc/gateway-controller` and `/secrets/gateway-controller` (change this with `APIP_CONFIG_FILE_SOURCE_ALLOWLIST`). |
+The gateway runtime reads the same `config.toml` and doesn't start if it can't resolve a token in it. The
+empty default lets it start where the variable isn't set; the gateway controller still doesn't start if the
+credential is empty. For the same reason, don't use `{{ file }}` tokens for audit credentials: the gateway
+runtime can't read the gateway controller's files.
 
-The header `value` can start with fixed text before the token, for example
-`'Splunk {{ env "APIP_GW_AUDIT_HEC_TOKEN" }}'`.
+For the `header` type, put the whole value in the variable, for example
+`APIP_GW_AUDIT_HEC_AUTH="Splunk <token>"`. With fixed text before the token, a missing variable would still
+leave a value, and the gateway controller would send an invalid header instead of refusing to start.
 
 With Docker Compose, add the variable to `api-platform.env`, next to `docker-compose.yaml`, and restart
 the gateway controller (`setup.sh --force` rewrites this file, so add the variable again after it):
@@ -294,7 +296,7 @@ On Kubernetes, set it from a `Secret`, as shown in [Kubernetes (Helm)](#kubernet
     type = "bearer"
 
     [controller.audit.http.auth.bearer]
-    token = '{{ env "APIP_GW_AUDIT_HTTP_TOKEN" }}'
+    token = '{{ env "APIP_GW_AUDIT_HTTP_TOKEN" "" }}'
     ```
 
 === "Splunk HEC"
@@ -312,7 +314,7 @@ On Kubernetes, set it from a `Secret`, as shown in [Kubernetes (Helm)](#kubernet
 
     [controller.audit.http.auth.header]
     name = "Authorization"
-    value = 'Splunk {{ env "APIP_GW_AUDIT_HEC_TOKEN" }}'
+    value = '{{ env "APIP_GW_AUDIT_HEC_AUTH" "" }}'
     ```
 
 === "Basic"
@@ -330,7 +332,7 @@ On Kubernetes, set it from a `Secret`, as shown in [Kubernetes (Helm)](#kubernet
 
     [controller.audit.http.auth.basic]
     username = "gateway"
-    password = '{{ file "/secrets/gateway-controller/audit-password" }}'
+    password = '{{ env "APIP_GW_AUDIT_HTTP_PASSWORD" "" }}'
     ```
 
 === "Fluent Bit (no auth)"
@@ -380,7 +382,7 @@ version and key exchange in use (`Audit HTTP output connected`).
 ## Kubernetes (Helm)
 
 Configure audit logging under `gateway.config.controller.audit` in your values file. Set the credential
-to an `{{ env }}` token, and set the variable from a `Secret` through
+to an `{{ env }}` token with an empty default, and set the variable from a `Secret` through
 `gateway.controller.deployment.extraEnv`.
 
 ```yaml
@@ -405,7 +407,7 @@ gateway:
           auth:
             type: bearer
             bearer:
-              token: '{{ env "APIP_GW_AUDIT_HTTP_TOKEN" }}'
+              token: '{{ env "APIP_GW_AUDIT_HTTP_TOKEN" "" }}'
 ```
 
 Create the `Secret` first:
@@ -413,9 +415,6 @@ Create the `Secret` first:
 ```sh
 kubectl create secret generic audit-http-token --from-literal=token=<token>
 ```
-
-To use a `{{ file }}` token instead, mount the `Secret` under `/secrets/gateway-controller` through
-`gateway.controller.deployment.extraVolumes` and `extraVolumeMounts`.
 
 !!! warning "Literal credentials in values are refused"
     The gateway configuration is stored in a ConfigMap, which isn't encrypted. The chart therefore stops
@@ -461,11 +460,10 @@ once every 30 seconds for each output). The change itself is never affected.
 | The gateway controller doesn't start: `path is required when the "file" output is selected`                   | The `file` output is on, but `file.path` isn't set.                                            | Set `file.path` to an absolute path.                                                                    |
 | The gateway controller doesn't start: `has permissions 0644, which allow group/other access`                  | The audit log file already exists and other users can read it.                                     | Run `chmod 600 <path>` and restart.                                                                     |
 | The gateway controller doesn't start: `endpoint uses plaintext http:// but allow_insecure_transport is false` | The endpoint uses `http://`.                                                                     | Use `https://`, or set `allow_insecure_transport = true` for a trusted collector on the same network. |
-| The gateway controller doesn't start: `bearer.token is required when type is "bearer"`                        | The credential isn't set.                                                                          | Set the credential for your `type` with an `{{ env }}` or `{{ file }}` token.                            |
-| The gateway controller doesn't start: `required env var "..." is not found`                                   | The variable an `{{ env }}` token refers to isn't set, or is empty.                                | Set the variable on the gateway controller.                                                              |
-| The gateway controller doesn't start: `is not in an allowed source directory`                                 | A `{{ file }}` token refers to a file outside the allowed directories.                             | Put the file under `/secrets/gateway-controller` or `/etc/gateway-controller`.                           |
+| The gateway controller doesn't start: `bearer.token is required when type is "bearer"`                        | The credential isn't set.                                                                          | Set the variable on the gateway controller. An `{{ env }}` token with an empty default resolves to an empty value when the variable isn't set. |
+| The gateway runtime doesn't start: `config interpolation failed at "controller.audit.http.auth...`        | An audit credential token has no default, or is a `{{ file }}` token, so the gateway runtime can't resolve it. | Use `{{ env "NAME" "" }}`, as shown in [Authentication](#authentication). |
 | The gateway controller doesn't start: `failed to read CA bundle` or `failed to load client certificate`     | A TLS file is missing or invalid, or the certificate and key don't match.                          | Check the paths in `[controller.audit.http.tls]` and the files.                                         |
-| `helm upgrade` fails: `would be written in plaintext into the gateway ConfigMap`                            | A credential in the values file is a literal value.                                                | Use an `{{ env }}` or `{{ file }}` token, as shown in [Kubernetes (Helm)](#kubernetes-helm).              |
+| `helm upgrade` fails: `would be written in plaintext into the gateway ConfigMap`                            | A credential in the values file is a literal value.                                                | Use an `{{ env }}` token with an empty default, as shown in [Kubernetes (Helm)](#kubernetes-helm). |
 | `helm upgrade` fails: `is not under gateway.controller.auditLogVolume.mountPath`                            | `file.path` is outside the audit log volume.                                                     | Move `file.path` under `/var/log/wso2` (or your `mountPath`).                                       |
 | No records at all                                                                                               | `enabled` is `false`, the change was made from the control plane, or the gateway is immutable. | Check `enabled`. Changes made from the control plane are recorded by the control plane.                 |
 | Records reach the outputs, but the log shows `Failed to save audit record`                                    | On PostgreSQL or SQL Server, the `audit` table doesn't exist.                                      | Apply the schema script, as described in [Database setup](#database-setup).                              |
