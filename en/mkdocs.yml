@@ -599,6 +599,8 @@ nav:
                     - Websocket Logs: api-manager/next/monitoring/observability/monitoring-websocket-logs.md
                     - External Observability Solutions:
                         - OpenSearch: api-manager/next/monitoring/observability/monitoring-with-opensearch.md
+                        - Moesif Based Logs: monitoring/observability/monitoring-with-moesif.md
+                        - OpenTelemetry Based Logs: monitoring/observability/monitoring-with-opentelementry.md  
                 - Traces:
                     - OpenTracing: api-manager/next/monitoring/observability/traces/monitoring-with-opentracing.md
                     - OpenTelemetry: api-manager/next/monitoring/observability/traces/monitoring-with-opentelemetry.md
