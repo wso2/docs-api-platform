@@ -1304,6 +1304,8 @@ nav:
                     -   Websocket Logs: api-manager/4.6.0/monitoring/observability/monitoring-websocket-logs.md
                     -   External Observability Solutions:
                         -   OpenSearch: api-manager/4.6.0/monitoring/observability/monitoring-with-opensearch.md
+                        -   Moesif Based Logs: monitoring/observability/monitoring-with-moesif.md
+                        -   OpenTelemetry Based Logs: monitoring/observability/monitoring-with-opentelementry.md
                 -   Traces:
                     -   OpenTracing: api-manager/4.6.0/monitoring/observability/traces/monitoring-with-opentracing.md
                     -   OpenTelemetry: api-manager/4.6.0/monitoring/observability/traces/monitoring-with-opentelemetry.md
