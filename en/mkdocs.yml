@@ -358,6 +358,7 @@ nav:
         - Policies:
           - Overview: api-gateway/next/policies/overview.md
           - Policy execution order: api-gateway/next/policies/policy-execution-order.md
+          - Fault Policies: api-gateway/next/policies/fault-policies.md
           - Add or Update Policies: api-gateway/next/policies/add-or-update-policies.md
           - Custom Policies:
             - Writing a Custom Policy: api-gateway/next/policies/custom-policies/writing-a-custom-policy.md
@@ -438,6 +439,7 @@ nav:
         - Policies:
           - Overview: api-gateway/2026.10.0/policies/overview.md
           - Policy execution order: api-gateway/2026.10.0/policies/policy-execution-order.md
+          - Fault Policies: api-gateway/2026.10.0/policies/fault-policies.md
           - Add or Update Policies: api-gateway/2026.10.0/policies/add-or-update-policies.md
           - Custom Policies:
             - Writing a Custom Policy: api-gateway/2026.10.0/policies/custom-policies/writing-a-custom-policy.md

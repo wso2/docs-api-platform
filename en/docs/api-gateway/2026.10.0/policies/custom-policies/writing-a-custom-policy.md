@@ -1,6 +1,6 @@
 ---
 title: "Write a Custom Gateway Policy"
-description: "Write a custom policy for API Platform Gateway using the Go SDK: implement request and response hooks in the policy chain."
+description: "Write a custom API Platform Gateway policy with the Go SDK: request and response hooks, and fault hooks that run when a request fails."
 canonical_url: https://wso2.com/api-platform/docs/api-gateway/2026.10.0/policies/custom-policies/writing-a-custom-policy/
 md_url: https://wso2.com/api-platform/docs/api-gateway/2026.10.0/policies/custom-policies/writing-a-custom-policy.md
 tags:
@@ -8,7 +8,7 @@ tags:
   - policies
   - custom-policies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-17
+last_updated: 2026-11-05
 content_type: "how-to"
 ---
 
@@ -363,6 +363,185 @@ policies:
     gomodule: github.com/abc/policy-repo/policies/my-policy@v1
 ```
 
+## Write a fault policy
+
+A **fault policy** runs only when a request fails, over the error response the client is about to receive. Use one to notify an external system, record a failure, or change the error. Users attach fault policies to an API or an operation through the API type's fault policy field instead of `policies`: `faultPolicies` for REST APIs and MCP proxies, and `globalFaultPolicies` and `operationFaultPolicies` for LLM providers and proxies. For how fault policies are attached, see [Attach fault policies to an API](../fault-policies.md#attach-fault-policies-to-an-api), and for when they run, see [Fault policies](../fault-policies.md).
+
+Fault policy support requires `github.com/wso2/api-platform/sdk/core` v0.4.2 or later.
+
+### Step 1: Implement `OnFault`
+
+A policy becomes usable as a fault policy by implementing the `FaultPolicy` interface, which has one method, `OnFault`. The gateway checks for it when it builds the API's policy chain. If a policy without `OnFault` is attached as a fault policy, the gateway skips it and logs `skipping fault-policies policy that does not implement OnFault`.
+
+```go
+package myfaultpolicy
+
+import (
+    "context"
+    "log/slog"
+
+    policy "github.com/wso2/api-platform/sdk/core/policy/v1alpha2"
+)
+
+type MyFaultPolicy struct{}
+
+// A policy that runs only as a fault policy takes part in no request or
+// response phase, so its own hooks do no work on successful requests.
+func (p *MyFaultPolicy) Mode() policy.ProcessingMode {
+    return policy.ProcessingMode{
+        RequestHeaderMode:  policy.HeaderModeSkip,
+        RequestBodyMode:    policy.BodyModeSkip,
+        ResponseHeaderMode: policy.HeaderModeSkip,
+        ResponseBodyMode:   policy.BodyModeSkip,
+    }
+}
+
+func (p *MyFaultPolicy) OnFault(
+    ctx context.Context,
+    faultCtx *policy.FaultContext,
+    params map[string]interface{},
+) *policy.FaultResponse {
+    code := ""
+    if faultCtx.Fault != nil {
+        code = faultCtx.Fault.Code
+    }
+    slog.Info("request failed",
+        "status", faultCtx.ResponseStatus,
+        "code", code,
+        "policy", faultCtx.Policy,
+        "source", faultCtx.Source)
+
+    return nil // leave the error unchanged
+}
+```
+
+A policy can implement `OnFault` alongside its ordinary phase methods. Each attachment is either in the normal flow (`policies`) or the fault flow (`faultPolicies`), so take separate parameters for each, and validate in `GetPolicy` that the parameters match where the policy is attached.
+
+`OnFault` must not fail the request. The client is already receiving an error, so if `OnFault` panics or returns something the gateway cannot use, the client receives the original error and the failure is logged.
+
+### Step 2: Read the failure
+
+`FaultContext` carries the error response, the request that produced it, and a description of the failure:
+
+| Field | Description |
+|---|---|
+| `ResponseStatus`, `ResponseHeaders`, `ResponseBody` | The error response the client is about to receive. |
+| `RequestHeaders`, `RequestBody`, `RequestPath`, `RequestMethod` | The request that failed. |
+| `Fault` | The failure's `Code`, `Type`, `Direction`, `Message`, and `Description`. `nil` when nothing described the failure, for example an error returned by the backend. |
+| `Policy`, `PolicyVersion`, `PolicyPhase` | The policy that caused the failure and the phase it was in. Empty when no policy caused it. |
+| `Source` | Who produced the failure: `gateway`, `router`, `backend`, or `unknown`. |
+| `OriginalStatus` | The status before a policy changed it, or `0` if no policy changed it. |
+| `ResponseCommitted` | `true` when the client has already received the response, for example when a stream was ended. Changes to the response are then discarded. |
+| `RouteKey` | The matched route. |
+| `Upstream` | The backend the request was routed to. `Upstream.Response` is `nil` when the request never reached the backend. |
+
+`Fault.Description` is an internal reason. The gateway never sends it to the client, and no Error Response Formatter preset includes it. A custom formatter template can include it with `${Description}`, so do not add it to a template that guardrail failures reach. For a guardrail rejection it can contain the content the guardrail blocked, so do not send it to an external system either.
+
+### Step 3: Change the error response
+
+Return `nil` to leave the error unchanged. To change it, return a `FaultResponse` and set only the fields you want to change:
+
+| Field | Effect |
+|---|---|
+| `StatusCode` | Overrides the status. `nil` keeps it. |
+| `Body` | Replaces the body. `nil` keeps it, and `[]byte{}` clears it. |
+| `HeadersToSet`, `HeadersToAppend`, `HeadersToRemove` | Change headers on top of the headers the error already has. |
+| `Fault` | Re-describes the failure for the fault policies after this one and for analytics. |
+| `AnalyticsMetadata`, `DynamicMetadata`, `AnalyticsHeaderFilter` | The same as in the response phases. |
+
+The following example adds a header to the error and keeps everything else:
+
+```go
+return &policy.FaultResponse{
+    HeadersToSet: map[string]string{"x-support-ref": "contact-support"},
+}
+```
+
+The following example replaces the error:
+
+```go
+status := 503
+return &policy.FaultResponse{
+    StatusCode:   &status,
+    HeadersToSet: map[string]string{"content-type": "application/json"},
+    Body:         []byte(`{"error":"service unavailable"}`),
+}
+```
+
+Returning a `FaultResponse` does not stop the other fault policies. Every fault policy in the list runs, in order, except an entry whose `executionCondition` is false, and each one sees the changes made before it. If two fault policies set a body, the later one wins.
+
+!!! tip
+    Fault policies run when something is already going wrong, and the client waits for them to finish. Keep `OnFault` fast, and give any outbound call, such as a notification webhook, a short timeout.
+
+### Python fault policies
+
+A Python policy supports the fault path by implementing `FaultPolicy` from `apip_sdk_core`:
+
+```python
+from apip_sdk_core import ExecutionContext, FaultContext, FaultPolicy, FaultResponse, ProcessingMode
+
+class MyFaultPolicy(FaultPolicy):
+    def mode(self) -> ProcessingMode:
+        return ProcessingMode()  # takes part in no request or response phase
+
+    def on_fault(
+        self, execution_ctx: ExecutionContext, ctx: FaultContext, params
+    ) -> FaultResponse | None:
+        print("request failed", ctx.response_status, ctx.policy, ctx.source)
+        return None  # leave the error unchanged
+```
+
+`FaultContext` and `FaultResponse` have the same fields as in Go, in snake case, for example `ctx.response_status`, `ctx.fault`, and `FaultResponse(status_code=503, headers_to_set={...})`.
+
+## Describe failures from your policy
+
+When your policy rejects a request, describe the failure so that fault policies, conditions, and analytics can tell what went wrong. Set `IsFault` and `Fault` on the response your policy already returns:
+
+```go
+return policy.ImmediateResponse{
+    StatusCode: 403,
+    Headers:    map[string]string{"content-type": "application/json"},
+    Body:       []byte(`{"error":"forbidden"}`),
+    IsFault:    true,
+    Fault: &policy.FaultDetails{
+        Code:        "965001",
+        Type:        policy.FaultTypeAuthorization,
+        Direction:   policy.DirectionRequest,
+        Message:     "The caller is not allowed to access this resource",
+        Description: "tenant acme is not in the allow list",
+    },
+}
+```
+
+| Field | Description |
+|---|---|
+| `IsFault` | Marks the response as a failure. A response with a status of `400` or above is a failure even without it. Set it for a failure that uses a lower status. |
+| `Fault.Code` | A six-digit code. Use a code in the `965000`–`969999` range for your own policies; WSO2 never allocates codes in that range. |
+| `Fault.Type` | The failure class, from the `policy.FaultType*` constants, for example `policy.FaultTypeAuthentication`, `policy.FaultTypeValidation`, or `policy.FaultTypeGuardrail`. |
+| `Fault.Direction` | `policy.DirectionRequest` or `policy.DirectionResponse`: which side of the exchange was rejected. |
+| `Fault.Message` | A client-safe summary. |
+| `Fault.Description` | The internal reason. It is passed to fault policies, never recorded in analytics, and not sent to the client unless a custom Error Response Formatter template includes `${Description}`. |
+
+`Fault` is metadata. Setting it does not change the status, headers, or body your policy returns, so keep writing the body your policy already returns. Fault policies can use it to change the error: for example, the [Error Response Formatter](../fault-policies.md#format-the-error-response) renders the fault's code, type, and message in the shape the API is configured with.
+
+`DownstreamResponseModifications` has the same `IsFault` and `Fault` fields, for a policy that rejects a response.
+
+To end a stream as a failure, set `IsFault: true` on `TerminateResponseChunk`. A streamed response has usually already been sent with status `200`, so a terminated stream is not a failure unless the policy says it is:
+
+```go
+return &policy.TerminateResponseChunk{
+    Body:    []byte("data: {\"error\": \"content violation\"}\n\n"),
+    IsFault: true,
+    Fault: &policy.FaultDetails{
+        Code:      "965002",
+        Type:      policy.FaultTypeGuardrail,
+        Direction: policy.DirectionResponse,
+        Message:   "Content violation",
+    },
+}
+```
+
 ## What's Next?
 
 - [Building the Gateway with Custom Policies](building-gateway-with-custom-policies.md): Build a gateway image that includes your custom policy
+- [Fault policies](../fault-policies.md): Attach fault policies to an API and run them for specific failures
