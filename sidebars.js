@@ -106,9 +106,11 @@ const sidebars = {
       group("Self-Hosted Gateways", [
         doc("api-gateway/self-hosted-gateways/architecture", "Architecture"),
         doc("api-gateway/self-hosted-gateways/quickstart-guide", "Quick Start Guide"),
+        doc("api-gateway/self-hosted-gateways/setting-up", "Setting Up Guide"),
+        doc("api-gateway/self-hosted-gateways/deploy-and-test-api", "Deploy and Test an API"),
         doc("api-gateway/self-hosted-gateways/manage-policies", "Add and Manage Policies"),
+        doc("api-gateway/self-hosted-gateways/gateway-discovered-apis", "Gateway Discovered APIs"),
         doc("api-gateway/self-hosted-gateways/high-availability", "High Availability"),
-
       ]),
       group("Observability", [
         doc("api-gateway/observability/overview", "Overview"),

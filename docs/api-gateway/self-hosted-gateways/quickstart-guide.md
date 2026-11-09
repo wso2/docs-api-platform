@@ -4,125 +4,166 @@ pagination_label: "Self-Hosted Gateway Quick Start"
 description: "Set up a Self-Hosted Gateway in your own infrastructure and connect it to the API Management Cloud control plane."
 ---
 
-This guide walks you through setting up a Self-Hosted Gateway in your environment. Follow these quick steps to get your gateway running and connected to the control plane.
+This guide gets a self-hosted API Gateway running on your machine with Docker Compose, connected to API Platform Cloud, in about ten minutes. When you finish, the gateway shows as **Active** in the console and you're ready to [deploy and test an API](./deploy-and-test-api.md).
 
-:::note
-This feature is currently available in the **US region** only.
-
-:::
-
-## Overview
-
-The Self-Hosted Gateway enables you to run the API Gateway in your own infrastructure while maintaining centralized management through the control plane. This guide covers the fastest way to get started.
+> For production installs on a VM or Kubernetes, see [Setting Up](./setting-up.md).
 
 ## Prerequisites
 
-Before you begin, ensure you have:
+- An API Platform Cloud organization, and access to its console.
+- `curl` and `unzip`.
+- Docker with Docker Compose v2, installed and running. Check with:
 
-- **cURL** installed
-- **unzip** installed
-- **Docker** installed and running (for Quick Start)
-- **Docker Compose** installed
+  ```bash
+  docker --version
+  docker compose version
+  ```
 
-## Step 1: Add a Self-Hosted Gateway
+- Outbound HTTPS (port 443) access from your machine to the internet.
+- Free local ports **8080, 8443, 9090, 9094, 9011, 9901, 9002, 9003**. If any are already in use, see [Port already in use](./setting-up.md#port-already-in-use).
 
-Your organization does not have a default gateway, so you add the gateway in the API Management Console first.
+## Step 1: Add a self-hosted gateway in the console
 
-1. Sign in to the [API Management Console](https://console.bijira.dev).
+1. Sign in to the API Platform Cloud console and select your organization.
+2. In the left navigation, click **Gateways**.
 
-2. Go to the organization level. In the header, select your organization from the **Organizations** list.
+   If this is your first gateway, the page offers two choices. Click **Add self-hosted gateway**. If you already have gateways, click **+ Add Gateway**.
 
-3. In the left navigation menu, click **Gateways**.
+3. On the **Add Gateway** page, fill in the form:
+
+   | Field | Value |
+   |---|---|
+   | **Hosting** | **Self-hosted** |
+   | **Gateway Type** | **API Gateway** |
+   | **Name** | A unique name, for example `Local Self-Hosted Gateway`. The gateway **handle** (shown under the field, for example `local-self-hosted-gateway`) is derived from this name and **can't be changed later**. |
+   | **Description** | Optional. |
+   | **Environment** | The environment this gateway serves, for example `development`. |
+   | **Gateway Version** | `API-Gateway v1.2` (Latest). |
+   | **URL** | The base URL your API consumers use to reach this gateway's HTTPS listener. For a local run, use `https://localhost:8443`. The console uses this URL when it shows API endpoints and test commands. |
+
+   ![Add Gateway form filled in for a self-hosted API Gateway](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-2.png)
 
 4. Click **Add Gateway**.
 
-5. Under **Hosting**, select **Self-hosted**. To see how the hosting options differ, click **Compare options**.
+The gateway is created with status **Inactive** and the page shows *Waiting for connection*. The **Configurations** tab lists the setup commands, with four tabs: **Quick Start**, **Virtual Machine**, **Docker**, and **Kubernetes**. Keep **Quick Start** selected.
 
-6. Under **Gateway Type**, select **API Gateway**.
+![Newly created gateway waiting for connection, showing Quick Start setup commands](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-4.png)
 
-7. Enter the following details.
+> **Important: the registration token is shown only once.** In step 3 of the setup commands, the page displays `<your-gateway-token>` as a placeholder. When you click **Copy** on that block, the copied command contains your real token. Copy and run it before you leave this page. If you navigate away, the console replaces this step with a **Reconfigure** button that issues a new token (see [Rotate the registration token](./setting-up.md#rotate-the-registration-token)).
 
-    | Field | Description |
-    |:------|:------------|
-    | **Name** | Required. A name for the gateway, such as `self-hosted-gateway-1`. The gateway handle is derived from the name, and you cannot change it later. |
-    | **Description** | Optional. A description of the gateway. |
-    | **Environment** | Required. The environment that the gateway belongs to, such as `development`. |
-    | **Gateway Version** | Required. The version of the gateway. The latest version is selected by default. |
-    | **URL** | Required. The endpoint that the gateway answers on, such as `https://localhost:8443`. Change it to match your infrastructure. |
+## Step 2: Download the gateway
 
-8. Click **Add Gateway**.
+Run the command from step **1 – Download the Gateway**:
 
-The console shows a registration token and the commands to set up the gateway on your infrastructure. The gateway stays inactive until it connects to the control plane.
+```bash
+curl -sLO https://github.com/wso2/api-platform/releases/download/gateway/v1.2.0/wso2apip-api-gateway-1.2.0.zip && \
+unzip wso2apip-api-gateway-1.2.0.zip
+```
 
-:::note
-A self-hosted gateway is never the default gateway of an environment. Select the gateway explicitly when you deploy an API proxy to it.
-:::
+## Step 3: Run the one-time setup script
 
-## Step 2: Set Up and Start the Gateway
+Run the command from step **2 – Set up the Gateway**:
 
-1. On the page of the gateway, select how you want to run the gateway, such as **Quick Start**, and follow the steps that the console shows.
+```bash
+cd wso2apip-api-gateway-1.2.0 && ./scripts/setup.sh
+```
 
-    :::note
-    Copy the commands from the console, because they include the registration token of your gateway.
-    :::
+The script provisions everything the gateway needs to start:
 
-2. When the gateway connects to the control plane, it shows as **Active** on the **Gateways** page, under **Self-hosted gateways**.
+- the listener TLS certificate for the HTTPS ingress (`resources/listener-certs/`),
+- an AES-256 key for encrypting data at rest (`resources/aesgcm-keys/`),
+- admin credentials for the Gateway Controller's management API,
+- `api-platform.env` (the gateway's environment file) and `.env` (a unique Docker Compose project name for this copy).
 
-## Step 3: Create an API Proxy
+Sample output:
 
-:::note
-This feature is currently available only for **REST API** proxies that are created from **scratch**, by **importing from OpenAPI**, or by specifying an **endpoint**.
+```text
+[setup] Provisioning listener TLS certificate ...
+[setup] Provisioning AES-256 encryption key ...
+[setup]   - AES-256 encryption key generated at resources/aesgcm-keys/default-aesgcm256-v1.bin
+[setup] Provisioning the docker compose project name ...
+[setup]   - COMPOSE_PROJECT_NAME=wso2apip-gateway-1-2-0-965b1a written to .env (generated)
+[setup] Provisioning admin credentials ...
+[setup] Writing api-platform.env ...
+[setup] Setup complete.
 
-This feature is not currently available for **REST API** proxies created by importing an API contract from **GitHub**, or for **WebSocket**, **GraphQL**, **MCP**, or **Egress** APIs.
+  ==================================================================
+   ADMIN CREDENTIALS
 
-:::
+     Username:  admin
+     Password:  ****************
 
-In this guide, you will specify a URL to an OpenAPI definition of a sample API to create an API proxy.
+   !!  THIS PASSWORD WILL NOT BE SHOWN AGAIN — COPY IT NOW  !!
+  ==================================================================
+```
 
-1. Navigate to **projects**.
+> Save the admin password somewhere safe. Only its bcrypt hash is stored. You need the password only if you call the controller's local management API directly. The cloud connection doesn't use it.
 
-2. To create a new project for your APIs, click **+ Create Project** and follow the setup steps. Otherwise, select **Default** to continue with the default project.
+## Step 4: Connect the gateway to the control plane
 
-3. Select **Import API Contract**.
+Go back to the console and click **Copy** on step **3 – Configure the Gateway**. Then paste and run the command in the same `wso2apip-api-gateway-1.2.0` folder. It appends the control-plane settings to `api-platform.env`:
 
-4. Select **URL** option and provide the following URL to import the API contract:
+```bash
+cat >> api-platform.env << 'ENVFILE'
+APIP_GW_CONTROLLER_CONTROLPLANE_HOST=<control-plane-host-shown-in-console>
+APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=<your-gateway-token>
+ENVFILE
+```
 
-    ```text
-    https://raw.githubusercontent.com/wso2/bijira-samples/refs/heads/main/reading-list-api/openapi.yaml   
-    ```
+Use the command copied from the console rather than typing it, so that the host and token are exact.
 
-5. Click **Next** and edit pre-defined values as needed. You can keep the default values for this sample.
+## Step 5: Start the gateway
 
-6. Select the **Gateway Type** as the **Self-Hosted Gateway**.
+Run the command from step **4 – Start the Gateway**:
 
-7. Click **Create** to create the API Proxy. Wait for the setup to complete and you will be navigated to the API Overview Page.
+```bash
+docker compose up
+```
 
-## Step 4: Deploy the API Proxy
+To run it in the background instead, use `docker compose up -d`.
 
-1. Navigate to the **Deploy** page of the API Proxy, and select the self-hosted gateway that you added.
+Docker Compose starts two containers: `gateway-controller` and `gateway-runtime`. Within a few seconds, the controller log shows the connection to the control plane:
 
-2. Click **Deploy**.
+```text
+gateway-controller-1  | msg="Connection state changed" from=disconnected to=connecting
+gateway-controller-1  | msg="Received connection acknowledgment" gateway_id=01a1a5c8-...
+gateway-controller-1  | msg="Connection state changed" from=connecting to=connected
+gateway-controller-1  | msg="Successfully pushed gateway manifest to control plane" policy_count=54
+```
 
-If you change the API proxy later, deploy it again.
+## Step 6: Verify
 
-## Step 5: Test the API Proxy
+1. Check that both containers are running and the controller is healthy:
 
-1. Navigate to the **Test --> cURL** page of the API Proxy.
+   ```bash
+   docker compose ps
+   curl http://localhost:9094/api/admin/v1/health
+   ```
 
-2. Use the **cURL** for relevant resource to test the API Proxy.
+   ```json
+   {"status":"healthy","timestamp":"2026-11-04T09:02:01Z"}
+   ```
 
-## Next Steps
+2. In the console, reload the **Gateways** page. The status doesn't update live, so a refresh is required. Your gateway now shows **Active** under **Self-hosted gateways**.
 
-- [Add and Manage Policies](./manage-policies.md) - Apply policies to the APIs on your gateway
-- [Observability](../observability/overview.md) - Collect the logs and traces of your gateway
+   ![Gateways list showing the self-hosted gateway as Active](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-6.png)
+
+3. Open the gateway. The status panel shows **Connected: This gateway is connected to the control plane.**
+
+## Next steps
+
+- [Deploy and test an API](https://wso2.com/api-platform/docs/assets/img/api-platform-gateway/gateway/gateway-list-empty.png) on your new gateway.
+- Before going to production, review [Setting Up → Production hardening](https://wso2.com/api-platform/docs/assets/img/api-platform-gateway/gateway/gateway-list-empty.png).
 
 ## Troubleshooting
 
-If the gateway doesn't connect:
+| Symptom | What to check |
+|---|---|
+| Gateway stays **Inactive** | Refresh the page first, because status doesn't update live. Then check `docker compose logs gateway-controller` for `to=connected`. If you see authentication errors, the token is wrong or was revoked; [reconfigure](./setting-up.md#rotate-the-registration-token). |
+| Controller exits with `read /etc/gateway-controller/config.toml: is a directory` | Docker can't see the folder you extracted the gateway into. Docker Desktop, Colima, and Rancher Desktop share only certain host paths (usually your home directory). Move the folder under a shared path and start again. |
+| `bind: address already in use` | Another process uses one of the gateway ports. See [Port already in use](./setting-up.md#port-already-in-use). |
+| `WebSocket connection failed … context deadline exceeded` | Usually transient: the controller retries automatically with backoff. If it persists, make sure outbound HTTPS to the control-plane host is allowed, including through any corporate proxy or firewall. |
 
-1. **Verify the token**: Ensure the gateway token is correctly set in `keys.env`
-2. **Check network connectivity**: The gateway needs outbound HTTPS access to `*.bijira.dev`
-3. **View logs**: Run `docker compose logs -f` to see gateway logs
-4. **Check firewall**: Ensure port 8443 is accessible
+For more, see [Setting Up → Troubleshooting](./setting-up.md#troubleshooting).
 
-For more troubleshooting help, see Troubleshooting.
+
