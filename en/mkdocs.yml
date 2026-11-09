@@ -172,7 +172,6 @@ nav:
         - Concepts: api-portal/1.0.0/concepts.md
         - Quick Start Guide: api-portal/1.0.0/quickstart-guide.md
         # Stand the portal up, in the order an operator does it.
-        - Getting Started: api-portal/1.0.0/getting-started.md
         - Setting Up:
             - Configuration & Interpolation: api-portal/1.0.0/setting-up/configuration.md
             - Minimum resource requirements: api-portal/1.0.0/setting-up/resource-requirement.md
