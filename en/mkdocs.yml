@@ -81,7 +81,7 @@ nav:
   - Monetization:
     - Overview: monetization/overview.md
     - Monetizing APIs:
-        - Getting Started: monetization/getting-started.md
+        - Connect Stripe: monetization/getting-started.md
         - Manage Paid Subscription Plans: monetization/manage-paid-subscription-plans.md
     - Consume Monetized APIs:
         - Subscribe to a Paid Plan: monetization/subscribe-to-paid-plan.md
@@ -139,7 +139,7 @@ nav:
         - Customizing Gateway Policies: tools/cli/customizing-gateway-policies.md
         - Reference: tools/cli/reference.md
     - VS Code for API Design:
-        - Getting Started: tools/vscode-api-design/getting-started.md
+        - Quick Start Guide: tools/vscode-api-design/getting-started.md
         - Design APIs: tools/vscode-api-design/design-apis.md
         - Govern APIs: tools/vscode-api-design/govern-apis.md
         - End-to-End Tutorial: tools/vscode-api-design/end-to-end-tutorial.md
@@ -147,7 +147,8 @@ nav:
         - Quick Start Guide: tools/arazzo-mcp-gen-cli/quick-start-guide.md
         - Reference: tools/arazzo-mcp-gen-cli/reference.md
     - VS Code Arazzo Visualizer:
-        - Getting Started: tools/vscode-arazzo-visualizer/getting-started.md
+        - Overview: tools/vscode-arazzo-visualizer/getting-started.md
+        - Quick Start Guide: tools/vscode-arazzo-visualizer/quick-start-guide.md
 
 # Extensions
 markdown_extensions:
