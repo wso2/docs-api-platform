@@ -11,17 +11,14 @@ AI services bill on a per-token basis, so uncontrolled usage can lead to unexpec
 
 ## Built-in Rate Limiting
 
-Configured through the **Rate Limiting** tab on an LLM Provider. Supports limiting by request count and token count.
+Configured through the **Rate Limiting** tab on an LLM Provider. Supports limiting by request count, token count, and cost.
 
 ### Scopes
 
-| Scope | Controls | Status |
-|-------|----------|--------|
-| **Backend** | Requests from the gateway to the upstream LLM provider | Available |
-| **Per Consumer** | Requests from client applications to the gateway | *Coming soon* |
-
-!!! info "Per Consumer Rate Limiting — Coming Soon"
-    Only the **Backend** scope is currently configurable.
+| Scope | Controls |
+|-------|----------|
+| **Backend** | Requests from the gateway to the upstream LLM provider |
+| **Per Consumer** | Requests from each client application to the gateway |
 
 ### Configuration Modes
 
@@ -37,16 +34,16 @@ Configured through the **Rate Limiting** tab on an LLM Provider. Supports limiti
 |-----------|-------------|
 | **Request Count** | Maximum requests within the time window |
 | **Token Count** | Maximum tokens (prompt + completion) within the time window |
-| **Cost** | *(Coming soon)* |
+| **Cost** | Maximum spend, in US dollars, within the time window |
 
-For each criterion, set a **Quota** and a **Reset Duration** (`second`, `minute`, `hour`).
+For each criterion, set a **Quota** and a **Reset Duration** (`hour`, `day`, `week`, or `month`).
 
 ### Configure
 
 1. Navigate to **AI Workspace** > **LLM Providers**.
 2. Click on the provider name and go to the **Rate Limiting** tab.
-3. Select **Provider-wide** or **Per Resource** under the Backend section.
-4. Enable **Request Count** and/or **Token Count**, set the Quota and Reset Duration.
+3. Select **Provider-wide** or **Per Resource** under the **Backend** or **Per Consumer** section.
+4. Enable **Request Count**, **Token Count**, or **Cost**, and set the **Quota** and **Reset Duration**.
 5. For Per Resource: expand **Limit per Resource** for defaults, then expand individual resources to override.
 6. Click **Save** and redeploy the provider.
 
