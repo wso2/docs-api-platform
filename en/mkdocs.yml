@@ -1309,6 +1309,7 @@ nav:
                 -   Traces:
                     -   OpenTracing: api-manager/4.6.0/monitoring/observability/traces/monitoring-with-opentracing.md
                     -   OpenTelemetry: api-manager/4.6.0/monitoring/observability/traces/monitoring-with-opentelemetry.md
+                    -   Moesif Traces: monitoring/observability/traces/monitoring-with-moesif.md
                 -   Metrics:
                     -   JMX-Based Monitoring: api-manager/4.6.0/monitoring/observability/metrics/jmx-based-monitoring.md
         -   Administration:
