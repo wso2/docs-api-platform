@@ -20,7 +20,7 @@ The AI Gateway routes, secures, and observes traffic to large language model (LL
 This guide is for developers setting up their first AI Gateway on Cloud. You'll create a gateway, connect an OpenAI provider to it, and send your first request.
 
 ## Before you start
-Before going through this quickstart, make sure you meet the following prerequisites:
+Before going through this quick start guide, make sure you meet the following prerequisites:
 
 - Access to [AI Workspace](https://ai-workspace.bijira.dev/) with the **Admin** role.
 - An OpenAI API key.
@@ -40,17 +40,18 @@ Open [AI Workspace](https://ai-workspace.bijira.dev/) and sign in. Then create a
 ### Step 2: Add a gateway
 
 1. Click **AI Gateways** in the left navigation menu.
-2. Click **Add AI Gateway**.
+2. Click **Add Gateway**.
 3. Fill in the gateway details:
 
     | Field | Value |
     |---|---|
+    | **Gateway Version** | Keep the latest version, for example `AI-Gateway v1.2` |
+    | **Environment** | Select an environment, for example `Development` |
     | **Name** | A unique name for the gateway |
     | **Description** | An optional description of the gateway |
     | **URL** | The gateway URL. The gateway runtime is accessible at this endpoint, for example `https://localhost:8443` |
-    | **Associated Environment** | Select an environment, for example `Development` |
 
-4. Click **Add Gateway**.
+4. Click **Add AI Gateway**.
 
 The gateway detail screen opens. 
 
@@ -61,25 +62,32 @@ Select the __Quick Start__ tab in the detail page of the newly added gateway's *
 1. Download and unzip the gateway distribution:
 
     ```bash
-    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.1.0/wso2apip-ai-gateway-1.1.0.zip && \
-    unzip wso2apip-ai-gateway-1.1.0.zip
+    curl -sLO https://github.com/wso2/api-platform/releases/download/ai-gateway/v1.2.0/wso2apip-ai-gateway-1.2.0.zip && \
+    unzip wso2apip-ai-gateway-1.2.0.zip
     ```
 
-2. Create the environment file with your registration token. 
+2. Run the one-time setup script:
 
     ```bash
-    cat > wso2apip-ai-gateway-1.1.0/configs/keys.env << 'ENVFILE'
+    cd wso2apip-ai-gateway-1.2.0 && ./scripts/setup.sh
+    ```
+
+3. Add the control plane settings to the environment file. The setup script in the previous step creates `api-platform.env` with the other settings the gateway needs, so this command appends to it with `cat >>`. Don't create the file with only these three settings, or the gateway can't connect to AI Workspace.
+
+    Copy this command from the **Quick Start** tab on the gateway's detail page. The copied command already contains your Moesif key (`MOESIF_KEY`) and gateway registration token (`APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN`), so you don't need to replace the placeholders shown here:
+
+    ```bash
+    cat >> api-platform.env << 'ENVFILE'
     MOESIF_KEY=<your-moesif-key>
-    GATEWAY_CONTROLPLANE_HOST=connect.bijira.dev
-    GATEWAY_REGISTRATION_TOKEN=<your-gateway-token>
+    APIP_GW_CONTROLLER_CONTROLPLANE_HOST=connect.bijira.dev
+    APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=<your-gateway-token>
     ENVFILE
     ```
 
-3. Start the runtime:
+4. Start the runtime:
 
     ```bash
-    cd wso2apip-ai-gateway-1.1.0 && \
-    docker compose --env-file configs/keys.env up
+    docker compose --env-file api-platform.env up
     ```
 
 ### Step 4: Verify the gateway is active
@@ -144,12 +152,12 @@ to send an authenticated request to your LLM through the gateway.
 
 ### Step 3: Send a request
 
-Send an authenticated request through the gateway with your API key in the request header. For example, here we send a request to OpenAI API's `/chat/completions` endpoint:
+Send an authenticated request through the gateway with your API key in the request header. For example, here we send a request to OpenAI API's `/chat/completions` endpoint. Replace `<api-key>` with the key you generated. The `-k` flag skips certificate verification because the local gateway uses a self-signed certificate. Don't use `-k` with a gateway that has a certificate from a trusted certificate authority (CA).
 
 ```bash
-curl -X POST "https://localhost:8443/my-openai-provider/ask-ai/chat/completions" \
+curl -k -X POST "https://localhost:8443/my-openai-provider/ask-ai/chat/completions" \
   -H "Content-Type: application/json" \
-  -H "X-API-Key: 9f736716ebd31d9706s83c10d9aec691ddc0e2d8b2413xx86f5a3db3461b4d80" \
+  -H "X-API-Key: <api-key>" \
   -d '{
   "model": "gpt-4o-mini",
   "messages": [

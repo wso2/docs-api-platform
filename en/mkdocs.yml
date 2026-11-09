@@ -204,8 +204,7 @@ nav:
           - Analytics Header Filter: cloud/ai-gateway/analytics/analytics-header-filter.md
     - AI Workspace:
         - Overview: cloud/ai-workspace/overview.md
-        - Quickstart: cloud/ai-workspace/quickstart.md
-        - Getting Started: cloud/ai-workspace/getting-started.md
+        - Quick Start Guide: cloud/ai-workspace/quickstart.md
         - AI Gateways:
             - Setting Up: cloud/ai-workspace/ai-gateways/setting-up.md
         - LLM Providers:
@@ -253,7 +252,7 @@ nav:
             - Writing an AI Policy: cloud/ai-workspace/policies/writing-an-ai-policy.md
     - Event Gateway:
         - Overview: cloud/event-gateway/overview.md
-        - Getting Started: cloud/event-gateway/getting-started.md
+        - Quick Start Guide: cloud/event-gateway/getting-started.md
         - Setting Up: cloud/event-gateway/setting-up.md
         - Publish APIs:
           - Overview: cloud/event-gateway/publish-apis/overview.md
@@ -266,7 +265,7 @@ nav:
         # - API Platform Cloud Gateway: cloud/api-platform-gateway/cloud-gateway.md
         - Self-Hosted Gateway:
             - Architecture: cloud/api-platform-gateway/architecture.md
-            - Getting Started: cloud/api-platform-gateway/getting-started.md
+            - Quick Start Guide: cloud/api-platform-gateway/getting-started.md
             - Setting Up: cloud/api-platform-gateway/setting-up.md
             - Adding and Managing Policies: cloud/api-platform-gateway/manage-policies.md
             - Custom Policies:
@@ -314,6 +313,7 @@ nav:
     - API Platform Samples:
         - Samples Overview: cloud/samples/samples-overview.md
     - Developer Portal:
+        - Quick Start Guide: https://wso2.com/api-platform/docs/guides/developer-portal/api-discovery-and-tryout/
         - Theming Developer Portal:
             - Theming with AI: cloud/devportal/theming-devportal-with-ai.md
             - Theming Manually:
