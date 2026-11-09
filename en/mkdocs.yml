@@ -163,7 +163,7 @@ nav:
     - "1.0.0":
       - Overview: ai-workspace/1.0.0/overview.md
       - About this Release: ai-workspace/1.0.0/about-this-release.md
-      - Getting Started: ai-workspace/1.0.0/getting-started.md
+      - Quick Start Guide: ai-workspace/1.0.0/getting-started.md
       # Set up the workspace itself.
       - Setting Up:
           - Configuration & Interpolation: ai-workspace/1.0.0/setting-up/configuration.md
