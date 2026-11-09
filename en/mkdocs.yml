@@ -1645,6 +1645,7 @@ nav:
               - Harden the Deployment: ai-workspace/1.0.0/production/harden.md
               - Connect AI Gateways: ai-workspace/1.0.0/production/connect-gateways.md
               - Operate the Deployment: ai-workspace/1.0.0/production/operate.md
+              - Configure Audit Logging: ai-workspace/1.0.0/production/audit-logging.md
           - Deploy on VMs: ai-workspace/1.0.0/production/deploy-on-vms.md
           - Deploy on Kubernetes:
               - Kubernetes: ai-workspace/1.0.0/production/deploy-on-kubernetes.md
