@@ -16,6 +16,13 @@ content_type: "concept"
 
 API Platform Gateway is the complete API gateway system for managing, securing, and routing API traffic to your backend services.
 
+## Deployment options
+
+You can run the API Gateway in two ways:
+
+- **Standalone:** You configure APIs through YAML files, the gateway's REST API, or the `ap` CLI. The gateway doesn't need a control plane. The pages in this section cover this mode.
+- **Connected to a control plane:** The gateway still runs in your infrastructure, and you create and deploy APIs from API Platform Cloud or WSO2 API Manager. To set up the connection, see [Control plane connection](deployment/production-deployment/control-plane-connection.md).
+
 ## Components
 
 | Component | Purpose |
