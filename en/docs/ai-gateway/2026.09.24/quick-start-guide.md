@@ -67,7 +67,7 @@ The commands below use version `1.2.0`. Substitute the API Platform AI Gateway r
     export ADMIN_PASSWORD='<the password scripts/setup.sh printed>'
 
     # Start the complete stack
-    docker compose up
+    docker compose up -d
 
     # Verify gateway controller admin endpoint is running
     curl http://localhost:9094/api/admin/v1/health
@@ -95,7 +95,7 @@ The commands below use version `1.2.0`. Substitute the API Platform AI Gateway r
     $env:ADMIN_PASSWORD='<the password setup.ps1 printed>'
 
     # Start the complete stack
-    docker compose up
+    docker compose up -d
 
     # Verify gateway controller admin endpoint is running
     curl.exe http://localhost:9094/api/admin/v1/health
@@ -363,7 +363,7 @@ As a platform administrator, deploy an LLM provider for the vendor whose API key
           name: bedrock-api-key
         spec:
           displayName: AWS Bedrock API Key
-          value: "${AWS_BEARER_TOKEN_BEDROCK}"
+          value: "${env:AWS_BEARER_TOKEN_BEDROCK}"
         "@ | Set-Content -Path bedrock-secret.yaml -Encoding utf8
 
         curl.exe -X POST http://localhost:9090/api/management/v1/secrets `
@@ -388,7 +388,7 @@ As a platform administrator, deploy an LLM provider for the vendor whose API key
           template: awsbedrock
           context: /bedrock
           upstream:
-            url: https://bedrock-runtime.${AWS_REGION}.amazonaws.com
+            url: https://bedrock-runtime.${env:AWS_REGION}.amazonaws.com
             auth:
               type: api-key
               header: Authorization
