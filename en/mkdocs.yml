@@ -79,7 +79,7 @@ nav:
     - "next":
       - Overview: ai-workspace/next/overview.md
       - About this Release: ai-workspace/next/about-this-release.md
-      - Getting Started: ai-workspace/next/getting-started.md
+      - Quick Start Guide: ai-workspace/next/getting-started.md
       # Set up the workspace itself.
       - Setting Up:
           - Configuration & Interpolation: ai-workspace/next/setting-up/configuration.md

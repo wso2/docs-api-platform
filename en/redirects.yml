@@ -6,7 +6,7 @@ redirect_maps:
   ai-workspace/ai-gateways/setting-up.md: cloud/ai-workspace/ai-gateways/setting-up.md
   ai-workspace/configure-inbound-auth.md: cloud/ai-workspace/configure-inbound-auth.md
   ai-workspace/genai-applications.md: cloud/ai-workspace/genai-applications.md
-  ai-workspace/getting-started.md: cloud/ai-workspace/getting-started.md
+  ai-workspace/getting-started.md: cloud/ai-workspace/quickstart.md
   ai-workspace/insights.md: cloud/ai-workspace/insights.md
   ai-workspace/overview.md: cloud/ai-workspace/overview.md
   ai-workspace/using-sdks.md: cloud/ai-workspace/using-sdks.md
