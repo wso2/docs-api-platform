@@ -6,7 +6,7 @@ redirect_maps:
   ai-workspace/ai-gateways/setting-up.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/ai-gateways/setting-up/
   ai-workspace/configure-inbound-auth.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/configure-inbound-auth/
   ai-workspace/genai-applications.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/genai-applications/
-  ai-workspace/getting-started.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/getting-started/
+  ai-workspace/getting-started.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/quickstart/
   ai-workspace/insights.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/insights/
   ai-workspace/overview.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/overview/
   ai-workspace/using-sdks.md: https://wso2.com/api-platform/docs/cloud/ai-workspace/using-sdks/
