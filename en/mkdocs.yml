@@ -154,7 +154,7 @@ nav:
             - LLM Proxy: ai-gateway/next/gateway-artifacts/llm-proxy.md
             - MCP Proxy: ai-gateway/next/gateway-artifacts/mcp-proxy.md
         - CLI and Extensibility:
-            - CLI Quick Start: tools/cli/quick-start-guide.md
+            - CLI Quick Start Guide: tools/cli/quick-start-guide.md
             - CLI Reference: tools/cli/reference.md
             - Customizing Gateway Policies: tools/cli/customizing-gateway-policies.md
         - Guides:
@@ -261,7 +261,7 @@ nav:
             - LLM Proxy: ai-gateway/1.2.0/gateway-artifacts/llm-proxy.md
             - MCP Proxy: ai-gateway/1.2.0/gateway-artifacts/mcp-proxy.md
         - CLI and Extensibility:
-            - CLI Quick Start: tools/cli/quick-start-guide.md
+            - CLI Quick Start Guide: tools/cli/quick-start-guide.md
             - CLI Reference: tools/cli/reference.md
             - Customizing Gateway Policies: tools/cli/customizing-gateway-policies.md
         - Guides:
