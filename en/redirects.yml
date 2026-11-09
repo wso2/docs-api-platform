@@ -1,4 +1,6 @@
 redirect_maps:
+  # API Portal: Getting Started merged into the quick start guide
+  api-portal/next/getting-started.md: api-portal/next/quickstart-guide.md
   # next has no root overview page - redirect the bare version root to its
   # real first page, so it isn't a dead 403 (same fix as apim-4.6.0).
   api-portal/next/index.md: api-portal/next/overview.md
