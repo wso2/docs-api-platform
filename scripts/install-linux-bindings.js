@@ -3,6 +3,7 @@
 // Faster needs. Install the matching libc build before `docusaurus build`.
 const {execSync} = require('node:child_process');
 const fs = require('node:fs');
+const path = require('node:path');
 
 if (process.platform !== 'linux') {
   process.exit(0);
@@ -28,12 +29,29 @@ const specs = [
   ['lightningcss', `lightningcss-linux-${arch}-${libc}`],
 ];
 
+// Read package.json from disk. lightningcss does not export that path, so
+// require('lightningcss/package.json') throws ERR_PACKAGE_PATH_NOT_EXPORTED.
+function optionalVersion(parent, name) {
+  let dir = path.dirname(require.resolve(parent));
+  while (dir !== path.dirname(dir)) {
+    const candidate = path.join(dir, 'package.json');
+    if (fs.existsSync(candidate)) {
+      const pkg = JSON.parse(fs.readFileSync(candidate, 'utf8'));
+      if (pkg.name === parent) {
+        return pkg.optionalDependencies && pkg.optionalDependencies[name];
+      }
+    }
+    dir = path.dirname(dir);
+  }
+  return undefined;
+}
+
 const missing = specs.flatMap(([parent, name]) => {
   try {
     require.resolve(name);
     return [];
   } catch {
-    const version = require(`${parent}/package.json`).optionalDependencies[name];
+    const version = optionalVersion(parent, name);
     if (!version) {
       throw new Error(`No optional dependency ${name} on ${parent}`);
     }
