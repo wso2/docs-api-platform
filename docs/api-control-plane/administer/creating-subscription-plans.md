@@ -1,13 +1,11 @@
 ---
 title: "Manage Subscription Plans"
-description: "Create organization-level subscription plans that define the rate and quota tiers, and the pricing, that applications can subscribe to."
+description: "Create organization-level subscription plans that define the rate and quota tiers that applications can subscribe to."
 ---
 
 A subscription plan defines how many requests an application can make in a time window. You create subscription plans at the organization level, and then enable them on the APIs that you publish. When consumers subscribe an application to an API in a portal, the portal lists the plans that are enabled for the API, so that they can choose one.
 
 You configure the subscription plans for a specific API when you publish it to a portal. For more information, see [Customize the Portal Listing](../publish-api-proxy/customize-portal-listing.md).
-
-A plan can be free or paid. Paid plans are coming soon.
 
 :::tip
 Deleting a subscription plan is only possible if there are no active subscriptions associated with it.
@@ -15,7 +13,7 @@ Deleting a subscription plan is only possible if there are no active subscriptio
 
 ## View Subscription Plans
 
-1. Sign in to the [API Management Console](https://console.bijira.dev).
+1. Sign in to the [API Control Plane](https://console.bijira.dev).
 
 2. Go to the organization level. In the header, select your organization from the **Organizations** list.
 
@@ -27,7 +25,7 @@ The **Subscription Plans** page lists the plans in your organization, with their
 
 1. On the **Subscription Plans** page, click **Create plan**.
 
-2. In the **Add subscription plan** dialog, enter the following details.
+2. In the dialog box that opens, enter the following details.
 
     | Field | Description |
     |:------|:------------|
@@ -38,11 +36,7 @@ The **Subscription Plans** page lists the plans in your organization, with their
 
 3. Click **Add plan**.
 
-:::note
-Paid plans are coming soon. With a paid plan, subscribers pay through each portal that the plan is published to, and a portal gets the pricing of the plan when the plan is first published there.
-:::
-
-The plan appears on the **Subscription Plans** page, where its **Pricing** shows whether it is free or paid.
+The plan appears on the **Subscription Plans** page.
 
 ## Edit or Delete a Subscription Plan
 

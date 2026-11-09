@@ -30,7 +30,7 @@ under `static/img/cloud/`.
 |:----------------|:-------|
 | Overview, Get Started, Key Concepts | `docs/overview.md`, `docs/get-started.md`, `docs/key-concepts.md` |
 | API Control Plane | `docs/api-control-plane/` (`create-api-proxy/`, `develop-api-proxy/`, `deploy-api-proxy/`, `test-api-proxy/`, `publish-api-proxy/`, `observability/`, `insights/`, `administer/`) |
-| API Portal and AI Hub | `docs/api-portal/` (paths and file names match the API Portal `next` docs) |
+| API Portal and AI Hub | `docs/api-portal/` (`discover/`, `consume-an-api/`, `manage-keys/`, `manage-usage/`, `administer/`) |
 | API Gateway | `docs/api-gateway/` (`self-hosted-gateways/`, `observability/`) |
 | Observability | `docs/observability/` |
 | Policy Hub | `docs/policy-hub/` |

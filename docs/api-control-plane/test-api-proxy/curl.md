@@ -1,13 +1,13 @@
 ---
 title: "cURL"
-description: "Copy a cURL command for a deployed API from the API Management Console."
+description: "Copy a cURL command for a deployed API from the API Control Plane."
 ---
 
 Testing is an essential part of API development. The console simplifies this process by generating cURL commands that you can use to invoke and test your APIs.
 
-Follow these steps to generate a cURL command and test an API operation:
+Follow these steps to generate a cURL command and test an API operation.
 
-1. Sign in to the API Management Console.
+1. Sign in to the API Control Plane.
 2. Select the project and API you want to test.
 3. In the left navigation menu, click **Test**, then select **cURL view**.
 4. Select the gateway.

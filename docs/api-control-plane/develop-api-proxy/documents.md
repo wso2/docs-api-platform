@@ -16,7 +16,7 @@ You write documents in Markdown and add them to the API before you publish it. Y
 
 To add a document to an API, follow the steps given below.
 
-1. Sign in to the [API Management Console](https://console.bijira.dev/).
+1. Sign in to the [API Control Plane](https://console.bijira.dev/).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Documents**.
 4. Click **Create Document**.
@@ -44,7 +44,7 @@ To add more documents, click **Create Document** at the top of the page.
 ## Edit or Delete a Document
 
 1. On the **Documents** page, under **All documents**, click the document.
-2. Do one of the following:
+2. Do one of the following.
 
     - To edit the document, click the edit (pencil) icon, make your changes, and save them.
     - To delete the document, click the delete (trash) icon and confirm the deletion.

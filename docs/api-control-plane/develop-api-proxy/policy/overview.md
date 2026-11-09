@@ -31,4 +31,4 @@ Policies come from the [Policy Hub](../../../policy-hub/overview.md), the offici
 The Policy Hub is powered by an [open source repository on GitHub](https://github.com/wso2/gateway-controllers), where the full source and documentation of each policy live. Every policy is versioned independently. See the [Policy Hub](../../../policy-hub/overview.md) for the full list of policies in each category, their configuration, and their latest versions.
 :::
 
-For details on attaching and managing one or more policies to an API proxy component implementation via the API Management Console, see [Attach and Manage Policies](./attach-and-manage-policies.md).
+For details on attaching and managing one or more policies to an API proxy component implementation via the API Control Plane, see [Attach and Manage Policies](./attach-and-manage-policies.md).

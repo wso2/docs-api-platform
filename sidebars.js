@@ -84,22 +84,33 @@ const sidebars = {
       doc("api-portal/overview", "Overview"),
       doc("api-portal/quickstart-guide", "Quick Start Guide"),
       group("Discover", [
-        doc("api-portal/discover-apis/browse-apis", "Search APIs"),
-        doc("api-portal/discover-apis/documentation", "API Documentation"),
-        doc("api-portal/mcp-servers/browse-mcp-servers", "MCP Servers"),
-        doc("api-portal/discover-apis/ai-agent-discovery", "AI Agents"),
-      ]),
-      group("Applications and Credentials", [
-        doc("api-portal/consume-an-api/overview", "Which Credentials You Need"),
-        doc("api-portal/consume-an-api/manage-applications", "Manage Applications"),
-        doc("api-portal/consume-an-api/manage-subscriptions", "Manage Subscriptions"),
-        doc("api-portal/consume-an-api/manage-api-keys", "Manage API Keys"),
+        doc("api-portal/discover/browse-apis", "Search APIs"),
+        doc("api-portal/discover/documentation", "API Documentation"),
+        doc("api-portal/discover/browse-mcp-servers", "MCP Servers"),
+        doc("api-portal/discover/api-workflows", "API Workflows"),
+        doc("api-portal/discover/ai-agent-discovery", "AI Agents"),
       ]),
       group("Consume an API", [
+        doc("api-portal/consume-an-api/overview", "Which Credentials You Need"),
         doc("api-portal/consume-an-api/oauth2", "Consume an OAuth2-Secured API"),
         doc("api-portal/consume-an-api/api-key", "Consume an API-Key-Secured API"),
       ]),
-      doc("api-portal/admin-settings/key-manager-integration", "Manage Key Managers"),
+      group("Manage Keys", [
+        doc("api-portal/manage-keys/oauth2-keys", "OAuth2 Keys"),
+        doc("api-portal/manage-keys/api-keys", "API Keys"),
+      ]),
+      group("Manage Usage", [
+        doc("api-portal/manage-usage/overview", "Overview"),
+        doc("api-portal/manage-usage/manage-applications", "Manage Applications"),
+        doc("api-portal/manage-usage/manage-subscriptions", "Manage Subscriptions"),
+      ]),
+      group("Administer", [
+        doc("api-portal/administer/manage-api-consumers", "Manage API Consumers"),
+        group("Key Managers", [
+          doc("api-portal/administer/key-managers/overview", "Overview"),
+          doc("api-portal/administer/key-managers/custom-key-manager", "Configure a Custom Key Manager"),
+        ]),
+      ]),
     ]),
     group("API Gateway", [
       doc("api-gateway/overview", "Overview"),

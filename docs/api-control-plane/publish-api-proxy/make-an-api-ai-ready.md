@@ -11,7 +11,7 @@ This page explains what you can do as an API publisher to make your API as usefu
 
 The API description is the primary signal an AI agent uses to decide whether an API is relevant to the task it is trying to accomplish. A vague or empty description leads to missed discovery or incorrect usage.
 
-**What to include:**
+**What to include**
 
 - What the API does and the domain it covers (e.g., order management, product catalog, identity)
 - The kinds of operations it supports (read, write, or both)
@@ -51,7 +51,7 @@ By default, AI agents in the portal can discover a published API and invoke it o
 
 To control whether AI agents can discover an API, follow the steps given below.
 
-1. Sign in to the [API Management Console](https://console.bijira.dev/).
+1. Sign in to the [API Control Plane](https://console.bijira.dev/).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Publish**.
 4. On the portal, click **Go to Publish**.
