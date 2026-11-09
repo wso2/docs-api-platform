@@ -10,19 +10,19 @@ tags:
   - audit
   - security
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-06
+last_updated: 2026-11-09
 content_type: "concept"
 ---
 
 # Audit logs
 
-When an LLM proxy starts routing to a different provider, or an API key stops working, the first question is often who changed it. Audit logs answer that: every change made through the gateway's management API is recorded with who made it, what they did, to which resource, when, and whether it was applied.
+Audit logs record every change made through the AI Gateway's management API. Each record shows who made the change, what changed, when, and whether the change was applied.
 
-This is a different concern from [Gateway logs](gateway-logs.md), which record what the gateway process is doing, and from [Log requests and responses](log-requests-and-responses.md), which record the traffic. Audit logs record changes to the gateway's own configuration.
+Audit logs track changes to the gateway's configuration. To see what the gateway process is doing, use [Gateway logs](gateway-logs.md). To capture the traffic, use [Log requests and responses](log-requests-and-responses.md).
 
 ## What is recorded
 
-A record is written for every successful change made through the management API to:
+Changes to these resources are recorded:
 
 - LLM providers, LLM proxies, and LLM provider templates
 - MCP proxies
@@ -31,22 +31,15 @@ A record is written for every successful change made through the management API 
 - API keys, subscriptions, and subscription plans
 - Certificates
 
-Reads and requests the gateway rejects are not recorded. Changes made from the control plane and pushed to the gateway are not recorded by the gateway either; the control plane records them.
+Viewing a resource isn't recorded. Changes pushed to the gateway from the control plane are recorded by the control plane, not by the gateway.
 
-## Where records go
+## Turn on audit logging
 
-Audit logging is off by default. When you turn it on in the gateway controller's `config.toml`, every record is stored in the gateway's database, in the `audit` table. You can also send each record as a JSON line to the gateway controller's log (`stdout`), to a rotating file, or to an HTTP log receiver such as Splunk or a SIEM, in any combination.
+Turn on audit logging in the gateway controller's `config.toml`. The gateway then stores each record in its database. It can also send each record to the gateway controller's log, to a log file, or to a log receiver such as Splunk.
 
-Recording never fails a change: if a record can't be saved or sent, the change still goes ahead and the gateway logs an error.
-
-For the settings, the record format, and the Helm configuration, see [Audit logging](../../../api-gateway/next/observability/audit-logging.md) in the API Platform Gateway documentation.
-
-## Handle audit records carefully
-
-Each record names the user who made the change. To keep user names out of the log lines your outputs receive, set `mask_sensitive_fields = true`; the `audit` table keeps the user regardless. Credentials for an HTTP receiver come from an environment variable, never from `config.toml` itself.
+For the steps and settings, see [Audit logging](../../../api-gateway/next/observability/audit-logging.md) in the API Platform Gateway documentation.
 
 ## Related topics
 
-- [Gateway logs](gateway-logs.md) — collect the logs the gateway writes about itself.
-- [Log requests and responses](log-requests-and-responses.md) — record the content of the traffic rather than changes to the gateway.
-- [Audit logging](../../../api-gateway/next/observability/audit-logging.md) — settings, record format, and Kubernetes configuration.
+- [Gateway logs](gateway-logs.md): collect the logs the gateway writes about itself.
+- [Log requests and responses](log-requests-and-responses.md): record the traffic rather than changes to the gateway.
