@@ -30,10 +30,6 @@ The **Applications** page lists your applications. Each card shows the applicati
 
 The application is added to the list. Open it to edit the name or the description.
 
-
-    ![Create application dialog with the name Reading List App, a description, and the Cancel and Create buttons](/img/cloud/devportal/create-application.png)
-
-
 ## Associate an existing key
 
 Get the key before associating it with an application. See [OAuth2 Keys](../manage-keys/oauth2-keys.md) and [API Keys](../manage-keys/api-keys.md).
