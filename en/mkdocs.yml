@@ -83,7 +83,6 @@ nav:
         - Concepts: api-portal/next/concepts.md
         # Stand the portal up, in the order an operator does it.
         - Quick Start Guide: api-portal/next/quickstart-guide.md
-        - Getting Started: api-portal/next/getting-started.md
         - Setting Up:
             - Configuration & Interpolation: api-portal/next/setting-up/configuration.md
             - Minimum resource requirements: api-portal/next/setting-up/resource-requirement.md
