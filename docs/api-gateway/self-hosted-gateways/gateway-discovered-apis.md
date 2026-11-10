@@ -1,12 +1,12 @@
 ---
 title: Gateway Discovered APIs
 sidebar_label: Gateway Discovered APIs
-description: Deploy APIs directly on a self-hosted gateway and have them synced to API Platform Cloud as read-only, gateway-managed APIs.
+description: Deploy APIs directly on a self-hosted gateway and have them synced to the API Management Console as read-only, gateway-managed APIs.
 ---
 
 # Gateway Discovered APIs
 
-A gateway discovered API is an API that you deploy directly on a self-hosted gateway, rather than from the API Platform Cloud console. The gateway syncs the API up to the control plane, so it appears in the console next to your other APIs. The gateway stays the owner of the API, so the console shows it in read-only mode.
+A gateway discovered API is an API that you deploy directly on a self-hosted gateway, rather than from the API Management Console. The gateway syncs the API up to the control plane, so it appears in the console next to your other APIs. The gateway stays the owner of the API, so the console shows it in read-only mode.
 
 :::tip
 To create and deploy APIs from the console instead, see [Deploy and Test an API](./deploy-and-test-api.md).
@@ -16,7 +16,7 @@ To create and deploy APIs from the console instead, see [Deploy and Test an API]
 
 | | Top-down API | Gateway discovered API |
 |---|---|---|
-| **Created in** | The API Platform Cloud console | The self-hosted gateway, through its management API |
+| **Created in** | The API Management Console | The self-hosted gateway, through its management API |
 | **Deployed by** | The console, which sends the deployment to the gateway | The gateway itself |
 | **Managed by** | The control plane | The gateway |
 | **In the console** | Fully editable | Read-only |

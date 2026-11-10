@@ -4,13 +4,13 @@ pagination_label: "Self-Hosted Gateway Quick Start"
 description: "Set up a Self-Hosted Gateway in your own infrastructure and connect it to the API Management Cloud control plane."
 ---
 
-This guide gets a self-hosted API Gateway running on your machine with Docker Compose, connected to API Platform Cloud, in about ten minutes. When you finish, the gateway shows as **Active** in the console and you're ready to [deploy and test an API](./deploy-and-test-api.md).
+This guide gets a self-hosted API Gateway running on your machine with Docker Compose, connected to the API Management Console, in about ten minutes. When you finish, the gateway shows as **Active** in the console and you're ready to [deploy and test an API](./deploy-and-test-api.md).
 
 > For production installs on a VM or Kubernetes, see [Setting Up](./setting-up.md).
 
 ## Prerequisites
 
-- An API Platform Cloud organization, and access to its console.
+- An organization in the API Management Console, and access to it.
 - `curl` and `unzip`.
 - Docker with Docker Compose v2, installed and running. Check with:
 
@@ -24,7 +24,7 @@ This guide gets a self-hosted API Gateway running on your machine with Docker Co
 
 ## Step 1: Add a self-hosted gateway in the console
 
-1. Sign in to the API Platform Cloud console and select your organization.
+1. Sign in to the API Management Console and select your organization.
 2. In the left navigation, click **Gateways**.
 
    If this is your first gateway, the page offers two choices. Click **Add self-hosted gateway**. If you already have gateways, click **+ Add Gateway**.

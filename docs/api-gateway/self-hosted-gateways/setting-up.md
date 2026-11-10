@@ -14,7 +14,7 @@ This page covers installing a self-hosted API Gateway for real use: on a VM or a
 
 Every installation method starts the same way:
 
-1. In the API Platform Cloud console, go to **Gateways** and click **+ Add Gateway** (or **Add self-hosted gateway** if you have none yet).
+1. In the API Management Console, go to **Gateways** and click **+ Add Gateway** (or **Add self-hosted gateway** if you have none yet).
 2. Select **Hosting: Self-hosted** and **Gateway Type: API Gateway**, then enter:
    - **Name:** the gateway **handle** is derived from it and can't be changed later.
    - **Environment:** the environment whose APIs this gateway serves.
