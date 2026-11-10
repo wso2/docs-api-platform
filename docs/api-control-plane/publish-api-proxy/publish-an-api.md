@@ -15,25 +15,36 @@ You publish an API to each portal separately, so you can publish the same API to
 ## Publish an API to a Portal
 
 1. Sign in to the [API Control Plane](https://console.bijira.dev/).
+
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
+
 3. In the left navigation menu, click **Publish**.
 
     The page lists the portals in your organization, along with the publishing status of the API in each portal, for example, **Not published**. The top of the page shows the number of portals that the API is published to.
 
-    ![Publish page listing the portals with the publishing status of the API, and the Go to Publish and View in Portal options](/img/cloud/publish-api-proxy/publish-portals.png)
+    ![Publish page listing a portal with the publishing status of the API, the Publish button with its options menu, and the View in Portal option](/img/cloud/publish-api-proxy/publish-portals.png)
 
     To find a portal, type its name in **Search portals**.
 
-4. On the portal you want to publish the API to, click **Go to Publish**.
+4. On the portal that you want to publish the API to, click **Publish**.
+
+The API is published to the portal with its current details, and its status changes to **Published**. To see the API as consumers see it, click **View in Portal** on the portal. This option is available only after the API is published.
+
+To review how the API appears in the portal before you publish it, see [Configure and Publish an API](#configure-and-publish-an-api).
+
+## Configure and Publish an API
+
+1. On the **Publish** page, on the portal that you want to publish the API to, click the arrow next to **Publish**, and select **Configure & Publish**.
 
     The publish page of the API opens. Its title shows the API name and the portal you are publishing to, for example, **Publish Reading List API**, followed by the name of the portal. Use the tabs on the page to prepare how the API appears in the portal. See [Customize the Portal Listing](./customize-portal-listing.md).
 
     ![Publish page of an API showing the API Details, Specification, Subscription Plans, Documentation, and Landing Page tabs, the Draft and Published views, and the Save Draft and Publish buttons](/img/cloud/publish-api-proxy/publish-api-details.png)
 
-5. Review the details in each tab, and update them as needed.
-6. Click **Publish**.
+2. Review the details in each tab, and update them as needed.
 
-The API is published to the portal, and its status changes to **Published**. To see the API as consumers see it, click **View in Portal** on the portal in the **Publish** page.
+3. Click **Publish**.
+
+The API is published to the portal, and the page switches to the **Published** view, which shows the listing that consumers see. To remove the API from the portal, click **Unpublish**. See [Deprecate or Unpublish an API](./deprecate-or-unpublish.md).
 
 ## Save Your Changes as a Draft
 

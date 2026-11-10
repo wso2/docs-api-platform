@@ -5,7 +5,7 @@ description: "Set the details, specification, subscription plans, documentation,
 
 When you publish an API to a portal, you prepare a listing for it, the information that consumers see in that portal. You prepare the listing in the tabs of the API's publish page for that portal. Each portal has its own listing, so you can present the same API differently in different portals.
 
-To open the page, in the left navigation menu, click **Publish**, and then click **Go to Publish** on the portal. See [Publish an API](./publish-an-api.md).
+To open the page, in the left navigation menu, click **Publish**. On the portal, click the arrow next to **Publish**, and select **Configure & Publish**. See [Publish an API](./publish-an-api.md).
 
 | Tab | Use it to |
 |:----|:----------|
@@ -34,15 +34,17 @@ The **Specification** tab shows the API definition, such as the OpenAPI specific
 
 You can edit the specification in YAML or JSON, for example, to improve the summaries and descriptions of operations, or to add examples, so that consumers and AI agents understand the API better.
 
+The **Resources** pane lists the resources of the API. To find a resource, search by its path or description, or filter the list by method.
+
 ## Subscription Plans
 
-In the **Subscription Plans** tab, select the plans of your organization that consumers can subscribe to the API with in this portal.
+In the **Subscription Plans** tab, select the plans of your organization that consumers can subscribe to the API with in this portal. To select all the plans, click **Select all**.
 
 To create the plans, see [Manage Subscription Plans](../administer/creating-subscription-plans.md). For more on plans, see [Subscription Plans](./subscription-plans-and-billing.md).
 
 ## Documentation
 
-In the **Documentation** tab, select the documents that consumers see along with the API in this portal.
+In the **Documentation** tab, select the documents that consumers see along with the API in this portal. To see a document as consumers see it, click **Preview**.
 
 You create and edit the documents in **Develop** › **Documents**. See [Documents](../develop-api-proxy/documents.md).
 
@@ -50,7 +52,7 @@ You create and edit the documents in **Develop** › **Documents**. See [Documen
 
 The **Landing Page** tab sets the page that consumers see when they open the API in the portal. If you don't add a landing page, the portal shows its default page with the endpoints and resources of the API.
 
-To add a landing page, click **Create from API details**. This creates a landing page from the description, endpoints, and resources of the API, which you can then edit in Markdown.
+To add a landing page, click **Create from API details**. This creates a landing page from the description, endpoints, and resources of the API, which you can then edit in Markdown, with a preview next to it.
 
 :::note
 The landing page is copied from the API details when you create it, and it does not change when the API details change. If you update the API details, update the landing page as well. When you publish, the landing page replaces the default section of the portal.

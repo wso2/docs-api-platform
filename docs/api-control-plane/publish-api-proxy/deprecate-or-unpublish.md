@@ -15,11 +15,17 @@ When an API is replaced by a newer version, or should no longer be offered to co
 You can deprecate or unpublish an API only after it is published to the portal.
 
 1. Sign in to the [API Control Plane](https://console.bijira.dev/).
-2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
-3. In the left navigation menu, click **Publish**.
-4. On the portal that the API is published to, click **Go to Publish**.
-5. Click the arrow next to **Republish**, and then click **Deprecate** or **Unpublish**.
 
-    ![Publish page of a published API with the Republish menu open, showing the Deprecate and Unpublish options](/img/cloud/publish-api-proxy/publish-actions.png)
+2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
+
+3. In the left navigation menu, click **Publish**.
+
+4. On the portal that the API is published to, click the arrow next to **Publish**, and select **Configure & Publish**.
+
+5. In the **Draft** view, click the arrow next to **Republish**, and then click **Deprecate** or **Unpublish**.
+
+    ![Publish page of a published API in the Draft view with the Republish menu open, showing the Deprecate and Unpublish options](/img/cloud/publish-api-proxy/publish-actions.png)
+
+    In the **Published** view, you can also click **Unpublish**.
 
 To make an unpublished API available in the portal again, [publish it](./publish-an-api.md) again.
