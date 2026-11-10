@@ -1,10 +1,8 @@
 ---
-title: "Deploy and Test an API on a Self Hosted Gateway"
-pagination_label: "Self-Hosted Gateway Deploy and Test an API"
+title: "Deploy and Test an API on a Self-Hosted Gateway"
+pagination_label: "Deploy and Test an API on a Self-Hosted Gateway"
 description: "Create, Deploy and Test a REST API using your connected Self Hosted Gateway"
 ---
-
-# Deploy and Test an API on a Self-Hosted Gateway
 
 This guide creates a REST API proxy from an OpenAPI definition, deploys it to your self-hosted gateway, and invokes it.
 
@@ -15,13 +13,15 @@ This guide creates a REST API proxy from an OpenAPI definition, deploys it to yo
 
 This guide uses the sample **Reading List API**, whose backend is publicly reachable.
 
-## Step 1: Create the API proxy
+## Step 1: Create the API Proxy
 
 1. In the console, go to **Projects** and open a project (for example, **default**).
+
 2. Click **+ Create API**.
+
 3. **What kind of API are you exposing?** Select **REST API** and click **Continue**.
 
-4. **How do you want to define your REST API?** You can either:
+4. **How do you want to define your REST API?** Do one of the following.
    - choose **Start from scratch** and enter the backend **Endpoint URL**, or
    - choose **Start with a contract** and import an OpenAPI definition from a **URL** or by **Upload**.
 
@@ -29,7 +29,7 @@ This guide uses the sample **Reading List API**, whose backend is publicly reach
 
    ![Import the Reading List OpenAPI contract](/img/cloud/self-hosted-gateway/create-and-test-api/self-hosted-create-and-test-api-step-2.png)
 
-5. **Configure and create.** Review the values taken from the contract:
+5. **Configure and create.** Review the values taken from the contract.
 
    | Field | Sample value |
    |---|---|
@@ -45,17 +45,21 @@ This guide uses the sample **Reading List API**, whose backend is publicly reach
 
 The API overview page opens. The progress bar shows **Create → Deploy → Test → Publish**, with **Create** complete.
 
-> You don't choose a gateway when you create an API. You choose it when you deploy, in the next step.
+:::note
+You don't choose a gateway when you create an API. You choose it when you deploy, in the next step.
+:::
 
-## Step 2: Deploy the API to the self-hosted gateway
+## Step 2: Deploy the API to the Self-Hosted Gateway
 
 1. On the API overview page, click **Deploy to Gateway**, or click **Deploy** in the left navigation.
+
 2. The **Deploy** page shows a **Build Area** and one card per environment. The card lists that environment's gateways and how many are active. Your self-hosted gateway appears as `<environment>-<gateway-handle>`, for example `development-local-self-hosted-gateway`, with the status **Not deployed**.
 
    ![Deploy page before the first deployment](/img/cloud/self-hosted-gateway/create-and-test-api/self-hosted-create-and-test-api-step-5.png)
 
 3. Click **Build and deploy**.
-4. In the **Deploy to development** dialog, check the **Gateway** (your self-hosted gateway) and the backend **Endpoint URL**, then click **Deploy**.
+
+4. In the dialog box that opens, check the **Gateway** (your self-hosted gateway) and the backend **Endpoint URL**, then click **Deploy**.
 
    ![Deploy dialog targeting the self-hosted gateway](/img/cloud/self-hosted-gateway/create-and-test-api/self-hosted-create-and-test-api-step-6.png)
 
@@ -63,7 +67,7 @@ The console creates a build (named by date, for example `2026-11-04-1`) and send
 
 ![API deployed and Active on the self-hosted gateway](/img/cloud/self-hosted-gateway/create-and-test-api/self-hosted-create-and-test-api-step-7.png)
 
-On the gateway host, the controller logs show the deployment arriving and being applied:
+On the gateway host, the controller logs show the deployment arriving and being applied.
 
 ```text
 msg="Received WebSocket event" type=api.deployed ...
@@ -73,12 +77,15 @@ msg="Deployment ack sent" deployment_id=...
 msg="Runtime deploy config added" key=RestApi:reading-list-api kind=RestApi name="Reading List API" routes=5 policy_chains=5
 ```
 
-> A self-hosted gateway is never an environment's default gateway, so make sure it is the gateway selected in the deploy dialog.
+:::note
+A self-hosted gateway is never an environment's default gateway, so make sure it is the gateway selected in the deploy dialog.
+:::
 
 ## Step 3: Test the API
 
 1. In the left navigation, click **Test**.
-2. In the **Gateway** selector, choose your self-hosted gateway (for example, **Local Self-Hosted Gateway — Development**). The base URL next to it combines the gateway **URL** you configured with the API context:
+
+2. In the **Gateway** selector, choose your self-hosted gateway (for example, **Local Self-Hosted Gateway — Development**). The base URL next to it combines the gateway **URL** you configured with the API context.
 
    ```text
    https://localhost:8443/default/reading-list-api/v1.0
@@ -88,13 +95,13 @@ msg="Runtime deploy config added" key=RestApi:reading-list-api kind=RestApi name
 
 ![Invoke the Deployed API using the Test Console's cURL View](/img/cloud/self-hosted-gateway/create-and-test-api/self-hosted-create-and-test-api-step-8.png)
 
-4. Run it from a machine that can reach the gateway. The default listener certificate is self-signed, so add `-k` (or `--cacert <your-ca.pem>`) until you install a trusted certificate:
+4. Run it from a machine that can reach the gateway. The default listener certificate is self-signed, so add `-k` (or `--cacert <your-ca.pem>`) until you install a trusted certificate.
 
    ```bash
    curl -k -X GET 'https://localhost:8443/default/reading-list-api/v1.0/books'
    ```
 
-   Expected response (`200 OK`):
+   Expected response (`200 OK`).
 
    ```json
    {
@@ -106,11 +113,15 @@ msg="Runtime deploy config added" key=RestApi:reading-list-api kind=RestApi name
    }
    ```
 
-> **CONSOLE VIEW** sends requests from your browser straight to the gateway URL. It works only if your browser can reach that URL and trusts the gateway's certificate. If it fails with a network or certificate error, use **CURL VIEW**, or open the gateway URL in the browser once and trust its certificate.
+:::note
+**CONSOLE VIEW** sends requests from your browser straight to the gateway URL. It works only if your browser can reach that URL and trusts the gateway's certificate. If it fails with a network or certificate error, use **CURL VIEW**, or open the gateway URL in the browser once and trust its certificate.
+:::
 
-> **Security note:** an API with no security policy attached can be called without credentials, as in the example above. Attach an authentication policy (for example API Key or JWT) under **Develop → Policies**, and redeploy before you expose the gateway beyond a trusted network.
+:::warning
+An API with no security policy attached can be called without credentials, as in the example above. Attach an authentication policy (for example API Key or JWT) under **Develop → Policies**, and redeploy before you expose the gateway beyond a trusted network.
+:::
 
-## Update or remove a deployment
+## Update or Remove a Deployment
 
 - **Redeploy after changes.** Changes to an API (resources, policies, endpoint) reach the gateway only when you deploy again. On the **Deploy** page, click **Deploy**; the arrow next to it selects which build to deploy. Each deployment creates a new build in the **Build Area**.
 - **Undeploy.** On the **Deploy** page, expand the gateway row and click **Stop deployment**. The gateway removes the API's routes.

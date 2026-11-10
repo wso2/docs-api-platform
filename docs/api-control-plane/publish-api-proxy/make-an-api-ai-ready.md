@@ -51,7 +51,7 @@ By default, AI agents in the portal can discover a published API and invoke it o
 
 To control whether AI agents can discover an API, follow the steps given below.
 
-1. Sign in to the [API Control Plane](https://console.bijira.dev/).
+1. Sign in to the [API Control Plane Console](https://console.bijira.dev/).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 

@@ -4,15 +4,17 @@ pagination_label: "Self-Hosted Gateway Quick Start"
 description: "Set up a Self-Hosted Gateway in your own infrastructure and connect it to the API Management Cloud control plane."
 ---
 
-This guide gets a self-hosted API Gateway running on your machine with Docker Compose, connected to the API Management Console, in about ten minutes. When you finish, the gateway shows as **Active** in the console and you're ready to [deploy and test an API](./deploy-and-test-api.md).
+This guide gets a self-hosted API Gateway running on your machine with Docker Compose, connected to the API Control Plane Console, in about ten minutes. When you finish, the gateway shows as **Active** in the console and you're ready to [deploy and test an API](./deploy-and-test-api.md).
 
-> For production installs on a VM or Kubernetes, see [Setting Up](./setting-up.md).
+:::tip
+For production installs on a VM or Kubernetes, see [Setting Up](./setting-up.md).
+:::
 
 ## Prerequisites
 
-- An organization in the API Management Console, and access to it.
+- An organization in the API Control Plane Console, and access to it.
 - `curl` and `unzip`.
-- Docker with Docker Compose v2, installed and running. Check with:
+- Docker with Docker Compose v2, installed and running. To check, run the following commands.
 
   ```bash
   docker --version
@@ -22,14 +24,15 @@ This guide gets a self-hosted API Gateway running on your machine with Docker Co
 - Outbound HTTPS (port 443) access from your machine to the internet.
 - Free local ports **8080, 8443, 9090, 9094, 9011, 9901, 9002, 9003**. If any are already in use, see [Port already in use](./setting-up.md#port-already-in-use).
 
-## Step 1: Add a self-hosted gateway in the console
+## Step 1: Add a Self-Hosted Gateway in the Console
 
-1. Sign in to the API Management Console and select your organization.
+1. Sign in to the API Control Plane Console and select your organization.
+
 2. In the left navigation, click **Gateways**.
 
    If this is your first gateway, the page offers two choices. Click **Add self-hosted gateway**. If you already have gateways, click **+ Add Gateway**.
 
-3. On the **Add Gateway** page, fill in the form:
+3. On the **Add Gateway** page, fill in the form.
 
    | Field | Value |
    |---|---|
@@ -49,33 +52,35 @@ The gateway is created with status **Inactive** and the page shows *Waiting for 
 
 ![Newly created gateway waiting for connection, showing Quick Start setup commands](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-2.png)
 
-> **Important: the registration token is shown only once.** In step 3 of the setup commands, the page displays `<your-gateway-token>` as a placeholder. When you click **Copy** on that block, the copied command contains your real token. Copy and run it before you leave this page. If you navigate away, the console replaces this step with a **Reconfigure** button that issues a new token (see [Rotate the registration token](./setting-up.md#rotate-the-registration-token)).
+:::warning
+**The registration token is shown only once.** In step 3 of the setup commands, the page displays `<your-gateway-token>` as a placeholder. When you click **Copy** on that block, the copied command contains your real token. Copy and run it before you leave this page. If you navigate away, the console replaces this step with a **Reconfigure** button that issues a new token (see [Rotate the registration token](./setting-up.md#rotate-the-registration-token)).
+:::
 
-## Step 2: Download the gateway
+## Step 2: Download the Gateway
 
-Run the command from step **1 – Download the Gateway**:
+Run the command from step **1 – Download the Gateway**.
 
 ```bash
 curl -sLO https://github.com/wso2/api-platform/releases/download/gateway/v1.2.0/wso2apip-api-gateway-1.2.0.zip && \
 unzip wso2apip-api-gateway-1.2.0.zip
 ```
 
-## Step 3: Run the one-time setup script
+## Step 3: Run the One-Time Setup Script
 
-Run the command from step **2 – Set up the Gateway**:
+Run the command from step **2 – Set up the Gateway**.
 
 ```bash
 cd wso2apip-api-gateway-1.2.0 && ./scripts/setup.sh
 ```
 
-The script provisions everything the gateway needs to start:
+The script provisions everything the gateway needs to start.
 
 - the listener TLS certificate for the HTTPS ingress (`resources/listener-certs/`),
 - an AES-256 key for encrypting data at rest (`resources/aesgcm-keys/`),
 - admin credentials for the Gateway Controller's management API,
 - `api-platform.env` (the gateway's environment file) and `.env` (a unique Docker Compose project name for this copy).
 
-Sample output:
+Sample output.
 
 ```text
 [setup] Provisioning listener TLS certificate ...
@@ -97,11 +102,13 @@ Sample output:
   ==================================================================
 ```
 
-> Save the admin password somewhere safe. Only its bcrypt hash is stored. You need the password only if you call the controller's local management API directly. The cloud connection doesn't use it.
+:::warning
+Save the admin password somewhere safe. Only its bcrypt hash is stored. You need the password only if you call the controller's local management API directly. The cloud connection doesn't use it.
+:::
 
-## Step 4: Connect the gateway to the control plane
+## Step 4: Connect the Gateway to the Control Plane
 
-Go back to the console and click **Copy** on step **3 – Configure the Gateway**. Then paste and run the command in the same `wso2apip-api-gateway-1.2.0` folder. It appends the control-plane settings to `api-platform.env`:
+Go back to the console and click **Copy** on step **3 – Configure the Gateway**. Then paste and run the command in the same `wso2apip-api-gateway-1.2.0` folder. It appends the control-plane settings to `api-platform.env`.
 
 ```bash
 cat >> api-platform.env << 'ENVFILE'
@@ -112,9 +119,9 @@ ENVFILE
 
 Use the command copied from the console rather than typing it, so that the host and token are exact.
 
-## Step 5: Start the gateway
+## Step 5: Start the Gateway
 
-Run the command from step **4 – Start the Gateway**:
+Run the command from step **4 – Start the Gateway**.
 
 ```bash
 docker compose up
@@ -122,7 +129,7 @@ docker compose up
 
 To run it in the background instead, use `docker compose up -d`.
 
-Docker Compose starts two containers: `gateway-controller` and `gateway-runtime`. Within a few seconds, the controller log shows the connection to the control plane:
+Docker Compose starts two containers: `gateway-controller` and `gateway-runtime`. Within a few seconds, the controller log shows the connection to the control plane.
 
 ```text
 gateway-controller-1  | msg="Connection state changed" from=disconnected to=connecting
@@ -133,7 +140,7 @@ gateway-controller-1  | msg="Successfully pushed gateway manifest to control pla
 
 ## Step 6: Verify
 
-1. Check that both containers are running and the controller is healthy:
+1. Check that both containers are running and the controller is healthy.
 
    ```bash
    docker compose ps
@@ -150,10 +157,10 @@ gateway-controller-1  | msg="Successfully pushed gateway manifest to control pla
 
 3. Open the gateway. The status panel shows **Connected: This gateway is connected to the control plane.**
 
-## Next steps
+## Next Steps
 
-- [Deploy and test an API](https://wso2.com/api-platform/docs/assets/img/api-platform-gateway/gateway/gateway-list-empty.png) on your new gateway.
-- Before going to production, review [Setting Up → Production hardening](https://wso2.com/api-platform/docs/assets/img/api-platform-gateway/gateway/gateway-list-empty.png).
+- [Deploy and test an API](./deploy-and-test-api.md) on your new gateway.
+- Before going to production, review [Setting Up → Production hardening](./setting-up.md#production-hardening).
 
 ## Troubleshooting
 

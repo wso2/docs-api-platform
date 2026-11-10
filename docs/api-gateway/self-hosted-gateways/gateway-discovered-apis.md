@@ -1,12 +1,10 @@
 ---
-title: Gateway Discovered APIs
+title: "Gateway Discovered APIs"
 sidebar_label: Gateway Discovered APIs
-description: Deploy APIs directly on a self-hosted gateway and have them synced to the API Management Console as read-only, gateway-managed APIs.
+description: Deploy APIs directly on a self-hosted gateway and have them synced to the API Control Plane Console as read-only, gateway-managed APIs.
 ---
 
-# Gateway Discovered APIs
-
-A gateway discovered API is an API that you deploy directly on a self-hosted gateway, rather than from the API Management Console. The gateway syncs the API up to the control plane, so it appears in the console next to your other APIs. The gateway stays the owner of the API, so the console shows it in read-only mode.
+A gateway discovered API is an API that you deploy directly on a self-hosted gateway, rather than from the API Control Plane Console. The gateway syncs the API up to the control plane, so it appears in the console next to your other APIs. The gateway stays the owner of the API, so the console shows it in read-only mode.
 
 :::tip
 To create and deploy APIs from the console instead, see [Deploy and Test an API](./deploy-and-test-api.md).
@@ -16,7 +14,7 @@ To create and deploy APIs from the console instead, see [Deploy and Test an API]
 
 | | Top-down API | Gateway discovered API |
 |---|---|---|
-| **Created in** | The API Management Console | The self-hosted gateway, through its management API |
+| **Created in** | The API Control Plane Console | The self-hosted gateway, through its management API |
 | **Deployed by** | The console, which sends the deployment to the gateway | The gateway itself |
 | **Managed by** | The control plane | The gateway |
 | **In the console** | Fully editable | Read-only |
@@ -26,9 +24,13 @@ Gateway discovered APIs suit teams that keep API definitions as code and deploy 
 ## How It Works
 
 1. You create or update an API on the gateway, through the Gateway Controller's management API (`/api/management/v1/rest-apis`).
+
 2. The gateway deploys the API and starts serving traffic for it right away. Deployment doesn't depend on the control plane.
+
 3. When the deployment completes, the gateway pushes the API definition to the control plane over its existing outbound connection. Failed pushes are retried with backoff.
+
 4. The control plane creates the API, or updates it if one with the same name already exists, in the project named in the API definition. The API is marked as **managed by the gateway**, and the gateway is recorded as a deployment target.
+
 5. Each time the gateway connects or reconnects to the control plane, it pushes all of its gateway-created APIs again. Changes made while the gateway was offline are synced then.
 
 The gateway records the sync result for each API as `pending`, `success`, or `failed`.
@@ -83,7 +85,7 @@ To change the API later, update it on the gateway the same way, with `PUT /api/m
 
 ### Step 3: Verify the Sync
 
-Check the controller logs for the push to the control plane:
+Check the controller logs for the push to the control plane.
 
 ```bash
 docker compose logs gateway-controller | grep -i "pushed deployment to control plane"
@@ -112,8 +114,8 @@ The console shows a gateway discovered API so you can see and test it, but you c
 | `artifact ... already exists with kind ...` | Another kind of artifact in the organization already uses this name. Give the API a different `metadata.name`. |
 | A change made on the gateway doesn't show in the console | The console shows the latest successfully synced version. Check the controller logs for a push failure. Failed APIs are pushed again when the gateway next reconnects. |
 
-## What's Next?
+## Next Steps
 
-- [Architecture](./01-architecture.md): how the gateway and the control plane communicate.
-- [Deploy and Test an API](./04-deploy-and-test-api.md): create and deploy APIs from the console (top-down).
-- [Setting Up](./03-setting-up.md): install and configure a self-hosted gateway.
+- [Architecture](./architecture.md): how the gateway and the control plane communicate.
+- [Deploy and Test an API](./deploy-and-test-api.md): create and deploy APIs from the console (top-down).
+- [Setting Up](./setting-up.md): install and configure a self-hosted gateway.

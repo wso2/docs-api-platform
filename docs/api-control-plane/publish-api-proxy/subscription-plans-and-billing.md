@@ -11,7 +11,7 @@ Once created, API publishers can assign subscription plans to APIs, providing di
 
 You assign subscription plans to an API separately for each portal that you publish it to. To assign subscription plans to an API, follow the steps given below.
 
-1. Sign in to the [API Control Plane](https://console.bijira.dev/).
+1. Sign in to the [API Control Plane Console](https://console.bijira.dev/).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 

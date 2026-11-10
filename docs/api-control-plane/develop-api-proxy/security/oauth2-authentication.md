@@ -13,7 +13,7 @@ ThunderID is the default key manager, so consumers can get access tokens without
 
 ## Step 1: Attach the JWT Auth Policy
 
-1. Sign in to the [API Control Plane](https://console.bijira.dev).
+1. Sign in to the [API Control Plane Console](https://console.bijira.dev).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 

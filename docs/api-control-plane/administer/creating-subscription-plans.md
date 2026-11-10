@@ -13,7 +13,7 @@ Deleting a subscription plan is only possible if there are no active subscriptio
 
 ## View Subscription Plans
 
-1. Sign in to the [API Control Plane](https://console.bijira.dev).
+1. Sign in to the [API Control Plane Console](https://console.bijira.dev).
 
 2. Go to the organization level. In the header, select your organization from the **Organizations** list.
 

@@ -18,13 +18,13 @@ The **Private Data Plane** runs within your infrastructure. It handles API traff
 
 ![Architecture diagram showing the API Control Plane connected via port 443 WebSocket to Gateway Controller and Gateway Runtime in the private data plane](/img/cloud/self-hosted-gateway/architecture/self-hosted-architecture.png)
 
-The Gateway includes the following components:
+The Gateway includes the following components.
 
 ### Gateway Controller
 
 The Gateway Controller is responsible for receiving API and policy configurations from the API Control Plane and configuring the gateway runtime accordingly.
 
-It contains the following services:
+It contains the following services.
 
 | Component | Description |
 | ----- | ----- |
