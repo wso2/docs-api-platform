@@ -1,5 +1,6 @@
 ---
 title: "Manage Usage"
+pagination_label: "Manage Usage"
 description: "Learn how applications track the usage of your keys, and how subscriptions apply the usage limits of a subscription plan, in the API Portal and AI Hub."
 ---
 

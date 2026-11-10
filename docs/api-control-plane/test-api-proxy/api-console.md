@@ -1,5 +1,6 @@
 ---
 title: "API Console"
+pagination_label: "Test with the API Console"
 description: "Test a deployed REST API from the Console view in the API Control Plane."
 ---
 

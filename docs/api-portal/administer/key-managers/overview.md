@@ -1,5 +1,6 @@
 ---
 title: "Key Managers"
+pagination_label: "Key Managers"
 description: "Learn how key managers issue access tokens for OAuth2-secured APIs in the API Portal and AI Hub, and how ThunderID works as the default key manager."
 ---
 

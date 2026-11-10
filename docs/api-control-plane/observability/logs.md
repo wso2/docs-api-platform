@@ -1,5 +1,6 @@
 ---
 title: "Logs"
+pagination_label: "API Logs"
 description: "View organization-level gateway runtime logs in the API Control Plane."
 ---
 

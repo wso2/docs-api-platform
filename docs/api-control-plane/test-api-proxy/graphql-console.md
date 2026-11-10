@@ -1,5 +1,6 @@
 ---
 title: "GraphQL Console"
+pagination_label: "Test with the GraphQL Console"
 description: "Test a deployed GraphQL API from the Test page in the API Control Plane."
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "High Availability"
+pagination_label: "Self-Hosted Gateway High Availability"
 description: "Run multiple Gateway Controller and Gateway Runtime replicas so a Self-Hosted Gateway keeps serving APIs when one replica is unavailable."
 ---
 

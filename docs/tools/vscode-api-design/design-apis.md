@@ -1,5 +1,6 @@
 ---
 title: "Design APIs with API Designer"
+pagination_label: "Design APIs with API Designer"
 description: "Use AI-assisted editing and form-based editing in API Designer to create and refine your OpenAPI specification."
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Get started with API Designer for VS Code"
+pagination_label: "Get Started with API Designer for VS Code"
 description: "Install the API Designer VS Code extension and use AI-assisted editing to design and validate OpenAPI specifications."
 ---
 
