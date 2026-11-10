@@ -16,7 +16,7 @@ The Self-Hosted Gateway opens an outbound WebSocket connection to the API Contro
 
 The **Private Data Plane** runs within your infrastructure. It handles API traffic, applies runtime policies, and communicates with backend services. API requests from consumers are processed entirely within this private environment.
 
-![Architecture diagram showing the API Control Plane connected via port 443 WebSocket to Gateway Controller and Gateway Runtime in the private data plane](/img/cloud/api-gateway/architecture.png)
+![Architecture diagram showing the API Control Plane connected via port 443 WebSocket to Gateway Controller and Gateway Runtime in the private data plane](/img/cloud/self-hosted-gateway/architecture/self-hosted-architecture.png)
 
 The Gateway includes the following components:
 

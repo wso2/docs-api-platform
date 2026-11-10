@@ -16,7 +16,7 @@ An API level policy applies to every resource in the API proxy. To attach one, f
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list. The API must be one that you deploy to your Self-Hosted Gateway.
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 
-    ![Policies page showing the Global policies drop area, Resource policies for each resource, and the Available policies pane with search, category filter, and policy versions](/img/cloud/develop-api-proxy/policy/policies-page.png)
+    ![Policies page showing the Global policies drop area, Resource policies for each resource, and the Available policies pane with search, category filter, and policy versions](/img/cloud/self-hosted-gateway/manage-policies/self-hosted-manage-policies-1.png)
 
 4. In the **Available policies** pane, find the policy you want to attach. You can type a policy name in **Search policies**, or select a category from the **All** list to filter the policies.
 
@@ -39,7 +39,7 @@ A resource level policy applies only to the resource you attach it to. To attach
 4. In the **Resource policies** section, find the resource you want to attach a policy to. You can type a path in **Search resources by path**, or select an HTTP method from the **All methods** list to filter the resources.
 5. Click the resource to expand it.
 
-    ![Policies page with the GET /* resource expanded under Resource policies, showing an empty drop area and the Available policies pane](/img/cloud/develop-api-proxy/policy/resource-level-policies.png)
+    ![Policies page with the GET /* resource expanded under Resource policies, showing an empty drop area and the Available policies pane](/img/cloud/self-hosted-gateway/manage-policies/self-hosted-manage-policies-2.png)
 
 6. In the **Available policies** pane, find the policy you want to attach by searching for it or filtering by category.
 7. Drag the policy from the **Available policies** pane and drop it in the area below the resource.
