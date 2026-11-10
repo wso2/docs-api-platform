@@ -17,6 +17,10 @@ const config = {
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    // `v4: true` turns on Docusaurus Faster, which needs native, OS-specific
+    // binaries (Rspack, SWC, Lightning CSS). Keep it off so that the build
+    // uses only JavaScript tooling and runs the same on every platform.
+    faster: false,
   },
 
   url: 'https://wso2.com',
