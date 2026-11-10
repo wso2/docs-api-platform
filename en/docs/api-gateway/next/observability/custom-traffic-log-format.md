@@ -241,7 +241,7 @@ These variables describe the authenticated caller and the token.
 | `auth.property` | map | Token claims. Read one with `auth.property['<claim>']`. |
 
 !!! note
-    Claims are logged as they appear in the token. To log only the claims you need, read them one by one, for example `auth.property['tenant']`, or leave out a claim with `exclude_fields`.
+    Claims are logged as they appear in the token. To log only the claims you need, read them one by one, for example `auth.property['tenant']`. To leave out a specific claim, use `exclude_fields`.
 
 ### Errors
 
