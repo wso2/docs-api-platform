@@ -17,11 +17,11 @@ You assign subscription plans to an API separately for each portal that you publ
 
 3. In the left navigation menu, click **Publish**.
 
-4. On the portal that you want to publish the API to, click **Go to Publish**.
+4. On the portal that you want to publish the API to, click the arrow next to **Publish**, and select **Configure & Publish**.
 
 5. Click the **Subscription Plans** tab. The tab lists the subscription plans of your organization, with the rate limit of each plan.
 
-6. Select the subscription plans that consumers can use to subscribe to the API.
+6. Select the subscription plans that consumers can use to subscribe to the API. To select all the plans, click **Select all**.
 
 7. Click **Publish** to make the plans available to consumers in the portal, or click **Save Draft** to keep your selection and publish it later.
 

@@ -1,5 +1,6 @@
 ---
 title: "Start with a contract"
+pagination_label: "REST: Start with a Contract"
 description: "Create a REST API in the API Control Plane by importing an OpenAPI contract, then deploy, test, and publish it."
 ---
 

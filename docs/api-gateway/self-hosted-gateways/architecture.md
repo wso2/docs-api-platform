@@ -1,5 +1,6 @@
 ---
 title: "Architecture"
+pagination_label: "Self-Hosted Gateway Architecture"
 description: "Learn how the Self-Hosted Gateway connects to the API Control Plane through the Gateway Controller and Gateway Runtime components."
 ---
 

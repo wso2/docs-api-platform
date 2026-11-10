@@ -1,5 +1,6 @@
 ---
 title: "cURL"
+pagination_label: "Test with cURL"
 description: "Copy a cURL command for a deployed API from the API Control Plane."
 ---
 

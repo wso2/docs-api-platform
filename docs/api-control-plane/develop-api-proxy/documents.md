@@ -1,5 +1,6 @@
 ---
 title: "Documents"
+pagination_label: "API Documents"
 description: "Add guides, samples, and support resources to an API proxy so consumers can understand and use it in the API Portal and AI Hub."
 ---
 
@@ -20,9 +21,6 @@ To add a document to an API, follow the steps given below.
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Documents**.
 4. Click **Create Document**.
-
-    ![Documents page showing No Documents available for this API with a Create Document button](/img/cloud/develop-api-proxy/documents/no-documents.png)
-
 5. On the **Create Document** page, provide the following details.
 
     - **Document type:** Select the type of document, for example, **How To**.

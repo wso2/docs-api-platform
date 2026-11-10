@@ -1,5 +1,6 @@
 ---
 title: "API Designer end-to-end tutorial"
+pagination_label: "API Designer End-to-End Tutorial"
 description: "Walk through drafting, designing, governing, and fixing an OpenAPI specification end to end using API Designer and GitHub Copilot."
 ---
 

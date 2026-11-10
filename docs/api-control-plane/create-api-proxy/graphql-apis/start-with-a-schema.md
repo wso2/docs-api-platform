@@ -1,5 +1,6 @@
 ---
 title: "Start with a schema"
+pagination_label: "GraphQL: Start with a Schema"
 description: "Create a GraphQL API in the API Control Plane by importing a schema from a URL or a file."
 ---
 A GraphQL API proxy operates based on the GraphQL query language specification. GraphQL provides a flexible and efficient approach to API development by allowing clients to request exactly the data they need, nothing more and nothing less.
