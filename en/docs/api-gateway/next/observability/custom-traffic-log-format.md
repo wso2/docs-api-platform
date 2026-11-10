@@ -240,6 +240,9 @@ These variables describe the authenticated caller and the token.
 | `auth.scopes` | list | Granted scopes. |
 | `auth.property` | map | Token claims. Read one with `auth.property['<claim>']`. |
 
+!!! note
+    Claims are logged as they appear in the token. To log only the claims you need, read them one by one, for example `auth.property['tenant']`, or leave out a claim with `exclude_fields`.
+
 ### Errors
 
 These variables have a value only when the request failed.
