@@ -8,7 +8,7 @@ tags:
   - observability
   - logging
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-20
+last_updated: 2026-11-10
 content_type: "how-to"
 ---
 
@@ -19,6 +19,8 @@ content_type: "how-to"
 
 Traffic Logging writes a single structured JSON line for every request handled by the gateway — who
 called what, the status code, latencies, request/response headers, and (optionally) bodies.
+
+To write each line in your own JSON layout instead, see [Custom traffic log format](custom-traffic-log-format.md).
 
 Each line is written to the **sinks** you name in `traffic_logging.outputs`:
 
