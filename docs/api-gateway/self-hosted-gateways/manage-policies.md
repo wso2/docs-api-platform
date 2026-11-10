@@ -12,7 +12,7 @@ Saving the API records the policies. Deploy the API afterward so the Self-Hosted
 
 An API level policy applies to every resource in the API proxy. To attach one, follow the steps given below.
 
-1. Sign in to the [API Control Plane](https://console.bijira.dev).
+1. Sign in to the [API Control Plane Console](https://console.bijira.dev).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list. The API must be one that you deploy to your Self-Hosted Gateway.
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 
@@ -33,7 +33,7 @@ An API level policy applies to every resource in the API proxy. To attach one, f
 
 A resource level policy applies only to the resource you attach it to. To attach one, follow the steps given below.
 
-1. Sign in to the [API Control Plane](https://console.bijira.dev).
+1. Sign in to the [API Control Plane Console](https://console.bijira.dev).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 4. In the **Resource policies** section, find the resource you want to attach a policy to. You can type a path in **Search resources by path**, or select an HTTP method from the **All methods** list to filter the resources.

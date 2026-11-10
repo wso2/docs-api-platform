@@ -1,12 +1,12 @@
 ---
 title: Gateway Discovered APIs
 sidebar_label: Gateway Discovered APIs
-description: Deploy APIs directly on a self-hosted gateway and have them synced to the API Management Console as read-only, gateway-managed APIs.
+description: Deploy APIs directly on a self-hosted gateway and have them synced to the API Control Plane Console as read-only, gateway-managed APIs.
 ---
 
 # Gateway Discovered APIs
 
-A gateway discovered API is an API that you deploy directly on a self-hosted gateway, rather than from the API Management Console. The gateway syncs the API up to the control plane, so it appears in the console next to your other APIs. The gateway stays the owner of the API, so the console shows it in read-only mode.
+A gateway discovered API is an API that you deploy directly on a self-hosted gateway, rather than from the API Control Plane Console. The gateway syncs the API up to the control plane, so it appears in the console next to your other APIs. The gateway stays the owner of the API, so the console shows it in read-only mode.
 
 :::tip
 To create and deploy APIs from the console instead, see [Deploy and Test an API](./deploy-and-test-api.md).
@@ -16,7 +16,7 @@ To create and deploy APIs from the console instead, see [Deploy and Test an API]
 
 | | Top-down API | Gateway discovered API |
 |---|---|---|
-| **Created in** | The API Management Console | The self-hosted gateway, through its management API |
+| **Created in** | The API Control Plane Console | The self-hosted gateway, through its management API |
 | **Deployed by** | The console, which sends the deployment to the gateway | The gateway itself |
 | **Managed by** | The control plane | The gateway |
 | **In the console** | Fully editable | Read-only |
@@ -114,6 +114,6 @@ The console shows a gateway discovered API so you can see and test it, but you c
 
 ## What's Next?
 
-- [Architecture](./01-architecture.md): how the gateway and the control plane communicate.
-- [Deploy and Test an API](./04-deploy-and-test-api.md): create and deploy APIs from the console (top-down).
-- [Setting Up](./03-setting-up.md): install and configure a self-hosted gateway.
+- [Architecture](./architecture.md): how the gateway and the control plane communicate.
+- [Deploy and Test an API](./deploy-and-test-api.md): create and deploy APIs from the console (top-down).
+- [Setting Up](./setting-up.md): install and configure a self-hosted gateway.

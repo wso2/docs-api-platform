@@ -8,7 +8,7 @@ The integrated GraphQL Console lets you test GraphQL API proxies after deploying
 
 Follow these steps to test a GraphQL API proxy using the GraphQL Console.
 
-1. Sign in to the API Control Plane.
+1. Sign in to the API Control Plane Console.
 2. Select the project and open the GraphQL API proxy you want to test.
 3. In the left navigation menu, click **Test** to open the GraphQL Console.
 4. Select the gateway.

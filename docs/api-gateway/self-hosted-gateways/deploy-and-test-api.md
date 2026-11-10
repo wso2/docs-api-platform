@@ -1,6 +1,6 @@
 ---
 title: "Deploy and Test an API on a Self Hosted Gateway"
-pagination_label: "Self-Hosted Gateway Deploy and Test an API"
+pagination_label: "Deploy and Test an API on a Self-Hosted Gateway"
 description: "Create, Deploy and Test a REST API using your connected Self Hosted Gateway"
 ---
 

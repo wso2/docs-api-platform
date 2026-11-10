@@ -14,7 +14,7 @@ An API key is bound to one API, and it authenticates your requests to that API o
 
 API keys are created in the API Control Plane. If you don't have access to the API in the console, request a key from the API publisher.
 
-1. Sign in to the [API Control Plane](https://console.bijira.dev).
+1. Sign in to the [API Control Plane Console](https://console.bijira.dev).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 

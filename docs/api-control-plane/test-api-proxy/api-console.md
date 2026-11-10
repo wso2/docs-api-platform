@@ -8,7 +8,7 @@ The integrated OpenAPI Console lets you test REST endpoints for API proxies afte
 
 Follow these steps to test a REST endpoint from the Console view.
 
-1. Sign in to the API Control Plane.
+1. Sign in to the API Control Plane Console.
 2. Select the project and API proxy you want to test.
 3. In the left navigation menu, click **Test**. **Console view** is selected.
 4. Select the gateway.
