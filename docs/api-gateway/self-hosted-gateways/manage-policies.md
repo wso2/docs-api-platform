@@ -1,6 +1,6 @@
 ---
 title: "Adding and Managing Policies"
-pagination_label: "Adding and Managing Policies"
+pagination_label: "Add and Manage Gateway Policies"
 description: "Attach, configure, and deploy policies on API proxies running on a Self-Hosted Gateway."
 ---
 

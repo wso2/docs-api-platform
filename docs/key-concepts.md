@@ -23,7 +23,7 @@ A **project** is a logical grouping of API Proxies that typically work together 
 
 A **gateway** is the runtime that receives API traffic, applies the policies you configure, and routes requests to your backend services. You deploy API proxies to gateways, and each gateway is associated with an environment.
 
-You can use the following kinds of gateways:
+You can use the following kinds of gateways.
 
 - **WSO2 Managed Gateways:** Run on fully managed cloud infrastructure. WSO2 runs, scales, and upgrades the gateway.
 - **Self-Hosted Gateways:** Run on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connect to the control plane for configuration and management. Traffic and data stay within your network. See [Self-Hosted Gateway](./api-gateway/self-hosted-gateways/quickstart-guide.md).

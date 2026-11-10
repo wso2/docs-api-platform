@@ -1,5 +1,6 @@
 ---
 title: "Govern APIs with API Designer"
+pagination_label: "Govern APIs with API Designer"
 description: "Review AI readiness, REST design, and OWASP security findings for your OpenAPI specification using API Designer governance reports."
 ---
 

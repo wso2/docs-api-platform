@@ -1,5 +1,6 @@
 ---
 title: "Documents"
+pagination_label: "API Documents"
 description: "Add guides, samples, and support resources to an API proxy so consumers can understand and use it in the API Portal and AI Hub."
 ---
 
