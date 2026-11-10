@@ -8,7 +8,7 @@ tags:
   - policies
   - extensibility
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-11
+last_updated: 2026-11-10
 content_type: "concept"
 ---
 
@@ -244,6 +244,7 @@ The following table presents the available policies alphabetically.
 | [MCP Rewrite](https://wso2.com/api-platform/policy-hub/policies/mcp-rewrite) | MCP, AI | MCP Rewrite policy defines user-facing tools, resources, and prompts and maps them to backend capability names using optional "target" fields. |
 | [Model Round Robin](https://wso2.com/api-platform/policy-hub/policies/model-round-robin) | AI | Implements round-robin load balancing for AI models. |
 | [Model Weighted Round Robin](https://wso2.com/api-platform/policy-hub/policies/model-weighted-round-robin) | AI | Implements weighted round-robin load balancing for AI models. |
+| [Mutual TLS Auth](https://wso2.com/api-platform/policy-hub/policies/mtls-auth) | Security | Authenticates API callers using mutual TLS by matching the client certificate they present against the accepted client certificate authorities, optionally narrowed by subject alternative name or certificate thumbprint.<br>**Requires update level 1.2.0.9.** If the Gateway Controller uses PostgreSQL or SQL Server, run the database script from `resources/gateway-controller/db-scripts/` after you apply the update. Then restart the Gateway Controller. Until you run the script, the Gateway Controller keeps mutual TLS disabled. For the commands, see [Step 2 - Apply the Schema](../setup/database-setup.md#step-2-apply-the-schema). SQLite needs no action. |
 | [PII Masking Regex](https://wso2.com/api-platform/policy-hub/policies/pii-masking-regex) | Guardrails, AI | Masks or redacts Personally Identifiable Information (PII) from request/response bodies using regex patterns. |
 | [Prompt Compressor](https://wso2.com/api-platform/policy-hub/policies/prompt-compressor) | AI | Compresses selected prompt text in JSON request bodies before upstream LLM calls. |
 | [Prompt Decorator](https://wso2.com/api-platform/policy-hub/policies/prompt-decorator) | AI | Dynamically modifies the prompt by applying custom decorations using a configured strategy. |
