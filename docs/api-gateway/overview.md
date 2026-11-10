@@ -24,7 +24,10 @@ Your organization does not have a default gateway. Before you deploy an API prox
 
 | Task | Description |
 |:-----|:------------|
-| [Set up a Self-Hosted Gateway](./self-hosted-gateways/quickstart-guide.md) | Add a Self-Hosted Gateway in the API Control Plane, run it on your infrastructure, and deploy an API proxy to it. |
+| [Set up a Self-Hosted Gateway](./self-hosted-gateways/quickstart-guide.md) | Add a Self-Hosted Gateway in the API Control Plane, run it on your infrastructure, and connect it to the API Control Plane. |
+| [Install a Self-Hosted Gateway for production](./self-hosted-gateways/setting-up.md) | Install the gateway on a VM or Docker host, or on Kubernetes with Helm, and prepare it for production. |
+| [Deploy and test an API](./self-hosted-gateways/deploy-and-test-api.md) | Create a REST API proxy, deploy it to a Self-Hosted Gateway, and test it. |
 | [Add and manage policies](./self-hosted-gateways/manage-policies.md) | Apply policies to the APIs on a Self-Hosted Gateway. |
+| [Deploy APIs directly on the gateway](./self-hosted-gateways/gateway-discovered-apis.md) | Deploy APIs on a Self-Hosted Gateway, and see them in the API Control Plane as read-only APIs. |
 
 To view the gateways in your organization from the API Control Plane, see [Manage Gateways](../api-control-plane/administer/managing-gateways.md).
