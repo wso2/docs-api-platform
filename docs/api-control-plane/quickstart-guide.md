@@ -54,7 +54,7 @@ This guide uses the sample Reading List API backend.
     | **Version** | `1.0.0` |
     | **Context** | `/default/reading-list-api/v1.0.0` |
     | **Description** | `A starting point. Edit the operations, or ask AI to refine them.` |
-    | **Target URL** | `https://apis.bijira.dev/samples/reading-list-api-service/v1.0/books` |
+    | **Endpoint** | `https://apis.bijira.dev/samples/reading-list-api-service/v1.0/books` |
 
     ![Configure and create, with the name, identifier, version, context, and description](/img/cloud/getting-started/qs-configure-and-create.png)
 
@@ -68,8 +68,8 @@ To view or edit the API definition, open the API and in the left navigation menu
 
 Deploying places a build of the API on a gateway so requests can reach the backend through that gateway. Create a self-hosted gateway, start it with the setup commands the console shows, and then deploy the API to that gateway.
 
-1. In the left navigation menu, click **Gateways**, then click **Add Gateway**.
-2. Under **Hosting**, select **Self-hosted**.
+1. In the left navigation menu, click **API Gateways**, then click **Add API Gateway**.
+2. Under **Hosting**, select **Self-hosted API gateway**.
 3. Enter the gateway details.
 
     | Field | Description |
@@ -78,12 +78,12 @@ Deploying places a build of the API on a gateway so requests can reach the backe
     | **Name** | A name for the gateway. The handle is derived from this name and cannot be changed later. |
     | **Description** | Optional. |
     | **Environment** | The environment this gateway belongs to. |
-    | **Gateway Version** | The gateway version to run. Use the latest version. |
+    | **API Gateway Version** | The gateway version to run. Use the latest version. |
     | **URL** | The endpoint the gateway answers on. Add it to match your infrastructure. |
 
-    ![Add Gateway form for a self-hosted gateway, with the name, environment, gateway version, and URL](/img/cloud/getting-started/qs-add-self-hosted-gateway.png)
+    ![Add API Gateway form for a self-hosted gateway, with the name, environment, gateway version, and URL](/img/cloud/getting-started/qs-add-self-hosted-gateway.png)
 
-4. Click **Add Gateway**.
+4. Click **Add API Gateway**.
 
     The console gives you a registration token and the setup commands to run the gateway on your infrastructure. Run those commands. The gateway stays inactive until it connects to the control plane.
 
@@ -127,10 +127,11 @@ Publishing makes the API available in the API Portal, where consumers can discov
 
     1. In the left navigation menu, click **Portals**, then click **Add Portal**.
     2. Enter a **Name**. **Description** is optional.
-    3. **Allow self sign-up** is turned on.
-    4. Click **Add Portal**.
+    3. Select a **Login environment**. Portal users sign in through the authentication server of this environment.
+    4. **Allow self sign-up** is turned on.
+    5. Click **Add Portal**.
 
-    ![Add Portal form with the name, description, and Allow self sign-up switch](/img/cloud/getting-started/qs-add-portal.png)
+    ![Add Portal form with the name, description, login environment, and Allow self sign-up switch](/img/cloud/getting-started/qs-add-portal.png)
 
     For more on portals, see [Manage Portals](./administer/managing-portals.md).
 
@@ -138,11 +139,15 @@ Publishing makes the API available in the API Portal, where consumers can discov
 
     The page lists the portals in the organization and the publishing status of the API in each portal.
 
-3. On the portal you want, click **Go to Publish**.
-4. Review **API Details**, **Specification**, **Subscription Plans**, **Documentation**, and **Landing Page**, and update them as needed.
-5. Click **Publish**.
+3. On the card for the portal you want, click **Publish**.
 
-  ![Publishing the API to the created Portal](/img/cloud/getting-started/qs-publish-api.png)
+    ![Publish page with a portal card showing the Not published status, the Publish button, and View in Portal](/img/cloud/getting-started/qs-publish-api.png)
+
+    The console publishes the API to that portal with all its documents attached and no subscription plan selected.
+
+    :::tip
+    To review the API details, specification, subscription plans, documentation, and landing page before you publish, click the arrow next to **Publish** and select **Configure & Publish**. Then click **Configure & Publish** to open the publish page.
+    :::
 
 The status of the API in that portal changes to **Published**. To open the portal listing, click **View in Portal**. For more on publishing, see [Publish an API](./publish-api-proxy/publish-an-api.md).
 

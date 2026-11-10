@@ -15,9 +15,9 @@ You can search for APIs in the API Portal that have already been published from 
     |------------------|------------------------------------------|
     | **Name**         | Full or partial name of the API          |
     | **Type**         | Type of the API (e.g., REST)             |
-    | **Version**      | Version of the API (e.g., v3.5)          |
+    | **Version**      | Version of the API (e.g., 1.0)           |
     | **Description**  | Full or partial description of the API   |
 
     Example: Searching by API version.
 
-![Search bar with v4.5 query returning Reading List API REST card as the matching result](/img/cloud/devportal/api-search.png)
+    ![Search bar with the query 1.0 returning one API card, version 1.0, with the REST and AI Ready labels, 1 plan, and a Subscribe button](/img/cloud/devportal/api-search.png)
