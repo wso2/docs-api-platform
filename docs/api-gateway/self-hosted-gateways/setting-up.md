@@ -249,7 +249,7 @@ Other settings (listeners, storage, policies) live in `configs/config.toml`. `co
 
 The token appears only when the gateway is created. Afterwards, step 3 on the gateway's **Configurations** tab shows a **Reconfigure** button:
 
-![Reconfigure option on an existing gateway](/img/cloud/self-hosted-gateway/setting-up/self-hosted-setting-up-4.png)
+![Reconfigure option on an existing gateway](/img/cloud/self-hosted-gateway/setting-up/self-hosted-setting-up-1.png)
 
 1. Click **Reconfigure**. A new token and configuration command are generated, and **the previous token is revoked**, so a running gateway that still uses it loses its connection.
 2. Update the gateway with the new token:

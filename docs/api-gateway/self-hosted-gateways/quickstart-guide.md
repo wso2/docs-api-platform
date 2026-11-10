@@ -41,13 +41,13 @@ This guide gets a self-hosted API Gateway running on your machine with Docker Co
    | **Gateway Version** | `API-Gateway v1.2` (Latest). |
    | **URL** | The base URL your API consumers use to reach this gateway's HTTPS listener. For a local run, use `https://localhost:8443`. The console uses this URL when it shows API endpoints and test commands. |
 
-   ![Add Gateway form filled in for a self-hosted API Gateway](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-2.png)
+   ![Add Gateway form filled in for a self-hosted API Gateway](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-1.png)
 
 4. Click **Add Gateway**.
 
 The gateway is created with status **Inactive** and the page shows *Waiting for connection*. The **Configurations** tab lists the setup commands, with four tabs: **Quick Start**, **Virtual Machine**, **Docker**, and **Kubernetes**. Keep **Quick Start** selected.
 
-![Newly created gateway waiting for connection, showing Quick Start setup commands](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-4.png)
+![Newly created gateway waiting for connection, showing Quick Start setup commands](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-2.png)
 
 > **Important: the registration token is shown only once.** In step 3 of the setup commands, the page displays `<your-gateway-token>` as a placeholder. When you click **Copy** on that block, the copied command contains your real token. Copy and run it before you leave this page. If you navigate away, the console replaces this step with a **Reconfigure** button that issues a new token (see [Rotate the registration token](./setting-up.md#rotate-the-registration-token)).
 
@@ -146,7 +146,7 @@ gateway-controller-1  | msg="Successfully pushed gateway manifest to control pla
 
 2. In the console, reload the **Gateways** page. The status doesn't update live, so a refresh is required. Your gateway now shows **Active** under **Self-hosted gateways**.
 
-   ![Gateways list showing the self-hosted gateway as Active](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-6.png)
+   ![Gateways list showing the self-hosted gateway as Active](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-3.png)
 
 3. Open the gateway. The status panel shows **Connected: This gateway is connected to the control plane.**
 

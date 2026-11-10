@@ -86,6 +86,8 @@ msg="Runtime deploy config added" key=RestApi:reading-list-api kind=RestApi name
 
 3. Switch to **CURL VIEW**, choose a resource (for example `GET /books`), and copy the generated command.
 
+![Invoke the Deployed API using the Test Console's cURL View](/img/cloud/self-hosted-gateway/create-and-test-api/self-hosted-create-and-test-api-step-8.png)
+
 4. Run it from a machine that can reach the gateway. The default listener certificate is self-signed, so add `-k` (or `--cacert <your-ca.pem>`) until you install a trusted certificate:
 
    ```bash
