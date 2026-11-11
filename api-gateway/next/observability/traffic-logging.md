@@ -8,7 +8,7 @@ tags:
   - observability
   - logging
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-20
+last_updated: 2026-11-10
 content_type: "how-to"
 ---
 
@@ -18,6 +18,8 @@ content_type: "how-to"
 
 Traffic Logging writes a single structured JSON line for every request handled by the gateway — who
 called what, the status code, latencies, request/response headers, and (optionally) bodies.
+
+To write each line in your own JSON layout instead, see [Custom traffic log format](custom-traffic-log-format.md).
 
 Each line is written to the **sinks** you name in `traffic_logging.outputs`:
 
@@ -549,12 +551,15 @@ Available variables:
 
 | Namespace | Variables |
 |---|---|
-| Request | `request.path`, `request.method`, `request.id`, `request.header['<name>']` (masked per `masked_headers`) |
-| Response | `response.status`, `response.header['<name>']` (masked per `masked_headers`) |
+| Request | `request.path`, `request.pathTemplate`, `request.method`, `request.id`, `request.timestamp` (UTC), `request.header['<name>']` (masked per `masked_headers`), `request.body` (requires `collector.request_body`, cut to `max_payload_size`) |
+| Response | `response.status`, `response.header['<name>']` (masked per `masked_headers`), `response.body` (requires `collector.response_body`, cut to `max_payload_size`) |
 | API | `api.id`, `api.name`, `api.version`, `api.context`, `api.kind`, `project.id` |
 | Target | `target.statusCode`, `target.destination` |
 | Application | `application.id`, `application.name`, `application.owner`, `application.keyType` — populated only when an auth policy that stamps application identity (currently `api-key-auth`) ran |
 | Auth | `auth.subject`, `auth.type`, `auth.issuer`, `auth.credential_id`, `auth.token_id`, `auth.audience` (list), `auth.scopes` (list), `auth.property['<claim>']` (map), `auth.authenticated`, `auth.authorized` |
+| Client | `client.ip`, `client.userAgent` |
+| Error | `error.category`, `error.errorCode`, `error.errorMessage`, `error.wso2ErrorCode`, `error.type`, `error.direction`, `error.summary`, `error.policy`, `error.policyPhase`, `error.source`, `error.originalStatus`, `error.jsonRpcCode`, `error.guardrail.name`, `error.guardrail.action`, `error.guardrail.reason`. These have a value only when the request failed. |
+| Latencies | `latencies.duration`, `latencies.backendLatency`, `latencies.requestMediationLatency`, `latencies.responseMediationLatency`, in microseconds. Use `convertUnit(<latency>, '<unit>')` with `'ns'`, `'us'`, `'ms'` or `'s'` for another unit, for example `convertUnit(latencies.duration, 'ms')`. |
 | Generic metadata | `metadata['<key>']` — any key any policy (including third-party/Python policies) has written into shared request metadata |
 
 !!! note
