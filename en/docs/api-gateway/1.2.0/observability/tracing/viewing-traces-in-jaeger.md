@@ -9,7 +9,7 @@ tags:
   - tracing
   - jaeger
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-17
+last_updated: 2026-10-26
 content_type: "how-to"
 ---
 
@@ -57,13 +57,22 @@ Click on any trace in the results to view detailed information:
 - **Parent-child relationships** between spans
 - **Color coding** by service
 
+The trace timeline shows router and policy-engine spans for an API request:
+
+![Jaeger API Gateway trace showing router, policy-engine, and upstream spans.](../../../../assets/img/api-gateway/tracing/jaeger-api-overview.png)
+
 ### Span Details
 Click on any span to see:
+
 - **Operation name**: What operation was performed
 - **Duration**: How long it took
 - **Tags**: Metadata about the operation (HTTP method, status code, etc.)
 - **Logs**: Events logged during the span (errors, warnings, etc.)
 - **Process**: Service name, version, and host information
+
+The upstream span shows the backend, HTTP status, and request duration:
+
+![Jaeger API Gateway upstream span showing backend, HTTP status, and duration.](../../../../assets/img/api-gateway/tracing/jaeger-api-upstream.png)
 
 ### Common Use Cases
 
