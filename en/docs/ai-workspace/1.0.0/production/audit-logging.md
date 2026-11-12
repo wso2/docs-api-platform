@@ -10,14 +10,14 @@ tags:
   - audit
   - security
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-09
+last_updated: 2026-11-12
 content_type: "how-to"
 ---
 
 {% raw %}
 # Configure audit logging
 
-Audit logging records the changes people make in AI Workspace. Each record shows who made the change, what changed, and when. The Platform API stores every record in its database and can also send it to your log pipeline.
+Audit logging records the changes people make in AI Workspace. Each record shows who made the change, what changed, and when. The Platform API sends every record to your log pipeline.
 
 !!! info "Availability"
     Audit logging is available from **update level 1.0.0.&lt;N&gt;** onwards.
@@ -54,7 +54,7 @@ platform-api:
 
 Apply it with the same `helm upgrade --install` command you used to install the chart, as in [Deploy on Kubernetes](deploy-on-kubernetes.md#step-7-start-the-deployment).
 
-From now on, each change made in AI Workspace adds a record to the `audit` table in the Platform API database. Each record also appears as a JSON line in the Platform API log.
+From now on, each change made in AI Workspace appears as a JSON line in the Platform API log.
 
 ## Configuration
 
@@ -63,10 +63,10 @@ Set these parameters under `[platform_api.audit]` in `config.toml`, or under `pl
 | Parameter | Helm value | Default | Description |
 |-----------|------------|---------|-------------|
 | `enabled` | `enabled` | `false` | Records changes. |
-| `outputs` | `outputs` | `[]` | Where to send each record, in addition to the `audit` table. Use any of these:<br>`"stdout"`: the Platform API container log<br>`"file"`: a log file. See [Send records to a file](#send-records-to-a-file).<br>`"http"`: your log receiver. See [Send records to a log receiver](#send-records-to-a-log-receiver). |
-| `mask_sensitive_fields` | `maskSensitiveFields` | `false` | Shows `****` in place of the user in the outputs. The `audit` table is never masked. |
+| `outputs` | `outputs` | `[]` | Where to send each record. Set at least one when `enabled` is `true`. Use any of these:<br>`"stdout"`: the Platform API container log<br>`"file"`: a log file. See [Send records to a file](#send-records-to-a-file).<br>`"http"`: your log receiver. See [Send records to a log receiver](#send-records-to-a-log-receiver). |
+| `mask_sensitive_fields` | `maskSensitiveFields` | `false` | Shows `****` in place of the user in the outputs. |
 
-Audit logging never blocks a change. If a record can't be sent to an output, the change still goes ahead and the record stays in the `audit` table.
+Audit logging never blocks a change. If a record can't be sent to an output, the change still goes ahead and the Platform API logs an error.
 
 ## What is recorded
 
@@ -238,11 +238,11 @@ For the `file` output, the chart mounts a volume at `/var/log/wso2`. Each pod ha
 
 | Symptom | Fix |
 |---------|-----|
-| Records are in the `audit` table but not in the logs. | Add an output to `outputs`. |
+| No records at all. | Check that `enabled` is `true`. |
 | The Platform API doesn't start after you change the audit configuration. | The startup error names the setting to fix, such as a missing `file.path` or `endpoint`, or a credential file that isn't mounted. |
 | `helm upgrade` fails with `holds a literal value`. | Reference the credential with an `{{ env }}` token, as shown in [Kubernetes and OpenShift](#kubernetes-and-openshift). |
 | Records don't reach the log receiver. | Look for `Failed to deliver audit records` in the Platform API log. The message includes the reason, such as the HTTP status. |
-| `performedBy` shows `****`. | `mask_sensitive_fields` is `true`. The `audit` table still identifies the user. |
+| `performedBy` shows `****`. | `mask_sensitive_fields` is `true`. |
 
 ## Related
 
