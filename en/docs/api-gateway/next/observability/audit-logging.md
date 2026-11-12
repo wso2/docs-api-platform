@@ -9,19 +9,16 @@ tags:
   - audit
   - security
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-09
+last_updated: 2026-11-12
 content_type: "how-to"
 ---
 
 {% raw %}
 # Audit Logging
 
-Audit logging records the changes made through the gateway's management API. Each record shows who made the change, what changed, when, and whether the change was applied. The gateway stores every record in its database and can also send it to your log pipeline.
+Audit logging records the changes made through the gateway's management API. Each record shows who made the change, what changed, when, and whether the change was applied. The gateway sends every record to your log pipeline.
 
 ## Enable audit logging
-
-!!! note "PostgreSQL and SQL Server"
-    Before you enable audit logging, apply this release's schema script (`gateway-controller-db.postgres.sql` or `gateway-controller-db.sqlserver.sql`), as described in [Setting Up the Database](../setup/database-setup.md). The script adds the `audit` table. On SQLite, the gateway adds the table itself.
 
 ### Using `config.toml`
 
@@ -52,7 +49,7 @@ gateway:
         outputs: ["stdout"]
 ```
 
-From now on, each change made through the management API adds a record to the `audit` table. Each record also appears as a JSON line in the gateway controller's log.
+From now on, each change made through the management API appears as a JSON line in the gateway controller's log.
 
 ## Configuration
 
@@ -61,10 +58,10 @@ Set these parameters under `[controller.audit]` in `config.toml`, or under `gate
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `enabled` | `false` | Records changes made through the management API. |
-| `outputs` | `[]` | Where to send each record, in addition to the `audit` table. Use any of these:<br>`"stdout"`: the gateway controller's container log<br>`"file"`: a log file. See [Send records to a file](#send-records-to-a-file).<br>`"http"`: your log receiver. See [Send records to a log receiver](#send-records-to-a-log-receiver). |
-| `mask_sensitive_fields` | `false` | Shows `****` in place of the user in the outputs. The `audit` table is never masked. |
+| `outputs` | `[]` | Where to send each record. Set at least one when `enabled` is `true`. Use any of these:<br>`"stdout"`: the gateway controller's container log<br>`"file"`: a log file. See [Send records to a file](#send-records-to-a-file).<br>`"http"`: your log receiver. See [Send records to a log receiver](#send-records-to-a-log-receiver). |
+| `mask_sensitive_fields` | `false` | Shows `****` in place of the user in the outputs. |
 
-Audit logging never blocks a change. If a record can't be saved or sent, the change still goes ahead and the gateway controller logs an error.
+Audit logging never blocks a change. If a record can't be sent, the change still goes ahead and the gateway controller logs an error.
 
 ## What is recorded
 
@@ -244,8 +241,6 @@ For the `file` output, the chart mounts a volume at `/var/log/wso2`. The volume 
 | Symptom | Fix |
 |---------|-----|
 | No records at all. | Check that `enabled` is `true`. Changes pushed from the control plane aren't recorded by the gateway. |
-| Records are in the `audit` table but not in the logs. | Add an output to `outputs`. |
-| The gateway controller logs `Failed to save audit record`. | On PostgreSQL or SQL Server, apply the schema script. See [Enable audit logging](#enable-audit-logging). |
 | The gateway controller doesn't start after you change the audit configuration. | The startup error names the setting to fix, such as a missing `file.path`, `endpoint`, or credential. |
 | The gateway runtime doesn't start: `config interpolation failed`. | Add an empty default to the credential token: `{{ env "NAME" "" }}`. |
 | `helm upgrade` fails with `would be written in plaintext`. | Reference the credential with an `{{ env }}` token, as shown in [Kubernetes (Helm)](#kubernetes-helm). |
