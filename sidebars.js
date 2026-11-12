@@ -111,6 +111,30 @@ const sidebars = {
           doc("api-portal/administer/key-managers/custom-key-manager", "Configure a Custom Key Manager"),
         ]),
       ]),
+      group("Admin Settings", [
+        group("Organization", [
+          doc("api-portal/admin-settings/organization-settings", "Organization Settings"),
+          doc("api-portal/admin-settings/manage-views", "Manage Views"),
+          doc("api-portal/admin-settings/manage-labels", "Manage Labels"),
+          doc("api-portal/admin-settings/subscription-plans", "Subscription Plans"),
+        ]),
+        group("Content", [
+          doc("api-portal/admin-settings/manage-apis", "Manage APIs"),
+          doc("api-portal/admin-settings/manage-mcp-servers", "Manage MCP Servers"),
+          doc("api-portal/admin-settings/manage-api-workflows", "Manage API Workflows"),
+          doc("api-portal/admin-settings/api-content", "API Content"),
+          doc("api-portal/admin-settings/llm-instructions", "LLM Instructions"),
+        ]),
+        group("Integrations", [
+          doc("api-portal/admin-settings/key-manager-integration", "Key Manager Integration"),
+          doc("api-portal/admin-settings/webhook-integration", "Webhook Integration"),
+        ]),
+        group("Appearance", [
+          doc("api-portal/admin-settings/theming", "Theming"),
+          doc("api-portal/admin-settings/apply-a-theme", "Apply a Theme to a View"),
+          doc("api-portal/admin-settings/design-mode", "Design Mode"),
+        ]),
+      ]),
     ]),
     group("API Gateway", [
       doc("api-gateway/overview", "Overview"),
