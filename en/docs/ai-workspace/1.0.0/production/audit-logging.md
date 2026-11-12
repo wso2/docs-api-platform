@@ -103,6 +103,7 @@ Each output receives one JSON line per change:
   "resourceType": "llm_provider",
   "resourceId": "01a1aa75-eb65-7c5d-9a1e-3f0c2b7d8e41",
   "organizationId": "7f4a2c9e-1b3d-4e5f-8a6b-9c0d1e2f3a4b",
+  "outcome": "succeeded",
   "performedBy": "alice@example.com"
 }
 ```
@@ -116,6 +117,7 @@ Each output receives one JSON line per change:
 | `resourceType` | The kind of resource that changed. |
 | `resourceId` | The ID of the resource. |
 | `organizationId` | The ID of the organization the resource belongs to. |
+| `outcome` | Always `succeeded`: a record is written only after the change succeeds. |
 | `performedBy` | The user who made the change. Shows `deleted_user` if that user has since been deleted. |
 
 ## Send records to a file
