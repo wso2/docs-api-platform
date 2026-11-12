@@ -1496,6 +1496,7 @@ nav:
                 - Database Configuration: api-portal/1.0.0/deployment/database-configuration.md
                 - Resources & Scaling: api-portal/1.0.0/deployment/resources-and-scaling.md
                 - Control Plane Connection: api-portal/1.0.0/deployment/control-plane-connection.md
+                - Audit Logging: api-portal/1.0.0/deployment/audit-logging.md
                 - Verify & Upgrade: api-portal/1.0.0/deployment/deploy-and-verify.md
             - Deploy on VMs: api-portal/1.0.0/deployment/deploy-on-vms.md
             - Deploy on Kubernetes:
