@@ -8,7 +8,7 @@ tags:
   - observability
   - logging
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-10
+last_updated: 2026-11-13
 content_type: "reference"
 ---
 
@@ -25,18 +25,17 @@ With a template, you can:
 * Add fixed values, such as a service or environment name.
 * Convert latencies to the time unit you need.
 
-You can pass the template inline in the gateway configuration, or as a separate file.
+You set the template inline in the gateway configuration.
 
 ## Configuration
 
-The template is set in the `[traffic_logging]` section, which must have `enabled = true`. Set one of these settings, not both.
+The template is set in the `[traffic_logging]` section, which must have `enabled = true`.
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `template` | string | `""` | The template, inline in the gateway configuration. |
-| `template_file` | string | `""` | Path of a file that holds the template. The file must be inside `/etc/gateway-runtime` in the gateway runtime container, and at most 1 MiB. |
 
-When neither is set, the gateway writes the default line.
+When `template` is empty, the gateway writes the default line.
 
 ## Template format
 
@@ -73,96 +72,36 @@ Each line has the fields in the template's order. Numbers stay numbers. A field 
 
 ## Passing the template
 
-The gateway reads the template when it starts. After you change the template or the template file, restart the gateway.
+The gateway reads the template when it starts. After you change the template, restart the gateway.
 
-=== "Inline"
+Set `template` to the template. A TOML multi-line string (`'''`) keeps it readable.
 
-    Set `template` to the template. A TOML multi-line string (`'''`) keeps it readable.
+```toml
+[traffic_logging]
+enabled = true
+template = '''
+{
+  "service": "orders",
+  "http": {"method": "$ctx:request.method", "status": "$ctx:response.status"},
+  "durationMs": "$ctx:convertUnit(latencies.duration, 'ms')"
+}
+'''
+```
 
-    ```toml
-    [traffic_logging]
-    enabled = true
-    template = '''
-    {
-      "service": "orders",
-      "http": {"method": "$ctx:request.method", "status": "$ctx:response.status"},
-      "durationMs": "$ctx:convertUnit(latencies.duration, 'ms')"
-    }
-    '''
-    ```
+**Helm:** Set `gateway.config.traffic_logging.template` as a YAML string. Use a `|` block, not a YAML map, so that the field order is kept.
 
-    **Helm:** Set `gateway.config.traffic_logging.template` as a YAML string. Use a `|` block, not a YAML map, so that the field order is kept.
-
-    ```yaml
-    gateway:
-      config:
-        traffic_logging:
-          enabled: true
-          template: |
-            {
-              "service": "orders",
-              "http": {"method": "$ctx:request.method", "status": "$ctx:response.status"},
-              "durationMs": "$ctx:convertUnit(latencies.duration, 'ms')"
-            }
-    ```
-
-=== "File"
-
-    1. Save the template as a JSON file, for example `traffic-log-template.json`.
-
-    2. Mount the file into the gateway runtime container, inside `/etc/gateway-runtime`.
-
-        **Docker Compose:** Add a volume to the `gateway-runtime` service.
-
-        ```yaml
-        services:
-          gateway-runtime:
-            volumes:
-              - ./configs/config.toml:/etc/policy-engine/config.toml:ro
-              - ./configs/traffic-log-template.json:/etc/gateway-runtime/traffic-log-template.json:ro
-        ```
-
-        **Kubernetes:** Create a ConfigMap from the file:
-
-        ```bash
-        kubectl create configmap traffic-log-template \
-          --namespace <gateway-namespace> \
-          --from-file=traffic-log-template.json
-        ```
-
-        Then mount it through the Helm chart's `extraVolumes` and `extraVolumeMounts` settings:
-
-        ```yaml
-        gateway:
-          gatewayRuntime:
-            deployment:
-              extraVolumes:
-                - name: traffic-log-template
-                  configMap:
-                    name: traffic-log-template
-              extraVolumeMounts:
-                - name: traffic-log-template
-                  mountPath: /etc/gateway-runtime/traffic-log
-                  readOnly: true
-        ```
-
-    3. Set `template_file` to the file's path inside the container.
-
-        ```toml
-        [traffic_logging]
-        enabled = true
-        template_file = "/etc/gateway-runtime/traffic-log-template.json"
-        ```
-
-        **Helm:**
-
-        ```yaml
-        gateway:
-          config:
-            traffic_logging:
-              enabled: true
-              template_file: /etc/gateway-runtime/traffic-log/traffic-log-template.json
-        ```
+```yaml
+gateway:
+  config:
+    traffic_logging:
+      enabled: true
+      template: |
+        {
+          "service": "orders",
+          "http": {"method": "$ctx:request.method", "status": "$ctx:response.status"},
+          "durationMs": "$ctx:convertUnit(latencies.duration, 'ms')"
+        }
+```
 
 Template lines go to the same outputs (`stdout`, `file` or `http`) as default lines.
 
@@ -311,8 +250,8 @@ If the log lines aren't what you expect, check the following.
 
 | Symptom | What to do |
 |---|---|
-| The gateway does not start, and the error names `template` or `template_file`. | Fix the problem the error describes, such as invalid JSON, a file that cannot be read, or both settings set. Then restart the gateway. |
+| The gateway does not start, and the error names `template`. | Fix the problem the error describes, such as invalid JSON. Then restart the gateway. |
 | A field is always `null`, and a warning at startup names the field. | Fix the `$ctx:` expression the warning describes, for example a misspelled variable. |
 | A header or body field is always `null`. | Turn on the matching `[collector]` setting. |
 | A warning at startup says an `exclude_fields` entry matches no field. | Change the entry to a path in your template's output. |
-| Lines still look like the default line. | Check that `traffic_logging.enabled` is `true` and that `template` or `template_file` is spelled correctly. |
+| Lines still look like the default line. | Check that `traffic_logging.enabled` is `true` and that `template` is spelled correctly. |

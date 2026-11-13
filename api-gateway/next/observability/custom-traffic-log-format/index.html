@@ -86,9 +86,9 @@
 <li>Add fixed values, such as a service or environment name.</li>
 <li>Convert latencies to the time unit you need.</li>
 </ul>
-<p>You can pass the template inline in the gateway configuration, or as a separate file.</p>
+<p>You set the template inline in the gateway configuration.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<p>The template is set in the <code>[traffic_logging]</code> section, which must have <code>enabled = true</code>. Set one of these settings, not both.</p>
+<p>The template is set in the <code>[traffic_logging]</code> section, which must have <code>enabled = true</code>.</p>
 <table>
 <thead>
 <tr>
@@ -105,15 +105,9 @@
 <td><code>""</code></td>
 <td>The template, inline in the gateway configuration.</td>
 </tr>
-<tr>
-<td><code>template_file</code></td>
-<td>string</td>
-<td><code>""</code></td>
-<td>Path of a file that holds the template. The file must be inside <code>/etc/gateway-runtime</code> in the gateway runtime container, and at most 1 MiB.</td>
-</tr>
 </tbody>
 </table>
-<p>When neither is set, the gateway writes the default line.</p>
+<p>When <code>template</code> is empty, the gateway writes the default line.</p>
 <h2 id="template-format">Template format<a class="headerlink" href="#template-format" title="Permanent link">&para;</a></h2>
 <p>A template is a JSON object that describes one log line.</p>
 <ul>
@@ -138,10 +132,7 @@
 <div class="language-json highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2026-11-10T09:12:33.482Z&quot;</span><span class="p">,</span><span class="nt">&quot;service&quot;</span><span class="p">:</span><span class="s2">&quot;orders&quot;</span><span class="p">,</span><span class="nt">&quot;api&quot;</span><span class="p">:{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Weather-API&quot;</span><span class="p">,</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;1.0.0&quot;</span><span class="p">},</span><span class="nt">&quot;http&quot;</span><span class="p">:{</span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="s2">&quot;/current&quot;</span><span class="p">,</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="mi">200</span><span class="p">},</span><span class="nt">&quot;client&quot;</span><span class="p">:</span><span class="s2">&quot;203.0.113.10&quot;</span><span class="p">,</span><span class="nt">&quot;app&quot;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="nt">&quot;durationMs&quot;</span><span class="p">:</span><span class="mf">18.342</span><span class="p">}</span>
 </code></pre></div> <p>Each line has the fields in the template's order. Numbers stay numbers. A field the request has no value for is written as <code>null</code>. In this example, <code>app</code> is <code>null</code> because no application was identified for the request.</p>
 <h2 id="passing-the-template">Passing the template<a class="headerlink" href="#passing-the-template" title="Permanent link">&para;</a></h2>
-<p>The gateway reads the template when it starts. After you change the template or the template file, restart the gateway.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Inline</label><label for="__tabbed_1_2">File</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<p>The gateway reads the template when it starts. After you change the template, restart the gateway.</p>
 <p>Set <code>template</code> to the template. A TOML multi-line string (<code>'''</code>) keeps it readable.</p>
 <div class="language-toml highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[traffic_logging]</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
@@ -163,54 +154,7 @@
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">          </span><span class="no">&quot;http&quot;: {&quot;method&quot;: &quot;$ctx:request.method&quot;, &quot;status&quot;: &quot;$ctx:response.status&quot;},</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">          </span><span class="no">&quot;durationMs&quot;: &quot;$ctx:convertUnit(latencies.duration, &#39;ms&#39;)&quot;</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="no">}</span>
-</code></pre></div> </div>
-<div class="tabbed-block">
-<ol>
-<li>
-<p>Save the template as a JSON file, for example <code>traffic-log-template.json</code>.</p>
-</li>
-<li>
-<p>Mount the file into the gateway runtime container, inside <code>/etc/gateway-runtime</code>.</p>
-<p><strong>Docker Compose:</strong> Add a volume to the <code>gateway-runtime</code> service.</p>
-<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">services</span><span class="p">:</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">gateway-runtime</span><span class="p">:</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./configs/config.toml:/etc/policy-engine/config.toml:ro</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./configs/traffic-log-template.json:/etc/gateway-runtime/traffic-log-template.json:ro</span>
-</code></pre></div> <p><strong>Kubernetes:</strong> Create a ConfigMap from the file:</p>
-<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>create<span class="w"> </span>configmap<span class="w"> </span>traffic-log-template<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--namespace<span class="w"> </span>&lt;gateway-namespace&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--from-file<span class="o">=</span>traffic-log-template.json
-</code></pre></div> <p>Then mount it through the Helm chart's <code>extraVolumes</code> and <code>extraVolumeMounts</code> settings:</p>
-<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">gateway</span><span class="p">:</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">gatewayRuntime</span><span class="p">:</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">deployment</span><span class="p">:</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">      </span><span class="nt">extraVolumes</span><span class="p">:</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traffic-log-template</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">          </span><span class="nt">configMap</span><span class="p">:</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traffic-log-template</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">      </span><span class="nt">extraVolumeMounts</span><span class="p">:</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traffic-log-template</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/gateway-runtime/traffic-log</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">          </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</code></pre></div> </li>
-<li>
-<p>Set <code>template_file</code> to the file's path inside the container.</p>
-<div class="language-toml highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[traffic_logging]</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">template_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/etc/gateway-runtime/traffic-log-template.json&quot;</span>
-</code></pre></div> <p><strong>Helm:</strong></p>
-<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">gateway</span><span class="p">:</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">config</span><span class="p">:</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">traffic_logging</span><span class="p">:</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">      </span><span class="nt">template_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/gateway-runtime/traffic-log/traffic-log-template.json</span>
-</code></pre></div> </li>
-</ol>
-</div>
-</div>
-</div>
-<p>Template lines go to the same outputs (<code>stdout</code>, <code>file</code> or <code>http</code>) as default lines.</p>
+</code></pre></div> <p>Template lines go to the same outputs (<code>stdout</code>, <code>file</code> or <code>http</code>) as default lines.</p>
 <h2 id="how-template-lines-behave">How template lines behave<a class="headerlink" href="#how-template-lines-behave" title="Permanent link">&para;</a></h2>
 <ul>
 <li>A template replaces the default line for every request.</li>
@@ -568,7 +512,7 @@
 </tbody>
 </table>
 <p>To write a latency in another unit, use <code>convertUnit(&lt;latency&gt;, '&lt;unit&gt;')</code>. The unit is one of <code>'ns'</code>, <code>'us'</code>, <code>'ms'</code> or <code>'s'</code>.</p>
-<div class="language-json highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span><span class="nt">&quot;durationMs&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$ctx:convertUnit(latencies.duration, &#39;ms&#39;)&quot;</span><span class="p">}</span>
+<div class="language-json highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span><span class="nt">&quot;durationMs&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$ctx:convertUnit(latencies.duration, &#39;ms&#39;)&quot;</span><span class="p">}</span>
 </code></pre></div> <h3 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h3>
 <p>This variable holds values that policies share for the request.</p>
 <table>
@@ -634,8 +578,8 @@
 </thead>
 <tbody>
 <tr>
-<td>The gateway does not start, and the error names <code>template</code> or <code>template_file</code>.</td>
-<td>Fix the problem the error describes, such as invalid JSON, a file that cannot be read, or both settings set. Then restart the gateway.</td>
+<td>The gateway does not start, and the error names <code>template</code>.</td>
+<td>Fix the problem the error describes, such as invalid JSON. Then restart the gateway.</td>
 </tr>
 <tr>
 <td>A field is always <code>null</code>, and a warning at startup names the field.</td>
@@ -651,7 +595,7 @@
 </tr>
 <tr>
 <td>Lines still look like the default line.</td>
-<td>Check that <code>traffic_logging.enabled</code> is <code>true</code> and that <code>template</code> or <code>template_file</code> is spelled correctly.</td>
+<td>Check that <code>traffic_logging.enabled</code> is <code>true</code> and that <code>template</code> is spelled correctly.</td>
 </tr>
 </tbody>
 </table> </article> </div> </div> <a href="#" class="md-top md-icon" data-md-component="top" hidden> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg> Back to top </a> </main> <footer class="md-footer md-typeset"> <div class="md-footer__content"> <div class="md-footer__meta-sections"> <div class="md-footer__meta-section md-footer__meta-section--discord"> <div class="discord-icon"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg> </div> <div class="md-footer__meta-section__text-content"> <h3 class="md-footer__meta-section__heading">Join our Discord</h3> <p class="md-footer__meta-section__description"> Connect with our community on our official Discord server. Share ideas, get help, and be a part of the awesome conversations! </p> <a target="_blank" rel="noopener noreferrer" class="md-footer__meta-section__link" role="group" href="https://discord.com/invite/wso2">Join Discord<svg class="chevron chakra-icon css-1nyqxv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="14" width="14" fill="currentColor" aria-hidden="true" focusable="false"> <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path> </svg></a> </div> </div> <div class="md-footer__meta-section md-footer__meta-section--discord"> <div class="md-footer__meta-section__links"> <div class="md-footer__meta-section__link md-footer__meta-section__link--composite"> <svg class="community-logo community-logo--monochrome" width="14" height="14" viewBox="0 0 256 249" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet"> <g fill="#161614"> <path d="M127.505 0C57.095 0 0 57.085 0 127.505c0 56.336 36.534 104.13 87.196 120.99 6.372 1.18 8.712-2.766 8.712-6.134 0-3.04-.119-13.085-.173-23.739-35.473 7.713-42.958-15.044-42.958-15.044-5.8-14.738-14.157-18.656-14.157-18.656-11.568-7.914.872-7.752.872-7.752 12.804.9 19.546 13.14 19.546 13.14 11.372 19.493 29.828 13.857 37.104 10.6 1.144-8.242 4.449-13.866 8.095-17.05-28.32-3.225-58.092-14.158-58.092-63.014 0-13.92 4.981-25.295 13.138-34.224-1.324-3.212-5.688-16.18 1.235-33.743 0 0 10.707-3.427 35.073 13.07 10.17-2.826 21.078-4.242 31.914-4.29 10.836.048 21.752 1.464 31.942 4.29 24.337-16.497 35.029-13.07 35.029-13.07 6.94 17.563 2.574 30.531 1.25 33.743 8.175 8.929 13.122 20.303 13.122 34.224 0 48.972-29.828 59.756-58.22 62.912 4.573 3.957 8.648 11.717 8.648 23.612 0 17.06-.148 30.791-.148 34.991 0 3.393 2.295 7.369 8.759 6.117 50.634-16.879 87.122-64.656 87.122-120.973C255.009 57.085 197.922 0 127.505 0" /> <path d="M47.755 181.634c-.28.633-1.278.823-2.185.389-.925-.416-1.445-1.28-1.145-1.916.275-.652 1.273-.834 2.196-.396.927.415 1.455 1.287 1.134 1.923M54.027 187.23c-.608.564-1.797.302-2.604-.589-.834-.889-.99-2.077-.373-2.65.627-.563 1.78-.3 2.616.59.834.899.996 2.08.36 2.65M58.33 194.39c-.782.543-2.06.034-2.849-1.1-.781-1.133-.781-2.493.017-3.038.792-.545 2.05-.055 2.85 1.07.78 1.153.78 2.513-.019 3.069M65.606 202.683c-.699.77-2.187.564-3.277-.488-1.114-1.028-1.425-2.487-.724-3.258.707-.772 2.204-.555 3.302.488 1.107 1.026 1.445 2.496.7 3.258M75.01 205.483c-.307.998-1.741 1.452-3.185 1.028-1.442-.437-2.386-1.607-2.095-2.616.3-1.005 1.74-1.478 3.195-1.024 1.44.435 2.386 1.596 2.086 2.612M85.714 206.67c.036 1.052-1.189 1.924-2.705 1.943-1.525.033-2.758-.818-2.774-1.852 0-1.062 1.197-1.926 2.721-1.951 1.516-.03 2.758.815 2.758 1.86M96.228 206.267c.182 1.026-.872 2.08-2.377 2.36-1.48.27-2.85-.363-3.039-1.38-.184-1.052.89-2.105 2.367-2.378 1.508-.262 2.857.355 3.049 1.398" /> </g> </svg> <label>Want to contribute?</label><a target="_blank" rel="noopener noreferrer" href="https://github.com/wso2/docs-bijira">Head over to GitHub</a> </div> <div class="md-footer__meta-section__link md-footer__meta-section__link--composite"> <svg class="community-logo community-logo--monochrome" fill="none" height="14" width="14" xmlns="http://www.w3.org/2000/svg" viewBox="0.254 0.25 500 451.95400000000006"> <path d="M394.033.25h76.67L303.202 191.693l197.052 260.511h-154.29L225.118 294.205 86.844 452.204H10.127l179.16-204.77L.254.25H158.46l109.234 144.417zm-26.908 406.063h42.483L135.377 43.73h-45.59z" /> </svg> <label>Like to stay updated?</label><a target="_blank" rel="noopener noreferrer" href="https://twitter.com/intent/follow?screen_name=wso2">Follow us on X (Formerly Twitter)</a> </div> <div class="md-footer__meta-section__link md-footer__meta-section__link--composite"> <svg class="community-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="0 -7 48 48" version="1.1"> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-200.000000, -368.000000)" fill="#CE1312"> <path d="M219.044,391.269916 L219.0425,377.687742 L232.0115,384.502244 L219.044,391.269916 Z M247.52,375.334163 C247.52,375.334163 247.0505,372.003199 245.612,370.536366 C243.7865,368.610299 241.7405,368.601235 240.803,368.489448 C234.086,368 224.0105,368 224.0105,368 L223.9895,368 C223.9895,368 213.914,368 207.197,368.489448 C206.258,368.601235 204.2135,368.610299 202.3865,370.536366 C200.948,372.003199 200.48,375.334163 200.48,375.334163 C200.48,375.334163 200,379.246723 200,383.157773 L200,386.82561 C200,390.73817 200.48,394.64922 200.48,394.64922 C200.48,394.64922 200.948,397.980184 202.3865,399.447016 C204.2135,401.373084 206.612,401.312658 207.68,401.513574 C211.52,401.885191 224,402 224,402 C224,402 234.086,401.984894 240.803,401.495446 C241.7405,401.382148 243.7865,401.373084 245.612,399.447016 C247.0505,397.980184 247.52,394.64922 247.52,394.64922 C247.52,394.64922 248,390.73817 248,386.82561 L248,383.157773 C248,379.246723 247.52,375.334163 247.52,375.334163 L247.52,375.334163 Z" id="Youtube"> </path> </g> </g> </svg> <label>Prefer video tutorials?</label><a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/user/WSO2TechFlicks">Subscribe to our YouTube Channel</a> </div> </div> </div> </div> </div> <div class="md-copyright md-typeset"> <div class="md-copyright__content"> <div class="md-copyright__highlight"> &copy; 2024-2026 <a href="https://wso2.com/">WSO2</a> LLC. &nbsp;|&nbsp; Content licensed under <a href="https://creativecommons.org/licenses/by/4.0" target="_blank">CC By 4.0</a>. | Sample code licensed under <a href="http://www.apache.org/licenses/" target="_blank">Apache 2.0</a>. </div> </div>
