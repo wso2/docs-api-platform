@@ -1,4 +1,7 @@
 redirect_maps:
+  # Policy Hub overview moved to the cloud docs site.
+  policy-hub/overview.md: https://172-24-12-143.sslip.io/api-management/cloud/policy-hub/overview/
+
   # API Monetization pages moved from api-monetization/ to monetization/ on main (c7d80c9b9)
   api-monetization/getting-started.md: monetization/getting-started.md
   api-monetization/manage-paid-subscription-plans.md: monetization/manage-paid-subscription-plans.md
