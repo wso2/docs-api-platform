@@ -110,23 +110,23 @@ const sidebars = {
           doc("api-portal/administer/key-managers/overview", "Overview"),
           doc("api-portal/administer/key-managers/custom-key-manager", "Configure a Custom Key Manager"),
         ]),
-        group("Organization", [
-          doc("api-portal/admin-settings/organization-settings", "Organization Settings"),
-          doc("api-portal/admin-settings/manage-views", "Manage Views"),
-          doc("api-portal/admin-settings/manage-labels", "Manage Labels"),
-          doc("api-portal/admin-settings/subscription-plans", "Subscription Plans"),
-        ]),
-        group("Content", [
-          doc("api-portal/admin-settings/manage-apis", "Manage APIs"),
-          doc("api-portal/admin-settings/manage-mcp-servers", "Manage MCP Servers"),
-        ]),
-        group("Integrations", [
-          doc("api-portal/admin-settings/webhook-integration", "Webhooks"),
-        ]),
-        group("AI & Discovery", [
-          doc("api-portal/admin-settings/llm-instructions", "LLM Instructions"),
-          doc("api-portal/admin-settings/manage-api-workflows", "API Workflows"),
-        ]),
+        // group("Organization", [
+        //   doc("api-portal/admin-settings/organization-settings", "Organization Settings"),
+        //   doc("api-portal/admin-settings/manage-views", "Manage Views"),
+        //   doc("api-portal/admin-settings/manage-labels", "Manage Labels"),
+        //   doc("api-portal/admin-settings/subscription-plans", "Subscription Plans"),
+        // ]),
+        // group("Content", [
+        //   doc("api-portal/admin-settings/manage-apis", "Manage APIs"),
+        //   doc("api-portal/admin-settings/manage-mcp-servers", "Manage MCP Servers"),
+        // ]),
+        // group("Integrations", [
+        //   doc("api-portal/admin-settings/webhook-integration", "Webhooks"),
+        // ]),
+        // group("AI & Discovery", [
+        //   doc("api-portal/admin-settings/llm-instructions", "LLM Instructions"),
+        //   doc("api-portal/admin-settings/manage-api-workflows", "API Workflows"),
+        // ]),
         group("Appearance", [
           doc("api-portal/administer/theming", "Theming"),
         ]),
