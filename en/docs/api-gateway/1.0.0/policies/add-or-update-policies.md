@@ -9,7 +9,7 @@ tags:
   - cli
   - policy-hub
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-09-15
+last_updated: 2026-11-05
 content_type: "how-to"
 ---
 
@@ -24,13 +24,13 @@ For the concepts behind policies and the list of available policies, see the [AP
 
 ## Prerequisites
 
-- The API Platform CLI (`ap`), version 0.9.1 or later. Download the binary for your platform from the [`ap` CLI v0.9.1 release page](https://github.com/wso2/api-platform/releases/tag/ap%2Fv0.9.1), then add it to your `PATH`. For step-by-step installation instructions, see [Building the Gateway with Custom Policies](custom-policies/building-gateway-with-custom-policies.md). Confirm the version:
+- The API Platform CLI (`ap`), a 0.8.x release from 0.8.1 on. Download the binary for your platform from the [`ap` CLI v0.8.1 release page](https://github.com/wso2/api-platform/releases/tag/ap%2Fv0.8.1), then add it to your `PATH`. For step-by-step installation instructions, see [Building the Gateway with Custom Policies](custom-policies/building-gateway-with-custom-policies.md). Confirm the version:
 
     ```bash
     ap version
     ```
 
-    The output is similar to `ap version v0.9.1 (built at 2026-08-01T00:00:00Z)`.
+    The output is similar to `ap version v0.8.1 (built at 2026-11-04T06:29:05Z)`.
 
 - Docker, running on your machine. The CLI uses Docker to build the gateway image.
 - A gateway project directory that contains a `build.yaml` file.

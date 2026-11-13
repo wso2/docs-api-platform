@@ -9,7 +9,7 @@ tags:
   - authentication
   - troubleshooting
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-17
+last_updated: 2026-10-20
 content_type: "how-to"
 ---
 
@@ -24,15 +24,20 @@ The Gateway Controller REST API (the control-plane API used to manage gateway co
 You can enable one (or both) of the following:
 
 - **Basic Auth (local users)**: Define usernames/passwords and assign local roles.
-- **IDP/JWT (external users)**: Validate incoming JWTs using `jwks_url` optionally `issuer`.
+- **IDP/JWT (external users)**: Validate incoming JWTs using `jwks_url`, and optionally `issuer` and `audience`.
 
 **No Authentication (open access)**: If BOTH `basic.enabled` and `idp.enabled` are set to `false`, all requests to the gateway controller are allowed without authentication.
 
 ### Authorization (Are you allowed?)
 Gateway Controller routes are protected using **local roles** (for example `admin`, `developer`, `consumer`).
 
-- If **`roles_claim` is NOT configured** in the IDP/JWT setup, **authorization is bypassed** for the Gateway Controller REST API routes (i.e., no role checks are performed).
-- If **`roles_claim` IS configured**, you **must** also configure **`role_mapping`**. Without a mapping, the controller cannot translate IDP roles → local roles, and requests will be denied.
+When IDP/JWT authentication is enabled, the controller checks the caller's roles on every protected route:
+
+- **`roles_claim`** names the JWT claim that carries the caller's roles. It defaults to `roles`. If you set it to an empty value while `idp.enabled` is `true`, the controller fails to start.
+- **`role_mapping`** translates IDP role values to local roles. It's optional when your IDP already issues the local role names. A claim value that matches no mapping passes through unchanged.
+- If a token doesn't contain the claim named in `roles_claim`, the caller has no local roles, and the controller denies access to every protected route.
+
+The controller reads the roles claim as either a space-separated string or an array of strings.
 
 ## Configuration
 In the umbrella gateway config, these settings live under `controller.auth`. (If you run the controller standalone, the same structure applies under the controller’s config root.)
@@ -62,15 +67,29 @@ controller:
       enabled: true
       jwks_url: "https://idp.example.com/oauth2/jwks"
       issuer: "https://idp.example.com/oauth2/token"
+      # Optional: accept only tokens issued for these audiences
+      audience: ["gateway-controller"]
 
-      # Turn ON authorization by providing BOTH:
-      roles_claim: "groups"   # e.g., "groups", "scope", "roles"
+      roles_claim: "groups"   # Defaults to "roles". For example, "groups", "scope", or "roles"
+      # Optional when the IDP already issues local role names
       role_mapping:
         admin: ["gateway-admins", "platform-admins"]
         developer: ["api-developers", "ops"]
         # Optional: give any authenticated user a baseline role
         consumer: ["*"]
 ```
+
+### Restrict tokens by audience
+Set `audience` to the values the controller accepts in a token's `aud` claim. The controller accepts a token when its `aud` claim contains at least one configured value, and rejects every other token.
+
+```yaml
+controller:
+  auth:
+    idp:
+      audience: ["gateway-controller", "https://gateway.example.com"]
+```
+
+If you leave `audience` empty, which is the default, the controller doesn't validate the `aud` claim and logs a warning at startup. Set `audience` in production so that the controller rejects tokens your IDP issued for other applications.
 
 ## Role Mapping Semantics
 `role_mapping` is defined as:
@@ -94,10 +113,11 @@ role_mapping:
 In this example, a user in `platform-admins` becomes both `admin` and `developer` in the Gateway Controller.
 
 ## Troubleshooting (What you’ll observe)
-- **Requests are denied after enabling JWT auth**: verify `jwks_url` and (if set) `issuer` match the token you're sending.
-- **You enabled `roles_claim` and suddenly everything is forbidden**: add `role_mapping` (mapping is mandatory when `roles_claim` is provided).
-- **Users authenticate but don't have expected access**: confirm the token actually contains the configured `roles_claim`, and that its values match what you listed in `role_mapping`.
-- **You want authN but not authZ**: keep IDP enabled, but leave `roles_claim` and `role_mapping` unset to bypass authorization checks.
+- **Requests are denied after enabling JWT auth**: verify that `jwks_url`, and if set, `issuer` and `audience`, match the token you're sending. When `audience` is set, the token's `aud` claim must contain at least one configured value.
+- **The controller fails to start with `auth.idp.roles_claim is empty`**: set `roles_claim` to the claim that carries the caller's roles, or remove the empty value so that the default `roles` applies.
+- **Every authenticated request is forbidden**: confirm that the token contains the claim named in `roles_claim`, which defaults to `roles`. If your IDP uses another claim, such as `groups` or `scope`, set `roles_claim` to it.
+- **Users authenticate but don't have expected access**: confirm that the values in the token's `roles_claim` are either local role names or match what you listed in `role_mapping`.
+- **You want authentication without role checks**: IDP/JWT authentication always runs role checks. To give every authenticated user a baseline role, add a wildcard mapping such as `consumer: ["*"]`. The token still needs at least one value in its `roles_claim`.
 - **You want to disable auth entirely**: set both `basic.enabled` and `idp.enabled` to `false`.
 
 ## Testing

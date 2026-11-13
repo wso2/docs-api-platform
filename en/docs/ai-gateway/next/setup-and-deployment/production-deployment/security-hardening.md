@@ -11,7 +11,7 @@ tags:
   - tls
   - secrets
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-17
+last_updated: 2026-10-20
 content_type: "how-to"
 ---
 
@@ -222,12 +222,15 @@ Choose the strategy that matches how your organization handles access.
               enabled: true
               jwks_url: "https://idp.example.com/.well-known/jwks.json"
               issuer: "https://idp.example.com"
+              audience: ["gateway-controller"]
               roles_claim: "scope"
               role_mapping:
                 admin: ["gateway:admin"]
                 developer: ["gateway:developer"]
                 consumer: ["gateway:consumer"]
     ```
+
+    Set `audience` to the value your identity provider puts in the `aud` claim of tokens it issues for the gateway controller. If you leave `audience` empty, the controller accepts tokens issued for any audience and logs a warning at startup. For details on `audience`, `roles_claim`, and `role_mapping`, see [Secure the management API](../secure-the-management-api.md).
 
     !!! note
         The values in `role_mapping` must match claims the identity provider actually issues in its JSON Web Tokens (JWTs). For the roles the controller recognizes and the operations each one permits, see the [gateway controller management API definition](https://raw.githubusercontent.com/wso2/api-platform/refs/tags/ai-gateway/v1.2.0/gateway/gateway-controller/api/management-openapi.yaml).

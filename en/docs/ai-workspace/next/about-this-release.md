@@ -8,7 +8,7 @@ tags:
   - ai-workspace
   - release-notes
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-05
+last_updated: 2026-09-30
 content_type: "reference"
 ---
 
@@ -25,6 +25,16 @@ For more information on AI Workspace, see the [AI Workspace overview](overview.m
 Download the AI Workspace distribution from the [WSO2 API Platform releases page](https://github.com/wso2/api-platform/releases). To run it locally with Docker Compose, follow [Get started with AI Workspace](getting-started.md).
 
 ## New features
+
+??? note "Multi-provider App LLM proxies"
+
+    An App LLM proxy can front several LLM providers. Applications send one request format to one endpoint and select a provider per request.
+
+    - **Several providers per proxy**: Attach more than one provider, each with its own credential and transformer policy.
+    - **Selectable inbound interface**: Choose the request format the proxy accepts from clients, independently of the primary provider's own format.
+    - **Providers tab**: Add, edit and remove providers after creation from one list.
+
+    Needs a gateway at 1.2.0 or later. A selectable inbound interface and a transformer on the primary provider need 2026.09.24 or later. See [Route to several providers](llm-proxies/multi-provider.md).
 
 ??? note "AI Workspace control plane"
 

@@ -52,11 +52,11 @@
       <button
         class="md-typeset md-button md-button--small md-button--flex md-button--try-bijira"
         onclick="
-          javascript: window.open(
-            'https://console.bijira.dev/login/',
-            '_blank',
-            'noopener',
-          );
+          if (window.openConsoleSignIn) {
+            window.openConsoleSignIn();
+          } else {
+            window.open('https://console.bijira.dev/login/', '_blank', 'noopener');
+          }
         "
       >
         <svg

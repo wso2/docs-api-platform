@@ -136,7 +136,7 @@ onFirstPage(function () {
       return;
     }
 
-    // Clicking outside an open menu closes the menu 
+    // Clicking outside an open menu closes the menu
     document.querySelectorAll('.md-content__copy.open').forEach(function (openContainer) {
       if (!openContainer.contains(event.target)) {
         openContainer.classList.remove('open');
@@ -144,6 +144,64 @@ onFirstPage(function () {
     });
   });
 });
+
+/*
+ * "Try WSO2 API Platform" header button (see partials/community.html)
+ *
+ * Opens the Console sign-in page with UTM parameters to record Console's sign-up
+ * events in Moesif. The header stays in place across instant navigation. So the 
+ * page slug is read when we click the button.
+ *
+ */
+window.openConsoleSignIn = (function () {
+  // Same site root resolution as the search breadcrumbs below.
+  var scope = window.__md_scope ||
+    (document.querySelector('base') ? new URL(document.querySelector('base').href) : new URL('/', location));
+  var basePath = scope.pathname;
+  if (basePath.charAt(basePath.length - 1) !== '/') basePath += '/';
+
+  // The page path relative to the site root, lowercased, with each run of
+  // characters other than letters and digits replaced by one underscore:
+  // /api-gateway/1.2.0/quick-start-guide/ becomes
+  // api_gateway_1_2_0_quick_start_guide. The site root becomes "home".
+  function pageSlug() {
+    var path = location.pathname;
+    try {
+      path = decodeURIComponent(path);
+    } catch (e) {
+      // Keep the raw path if it isn't valid percent-encoding.
+    }
+    if (path.indexOf(basePath) === 0) path = path.slice(basePath.length);
+    var slug = path
+      .replace(/index\.html$/, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+    return slug || 'home';
+  }
+
+  return function () {
+    var utm = {
+      utm_source: 'docs',
+      utm_medium: 'header-cta',
+      utm_campaign: 'docs_cta',
+      utm_content: pageSlug(),
+    };
+
+    // Record the click with the same UTM values. 
+    try {
+      if (typeof trackEvent === 'function') trackEvent('CTA-Clicked', Object.assign({ page_title: document.title }, utm));
+    } catch (e) {
+      console.error('Failed to track CTA click:', e);
+    }
+
+    var url = new URL('https://console.bijira.dev/login/');
+    Object.keys(utm).forEach(function (key) {
+      url.searchParams.set(key, utm[key]);
+    });
+    window.open(url.toString(), '_blank', 'noopener');
+  };
+})();
 
 // Content tab styling and navigation sidebar state: both are re-rendered on
 // every navigation, so this runs per page.
@@ -193,6 +251,332 @@ onEachPage(function() {
 
   // Menu items expand/collapse independently: expanding one item no longer
   // collapses its siblings. Each item stays open until the user collapses it.
+});
+
+/*
+ * Guides overview: "By use case" / "By vendor" switch
+ * -------------------------------------------------------------------------
+ * The Markdown stays flat: each view is an h2 and everything up to the next
+ * h2. Each tab names its view's heading in data-view-heading, and this script
+ * wraps that run of elements in a tabpanel. (md_in_html can't nest the card
+ * grids inside a panel <div>, so the grouping happens here.)
+ *
+ * Both views are in the page, so search, llms.txt and readers without
+ * JavaScript get everything; the switch stays hidden until this runs. A link
+ * to a heading inside either view (#browse-by-service-provider, #aws) opens that view,
+ * and switching views puts the view's heading in the URL so it can be shared.
+ * The inactive view uses hidden="until-found", so find in page (Chrome) can
+ * reach it and switch to it.
+ */
+var guidesSwitchHashHandler = null;
+
+function wrapGuidesView(tab) {
+  var existing = document.getElementById(tab.getAttribute('aria-controls'));
+  if (existing) return existing;
+  var heading = document.getElementById(tab.dataset.viewHeading || '');
+  if (!heading || heading.tagName !== 'H2') return null;
+  var panel = document.createElement('div');
+  panel.className = 'guides-view';
+  panel.id = tab.getAttribute('aria-controls');
+  panel.setAttribute('role', 'tabpanel');
+  panel.setAttribute('aria-labelledby', tab.id);
+  heading.parentNode.insertBefore(panel, heading);
+  var node = heading;
+  while (node && !(node !== heading && node.tagName === 'H2')) {
+    var next = node.nextElementSibling;
+    panel.appendChild(node);
+    node = next;
+  }
+  return panel;
+}
+
+onEachPage(function () {
+  var tablist = document.querySelector('.guides-switch');
+  if (!tablist) return;
+  var tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(wrapGuidesView);
+  if (tabs.length === 0 || panels.some(function (panel) { return !panel; })) return;
+
+  function select(index, options) {
+    options = options || {};
+    tabs.forEach(function (tab, i) {
+      var selected = i === index;
+      tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+      tab.tabIndex = selected ? 0 : -1;
+      if (selected) {
+        panels[i].removeAttribute('hidden');
+      } else {
+        panels[i].setAttribute('hidden', 'until-found');
+      }
+    });
+    syncTableOfContents(index);
+    if (options.focus) tabs[index].focus();
+    if (options.updateUrl) {
+      var heading = panels[index].querySelector('h2[id]');
+      if (heading) history.replaceState(history.state, '', '#' + heading.id);
+    }
+  }
+
+  function hashTarget() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    return id ? document.getElementById(id) : null;
+  }
+
+  function panelIndexOf(element) {
+    return element ? panels.findIndex(function (panel) { return panel.contains(element); }) : -1;
+  }
+
+  function syncTableOfContents(index) {
+    var toc = document.querySelector('.md-sidebar--secondary');
+    if (!toc) return;
+    toc.querySelectorAll('a[href*="#"]').forEach(function (link) {
+      var id = decodeURIComponent(new URL(link.href, location.href).hash.slice(1));
+      var target = id ? document.getElementById(id) : null;
+      var targetPanel = panelIndexOf(target);
+      if (targetPanel < 0) return;
+      var item = link.closest('.md-nav__item');
+      if (item) item.hidden = targetPanel !== index;
+    });
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () {
+      select(i, { updateUrl: true });
+    });
+    tab.addEventListener('keydown', function (event) {
+      var next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[event.key];
+      if (next === undefined) return;
+      event.preventDefault();
+      select((next + tabs.length) % tabs.length, { focus: true, updateUrl: true });
+    });
+  });
+
+  panels.forEach(function (panel, i) {
+    panel.addEventListener('beforematch', function () { select(i); });
+  });
+
+  // A link from another page, or from this page's table of contents, can point
+  // into the hidden view: open it, then scroll to the target the browser
+  // couldn't reach while it was hidden.
+  function openHashTarget() {
+    var target = hashTarget();
+    var index = panelIndexOf(target);
+    if (index < 0) return;
+    select(index);
+    target.scrollIntoView();
+  }
+
+  // Instant navigation keeps one window, so replace the previous page's
+  // listener instead of adding one per visit.
+  if (guidesSwitchHashHandler) window.removeEventListener('hashchange', guidesSwitchHashHandler);
+  guidesSwitchHashHandler = openHashTarget;
+  window.addEventListener('hashchange', guidesSwitchHashHandler);
+
+  var initial = panelIndexOf(hashTarget());
+  select(initial < 0 ? 0 : initial);
+  tablist.removeAttribute('hidden');
+  if (initial >= 0) hashTarget().scrollIntoView();
+});
+
+/*
+ * Vendor guide pages: deployment type switch
+ * -------------------------------------------------------------------------
+ * Deployment-specific content is wrapped in elements with a data-deployments
+ * attribute (for example <div class="vendor-links" data-deployments="cloud">).
+ * When a page uses more than one deployment type, build a switch before the
+ * first section that has such content and show only the content for the
+ * selected type. A capability row or an h2 section whose deployment-specific
+ * content is all hidden is hidden too. Content without the attribute (end-to-end
+ * guides, architecture, learn more) is always shown.
+ *
+ * The selection is kept in the URL as ?deployment=cloud|hybrid|self-hosted, so
+ * a link can open a vendor page on a given deployment type (with or without a
+ * #section). Without the parameter, or with a type the page doesn't have, the
+ * page opens on Cloud, or on its first type when it has no Cloud content.
+ */
+var vendorDeploymentHashHandler = null;
+var vendorDeploymentReveal = null;
+
+// Search results and other links to an anchor on the current page don't fire
+// hashchange under instant navigation, so reveal the target on click, before
+// Material scrolls to it.
+document.addEventListener('click', function (event) {
+  if (!vendorDeploymentReveal || !event.target.closest) return;
+  var link = event.target.closest('a[href*="#"]');
+  if (!link) return;
+  var url = new URL(link.href, location.href);
+  if (url.pathname !== location.pathname || !url.hash) return;
+  vendorDeploymentReveal(decodeURIComponent(url.hash.slice(1)), false);
+}, true);
+
+onEachPage(function () {
+  vendorDeploymentReveal = null;
+  var article = document.querySelector('.md-content__inner');
+  if (!article) return;
+
+  var order = ['cloud', 'hybrid', 'self-hosted'];
+  var labels = { cloud: 'Cloud', hybrid: 'Hybrid', 'self-hosted': 'Self-hosted' };
+  var urlParam = 'deployment';
+  var descriptions = {
+    cloud: 'WSO2 hosts the control plane and the gateways.',
+    hybrid: 'WSO2 hosts the control plane, and you run the gateways.',
+    'self-hosted': 'You run the gateways, on their own or with your own control plane.'
+  };
+
+  var tagged = Array.prototype.slice.call(article.querySelectorAll('[data-deployments]'));
+  if (!tagged.length) return;
+  var typesOf = function (element) {
+    return element.getAttribute('data-deployments').split(/\s+/);
+  };
+  var types = order.filter(function (type) {
+    return tagged.some(function (element) { return typesOf(element).indexOf(type) >= 0; });
+  });
+  if (types.length < 2) return;
+
+  // Group the article into h2 sections, and keep only those with tagged content.
+  var sections = [];
+  Array.prototype.forEach.call(article.children, function (node) {
+    if (node.tagName === 'H2') sections.push({ heading: node, nodes: [] });
+    if (sections.length) sections[sections.length - 1].nodes.push(node);
+  });
+  sections = sections.filter(function (section) {
+    return section.nodes.some(function (node) {
+      return node.hasAttribute('data-deployments') || node.querySelector('[data-deployments]');
+    });
+  });
+  var caps = Array.prototype.filter.call(article.querySelectorAll('.vendor-cap'), function (cap) {
+    return cap.querySelector('[data-deployments]');
+  });
+
+  var switcher = document.createElement('div');
+  switcher.className = 'vendor-deployment-switch';
+  switcher.setAttribute('role', 'group');
+  switcher.setAttribute('aria-label', 'Deployment type');
+
+  var switchLabel = document.createElement('span');
+  switchLabel.className = 'vendor-deployment-switch__label';
+  switchLabel.textContent = 'Show resources for';
+  switcher.appendChild(switchLabel);
+
+  var options = document.createElement('div');
+  options.className = 'vendor-deployment-switch__options';
+  switcher.appendChild(options);
+
+  var description = document.createElement('p');
+  description.className = 'vendor-deployment-switch__description';
+  description.setAttribute('aria-live', 'polite');
+
+  var buttons = types.map(function (type) {
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = labels[type];
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', function () { select(type); keepInUrl(type); });
+    options.appendChild(button);
+    return button;
+  });
+
+  var first = sections.length ? sections[0].heading : tagged[0];
+  first.parentNode.insertBefore(switcher, first);
+  article.classList.add('vendor-deployments-on');
+  first.parentNode.insertBefore(description, first);
+
+  function isHidden(element) {
+    return !!(element && element.closest('[hidden]'));
+  }
+
+  function select(type) {
+    tagged.forEach(function (element) {
+      element.hidden = typesOf(element).indexOf(type) < 0;
+    });
+    caps.forEach(function (cap) {
+      cap.hidden = false;
+      cap.hidden = !Array.prototype.some.call(cap.querySelectorAll('[data-deployments]'),
+        function (element) { return !element.hidden; });
+    });
+    sections.forEach(function (section) {
+      section.nodes.forEach(function (node) { if (node === section.heading) node.hidden = false; });
+      var shown = section.nodes.some(function (node) {
+        if (node === section.heading) return false;
+        if (node.hasAttribute('data-deployments') || node.classList.contains('vendor-cap')) {
+          return !node.hidden;
+        }
+        return Array.prototype.some.call(node.querySelectorAll('[data-deployments]'),
+          function (element) { return !isHidden(element); });
+      });
+      section.nodes.forEach(function (node) {
+        var own = node.hasAttribute('data-deployments') || node.classList.contains('vendor-cap');
+        if (!own) node.hidden = !shown;
+      });
+    });
+    buttons.forEach(function (button, i) {
+      button.setAttribute('aria-pressed', types[i] === type ? 'true' : 'false');
+    });
+    description.textContent = descriptions[type];
+    var toc = document.querySelector('.md-sidebar--secondary');
+    if (toc) {
+      toc.querySelectorAll('a[href*="#"]').forEach(function (link) {
+        var id = decodeURIComponent(new URL(link.href, location.href).hash.slice(1));
+        var target = id ? document.getElementById(id) : null;
+        var item = link.closest('.md-nav__item');
+        if (target && item) item.hidden = isHidden(target);
+      });
+    }
+  }
+
+  // Replace the current history entry, so switching types doesn't add Back steps.
+  function keepInUrl(type) {
+    var url = new URL(location.href);
+    if (url.searchParams.get(urlParam) === type) return;
+    url.searchParams.set(urlParam, type);
+    history.replaceState(history.state, '', url.href);
+  }
+
+  function current() {
+    var pressed = buttons.filter(function (button) {
+      return button.getAttribute('aria-pressed') === 'true';
+    })[0];
+    return pressed ? types[buttons.indexOf(pressed)] : null;
+  }
+
+  // A link to content hidden by the current selection switches to a type that
+  // shows it, in the order the switch lists them.
+  function reveal(id, scroll) {
+    var target = id ? document.getElementById(id) : null;
+    if (!target || !isHidden(target)) return;
+    var before = current();
+    var candidates = types;
+    for (var i = 0; i < candidates.length; i++) {
+      select(candidates[i]);
+      if (!isHidden(target)) {
+        var shown = candidates[i];
+        keepInUrl(shown);
+        // A clicked link then sets its own URL, so add the type again after that,
+        // unless the page or the selection changed in the meantime.
+        setTimeout(function () {
+          if (article.isConnected && current() === shown) keepInUrl(shown);
+        }, 0);
+        if (scroll) target.scrollIntoView();
+        return;
+      }
+    }
+    select(before);
+  }
+
+  function openHashTarget() {
+    reveal(decodeURIComponent(location.hash.slice(1)), true);
+  }
+
+  if (vendorDeploymentHashHandler) {
+    window.removeEventListener('hashchange', vendorDeploymentHashHandler);
+  }
+  vendorDeploymentHashHandler = openHashTarget;
+  vendorDeploymentReveal = reveal;
+  window.addEventListener('hashchange', vendorDeploymentHashHandler);
+
+  var requested = new URL(location.href).searchParams.get(urlParam);
+  select(types.indexOf(requested) >= 0 ? requested : types[0]);
+  openHashTarget();
 });
 
 /*

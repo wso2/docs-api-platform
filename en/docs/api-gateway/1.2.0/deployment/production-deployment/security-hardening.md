@@ -8,7 +8,7 @@ tags:
   - api-management
   - devops
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-11
+last_updated: 2026-10-20
 content_type: "how-to"
 ---
 
@@ -196,12 +196,15 @@ Choose an authentication strategy based on your organizational requirements.
               enabled: true
               jwks_url: "https://idp.example.com/.well-known/jwks.json"
               issuer: "https://idp.example.com"
+              audience: ["gateway-controller"]
               roles_claim: "scope"
               role_mapping:
                 admin: ["gateway:admin"]
                 developer: ["gateway:developer"]
                 consumer: ["gateway:consumer"]
     ```
+
+    Set `audience` to the value your IDP puts in the `aud` claim of tokens it issues for the gateway controller. If you leave `audience` empty, the controller accepts tokens issued for any audience and logs a warning at startup. For details on `audience`, `roles_claim`, and `role_mapping`, see [Authenticate to the Management API](../../gateway-controller-management-api/authentication.md).
 
     !!! note
         Role mapping values must correspond to claims present in the JWT issued by your IDP. See the [Gateway Controller OpenAPI reference](https://raw.githubusercontent.com/wso2/api-platform/refs/tags/gateway/v1.1.0/gateway/gateway-controller/api/management-openapi.yaml) for the full list of supported roles and their permissions.

@@ -1,13 +1,13 @@
 ---
 title: "Guides overview"
-description: "Step-by-step guides for WSO2 API Platform, grouped by goal: govern LLM traffic, expose and govern MCP servers, manage and govern APIs, monetize, and more."
+description: "Step-by-step guides for WSO2 API Platform, grouped by goal and by service provider, such as AWS, Azure, Anthropic, OpenAI, Google, and GitHub."
 canonical_url: https://wso2.com/api-platform/docs/guides/overview/
 md_url: https://wso2.com/api-platform/docs/guides/overview.md
 tags:
   - guides
   - overview
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-09-23
+last_updated: 2026-10-20
 content_type: "overview"
 ---
 
@@ -25,6 +25,15 @@ Each guide gives you:
 Use guides to see how components such as AI Gateway, AI Workspace, Developer Portal, and MCP Hub work together. For details on a single feature, see the product documentation for [Cloud](../cloud/introduction/what-is-bijira.md), [API Manager](../api-manager/overview.md), [AI Gateway](../ai-gateway/1.1.0/overview.md), or [API Portal](../api-portal/1.0.0/overview.md).
 
 ## Explore what you can build
+
+Browse by what you want to achieve, or by the service provider you already work with.
+
+<div class="guides-switch" role="tablist" aria-label="Browse guides" hidden>
+<button type="button" role="tab" id="guides-tab-use-case" aria-controls="guides-view-use-case" data-view-heading="browse-by-use-case" aria-selected="true">By use case</button>
+<button type="button" role="tab" id="guides-tab-vendor" aria-controls="guides-view-vendor" data-view-heading="browse-by-service-provider" aria-selected="false" tabindex="-1">By service provider</button>
+</div>
+
+## Browse by use case
 
 The guides below are grouped by use case. Whether you want to secure and manage your APIs, control LLM usage and cost, monitor AI traffic, turn your APIs into MCP tools, give AI agents access to your APIs as MCP tools, or monetize your usage, browse the guides for your use case and try them out on your own from start to finish.
 
@@ -204,9 +213,139 @@ Put an API proxy in front of WebSocket backends and push live updates to every c
 
 </div>
 
+## Browse by service provider
+
+The resources below are grouped by service provider. Whether you use Amazon Bedrock, Azure OpenAI, Claude, OpenAI, Gemini, Mistral, GitHub Copilot, or Stripe, find the relevant guides, tutorials, and setup references for your deployment.
+
+<p class="guides-group-label">AI and cloud providers</p>
+
+<div class="cards-container guides-cards" markdown="1">
+
+<div class="card" markdown="1">
+
+### AWS
+
+---
+
+Govern AI traffic to Amazon Bedrock with guardrails and workload identity, discover and govern APIs on Amazon API Gateway, and integrate with AWS observability services.
+
+[Explore AWS resources &rarr;](service-providers/aws.md)
+
+</div>
+
+<div class="card" markdown="1">
+
+### Azure
+
+---
+
+Govern Azure OpenAI and Azure AI Foundry traffic, moderate content with Azure AI Content Safety, and secure APIs with Microsoft Entra ID.
+
+[Explore Azure resources &rarr;](service-providers/azure.md)
+
+</div>
+
+<div class="card" markdown="1">
+
+### Anthropic
+
+---
+
+Route Claude Code through AI Gateway, connect Claude Code and Claude Desktop to governed APIs and MCP servers, and govern traffic to Claude models.
+
+[Explore Anthropic resources &rarr;](service-providers/anthropic.md)
+
+</div>
+
+<div class="card" markdown="1">
+
+### OpenAI
+
+---
+
+Route OpenAI Codex CLI through AI Gateway, govern traffic to OpenAI models, and use OpenAI embeddings for semantic caching and guardrails.
+
+[Explore OpenAI resources &rarr;](service-providers/openai.md)
+
+</div>
+
+<div class="card" markdown="1">
+
+### Google
+
+---
+
+Route Google Gemini CLI through AI Gateway, govern Gemini model traffic, and send gateway telemetry to Google Cloud.
+
+[Explore Google resources &rarr;](service-providers/google.md)
+
+</div>
+
+<div class="card" markdown="1">
+
+### Mistral
+
+---
+
+Govern traffic to Mistral AI models, and use Mistral embeddings for semantic caching and semantic guardrails.
+
+[Explore Mistral resources &rarr;](service-providers/mistral.md)
+
+</div>
+
+</div>
+
+<p class="guides-group-label">Developer tools</p>
+
+<div class="cards-container guides-cards" markdown="1">
+
+<div class="card" markdown="1">
+
+### GitHub
+
+---
+
+Route GitHub Copilot through AI Gateway, create API proxies from GitHub repositories, and design APIs with Copilot in VS Code.
+
+[Explore GitHub resources &rarr;](service-providers/github.md)
+
+</div>
+
+</div>
+
+<p class="guides-group-label">Billing and payments</p>
+
+<div class="cards-container guides-cards" markdown="1">
+
+<div class="card" markdown="1">
+
+### Stripe
+
+---
+
+Sell paid subscription plans for your APIs, and bill consumers for their usage through Stripe.
+
+[Explore Stripe resources &rarr;](service-providers/stripe.md)
+
+</div>
+
+</div>
+
 ## More resources
 
 <div class="cards-container guides-cards" markdown="1">
+
+<div class="card" markdown="1">
+
+### <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V4H6.5A2.5 2.5 0 004 6.5zM4 6.5v13"/></svg>Learn the concepts
+
+---
+
+Read tutorials, engineering explanations, and learning paths that complement the task-focused product guides.
+
+[Visit the API Content Hub &rarr;](https://wso2.com/api-platform/learn/)
+
+</div>
 
 <div class="card" markdown="1">
 

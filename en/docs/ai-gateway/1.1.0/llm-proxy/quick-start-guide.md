@@ -12,10 +12,10 @@ last_updated: 2026-08-05
 content_type: "quickstart"
 ---
 
-## Quick Start
+## LLM proxy quick start guide
 
 !!! info "Watch the video walkthrough"
-    [Check out this quick start on YouTube](https://youtu.be/p5xBXZWt5GU?rel=0) or watch below.
+    [Check out this quick start guide on YouTube](https://youtu.be/p5xBXZWt5GU?rel=0) or watch below.
 
 <iframe 
   width="100%" 
@@ -109,7 +109,7 @@ spec:
     auth:
       type: api-key
       header: Authorization
-      value: <openai-apikey>
+      value: Bearer <openai-apikey>
   accessControl:
     mode: deny_all
     exceptions:

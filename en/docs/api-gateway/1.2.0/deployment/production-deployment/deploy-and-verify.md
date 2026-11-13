@@ -9,7 +9,7 @@ tags:
   - helm
   - production
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-17
+last_updated: 2026-10-21
 content_type: "how-to"
 ---
 
@@ -88,6 +88,9 @@ helm upgrade ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
   --wait \
   --timeout 5m
 ```
+
+!!! note
+    Pass your values file on every upgrade, as shown. Don't upgrade from gateway chart 1.2.3 or earlier with `--reuse-values`: Helm then keeps that version's defaults, which have no `openshift` values, and the upgrade fails with `nil pointer evaluating interface {}.routes` without changing the release. To carry the previous release's values forward instead, use `--reset-then-reuse-values` (Helm 3.14 or later).
 
 **Rollback if needed:**
 

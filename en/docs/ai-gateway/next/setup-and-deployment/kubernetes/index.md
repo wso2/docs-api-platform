@@ -8,7 +8,7 @@ tags:
   - kubernetes
   - deployment
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-17
+last_updated: 2026-10-21
 content_type: "overview"
 ---
 
@@ -102,3 +102,8 @@ Learn more about the deployment modes:
 
 - [Standalone mode](./kubernetes-standalone.md)
 - [Kubernetes Operator mode](./gateway-operator.md)
+
+To deploy on Red Hat OpenShift, see:
+
+- [OpenShift standalone mode](../openshift/openshift-standalone.md)
+- [OpenShift Gateway Operator mode](../openshift/gateway-operator.md)

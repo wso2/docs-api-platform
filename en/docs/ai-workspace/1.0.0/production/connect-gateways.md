@@ -9,7 +9,7 @@ tags:
   - ai-gateway
   - networking
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-10-21
 content_type: "how-to"
 ---
 
@@ -46,22 +46,7 @@ A timeout usually indicates a firewall or routing problem. A certificate error u
 
 AI Workspace fills the setup commands in the **Get Started** section from one configuration key. The key is display-only: nothing in AI Workspace connects to it. A wrong value leaves the workspace working normally and leaves every gateway unable to register.
 
-=== "Virtual machine"
-    ```toml
-    # configs/config.toml
-    [ai_workspace.gateway]
-    controlplane_host = "platform-api.example.com:9243"
-    ```
-
-=== "Kubernetes"
-    ```yaml
-    ai-workspace-ui:
-      config:
-        gateway:
-          controlplaneHost: platform-api.example.com:443
-    ```
-
-    Use `443` when an ingress serves that hostname on the standard port, and the Service port when you expose it directly.
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#expose-step-2-expose-the-control-plane-for-gateways), [Deploy on Kubernetes](deploy-on-kubernetes.md#expose-step-2-expose-the-control-plane-for-gateways), and [Deploy on OpenShift](openshift.md#routes).
 
 Write it as a bare `host:port` with no scheme and no path. See [Expose the control plane for gateways](expose-the-workspace.md#step-2-expose-the-control-plane-for-gateways) for the route itself.
 
@@ -76,68 +61,7 @@ Treat the token as a credential in transit too. A value passed on a command line
 
 ## Step 3: Install the gateway runtime
 
-=== "Virtual machine"
-    Download the gateway distribution and run its setup script, which provisions the at-rest encryption key, the router certificate, and the controller admin credentials. The gateway has no demo mode and stops if any of them is missing.
-
-    Put the control plane address and the token in `api-platform.env`, which Compose loads through its `env_file:` directive, rather than on the command line:
-
-    ```bash
-    umask 077
-    read -rsp "Registration token: " GW_TOKEN && echo
-    printf 'APIP_GW_CONTROLLER_CONTROLPLANE_HOST=%s\n' 'platform-api.example.com:9243' >> api-platform.env
-    printf 'APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=%s\n' "$GW_TOKEN" >> api-platform.env
-    unset GW_TOKEN
-    chmod 600 api-platform.env
-    ```
-
-    Then start the gateway:
-
-    ```bash
-    docker compose up -d
-    ```
-
-    Keep `api-platform.env` out of source control and off shared hosts. It holds the token that authorizes this gateway to the control plane.
-
-=== "Kubernetes"
-    Create the at-rest encryption key Secret first. At-rest encryption is mandatory, nothing is generated for you, and the chart doesn't render without the key:
-
-    ```bash
-    umask 077
-    openssl rand 32 > default-aesgcm256-v1.bin
-    kubectl -n <gateway-namespace> create secret generic gateway-encryption-keys \
-      --from-file=default-aesgcm256-v1.bin=default-aesgcm256-v1.bin
-    shred -u default-aesgcm256-v1.bin
-    ```
-
-    Put the registration token in its own Secret. Read it into a protected file rather than passing it with `--set` or `--from-literal`. Either of those records the token in your shell history and in the host's process list:
-
-    ```bash
-    umask 077
-    read -rsp "Registration token: " GW_TOKEN && echo
-    printf '%s' "$GW_TOKEN" > registration_token
-    unset GW_TOKEN
-
-    kubectl -n <gateway-namespace> create secret generic gateway-registration-token \
-      --from-file=token=registration_token
-
-    shred -u registration_token
-    ```
-
-    Then install the chart, referencing both Secrets by name:
-
-    ```bash
-    helm install gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
-      --version <gateway-chart-version> -n <gateway-namespace> \
-      --set gateway.controller.encryptionKeys.enabled=true \
-      --set gateway.controller.encryptionKeys.secretName=gateway-encryption-keys \
-      --set gateway.controller.controlPlane.host="platform-api.example.com:443" \
-      --set gateway.controller.controlPlane.token.secretName=gateway-registration-token \
-      --set gateway.controller.controlPlane.token.key=token
-    ```
-
-    `controlPlane.host` is used as the HTTPS and WebSocket authority, so include a non-default port in the value. Port `443` is assumed when you leave it out.
-
-    Use the chart version matching the gateway version the **Get Started** section offers.
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#gateways-step-3-install-the-gateway-runtime), [Deploy on Kubernetes](deploy-on-kubernetes.md#gateways-step-3-install-the-gateway-runtime), and [Deploy on OpenShift](openshift.md#openshift-gateways-step-3-install-the-gateway-runtime).
 
 ## Step 4: Keep certificate verification on
 
@@ -155,22 +79,7 @@ The gateway configuration exposes an `insecure_skip_verify` flag under its contr
 
 The Platform API can verify what a gateway reports at registration. Both checks are off by default. Turning them on stops a gateway running an unexpected version or reporting an unexpected type from joining the control plane.
 
-=== "Virtual machine"
-    ```toml
-    # configs/config.toml
-    [platform_api.gateway]
-    enable_version_verification            = true
-    enable_functionality_type_verification = true
-    ```
-
-=== "Kubernetes"
-    ```yaml
-    platform-api:
-      config:
-        gateway:
-          enableVersionVerification: true
-          enableFunctionalityTypeVerification: true
-    ```
+For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#gateways-step-5-turn-on-registration-checks), [Deploy on Kubernetes](deploy-on-kubernetes.md#gateways-step-5-turn-on-registration-checks), and [Deploy on OpenShift](openshift.md#openshift-gateways-step-5-turn-on-registration-checks).
 
 Enable version verification only once your gateway versions match what the control plane expects. Turning it on while a gateway runs a different version blocks that gateway from reconnecting.
 

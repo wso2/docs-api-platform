@@ -8,7 +8,7 @@ tags:
   - mcp
   - mcp-proxy
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-31
+last_updated: 2026-10-19
 content_type: "how-to"
 ---
 
@@ -27,6 +27,7 @@ This page takes you through deploying a proxy and routing your first MCP traffic
 
     - `2025-06-18`
     - `2025-11-25`
+    - `2026-07-28`
 
 
 ## Prerequisites
@@ -68,7 +69,8 @@ spec:
   displayName: Everything
   version: v1.0
   context: /everything
-  specVersion: "2025-06-18"
+  specVersions:
+    - "2025-06-18"
   upstream:
     url: http://everything:3001
   tools: []

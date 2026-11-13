@@ -7,7 +7,7 @@ tags:
   - ai-gateway
   - management-api
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-11
+last_updated: 2026-10-19
 content_type: "reference"
 ---
 
@@ -1299,7 +1299,9 @@ Details of an API key
     "displayName": "Everything",
     "version": "v1.0",
     "context": "/everything",
-    "specVersion": "2025-06-18",
+    "specVersions": [
+      "2025-06-18"
+    ],
     "upstream": {
       "url": "http://everything:3001"
     },
@@ -1345,7 +1347,9 @@ Details of an API key
     "displayName": "Everything",
     "version": "v1.0",
     "context": "/everything",
-    "specVersion": "2025-06-18",
+    "specVersions": [
+      "2025-06-18"
+    ],
     "upstream": {
       "url": "http://everything:3001"
     },
@@ -1391,7 +1395,10 @@ and
   "displayName": "Everything",
   "version": "v1.0",
   "context": "/everything",
-  "specVersion": "2025-06-18",
+  "specVersions": [
+    "2025-06-18",
+    "2026-07-28"
+  ],
   "vhost": "mcp1.example.com",
   "upstreamDefinitions": [
     {
@@ -1476,7 +1483,8 @@ and
 |displayName|string|true|none|Human-readable MCP Proxy display name|
 |version|string|true|none|MCP Proxy version|
 |context|string|false|none|MCP Proxy context path|
-|specVersion|string|false|none|MCP specification version|
+|specVersion|string|false|none|DEPRECATED - use `specVersions`. Still honored when `specVersions` is absent. Cannot be used together with `specVersions`.|
+|specVersions|[string]|false|none|MCP specification versions supported by this proxy. This gateway build explicitly supports MCP specification versions 2025-06-18, 2025-11-25, and 2026-07-28.|
 |vhost|string|false|none|Virtual host name used for routing. Supports standard domain names, subdomains, or wildcard domains. Must follow RFC-compliant hostname rules. Wildcards are only allowed in the left-most label (e.g., *.example.com).|
 |upstreamDefinitions|[[UpstreamDefinition](#schemaupstreamdefinition)]|false|none|List of reusable upstream definitions with optional timeout configurations. Referenced by upstream.ref.|
 |upstream|any|true|none|The backend MCP server url and auth configurations|

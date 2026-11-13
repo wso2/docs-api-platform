@@ -8,28 +8,30 @@ tags:
   - ai-workspace
   - sdks
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-10-23
 content_type: "how-to"
 ---
 
-# Invoke Providers and Proxies via SDKs
+# Invoke providers and proxies via SDKs
 
-Once you have deployed an LLM Provider or App LLM Proxy in the AI Workspace, you can invoke it using any supported AI SDK by pointing it at the gateway's Invoke URL and authenticating with your generated API key.
+Deploy an LLM provider or App LLM proxy in the AI Workspace first. You can then invoke it with any supported AI SDK. Point the SDK at the gateway's Invoke URL, and authenticate with your generated API key.
 
-The examples below apply to both providers and proxies — the only difference between the two is the Invoke URL you supply.
+The examples below apply to both providers and proxies. The only difference between the two is the Invoke URL you supply.
 
 ## Prerequisites
 
-- An LLM [Provider](llm-providers/configure-provider.md) or [App LLM Proxy](llm-proxies/configure-proxy.md) deployed to a gateway
+- An [LLM provider](llm-providers/configure-provider.md) or [App LLM proxy](llm-proxies/configure-proxy.md) deployed to a gateway
 - The **Invoke URL** for the deployed endpoint
 - A generated **API key**
 
 ## Authentication
 
-All requests to the gateway must include your API key in the location configured in the **Security** tab of your provider or proxy. By default this is the `X-API-Key` request header, and the code examples below use that default.
+All requests to the gateway must include your API key in the request header named in the **Security** tab of your provider or proxy.
+
+When you create a provider from a built-in template, that header defaults to the one the vendor's own SDK already sends. For example, OpenAI uses `Authorization: Bearer <key>` and Anthropic uses `x-api-key`. An App LLM proxy inherits the header from its provider. So the examples below pass the gateway API key through the SDK's normal `api_key` parameter, with no extra header configuration. See [Configure inbound authentication](configure-inbound-auth.md) for the default header per provider.
 
 !!! note
-    Depending on the SDK or provider you use, you can choose the key name and location that works best and configure it in the **Security** tab. See [Configure Inbound Authentication](configure-inbound-auth.md). The examples below use the default `X-API-Key` header.
+    If the **Security** tab uses a different header, send the key in that header as well. Each example includes commented-out custom-header configuration. Uncomment it and set the header name shown on the **Security** tab.
 
 ## OpenAI
 
@@ -54,7 +56,8 @@ All requests to the gateway must include your API key in the location configured
     client = OpenAI(
         api_key=API_KEY,
         base_url=INVOKE_URL,
-        default_headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # default_headers={"X-API-Key": API_KEY},
     )
 
     response = client.chat.completions.create(
@@ -97,7 +100,8 @@ All requests to the gateway must include your API key in the location configured
         model="gpt-4o",
         api_key=API_KEY,
         base_url=INVOKE_URL,
-        default_headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # default_headers={"X-API-Key": API_KEY},
     )
 
     response = llm.invoke([HumanMessage(content="What is WSO2?")])
@@ -172,7 +176,8 @@ All requests to the gateway must include your API key in the location configured
         model="claude-sonnet-4-5",
         api_key=API_KEY,
         anthropic_api_url=INVOKE_URL,
-        default_headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # default_headers={"X-API-Key": API_KEY},
         max_tokens=1024,
     )
 
@@ -195,7 +200,7 @@ All requests to the gateway must include your API key in the location configured
     **Install:** `pip install google-genai`
 
     !!! note
-        The Gemini SDK normally sends its key as `x-goog-api-key`, which the gateway does not use for authentication. Pass `api_key="placeholder"` to satisfy the SDK and supply the real gateway key via `X-API-Key` in `HttpOptions`.
+        The Gemini SDK sends its `api_key` as the `x-goog-api-key` header, which is the default header for providers created from the Gemini template. No additional header configuration is needed.
 
     **Basic content generation:**
 
@@ -208,10 +213,11 @@ All requests to the gateway must include your API key in the location configured
 
     http_options = genai_types.HttpOptions(
         base_url=INVOKE_URL,
-        headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # headers={"X-API-Key": API_KEY},
     )
 
-    client = genai.Client(api_key="placeholder", http_options=http_options)
+    client = genai.Client(api_key=API_KEY, http_options=http_options)
 
     response = client.models.generate_content(
         model="gemini-2.5-flash",
@@ -249,7 +255,8 @@ All requests to the gateway must include your API key in the location configured
         model="gemini-2.5-flash",
         google_api_key=API_KEY,
         client_options={"api_endpoint": INVOKE_URL},
-        additional_headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # additional_headers={"X-API-Key": API_KEY},
     )
 
     response = llm.invoke([HumanMessage(content="What is WSO2?")])
@@ -273,7 +280,7 @@ Mistral exposes both a native SDK and an OpenAI-compatible API at `/v1`.
     **Install:** `pip install mistralai httpx`
 
     !!! note
-        The Mistral SDK sends its API key as a `Bearer` token. Since the gateway requires `X-API-Key`, an httpx event hook injects this header on every outgoing request.
+        The Mistral SDK sends its API key as an `Authorization: Bearer` token. This is the default header for providers created from the Mistral template. No additional header configuration is needed. The example imports `httpx`, so keep it installed. The optional event hook adds a custom header.
 
     **Basic chat completion:**
 
@@ -284,17 +291,18 @@ Mistral exposes both a native SDK and an OpenAI-compatible API at `/v1`.
     INVOKE_URL = "https://<gateway-host>/<context>"
     API_KEY = "<your-gateway-api-key>"
 
-    def _inject_api_key(request):
-        request.headers["X-API-Key"] = API_KEY
-
-    http_client = httpx.Client(
-        event_hooks={"request": [_inject_api_key]},
-    )
+    # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+    # def _inject_api_key(request):
+    #     request.headers["X-API-Key"] = API_KEY
+    #
+    # http_client = httpx.Client(
+    #     event_hooks={"request": [_inject_api_key]},
+    # )
 
     client = Mistral(
         api_key=API_KEY,
         server_url=INVOKE_URL,
-        client=http_client,
+        # client=http_client,  # uncomment together with the event hook above
     )
 
     response = client.chat.complete(
@@ -334,7 +342,8 @@ Mistral exposes both a native SDK and an OpenAI-compatible API at `/v1`.
     client = OpenAI(
         api_key=API_KEY,
         base_url=INVOKE_URL,
-        default_headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # default_headers={"X-API-Key": API_KEY},
     )
 
     response = client.chat.completions.create(
@@ -379,7 +388,8 @@ Mistral exposes both a native SDK and an OpenAI-compatible API at `/v1`.
         model="mistral-small-latest",
         api_key=API_KEY,
         base_url=INVOKE_URL,
-        default_headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # default_headers={"X-API-Key": API_KEY},
     )
 
     response = llm.invoke([HumanMessage(content="What is WSO2?")])
@@ -416,7 +426,8 @@ Mistral exposes both a native SDK and an OpenAI-compatible API at `/v1`.
         api_key=API_KEY,
         azure_endpoint=INVOKE_URL,
         api_version="2024-10-21",
-        default_headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # default_headers={"X-API-Key": API_KEY},
     )
 
     response = client.chat.completions.create(
@@ -460,7 +471,8 @@ Mistral exposes both a native SDK and an OpenAI-compatible API at `/v1`.
         api_version="2024-10-21",
         azure_endpoint=INVOKE_URL,
         api_key=API_KEY,
-        default_headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # default_headers={"X-API-Key": API_KEY},
     )
 
     response = llm.invoke([HumanMessage(content="What is WSO2?")])
@@ -496,7 +508,8 @@ Mistral exposes both a native SDK and an OpenAI-compatible API at `/v1`.
         api_key=API_KEY,
         azure_endpoint=INVOKE_URL,
         api_version="2024-05-01-preview",
-        default_headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # default_headers={"X-API-Key": API_KEY},
     )
 
     response = client.chat.completions.create(
@@ -540,7 +553,8 @@ Mistral exposes both a native SDK and an OpenAI-compatible API at `/v1`.
         api_version="2024-05-01-preview",
         azure_endpoint=INVOKE_URL,
         api_key=API_KEY,
-        default_headers={"X-API-Key": API_KEY},
+        # Uncomment if your provider's Security tab uses a different header, such as X-API-Key:
+        # default_headers={"X-API-Key": API_KEY},
     )
 
     response = llm.invoke([HumanMessage(content="What is WSO2?")])

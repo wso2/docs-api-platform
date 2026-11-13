@@ -16,6 +16,13 @@ content_type: "concept"
 
 API Platform Gateway is the complete API gateway system for managing, securing, and routing API traffic to your backend services.
 
+## Deployment options
+
+You can run the API Gateway in two ways:
+
+- **Standalone:** You configure APIs through YAML files, the gateway's REST API, or the `ap` CLI. The gateway doesn't need a control plane. The pages in this section cover this mode.
+- **Connected to a control plane:** The gateway still runs in your infrastructure, and you create and deploy APIs from API Platform Cloud or WSO2 API Manager. To set up the connection, see [Control plane connection](deployment/production-deployment/control-plane-connection.md).
+
 ## Components
 
 | Component | Purpose |
@@ -74,7 +81,7 @@ Policies allow you to intercept and transform API traffic at the Gateway-Runtime
 
 Policies can be applied to request and response flows to handle concerns like authentication, rate limiting, header manipulation, and more.
 
-The complete and up-to-date policy catalogue — with configuration references and examples — is maintained in the gateway-controllers repository: https://github.com/wso2/gateway-controllers/blob/main/docs/README.md
+The complete and up-to-date policy catalogue, with configuration references and examples, is available in the [Policy Hub](https://wso2.com/api-platform/policy-hub).
 
 You can extend the gateway with your own policies or include specific policies from the catalogue by building a custom gateway image using the `ap` CLI. See [Building the Gateway with Custom Policies](./policies/custom-policies/building-gateway-with-custom-policies.md).
 

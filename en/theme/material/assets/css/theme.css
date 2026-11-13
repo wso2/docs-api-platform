@@ -525,6 +525,279 @@
         transform: none;
     }
 }
+
+/* Guides overview: "By use case" / "By vendor" switch (behaviour in theme.js) */
+.md-typeset .guides-switch {
+    display: inline-flex;
+    margin: 0.4rem 0 0.6rem;
+    padding: 0.2rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 999px;
+}
+
+.md-typeset .guides-switch[hidden] {
+    display: none;
+}
+
+.md-typeset .guides-switch [role="tab"] {
+    padding: 0.35rem 1.1rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--md-default-fg-color--light);
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.md-typeset .guides-switch [role="tab"]:hover {
+    color: var(--md-primary-fg-color);
+}
+
+/* Same orange tint and text as the guide card icons and links */
+.md-typeset .guides-switch [role="tab"][aria-selected="true"] {
+    background-color: rgba(255, 115, 0, 0.12);
+    color: var(--md-primary-fg-color);
+}
+
+.md-typeset .guides-switch [role="tab"]:focus-visible {
+    outline: 2px solid var(--md-primary-fg-color);
+    outline-offset: 2px;
+}
+
+/* With the switch active, each view's own heading would repeat the tab label;
+   keep it for screen readers, links, and the table of contents. A link to it
+   stops far enough above it to show the switch below the sticky header. */
+.md-typeset .guides-switch:not([hidden]) ~ .guides-view > h2 {
+    scroll-margin-top: 7rem;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.md-typeset .guides-group-label {
+    margin: 1.6rem 0 0;
+    color: var(--md-default-fg-color--light);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .md-typeset .guides-switch [role="tab"] {
+        transition: none;
+    }
+}
+
+/* Vendor guide pages: end-to-end guides as a flat grid of linked boxes, styled like the guide items on the overview */
+.md-typeset .vendor-guide-list > ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.md-typeset .vendor-guide-list > ul > li {
+    position: relative;
+    margin: 0;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--md-border-radius-2x);
+    background: linear-gradient(180deg, rgba(255, 115, 0, 0.06), transparent 8rem);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.md-typeset .vendor-guide-list > ul > li:hover {
+    transform: translateY(-2px);
+    border-color: var(--md-primary-fg-color);
+    box-shadow: var(--md-box-shadow-2);
+}
+
+.md-typeset .vendor-guide-list > ul > li > p {
+    margin: 0;
+}
+
+.md-typeset .vendor-guide-list > ul > li > p:first-child a {
+    color: var(--md-default-fg-color);
+    font-weight: 700;
+}
+
+.md-typeset .vendor-guide-list > ul > li > p:first-child a:hover {
+    color: var(--md-primary-fg-color);
+}
+
+.md-typeset .vendor-guide-list > ul > li > p:first-child a::before {
+    content: "\2192";
+    margin-right: 0.45rem;
+    color: var(--md-primary-fg-color);
+}
+
+.md-typeset .vendor-guide-list > ul > li > p:first-child a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.md-typeset .vendor-guide-list > ul > li > p + p {
+    margin-top: 0.3rem;
+    color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .vendor-guide-list > ul > li > p:nth-child(3) {
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .md-typeset .vendor-guide-list > ul > li,
+    .md-typeset .vendor-guide-list > ul > li:hover {
+        transition: none;
+        transform: none;
+    }
+}
+
+/* Vendor guide pages: capability rows separated by a rule, each with a title,
+   one sentence, and a plain list of links followed by their product name */
+.md-typeset .vendor-cap {
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .vendor-cap > h3 {
+    margin: 0 0 0.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: normal;
+}
+
+.md-typeset .vendor-cap > p {
+    margin: 0 0 0.4rem;
+}
+
+/* Links can sit directly in the row, or in a .vendor-links block per deployment type */
+.md-typeset .vendor-cap > ul,
+.md-typeset .vendor-cap > .vendor-links > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.md-typeset .vendor-cap > ul > li,
+.md-typeset .vendor-cap > .vendor-links > ul > li {
+    margin: 0.2rem 0 0;
+}
+
+/* Without the switch script (for example before theme.js loads), label each
+   deployment-specific block so the stacked links still make sense */
+.md-typeset .vendor-links[data-deployments]::before {
+    display: block;
+    margin: 0.5rem 0 0.1rem;
+    color: var(--md-default-fg-color--light);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.md-typeset .vendor-links[data-deployments="cloud"]::before { content: "Cloud"; }
+.md-typeset .vendor-links[data-deployments="hybrid"]::before { content: "Hybrid"; }
+.md-typeset .vendor-links[data-deployments="self-hosted"]::before { content: "Self-hosted"; }
+.md-typeset .vendor-links[data-deployments="cloud hybrid"]::before { content: "Cloud and Hybrid"; }
+.md-typeset .vendor-links[data-deployments="hybrid self-hosted"]::before { content: "Hybrid and Self-hosted"; }
+
+/* theme.js adds the class to the article, which is the .md-typeset element */
+.md-typeset.vendor-deployments-on .vendor-links[data-deployments]::before {
+    display: none;
+}
+
+/* Vendor guide pages: deployment type switch built by theme.js,
+   styled like the guides overview switch */
+.md-typeset .vendor-deployment-switch {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin: 1.5rem 0 0;
+}
+
+.md-typeset .vendor-deployment-switch__label {
+    color: var(--md-default-fg-color--light);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.md-typeset .vendor-deployment-switch__options {
+    display: inline-flex;
+    padding: 0.2rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 999px;
+}
+
+.md-typeset .vendor-deployment-switch button {
+    padding: 0.35rem 1.1rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--md-default-fg-color--light);
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.md-typeset .vendor-deployment-switch button:hover {
+    color: var(--md-primary-fg-color);
+}
+
+.md-typeset .vendor-deployment-switch button[aria-pressed="true"] {
+    background-color: rgba(255, 115, 0, 0.12);
+    color: var(--md-primary-fg-color);
+}
+
+.md-typeset .vendor-deployment-switch button:focus-visible {
+    outline: 2px solid var(--md-primary-fg-color);
+    outline-offset: 2px;
+}
+
+.md-typeset .vendor-deployment-switch__description {
+    margin: 0.5rem 0 0;
+    color: var(--md-default-fg-color--light);
+    font-size: 0.7rem;
+}
+
+.md-typeset .vendor-cap[hidden],
+.md-typeset .admonition[hidden],
+.md-sidebar--secondary .md-nav__item[hidden] {
+    display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .md-typeset .vendor-deployment-switch button {
+        transition: none;
+    }
+}
+
+.md-typeset .vendor-meta {
+    margin-left: 0.4rem;
+    color: var(--md-default-fg-color--light);
+    font-size: 0.7rem;
+}
+
+.md-typeset .vendor-meta::before {
+    content: "\00B7";
+    margin-right: 0.4rem;
+}
+
 /* END OF - Guides overview page */
 
 .image-text-wrapped-container {

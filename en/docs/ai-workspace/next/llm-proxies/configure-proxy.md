@@ -8,7 +8,7 @@ tags:
   - ai-workspace
   - llm-proxies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-22
+last_updated: 2026-09-30
 content_type: "how-to"
 ---
 
@@ -37,23 +37,28 @@ This guide walks you through creating an App LLM proxy, optionally attaching gua
 
 ## Create a new App LLM proxy
 
-1. Navigate to **LLM** > **Proxies** in the left navigation menu.
+1. Navigate to **LLM** > **App LLM Proxies** in the left navigation menu.
 
-2. Click **+ Create Proxy**.
+2. Click **Create App LLM Proxy**.
 
 3. Fill in the required proxy details:
 
     1. **Name*** (Required): Enter a unique name for the proxy (for example, `support-chat-api`, `sales-agent-proxy`). The Proxy ID is auto-generated from the name (lowercase, hyphen-separated).
 
-    2. **LLM Service Provider*** (Required): Select the LLM provider this proxy routes to from the dropdown. It defaults to the most recently updated provider.
+    2. **LLM Provider*** (Required): Under **Provider Configuration**, select the LLM provider this proxy routes to. This becomes the proxy's **primary** provider — use **+ Add Additional LLM Provider** to attach more, which is covered in [Route to several providers](multi-provider.md).
 
     3. **Version*** (Required): The version is pre-filled (for example, `v1.0`). You can edit this if needed.
 
     4. **Description** (Optional): Add a brief description to identify the GenAI application or agent use case this proxy is created for.
 
-    5. **Context** (Optional): Enter the context path (default: `/`). This is the base path for proxy endpoints (normalized with "/" prefix).
+    5. **Context** (Optional): The context path is derived from the name as you type, for example `/test/multi-provider-demo`. Edit it if you need a different base path for the proxy's endpoints (normalized with a "/" prefix).
 
-4. Click **Create Proxy** to save the proxy.
+4. Optionally expand **Advanced Configurations** to set the **Inbound Interface** — the request
+   format the proxy accepts from client applications. Leave it alone unless you need a format other
+   than the selected provider's own; see
+   [Choose the inbound interface](multi-provider.md#choose-the-inbound-interface).
+
+5. Click **Create Proxy** to save the proxy.
 
 ## Add guardrails (optional)
 

@@ -16,6 +16,8 @@
 *.nar
 *.ear
 *.zip
+# STS gateway 2026.10.0 zips served from the docs until the WSO2 downloads page has them
+!en/docs/assets/files/gateway/**/*.zip
 *.tar.gz
 *.rar
 

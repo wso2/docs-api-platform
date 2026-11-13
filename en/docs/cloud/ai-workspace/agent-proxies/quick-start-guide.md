@@ -4,14 +4,13 @@ description: "Create an A2A agent proxy in AI Workspace, deploy it to an AI Gate
 canonical_url: https://wso2.com/api-platform/docs/cloud/ai-workspace/agent-proxies/quick-start-guide/
 md_url: https://wso2.com/api-platform/docs/cloud/ai-workspace/agent-proxies/quick-start-guide.md
 tags:
-  - cloud
   - ai-workspace
   - agent-proxies
   - a2a
   - agents
   - quickstart
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-09
+last_updated: 2026-10-23
 content_type: "quickstart"
 ---
 
@@ -22,7 +21,7 @@ This guide puts an agent proxy between a sample Agent2Agent (A2A) agent and the 
 ## Prerequisites
 
 - Access to AI Workspace with the **Admin** or **Developer** role. See [Get started with AI Workspace](../getting-started.md).
-- An AI Gateway on release 2026.09.24 or later, registered in AI Workspace and showing a status of **Active**. See [Set up an AI Gateway](../ai-gateways/setting-up.md).
+- An AI Gateway registered in AI Workspace and showing a status of **Active**. See [Set up an AI Gateway](../ai-gateways/setting-up.md).
 - `curl`, to call the agent from your terminal.
 
 The `curl` commands on this page use Bash syntax. On Windows, run them from Git Bash or Windows Subsystem for Linux (WSL). In PowerShell, use `curl.exe` instead of `curl`, and replace each line-ending `\` with a backtick (`` ` ``).
