@@ -1,6 +1,14 @@
 redirect_maps:
-  # Policy Hub overview moved to the cloud docs site.
+  # Policy Hub redirect tests. Open each local URL below and see where it lands.
+  # Real page in this build. Target keeps the trailing slash.
   policy-hub/overview.md: https://172-24-12-143.sslip.io/api-management/cloud/policy-hub/overview/
+  # No source file, so this is only a redirect page. Served at /policy-hub/.
+  # Target has no trailing slash.
+  policy-hub/index.md: https://172-24-12-143.sslip.io/api-management/cloud/policy-hub/overview
+  # Deeper old path with no source file. Target is the section root.
+  policy-hub/policies/jwt-auth.md: https://172-24-12-143.sslip.io/api-management/cloud/policy-hub/
+  # Same-site redirect. The browser stays on localhost.
+  policy-hub/legacy-overview.md: monetization/overview.md
 
   # API Monetization pages moved from api-monetization/ to monetization/ on main (c7d80c9b9)
   api-monetization/getting-started.md: monetization/getting-started.md
