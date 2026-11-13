@@ -107,6 +107,7 @@ and
 |artifactType|RestApi|
 |artifactType|LlmProvider|
 |artifactType|LlmProxy|
+|artifactType|AgentProxy|
 
 ## UserAPIKeyListResponse
 
@@ -2690,7 +2691,7 @@ Field-level validation error
 |baseDeploymentId|string(uuid)¦null|false|none|UUID of the base deployment this was created from|
 |metadata|object|false|none|Metadata associated with the deployment|
 |createdAt|string(date-time)|true|none|Timestamp when the deployment artifact was created|
-|statusReason|string¦null|false|none|Error code explaining the failure reason. Null unless status is FAILED (e.g. DEPLOYMENT_TIMEOUT, GATEWAY_PROCESSING_ERROR)|
+|statusReason|string¦null|false|none|Error code explaining the failure reason. Null unless status is FAILED (e.g. DEPLOYMENT_TIMEOUT, GATEWAY_PROCESSING_ERROR). Agent proxy deployments may also report AGENT_VALIDATION_FAILED, AGENT_CONFIG_RENDER_FAILED, AGENT_CONFLICT, AGENT_ARTIFACT_FETCH_FAILED and DEPLOYMENT_ID_MISMATCH.|
 |updatedAt|string(date-time)¦null|false|none|Timestamp when the deployment status last changed (null for ARCHIVED deployments)|
 
 ##### Enumerated Values
@@ -5443,3 +5444,1090 @@ Secret metadata — never includes the plaintext value.
 |count|integer|true|none|Number of custom policies in current response|
 |list|[[CustomPolicyResponse](#schemacustompolicyresponse)]|true|none|List of custom policies|
 |pagination|[Pagination](#schemapagination)|true|none|none|
+
+## AgentProxy
+
+<a id="schemaagentproxy"></a>
+<a id="schema_AgentProxy"></a>
+<a id="tocSagentproxy"></a>
+<a id="tocsagentproxy"></a>
+
+```json
+{
+  "kind": "AgentProxy",
+  "id": "trip-planner",
+  "displayName": "Trip Planning Agent",
+  "description": "Plans multi-city trips end to end",
+  "version": "v1.0",
+  "projectId": "default",
+  "context": "/default/trip-planner",
+  "upstream": {
+    "main": {
+      "url": "https://agents.example.com/trip-planner",
+      "auth": {
+        "type": "api-key",
+        "header": "X-API-Key"
+      }
+    }
+  },
+  "protocol": "a2a",
+  "a2a": {
+    "protocolVersion": "1.0",
+    "operationConfigs": {
+      "transports": [
+        {
+          "protocolBinding": "JSONRPC",
+          "pathPrefix": "/rpc"
+        },
+        {
+          "protocolBinding": "HTTP+JSON",
+          "pathPrefix": "/rest"
+        }
+      ],
+      "policies": [
+        {
+          "name": "api-key-auth",
+          "version": "v1",
+          "params": {
+            "key": "API-Key",
+            "in": "header"
+          }
+        }
+      ],
+      "operations": [
+        {
+          "name": "SendStreamingMessage",
+          "resilience": {
+            "idleTimeout": "2m"
+          }
+        }
+      ]
+    },
+    "agentCard": {
+      "public": {
+        "mode": "passthrough",
+        "rewriteUrls": true
+      },
+      "protected": {
+        "mode": "passthrough",
+        "rewriteUrls": true
+      }
+    }
+  },
+  "createdBy": "john.doe",
+  "updatedBy": "john.doe",
+  "readOnly": false,
+  "createdAt": "2026-10-19T09:15:22Z",
+  "updatedAt": "2026-10-19T09:15:22Z"
+}
+
+```
+
+An Agent proxy, as a discriminated union over its protocol. `protocol` selects the
+variant and its matching named configuration block, and is immutable after creation.
+`a2a` is the only protocol registered today; a further protocol adds its own
+complete variant and named configuration block rather than widening this one.
+
+#### Properties
+
+oneOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[A2AAgentProxy](#schemaa2aagentproxy)|false|none|The complete Agent proxy variant for `protocol: a2a`. Shared Agent fields stay at the<br>top level; the A2A protocol version, operation configuration (including the<br>transports it is served on, under `a2a.operationConfigs.transports`) and Agent Cards<br>live inside `a2a`. Unknown properties are rejected.|
+
+## A2AAgentProxy
+
+<a id="schemaa2aagentproxy"></a>
+<a id="schema_A2AAgentProxy"></a>
+<a id="tocSa2aagentproxy"></a>
+<a id="tocsa2aagentproxy"></a>
+
+```json
+{
+  "kind": "AgentProxy",
+  "id": "trip-planner",
+  "displayName": "Trip Planning Agent",
+  "description": "Plans multi-city trips end to end",
+  "version": "v1.0",
+  "projectId": "default",
+  "context": "/default/trip-planner",
+  "upstream": {
+    "main": {
+      "url": "https://agents.example.com/trip-planner",
+      "auth": {
+        "type": "api-key",
+        "header": "X-API-Key"
+      }
+    }
+  },
+  "protocol": "a2a",
+  "a2a": {
+    "protocolVersion": "1.0",
+    "operationConfigs": {
+      "transports": [
+        {
+          "protocolBinding": "JSONRPC",
+          "pathPrefix": "/rpc"
+        },
+        {
+          "protocolBinding": "HTTP+JSON",
+          "pathPrefix": "/rest"
+        }
+      ],
+      "policies": [
+        {
+          "name": "api-key-auth",
+          "version": "v1",
+          "params": {
+            "key": "API-Key",
+            "in": "header"
+          }
+        }
+      ],
+      "operations": [
+        {
+          "name": "SendStreamingMessage",
+          "resilience": {
+            "idleTimeout": "2m"
+          }
+        }
+      ]
+    },
+    "agentCard": {
+      "public": {
+        "mode": "passthrough",
+        "rewriteUrls": true
+      },
+      "protected": {
+        "mode": "passthrough",
+        "rewriteUrls": true
+      }
+    }
+  },
+  "createdBy": "john.doe",
+  "updatedBy": "john.doe",
+  "readOnly": false,
+  "createdAt": "2026-10-19T09:15:22Z",
+  "updatedAt": "2026-10-19T09:15:22Z"
+}
+
+```
+
+The complete Agent proxy variant for `protocol: a2a`. Shared Agent fields stay at the
+top level; the A2A protocol version, operation configuration (including the
+transports it is served on, under `a2a.operationConfigs.transports`) and Agent Cards
+live inside `a2a`. Unknown properties are rejected.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|kind|string|false|none|Control-plane resource kind. The gateway's own artifact kind stays `Agent` and is mapped at the deployment boundary.|
+|id|string|false|none|Public handle, unique per organization. Optional on create — the server derives it<br>from `displayName` when omitted — and always present on responses. On update an<br>omitted `id` retains the path handle and is never regenerated; a conflicting one<br>is rejected. Supplying it explicitly as an empty string is not the same as<br>omitting it, and is rejected.|
+|displayName|string|true|none|Human-readable Agent proxy name. Not required to be unique.|
+|description|string|false|none|Free-text description of the Agent proxy.|
+|version|string|true|none|User-facing resource version label. Free text, and unrelated to<br>`a2a.protocolVersion` — it is not part of the resource's identity, and uniqueness<br>is on the handle alone.|
+|projectId|string|true|none|Handle (URL-friendly slug) of the project this Agent proxy belongs to.|
+|context|string|false|none|Base path under which every route of this Agent proxy is served. Must start with / and carry no trailing slash; the single exception is the root path "/", which is the default.|
+|vhost|string|false|none|Virtual host name used for routing. Supports standard domain names, subdomains, or wildcard domains. Must follow RFC-compliant hostname rules. Wildcards are only allowed in the left-most label (e.g., *.example.com).|
+|upstream|[Upstream](#schemaupstream)|true|none|Upstream backend configuration with main and sandbox endpoints|
+|resilience|[Resilience](#schemaresilience)|false|none|Agent-wide resilience defaults. Per-operation values under `a2a.operationConfigs.operations[].resilience` override these.|
+|protocol|string|true|none|Communication protocol of this Agent proxy. Required, and immutable after creation.|
+|a2a|[A2AProtocolConfig](#schemaa2aprotocolconfig)|true|none|A2A protocol configuration|
+|associatedGateways|[[AssociatedGateway](#schemaassociatedgateway)]|false|none|Optional list of gateways this Agent proxy can be deployed to, along with per-gateway configuration overrides. On update, an omitted array empties the association set, subject to the existing deployment-integrity checks.|
+|createdBy|string|false|read-only|User identifier of the user who created this resource|
+|updatedBy|string|false|read-only|User identifier of the user who last updated this resource|
+|readOnly|boolean|false|read-only|True if the Agent proxy originated from a data-plane gateway (origin gateway_api); only its description and gateway associations are editable in the control plane. False for control-plane created Agent proxies.|
+|createdAt|string(date-time)|false|read-only|Timestamp when the resource was created|
+|updatedAt|string(date-time)|false|read-only|Timestamp when the resource was last updated|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|kind|AgentProxy|
+|protocol|a2a|
+
+## A2AProtocolConfig
+
+<a id="schemaa2aprotocolconfig"></a>
+<a id="schema_A2AProtocolConfig"></a>
+<a id="tocSa2aprotocolconfig"></a>
+<a id="tocsa2aprotocolconfig"></a>
+
+```json
+{
+  "protocolVersion": "1.0",
+  "operationConfigs": {
+    "transports": [
+      {
+        "protocolBinding": "JSONRPC",
+        "pathPrefix": "/rpc"
+      },
+      {
+        "protocolBinding": "HTTP+JSON",
+        "pathPrefix": "/rest"
+      }
+    ],
+    "policies": [
+      {
+        "name": "api-key-auth",
+        "version": "v1",
+        "params": {
+          "key": "API-Key",
+          "in": "header"
+        }
+      }
+    ],
+    "operations": [
+      {
+        "name": "SendStreamingMessage",
+        "resilience": {
+          "idleTimeout": "2m"
+        }
+      }
+    ]
+  },
+  "agentCard": {
+    "public": {
+      "mode": "passthrough",
+      "rewriteUrls": true
+    },
+    "protected": {
+      "mode": "passthrough",
+      "rewriteUrls": true
+    }
+  }
+}
+
+```
+
+Typed A2A configuration, required when `protocol` is `a2a`. Unknown properties are
+rejected; free-form Agent Card content and policy parameters keep their own extension
+behaviour.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|protocolVersion|string|true|none|A2A wire protocol version. Only registered versions are accepted — an unregistered<br>value is rejected at authoring time because it could never deploy. This is not a<br>supported list filter.|
+|operationConfigs|[A2AOperationConfigs](#schemaa2aoperationconfigs)|true|none|A2A operation configuration|
+|agentCard|[AgentCardConfig](#schemaagentcardconfig)|false|none|A2A Agent Card configuration|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|protocolVersion|1.0|
+
+## A2ATransport
+
+<a id="schemaa2atransport"></a>
+<a id="schema_A2ATransport"></a>
+<a id="tocSa2atransport"></a>
+<a id="tocsa2atransport"></a>
+
+```json
+{
+  "protocolBinding": "JSONRPC",
+  "pathPrefix": "/rpc"
+}
+
+```
+
+A2A transport
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|protocolBinding|string|true|none|A2A protocol binding served on this transport.|
+|pathPrefix|string|false|none|Path prefix relative to `context`. The default `/` inserts no extra segment.|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|protocolBinding|JSONRPC|
+|protocolBinding|HTTP+JSON|
+
+## A2AOperationConfigs
+
+<a id="schemaa2aoperationconfigs"></a>
+<a id="schema_A2AOperationConfigs"></a>
+<a id="tocSa2aoperationconfigs"></a>
+<a id="tocsa2aoperationconfigs"></a>
+
+```json
+{
+  "transports": [
+    {
+      "protocolBinding": "JSONRPC",
+      "pathPrefix": "/rpc"
+    },
+    {
+      "protocolBinding": "HTTP+JSON",
+      "pathPrefix": "/rest"
+    }
+  ],
+  "policies": [
+    {
+      "name": "api-key-auth",
+      "version": "v1",
+      "params": {
+        "key": "API-Key",
+        "in": "header"
+      }
+    }
+  ],
+  "operations": [
+    {
+      "name": "SendStreamingMessage",
+      "resilience": {
+        "idleTimeout": "2m"
+      }
+    }
+  ]
+}
+
+```
+
+Transport exposure plus Agent-wide and per-operation A2A configuration, matching the
+gateway's `spec.a2a.operationConfigs`. The block is required because it carries the
+required `transports`; omitting `policies` or `operations` means no user-supplied
+policies and no per-operation additions. None of this applies to public Agent Card
+serving.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|transports|[[A2ATransport](#schemaa2atransport)]|true|none|Transports this Agent proxy is served on. `protocolBinding` must be unique across<br>the array; `uniqueItems` compares whole elements, so that uniqueness is enforced<br>in the service rather than by the schema.|
+|policies|[[Policy](#schemapolicy)]|false|none|Policies applied to every A2A operation. This is the agent-wide policy position for A2A; there is no top-level `policies` array.|
+|operations|[[A2AOperation](#schemaa2aoperation)]|false|none|Per-operation configuration. This is not an allowlist — unlisted operations still<br>receive the common `policies`. `name` must be unique across the array, which the<br>service enforces.|
+
+## A2AOperation
+
+<a id="schemaa2aoperation"></a>
+<a id="schema_A2AOperation"></a>
+<a id="tocSa2aoperation"></a>
+<a id="tocsa2aoperation"></a>
+
+```json
+{
+  "name": "SendMessage",
+  "policies": [
+    {
+      "executionCondition": "request.header.x-custom == 'enabled'",
+      "name": "SET_HEADER",
+      "params": {
+        "key": "MyHeader",
+        "value": "MyValue"
+      },
+      "version": "v1"
+    }
+  ],
+  "resilience": {
+    "timeout": "30s",
+    "idleTimeout": "5s"
+  }
+}
+
+```
+
+A2A per-operation configuration
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|One of the canonical A2A operations for the selected protocol version.|
+|policies|[[Policy](#schemapolicy)]|false|none|Policies appended after the common `policies`, by plain concatenation with no de-duplication — a policy attached in both places runs twice.|
+|resilience|[Resilience](#schemaresilience)|false|none|Per-operation resilience values, overriding the Agent-wide defaults.|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|name|SendMessage|
+|name|SendStreamingMessage|
+|name|GetTask|
+|name|ListTasks|
+|name|CancelTask|
+|name|SubscribeToTask|
+|name|CreateTaskPushNotificationConfig|
+|name|GetTaskPushNotificationConfig|
+|name|ListTaskPushNotificationConfigs|
+|name|DeleteTaskPushNotificationConfig|
+|name|GetExtendedAgentCard|
+
+## Resilience
+
+<a id="schemaresilience"></a>
+<a id="schema_Resilience"></a>
+<a id="tocSresilience"></a>
+<a id="tocsresilience"></a>
+
+```json
+{
+  "timeout": "30s",
+  "idleTimeout": "5s"
+}
+
+```
+
+Timeout settings applied to a request chain.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|timeout|string|false|none|Overall request timeout, as a duration such as `30s` or `1m`.|
+|idleTimeout|string|false|none|Idle (no-data) timeout, as a duration such as `5s`.|
+
+## AgentCardConfig
+
+<a id="schemaagentcardconfig"></a>
+<a id="schema_AgentCardConfig"></a>
+<a id="tocSagentcardconfig"></a>
+<a id="tocsagentcardconfig"></a>
+
+```json
+{
+  "public": {
+    "mode": "passthrough",
+    "rewriteUrls": true
+  },
+  "protected": {
+    "mode": "passthrough",
+    "rewriteUrls": true
+  }
+}
+
+```
+
+A2A Agent Card serving configuration. Omitting this block, or omitting its `public`
+block, means public passthrough at `/.well-known/agent-card.json` with
+`rewriteUrls: true` and no card policies. Omitted blocks are preserved as omitted;
+defaults never materialize an explicit stored configuration.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|public|[PublicAgentCard](#schemapublicagentcard)|false|none|Public Agent Card configuration|
+|protected|[ProtectedAgentCard](#schemaprotectedagentcard)|false|none|Protected Agent Card configuration|
+
+## PublicAgentCard
+
+<a id="schemapublicagentcard"></a>
+<a id="schema_PublicAgentCard"></a>
+<a id="tocSpublicagentcard"></a>
+<a id="tocspublicagentcard"></a>
+
+```json
+{
+  "mode": "passthrough",
+  "rewriteUrls": true
+}
+
+```
+
+Managed and passthrough are disjoint branches. Managed requires `content` and forbids
+`rewriteUrls`; passthrough forbids `content` and may omit `mode`. A card-serving
+`signing` option is not accepted on either branch.
+
+`properties` below describes the shape common to both branches and carries each
+property in its loosest form; `oneOf` does all the discriminating. Keeping both is
+what lets code generators emit a usable object type while the branches still enforce
+the mode-specific rules. A property added to a branch must be added here too, or it
+will validate correctly but be missing from generated clients.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mode|string|false|none|none|
+|path|[AgentCardPath](#schemaagentcardpath)|false|none|Agent Card discovery path|
+|policies|[[Policy](#schemapolicy)]|false|none|none|
+|rewriteUrls|boolean|false|none|none|
+|content|[AgentCardDocument](#schemaagentcarddocument)|false|none|A2A Agent Card document|
+
+oneOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[ManagedPublicAgentCard](#schemamanagedpublicagentcard)|false|none|The control plane stores the card and the gateway serves exactly those bytes.|
+
+xor
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[PassthroughPublicAgentCard](#schemapassthroughpublicagentcard)|false|none|Nothing is stored; the gateway fetches the card from the upstream agent and optionally rewrites its URLs.|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|mode|managed|
+|mode|passthrough|
+
+## ManagedPublicAgentCard
+
+<a id="schemamanagedpublicagentcard"></a>
+<a id="schema_ManagedPublicAgentCard"></a>
+<a id="tocSmanagedpublicagentcard"></a>
+<a id="tocsmanagedpublicagentcard"></a>
+
+```json
+{
+  "mode": "managed",
+  "content": {
+    "name": "Trip Planning Agent",
+    "description": "Plans multi-city trips end to end",
+    "version": "1.0.0",
+    "supportedInterfaces": [
+      {
+        "protocolBinding": "JSONRPC",
+        "protocolVersion": "1.0",
+        "url": "https://agents.example.com/trip-planner/rpc"
+      },
+      {
+        "protocolBinding": "HTTP+JSON",
+        "protocolVersion": "1.0",
+        "url": "https://agents.example.com/trip-planner/rest"
+      }
+    ],
+    "capabilities": {
+      "streaming": true
+    },
+    "defaultInputModes": [
+      "text/plain"
+    ],
+    "defaultOutputModes": [
+      "text/plain"
+    ],
+    "skills": [
+      {
+        "id": "plan_trip",
+        "name": "Plan a trip",
+        "description": "Plans an itinerary for a destination and day count",
+        "tags": [
+          "travel"
+        ]
+      }
+    ]
+  }
+}
+
+```
+
+The control plane stores the card and the gateway serves exactly those bytes.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mode|string|true|none|none|
+|path|[AgentCardPath](#schemaagentcardpath)|false|none|Agent Card discovery path|
+|policies|[[Policy](#schemapolicy)]|false|none|Policies applied to the public-card discovery route only. Auth policies here are rejected by the gateway; the card route runs no auth.|
+|content|[AgentCardDocument](#schemaagentcarddocument)|true|none|A2A Agent Card document|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|mode|managed|
+
+## PassthroughPublicAgentCard
+
+<a id="schemapassthroughpublicagentcard"></a>
+<a id="schema_PassthroughPublicAgentCard"></a>
+<a id="tocSpassthroughpublicagentcard"></a>
+<a id="tocspassthroughpublicagentcard"></a>
+
+```json
+{
+  "mode": "passthrough",
+  "rewriteUrls": true
+}
+
+```
+
+Nothing is stored; the gateway fetches the card from the upstream agent and optionally rewrites its URLs.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mode|string|false|none|none|
+|path|[AgentCardPath](#schemaagentcardpath)|false|none|Agent Card discovery path|
+|policies|[[Policy](#schemapolicy)]|false|none|Policies applied to the public-card discovery route only. Auth policies here are rejected by the gateway; the card route runs no auth.|
+|rewriteUrls|boolean|false|none|Rewrite upstream-advertised URLs to the gateway's own. Passthrough only — rejected in managed mode.|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|mode|passthrough|
+
+## ProtectedAgentCard
+
+<a id="schemaprotectedagentcard"></a>
+<a id="schema_ProtectedAgentCard"></a>
+<a id="tocSprotectedagentcard"></a>
+<a id="tocsprotectedagentcard"></a>
+
+```json
+{
+  "mode": "passthrough",
+  "rewriteUrls": true
+}
+
+```
+
+The protected card is an A2A operation (`GetExtendedAgentCard`) rather than a
+discovery route, so it carries no `path` and no `policies`. An explicit `mode` is
+required whenever the block is present.
+
+As with `PublicAgentCard`, `properties` describes the common shape in its loosest
+form and `oneOf` does the discriminating.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mode|string|false|none|none|
+|rewriteUrls|boolean|false|none|none|
+|content|[AgentCardDocument](#schemaagentcarddocument)|false|none|A2A Agent Card document|
+
+oneOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[ManagedProtectedAgentCard](#schemamanagedprotectedagentcard)|false|none|Managed protected Agent Card|
+
+xor
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[PassthroughProtectedAgentCard](#schemapassthroughprotectedagentcard)|false|none|Passthrough protected Agent Card|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|mode|managed|
+|mode|passthrough|
+
+## ManagedProtectedAgentCard
+
+<a id="schemamanagedprotectedagentcard"></a>
+<a id="schema_ManagedProtectedAgentCard"></a>
+<a id="tocSmanagedprotectedagentcard"></a>
+<a id="tocsmanagedprotectedagentcard"></a>
+
+```json
+{
+  "mode": "managed",
+  "content": {
+    "name": "Trip Planning Agent",
+    "description": "Plans multi-city trips end to end",
+    "version": "1.0.0",
+    "supportedInterfaces": [
+      {
+        "protocolBinding": "JSONRPC",
+        "protocolVersion": "1.0",
+        "url": "https://agents.example.com/trip-planner/rpc"
+      },
+      {
+        "protocolBinding": "HTTP+JSON",
+        "protocolVersion": "1.0",
+        "url": "https://agents.example.com/trip-planner/rest"
+      }
+    ],
+    "capabilities": {
+      "streaming": true
+    },
+    "defaultInputModes": [
+      "text/plain"
+    ],
+    "defaultOutputModes": [
+      "text/plain"
+    ],
+    "skills": [
+      {
+        "id": "plan_trip",
+        "name": "Plan a trip",
+        "description": "Plans an itinerary for a destination and day count",
+        "tags": [
+          "travel"
+        ]
+      }
+    ]
+  }
+}
+
+```
+
+Managed protected Agent Card
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mode|string|true|none|none|
+|content|[AgentCardDocument](#schemaagentcarddocument)|true|none|A2A Agent Card document|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|mode|managed|
+
+## PassthroughProtectedAgentCard
+
+<a id="schemapassthroughprotectedagentcard"></a>
+<a id="schema_PassthroughProtectedAgentCard"></a>
+<a id="tocSpassthroughprotectedagentcard"></a>
+<a id="tocspassthroughprotectedagentcard"></a>
+
+```json
+{
+  "mode": "passthrough",
+  "rewriteUrls": true
+}
+
+```
+
+Passthrough protected Agent Card
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mode|string|true|none|none|
+|rewriteUrls|boolean|false|none|Rewrite upstream-advertised URLs to the gateway's own. Independent of the public card's `rewriteUrls`.|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|mode|passthrough|
+
+## AgentCardPath
+
+<a id="schemaagentcardpath"></a>
+<a id="schema_AgentCardPath"></a>
+<a id="tocSagentcardpath"></a>
+<a id="tocsagentcardpath"></a>
+
+```json
+"/.well-known/agent-card.json"
+
+```
+
+Path the public Agent Card is served on. A custom path replaces the default route
+rather than aliasing it.
+
+#### Properties
+
+*string*
+
+## AgentCardDocument
+
+<a id="schemaagentcarddocument"></a>
+<a id="schema_AgentCardDocument"></a>
+<a id="tocSagentcarddocument"></a>
+<a id="tocsagentcarddocument"></a>
+
+```json
+{
+  "name": "Trip Planning Agent",
+  "description": "Plans multi-city trips end to end",
+  "version": "1.0.0",
+  "supportedInterfaces": [
+    {
+      "protocolBinding": "JSONRPC",
+      "protocolVersion": "1.0",
+      "url": "https://agents.example.com/trip-planner/rpc"
+    },
+    {
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0",
+      "url": "https://agents.example.com/trip-planner/rest"
+    }
+  ],
+  "capabilities": {
+    "streaming": true
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "plan_trip",
+      "name": "Plan a trip",
+      "description": "Plans an itinerary for a destination and day count",
+      "tags": [
+        "travel"
+      ]
+    }
+  ]
+}
+
+```
+
+A complete A2A Agent Card, carried as supplied. Managed content is stored and served
+byte-for-byte and is never re-serialized or normalized, because re-serialization would
+change the bytes a future signing implementation signs. Structure is the author's to
+write: the gateway validates what it can contradict at deployment time, and the
+encoded size limit (1 MiB) is enforced in the service, not by this schema.
+
+Note that `securityRequirements` uses the A2A shape
+`[{ "schemes": { "<name>": { "list": ["scope"] } } }]`, not the OpenAPI-style
+`[{ "<name>": ["scope"] }]`.
+
+#### Properties
+
+*object*
+
+## AgentProxyListItem
+
+<a id="schemaagentproxylistitem"></a>
+<a id="schema_AgentProxyListItem"></a>
+<a id="tocSagentproxylistitem"></a>
+<a id="tocsagentproxylistitem"></a>
+
+```json
+{
+  "id": "weather-agent",
+  "displayName": "Weather Agent",
+  "description": "Provides forecasts and severe-weather alerts",
+  "version": "v1.0",
+  "projectId": "default-project",
+  "protocol": "a2a",
+  "context": "/weather",
+  "vhost": "agents.gw.com",
+  "createdBy": "john.doe",
+  "updatedBy": "john.doe",
+  "readOnly": false,
+  "createdAt": "2026-01-31T10:30:00Z",
+  "updatedAt": "2026-01-31T10:30:00Z"
+}
+
+```
+
+Lightweight Agent proxy projection used in collection responses. Protocol
+configuration, operation policies and Agent Card content are omitted — read the item
+for those, since a managed card alone may be up to 1 MiB.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|true|none|Public handle of the Agent proxy|
+|displayName|string|true|none|none|
+|description|string|false|none|none|
+|version|string|true|none|none|
+|projectId|string|true|none|Handle (URL-friendly slug) of the project this Agent proxy belongs to|
+|protocol|string|true|none|none|
+|context|string|false|none|none|
+|vhost|string|false|none|none|
+|createdBy|string|false|read-only|none|
+|updatedBy|string|false|read-only|none|
+|readOnly|boolean|false|read-only|True when the Agent proxy originated from a data-plane gateway (origin gateway_api); only its description and gateway associations are editable in the control plane.|
+|createdAt|string(date-time)|false|read-only|none|
+|updatedAt|string(date-time)|false|read-only|none|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|protocol|a2a|
+
+## AgentProxyListResponse
+
+<a id="schemaagentproxylistresponse"></a>
+<a id="schema_AgentProxyListResponse"></a>
+<a id="tocSagentproxylistresponse"></a>
+<a id="tocsagentproxylistresponse"></a>
+
+```json
+{
+  "count": 2,
+  "list": [
+    {
+      "id": "weather-agent",
+      "displayName": "Weather Agent",
+      "description": "Provides forecasts and severe-weather alerts",
+      "version": "v1.0",
+      "projectId": "default-project",
+      "protocol": "a2a",
+      "context": "/weather",
+      "vhost": "agents.gw.com",
+      "createdBy": "john.doe",
+      "updatedBy": "john.doe",
+      "readOnly": false,
+      "createdAt": "2026-01-31T10:30:00Z",
+      "updatedAt": "2026-01-31T10:30:00Z"
+    }
+  ],
+  "pagination": {
+    "total": 10,
+    "offset": 0,
+    "limit": 10
+  }
+}
+
+```
+
+AgentProxyListResponse for paginated Agent proxy results
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|count|integer|true|none|Number of Agent proxies in current response|
+|list|[[AgentProxyListItem](#schemaagentproxylistitem)]|true|none|none|
+|pagination|[Pagination](#schemapagination)|true|none|none|
+
+## AgentProxyAPIKeyListResponse
+
+<a id="schemaagentproxyapikeylistresponse"></a>
+<a id="schema_AgentProxyAPIKeyListResponse"></a>
+<a id="tocSagentproxyapikeylistresponse"></a>
+<a id="tocsagentproxyapikeylistresponse"></a>
+
+```json
+{
+  "list": [
+    {
+      "id": "string",
+      "displayName": "string",
+      "maskedApiKey": "string",
+      "status": "active",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "createdBy": "john.doe",
+      "updatedAt": "2019-08-24T14:15:22Z",
+      "expiresAt": "2019-08-24T14:15:22Z",
+      "issuer": "api-platform-devportal",
+      "allowedTargets": "string"
+    }
+  ],
+  "count": 0,
+  "pagination": {
+    "total": 10,
+    "offset": 0,
+    "limit": 10
+  }
+}
+
+```
+
+AgentProxyAPIKeyListResponse for paginated Agent proxy API-key results
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|list|[[APIKeyItem](#schemaapikeyitem)]|true|none|List of API keys. Key material is never included.|
+|count|integer|true|none|Number of API keys in current response|
+|pagination|[Pagination](#schemapagination)|true|none|none|
+
+## FetchAgentCardRequest
+
+<a id="schemafetchagentcardrequest"></a>
+<a id="schema_FetchAgentCardRequest"></a>
+<a id="tocSfetchagentcardrequest"></a>
+<a id="tocsfetchagentcardrequest"></a>
+
+```json
+{
+  "url": "https://agent.example.com"
+}
+
+```
+
+Two mutually exclusive forms: a direct `url` with optional `auth`, or an
+`agentProxyId` alone, which uses that Agent proxy's stored endpoint and stored
+credentials. Supplying `url` or `auth` alongside `agentProxyId` is rejected, including
+when their value is null — `required` is about key presence, so an explicitly null
+`url` is still a supplied `url`.
+
+`properties` describes the shape common to both forms; `oneOf` does the
+discriminating. A property added to a branch must be added here too.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|url|string(uri)|false|none|Endpoint of the agent to fetch the Agent Card from.|
+|auth|[UpstreamAuth](#schemaupstreamauth)|false|none|Authentication configuration for upstream endpoints|
+|agentProxyId|string|false|none|Public handle of the Agent proxy whose stored endpoint and credentials should be used.|
+
+oneOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[FetchAgentCardByURL](#schemafetchagentcardbyurl)|false|none|Fetch from a supplied endpoint, optionally with supplied credentials. Used to preview an endpoint that has not been saved yet.|
+
+xor
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[FetchAgentCardByAgentProxy](#schemafetchagentcardbyagentproxy)|false|none|Fetch using a saved Agent proxy's stored endpoint and stored credentials. The stored credential handle is never echoed back.|
+
+## FetchAgentCardByURL
+
+<a id="schemafetchagentcardbyurl"></a>
+<a id="schema_FetchAgentCardByURL"></a>
+<a id="tocSfetchagentcardbyurl"></a>
+<a id="tocsfetchagentcardbyurl"></a>
+
+```json
+{
+  "url": "https://agent.example.com",
+  "auth": {
+    "type": "api-key",
+    "header": "X-API-Key",
+    "value": "my-api-key-value"
+  }
+}
+
+```
+
+Fetch from a supplied endpoint, optionally with supplied credentials. Used to preview an endpoint that has not been saved yet.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|url|string(uri)|true|none|Endpoint of the agent to fetch the Agent Card from.|
+|auth|[UpstreamAuth](#schemaupstreamauth)|false|none|Credentials for this fetch only. Permitted solely with the direct-URL form; nothing is stored.|
+
+## FetchAgentCardByAgentProxy
+
+<a id="schemafetchagentcardbyagentproxy"></a>
+<a id="schema_FetchAgentCardByAgentProxy"></a>
+<a id="tocSfetchagentcardbyagentproxy"></a>
+<a id="tocsfetchagentcardbyagentproxy"></a>
+
+```json
+{
+  "agentProxyId": "weather-agent"
+}
+
+```
+
+Fetch using a saved Agent proxy's stored endpoint and stored credentials. The stored credential handle is never echoed back.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|agentProxyId|string|true|none|Public handle of the Agent proxy whose stored endpoint and credentials should be used.|

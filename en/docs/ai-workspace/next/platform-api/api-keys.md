@@ -67,6 +67,7 @@ If omitted, all types are returned.
 |type|RestApi|
 |type|LlmProvider|
 |type|LlmProxy|
+|type|AgentProxy|
 
 > Example responses
 >
