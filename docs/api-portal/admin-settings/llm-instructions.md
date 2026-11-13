@@ -54,9 +54,7 @@ To fetch it yourself:
 GET /api-portal/{orgName}/views/{viewName}/llms.txt
 ```
 
-The generated file lists each agent-visible artifact under its own section:
-
-![Generated llms.txt showing an API Workflows section with workflow names, descriptions, and links](/img/cloud/api-portal/llms-txt.png)
+The generated file lists each agent-visible artifact under its own section.
 
 Only your name and description are editable. Everything below them—the API Workflows, APIs, MCPs, GraphQL, WebSocket, and WebSub sections—is generated from the catalog and reflects each artifact's own agent visibility. See [AI Agent Discovery](../discover/ai-agent-discovery.md) for how that index is built.
 
