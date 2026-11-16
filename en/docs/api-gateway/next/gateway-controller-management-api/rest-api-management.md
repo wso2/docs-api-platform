@@ -8,7 +8,7 @@ tags:
   - management-api
   - rest-api
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-07
+last_updated: 2026-11-16
 content_type: "reference"
 ---
 
@@ -1249,11 +1249,23 @@ Create a subscription plan that defines rate limits and access tiers for API sub
 {
   "planName": "Gold",
   "billingPlan": "COMMERCIAL",
-  "stopOnQuotaReach": true,
-  "throttleLimitCount": 1000,
-  "throttleLimitUnit": "Hour",
-  "expiryTime": "2026-12-31T23:59:59Z",
-  "status": "ACTIVE"
+  "status": "ACTIVE",
+  "conditions": [
+    {
+      "id": "requests",
+      "type": "request-count",
+      "params": {
+        "limits": [
+          {
+            "count": 1000,
+            "timeAmount": 1,
+            "timeUnit": "HOUR"
+          }
+        ],
+        "onExceed": "reject"
+      }
+    }
+  ]
 }
 ```
 
@@ -1284,6 +1296,22 @@ Required roles: `admin`
   "stopOnQuotaReach": true,
   "throttleLimitCount": 0,
   "throttleLimitUnit": "string",
+  "conditions": [
+    {
+      "id": "requests",
+      "type": "request-count",
+      "params": {
+        "limits": [
+          {
+            "count": 100,
+            "timeAmount": 1,
+            "timeUnit": "MINUTE"
+          }
+        ],
+        "onExceed": "reject"
+      }
+    }
+  ],
   "expiryTime": "2019-08-24T14:15:22Z",
   "gatewayId": "string",
   "status": "ACTIVE",
@@ -1342,6 +1370,22 @@ Required roles: `admin`
       "stopOnQuotaReach": true,
       "throttleLimitCount": 0,
       "throttleLimitUnit": "string",
+      "conditions": [
+        {
+          "id": "requests",
+          "type": "request-count",
+          "params": {
+            "limits": [
+              {
+                "count": 100,
+                "timeAmount": 1,
+                "timeUnit": "MINUTE"
+              }
+            ],
+            "onExceed": "reject"
+          }
+        }
+      ],
       "expiryTime": "2019-08-24T14:15:22Z",
       "gatewayId": "string",
       "status": "ACTIVE",
@@ -1405,6 +1449,22 @@ Required roles: `admin`
   "stopOnQuotaReach": true,
   "throttleLimitCount": 0,
   "throttleLimitUnit": "string",
+  "conditions": [
+    {
+      "id": "requests",
+      "type": "request-count",
+      "params": {
+        "limits": [
+          {
+            "count": 100,
+            "timeAmount": 1,
+            "timeUnit": "MINUTE"
+          }
+        ],
+        "onExceed": "reject"
+      }
+    }
+  ],
   "expiryTime": "2019-08-24T14:15:22Z",
   "gatewayId": "string",
   "status": "ACTIVE",
@@ -1445,13 +1505,24 @@ Update an existing subscription plan in the Gateway.
 
 ```json
 {
-  "planName": "string",
-  "billingPlan": "string",
-  "stopOnQuotaReach": true,
-  "throttleLimitCount": 0,
-  "throttleLimitUnit": "Min",
-  "expiryTime": "2019-08-24T14:15:22Z",
-  "status": "ACTIVE"
+  "planName": "Gold",
+  "billingPlan": "COMMERCIAL",
+  "conditions": [
+    {
+      "id": "requests",
+      "type": "request-count",
+      "params": {
+        "limits": [
+          {
+            "count": 1000,
+            "timeAmount": 1,
+            "timeUnit": "HOUR"
+          }
+        ],
+        "onExceed": "reject"
+      }
+    }
+  ]
 }
 ```
 
@@ -1483,6 +1554,22 @@ Required roles: `admin`
   "stopOnQuotaReach": true,
   "throttleLimitCount": 0,
   "throttleLimitUnit": "string",
+  "conditions": [
+    {
+      "id": "requests",
+      "type": "request-count",
+      "params": {
+        "limits": [
+          {
+            "count": 100,
+            "timeAmount": 1,
+            "timeUnit": "MINUTE"
+          }
+        ],
+        "onExceed": "reject"
+      }
+    }
+  ],
   "expiryTime": "2019-08-24T14:15:22Z",
   "gatewayId": "string",
   "status": "ACTIVE",

@@ -8,7 +8,7 @@ tags:
   - management-api
   - mcp
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-09-30
+last_updated: 2026-11-16
 content_type: "reference"
 ---
 
@@ -292,6 +292,7 @@ Status Code **200**
 |version|string|true|none|Version of the policy. Only major-only version is allowed (e.g., v0, v1). Full semantic version (e.g., v1.0.0) is not accepted and will be rejected. The Gateway Controller resolves the major version to the single matching full version installed in the gateway image.|
 |executionCondition|string|false|none|Expression controlling conditional execution of the policy|
 |params|object|false|none|Arbitrary parameters for the policy (free-form key/value structure)|
+|subscriptionPlans|[string]|false|none|Names of the subscription plans this MCP proxy offers. A subscription to the proxy must use one of them. When empty, any active plan can be used.|
 |tools|[[MCPTool](schemas.md#schemamcptool)]|false|none|none|
 |name|string|true|none|Unique identifier for the tool|
 |title|string|false|none|Optional human-readable name of the tool for display purposes.|

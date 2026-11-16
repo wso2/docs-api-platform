@@ -8,7 +8,7 @@ tags:
   - policies
   - extensibility
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-05
+last_updated: 2026-11-16
 content_type: "concept"
 ---
 
@@ -263,7 +263,10 @@ The following table presents the available policies alphabetically.
 | [Semantic Tool Filtering](https://wso2.com/api-platform/policy-hub/policies/semantic-tool-filtering) | Guardrails, AI | Dynamically filters the tools provided within an API request based on their semantic relevance to the user query. |
 | [Sentence Count Guardrail](https://wso2.com/api-platform/policy-hub/policies/sentence-count-guardrail) | Guardrails, AI | Validates the sentence count of request or response body content. |
 | [Set Headers](https://wso2.com/api-platform/policy-hub/policies/set-headers) | Transformation, MCP | This policy provides the capability to set arbitrary headers to either the request or the response. |
-| [Subscription Validation](https://wso2.com/api-platform/policy-hub/policies/subscription-validation) | Security | Validates that incoming requests are associated with an active subscription for the target API. |
+| [Subscription Request Rate Limit](subscription-plan-policies.md) | Security, AI, MCP | Enforces the request count condition of each subscriber's plan, every window. |
+| [Subscription Token Rate Limit](subscription-plan-policies.md) | AI | Enforces the token count condition (total, prompt or completion tokens) of each subscriber's plan on LLM APIs. |
+| [Subscription Tool Rate Limit](subscription-plan-policies.md) | MCP | Enforces the tool-call count condition of each subscriber's plan on MCP proxies. |
+| [Subscription Validation](https://wso2.com/api-platform/policy-hub/policies/subscription-validation) | Security | Validates that incoming requests are associated with an active subscription for the target API. v1 also enforces the plan's request limit; v2 only validates, and works with the [subscription rate-limit policies](subscription-plan-policies.md). |
 | [Token-Based Rate Limit](https://wso2.com/api-platform/policy-hub/policies/token-based-ratelimit) | AI | Enforces usage quotas on LLM APIs based on token counts. |
 | [URL Guardrail](https://wso2.com/api-platform/policy-hub/policies/url-guardrail) | Guardrails, AI | Validates URLs found in request or response body content. |
 | [Word Count Guardrail](https://wso2.com/api-platform/policy-hub/policies/word-count-guardrail) | Guardrails, AI | Validates the word count of request or response body content. |

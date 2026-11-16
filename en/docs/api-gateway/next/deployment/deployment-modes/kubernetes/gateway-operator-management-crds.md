@@ -9,7 +9,7 @@ tags:
   - deployment
   - operator
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-07
+last_updated: 2026-11-16
 content_type: "reference"
 ---
 
@@ -583,9 +583,72 @@ curl --request GET \
   -k
 ```
 
+### Define a Plan with Conditions
+
+Instead of a single throttle limit, a `SubscriptionPlan` can list **conditions**. Each condition is one kind of usage the plan limits, with one or more time windows:
+
+| Type | Fixed `id` | Counts | Enforced by |
+|---|---|---|---|
+| `request-count` | `requests` | API requests | `subscription-request-ratelimit` (every window), or `subscription-validation` v1 (one window) |
+| `tool-call-count` | `tool-calls` | MCP `tools/call` requests | `subscription-tool-ratelimit` |
+| `token-count` | `tokens` | LLM tokens (`total`, `prompt` or `completion`) | `subscription-token-ratelimit` |
+| `custom` | your own | Anything a policy you write reads | Your policy |
+
+```yaml
+apiVersion: gateway.api-platform.wso2.com/v1
+kind: SubscriptionPlan
+metadata:
+  name: gold-plan
+  labels:
+    gateway.api-platform.wso2.com/restapi-target: wso2-crd
+spec:
+  planName: Gold
+  status: ACTIVE
+  conditions:
+    - id: requests
+      type: request-count
+      params:
+        limits:
+          - count: 1000
+            timeAmount: 1
+            timeUnit: HOUR
+          - count: 10000
+            timeAmount: 1
+            timeUnit: DAY
+        onExceed: reject
+    - id: tokens
+      type: token-count
+      params:
+        limits:
+          - count: 50000
+            timeUnit: DAY
+        tokenType: total
+    - id: region
+      type: custom
+      params:
+        zone: eu
+```
+
+- A window is `count` per `timeAmount` (default `1`) `timeUnit` (`MINUTE`, `HOUR`, `DAY` or `MONTH`). A condition has 1 to 10 windows, and no two can cover the same length of time.
+- `onExceed: reject` (the default) answers `429 Too Many Requests` once a window is used up. `onExceed: allow` lets requests through and reports them to analytics as over the quota, so overage can be charged.
+- A plan with no conditions is unlimited.
+- The API server refuses, at `kubectl apply`, an unknown `type`, more than 20 conditions, a custom condition without an `id`, and `conditions` together with `throttleLimitCount` or `throttleLimitUnit`. The gateway checks the rest (for example one condition of each built-in type and the window rules), and the operator reports its error on the resource.
+- Updating a plan to leave out `conditions` and the throttle fields removes its conditions from the gateway.
+
+!!! note "Gateways without plan conditions"
+    A gateway release that predates plan conditions ignores `conditions`. The operator notices that the gateway did not keep them, does not mark the plan **Programmed**, and reports that the plan needs a gateway release that supports subscription plan conditions. Plans that use `throttleLimitCount` and `throttleLimitUnit` keep working on every gateway release.
+
+!!! warning "Upgrading the operator with Helm"
+    `helm upgrade` does not update the CRDs in the chart's `crds/` directory. Apply the new `SubscriptionPlan` CRD to an existing cluster before you use `conditions`:
+
+    ```sh
+    kubectl apply -f helm/operator-helm-chart/crds/gateway.api-platform.wso2.com_subscriptionplans.yaml
+    ```
+
 ## Validation Notes
 
 - `Subscription.spec.subscriptionPlanId` can be a literal ID or a `SubscriptionPlan` CR name.
+- `SubscriptionPlan.spec.conditions` and `SubscriptionPlan.spec.throttleLimitCount`/`throttleLimitUnit` are mutually exclusive (CEL validation rejects both together).
 - `ApiKey.spec.parentRef.kind` supports `RestApi`, `LlmProvider`, and `LlmProxy`.
 - `ApiKey.spec.expiresAt` and `ApiKey.spec.expiresIn` are mutually exclusive (CEL validation rejects both together).
 

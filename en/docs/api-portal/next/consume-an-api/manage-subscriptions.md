@@ -8,7 +8,7 @@ tags:
   - api-portal
   - subscriptions
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-07-31
+last_updated: 2026-11-16
 content_type: "how-to"
 ---
 
@@ -21,16 +21,16 @@ Subscriptions belong to you, not to an application. You don't need to create an 
 ## Subscribe to an API
 
 1. Sign in to the API Portal & MCP Hub.
-2. Click **APIs** in the sidebar and open the API you want.
-3. Click **Subscribe** in the header, or scroll to the **Subscription plans** panel.
-4. Select **Subscribe** for the plan you want.
+2. Click **APIs** (or **MCP Servers**) in the sidebar.
+3. Click **Subscribe** on the API's card, or open the API and click **Subscribe** in its header.
+4. In **Choose a plan**, select the plan you want, and then click **Subscribe**.
 
-The subscription is created the moment you click—there's no confirmation step. A dialog then shows your subscription token.
+The subscription is created at once. The **You're subscribed** dialog then shows your subscription token. Click **Done** to close it.
 
 !!! warning
-    Copy the token before closing the dialog. You can retrieve it again later from **Subscriptions** in the sidebar, but nothing on screen tells you that at the time.
+    Copy the token before closing the dialog. You can retrieve it again later from **Subscriptions** in the sidebar.
 
-You hold at most one subscription per API. Once you have one, the other plan cards relabel their buttons to **Switch plan**—see [Switch to a different plan](#switch-to-a-different-plan).
+You hold at most one subscription per API. Once you're subscribed, the API's header shows **Switch plan** and **View subscription** instead of **Subscribe**, and your plan's card on the API page carries the subscribed ribbon.
 
 ## Use the subscription token
 
@@ -41,11 +41,13 @@ curl -X GET "https://api.example.com/orders/v1/orders" \
   -H "Subscription-Key: <YOUR_SUBSCRIPTION_TOKEN>"
 ```
 
+For an MCP server that offers plans, the client configuration on its page already includes the `Subscription-Key` header; replace the placeholder with your token.
+
 The subscription token is not a substitute for authentication. Most APIs also expect an API key or an OAuth2 access token, and you send both headers together. See [Consume an API](overview.md) for which credentials an API expects and how to tell.
 
 ## View and manage a subscription
 
-Every subscription you hold is listed under **Subscriptions** in the sidebar, in a table showing the API, version, plan, and status. Click the **Manage subscription** button on a row to open the manage dialog. The same dialog opens from **View subscription** on the plan card on the API's overview page.
+Every subscription you hold is listed under **Subscriptions** in the sidebar, in a table showing each API or MCP server, its type, your plan, the subscription type, the date you subscribed, and the status. Click the **Manage subscription** button on a row to open the manage dialog. The same dialog opens from **View subscription** in the API's header.
 
 From the dialog you can:
 
@@ -58,11 +60,14 @@ From the dialog you can:
 
 To move to a different plan on an API you're already subscribed to:
 
-1. Open the API's overview page.
-2. Click **Switch plan** on the plan card you want.
-3. Confirm in the dialog.
+1. Open the API's page.
+2. Click **Switch plan** in the header.
+3. In the dialog, your plan is marked **Current plan**. Select the plan to move to, and then click **Switch plan**.
 
-Your subscription token stays the same, so nothing you've already configured breaks. What changes is the rate limits and quota the new plan sets.
+Your subscription token stays the same, so nothing you've already configured breaks. What changes is the limits the new plan sets, from the next request.
+
+!!! note
+    A paid plan can only be changed by unsubscribing first.
 
 ## Cancel a subscription
 
@@ -80,7 +85,15 @@ To try an API before wiring it into your code, use the **Try It** console on the
 
 ## Subscription plans
 
-Plans set how much of an API you can consume. The API publisher decides which plans an API offers, and each plan's rate limit appears on its card. For how admins define them, see [Subscription Plans](../admin-settings/subscription-plans.md).
+Plans set how much of an API you can consume. The API publisher decides which plans an API offers, and the API's page shows each plan's name and description. A plan can limit:
+
+| Limit | What counts |
+|---|---|
+| Requests | Each call to the API |
+| Tool calls | Each MCP `tools/call` request, on MCP servers |
+| Tokens | The LLM tokens in each response, on AI APIs |
+
+Each limit is a count per time window, for example 1,000 requests per hour, and a plan can combine several. When you reach a limit, the gateway either rejects further calls with `429 Too Many Requests` until the window resets, or lets them through and counts them as overage, depending on the plan. For how admins define plans, see [Subscription Plans](../admin-settings/subscription-plans.md).
 
 ## Related
 
