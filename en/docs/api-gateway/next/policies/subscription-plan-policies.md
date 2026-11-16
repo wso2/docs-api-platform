@@ -14,7 +14,7 @@ content_type: "reference"
 
 # Subscription plan policies
 
-A subscription plan limits what each subscriber can use through its **conditions**: request count, MCP tool-call count, LLM token count and custom conditions, each with one or more time windows. The gateway enforces them with these policies:
+A subscription plan limits what each subscriber can use through its **conditions**: request count, MCP tool-call count and LLM token count, each with one or more time windows, and custom conditions. The gateway enforces the built-in conditions with these policies. A custom condition is enforced by a policy you write, which reads the condition from what `subscription-validation` v2 records.
 
 | Policy | Version | What it does |
 |---|---|---|
@@ -29,7 +29,7 @@ For how plans and conditions are defined, see [Subscription plans overview](../.
 
 ## Attach the policies
 
-Put `subscription-validation` v2 **first**, and the rate-limit policies after it. Each rate-limit policy enforces one kind of condition, and lets the request through when the subscriber's plan has no condition of its kind.
+Put `subscription-validation` v2 before the rate-limit policies. If the API uses an authentication policy that records the caller's application (for example an API key or OAuth2 policy), put that policy before `subscription-validation`, which then uses the application when no subscription token is sent. Each rate-limit policy enforces one kind of condition, and lets the request through when the subscriber's plan has no condition of its kind.
 
 === "REST API"
 
@@ -130,7 +130,7 @@ So that overage can be charged separately, the rate-limit policies record in eac
 `<condition>` is the condition's ID (`requests`, `tool-calls` or `tokens`), so policies on the same request don't overwrite each other. Requests without a subscription, requests whose plan has no condition of the policy's kind, and MCP methods other than `tools/call` carry none of these keys.
 
 !!! info "Limiter failures are never charged as overage"
-    If the rate limiter fails, for example when its Redis store is unavailable, the request is not recorded as over quota. With `onExceed: allow` it goes through uncounted. With `onExceed: reject` and the Redis `failureMode` set to `closed`, it is rejected, but still not recorded as overage.
+    If the rate limiter fails, for example when its Redis store is unavailable, the request is not recorded as over quota. With `onExceed: allow`, the request goes through uncounted, whichever `failure_mode` is set. With `onExceed: reject`, `failure_mode` decides: `open` (the default) lets the request through, and `closed` rejects it. In both cases nothing is recorded as overage.
 
 ## Configure counting
 

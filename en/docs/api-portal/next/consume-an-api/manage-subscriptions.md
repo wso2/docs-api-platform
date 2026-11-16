@@ -91,7 +91,7 @@ Plans set how much of an API you can consume. The API publisher decides which pl
 |---|---|
 | Requests | Each call to the API |
 | Tool calls | Each MCP `tools/call` request, on MCP servers |
-| Tokens | The LLM tokens in each response, on AI APIs |
+| Tokens | LLM tokens on AI APIs: the total, or only the prompt or the completion tokens, as the plan sets |
 
 Each limit is a count per time window, for example 1,000 requests per hour, and a plan can combine several. When you reach a limit, the gateway either rejects further calls with `429 Too Many Requests` until the window resets, or lets them through and counts them as overage, depending on the plan. For how admins define plans, see [Subscription Plans](../admin-settings/subscription-plans.md).
 

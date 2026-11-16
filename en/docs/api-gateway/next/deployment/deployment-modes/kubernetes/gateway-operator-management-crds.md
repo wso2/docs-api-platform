@@ -585,7 +585,7 @@ curl --request GET \
 
 ### Define a Plan with Conditions
 
-Instead of a single throttle limit, a `SubscriptionPlan` can list **conditions**. Each condition is one kind of usage the plan limits, with one or more time windows:
+Instead of a single throttle limit, a `SubscriptionPlan` can list **conditions**. Each condition is one kind of usage the plan limits. A built-in condition (`request-count`, `tool-call-count`, `token-count`) has one or more time windows; a custom condition has the key-value pairs its policy reads:
 
 | Type | Fixed `id` | Counts | Enforced by |
 |---|---|---|---|
@@ -629,7 +629,7 @@ spec:
         zone: eu
 ```
 
-- A window is `count` per `timeAmount` (default `1`) `timeUnit` (`MINUTE`, `HOUR`, `DAY` or `MONTH`). A condition has 1 to 10 windows, and no two can cover the same length of time.
+- A window is `count` per `timeAmount` (default `1`) `timeUnit` (`MINUTE`, `HOUR`, `DAY` or `MONTH`). A built-in condition has 1 to 10 windows, and no two can cover the same length of time. A custom condition has no windows.
 - `onExceed: reject` (the default) answers `429 Too Many Requests` once a window is used up. `onExceed: allow` lets requests through and reports them to analytics as over the quota, so overage can be charged.
 - A plan with no conditions is unlimited.
 - The API server refuses, at `kubectl apply`, an unknown `type`, more than 20 conditions, a custom condition without an `id`, and `conditions` together with `throttleLimitCount` or `throttleLimitUnit`. The gateway checks the rest (for example one condition of each built-in type and the window rules), and the operator reports its error on the resource.
@@ -639,10 +639,11 @@ spec:
     A gateway release that predates plan conditions ignores `conditions`. The operator notices that the gateway did not keep them, does not mark the plan **Programmed**, and reports that the plan needs a gateway release that supports subscription plan conditions. Plans that use `throttleLimitCount` and `throttleLimitUnit` keep working on every gateway release.
 
 !!! warning "Upgrading the operator with Helm"
-    `helm upgrade` does not update the CRDs in the chart's `crds/` directory. Apply the new `SubscriptionPlan` CRD to an existing cluster before you use `conditions`:
+    `helm upgrade` does not update the CRDs in the chart's `crds/` directory. Apply the new `SubscriptionPlan` CRD to an existing cluster before you use `conditions`. Download the chart version you install, and apply the CRD from it:
 
     ```sh
-    kubectl apply -f helm/operator-helm-chart/crds/gateway.api-platform.wso2.com_subscriptionplans.yaml
+    helm pull oci://ghcr.io/wso2/api-platform/helm-charts/gateway-operator --version <chart-version> --untar
+    kubectl apply -f gateway-operator/crds/gateway.api-platform.wso2.com_subscriptionplans.yaml
     ```
 
 ## Validation Notes

@@ -615,7 +615,7 @@ Fields are returned at the root of ApiMetadataResponse / ApiMetadataCreateRespon
 
 One condition of a subscription plan. A built-in condition (`request-count`, `tool-call-count`, `token-count`) has the `id` its type fixes (`requests`, `tool-calls`, `tokens`) and its windows as `params`: `{"limits": [{"count", "timeAmount", "timeUnit"}], "onExceed", "tokenType"}`, with `timeUnit` one of `MINUTE`, `HOUR`, `DAY` or `MONTH`, `onExceed` `reject` (default) or `allow`, and `tokenType` `total` (default), `prompt` or `completion` for a token-count condition only. A built-in condition has 1 to 10 windows, and no two can cover the same length of time. A custom condition has an `id` of its own (lowercase letters, digits and hyphens) and key-value pairs as `params`, at most 4 KB.
 
-#### Properties
+### Properties
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -623,7 +623,7 @@ One condition of a subscription plan. A built-in condition (`request-count`, `to
 |type|string|true|none|none|
 |params|object|true|none|The condition's windows, or a custom condition's key-value pairs.|
 
-#### Enumerated Values
+### Enumerated Values
 
 |Property|Value|
 |---|---|

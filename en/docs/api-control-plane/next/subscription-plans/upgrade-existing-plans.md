@@ -1,6 +1,6 @@
 ---
 title: "Upgrade plans created before conditions"
-description: "What happens to subscription plans with a single request limit when you upgrade to plan conditions: database steps, how old plans are read and saved, and compatibility with earlier gateways and API Portals."
+description: "Upgrade to subscription plan conditions: database scripts, how plans with a single request limit are read and updated, and mixed versions."
 canonical_url: https://wso2.com/api-platform/docs/api-control-plane/next/subscription-plans/upgrade-existing-plans/
 md_url: https://wso2.com/api-platform/docs/api-control-plane/next/subscription-plans/upgrade-existing-plans.md
 tags:
@@ -47,7 +47,7 @@ A plan saved by an earlier release is read as conditions. Nothing is written to 
 
 ## What happens when a plan is updated
 
-The first time an existing plan is saved after the upgrade, it moves to the new storage. The plan's limits stay the same unless you change them.
+In the Platform API, the first save of an existing plan after the upgrade moves it to the new storage. In the API Portal, a plan moves only when a save sends its conditions or limits; a save that changes only other fields leaves it where it is. Either way, the plan's limits stay the same unless you change them.
 
 | You change | Result |
 |---|---|

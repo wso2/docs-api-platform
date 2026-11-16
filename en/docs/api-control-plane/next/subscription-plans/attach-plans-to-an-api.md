@@ -67,7 +67,8 @@ If no active plans exist, the page shows **No subscription plans**, with a point
 
 | Plan condition | Policy offered |
 |---|---|
-| Request count | `subscription-validation` |
+| Any plan, including one with no conditions (unlimited) | `subscription-validation`, which checks that the caller has an active subscription |
+| Request count | `subscription-validation`. Version 1 enforces only one window of the condition (its first one-unit window, such as *per 1 minute*). To enforce every window, use `subscription-validation` v2 with `subscription-request-ratelimit`; see [Subscription plan policies](../../../api-gateway/next/policies/subscription-plan-policies.md#migrate-from-subscription-validation-v1). |
 | Custom condition that names its policy | That policy, at the version given in the plan |
 | Tool-call count, token count | None. A REST or GraphQL API never sees MCP tool calls or LLM token counts, so these conditions don't apply to it. |
 

@@ -266,7 +266,7 @@ Required scopes (the token must carry at least one of): `dp:subscription_plan:cr
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|any|true|Subscription plan payload. Send a single object for single create/upsert, or a non-empty array for bulk create/upsert; each object carries its rate/quota rules in `limits`. Alternatively, upload a YAML file in the `subscriptionPlan` multipart field; use `kind: SubscriptionPlan` for a single plan or `kind: SubscriptionPlanList` with an `items` array for bulk operations. YAML uploads may also use the `type: requestcount` shorthand, which is converted into a per-minute request-count condition; `type: eventcount` has no condition and is not read.|
+|body|body|any|true|Subscription plan payload. Send a single object for single create/upsert, or a non-empty array for bulk create/upsert; each object carries its rules in `conditions` (the deprecated `limits` sets only the request-count condition). Alternatively, upload a YAML file in the `subscriptionPlan` multipart field; use `kind: SubscriptionPlan` for a single plan or `kind: SubscriptionPlanList` with an `items` array for bulk operations. YAML uploads may also use the `type: requestcount` shorthand, which is converted into a per-minute request-count condition; `type: eventcount` has no condition and is not read.|
 
 > Example responses
 >
@@ -411,7 +411,7 @@ Required scopes (the token must carry at least one of): `dp:subscription_plan:up
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|any|true|Subscription plan payload. Send a single object for single create/upsert, or a non-empty array for bulk create/upsert; each object carries its rate/quota rules in `limits`. Alternatively, upload a YAML file in the `subscriptionPlan` multipart field; use `kind: SubscriptionPlan` for a single plan or `kind: SubscriptionPlanList` with an `items` array for bulk operations. YAML uploads may also use the `type: requestcount` shorthand, which is converted into a per-minute request-count condition; `type: eventcount` has no condition and is not read.|
+|body|body|any|true|Subscription plan payload. Send a single object for single create/upsert, or a non-empty array for bulk create/upsert; each object carries its rules in `conditions` (the deprecated `limits` sets only the request-count condition). Alternatively, upload a YAML file in the `subscriptionPlan` multipart field; use `kind: SubscriptionPlan` for a single plan or `kind: SubscriptionPlanList` with an `items` array for bulk operations. YAML uploads may also use the `type: requestcount` shorthand, which is converted into a per-minute request-count condition; `type: eventcount` has no condition and is not read.|
 
 > Example responses
 >

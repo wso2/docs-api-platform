@@ -8,7 +8,7 @@ tags:
   - subscription-plans
 author: WSO2 API Platform Documentation Team
 last_updated: 2026-11-16
-content_type: "overview"
+content_type: "concept"
 ---
 
 # Subscription plans overview

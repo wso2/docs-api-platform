@@ -1198,7 +1198,7 @@ Details of an API key
 One condition of a subscription plan. A built-in condition (request-count, tool-call-count,
 token-count) has the id its type fixes (requests, tool-calls, tokens) and
 its limits as params: {"limits": [{"count", "timeAmount", "timeUnit"}], "onExceed", "tokenType"},
-with timeUnit one of MINUTE, HOUR, DAY or MONTH, and tokenType for token-count only.
+with timeUnit one of MINUTE, HOUR, DAY or MONTH, onExceed reject (the default, 429 once a window is used up) or allow (let requests through and report them as over quota), and tokenType total (the default), prompt or completion, for token-count only.
 A custom condition has an id of its own and key-value pairs as params.
 
 #### Properties

@@ -1303,9 +1303,9 @@ Required roles: `admin`
       "params": {
         "limits": [
           {
-            "count": 100,
+            "count": 1000,
             "timeAmount": 1,
-            "timeUnit": "MINUTE"
+            "timeUnit": "HOUR"
           }
         ],
         "onExceed": "reject"
@@ -1377,9 +1377,9 @@ Required roles: `admin`
           "params": {
             "limits": [
               {
-                "count": 100,
+                "count": 1000,
                 "timeAmount": 1,
-                "timeUnit": "MINUTE"
+                "timeUnit": "HOUR"
               }
             ],
             "onExceed": "reject"
@@ -1456,9 +1456,9 @@ Required roles: `admin`
       "params": {
         "limits": [
           {
-            "count": 100,
+            "count": 1000,
             "timeAmount": 1,
-            "timeUnit": "MINUTE"
+            "timeUnit": "HOUR"
           }
         ],
         "onExceed": "reject"
@@ -1561,9 +1561,9 @@ Required roles: `admin`
       "params": {
         "limits": [
           {
-            "count": 100,
+            "count": 1000,
             "timeAmount": 1,
-            "timeUnit": "MINUTE"
+            "timeUnit": "HOUR"
           }
         ],
         "onExceed": "reject"

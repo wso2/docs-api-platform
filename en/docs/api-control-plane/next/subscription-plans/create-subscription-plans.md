@@ -82,7 +82,7 @@ Leave **Conditions** empty for an unlimited plan.
 1. In **Manage** > **Subscription Plans**, select the plan's **Edit** action.
 2. Change the fields, and then select **Save changes**.
 
-Changes reach the connected gateways at once, and subscribers get the new limits with fresh counters. API Portals get the updated plan the next time an API that offers it is published to them.
+Changes reach the connected gateways at once. API Portals get the updated plan the next time an API that offers it is published to them.
 
 When a plan is in use (an API offers it, or a subscriber is on it), the dialog shows **This plan is in use. To change its name or conditions, create a new plan.** The description, pricing, status and expiry can still be changed.
 
