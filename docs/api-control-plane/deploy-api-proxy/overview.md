@@ -9,7 +9,7 @@ Deploying an API proxy places a build on a gateway. After the deployment succeed
 ## Prerequisites
 
 - An API proxy that you have already created. See [Create an API](../create-api-proxy/overview.md).
-- A gateway in the environment you are deploying to. Create a [self-hosted gateway](../administer/managing-gateways.md#create-a-self-hosted-gateway) or a [managed gateway](../administer/managing-gateways.md#create-a-managed-gateway) first.
+- A gateway in the environment you are deploying to. Your organization has a managed gateway named **Default**, in the development environment. To deploy to another gateway, create a [self-hosted gateway](../administer/managing-gateways.md#create-a-self-hosted-gateway) or a [managed gateway](../administer/managing-gateways.md#create-a-managed-gateway) first.
 
 
 ## Deploy to a self-hosted gateway
@@ -29,7 +29,7 @@ After the deployment succeeds, the gateway status changes to **Active**. The API
 
 ## Deploy to a managed gateway
 
-A managed gateway is a gateway that WSO2 hosts and operates. Create one before you deploy if the environment does not already have one. See [Create a managed gateway](../administer/managing-gateways.md#create-a-managed-gateway).
+A managed gateway is a gateway that WSO2 hosts and operates. Your organization has one, named **Default**, in the development environment. To deploy to another managed gateway, create it first. See [Create a managed gateway](../administer/managing-gateways.md#create-a-managed-gateway).
 
 1. Open the API.
 2. In the left navigation menu, click **Deploy**. You can also click **Deploy to Gateway** on the API overview page.

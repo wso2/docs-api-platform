@@ -17,7 +17,7 @@ Gateways run in the data plane, while you configure and manage them centrally fr
 | **WSO2 Managed Gateway** | Runs on fully managed cloud infrastructure. WSO2 runs, scales, and upgrades the gateway, so you have no infrastructure to maintain. | WSO2 cloud | A fast start and proofs of concept |
 
 :::info
-Your organization does not have a default gateway. Before you deploy an API proxy, create a gateway in the API Control Plane. To set up a Self-Hosted Gateway, follow the [Self-Hosted Gateway Quick Start Guide](./self-hosted-gateways/quickstart-guide.md). To add a WSO2 Managed Gateway instead, see [Manage Gateways](../api-control-plane/administer/managing-gateways.md).
+A new organization comes with a WSO2 Managed Gateway named **Default**, in the development environment, so you can deploy API proxies to it right away. To set up a Self-Hosted Gateway, follow the [Self-Hosted Gateway Quick Start Guide](./self-hosted-gateways/quickstart-guide.md). To add another WSO2 Managed Gateway, see [Manage Gateways](../api-control-plane/administer/managing-gateways.md).
 :::
 
 ## What You Can Do

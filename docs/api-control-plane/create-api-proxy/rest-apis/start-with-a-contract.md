@@ -49,8 +49,8 @@ This walks you through creating a REST API using a sample contract, deploying it
 
 Deploying places a build of the API on a gateway so requests can reach the backend through that gateway.
 
-1. Create a gateway. See [Manage Gateways](../../administer/managing-gateways.md).
-2. Go to the **Deploy** section and deploy the API to a gateway. For more information, see [Deploy an API](../../deploy-api-proxy/overview.md).
+1. Choose a gateway. Your organization has a WSO2 Managed Gateway named **Default**, in the development environment. To deploy to another gateway, create it first. See [Manage Gateways](../../administer/managing-gateways.md).
+2. Go to the **Deploy** section and deploy the API to the gateway. For more information, see [Deploy an API](../../deploy-api-proxy/overview.md).
 
 ## Test the API
 

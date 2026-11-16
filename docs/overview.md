@@ -39,7 +39,7 @@ WSO2 runs the control plane, and you run the gateways on your own infrastructure
 | **API Portal and AI Hub** | Included | Included |
 
 :::info
-Both options use the same gateway technology, and you can use both in the same organization. Your organization does not have a default gateway, so you add a gateway before you deploy your first API proxy. See [API Gateway](./api-gateway/overview.md).
+Both options use the same gateway technology, and you can use both in the same organization. A new organization comes with a WSO2 Managed Gateway named **Default**, in the development environment, so you can deploy your first API proxy without adding a gateway. To keep API traffic in your own infrastructure, add a Self-Hosted Gateway. See [API Gateway](./api-gateway/overview.md).
 :::
 
 ## Components
