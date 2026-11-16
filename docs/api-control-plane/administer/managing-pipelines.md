@@ -7,6 +7,8 @@ A pipeline is the ordered sequence of environments that an API proxy moves throu
 
 You create pipelines in the WSO2 Cloud Console. After you create a pipeline, the API Control Plane uses that order.
 
+A new organization comes with a pipeline named `default`, which has one environment, development. The **Default Project** uses it.
+
 ## View pipelines
 
 1. Sign in to the WSO2 Cloud Console.
@@ -17,19 +19,54 @@ You create pipelines in the WSO2 Cloud Console. After you create a pipeline, the
 
 4. In the left navigation menu, under **Infrastructure**, click **Deployment Pipelines**.
 
-The **Deployment Pipelines** page lists how deployments are promoted between the environments of the organization. Each pipeline shows its name, how many environments it contains, and its status. Expand a pipeline to see the environments in promotion order. The pipeline your organization starts with is marked **Default**. To find a pipeline by name, type in **Search pipelines**.
+The **Deployment Pipelines** page lists how deployments are promoted between the environments of the organization. Each pipeline shows its name, how many projects use it, and its environments in promotion order. The `default` pipeline is marked **Default**. To find a pipeline by name, type in **Search pipelines**.
+
+## View a pipeline's details
+
+On the **Deployment Pipelines** page, click a pipeline. Its page shows the following details.
+
+| Detail | Description |
+|:-------|:------------|
+| **Environments** | How many environments the pipeline has. |
+| **Used by** | How many projects use the pipeline. |
+| **Created** | When the pipeline was created. |
+| **Promotion flow** | The environments of the pipeline, in promotion order. |
+| **Projects** | The projects that use the pipeline. Click **Show projects** to list them, and type in **Search projects** to find one. |
+
+To edit or delete the pipeline from this page, click **Edit** or **Delete**.
 
 ## Create a pipeline
 
 1. On the **Deployment Pipelines** page, click **Create Pipeline**.
-2. In **Name**, enter a name for the pipeline. Use lowercase letters, numbers, and hyphens only, and start and end with a letter or a number. You cannot change the name later.
-3. Under **Promotion flow**, click **Add Environment** and select the environment to start with.
-4. To add the next environment, click **Continue after** that environment and select it. Add the environments in the order that API proxies are promoted through them. When every environment is already in the pipeline, you cannot add another.
-5. Click **Create**. Click **Cancel** to leave without creating the pipeline.
+2. In **Name**, enter a name for the pipeline. Use lowercase letters, numbers, and hyphens only. You cannot change the name later.
+3. Under **Promotion flow**, click **Add Environment**, and under **Start with**, select the first environment.
+4. To add the next environment, click the add icon (**+**) after the last environment, and select the environment. Add the environments in the order that API proxies are promoted through them. When every environment is already in the pipeline, the list shows **Every environment is already in this pipeline**.
+5. Click **Create**. **Create** stays unavailable until the pipeline has a name and at least one environment. Click **Cancel** to leave without creating the pipeline.
 
 ## Edit a pipeline
 
-On the **Deployment Pipelines** page, click the edit icon. Click **Save Changes**, or **Cancel** to keep the current order.
+1. On the **Deployment Pipelines** page, click the edit icon of the pipeline. You can also click **Edit** on the pipeline's page.
+2. Change the **Promotion flow**. You cannot change the name of a pipeline.
+    - To add an environment, click the add icon (**+**) after the last environment, and select the environment.
+    - To remove an environment, click **×** on it.
+3. Click **Save Changes**. Click **Cancel** to keep the current flow.
+
+## Delete a pipeline
+
+On the **Deployment Pipelines** page, click the delete icon of the pipeline, or click **Delete** on the pipeline's page.
+
+You cannot delete the `default` pipeline.
+
+## Assign a pipeline to a project
+
+Each project uses one deployment pipeline. You set it in the project's settings in the WSO2 Cloud Console.
+
+1. In the API Control Plane Console, open the project.
+2. On the project's **Overview** page, click **Manage project**. The **Manage project** page of the project opens in the WSO2 Cloud Console. Its details are shared by the project across every WSO2 platform.
+3. Under **Project details**, in **Deployment pipeline**, select the pipeline. The environments of the pipeline are shown under the list.
+4. Click **Save changes**. Click **Discard changes** to keep the current pipeline.
+
+The project is then listed under **Projects** on the pipeline's page.
 
 ## Promote APIs across environments using a pipeline
 

@@ -15,7 +15,7 @@ This walks you through creating a REST API using a sample backend, deploying it 
 Before you begin, make sure you have access to the console.
 
 1. Open the API Control Plane and sign in using Google or GitHub.
-2. Open your organization and select the **Default project**, or create a new project.
+2. Open your organization and select the **Default Project**, or create a new project.
 
 ## Create the REST API
 

@@ -19,7 +19,7 @@ This guide uses the sample Reading List API backend.
 
     If you already have an organization, open it and continue.
 
-3. Use the **Default project**, or create a project:
+3. Use the **Default Project**, or create a project:
 
     1. On the organization home page, click **New project**.
     2. Enter a **Display name**, an **Identifier**, and a **Description**.

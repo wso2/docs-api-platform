@@ -19,7 +19,7 @@ An **organization** is the top-level container for everything you create, includ
 
 A **project** is a logical grouping of API Proxies that typically work together to deliver a business capability. Projects help organize development, deployment, and management workflows. Each project is isolated from others, ensuring clear boundaries for resources, permissions, and deployments.
 
-A new organization comes with one project, the **Default project**.
+A new organization comes with one project, the **Default Project**.
 
 ## Gateways
 
@@ -41,6 +41,8 @@ An **environment** is an isolated deployment area, such as development or produc
 A **pipeline** is the ordered sequence of environments that an API proxy moves through on its way to production, for example from development to production. You deploy an API proxy to the first environment in the pipeline, test it, and then promote the same build to the next environment.
 
 Promoting the same build, rather than rebuilding it for each environment, ensures that what you tested is exactly what runs in production. Environment-specific values, such as backend endpoints, are configured separately for each environment.
+
+Each project uses one pipeline. A new organization comes with a pipeline named `default`, with the development environment, and the **Default Project** uses it. See [Manage Pipelines](./api-control-plane/administer/managing-pipelines.md).
 
 ## Control Plane and Data Planes
 
