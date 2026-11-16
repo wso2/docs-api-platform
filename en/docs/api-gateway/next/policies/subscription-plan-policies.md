@@ -1,6 +1,6 @@
 ---
 title: "Subscription plan policies"
-description: "Validate subscriptions and enforce each subscriber's plan conditions on the gateway with subscription-validation v2 and the subscription rate-limit policies."
+description: "Validate subscriptions and enforce the built-in conditions of subscription plans with subscription-validation v2 and the subscription rate-limit policies."
 canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/subscription-plan-policies/
 md_url: https://wso2.com/api-platform/docs/api-gateway/next/policies/subscription-plan-policies.md
 tags:
