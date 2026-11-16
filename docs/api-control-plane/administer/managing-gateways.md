@@ -18,11 +18,13 @@ The **Gateways** page groups the gateways of your organization into two tabs. Ea
 | **WSO2 managed gateways** | Gateways that WSO2 hosts and operates in the cloud. |
 | **Self-hosted gateways** | Gateways that run on your infrastructure and connect to the API Control Plane. |
 
+A new organization comes with one WSO2 managed gateway, named **Default**, in the development environment. It is listed on the **WSO2 managed gateways** tab.
+
 Each tab lists its gateways with the following details. To find a gateway by name, type in **Search gateways**.
 
 | Column | Description |
 |:-------|:------------|
-| **Name** | The name of the gateway. The default gateway is marked **Default**. |
+| **Name** | The name of the gateway. |
 | **Description** | A description of the gateway. |
 | **Type** | The type of the gateway, such as **API Gateway**. |
 | **Status** | Whether the gateway is **Active** or inactive. |

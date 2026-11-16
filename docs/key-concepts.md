@@ -19,6 +19,8 @@ An **organization** is the top-level container for everything you create, includ
 
 A **project** is a logical grouping of API Proxies that typically work together to deliver a business capability. Projects help organize development, deployment, and management workflows. Each project is isolated from others, ensuring clear boundaries for resources, permissions, and deployments.
 
+A new organization comes with one project, the **Default project**.
+
 ## Gateways
 
 A **gateway** is the runtime that receives API traffic, applies the policies you configure, and routes requests to your backend services. You deploy API proxies to gateways, and each gateway is associated with an environment.
@@ -27,6 +29,8 @@ You can use the following kinds of gateways.
 
 - **WSO2 Managed Gateways:** Run on fully managed cloud infrastructure. WSO2 runs, scales, and upgrades the gateway.
 - **Self-Hosted Gateways:** Run on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connect to the control plane for configuration and management. Traffic and data stay within your network. See [Self-Hosted Gateway](./api-gateway/self-hosted-gateways/quickstart-guide.md).
+
+A new organization comes with one WSO2 Managed Gateway, named **Default**, in the development environment.
 
 ## Environments
 
