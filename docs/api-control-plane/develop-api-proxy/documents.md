@@ -23,8 +23,9 @@ To add a document to an API, follow the steps given below.
 4. Click **Create Document**.
 5. On the **Create Document** page, provide the following details.
 
-    - **Document type:** Select the type of document, for example, **How To**.
-    - **Name:** Enter a name for the document, for example, `Getting started`.
+    - **Document type:** Select the type of document, for example, **How To**. For the available types, see [Document Types](#document-types).
+    - **Custom type:** Shown only when the document type is **Other**. Optionally, enter your own type name, for example, `Changelog`.
+    - **Name:** Enter a name for the document, for example, `Getting started`. Each document of an API needs a unique name.
     - **Content:** Write the document content in Markdown.
 
     To choose how the editor is displayed, select **Source** to show only the Markdown, **Split** to show the Markdown and a preview side by side, or **Preview** to show only the rendered document.
@@ -44,5 +45,13 @@ To add more documents, click **Create Document** at the top of the page.
 1. On the **Documents** page, under **All documents**, click the document.
 2. Do one of the following.
 
-    - To edit the document, click the edit (pencil) icon, make your changes, and save them.
+    - To edit the document, click the edit (pencil) icon. On the **Edit Document** page, change the name or content, and click **Save**.
     - To delete the document, click the delete (trash) icon and confirm the deletion.
+
+You can't change the type of an existing document. To use a different type, create a new document with that type, and delete the old one.
+
+## Document Types
+
+The document types are **How To** (the default), **Samples & SDK**, **Public Forum**, **Support Forum**, and **Other**. Documents are grouped by type under **All documents**.
+
+If none of the types fit, select **Other** and enter a **Custom type**, such as `Changelog`. Documents with the same custom type are grouped under that name. If you leave **Custom type** empty, the document is grouped under **Other**.

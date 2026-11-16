@@ -39,6 +39,7 @@ const sidebars = {
         ]),
       ]),
       group("Develop", [
+        doc("api-control-plane/develop-api-proxy/definition", "Definition"),
         group("Security", [
           doc("api-control-plane/develop-api-proxy/security/overview", "Overview"),
           doc("api-control-plane/develop-api-proxy/security/api-key-authentication", "API Key Authentication"),

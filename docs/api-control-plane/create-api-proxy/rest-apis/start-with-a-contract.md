@@ -16,34 +16,43 @@ This walks you through creating a REST API using a sample contract, deploying it
 
 1. On the project home page, click **Create API**.
 2. Select **REST API**, then choose **Start with a contract**.
-3. Import the API contract using one of the following methods:
+3. Import the contract from a URL or from a file, as described in the next two sections.
 
-   - **URL:** Select URL and enter the contract URL in the **URL for API Contract** field. Alternatively, click **Try with Sample URL** to use the Petstore sample contract.
+### Import the contract from a URL
 
-     ```text
-     https://petstore3.swagger.io/api/v3/openapi.json
-     ```
+1. Select **URL**.
+2. Enter the contract URL in the **URL for API Contract** field. To use the sample Reading List API contract, click **Try with Sample URL**.
 
-     Wait for the contract to finish loading. The **API resources** list displays the imported operations. You can search by path or description and filter the results by HTTP method.
+    ```text
+    https://raw.githubusercontent.com/wso2/bijira-samples/refs/heads/main/reading-list-api/openapi.yaml
+    ```
 
+3. Wait for the contract to finish loading. The **API resources** list shows the imported operations. To see the contract itself, turn on **Source**.
+4. Click **Continue**, and go to [Configure and create the API](#configure-and-create-the-api).
 
-   - **Upload:** Select Upload then drag and drop the contract file into the designated area or click to browse for a file. Supported file types are `.json`, `.yaml`, and `.yml`.
+### Upload a contract file
 
-4. Click **Continue**.
-5. On the **Configure and create** page, review the values populated from the imported contract. For the Petstore sample, the fields are populated as follows:
+1. Select **Upload**.
+2. Drag the contract file into the upload area, or click the area to browse for the file. The supported file types are `.json`, `.yaml`, and `.yml`.
+3. Click **Continue**, and go to [Configure and create the API](#configure-and-create-the-api).
 
-   | Field | Example value |
-   | --- | --- |
-   | **Name** | `Swagger Petstore - OpenAPI 3.0` |
-   | **Identifier** | `swagger-petstore-openapi-3-0` |
-   | **Version** | `1.0.28` |
-   | **Context** | `/sample-project/swagger-petstore-openapi-3-0/v1.0.28` |
-   | **Description** | Taken from the contract's `info.description` field |
-   | **Target URL** | `https://petstore3.swagger.io/api/v3` |
+### Configure and create the API
 
-   Review the generated values and update them if needed. Make sure the **Target URL** points to the backend service that the gateway should call. For the Petstore sample, use `https://petstore3.swagger.io/api/v3`.
+1. On the **Configure and create** page, review the values that the console fills in from the contract. For the sample contract in the **Default Project**, the values are as follows:
 
-8. Click **Create**.
+    | Field | Example value |
+    | --- | --- |
+    | **Name** | `Reading List API` |
+    | **Identifier** | `reading-list-api` |
+    | **Version** | `1.0` |
+    | **Context** | `/default/reading-list-api/v1.0` |
+    | **Description** | `This is a sample proxy that manages a list of reading items.` |
+    | **Endpoint** | `https://apis.bijira.dev/samples/reading-list-api-service/v1.0` |
+
+2. Update the values if needed. Make sure **Endpoint** points to the backend service that the gateway calls.
+3. Click **Create**.
+
+To view or change the imported operations, see [Definition](../../develop-api-proxy/definition.md).
 
 ## Deploy the API
 

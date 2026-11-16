@@ -23,7 +23,9 @@ You assign subscription plans to an API separately for each portal that you publ
 
 6. Select the subscription plans that consumers can use to subscribe to the API. To select all the plans, click **Select all**.
 
-7. Click **Publish** to make the plans available to consumers in the portal, or click **Save Draft** to keep your selection and publish it later.
+7. Click **Publish**, or **Republish** if the API is already published to the portal, to make the plans available to consumers. To keep your selection and publish it later, click **Save Draft**.
+
+8. To check the plans as consumers see them, click **View in Portal** on the portal.
 
 When an API has subscription plans assigned to it, API consumers can select the plan that best fits their requirements during the subscription process. You can enable more than one subscription plan for the same API to offer tiered access.
 

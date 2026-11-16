@@ -54,14 +54,36 @@ You can generate an API key for an API proxy that is deployed to a gateway. The 
 
 5. Click **I have copied the key**.
 
-The key appears in the **API Keys** section, with its name, the last characters of the key, and who created it. To delete a key, click the delete icon next to it.
+The key appears in the **API Keys** section, with its name, the last characters of the key, and who created it. To revoke a key, click the delete (trash) icon next to it, and in the **Revoke API Key** dialog box, click **Revoke**. The gateways reject requests that use a revoked key.
 
 ## Step 3: Invoke the API with the API Key
 
 1. On the **Overview** page of the API, in the **Invoke URL** section, select a gateway, and copy the invoke URL.
 
-2. Send a request to the invoke URL, and include the API key where the **API Key Auth** policy expects it. For example, if the policy reads the key from a header,
+2. Send a request to the invoke URL, and include the API key in the header that the **API Key Auth** policy reads. The default header is `API-Key`.
 
     ```bash
-    curl -H "<header-name>: <api-key>" "<invoke-url>/<resource-path>"
+    curl -i -H "API-Key: <api-key>" "<invoke-url>/<resource-path>"
     ```
+
+    If the key is valid, the gateway forwards the request to the backend and returns the backend's response, such as `200 OK`.
+
+If the key is missing, invalid, or expired, the gateway rejects the request with a `401` response and doesn't call the backend:
+
+```text
+HTTP/2 401
+content-type: application/json
+
+{"error":"Unauthorized","message":"Valid API key required"}
+```
+
+## Test with the API Console
+
+You can also call the API from the API Console without generating a key yourself.
+
+1. In the left navigation menu, click **Test**.
+2. Select the gateway.
+3. In the **Test key** section, click **Get Test API Key**. The console creates a short-lived key and shows when it expires. It sends the key with every request to that gateway, in the header that the **API Key Auth** policy reads. If you change the header name in the policy, the console uses the new name.
+4. Expand an operation, and click **Execute**.
+
+To try a key that you generated, add it as a header under **Headers** in the operation instead.
