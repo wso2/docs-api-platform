@@ -28,25 +28,23 @@ For production installs on a VM or Kubernetes, see [Setting Up](./setting-up.md)
 
 1. Sign in to the API Control Plane Console and select your organization.
 
-2. In the left navigation, click **Gateways**.
+2. In the left navigation, click **API Gateways**, then click **Add API Gateway**.
 
-   If this is your first gateway, the page offers two choices. Click **Add self-hosted gateway**. If you already have gateways, click **+ Add Gateway**.
-
-3. On the **Add Gateway** page, fill in the form.
+3. On the **Add API Gateway** page, fill in the form.
 
    | Field | Value |
    |---|---|
-   | **Hosting** | **Self-hosted** |
+   | **Hosting** | **Self-hosted API gateway** |
    | **Gateway Type** | **API Gateway** |
    | **Name** | A unique name, for example `Local Self-Hosted Gateway`. The gateway **handle** (shown under the field, for example `local-self-hosted-gateway`) is derived from this name and **can't be changed later**. |
    | **Description** | Optional. |
    | **Environment** | The environment this gateway serves, for example `development`. |
-   | **Gateway Version** | `API-Gateway v1.2` (Latest). |
+   | **API Gateway Version** | `API-Gateway v1.2` (Latest). |
    | **URL** | The base URL your API consumers use to reach this gateway's HTTPS listener. For a local run, use `https://localhost:8443`. The console uses this URL when it shows API endpoints and test commands. |
 
-   ![Add Gateway form filled in for a self-hosted API Gateway](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-1.png)
+   ![Add API Gateway form filled in for a self-hosted API gateway](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-1.png)
 
-4. Click **Add Gateway**.
+4. Click **Add API Gateway**.
 
 The gateway is created with status **Inactive** and the page shows *Waiting for connection*. The **Configurations** tab lists the setup commands, with four tabs: **Quick Start**, **Virtual Machine**, **Docker**, and **Kubernetes**. Keep **Quick Start** selected.
 
@@ -151,9 +149,9 @@ gateway-controller-1  | msg="Successfully pushed gateway manifest to control pla
    {"status":"healthy","timestamp":"2026-11-04T09:02:01Z"}
    ```
 
-2. In the console, reload the **Gateways** page. The status doesn't update live, so a refresh is required. Your gateway now shows **Active** under **Self-hosted gateways**.
+2. In the console, reload the **API Gateways** page. The status doesn't update live, so a refresh is required. Your gateway now shows **Active** under **Self-hosted API gateways**.
 
-   ![Gateways list showing the self-hosted gateway as Active](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-3.png)
+   ![API Gateways list showing the self-hosted gateway as Active](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-3.png)
 
 3. Open the gateway. The status panel shows **Connected: This gateway is connected to the control plane.**
 

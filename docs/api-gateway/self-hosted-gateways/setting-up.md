@@ -14,15 +14,15 @@ Just trying it out? The [Quick Start](./quickstart-guide.md) is the fastest path
 
 Every installation method starts the same way.
 
-1. In the API Control Plane Console, go to **Gateways** and click **+ Add Gateway** (or **Add self-hosted gateway** if you have none yet).
+1. In the API Control Plane Console, go to **API Gateways** and click **Add API Gateway**.
 
-2. Select **Hosting: Self-hosted** and **Gateway Type: API Gateway**, then enter the following details.
+2. Under **Hosting**, select **Self-hosted API gateway**, set **Gateway Type** to **API Gateway**, then enter the following details.
    - **Name:** the gateway **handle** is derived from it and can't be changed later.
    - **Environment:** the environment whose APIs this gateway serves.
-   - **Gateway Version:** `API-Gateway v1.2`.
+   - **API Gateway Version:** `API-Gateway v1.2`.
    - **URL:** the public base URL of this gateway's HTTPS listener as your consumers will call it, for example `https://api.internal.example.com` or `https://gw.example.com:8443`. The console uses it when it shows endpoints and generated test commands.
 
-3. Click **Add Gateway**. The gateway is created as **Inactive**, and the **Configurations** tab shows setup commands under **Quick Start**, **Virtual Machine**, **Docker**, and **Kubernetes**.
+3. Click **Add API Gateway**. The gateway is created as **Inactive**, and the **Configurations** tab shows setup commands under **Quick Start**, **Virtual Machine**, **Docker**, and **Kubernetes**.
 
 :::warning
 **The registration token is shown only once.** The setup commands display a `<your-gateway-token>` placeholder. Clicking **Copy** on the configure (or Helm install) command copies it **with the real token**. Store the token in your secret manager before you leave the page. If you lose it, use [Reconfigure](#rotate-the-registration-token).
@@ -113,7 +113,7 @@ curl http://localhost:9094/api/admin/v1/health
 docker compose logs gateway-controller | grep "Connection state changed"
 ```
 
-You should see `{"status":"healthy",...}` and a `to=connected` log line. Reload the **Gateways** page in the console: the gateway shows **Active**.
+You should see `{"status":"healthy",...}` and a `to=connected` log line. Reload the **API Gateways** page in the console: the gateway shows **Active**.
 
 ### Stop, Restart, and Remove
 
@@ -268,7 +268,7 @@ The token appears only when the gateway is created. Afterwards, step 3 on the ga
    - **Docker Compose:** replace the `APIP_GW_CONTROLLER_CONTROLPLANE_TOKEN=` line in `api-platform.env`, then run `docker compose up -d --force-recreate`.
    - **Kubernetes:** update the `gateway-cp-token` secret, then run `kubectl rollout restart deploy/<controller-deployment> -n api-gateway`. Find the Deployment name with `kubectl get deploy -n api-gateway`.
 
-3. Reload the **Gateways** page and confirm the gateway is **Active**.
+3. Reload the **API Gateways** page and confirm the gateway is **Active**.
 
 ## Port Already in Use
 
