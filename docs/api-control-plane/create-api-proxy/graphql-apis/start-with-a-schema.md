@@ -17,8 +17,8 @@ This walks you through creating a GraphQL API using a sample GraphQL schema, dep
 ## Create the API
 
 1. On the project home page, click **Create API**.
-2. Select **GraphQL API**., keep **Start with a schema**. It is selected by default.
-5. Provide the schema in one of these ways:
+2. Select **GraphQL API**, and keep **Start with a schema**, which is selected by default.
+3. Provide the schema in one of these ways:
 
    - **URL:** Select **URL**, enter the **Schema URL**, or click **Try with Sample Schema**. The sample URL is:
 
@@ -30,8 +30,8 @@ This walks you through creating a GraphQL API using a sample GraphQL schema, dep
 
    - **Upload:** Select **Upload**, then drag and drop a file or click to select one. Accepted file types are `.graphql`, `.gql`, and `.json`.
 
-6. Click **Continue**.
-7. On **Configure and create**, review **Basic information** and **Endpoint**. For the sample schema URL, the console fills in:
+4. Click **Continue**.
+5. On **Configure and create**, review **Basic information** and **Endpoint**. For the sample schema URL, the console fills in:
 
    | **Field** | **Value** |
    | --- | --- |
@@ -42,7 +42,7 @@ This walks you through creating a GraphQL API using a sample GraphQL schema, dep
    | **Description** | Sample Description |
    | **Query and Mutation URL** | Enter the backend URL that serves queries and mutations. |
 
-8. Click **Create**.
+6. Click **Create**.
 
 ## Deploy the API
 

@@ -131,7 +131,7 @@ An API with no security policy attached can be called without credentials, as in
 
 | Symptom | Cause / fix |
 |---|---|
-| Self-hosted gateway isn't listed on the **Deploy** page | It belongs to a different environment, or it hasn't connected yet. Check its environment and status on the **Gateways** page. |
+| Self-hosted gateway isn't listed on the **Deploy** page | It belongs to a different environment, or it hasn't connected yet. Check its environment and status on the **API Gateways** page. |
 | Status stays **Deploying** | The gateway didn't acknowledge the deployment. Check that it is **Active**, then look for errors in `docker compose logs gateway-controller` after `Received WebSocket event type=api.deployed`. |
 | `curl: (60) SSL certificate problem` | The listener certificate is self-signed. Use `-k`, pass `--cacert`, or install a certificate for your gateway hostname. |
 | `404` from the gateway | The path doesn't match a deployed route. Check the context (for example `/default/reading-list-api/v1.0`) and the resource path, and confirm the deployment is **Active**. |

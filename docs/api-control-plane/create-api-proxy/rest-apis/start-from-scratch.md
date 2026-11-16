@@ -21,7 +21,10 @@ Before you begin, make sure you have access to the console.
 
 1. On the project home page, click **Create API**.
 2. Select **REST API**, then choose **Start from scratch**.
-3. Under **Backend endpoint**, enter your backend URL in the Endpoint URL field. Alternatively, click **Try with Sample URL** to use the sample Reading List API backend.
+
+    **Start from scratch** creates a blank API with one wildcard path, `/*`, for the `GET`, `POST`, `PATCH`, and `DELETE` methods. You can change these resources after you create the API.
+
+3. Under **Backend endpoint**, enter your backend URL in the **Endpoint URL** field. To use the sample Reading List API backend, click **Try with Sample URL**. **Endpoint URL** is required.
 
    The sample URL is:
 
@@ -41,13 +44,13 @@ Before you begin, make sure you have access to the console.
    | **Version** | `1.0.0` |
    | **Context** | `/sample-project/reading-list-api/v1.0.0` |
    | **Description** | `A starting point. Edit the operations, or ask AI to refine them.` |
-   | **Target URL** | `https://apis.bijira.dev/samples/reading-list-api-service/v1.0/books` |
+   | **Endpoint** | `https://apis.bijira.dev/samples/reading-list-api-service/v1.0/books` |
 
 6. Click **Create**.
 
-The REST API is now added to your project. You can review its generated definition and customize the available operations before deploying it.
+The console adds the REST API to your project, with the wildcard resources.
 
-To view or edit the API definition, open the API and navigate to **Develop** > **Definition**. You can view the OpenAPI definition in YAML or JSON format, or click **Edit** to modify the API operations.
+To add your own resources, such as `GET /books/{id}`, or to remove the wildcard resources, see [Definition](../../develop-api-proxy/definition.md).
 
 ## Deploy the API
 
