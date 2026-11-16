@@ -10,7 +10,7 @@ This walks you through creating a REST API using a sample contract, deploying it
 ## Prerequisites
 
 1. Open the API Control Plane and sign in using Google or GitHub.
-2. Open your organization, then select the **Default project** or create a new project.
+2. Open your organization, then select the **Default Project** or create a new project.
 
 ## Create the API
 

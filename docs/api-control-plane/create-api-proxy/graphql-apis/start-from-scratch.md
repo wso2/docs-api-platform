@@ -13,7 +13,7 @@ This walks you through creating a GraphQL API using a sample backend, deploying 
 ## Prerequisites
 
 1. Go to the API Control Plane and sign in with Google or GitHub.
-2. Open your organization, then select the **Default project** or create a new project.
+2. Open your organization, then select the **Default Project** or create a new project.
 
 ## Create the API
 
