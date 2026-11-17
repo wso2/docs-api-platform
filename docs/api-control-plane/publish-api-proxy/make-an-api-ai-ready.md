@@ -57,7 +57,7 @@ To control whether AI agents can discover an API, follow the steps given below.
 
 3. In the left navigation menu, click **Publish**.
 
-4. On the portal, click the arrow next to **Publish**, and select **Configure & Publish**.
+4. On the portal, click **Configure & Publish**.
 
 5. In the **Draft** view, on the **API Details** tab, turn the **Make this API discoverable by AI agents** toggle on or off.
 

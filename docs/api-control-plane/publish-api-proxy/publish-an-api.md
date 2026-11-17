@@ -22,19 +22,21 @@ You publish an API to each portal separately, so you can publish the same API to
 
     The page lists the portals in your organization, along with the publishing status of the API in each portal, for example, **Not published**. The top of the page shows the number of portals that the API is published to.
 
-    ![Publish page listing a portal with the publishing status of the API, the Publish button with its options menu, and the View in Portal option](/img/cloud/publish-api-proxy/publish-portals.png)
+    ![Publish page listing a portal with the Not published status of the API, the Configure & Publish button, and View in Portal](/img/cloud/publish-api-proxy/publish-portals.png)
 
     To find a portal, type its name in **Search portals**.
 
-4. On the portal that you want to publish the API to, click **Publish**.
+4. On the portal that you want to publish the API to, click **Configure & Publish**. The publish page of the API opens.
 
-The API is published to the portal with its current details, and its status changes to **Published**. To see the API as consumers see it, click **View in Portal** on the portal. This option is available only after the API is published.
+5. Review the details in the tabs, and click **Publish**. See [Configure and Publish an API](#configure-and-publish-an-api).
+
+The API is published to the portal, and its status changes to **Published**. To see the API as consumers see it, click **View in Portal** on the portal. This option is available only after the API is published.
 
 To review how the API appears in the portal before you publish it, see [Configure and Publish an API](#configure-and-publish-an-api).
 
 ## Configure and Publish an API
 
-1. On the **Publish** page, on the portal that you want to publish the API to, click the arrow next to **Publish**, and select **Configure & Publish**.
+1. On the **Publish** page, on the portal that you want to publish the API to, click **Configure & Publish**.
 
     The publish page of the API opens. Its title shows the API name and the portal you are publishing to, for example, **Publish Reading List API**, followed by the name of the portal. Use the tabs on the page to prepare how the API appears in the portal. See [Customize the Portal Listing](./customize-portal-listing.md).
 

@@ -139,15 +139,11 @@ Publishing makes the API available in the API Portal, where consumers can discov
 
     The page lists the portals in the organization and the publishing status of the API in each portal.
 
-3. On the card for the portal you want, click **Publish**.
+3. On the card for the portal you want, click **Configure & Publish**. The publish page of the API opens, with tabs for the API details, specification, subscription plans, documentation, and landing page.
 
-    ![Publish page with a portal card showing the Not published status, the Publish button, and View in Portal](/img/cloud/getting-started/qs-publish-api.png)
+    ![Publish page with a portal card showing the Not published status, the Configure & Publish button, and View in Portal](/img/cloud/getting-started/qs-publish-api.png)
 
-    The console publishes the API to that portal with all its documents attached and no subscription plan selected.
-
-    :::tip
-    To review the API details, specification, subscription plans, documentation, and landing page before you publish, click the arrow next to **Publish** and select **Configure & Publish**. Then click **Configure & Publish** to open the publish page.
-    :::
+4. Review the tabs, and click **Publish**.
 
 The status of the API in that portal changes to **Published**. To open the portal listing, click **View in Portal**. For more on publishing, see [Publish an API](./publish-api-proxy/publish-an-api.md).
 
