@@ -31,7 +31,7 @@ The **Subscription Plans** page lists the plans in your organization, with their
     |:------|:------------|
     | **Plan name** | Required. A name for the plan, such as `Gold`. |
     | **Limits** | The limits of the plan. To add a limit, click **Add limit**, select what to limit, such as **Request count**, and enter the number allowed per time unit, such as 100 per **Minute**. To remove a limit, click the remove icon next to it. Leave **Limits** empty for an unlimited plan. |
-    | **Block requests when quota is reached** | Turn on to reject the requests that exceed the limit. This is on by default. |
+    | **Block requests when quota is reached** | Turn on to reject the requests that exceed the limit, with `429 Too Many Requests`. This is on by default. |
     | **Expiry date** | Optional. The date after which the plan stops accepting subscriptions. |
 
 3. Click **Add plan**.
