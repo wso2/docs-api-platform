@@ -39,16 +39,16 @@ AI Workspace manages your AI configuration, and the AI Gateway processes request
 Applications ────────► AI Gateway ────────► AI services
                          Data plane
                               │
-                    ┌─────────┼─────────┐
-                    │         │         │
-                 LLM       App LLM     MCP
-                Provider     Proxy     Proxy
+               ┌──────────┬───┴──────┬──────────┐
+               │          │          │          │
+              LLM      App LLM      MCP       Agent
+            Provider    Proxy      Proxy      Proxy
 ```
 
 A typical workflow has these steps:
 
 1. Connect an AI Gateway to AI Workspace.
-2. Configure AI artifacts, such as LLM providers, App LLM proxies, and Model Context Protocol (MCP) proxies.
+2. Configure AI artifacts, such as LLM providers, App LLM proxies, Model Context Protocol (MCP) proxies, and agent proxies.
 3. Apply policies such as guardrails and rate limits.
 4. Deploy the configuration to one or more gateways.
 5. Send application traffic through the deployed gateway.
@@ -88,9 +88,15 @@ Create managed endpoints for upstream MCP servers. MCP standardizes how applicat
 
 To put a gateway in front of an MCP server, see [MCP proxies](mcp-proxies/overview.md).
 
+### Agent proxies
+
+Create managed endpoints for AI agents that speak the Agent2Agent (A2A) protocol. The gateway serves the agent's Agent Card with gateway addresses, so clients send every request through the gateway and its policies.
+
+To put a gateway in front of an A2A agent, see [Agent proxies](agent-proxies/overview.md).
+
 ### AI policies
 
-Apply policies to LLM providers, App LLM proxies, and MCP proxies to control how the gateway handles AI traffic. Policies fall into three groups:
+Apply policies to LLM providers, App LLM proxies, MCP proxies, and agent proxies to control how the gateway handles AI traffic. Policies fall into three groups:
 
 - Guardrails for content safety, personally identifiable information (PII) protection, validation, and prompt injection detection.
 - Rate limits for requests, tokens, and monetary usage.

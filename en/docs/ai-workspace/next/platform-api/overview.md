@@ -168,6 +168,28 @@ License: <a href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</
 - [Undeploy deployment from gateway](mcp-proxy-deployments.md#undeploy-deployment-from-gateway)
 - [Restore a previous deployment](mcp-proxy-deployments.md#restore-a-previous-deployment)
 
+### [Agent Proxies](agent-proxies.md)
+
+- [Create a new Agent proxy](agent-proxies.md#create-a-new-agent-proxy)
+- [List Agent proxies](agent-proxies.md#list-agent-proxies)
+- [Get an Agent proxy by unique identifier](agent-proxies.md#get-an-agent-proxy-by-unique-identifier)
+- [Replace an existing Agent proxy](agent-proxies.md#replace-an-existing-agent-proxy)
+- [Delete an Agent proxy](agent-proxies.md#delete-an-agent-proxy)
+- [Fetch an Agent Card for preview](agent-proxies.md#fetch-an-agent-card-for-preview)
+- [Create an API key for an Agent proxy](agent-proxies.md#create-an-api-key-for-an-agent-proxy)
+- [List API keys for an Agent proxy](agent-proxies.md#list-api-keys-for-an-agent-proxy)
+- [Update an API key for an Agent proxy](agent-proxies.md#update-an-api-key-for-an-agent-proxy)
+- [Delete an API key for an Agent proxy](agent-proxies.md#delete-an-api-key-for-an-agent-proxy)
+
+### [Agent Proxy Deployments](agent-proxy-deployments.md)
+
+- [Create and deploy a new deployment for an Agent proxy](agent-proxy-deployments.md#create-and-deploy-a-new-deployment-for-an-agent-proxy)
+- [Get deployments for an Agent proxy](agent-proxy-deployments.md#get-deployments-for-an-agent-proxy)
+- [Get Agent proxy deployment by ID](agent-proxy-deployments.md#get-agent-proxy-deployment-by-id)
+- [Delete an Agent proxy deployment](agent-proxy-deployments.md#delete-an-agent-proxy-deployment)
+- [Begin undeployment of an Agent proxy deployment](agent-proxy-deployments.md#begin-undeployment-of-an-agent-proxy-deployment)
+- [Begin restoration of a previous Agent proxy deployment](agent-proxy-deployments.md#begin-restoration-of-a-previous-agent-proxy-deployment)
+
 ### [Secrets](secrets.md)
 
 - [Create a secret](secrets.md#create-a-secret)

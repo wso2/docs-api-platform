@@ -1,8 +1,8 @@
 ---
 title: "Gateway tracing"
 description: "Configure distributed tracing for API Platform AI Gateway using OpenTelemetry and Jaeger, with support for cloud-native tracing backends."
-canonical_url: https://wso2.com/api-platform/docs/ai-gateway/next/logging-and-tracing/tracing/
-md_url: https://wso2.com/api-platform/docs/ai-gateway/next/logging-and-tracing/tracing.md
+canonical_url: https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/logging-and-tracing/tracing/
+md_url: https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/logging-and-tracing/tracing.md
 tags:
   - ai-gateway
   - observability
@@ -10,7 +10,7 @@ tags:
   - troubleshooting
   - opentelemetry
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-20
+last_updated: 2026-10-26
 content_type: "how-to"
 ---
 
@@ -149,13 +149,22 @@ Click on any trace in the results to view detailed information:
 - **Parent-child relationships** between spans
 - **Color coding** by service
 
+The trace timeline shows router and policy-engine spans for an LLM request:
+
+![Jaeger AI Gateway trace showing router, policy-engine, and upstream spans.](../../../assets/img/ai-gateway/tracing/jaeger-ai-overview.png)
+
 #### Span Details
 Click on any span to see:
+
 - **Operation name**: What operation was performed
 - **Duration**: How long it took
 - **Tags**: Metadata about the operation (HTTP method, status code, etc.)
 - **Logs**: Events logged during the span (errors, warnings, etc.)
 - **Process**: Service name, version, and host information
+
+The upstream span shows the LLM provider, HTTP status, and request duration:
+
+![Jaeger AI Gateway upstream span showing backend, HTTP status, and duration.](../../../assets/img/ai-gateway/tracing/jaeger-ai-upstream.png)
 
 #### Common Use Cases
 
@@ -312,6 +321,12 @@ After configuring and starting the gateway:
 4. Use **Time Series** to analyze API usage trends
 5. Set up **Alerts** for error rates, latency, or custom conditions
 
+Moesif's trace explorer shows the request and policy spans:
+
+![Moesif AI Gateway trace showing router, policy-engine, and upstream spans.](../../../assets/img/ai-gateway/tracing/moesif-ai-overview.png)
+
+Internal spans can display status `0`; the ingress span shows the HTTP response status.
+
 #### Moesif Features
 
 - **API Analytics**: Request volume, response times, error rates
@@ -370,6 +385,10 @@ exporters:
 
 Access Zipkin UI at `http://localhost:9411`
 
+Zipkin shows the trace timeline and the selected span's HTTP attributes:
+
+![Zipkin AI Gateway trace showing router, policy-engine, and upstream spans.](../../../assets/img/ai-gateway/tracing/zipkin-ai-overview.png)
+
 ### Grafana Tempo
 
 For a Prometheus-style tracing backend:
@@ -407,6 +426,10 @@ Configure gateway to send directly to Tempo:
 tracing:
   endpoint: tempo:4317
 ```
+
+Grafana Explore displays the trace's router, policy-engine, and upstream spans from Tempo:
+
+![Grafana Tempo AI Gateway trace showing router, policy-engine, and upstream spans.](../../../assets/img/ai-gateway/tracing/tempo-ai-overview.png)
 
 ### Cloud-Native Tracing Solutions
 
@@ -486,6 +509,10 @@ tracing:
   endpoint: datadog-agent:4317
 ```
 
+Datadog APM displays the request's HTTP status and expanded span waterfall:
+
+![Datadog APM AI Gateway trace showing router, policy-engine, and upstream spans.](../../../assets/img/ai-gateway/tracing/datadog-ai-overview.png)
+
 #### New Relic
 
 Configure OTLP Collector to export to New Relic:
@@ -498,6 +525,10 @@ exporters:
       api-key: ${NEW_RELIC_LICENSE_KEY}
 ```
 
+New Relic displays the gateway's request, policy execution, and upstream spans:
+
+![New Relic AI Gateway trace showing router, policy-engine, and upstream spans.](../../../assets/img/ai-gateway/tracing/newrelic-ai-overview.png)
+
 #### Honeycomb
 
 ```yaml
@@ -507,6 +538,10 @@ exporters:
     headers:
       x-honeycomb-team: ${HONEYCOMB_API_KEY}
 ```
+
+Honeycomb displays the trace timeline alongside the selected span's attributes:
+
+![Honeycomb AI Gateway trace showing router, policy-engine, and upstream spans.](../../../assets/img/ai-gateway/tracing/honeycomb-ai-overview.png)
 
 #### Lightstep
 
