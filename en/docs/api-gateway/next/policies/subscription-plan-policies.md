@@ -18,7 +18,7 @@ A subscription plan limits what each subscriber can use through its **conditions
 
 | Policy | Version | What it does |
 |---|---|---|
-| `subscription-validation` | v2 | Checks that the request has an active subscription to the API, and records the subscription, its plan and the plan's conditions for the policies after it. It enforces no limit itself. |
+| `subscription-validation` | v2 | Checks that the request has an active subscription to the API, and records the subscription, its plan and the plan's conditions for the policies after it. It enforces no limit itself: a plan's request limits need `subscription-request-ratelimit` after it. |
 | `subscription-request-ratelimit` | v1 | Enforces the plan's **request count** condition: each request counts one. |
 | `subscription-tool-ratelimit` | v1 | Enforces the plan's **tool-call count** condition on MCP proxies: each `tools/call` request counts one. Other MCP methods aren't counted. |
 | `subscription-token-ratelimit` | v1 | Enforces the plan's **token count** condition on LLM APIs: the tokens each response reports count against the plan. |
@@ -132,6 +132,77 @@ So that overage can be charged separately, the rate-limit policies record in eac
 !!! info "Limiter failures are never charged as overage"
     If the rate limiter fails, for example when its Redis store is unavailable, the request is not recorded as over quota. With `onExceed: allow`, the request goes through uncounted, whichever `failure_mode` is set. With `onExceed: reject`, `failure_mode` decides: `open` (the default) lets the request through, and `closed` rejects it. In both cases nothing is recorded as overage.
 
+## Write a policy for a custom condition
+
+A custom condition is enforced by a policy you write. `subscription-validation` v2 records the subscriber's plan conditions in the request's shared metadata, and your policy, placed after it, reads them.
+
+| Metadata key | Value |
+|---|---|
+| `x-wso2-subscription-id` | The subscription's ID. Use it to keep per-subscriber state. |
+| `x-wso2-subscription-plan-id` | The plan's ID. |
+| `x-wso2-subscription-plan-name` | The plan's name. |
+| `x-wso2-subscription-plan-conditions` | The plan's conditions, as a JSON array string. It's `[]` for a plan with no conditions. |
+
+Each condition has an `id`, a `type` and `params`. A custom condition's `id` is its **Condition name**, its `type` is `custom`, and its `params` hold its key-value pairs. If the plan names the policy that enforces the condition, `params.policy` holds that policy's `name` and `version`. Don't use `policy` as one of your own keys.
+
+```json
+[
+  {"id": "requests", "type": "request-count", "params": {"limits": [{"count": 100, "timeAmount": 1, "timeUnit": "MINUTE"}], "onExceed": "reject"}},
+  {"id": "region-limit", "type": "custom", "params": {"zone": "eu", "policy": {"name": "region-guard", "version": "v1"}}}
+]
+```
+
+To write the policy:
+
+1. Declare the `conditionName` parameter in the policy's `policy-definition.yaml`. Every policy that enforces a custom condition must have this parameter, with exactly this name: it maps the policy to the condition it enforces. When a plan names the policy and the console attaches it, the console sets `conditionName` to the condition's **Condition name** for you. When you attach the policy yourself on the **Policies** page, set `conditionName` there. Because the name comes from the parameter, one policy can serve conditions with any name.
+
+    | Parameter | Type | Required | Description |
+    |---|---|---|---|
+    | `conditionName` | string | Yes | The **Condition name** of the custom condition the policy enforces, for example `region-limit`. |
+
+    ```yaml
+    name: region-guard
+    version: v1.0.0
+    parameters:
+      type: object
+      properties:
+        conditionName:
+          type: string
+          description: The Condition name of the custom condition this policy enforces.
+          default: region-limit
+    ```
+
+2. In the request phase, find the condition by that name, and enforce its values. When the subscriber's plan has no such condition, let the request through, as the built-in policies do.
+
+    ```go
+    func (p *RegionGuard) OnRequestHeaders(ctx context.Context, reqCtx *policy.RequestHeaderContext,
+        params map[string]interface{}) policy.RequestHeaderAction {
+        name, _ := params["conditionName"].(string)
+        raw, _ := reqCtx.SharedContext.Metadata["x-wso2-subscription-plan-conditions"].(string)
+        var conditions []struct {
+            ID     string                 `json:"id"`
+            Type   string                 `json:"type"`
+            Params map[string]interface{} `json:"params"`
+        }
+        if raw == "" || json.Unmarshal([]byte(raw), &conditions) != nil {
+            return policy.UpstreamRequestHeaderModifications{} // no subscription recorded
+        }
+        for _, c := range conditions {
+            if c.Type == "custom" && c.ID == name {
+                zone, _ := c.Params["zone"].(string)
+                if zone != "" && reqCtx.Headers.Get("X-Zone") != zone {
+                    return &policy.ImmediateResponse{StatusCode: 403,
+                        Body: []byte(`{"error":"not allowed in this zone"}`)}
+                }
+            }
+        }
+        return policy.UpstreamRequestHeaderModifications{}
+    }
+    ```
+
+3. Build the policy into your gateway. See [Add the policies to the gateway build](#add-the-policies-to-the-gateway-build), and [Writing a Custom Policy](custom-policies/writing-a-custom-policy.md).
+4. Attach it to the API, after `subscription-validation` v2. See [Enforce a custom condition](../../../api-control-plane/next/subscription-plans/attach-plans-to-an-api.md#enforce-a-custom-condition).
+
 ## Configure counting
 
 The rate-limit policies share the `[policy_configurations.ratelimit_v1]` section of the gateway configuration with the other rate-limit policies, so they can use the same Redis.
@@ -176,8 +247,13 @@ For more information, see [Building Gateway with Custom Policies](custom-policie
 
 `subscription-validation` v1 enforces one request limit per plan: the request count condition's first one-unit window, such as *per 1 minute*. Use v2 with the rate-limit policies to enforce every window and every kind of condition.
 
+!!! warning "Moving from v1 to v2: add subscription-request-ratelimit"
+    `subscription-validation` v1 enforces the plan's request limit itself, and v2 doesn't enforce any limit. So when you move an API from v1 to v2 and its plans have request limits, adding `subscription-request-ratelimit` is mandatory. Without it, those limits stop being enforced, including the limits of plans created before conditions, and subscribers can make unlimited requests.
+
+    If every plan on the API is unlimited (has no conditions), v2 needs no rate-limit policy.
+
 1. Change `subscription-validation` to `version: v2`. Its parameters are the same as v1.
-2. Add `subscription-request-ratelimit` v1 after it, to keep enforcing the plan's request limits, including plans created before conditions.
+2. If the API's plans have request limits, add `subscription-request-ratelimit` v1 after it. This step is mandatory for those plans: under v2, it's what enforces their request limits.
 3. On MCP proxies whose plans limit tool calls, add `subscription-tool-ratelimit` v1. On LLM APIs whose plans limit tokens, add `subscription-token-ratelimit` v1.
 4. Redeploy the API.
 

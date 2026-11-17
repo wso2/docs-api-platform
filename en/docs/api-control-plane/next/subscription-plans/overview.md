@@ -24,7 +24,7 @@ Plans are defined once for the organization. Each API then attaches the plans it
 | 1. Create plans | Organization admin | **Manage** > **Subscription Plans** | Define each plan's conditions, and optionally its pricing and expiry. See [Create and manage subscription plans](create-subscription-plans.md). |
 | 2. Attach plans to an API | API developer | API > **Develop** > **Usage Plans** | Choose the plans the API offers. The console offers to attach the policies those plans need. See [Attach plans to an API](attach-plans-to-an-api.md). |
 | 3. Deploy | API developer | API > **Deploy** | The gateway receives the API with its policies, and the plans and subscriptions. |
-| 4. Publish | API publisher | API > **Publish** > **Subscription Plans** | Choose which of the attached plans each API Portal lists. |
+| 4. Publish | API publisher | API > **Publish** > **Subscription Plans** | Choose which of the attached plans each API Portal lists. On a portal with nothing saved yet, every attached plan starts selected. |
 | 5. Subscribe | API consumer | API Portal | The consumer picks a plan and gets a subscription token, sent in the `Subscription-Key` header. |
 | 6. Enforce | Gateway | Policies on the API | The subscription policies check the subscription and count usage against the plan's conditions. |
 
@@ -83,6 +83,8 @@ A custom condition has a **name** (lowercase letters, digits and hyphens, for ex
 ## Plans that are in use
 
 When an API offers a plan, or a subscriber is on it, the plan's **name** and **conditions** can't be changed, because subscribers and API Portals already rely on them. You can still change its description, pricing, status and expiry. To change what a plan allows, create a new plan, attach it, and move subscribers to it.
+
+On **Usage Plans**, a plan can't be detached from an API while an API Portal selects it for that API, in a live listing or a draft. Clear it on each of those portals first. See [Detach plans](attach-plans-to-an-api.md#detach-plans).
 
 ## Plans created before conditions
 

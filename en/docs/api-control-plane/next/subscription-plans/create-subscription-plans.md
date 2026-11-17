@@ -67,7 +67,11 @@ Use **Search plans** to filter the list by name.
 
     1. Enter the **Condition name**, using lowercase letters, digits and hyphens, for example `region-limit`.
     2. Select **Add value** to add each key-value pair the policy reads, for example `zone` = `eu`.
-    3. Optional: under **Custom policy (optional)**, enter the **Policy name** and **Policy version** of the policy that enforces the condition, for example `region-guard` `v1`. The console offers to attach this policy wherever the plan is attached.
+    3. Optional: under **Custom policy (optional)**, enter the **Policy name** and **Policy version** of the policy that enforces the condition, for example `region-guard` `v1`.
+        - With a policy named, the console offers to attach that policy whenever the plan is attached to an API, with the policy's `conditionName` parameter set to this condition's name.
+        - With no policy named, the console offers nothing for this condition. You attach the policy that enforces it yourself, on the API's **Policies** page.
+
+        For both cases, see [Enforce a custom condition](attach-plans-to-an-api.md#enforce-a-custom-condition).
 
 6. Optional: set the pricing, and an **Expiry date** after which the plan stops accepting subscriptions.
 7. Select **Add plan**.
@@ -88,14 +92,14 @@ When a plan is in use (an API offers it, or a subscriber is on it), the dialog s
 
 ## Activate or deactivate a plan
 
-Use the switch in the **Status** column. An inactive plan can't be attached to more APIs or chosen by new subscribers. APIs that already offer it keep it listed on **Usage Plans** as **Inactive**, so you can detach it.
+Use the switch in the **Status** column. An inactive plan can't be attached to more APIs or chosen by new subscribers. APIs that already offer it keep it listed on **Usage Plans** as **Inactive**, so you can detach it once no API Portal selects it for that API.
 
 ## Delete a plan
 
 1. Select the plan's **Delete** action.
 2. Type the plan name to confirm, and then select **Delete**.
 
-A plan that is in use can't be deleted: detach it from every API on **Usage Plans** and move its subscribers to another plan first. Deleting a plan can't be undone.
+A plan that is in use can't be deleted: clear it on each API Portal that selects it, detach it from every API on **Usage Plans**, and move its subscribers to another plan first. Deleting a plan can't be undone.
 
 ## Next steps
 
