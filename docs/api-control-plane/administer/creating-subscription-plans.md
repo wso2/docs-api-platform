@@ -22,10 +22,11 @@ The **Subscription Plans** page lists the plans in your organization. To find a 
 | **Name** | The name of the plan. |
 | **Limits** | The limits of the plan, such as `req · 50 / min`. |
 | **Status** | A switch that shows whether the plan is active. |
-| **Actions** | Edit or delete the plan. You can't delete a plan that has active subscriptions. |
+| **Actions** | Edit or delete the plan. |
 
 :::note
-To activate or deactivate a plan, turn its switch in the **Status** column on or off.
+- To activate or deactivate a plan, turn its switch in the **Status** column on or off.
+- You can't delete a plan that has active subscriptions.
 :::
 
 ## Create a Subscription Plan
