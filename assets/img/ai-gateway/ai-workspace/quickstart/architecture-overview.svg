@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4b5563"/>
+    </marker>
+  </defs>
+
+  <!-- opaque background -->
+  <rect x="0" y="0" width="1000" height="560" fill="#ffffff"/>
+
+  <!-- Your app / MCP client -->
+  <rect x="230" y="12" width="290" height="58" rx="10" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+  <text x="375" y="47" text-anchor="middle" font-size="20" fill="#1f2937">Your app / MCP client</text>
+
+  <!-- arrow: client -> gateway -->
+  <line x1="375" y1="70" x2="375" y2="188" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="392" y="118" font-size="16" fill="#374151">request + API key</text>
+
+  <!-- Zone: You run this -->
+  <rect x="20" y="140" width="700" height="165" rx="10" fill="none" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="38" y="168" font-size="19" fill="#374151">You run this</text>
+
+  <!-- AI Gateway box -->
+  <rect x="120" y="190" width="450" height="80" rx="10" fill="#ffffff" stroke="#ff7300" stroke-width="2.5"/>
+  <text x="345" y="225" text-anchor="middle" font-size="23" font-weight="bold" fill="#ff7300">AI Gateway</text>
+  <text x="345" y="252" text-anchor="middle" font-size="16" fill="#374151">on your own infrastructure</text>
+
+  <!-- arrows: gateway -> LLM provider / MCP server -->
+  <path d="M570,215 C650,215 650,182 745,182" fill="none" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M570,245 C650,245 650,278 745,278" fill="none" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- LLM provider -->
+  <rect x="745" y="150" width="245" height="65" rx="10" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+  <text x="867" y="177" text-anchor="middle" font-size="19" fill="#1f2937">LLM provider</text>
+  <text x="867" y="200" text-anchor="middle" font-size="14" fill="#4b5563">OpenAI, Mistral, ...</text>
+
+  <!-- MCP server -->
+  <rect x="745" y="245" width="245" height="65" rx="10" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+  <text x="867" y="272" text-anchor="middle" font-size="19" fill="#1f2937">MCP server</text>
+  <text x="867" y="295" text-anchor="middle" font-size="14" fill="#4b5563">tools, resources, prompts</text>
+
+  <!-- Zone: Hosted by WSO2 -->
+  <rect x="20" y="365" width="700" height="165" rx="10" fill="none" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="38" y="393" font-size="19" fill="#374151">Hosted by WSO2</text>
+
+  <!-- AI Workspace box -->
+  <rect x="195" y="420" width="300" height="80" rx="10" fill="#ffffff" stroke="#1f2937" stroke-width="1.5"/>
+  <text x="345" y="455" text-anchor="middle" font-size="21" fill="#1f2937">AI Workspace</text>
+  <text x="345" y="480" text-anchor="middle" font-size="14" fill="#4b5563">control plane — you don't run this</text>
+
+  <!-- arrow: AI Workspace -> AI Gateway (config), crossing both zone borders -->
+  <line x1="270" y1="420" x2="270" y2="273" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="255" y="330" text-anchor="end" font-size="16" fill="#374151">what to expose, API keys,</text>
+  <text x="255" y="351" text-anchor="end" font-size="16" fill="#374151">policies, analytics</text>
+
+  <!-- arrow: AI Gateway -> AI Workspace (status), crossing both zone borders -->
+  <line x1="420" y1="273" x2="420" y2="417" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="435" y="350" font-size="16" fill="#374151">status</text>
+</svg>
