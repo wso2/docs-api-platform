@@ -1,6 +1,6 @@
 ---
 title: "Manage Gateway-deployed AI artifacts in AI Workspace"
-description: "Create an LLM provider template, LLM provider, LLM proxy, or MCP proxy on the AI Gateway and view the read-only copy that syncs up to AI Workspace."
+description: "Create an LLM provider template, LLM provider, LLM proxy, MCP proxy, or agent proxy on the AI Gateway and view the read-only copy in AI Workspace."
 canonical_url: https://wso2.com/api-platform/docs/ai-workspace/next/sync-gateway-created-artifacts/
 md_url: https://wso2.com/api-platform/docs/ai-workspace/next/sync-gateway-created-artifacts.md
 tags:
@@ -14,12 +14,13 @@ content_type: "how-to"
 
 # Manage Gateway-deployed AI artifacts in AI Workspace
 
-You can create four kinds of AI artifact directly on the AI Gateway:
+You can create five kinds of AI artifact directly on the AI Gateway:
 
 - **Large language model (LLM) Provider Template**
 - **LLM Provider**
 - **LLM Proxy**
 - **Model Context Protocol (MCP) Proxy**
+- **Agent2Agent (A2A) Agent Proxy**
 
 Each one syncs up to **AI Workspace** automatically, where it appears as a copy the gateway owns. The deployment fields the gateway runs the artifact from are **read-only**. Runtime-neutral details stay editable, such as the description, documentation, OpenAPI definitions, and template connection details. For the full breakdown, see [What you can and can't change in AI Workspace](#what-you-can-and-cant-change-in-ai-workspace).
 
@@ -36,7 +37,7 @@ Because the gateway owns these artifacts, they keep serving traffic even if AI W
 
 - A gateway that's registered with, and can reach, your AI Workspace.
 - Syncing enabled on the gateway. See [Enable the sync](#enable-the-sync); it's on by default.
-- For **LLM Proxies** and **MCP Proxies**, which belong to a project: the project they reference must already exist in your organization in AI Workspace.
+- For **LLM Proxies**, **MCP Proxies**, and **Agent Proxies**, which belong to a project: the project they reference must already exist in your organization in AI Workspace.
 
 ## Enable the sync
 
@@ -67,12 +68,12 @@ Create on the gateway ─┬─▶ takes effect immediately (starts serving traf
 The sync happens automatically in the background — you don't trigger it. A few things to know:
 
 - **Matched by name.** Each artifact is identified by the name you give it (`metadata.name`). Re-creating an artifact with the same name on the gateway updates the same AI Workspace copy instead of creating a duplicate.
-- **References use names.** An LLM provider names its template, and an LLM proxy names its provider. Create them in order — the template, then the provider, then the proxy — so each reference resolves. MCP proxies stand on their own.
+- **References use names.** An LLM provider names its template, and an LLM proxy names its provider. Create them in order — the template, then the provider, then the proxy — so each reference resolves. MCP proxies and agent proxies stand on their own.
 - **Most recent deployment wins.** If the same artifact is deployed on more than one gateway, AI Workspace shows the version from the most recent deployment.
 
 ## Supported artifacts
 
-Four AI artifact kinds sync from the gateway to AI Workspace. You create them through the gateway's management API, under the base path `/api/management/v1` (default port `9090`):
+Five AI artifact kinds sync from the gateway to AI Workspace. You create them through the gateway's management API, under the base path `/api/management/v1` (default port `9090`):
 
 | Kind | Management API endpoint | Belongs to a project? |
 |------|-------------------------|-----------------------|
@@ -80,6 +81,7 @@ Four AI artifact kinds sync from the gateway to AI Workspace. You create them th
 | `LlmProvider` | `/api/management/v1/llm-providers` | No (organization level) |
 | `LlmProxy` | `/api/management/v1/llm-proxies` | Yes |
 | `Mcp` | `/api/management/v1/mcp-proxies` | Yes |
+| `Agent` | `/api/management/v1/agents` | Yes |
 
 All manifests use `apiVersion: gateway.api-platform.wso2.com/v1`. Project-scoped kinds name their project in an annotation using the project handle:
 
@@ -103,7 +105,7 @@ The examples below use these conventions:
 
 ## Create the artifacts on the gateway
 
-This walkthrough builds a complete **LLM Proxy** together with the two artifacts it depends on: an **LLM Provider Template** and an **LLM Provider**. It then adds a standalone **MCP Proxy**. Each `curl` creates the artifact on the gateway. The artifact starts serving immediately and syncs to AI Workspace.
+This walkthrough builds a complete **LLM Proxy** together with the two artifacts it depends on: an **LLM Provider Template** and an **LLM Provider**. It then adds a standalone **MCP Proxy** and a standalone **Agent Proxy**. Each `curl` creates the artifact on the gateway. The artifact starts serving immediately and syncs to AI Workspace.
 
 Create them in dependency order so each reference resolves:
 
@@ -112,7 +114,7 @@ LlmProviderTemplate ──(spec.template)──▶ LlmProvider ──(spec.provi
 ```
 
 !!! note
-    The LLM proxy and MCP proxy reference the project `default`. Make sure that project exists in your organization in AI Workspace first.
+    The LLM proxy, MCP proxy, and agent proxy reference the project `default`. Make sure that project exists in your organization in AI Workspace first.
 
 ### Step 1: Create the LLM provider template
 
@@ -224,9 +226,45 @@ curl --location 'http://localhost:9090/api/management/v1/mcp-proxies' \
   --data-binary '@mcp-proxy.yaml'
 ```
 
+### Step 5: Create an agent proxy
+
+An agent proxy also belongs to a project and stands on its own. It fronts one upstream A2A agent. The gateway must run release 2026.09.24 or later. `agent.yaml`:
+
+```yaml
+apiVersion: gateway.api-platform.wso2.com/v1
+kind: Agent
+metadata:
+  name: trip-planner-v1.0
+  annotations:
+    "gateway.api-platform.wso2.com/project-id": "default"
+spec:
+  displayName: Trip Planner
+  version: v1.0
+  context: "/project-1/trip-planner"
+  upstream:
+    url: https://.../trip-planner
+  a2a:
+    protocolVersion: "1.0"
+    operationConfigs:
+      transports:
+        - protocolBinding: JSONRPC
+          pathPrefix: /rpc
+        - protocolBinding: HTTP+JSON
+          pathPrefix: /rest
+```
+
+```bash
+curl --location 'http://localhost:9090/api/management/v1/agents' \
+  --header 'Content-Type: text/yaml' \
+  --user "$GW_USER:$GW_PASSWORD" \
+  --data-binary '@agent.yaml'
+```
+
+For every field an agent accepts, see the [agent configuration reference](../../ai-gateway/next/reference/agent-configuration.md).
+
 ## View them in AI Workspace
 
-The gateway syncs each artifact up automatically. Shortly after you create them, all four appear in AI Workspace as **read-only** copies, each keeping the name you gave it on the gateway.
+The gateway syncs each artifact up automatically. Shortly after you create them, all five appear in AI Workspace as **read-only** copies, each keeping the name you gave it on the gateway.
 
 Open **AI Workspace** for the organization your gateway is registered with, then find each artifact in its section of the sidebar.
 
@@ -254,6 +292,10 @@ The MCP proxy appears under **MCP** > **MCP Proxies**, in the **Default** projec
 
 ![MCP proxy synced from the gateway to AI Workspace](../../assets/img/ai-workspace/bottom-up/dp-to-cp-mcp-proxy.png)
 
+### Agent proxy
+
+The agent proxy appears under **Agents** > **Agent Proxies**, in the **Default** project. For what you can do with it there, see [Gateway-created agent proxies](agent-proxies/manage-proxy.md#gateway-created-agent-proxies).
+
 Open any of them to browse the full configuration. It opens in a read-only view — the edit and deploy actions are unavailable because the gateway owns the artifact.
 
 If an artifact hasn't appeared after a short wait, see [Troubleshooting](#troubleshooting).
@@ -267,6 +309,8 @@ A gateway-created artifact is **read-only** in AI Workspace because the gateway 
 - Its description and display name
 - Documentation and API (OpenAPI) definitions
 - For an **LLM Provider Template**: its connection details (endpoint URL, auth type/header), logo, and OpenAPI spec
+
+For an **Agent Proxy**, only the description stays editable. You can still generate and delete its API keys.
 
 **You _can't_ change what the gateway uses to run the artifact.** Make those changes on the gateway instead — they sync up automatically. This includes:
 
@@ -303,7 +347,7 @@ Syncing is resilient. If AI Workspace can't be reached when you create or change
 - The gateway retries the sync automatically.
 - When the connection is restored, everything that hasn't synced yet is pushed up — no manual action needed.
 
-You can create artifacts on a gateway while it's disconnected, and they reconcile up on their own once it reconnects. This applies to all four artifact kinds.
+You can create artifacts on a gateway while it's disconnected, and they reconcile up on their own once it reconnects. This applies to all five artifact kinds.
 
 ## Immutable gateways
 
@@ -317,7 +361,7 @@ The sync behaves exactly the same for these gateways: artifacts loaded from file
 
 - **Syncing is turned off.** Set `deployment_sync_enabled = true` in the gateway's `config.toml` and restart the gateway.
 - **The AI Workspace can't be reached.** The artifact still works on the gateway; the sync retries automatically and catches up once the connection is restored. Check that the gateway is connected to AI Workspace.
-- **The project doesn't exist** (LLM proxy or MCP proxy). These belong to a project. Create the project named in the artifact's `project-id` annotation in your organization, then re-apply the artifact on the gateway:
+- **The project doesn't exist** (LLM proxy, MCP proxy, or agent proxy). These belong to a project. Create the project named in the artifact's `project-id` annotation in your organization, then re-apply the artifact on the gateway:
 
     ```yaml
     metadata:
