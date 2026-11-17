@@ -7,10 +7,6 @@ A subscription plan defines how many requests an application can make in a time 
 
 You configure the subscription plans for a specific API when you publish it to a portal. For more information, see [Customize the Portal Listing](../publish-api-proxy/customize-portal-listing.md).
 
-:::tip
-Deleting a subscription plan is only possible if there are no active subscriptions associated with it.
-:::
-
 ## View Subscription Plans
 
 1. Sign in to the [API Control Plane Console](https://console.bijira.dev).
@@ -19,7 +15,18 @@ Deleting a subscription plan is only possible if there are no active subscriptio
 
 3. In the left navigation menu, click **Manage**, then click **Subscription Plans**.
 
-The **Subscription Plans** page lists the plans in your organization, with their limits, pricing, and status. To find a plan by name, type in **Search plans**.
+The **Subscription Plans** page lists the plans in your organization. To find a plan by name, type in **Search plans**.
+
+| Column | Description |
+|:-------|:------------|
+| **Name** | The name of the plan. |
+| **Limits** | The limits of the plan, such as `req · 50 / min`. |
+| **Status** | A switch that shows whether the plan is active. |
+| **Actions** | Edit or delete the plan. You can't delete a plan that has active subscriptions. |
+
+:::note
+To activate or deactivate a plan, turn its switch in the **Status** column on or off.
+:::
 
 ## Create a Subscription Plan
 
@@ -37,14 +44,6 @@ The **Subscription Plans** page lists the plans in your organization, with their
 3. Click **Add plan**.
 
 The plan appears on the **Subscription Plans** page.
-
-## Edit or Delete a Subscription Plan
-
-On the **Subscription Plans** page, find the plan, and do one of the following.
-
-- To turn the plan on or off, click the toggle in the **Status** column.
-- To edit the plan, click the edit icon.
-- To delete the plan, click the delete icon.
 
 ## Next Steps
 
