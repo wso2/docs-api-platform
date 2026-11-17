@@ -376,6 +376,7 @@ nav:
           - Policy execution order: api-gateway/next/policies/policy-execution-order.md
           - Fault Policies: api-gateway/next/policies/fault-policies.md
           - Add or Update Policies: api-gateway/next/policies/add-or-update-policies.md
+          - Subscription Plan Policies: api-gateway/next/policies/subscription-plan-policies.md
           - Custom Policies:
             - Writing a Custom Policy: api-gateway/next/policies/custom-policies/writing-a-custom-policy.md
             - Building Gateway with Custom Policies: api-gateway/next/policies/custom-policies/building-gateway-with-custom-policies.md
@@ -1730,6 +1731,11 @@ nav:
         - Test a GraphQL API: api-control-plane/next/graphql-apis/test-graphql-api.md
         - Manage API Keys: api-control-plane/next/graphql-apis/manage-api-keys.md
         - Platform API: api-control-plane/next/graphql-apis/platform-api.md
+    - Subscription Plans:
+        - Overview: api-control-plane/next/subscription-plans/overview.md
+        - Create and Manage Plans: api-control-plane/next/subscription-plans/create-subscription-plans.md
+        - Attach Plans to an API: api-control-plane/next/subscription-plans/attach-plans-to-an-api.md
+        - Upgrade Plans Created Before Conditions: api-control-plane/next/subscription-plans/upgrade-existing-plans.md
   - Analytics:
     - Overview: analytics/overview.md
   - Monetization:

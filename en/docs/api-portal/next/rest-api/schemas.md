@@ -8,7 +8,7 @@ tags:
   - api-portal
   - rest-api
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-07-24
+last_updated: 2026-11-16
 content_type: "reference"
 ---
 
@@ -589,6 +589,49 @@ Fields are returned at the root of ApiMetadataResponse / ApiMetadataCreateRespon
 |---|---|---|---|---|
 |**additionalProperties**|string|false|none|none|
 
+## SubscriptionPlanCondition
+
+<a id="schemasubscriptionplancondition"></a>
+<a id="schema_SubscriptionPlanCondition"></a>
+<a id="tocSsubscriptionplancondition"></a>
+<a id="tocssubscriptionplancondition"></a>
+
+```json
+{
+  "id": "requests",
+  "type": "request-count",
+  "params": {
+    "limits": [
+      {
+        "count": 100,
+        "timeAmount": 1,
+        "timeUnit": "MINUTE"
+      }
+    ],
+    "onExceed": "reject"
+  }
+}
+```
+
+One condition of a subscription plan. A built-in condition (`request-count`, `tool-call-count`, `token-count`) has the `id` its type fixes (`requests`, `tool-calls`, `tokens`) and its windows as `params`: `{"limits": [{"count", "timeAmount", "timeUnit"}], "onExceed", "tokenType"}`, with `timeUnit` one of `MINUTE`, `HOUR`, `DAY` or `MONTH`, `onExceed` `reject` (default) or `allow`, and `tokenType` `total` (default), `prompt` or `completion` for a token-count condition only. A built-in condition has 1 to 10 windows, and no two can cover the same length of time. A custom condition has an `id` of its own (lowercase letters, digits and hyphens) and key-value pairs as `params`, at most 4 KB.
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|false|none|Fixed for built-in types; required for custom conditions.|
+|type|string|true|none|none|
+|params|object|true|none|The condition's windows, or a custom condition's key-value pairs.|
+
+### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|request-count|
+|type|tool-call-count|
+|type|token-count|
+|type|custom|
+
 ## SubscriptionPlanResponse
 
 <a id="schemasubscriptionplanresponse"></a>
@@ -626,7 +669,8 @@ Fields are returned at the root of ApiMetadataResponse / ApiMetadataCreateRespon
 |id|string|false|none|The plan's handle (unique per org). Not the internal database uuid.|
 |displayName|string|false|none|none|
 |description|string|false|none|none|
-|limits|[object]|false|none|Rate/quota limits enforced for this plan. Empty when the plan is unlimited.|
+|conditions|[[SubscriptionPlanCondition](#schemasubscriptionplancondition)]|false|none|The plan's conditions. A plan saved before conditions shows its REQUEST_COUNT limits as its request-count condition and its TOTAL_TOKEN_COUNT limits as a token-count condition. Empty when the plan is unlimited.|
+|limits|[object]|false|none|The windows of the plan's request-count condition as REQUEST_COUNT limits, kept for older clients. Empty when the plan has no request-count condition.|
 |» limitType|string|false|none|none|
 |» limitCount|any|false|none|Returned as a string when the stored count exceeds the safe integer range, otherwise a number. Unlimited plans have no limit entries — the `limits` array is empty.|
 
@@ -900,7 +944,8 @@ OAuth client ID mapping entry attached to an application.
 |refId|string|false|none|Platform API subscription plan UUID to associate with this plan.|
 |displayName|string|true|none|none|
 |description|string|false|none|none|
-|limits|[object]|false|none|Rate/quota limits enforced for this plan. Omit or leave empty for an unlimited plan. Replaces the whole limit set on update.|
+|conditions|[[SubscriptionPlanCondition](#schemasubscriptionplancondition)]|false|none|The plan's conditions: at most one of each built-in type (request-count, tool-call-count, token-count) and any number of custom conditions, up to 20. Replaces all of them on update, and [] removes them all; omit it to keep them.|
+|limits|[object]|false|none|Deprecated: use `conditions`. Sent without `conditions`, the REQUEST_COUNT limits that have a timeUnit set the plan's request-count condition, and its other conditions are kept; with no such limits the request-count condition is removed. Unlimited (-1) limits and other limit types are not kept. Ignored when `conditions` is sent.|
 |» limitType|string|false|none|none|
 |» limitCount|integer|true|none|Use -1 for unlimited, otherwise a positive number.|
 |» timeUnit|string¦null|false|none|Omit for a limit with no time window.|
