@@ -1,13 +1,13 @@
 ---
 title: "Subscription Plans"
-description: "Assign existing subscription plans to an API proxy in API Management to control access levels and pricing tiers for consumers."
+description: "Assign existing subscription plans to an API proxy in API Management to control access levels and usage limits for consumers."
 ---
 
-API subscription plans allow API publishers to control and manage access to APIs. These plans define the rules, limitations, and pricing for how clients can interact with APIs, ensuring efficient resource utilization and robust security.
+API subscription plans allow API publishers to control and manage access to APIs. These plans define the rules and limitations for how clients can interact with APIs, ensuring efficient resource utilization and robust security.
 
 Users with the administrator role can create, update, and delete subscription plans at the organization level. For instructions on creating subscription plans, see [Manage Subscription Plans](../administer/creating-subscription-plans.md).
 
-Once created, API publishers can assign subscription plans to APIs, providing different levels of access and pricing based on user needs.
+Once created, API publishers can assign subscription plans to APIs, providing different levels of access based on user needs.
 
 You assign subscription plans to an API separately for each portal that you publish it to. To assign subscription plans to an API, follow the steps given below.
 
