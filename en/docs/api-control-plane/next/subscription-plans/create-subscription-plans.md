@@ -67,7 +67,7 @@ Use **Search plans** to filter the list by name.
 
     1. Enter the **Condition name**, using lowercase letters, digits and hyphens, for example `region-limit`.
     2. Select **Add value** to add each key-value pair the policy reads, for example `zone` = `eu`.
-    3. Optional: under **Custom policy (optional)**, enter the **Policy name** and **Policy version** of the policy that enforces the condition, for example `region-guard` `v1`.
+    3. Optional: under **Custom policy (optional)**, enter the **Policy name** and **Policy version** of the policy that enforces the condition, for example `region-guard` `v1`. If you leave **Policy version** empty, `v1` is used.
         - With a policy named, the console offers to attach that policy whenever the plan is attached to an API, with the policy's `conditionName` parameter set to this condition's name.
         - With no policy named, the console offers nothing for this condition. You attach the policy that enforces it yourself, on the API's **Policies** page.
 
