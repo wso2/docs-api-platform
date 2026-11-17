@@ -15,7 +15,7 @@ The API publisher's organization defines subscription plans, and enables them on
 
 - **Limits:** A plan sets usage limits for your calls, such as 50 requests per minute. A plan without limits allows unlimited requests.
 
-- **Requests over the limit:** Depending on the plan, requests that exceed the limit are rejected, or allowed.
+- **Requests over the limit:** Depending on the plan, requests that exceed the limit are rejected with `429 Too Many Requests`, or allowed.
 
 - **Expiry:** A plan can have an expiry date, after which it no longer accepts subscriptions.
 
