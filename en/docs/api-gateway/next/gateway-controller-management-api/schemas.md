@@ -89,6 +89,7 @@ A non-fatal, deploy-time finding attached to a resource's status.
 |code|MTLS_HOSTNAME_NOT_SCOPED|
 |code|TLS_VERIFY_HOSTNAME_DISABLED|
 |code|TLS_IDENTITY_EXPIRED|
+|code|TLS_NO_TRUST_SOURCE|
 
 ## RestAPIRequest
 
@@ -637,6 +638,158 @@ Reusable upstream configuration with optional timeout and load balancing setting
 |upstreams|[object]|true|none|List of backend targets with optional weights for load balancing|
 |url|string(uri)|true|none|Backend URL (host and port only, path comes from basePath)|
 |weight|integer|false|none|Relative weight for load balancing across multiple upstream targets. Reserved for future multi-target load balancing; not applied yet (only the first target is currently used).|
+
+## BackendRequest
+
+<a id="schemabackendrequest"></a>
+<a id="schema_BackendRequest"></a>
+<a id="tocSbackendrequest"></a>
+<a id="tocsbackendrequest"></a>
+
+```json
+{
+  "apiVersion": "gateway.choreolabs.com/v1",
+  "kind": "Backend",
+  "metadata": {
+    "name": "tenant-a",
+    "labels": {
+      "team": "orders"
+    }
+  },
+  "spec": {
+    "displayName": "Orders backend for tenant A",
+    "basePath": "/v1",
+    "endpoints": [
+      {
+        "url": "http://orders-tenant-a:9080"
+      }
+    ],
+    "timeout": {
+      "connect": "2s"
+    }
+  }
+}
+
+```
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|Backend specification version|
+|kind|string|true|none|Resource kind|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[BackendConfiguration](#schemabackendconfiguration)|true|none|A gateway-wide backend. It carries the fields of an upstreamDefinitions entry, with its target URLs under `endpoints`; metadata.name (lowercase letters, digits and hyphens, 3 to 40 characters) names it, and metadata.labels are what a dynamic-endpoint backendSelector matches.|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.choreolabs.com/v1|
+|kind|Backend|
+
+## Backend
+
+<a id="schemabackend"></a>
+<a id="schema_Backend"></a>
+<a id="tocSbackend"></a>
+<a id="tocsbackend"></a>
+
+```json
+{
+  "apiVersion": "gateway.choreolabs.com/v1",
+  "kind": "Backend",
+  "metadata": {
+    "name": "tenant-a",
+    "labels": {
+      "team": "orders"
+    }
+  },
+  "spec": {
+    "displayName": "Orders backend for tenant A",
+    "basePath": "/v1",
+    "endpoints": [
+      {
+        "url": "http://orders-tenant-a:9080"
+      }
+    ],
+    "timeout": {
+      "connect": "2s"
+    }
+  },
+  "status": {
+    "id": "reading-list-api-v1.0",
+    "state": "deployed",
+    "createdAt": "2026-04-24T07:21:13Z",
+    "updatedAt": "2026-04-24T07:21:13Z",
+    "deployedAt": "2026-04-24T07:21:13Z",
+    "warnings": [
+      {
+        "code": "TLS_VERIFY_HOSTNAME_DISABLED",
+        "field": "spec.upstreamDefinitions[0].tls.verifyHostName",
+        "message": "hostname verification is disabled for this upstream; the backend certificate's name is not checked against the target host"
+      }
+    ]
+  }
+}
+
+```
+
+#### Properties
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[BackendRequest](#schemabackendrequest)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|» status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+
+## BackendConfiguration
+
+<a id="schemabackendconfiguration"></a>
+<a id="schema_BackendConfiguration"></a>
+<a id="tocSbackendconfiguration"></a>
+<a id="tocsbackendconfiguration"></a>
+
+```json
+{
+  "displayName": "Orders backend for tenant A",
+  "description": "string",
+  "basePath": "/v1",
+  "timeout": {
+    "connect": "5s"
+  },
+  "endpoints": [
+    {
+      "url": "http://prod-backend-1:5000",
+      "weight": 80
+    }
+  ],
+  "tls": {}
+}
+
+```
+
+A gateway-wide backend. It carries the fields of an upstreamDefinitions entry, with its target URLs under `endpoints`; metadata.name (lowercase letters, digits and hyphens, 3 to 40 characters) names it, and metadata.labels are what a dynamic-endpoint backendSelector matches.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|false|none|Human-readable name|
+|description|string|false|none|Free-form description|
+|basePath|string|false|none|Base path prefixed to every request routed to this Backend, after the API context is stripped. Must start with '/' and must not end with '/'; omit for root.|
+|timeout|[UpstreamTimeout](#schemaupstreamtimeout)|false|none|Timeout configuration for upstream requests|
+|endpoints|[object]|true|none|The Backend's endpoint URLs, with optional weights for load balancing|
+|» url|string(uri)|true|none|Backend URL (host and port only, path comes from basePath)|
+|» weight|integer|false|none|Relative weight of this endpoint; requests are spread across all of the Backend's endpoints in proportion to their weights. Omitted or 0 counts as 1.|
+|tls|object|false|none|Optional mutual-TLS presentation and trust for this backend, with the same keys as an upstreamDefinitions entry: `identity`, `trustedCAs` and `verifyHostName`. Every endpoint of a Backend carrying `tls` must use https://. Unknown keys are rejected.|
 
 ## UpstreamTimeout
 

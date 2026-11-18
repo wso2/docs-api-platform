@@ -12,6 +12,7 @@
 - **`upstreamDefinitions` URL improvements:** Upstream definition URLs support query strings and path fragments correctly ([#2068](https://github.com/wso2/api-platform/issues/2068)).
 - **Kubernetes Gateway API conformance support:** Added Kubernetes Gateway API conformance support.
 - **Multi-provider routing:** Added routing support across multiple providers.
+- **Global Backends:** Define a backend once for the whole gateway with the new `Backend` resource (`apiVersion: gateway.choreolabs.com/v1`, managed at `/backends` on the management API), and route API requests to it with the Dynamic Endpoint policy, by name or by a CEL expression over the request context. Adding, changing, or removing a Backend doesn't require the APIs that route to it to be redeployed. See [Global Backends](backends/global-backends.md).
 
 #### New policies
 
@@ -25,6 +26,10 @@
 - **[OpenAI to Bedrock Transformer](https://wso2.com/api-platform/policy-hub/policies/openai-to-bedrock-transformer)**
 - **[OpenAI to Gemini Transformer](https://wso2.com/api-platform/policy-hub/policies/openai-to-gemini-transformer)**
 - **[OpenAI to Mistral Transformer](https://wso2.com/api-platform/policy-hub/policies/openai-to-mistral-transformer)**
+
+#### Updated policies
+
+- **[Dynamic Endpoint](https://wso2.com/api-platform/policy-hub/policies/dynamic-endpoint) v1.1:** `targetUpstream` can also name a gateway-wide Backend when the API has no upstream definition of that name, and the new `backendExpression`, `backendSelector`, and `onMissingValue` parameters route each request to the Backend that a CEL expression names. APIs keep `version: v1`.
 
 See [Policy Hub](https://wso2.com/api-platform/policy-hub) for policy references.
 

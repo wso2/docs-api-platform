@@ -75,6 +75,14 @@ The API exposes the following endpoints:
 - [Update an existing MCPProxy](mcp-proxy-management.md#update-an-existing-mcpproxy)
 - [Delete a MCPProxy](mcp-proxy-management.md#delete-a-mcpproxy)
 
+### [Backend Management](backend-management.md)
+
+- [Create a global backend](backend-management.md#create-a-global-backend)
+- [List global backends](backend-management.md#list-global-backends)
+- [Get a global backend](backend-management.md#get-a-global-backend)
+- [Update a global backend](backend-management.md#update-a-global-backend)
+- [Delete a global backend](backend-management.md#delete-a-global-backend)
+
 ### [Certificate Management](certificate-management.md)
 
 - [List all custom certificates](certificate-management.md#list-all-custom-certificates)
