@@ -105,18 +105,10 @@ Required roles: `admin`
     }
   },
   "status": {
-    "id": "reading-list-api-v1.0",
+    "id": "tenant-a",
     "state": "deployed",
     "createdAt": "2026-04-24T07:21:13Z",
-    "updatedAt": "2026-04-24T07:21:13Z",
-    "deployedAt": "2026-04-24T07:21:13Z",
-    "warnings": [
-      {
-        "code": "TLS_VERIFY_HOSTNAME_DISABLED",
-        "field": "spec.upstreamDefinitions[0].tls.verifyHostName",
-        "message": "hostname verification is disabled for this upstream; the backend certificate's name is not checked against the target host"
-      }
-    ]
+    "updatedAt": "2026-04-24T07:21:13Z"
   }
 }
 ```
@@ -164,7 +156,7 @@ Required roles: `admin`, `developer`
 ```json
 {
   "status": "success",
-  "count": 2,
+  "count": 1,
   "backends": [
     {
       "apiVersion": "gateway.choreolabs.com/v1",
@@ -188,18 +180,10 @@ Required roles: `admin`, `developer`
         }
       },
       "status": {
-        "id": "reading-list-api-v1.0",
+        "id": "tenant-a",
         "state": "deployed",
         "createdAt": "2026-04-24T07:21:13Z",
-        "updatedAt": "2026-04-24T07:21:13Z",
-        "deployedAt": "2026-04-24T07:21:13Z",
-        "warnings": [
-          {
-            "code": "TLS_VERIFY_HOSTNAME_DISABLED",
-            "field": "spec.upstreamDefinitions[0].tls.verifyHostName",
-            "message": "hostname verification is disabled for this upstream; the backend certificate's name is not checked against the target host"
-          }
-        ]
+        "updatedAt": "2026-04-24T07:21:13Z"
       }
     }
   ]
@@ -236,13 +220,13 @@ Status Code **200**
 |»»»»» **additionalProperties**|string|false|none|none|
 |»»»» annotations|object|false|none|Annotations are arbitrary non-identifying metadata. Use domain-prefixed keys.|
 |»»»»» **additionalProperties**|string|false|none|none|
-|»»» spec|[BackendConfiguration](schemas.md#schemabackendconfiguration)|true|none|A gateway-wide backend. It carries the fields of an upstreamDefinitions entry, with its target URLs under `endpoints`; metadata.name (lowercase letters, digits and hyphens, 3 to 40 characters) names it, and metadata.labels are what a dynamic-endpoint backendSelector matches.|
+|»»» spec|[BackendConfiguration](schemas.md#schemabackendconfiguration)|true|none|A gateway-wide backend. It carries the fields of an upstreamDefinitions entry, with its target URLs under `endpoints`. metadata.name names it: 3 to 40 characters matching ^[a-z0-9]+(-[a-z0-9]+)*$ (lowercase letters and digits, with single hyphens between them). metadata.labels are what a dynamic-endpoint backendSelector matches.|
 |»»»» displayName|string|false|none|Human-readable name|
 |»»»» description|string|false|none|Free-form description|
 |»»»» basePath|string|false|none|Base path prefixed to every request routed to this Backend, after the API context is stripped. Must start with '/' and must not end with '/'; omit for root.|
 |»»»» timeout|[UpstreamTimeout](schemas.md#schemaupstreamtimeout)|false|none|Timeout configuration for upstream requests|
 |»»»»» connect|string|false|none|Connection timeout duration (e.g., "5s", "500ms")|
-|»»»» endpoints|[object]|true|none|The Backend's endpoint URLs, with optional weights for load balancing|
+|»»»» endpoints|[object]|true|none|The Backend's endpoint URLs, with optional weights for load balancing. All endpoints of a Backend must use the same scheme, all http:// or all https://, with or without `tls`; a Backend carrying `tls` must use https://.|
 |»»»»» url|string(uri)|true|none|Backend URL (host and port only, path comes from basePath)|
 |»»»»» weight|integer|false|none|Relative weight of this endpoint; requests are spread across all of the Backend's endpoints in proportion to their weights. Omitted or 0 counts as 1.|
 |»»»» tls|object|false|none|Optional mutual-TLS presentation and trust for this backend, with the same keys as an upstreamDefinitions entry: `identity`, `trustedCAs` and `verifyHostName`. Every endpoint of a Backend carrying `tls` must use https://. Unknown keys are rejected.|
@@ -252,7 +236,7 @@ Status Code **200**
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |»» *anonymous*|object|false|none|none|
-|»»» status|[ResourceStatus](schemas.md#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+|»»» status|[ResourceStatus](schemas.md#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses. status.id is the Backend's metadata.name. Create and update responses add status.warnings when the Backend's tls settings warrant one.|
 |»»»» id|string|false|none|Unique identifier assigned by the server (equal to metadata.name)|
 |»»»» state|string|false|none|Desired deployment state reported by the server|
 |»»»» createdAt|string(date-time)|false|none|Timestamp when the resource was first created (UTC)|
@@ -342,18 +326,10 @@ Required roles: `admin`, `developer`
     }
   },
   "status": {
-    "id": "reading-list-api-v1.0",
+    "id": "tenant-a",
     "state": "deployed",
     "createdAt": "2026-04-24T07:21:13Z",
-    "updatedAt": "2026-04-24T07:21:13Z",
-    "deployedAt": "2026-04-24T07:21:13Z",
-    "warnings": [
-      {
-        "code": "TLS_VERIFY_HOSTNAME_DISABLED",
-        "field": "spec.upstreamDefinitions[0].tls.verifyHostName",
-        "message": "hostname verification is disabled for this upstream; the backend certificate's name is not checked against the target host"
-      }
-    ]
+    "updatedAt": "2026-04-24T07:21:13Z"
   }
 }
 ```
@@ -384,7 +360,7 @@ curl -X PUT http://localhost:9090/api/management/v1/backends/{id} \
 
 ```
 
-Update a gateway-wide Backend. A URL, weight, TLS or timeout change updates only its cluster; a base path or label change updates only the record the policy engine reads. No API is redeployed.
+Update a gateway-wide Backend. The gateway rebuilds the Backend's cluster from its endpoints, weights, TLS settings and timeout, and then reconciles the record the policy engine reads (name, base path and labels), pushing it again only when it changed. The APIs that route to the Backend pick up the change without being edited or redeployed.
 
 > Payload
 
@@ -456,18 +432,10 @@ Required roles: `admin`
     }
   },
   "status": {
-    "id": "reading-list-api-v1.0",
+    "id": "tenant-a",
     "state": "deployed",
     "createdAt": "2026-04-24T07:21:13Z",
-    "updatedAt": "2026-04-24T07:21:13Z",
-    "deployedAt": "2026-04-24T07:21:13Z",
-    "warnings": [
-      {
-        "code": "TLS_VERIFY_HOSTNAME_DISABLED",
-        "field": "spec.upstreamDefinitions[0].tls.verifyHostName",
-        "message": "hostname verification is disabled for this upstream; the backend certificate's name is not checked against the target host"
-      }
-    ]
+    "updatedAt": "2026-04-24T07:21:13Z"
   }
 }
 ```

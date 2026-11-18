@@ -103,6 +103,8 @@ A Backend supports the following fields:
 
 If the definition is invalid, the gateway returns `400 Bad Request` with an `errors` array. Each error names the field at fault, for example `spec.endpoints[0].url` or `spec.basePath`. If a Backend with the same `metadata.name` exists, the gateway returns `409 Conflict`.
 
+If the gateway restricts the destinations that artifacts can reach, it checks each endpoint URL in the same way as an API's upstream URLs. An endpoint that the gateway doesn't permit gets `400 Bad Request` naming the field, and the gateway doesn't serve a stored Backend that it doesn't permit.
+
 Users with the `admin` role can create, update, and delete Backends. Users with the `developer` role can read them.
 
 ## Step 3: Route an API to Backends
@@ -226,7 +228,7 @@ The `tls` block supports the following fields:
 
 For more information about certificates, see [Certificate Management](../gateway-controller-management-api/certificate-management.md).
 
-The gateway always uses the Backend's own `tls` settings. The upstream definitions of the API that routed the request don't apply. The gateway checks each endpoint against that endpoint's own hostname.
+The gateway always uses the Backend's own `tls` settings. The upstream definitions of the API that routed the request don't apply. The gateway sends each endpoint's own hostname as the server name, except for an endpoint addressed by IP. While `verifyHostName` is `true`, the gateway also checks each endpoint's certificate against that endpoint's own hostname or IP address.
 
 The create and update responses list non-fatal findings in `status.warnings`:
 
