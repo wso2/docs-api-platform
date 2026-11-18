@@ -404,8 +404,11 @@ nav:
           - Logging:
             - Centralized Logging: api-gateway/next/observability/logging.md
             - Traffic Logging:
-              - Overview: api-gateway/next/observability/traffic-logging.md
-              - Custom Log Format: api-gateway/next/observability/custom-traffic-log-format.md
+              - Overview: api-gateway/next/observability/traffic-logging/overview.md
+              - Configure Traffic Logging: api-gateway/next/observability/traffic-logging/configuration.md
+              - Log Outputs: api-gateway/next/observability/traffic-logging/log-outputs.md
+              - Custom Log Format: api-gateway/next/observability/traffic-logging/custom-log-format.md
+              - Variable Reference: api-gateway/next/observability/traffic-logging/variable-reference.md
           - Tracing:
             - Overview: api-gateway/next/observability/tracing/overview.md
             - Enabling and Disabling Tracing: api-gateway/next/observability/tracing/enabling-tracing.md
@@ -1849,6 +1852,9 @@ plugins:
   - markdownextradata: {}
   - redirects:
       redirect_maps:
+        # API Gateway: Traffic Logging split into its own folder
+        api-gateway/next/observability/traffic-logging.md: api-gateway/next/observability/traffic-logging/overview.md
+        api-gateway/next/observability/custom-traffic-log-format.md: api-gateway/next/observability/traffic-logging/custom-log-format.md
         # Cloud AI Workspace: Getting Started merged into the quick start guide
         cloud/ai-workspace/getting-started.md: cloud/ai-workspace/quickstart.md
         # API Portal: Getting Started merged into the quick start guide

@@ -1,150 +1,25 @@
 ---
-title: "Configure Traffic Logging"
-description: "Emit a structured JSON log line for every API request from the API Platform Gateway — to stdout, a rotating file, or an HTTP log receiver — with no external SaaS and no policy dependency."
-canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/observability/traffic-logging/
-md_url: https://wso2.com/api-platform/docs/api-gateway/next/observability/traffic-logging.md
+title: "Traffic Log Outputs"
+description: "Write API Platform Gateway traffic log lines to a rotating file or send them to an HTTP log receiver, then monitor delivery and troubleshoot problems."
+canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/observability/traffic-logging/log-outputs/
+md_url: https://wso2.com/api-platform/docs/api-gateway/next/observability/traffic-logging/log-outputs.md
 tags:
   - api-gateway
   - observability
   - logging
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-10
+last_updated: 2026-11-18
 content_type: "how-to"
 ---
 
 {% raw %}
-# Traffic Logging
+# Traffic Log Outputs
 
-## Overview
+Each traffic log line is written to the outputs (sinks) you name in `traffic_logging.outputs`.
 
-Traffic Logging writes a single structured JSON line for every request handled by the gateway — who
-called what, the status code, latencies, request/response headers, and (optionally) bodies.
-
-To write each line in your own JSON layout instead, see [Custom traffic log format](custom-traffic-log-format.md).
-
-Each line is written to the **sinks** you name in `traffic_logging.outputs`:
-
-| Sink | Where the line goes | Use it when |
-|---|---|---|
-| `stdout` | The policy-engine container log, and therefore the node's `/var/log/pods` files | A node-level collector (Fluent Bit, Fluentd, CloudWatch agent) is already scraping container logs, and the lines carry no payloads you need to keep off the node. **This is the default.** |
-| `file` | A rotating file on a writable volume | You want payloads out of the container log and away from every node-level collector, and you have (or can mount) a per-pod volume. |
-| `http` | Batched `POST`s to a log receiver you name | You want the lines to leave the pod directly — no disk, no co-located collector, no sidecar or DaemonSet. |
-
-Sinks are **additive**: `outputs = ["file", "http"]` writes every line to both. Order is irrelevant,
-duplicates are rejected, and an unknown name is a startup error.
-
-!!! note
-    Traffic Logging and Moesif Analytics are independent consumers of the same underlying data-capture
-    pipeline. You can enable either, both, or neither.
-
-## How it works
-
-Request/response header and body capture is a **shared** concern, handled by a capture pipeline called
-the **collector**. The collector has no on/off switch of its own. It activates automatically whenever
-a consumer that needs it is enabled (`analytics.enabled` or `traffic_logging.enabled`). Traffic Logging
-is one such consumer: it reads whatever the collector captured, serializes it to JSON, and hands the
-line to each configured sink.
-
-```text
-Envoy access log ──ALS──► collector ──► traffic-log serializer ──┬──► stdout   container log (kubectl logs, node collectors)
-                                                                 ├──► file     rotating file on a per-pod volume
-                                                                 └──► http     bounded queue ──► batched POST to a receiver
-```
-
-Because emission happens on Envoy's access-log path, it fires for every request Envoy terminates —
-including requests denied by an auth policy before they reach any downstream logic.
-
-Two properties hold for every sink:
-
-* **Nothing in the sink path is on the request/response path.** Traffic-log lines are produced from
-  Envoy's access-log stream, which Envoy emits *after* the response has been sent to the client. A slow
-  or unreachable log receiver cannot add latency to an API call or fail one.
-* **Sink construction fails closed; delivery fails open.** A file that cannot be opened or an endpoint
-  that cannot be built fails gateway startup. No sink silently degrades to `stdout`, because that would
-  put payloads back into the container log the operator chose `file`/`http` to keep them out of. At
-  runtime, by contrast, a delivery failure drops the line and counts it (see
-  [Monitoring the sinks](#monitoring-the-sinks)); it never blocks request processing and never falls
-  back to another sink.
-
-## Quick start (stdout)
-
-At minimum, enable `[traffic_logging]` and turn on whichever `[collector]` capture flags you want
-reflected in the log line. Each `traffic_logging.*_headers` / `*_body` toggle only **selects among**
-what `[collector]` already captured. Enabling it while the matching `[collector]` flag is off has no
-effect.
-
-```toml
-[collector]
-request_headers = true
-response_headers = true
-
-[traffic_logging]
-enabled = true
-request_headers = true
-response_headers = true
-```
-
-`outputs` defaults to `["stdout"]`, so this produces a JSON line on the policy-engine's stdout for
-every request to every API, with headers redacted per `masked_headers`.
-
-## Configuration reference
-
-### `[collector]`
-
-Shared capture pipeline. Configured once; every enabled consumer (Analytics, Traffic Logging) reads
-from it.
-
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `request_body` | boolean | `false` | Capture the full request body into the collected event. |
-| `response_body` | boolean | `false` | Capture the full response body into the collected event. |
-| `request_headers` | boolean | `false` | Capture all request headers into the collected event. |
-| `response_headers` | boolean | `false` | Capture all response headers into the collected event. |
-| `ignore_path_prefixes` | array of strings | `[]` | Path prefixes for which no analytics event and no traffic-log line is produced at all — as if capture were disabled for that one request. See [Ignoring paths](#ignoring-paths). |
-
-!!! note
-    Bodies can be large. Capture is off by default for both request and response bodies. Enable only
-    what you need, and use `traffic_logging.max_payload_size` to cap what reaches each log line.
-
-### `[traffic_logging]`
-
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `enabled` | boolean | `false` | Emit a JSON line for every request to every API. |
-| `outputs` | array of strings | `["stdout"]` | Sinks each line is written to. Any combination of `"stdout"`, `"file"`, `"http"`. Additive; order is irrelevant; duplicates and unknown names are startup errors. |
-| `shutdown_timeout` | duration | `"5s"` | Bounds the flush of buffering sinks on `SIGTERM`. Only `http` buffers. |
-| `masked_headers` | array of strings | `["authorization", "x-api-key", "x-jwt-assertion"]` | Header names (case-insensitive) whose values are redacted as `****` in the logged `requestHeaders`/`responseHeaders`. |
-| `max_payload_size` | int | `0` | Maximum bytes of request/response payload written per log line. `0` = no limit. Applied output-side only — the collector still captures the full body. |
-| `request_headers` | boolean | `false` | Include captured request headers in the log line. No-op if `collector.request_headers` is `false`. |
-| `request_body` | boolean | `false` | Include the captured request body. No-op if `collector.request_body` is `false`. |
-| `response_headers` | boolean | `false` | Include captured response headers in the log line. No-op if `collector.response_headers` is `false`. |
-| `response_body` | boolean | `false` | Include the captured response body. No-op if `collector.response_body` is `false`. |
-| `exclude_fields` | array of strings | `[]` | Drop named fields from the emitted line. See [Field exclusion](#field-exclusion). |
-
-Sub-tables: `[traffic_logging.file]` (see [The `file` sink](#the-file-sink)),
-`[traffic_logging.http]` with `.auth`, `.auth.<type>` and `.tls`
-(see [The `http` sink](#the-http-sink)), and `[traffic_logging.properties]`
-(see [Custom properties](#custom-properties)).
-
-### `[collector.server]` (ALS transport tuning)
-
-Advanced settings for the Envoy → policy-engine access-log transport shared by the collector. Defaults
-are sensible for most deployments.
-
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `mode` | string | `"uds"` | Transport mode: `"uds"` (Unix domain socket) or `"tcp"`. |
-| `als_plain_text` | boolean | `true` | Use plaintext gRPC (skip TLS). |
-| `public_key_path` / `private_key_path` | string | `""` | TLS keypair for the ALS connection, when `als_plain_text = false`. |
-| `max_message_size` | int | `1000000000` | Maximum size of a single gRPC message the ALS server accepts from Envoy. |
-| `max_header_limit` | int | `8192` | Maximum size of headers processed by the ALS server. |
-| `shutdown_timeout` | duration | `"600s"` | Maximum time allowed for graceful ALS server shutdown. |
-
-!!! note
-    The ALS transport's TCP port is fixed at `18090` and is not configurable — this guarantees the
-    controller and the policy-engine can never disagree on it. `buffer_flush_interval`,
-    `buffer_size_bytes`, and `grpc_request_timeout` are additional Envoy-sender-only keys under
-    `[collector.server]`; see `config-template.toml` for their defaults.
+* `stdout` is the default and needs no other settings. See the [Quick start](overview.md#quick-start-stdout).
+* `file` and `http` are described on this page.
+* To compare the outputs, see the [Overview](overview.md#overview).
 
 ## The `file` sink
 
@@ -182,8 +57,8 @@ max_size_mb = 100
 The parent directory is created `0700` and the file opened `0600` **at startup**, so a permissions
 problem surfaces at boot rather than at the first request once payloads are already flowing.
 
-If the file already exists and is group- or world-readable — left behind by an earlier run, restored
-from a backup, or pre-created on a volume — startup **fails** with the `chmod` command to run. A
+If the file already exists and is group- or world-readable (left behind by an earlier run, restored
+from a backup, or pre-created on a volume), startup **fails** with the `chmod` command to run. A
 permissive *directory* only warns, since a `0600` file is unreadable regardless of its directory's mode.
 
 ### Rotation
@@ -331,7 +206,7 @@ The value is used exactly as written and is never remapped to a default:
 
 ### Authentication
 
-`type` selects the scheme, and each scheme's fields live in its own sub-table — the same
+`type` selects the scheme, and each scheme's fields live in its own sub-table. This is the same
 discriminator-plus-named-section shape `[analytics]` uses for `enabled_publishers` /
 `[analytics.publishers.<name>]`. **Only the sub-table matching `type` is read**; the others are ignored
 entirely, so leaving a populated `[.basic]` behind while switching to `bearer` cannot send the wrong
@@ -339,7 +214,7 @@ credential.
 
 | `type` | Sub-table | Required fields | Header sent |
 |---|---|---|---|
-| `"none"` | — | — | *(none: the default, and what an omitted `type` resolves to)* |
+| `"none"` | None | None | *(none: the default, and what an omitted `type` resolves to)* |
 | `"bearer"` | `[traffic_logging.http.auth.bearer]` | `token` | `Authorization: Bearer <token>` |
 | `"basic"` | `[traffic_logging.http.auth.basic]` | `username`, `password` | `Authorization: Basic <base64(user:pass)>` |
 | `"header"` | `[traffic_logging.http.auth.header]` | `name`, `value` | `<name>: <value>` |
@@ -382,8 +257,8 @@ selected type is a **startup error**, not a silently unauthenticated `POST` carr
 
 === "Header"
 
-    For receivers whose scheme is not `Bearer` — Splunk HEC expects `Authorization: Splunk <token>`,
-    which `bearer` cannot express — or that authenticate on a non-`Authorization` header entirely.
+    For receivers whose scheme is not `Bearer` (Splunk HEC expects `Authorization: Splunk <token>`,
+    which `bearer` cannot express), or that authenticate on a non-`Authorization` header entirely.
 
     ```toml
     # Splunk HEC
@@ -425,8 +300,8 @@ and never logs:
 
 | Token | Resolves from |
 |---|---|
-| `{{ env "VAR_NAME" }}` | An environment variable — inject it from a Kubernetes `Secret` via `envFrom`/`env`. |
-| `{{ file "/path/to/secret" }}` | A file's contents — mount a `Secret` as a volume. Reads are restricted to `/etc/gateway-runtime` and `/secrets/gateway-runtime` by default (override with `APIP_CONFIG_FILE_SOURCE_ALLOWLIST`). |
+| `{{ env "VAR_NAME" }}` | An environment variable. Inject it from a Kubernetes `Secret` via `envFrom`/`env`. |
+| `{{ file "/path/to/secret" }}` | A file's contents. Mount a `Secret` as a volume. Reads are restricted to `/etc/gateway-runtime` and `/secrets/gateway-runtime` by default (override with `APIP_CONFIG_FILE_SOURCE_ALLOWLIST`). |
 
 !!! warning "The Helm chart enforces this"
     `config.toml` is rendered into a **ConfigMap**, not a Secret: it is readable by anything with
@@ -454,7 +329,7 @@ header, and `type = "none"` with a client certificate is a perfectly normal mTLS
 | `key_file` | string | `""` | Client private key (PEM) for mTLS. |
 | `insecure_skip_verify` | boolean | `false` | Disables verification of the receiver's certificate. When on, startup logs a warning naming the endpoint, because it exposes every logged request/response body to anyone able to intercept the connection. |
 
-`cert_file` and `key_file` are **both or neither** — setting one without the other is a startup error
+`cert_file` and `key_file` are **both or neither**. Setting one without the other is a startup error
 rather than a silently unauthenticated connection. All referenced material is read and parsed at
 startup, so a wrong path, an unusable CA bundle, or a mismatched key pair fails immediately instead of
 at the first delivery.
@@ -463,7 +338,7 @@ at the first delivery.
 [traffic_logging.http]
 endpoint = "https://collector.observability.svc:8443/ingest"
 
-# mTLS only — the client certificate is the credential.
+# mTLS only: the client certificate is the credential.
 [traffic_logging.http.auth]
 type = "none"
 
@@ -473,8 +348,8 @@ cert_file = "/secrets/gateway-runtime/traffic-log-client.crt"
 key_file  = "/secrets/gateway-runtime/traffic-log-client.key"
 ```
 
-To combine mTLS with a bearer token — common where the mesh authenticates the workload and the log
-store authorizes the tenant — keep the `tls` block above and add:
+To combine mTLS with a bearer token (common where the mesh authenticates the workload and the log
+store authorizes the tenant), keep the `tls` block above and add:
 
 ```toml
 [traffic_logging.http.auth]
@@ -487,154 +362,10 @@ token = '{{ file "/secrets/gateway-runtime/traffic-log-token" }}'
 The whole `tls` block is ignored when the endpoint is plaintext `http://`, since there is no handshake
 to configure.
 
-## Redaction and payload control
-
-* **`masked_headers`** redacts matching header values (case-insensitive) to `****` in the logged
-  `requestHeaders`/`responseHeaders` maps, in **every** sink. This is applied output-side by Traffic
-  Logging only — other consumers of the collector (such as Moesif) are unaffected and receive unmasked
-  headers.
-* **`max_payload_size`** truncates the request/response body written to each line. Set to `0` (default)
-  for no limit. Applied output-side only — the collector still captures the full body.
-* **`exclude_fields`** drops named fields from the emitted line entirely, on top of the toggles above.
-
-### Field exclusion
-
-`exclude_fields` accepts top-level keys (e.g. `"latencies"`, `"requestHeaders"`) or dotted paths of
-arbitrary depth into nested JSON objects, for example:
-
-```toml
-[traffic_logging]
-exclude_fields = ["requestBody", "responseBody", "requestHeaders.authorization"]
-```
-
-* Sub-keys immediately under `requestHeaders`/`responseHeaders` match case-insensitively (HTTP header
-  names); every other path segment matches case-sensitively.
-* A path can reach into a nested object produced by a `properties` expression that resolves to a map,
-  for example `properties.claims.internal_debug`.
-* A path that reaches past a string value (one dot too many into a single header, or into `requestBody`)
-  is a no-op for that entry rather than an error.
-
-!!! note
-    `exclude_fields` only trims what the `request_*`/`response_*` toggles already include — it is not a
-    standalone switch. Setting only `exclude_fields`, with every toggle left at its `false` default,
-    still logs no headers or bodies at all.
-
-## Ignoring paths
-
-`collector.ignore_path_prefixes` suppresses the analytics event — and therefore the traffic-log line —
-for matching paths, such as health checks or metrics scrapes:
-
-```toml
-[collector]
-ignore_path_prefixes = ["/health", "/metrics"]
-```
-
-This is enforced by Envoy itself via an access-log filter, so the policy-engine never even receives the
-request for a matching path.
-
-## Custom properties
-
-`[traffic_logging.properties]` adds extra key → value pairs under a top-level `properties` object in
-the log line. A value prefixed `$ctx:` is evaluated as a CEL expression against the collected request
-context; any other value is emitted as a literal string.
-
-```toml
-[traffic_logging.properties]
-env = "prod"
-apiName = "$ctx:api.name"
-status = "$ctx:response.status"
-subject = "$ctx:auth.subject != '' ? auth.subject : 'anonymous'"
-tenant = "$ctx:'tenant' in auth.property ? auth.property['tenant'] : ''"
-appId = "$ctx:'applicationId' in metadata ? metadata['applicationId'] : ''"
-```
-
-Available variables:
-
-| Namespace | Variables |
-|---|---|
-| Request | `request.path`, `request.pathTemplate`, `request.method`, `request.id`, `request.timestamp` (UTC), `request.header['<name>']` (masked per `masked_headers`), `request.body` (requires `collector.request_body`, cut to `max_payload_size`) |
-| Response | `response.status`, `response.header['<name>']` (masked per `masked_headers`), `response.body` (requires `collector.response_body`, cut to `max_payload_size`) |
-| API | `api.id`, `api.name`, `api.version`, `api.context`, `api.kind`, `project.id` |
-| Target | `target.statusCode`, `target.destination` |
-| Application | `application.id`, `application.name`, `application.owner`, `application.keyType` — populated only when an auth policy that stamps application identity (currently `api-key-auth`) ran |
-| Auth | `auth.subject`, `auth.type`, `auth.issuer`, `auth.credential_id`, `auth.token_id`, `auth.audience` (list), `auth.scopes` (list), `auth.property['<claim>']` (map), `auth.authenticated`, `auth.authorized` |
-| Client | `client.ip`, `client.userAgent` |
-| Error | `error.category`, `error.errorCode`, `error.errorMessage`, `error.wso2ErrorCode`, `error.type`, `error.direction`, `error.summary`, `error.policy`, `error.policyPhase`, `error.source`, `error.originalStatus`, `error.jsonRpcCode`, `error.guardrail.name`, `error.guardrail.action`, `error.guardrail.reason`. These have a value only when the request failed. |
-| Latencies | `latencies.duration`, `latencies.backendLatency`, `latencies.requestMediationLatency`, `latencies.responseMediationLatency`, in microseconds. Use `convertUnit(<latency>, '<unit>')` with `'ns'`, `'us'`, `'ms'` or `'s'` for another unit, for example `convertUnit(latencies.duration, 'ms')`. |
-| Generic metadata | `metadata['<key>']` — any key any policy (including third-party/Python policies) has written into shared request metadata |
-
-!!! note
-    Unlike headers, `metadata['<key>']` has **no masking configuration**. Shared request metadata is a
-    generic, schema-less bag that any policy can write to, so any value referenced from `properties` is
-    emitted verbatim. Avoid referencing metadata keys that may contain sensitive values.
-
-A `$ctx:` expression that references a variable this surface doesn't expose (for example, a typo) fails
-to compile when the gateway starts, is logged once, and that property is permanently omitted from every
-line. It does not cause requests to fail.
-
-## Example log line
-
-```json
-{
-  "timestamp": "2026-07-10T09:12:33.482Z",
-  "correlationId": "5f6b6e2a-2f38-4b7a-9c2f-6b6a2f384b7a",
-  "status": 200,
-  "api": {
-    "id": "01998f3e-...",
-    "name": "Weather-API",
-    "version": "1.0.0",
-    "context": "/weather",
-    "kind": "REST"
-  },
-  "operation": {
-    "method": "GET",
-    "path": "/current"
-  },
-  "target": {
-    "statusCode": 200,
-    "destination": "https://backend.example.com/current"
-  },
-  "application": {
-    "id": "app-123",
-    "name": "Mobile App",
-    "owner": "jdoe",
-    "keyType": "PRODUCTION"
-  },
-  "client": {
-    "ip": "203.0.113.10",
-    "userAgent": "curl/8.4.0"
-  },
-  "latencies": {
-    "durationUs": 18342,
-    "requestMediationLatencyUs": 412,
-    "responseMediationLatencyUs": 298,
-    "backendLatencyUs": 17102
-  },
-  "requestHeaders": {
-    "authorization": "****",
-    "user-agent": "curl/8.4.0"
-  },
-  "responseHeaders": {
-    "content-type": "application/json"
-  },
-  "properties": {
-    "env": "prod",
-    "apiName": "Weather-API",
-    "subject": "jdoe@example.com"
-  }
-}
-```
-
-Fields whose values are entirely empty (for example `application` on an unauthenticated request) are
-omitted from the line rather than emitted as `{}`.
-
-The same line is written to every configured sink, so with `outputs = ["file", "http"]` one request
-produces one line in the file **and** one line in the batch sent to the receiver.
-
 ## Monitoring the sinks
 
 The policy-engine exposes per-sink Prometheus metrics on its metrics port (`[policy_engine.metrics]`,
-port `9003` by default). Every series is labeled `sink` — `stdout`, `file`, or `http`.
+port `9003` by default). Every series is labeled `sink` with the value `stdout`, `file`, or `http`.
 
 | Metric | Type | Labels | Description |
 |---|---|---|---|
@@ -650,13 +381,13 @@ port `9003` by default). Every series is labeled `sink` — `stdout`, `file`, or
 | Reason | Sink | Meaning |
 |---|---|---|
 | `queue_full` | `http` | The bounded queue had no room; dropped per `on_queue_full`. |
-| `send_failed` | `http` | Retries exhausted — the receiver is failing or unreachable. |
+| `send_failed` | `http` | Retries exhausted. The receiver is failing or unreachable. |
 | `backpressure` | `http` | Retries abandoned to resume draining, per `retry_abort_queue_ratio`. The receiver is *slow*, not broken. |
 | `write_failed` | `stdout`, `file` | A local write returned an error. |
 | `rotate_failed` | `file` | Rotation failed, so the line that triggered it was not written. |
 
 Counters for each configured sink are **materialized at zero** on startup, so a healthy gateway reports
-`dropped_total 0` rather than an absent series — which would leave a dashboard reading "No data" and
+`dropped_total 0` rather than an absent series. An absent series would leave a dashboard reading "No data" and
 make "nothing was dropped" indistinguishable from "the metrics path is broken".
 
 Useful queries:
@@ -680,59 +411,6 @@ sum(rate(policy_engine_traffic_log_written_total[5m]))
     configured, one request produces one write **per sink**, so a bare `sum()` of
     `written_total` reads as double the request rate.
 
-## Kubernetes / Helm
-
-The chart renders the whole feature from `.Values.gateway.config` — `[collector]`,
-`[traffic_logging]` including `outputs`, `shutdown_timeout`, `properties`, and the `file`, `http`,
-`http.auth` and `http.tls` sub-tables.
-
-```yaml
-gateway:
-  config:
-    collector:
-      request_body: true
-      response_body: true
-      request_headers: true
-      response_headers: true
-      ignore_path_prefixes: ["/health", "/metrics"]
-
-    traffic_logging:
-      enabled: true
-      outputs: ["file", "http"]
-      request_headers: true
-      request_body: true
-      response_headers: true
-      response_body: true
-      masked_headers: ["authorization", "cookie", "set-cookie", "x-api-key"]
-      max_payload_size: 4096
-      shutdown_timeout: "5s"
-      properties:
-        env: "prod"
-        apiName: "$ctx:api.name"
-      file:
-        path: /var/log/wso2/traffic/traffic.log
-        max_size_mb: 100
-      http:
-        endpoint: https://splunk.example.com:8088/services/collector/raw
-        queue_capacity: 10000
-        retry_abort_queue_ratio: 0.5
-        auth:
-          type: header
-          header:
-            name: Authorization
-            value: 'Splunk {{ file "/secrets/gateway-runtime/hec-token" }}'
-        tls:
-          ca_file: /secrets/gateway-runtime/collector-ca.crt
-```
-
-Mount the referenced secrets yourself (as a `Secret` volume under `/secrets/gateway-runtime`, or as
-environment variables for `{{ env }}` tokens) — the chart renders the *reference*, never the value.
-
-!!! note
-    Numeric and duration keys are rendered whenever the key is **present**, including an explicit `0`,
-    so a mistaken `queue_capacity: 0` reaches validation and is rejected at startup instead of being
-    silently replaced by the default.
-
 ## Failure semantics and troubleshooting
 
 | Symptom | Cause | Fix |
@@ -746,8 +424,8 @@ environment variables for `{{ env }}` tokens) — the chart renders the *referen
 | Lines appear but headers/bodies are missing | The matching `[collector]` capture flag is off, or `exclude_fields` drops them. | Enable the `[collector]` flag; the `traffic_logging` toggle alone is a no-op. |
 | `dropped_total{reason="queue_full"}` climbing | The receiver cannot keep up with the event rate. | Raise `queue_capacity`, raise `batch_max_events`, or scale the receiver. |
 | `dropped_total{reason="backpressure"}` climbing | The receiver accepts but responds slowly, and retries were abandoned to keep draining. | Fix receiver latency; or raise `retry_abort_queue_ratio` to favor delivery over drain (at the cost of newer events). |
-| `dropped_total{reason="send_failed"}` climbing | Retries exhausted — the receiver is failing or unreachable. | Check `write_errors_total{sink="http"}` for the status code, then the endpoint, auth material, and TLS trust. |
-| Lines lost after a restart, `file` sink | Buffering only applies to `http`; `file` and `stdout` write straight to their descriptor. | Nothing to tune — check `dropped_total` instead. |
+| `dropped_total{reason="send_failed"}` climbing | Retries exhausted. The receiver is failing or unreachable. | Check `write_errors_total{sink="http"}` for the status code, then the endpoint, auth material, and TLS trust. |
+| Lines lost after a restart, `file` sink | Buffering only applies to `http`; `file` and `stdout` write straight to their descriptor. | Nothing to tune. Check `dropped_total` instead. |
 
 `traffic_logging.shutdown_timeout` (default `"5s"`) bounds the flush of buffering sinks on `SIGTERM`.
 Only `http` buffers; `stdout` and `file` have nothing to flush.
