@@ -118,7 +118,7 @@ Attach the [Dynamic Endpoint](https://wso2.com/api-platform/policy-hub/policies/
 - The API and the route.
 - The authenticated subject and its claims.
 
-The following API routes each request to the Backend that its `x-tenant` header names. The API routes only to Backends with the label `team: orders`. A request without an `x-tenant` header goes to `tenant-default`. The `remove-headers` policy keeps the `x-tenant` header from reaching the backend.
+The following API routes each request to the Backend that its `x-tenant` header names. The API routes only to Backends with the label `team: orders`. A request without an `x-tenant` header goes to the `tenant-default` Backend, which you create in the same way as `tenant-b`. The `remove-headers` policy keeps the `x-tenant` header from reaching the backend.
 
 ```yaml
 apiVersion: gateway.api-platform.wso2.com/v1
@@ -160,11 +160,12 @@ curl http://localhost:8080/orders/v1.0/items -H "x-tenant: tenant-b"
 
 The gateway sends the request to an endpoint of `tenant-b`, at `/v1/items`.
 
-The gateway answers `400 Bad Request` when the expression returns one of the following values:
+The gateway answers `400 Bad Request` in the following cases:
 
-- A value that isn't a valid Backend name.
-- A name that matches no Backend.
-- The name of a Backend that the `backendSelector` doesn't match.
+- The expression returns a value that isn't a valid Backend name.
+- The expression returns a name that matches no Backend.
+- The expression returns the name of a Backend that the `backendSelector` doesn't match.
+- The expression fails on a value that the request carries, for example when it converts a header that isn't a number.
 
 Each of these requests gets the same message, `The requested backend is not available for this API.`, so callers can't find out which Backends exist.
 
@@ -275,7 +276,7 @@ The following responses come from routing to Backends or from managing them:
 
 | Response | Cause |
 | :--- | :--- |
-| `400 Bad Request` with `The requested backend is not available for this API.` | The value that `backendExpression` returned can't be routed, or the expression had no value and `onMissingValue` is `reject`. |
+| `400 Bad Request` with `The requested backend is not available for this API.` | The value that `backendExpression` returned can't be routed, the expression failed on a value that the request carries, or the expression had no value and `onMissingValue` is `reject`. |
 | `503 Service Unavailable` with the error code `905008` | `targetUpstream` names neither an upstream definition of the API nor a Backend on the gateway, or someone deleted the Backend during the request. The response carries an `x-error-id` header, and the gateway logs the Backend name under that ID. |
 | `500 Internal Server Error` with the error code `905005` | The `backendExpression` of the route doesn't compile. For more information, see [Limitations](#limitations). |
 | `409 Conflict` on `DELETE /backends/{id}` | A deployed API names the Backend in `targetUpstream`. |
