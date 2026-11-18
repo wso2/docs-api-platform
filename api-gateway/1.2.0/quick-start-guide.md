@@ -93,7 +93,7 @@ docker compose up -d
 ```
 
 ### Step 5: Verify the Gateway
-Verify that the Gateway Controller is healthy::
+Verify that the Gateway Controller is healthy:
 
 ```bash
 curl http://localhost:9094/api/admin/v1/health
