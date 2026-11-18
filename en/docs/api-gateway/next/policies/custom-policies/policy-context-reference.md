@@ -122,11 +122,11 @@ Authentication policies, such as JWT, API key and basic authentication, fill the
 | `Authenticated` | `authenticated` | `true` when the request was authenticated. |
 | `Authorized` | `authorized` | `true` when the request passed an authorization check, such as MCP authorization. Authentication-only policies leave it `false`. |
 | `AuthType` | `auth_type` | How the caller authenticated, for example `jwt`, `apikey`, `basic`, `opaque` or `mtls`. |
-| `Subject` | `subject` | The caller's identity, such as the JWT `sub` claim, the basic authentication username or the API key owner. |
+| `Subject` | `subject` | The caller's identity, such as the JWT `sub` claim or the basic authentication username. |
 | `Issuer` | `issuer` | The JWT `iss` claim. Empty for basic and API key authentication. |
 | `Audience` | `audience` | The JWT `aud` claim values. Empty for basic and API key authentication. |
 | `Scopes` | `scopes` | Granted scopes. Each key is a scope name and each value is `true`. |
-| `CredentialID` | `credential_id` | ID of the credential used, such as an OAuth2 client ID or an API key's application ID. |
+| `CredentialID` | `credential_id` | ID of the credential used, such as an OAuth2 client ID. |
 | `Properties` | `properties` | Other claims, such as custom JWT claims, as strings. A claim with several values is written as one string. |
 | `TypedProperties` | `typed_properties` | Other claims in their original types, such as lists and objects. |
 | `TokenId` | Not available | The token's unique ID, for example the JWT `jti` claim. |

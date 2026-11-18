@@ -18,6 +18,7 @@ content_type: "how-to"
 Each traffic log line is written to the outputs (sinks) you name in `traffic_logging.outputs`.
 
 * `stdout` is the default and needs no other settings. See the [Quick start](overview.md#quick-start-stdout).
+* To collect `stdout` lines in one place with the other gateway logs, see [Centralized Logging](../logging.md).
 * `file` and `http` are described on this page.
 * To compare the outputs, see the [Overview](overview.md#overview).
 

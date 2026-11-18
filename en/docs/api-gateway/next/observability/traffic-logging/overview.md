@@ -22,6 +22,8 @@ called what, the status code, latencies, request/response headers, and (optional
 
 To write each line in your own JSON layout instead, see [Custom log format](custom-log-format.md).
 
+The router also writes its own access log line for every request, with HTTP and connection details. See [Router Access Logs](../access-logs.md).
+
 Each line is written to the **sinks** you name in `traffic_logging.outputs`:
 
 | Sink | Where the line goes | Use it when |
@@ -86,6 +88,8 @@ response_headers = true
 
 `outputs` defaults to `["stdout"]`, so this produces a JSON line on the policy-engine's stdout for
 every request to every API, with headers redacted per `masked_headers`.
+
+To collect these lines in one place with the other gateway logs, see [Centralized Logging](../logging.md).
 
 ## Example log line
 

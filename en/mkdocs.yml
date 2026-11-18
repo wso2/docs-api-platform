@@ -404,6 +404,7 @@ nav:
         - Observability:
           - Logging:
             - Centralized Logging: api-gateway/next/observability/logging.md
+            - Router Access Logs: api-gateway/next/observability/access-logs.md
             - Traffic Logging:
               - Overview: api-gateway/next/observability/traffic-logging/overview.md
               - Configure Traffic Logging: api-gateway/next/observability/traffic-logging/configuration.md
