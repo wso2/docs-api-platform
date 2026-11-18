@@ -379,6 +379,7 @@ nav:
           - Custom Policies:
             - Writing a Custom Policy: api-gateway/next/policies/custom-policies/writing-a-custom-policy.md
             - Building Gateway with Custom Policies: api-gateway/next/policies/custom-policies/building-gateway-with-custom-policies.md
+            - Policy Context Reference: api-gateway/next/policies/custom-policies/policy-context-reference.md
         - Deployment:
           - Deployment Modes:
             - Immutable Gateway: api-gateway/next/deployment/deployment-modes/immutable-gateway.md

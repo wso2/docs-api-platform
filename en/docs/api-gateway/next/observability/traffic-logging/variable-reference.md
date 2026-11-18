@@ -77,7 +77,7 @@ These variables describe the caller. Use them to log where a request came from a
 
 These variables describe the authenticated caller and the token. Use them to log who made the request.
 
-They are filled by whichever authentication policy ran for the request, such as JWT, API key or MCP authentication, or a custom authentication policy.
+They are filled by whichever authentication policy ran for the request, such as JWT, API key or MCP authentication, or a custom authentication policy. For how each variable maps to the auth context a policy fills, see [Values in traffic logs](../../policies/custom-policies/policy-context-reference.md#values-in-traffic-logs).
 
 | Variable | Type | Description |
 |---|---|---|
@@ -144,7 +144,7 @@ This variable holds values that policies, including custom and Python policies, 
 |---|---|---|
 | `metadata` | map | Values that policies share for the request. Read one with `metadata['<key>']`. |
 
-A custom policy adds a value to `metadata` by writing it to the shared `Metadata` map. See [Share data between phases](../../policies/custom-policies/writing-a-custom-policy.md#step-7-share-data-between-phases).
+A custom policy adds a value to `metadata` by writing it to the shared `Metadata` map. See [Metadata](../../policies/custom-policies/policy-context-reference.md#metadata) in the Policy Context Reference.
 
 !!! note
     `metadata` values are logged as the policies set them, and they have no masking configuration. Reference only keys whose values are safe to log.
