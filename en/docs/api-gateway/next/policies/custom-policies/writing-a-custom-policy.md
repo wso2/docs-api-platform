@@ -347,7 +347,7 @@ reqCtx.Metadata["clientID"] = clientID
 clientID := respCtx.Metadata["clientID"]
 ```
 
-For how `Metadata` works in Go and Python policies, see [Metadata](policy-context-reference.md#metadata).
+For more about `Metadata`, see [Metadata](policy-context-reference.md#metadata).
 
 ### Step 8: Register and Build
 

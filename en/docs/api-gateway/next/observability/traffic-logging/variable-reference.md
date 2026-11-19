@@ -77,7 +77,7 @@ These variables describe the caller. Use them to log where a request came from a
 
 These variables describe the authenticated caller and the token. Use them to log who made the request.
 
-They are filled by whichever authentication policy ran for the request, such as JWT, API key or MCP authentication, or a custom authentication policy. For how each variable maps to the auth context a policy fills, see [Values in traffic logs](../../policies/custom-policies/policy-context-reference.md#values-in-traffic-logs).
+They are filled by whichever authentication policy ran for the request, such as JWT, API key or MCP authentication, or a custom authentication policy. For how each variable maps to the auth context a policy fills, see [Add values to traffic logs](../../policies/custom-policies/policy-context-reference.md#add-values-to-traffic-logs).
 
 | Variable | Type | Description |
 |---|---|---|
