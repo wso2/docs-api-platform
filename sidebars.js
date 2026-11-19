@@ -81,6 +81,24 @@ const sidebars = {
         doc("api-control-plane/administer/creating-subscription-plans", "Manage Subscription Plans"),
       ]),
     ]),
+    group("API Gateway", [
+      doc("api-gateway/overview", "Overview"),
+      group("Self-Hosted Gateways", [
+        doc("api-gateway/self-hosted-gateways/architecture", "Architecture"),
+        doc("api-gateway/self-hosted-gateways/quickstart-guide", "Quick Start Guide"),
+        doc("api-gateway/self-hosted-gateways/setting-up", "Setting Up Guide"),
+        doc("api-gateway/self-hosted-gateways/deploy-and-test-api", "Deploy and Test an API"),
+        doc("api-gateway/self-hosted-gateways/manage-policies", "Add and Manage Policies"),
+        doc("api-gateway/self-hosted-gateways/gateway-discovered-apis", "Gateway Discovered APIs"),
+        doc("api-gateway/self-hosted-gateways/high-availability", "High Availability"),
+      ]),
+      group("Observability", [
+        doc("api-gateway/observability/overview", "Overview"),
+        doc("api-gateway/observability/logging", "Gateway Logging"),
+        doc("api-gateway/observability/tracing", "Gateway Tracing"),
+      ]),
+      // doc("api-gateway/insights", "Insights"),
+    ]),
     group("API Portal and AI Hub", [
       doc("api-portal/overview", "Overview"),
       doc("api-portal/quickstart-guide", "Quick Start Guide"),
@@ -133,24 +151,6 @@ const sidebars = {
         ]),
       ]),
     ]),
-    group("API Gateway", [
-      doc("api-gateway/overview", "Overview"),
-      group("Self-Hosted Gateways", [
-        doc("api-gateway/self-hosted-gateways/architecture", "Architecture"),
-        doc("api-gateway/self-hosted-gateways/quickstart-guide", "Quick Start Guide"),
-        doc("api-gateway/self-hosted-gateways/setting-up", "Setting Up Guide"),
-        doc("api-gateway/self-hosted-gateways/deploy-and-test-api", "Deploy and Test an API"),
-        doc("api-gateway/self-hosted-gateways/manage-policies", "Add and Manage Policies"),
-        doc("api-gateway/self-hosted-gateways/gateway-discovered-apis", "Gateway Discovered APIs"),
-        doc("api-gateway/self-hosted-gateways/high-availability", "High Availability"),
-      ]),
-      group("Observability", [
-        doc("api-gateway/observability/overview", "Overview"),
-        doc("api-gateway/observability/logging", "Gateway Logging"),
-        doc("api-gateway/observability/tracing", "Gateway Tracing"),
-      ]),
-      // doc("api-gateway/insights", "Insights"),
-    ]),
     // group("Insights", [
     //   doc("insights/overview", "Overview"),
     // ]),
@@ -159,14 +159,6 @@ const sidebars = {
     ]),
         group("Policy Hub", [
       doc("policy-hub/overview", "Overview"),
-    ]),
-    group("Tools", [
-      group("API Designer for VS Code", [
-        doc("tools/vscode-api-design/getting-started", "Get Started"),
-        doc("tools/vscode-api-design/design-apis", "Design APIs"),
-        doc("tools/vscode-api-design/govern-apis", "Govern APIs"),
-        doc("tools/vscode-api-design/end-to-end-tutorial", "End-to-End Tutorial"),
-      ]),
     ]),
   ],
 };
