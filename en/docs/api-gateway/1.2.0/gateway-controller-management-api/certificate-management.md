@@ -57,7 +57,7 @@ curl -X POST http://localhost:9090/api/management/v1/certificates \
   }'
 ```
 
-All `upstream` certificates together form the gateway-wide trust bundle, which the gateway uses to verify every HTTPS backend. To trust only specific CAs for one backend, name them in `tls.trustedCAs` of its upstream definition:
+All `upstream` certificates together form the gateway-wide trust bundle. The gateway uses it to verify any HTTPS backend whose upstream definition doesn't set `tls.trustedCAs`. To trust only specific CAs for a backend, name them in `tls.trustedCAs` of its upstream definition. The gateway then uses those CAs instead of the bundle:
 
 ```yaml
 upstreamDefinitions:
@@ -320,11 +320,14 @@ Required roles: `admin`
 
 ```shell
 
+jq -n --rawfile certificate gateway-billing-chain.pem --rawfile privateKey gateway-billing.key \
+  '{certificate: $certificate, privateKey: $privateKey}' > rotation-payload.json
+
 curl -X PUT http://localhost:9090/api/management/v1/certificates/{id} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -d @payload.json
+  -d @rotation-payload.json
 
 ```
 
@@ -353,7 +356,9 @@ Required roles: `admin`
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|string|true|ID of the certificate to replace|
-|body|body|[CertificateUploadRequest](schemas.md#schemacertificateuploadrequest)|true|Only `certificate` and `privateKey` are read|
+|body|body|object|true|The rotated certificate chain and private key. The gateway ignores any other field and keeps the stored `name`, `usage`, `role`, and `match`.|
+|» certificate|body|string|true|PEM-encoded certificate chain, leaf first|
+|» privateKey|body|string|true|PEM-encoded, unencrypted private key that matches the leaf certificate|
 
 > Example responses
 >
@@ -409,6 +414,8 @@ The gateway refuses to delete a certificate that a deployed API still refers to,
 - The last client CA with `role: client` while a deployed API attaches the Mutual TLS Auth policy.
 - An `upstream` certificate named in `tls.trustedCAs` of an upstream definition.
 - A gateway identity named in `tls.identity` of an upstream definition.
+
+A backend that relies on the `role: default` identity without naming it in `tls.identity` doesn't count as a reference, so you can delete the default identity. After you delete it, the gateway presents no client certificate to those backends.
 
 ### Authentication
 
