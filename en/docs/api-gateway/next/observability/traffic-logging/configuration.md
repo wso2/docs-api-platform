@@ -118,8 +118,8 @@ for matching paths, such as health checks or metrics scrapes:
 ignore_path_prefixes = ["/health", "/metrics"]
 ```
 
-This is enforced by Envoy itself via an access-log filter, so the policy-engine never even receives the
-request for a matching path.
+This is enforced by Envoy itself via an access-log filter, so the policy-engine never receives the
+access-log event for a matching path.
 
 ## Custom properties
 
@@ -196,7 +196,7 @@ gateway:
       request_body: true
       response_headers: true
       response_body: true
-      masked_headers: ["authorization", "cookie", "set-cookie", "x-api-key"]
+      masked_headers: ["authorization", "cookie", "set-cookie", "x-api-key", "x-jwt-assertion"]
       max_payload_size: 4096
       shutdown_timeout: "5s"
       properties:

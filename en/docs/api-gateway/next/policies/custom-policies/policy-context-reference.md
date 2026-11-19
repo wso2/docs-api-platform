@@ -177,7 +177,7 @@ Headers are read-only. To change them, return an action from your policy, as sho
 
 ## Client
 
-`Downstream` describes the client and its request before any policy changed it.
+`Downstream` describes the client and its request before any policy changed it. A policy can change these headers for later policies with `SetDownstreamHeader`, `AddDownstreamHeader` and `RemoveDownstreamHeader`. Later policies read them with `DownstreamHeaders()`.
 
 | Field | Description |
 |---|---|
