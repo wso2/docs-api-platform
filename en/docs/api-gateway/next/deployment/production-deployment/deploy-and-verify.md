@@ -57,8 +57,7 @@ kubectl get svc -n ap-gateway
 **Controller health check:**
 
 ```bash
-kubectl exec -n ap-gateway deploy/ap-gateway-controller -- \
-  wget -qO- http://localhost:9092/api/admin/v1/ready
+kubectl rollout status deploy/ap-gateway-controller -n ap-gateway
 ```
 
 ## Upgrade Procedure

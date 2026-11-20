@@ -385,7 +385,7 @@ Confirm the portal is serving, from inside the cluster:
 
 ```bash
 kubectl -n api-portal exec deploy/my-release-api-portal -- \
-  wget -qO- --no-check-certificate https://localhost:9543/health
+  wget -qO- --no-check-certificate https://localhost:9543/ready
 ```
 
 Finally, verify that sessions are shared and that only one instance dispatches each event, as described in [Verify & Upgrade](deploy-and-verify.md#verify).

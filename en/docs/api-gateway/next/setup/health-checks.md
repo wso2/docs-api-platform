@@ -16,8 +16,13 @@ content_type: "how-to"
 
 This guide is for platform operators who wire the API Platform Gateway into Kubernetes probes, Docker Compose health checks, load balancers, or external monitors. The Gateway Controller and the Gateway Runtime each expose a liveness endpoint and a readiness endpoint:
 
-- **Liveness** answers whether the process is alive. A failing liveness check is a reason to restart it, so it checks nothing that a restart can't fix.
-- **Readiness** answers whether the component can handle its work. A failing readiness check takes it out of rotation without restarting it.
+- **Liveness** answers whether the process is alive. A failing liveness probe restarts it.
+- **Readiness** answers whether the component can handle its work. A failing readiness probe takes it out of rotation without restarting it.
+
+The two components treat dependencies differently:
+
+- The Gateway Controller runs the same checks, including its database, on both endpoints. A short database outage takes it out of rotation through the readiness probe. An outage that outlasts the liveness probe's window, about 2 minutes with the Helm chart defaults, also restarts it.
+- The Gateway Runtime's liveness endpoint checks no dependencies, so a controller outage never restarts a runtime.
 
 ## Endpoints
 
@@ -153,7 +158,12 @@ pool_saturation = 0.9   # share of the connection pool in use, with callers wait
 pool_wait_limit = "5s"  # how long the pool may stay saturated before the warning appears
 ```
 
-Each database key has an environment variable named after it, for example `APIP_GW_CONTROLLER_HEALTH_DATABASE_STARTUP_WAIT`.
+The comments name each key's environment variable. A database key's variable follows the same pattern, for example `APIP_GW_CONTROLLER_HEALTH_DATABASE_STARTUP_WAIT`. A variable takes effect only when the key's value is an `{% raw %}{{ env }}{% endraw %}` token, as in the shipped configuration template. A key set to a literal value, as in the example above, ignores the variable. For example:
+
+```toml
+[controller.health.database]
+startup_wait = '{% raw %}{{ env "APIP_GW_CONTROLLER_HEALTH_DATABASE_STARTUP_WAIT" "5m" }}{% endraw %}'
+```
 
 ### Gateway Runtime
 

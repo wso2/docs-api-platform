@@ -17,8 +17,10 @@ content_type: "how-to"
 
 This page is for platform operators who point Kubernetes probes, load balancers, or external monitors at the API Portal & MCP Hub. The portal exposes two health endpoints:
 
-- **Liveness** (`/health`) answers whether the portal process is alive. A failing liveness check is a reason to restart it.
-- **Readiness** (`/ready`) answers whether the portal can serve requests. A failing readiness check takes the instance out of rotation without restarting it.
+- **Liveness** (`/health`) answers whether the portal process is alive. A failing liveness probe restarts it.
+- **Readiness** (`/ready`) answers whether the portal can serve requests. A failing readiness probe takes the instance out of rotation without restarting it.
+
+Both endpoints run the same checks, including the database. A short database outage takes the instance out of rotation through the readiness probe. An outage that outlasts the liveness probe's window, about 2 minutes with the Helm chart defaults, also restarts it.
 
 ## Endpoints
 
@@ -91,7 +93,7 @@ Every key is optional. The values shown are the defaults.
 ```toml
 [api_portal.health]
 cache_ttl = "3s"            # how long an evaluated result is reused
-allowed_clients = ["*"]     # APIP_AP_HEALTH_ALLOWED_CLIENTS
+allowed_clients = ["*"]     # IP addresses or CIDR ranges; "*" allows every client
 
 [api_portal.health.database]
 check_timeout = "2s"        # deadline for the check's own SELECT 1 (at most 1m)
@@ -101,6 +103,13 @@ min_attempts = 5            # queries needed in the window before the ratio deci
 idle_period = "10s"         # with too few queries to decide, the check runs its own SELECT 1 once per period
 pool_saturation = 0.9       # PostgreSQL and SQL Server: share of the pool in use, with callers waiting, that counts as saturated
 pool_wait_limit = "5s"      # how long the pool may stay saturated before the warning appears
+```
+
+To read `allowed_clients` from the `APIP_AP_HEALTH_ALLOWED_CLIENTS` environment variable, set the key to an `{% raw %}{{ env }}{% endraw %}` token. A literal value, as in the example above, ignores the variable:
+
+```toml
+[api_portal.health]
+allowed_clients = '{% raw %}{{ env "APIP_AP_HEALTH_ALLOWED_CLIENTS" "127.0.0.1,::1,10.0.0.0/8" }}{% endraw %}'
 ```
 
 An invalid value, or an unknown key under `[api_portal.health.database]`, stops the portal at startup.
@@ -169,8 +178,17 @@ The portal checks only the connection's peer address. It never reads `X-Forwarde
 
 ## Verify
 
+On a VM or with Docker Compose, call the endpoint on the host that runs the portal:
+
 ```bash
 curl -ik https://localhost:9543/ready
+```
+
+On Kubernetes or OpenShift, call it from inside the portal container:
+
+```bash
+kubectl exec -n <namespace> deploy/<release>-api-portal -- \
+  wget -qO- --no-check-certificate https://localhost:9543/ready
 ```
 
 A healthy portal answers `200` with `"status": "ok"`.
