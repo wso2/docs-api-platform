@@ -34,7 +34,7 @@ Viewing a resource isn't recorded. Changes pushed to the gateway from the contro
 
 ## Turn on audit logging
 
-Audit logging is available from update level 1.2.0.&lt;N&gt; onwards. Turn on audit logging in the gateway controller's `config.toml`. The gateway then sends each record to the gateway controller's log, to a log file, or to a log receiver such as Splunk.
+Audit logging is available from update level 1.2.0.13 onwards. Turn on audit logging in the gateway controller's `config.toml`. The gateway then sends each record to the gateway controller's log, to a log file, or to a log receiver such as Splunk.
 
 For the steps and settings, see [Audit logging](../../../api-gateway/1.2.0/observability/audit-logging.md) in the API Platform Gateway documentation.
 

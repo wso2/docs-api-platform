@@ -20,7 +20,7 @@ content_type: "how-to"
 Audit logging records the changes people make in AI Workspace. Each record shows who made the change, what changed, and when. The Platform API stores every record in its database and can also send it to your log pipeline.
 
 !!! info "Availability"
-    Audit logging is available from **update level 1.0.0.&lt;N&gt;** onwards.
+    Audit logging is available from **update level 1.0.0.7** onwards.
 
 ## Turn on audit logging
 

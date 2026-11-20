@@ -20,7 +20,7 @@ content_type: "how-to"
 Audit logging records the changes made through the Platform API, including the application, API key and subscription changes the API Portal & MCP Hub sends to it. Each record shows what changed, when, and who made the change. The Platform API stores every record in its database and can also send it to your log pipeline.
 
 !!! info "Availability"
-    Audit logging is available from **update level 1.0.0.&lt;N&gt;** onwards.
+    Audit logging is available from **update level 1.0.0.7** onwards.
 
 !!! note "Which Platform API"
     Audit logging is part of the Platform API. Turn it on in the Platform API that receives the portal's webhook events, as described in [Control Plane Connection](control-plane-connection.md). The steps on this page are for the Platform API bundled with the API Portal. For a Platform API that runs outside this deployment, apply the same settings to that Platform API's `config.toml` or Helm values.

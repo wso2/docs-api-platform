@@ -19,7 +19,7 @@ content_type: "how-to"
 Audit logging records the changes made through the gateway's management API. Each record shows who made the change, what changed, when, and whether the change was applied. The gateway sends every record to your log pipeline.
 
 !!! info "Availability"
-    Audit logging is available from **update level 1.2.0.&lt;N&gt;** onwards.
+    Audit logging is available from **update level 1.2.0.13** onwards.
 
 ## Enable audit logging
 
