@@ -26,7 +26,14 @@ content_type: "reference"
   "state": "deployed",
   "createdAt": "2026-04-24T07:21:13Z",
   "updatedAt": "2026-04-24T07:21:13Z",
-  "deployedAt": "2026-04-24T07:21:13Z"
+  "deployedAt": "2026-04-24T07:21:13Z",
+  "warnings": [
+    {
+      "code": "TLS_VERIFY_HOSTNAME_DISABLED",
+      "field": "spec.upstreamDefinitions[0].tls.verifyHostName",
+      "message": "hostname verification is disabled for this upstream; the backend certificate's name is not checked against the target host"
+    }
+  ]
 }
 
 ```
@@ -42,6 +49,7 @@ Server-managed lifecycle information for a resource
 |createdAt|string(date-time)|false|none|Timestamp when the resource was first created (UTC)|
 |updatedAt|string(date-time)|false|none|Timestamp when the resource was last updated (UTC)|
 |deployedAt|string(date-time)|false|none|Timestamp when the resource was last deployed (omitted when undeployed)|
+|warnings|[[Warning](#schemawarning)]|false|read-only|Non-fatal deploy-time findings (e.g. a policy's parameters resolved to something other than what was written, such as an omitted accept list inheriting the whole client-CA pool). Present only when non-empty.|
 
 ##### Enumerated Values
 
