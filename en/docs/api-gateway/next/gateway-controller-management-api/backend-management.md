@@ -63,6 +63,17 @@ Add a gateway-wide Backend. The gateway turns it into one Envoy cluster, backend
 }
 ```
 
+!!! note "Send the Backend as YAML"
+    The endpoint also accepts the Backend in YAML, the same file that `ap gateway apply -f` takes. Pass the file directly and set the content type header to `application/yaml`:
+
+    ```shell
+    curl -X POST http://localhost:9090/api/management/v1/backends \
+      -u {username}:{password} \
+      -H 'Content-Type: application/yaml' \
+      -H 'Accept: application/json' \
+      --data-binary @tenant-a.yaml
+    ```
+
 ### Authentication
 
 <aside class="warning">
@@ -388,6 +399,17 @@ Update a gateway-wide Backend. The gateway rebuilds the Backend's cluster from i
   }
 }
 ```
+
+!!! note "Send the Backend as YAML"
+    The endpoint also accepts the Backend in YAML, the same file that `ap gateway apply -f` takes. Pass the file directly and set the content type header to `application/yaml`:
+
+    ```shell
+    curl -X PUT http://localhost:9090/api/management/v1/backends/{id} \
+      -u {username}:{password} \
+      -H 'Content-Type: application/yaml' \
+      -H 'Accept: application/json' \
+      --data-binary @tenant-a.yaml
+    ```
 
 ### Authentication
 

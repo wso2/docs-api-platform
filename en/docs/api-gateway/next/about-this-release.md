@@ -12,7 +12,7 @@
 - **`upstreamDefinitions` URL improvements:** Upstream definition URLs support query strings and path fragments correctly ([#2068](https://github.com/wso2/api-platform/issues/2068)).
 - **Kubernetes Gateway API conformance support:** Added Kubernetes Gateway API conformance support.
 - **Multi-provider routing:** Added routing support across multiple providers.
-- **Global Backends:** Define a backend once for the whole gateway with the new `Backend` resource (`apiVersion: gateway.choreolabs.com/v1`, managed at `/backends` on the management API), and route API requests to it with the Dynamic Endpoint policy, by name or by a CEL expression over the request context. Adding, changing, or removing a Backend doesn't require the APIs that route to it to be redeployed. See [Global Backends](backends/global-backends.md).
+- **Global Backends:** Define a backend once for the whole gateway with the new `Backend` resource (`apiVersion: gateway.choreolabs.com/v1`), managed at `/backends` on the management API. The Dynamic Endpoint policy routes API requests to a Backend by name or by a CEL expression over the request context. Adding or changing a Backend doesn't require redeploying the APIs that route to it, and neither does removing a Backend that APIs select by expression. If a deployed API names a Backend in `targetUpstream`, deleting that Backend returns `409` until you change and redeploy the API. See [Global Backends](backends/global-backends.md) and [Delete a Backend](backends/global-backends.md#delete-a-backend).
 
 #### New policies
 
@@ -29,7 +29,9 @@
 
 #### Updated policies
 
-- **[Dynamic Endpoint](https://wso2.com/api-platform/policy-hub/policies/dynamic-endpoint) v1.1:** `targetUpstream` can also name a gateway-wide Backend when the API has no upstream definition of that name, and the new `backendExpression`, `backendSelector`, and `onMissingValue` parameters route each request to the Backend that a CEL expression names. APIs keep `version: v1`.
+- **[Dynamic Endpoint](https://wso2.com/api-platform/policy-hub/policies/dynamic-endpoint) v1.1:** `targetUpstream` can also name a gateway-wide Backend when the API has no upstream definition of that name. The new `backendExpression` and `backendSelector` parameters route each request to the Backend that a CEL expression names. If the expression yields no value, the new `onMissingValue` parameter either falls back or returns `400`. The fallback is `targetUpstream`, or the API's own upstream when `targetUpstream` is unset. APIs keep `version: v1`.
+
+    **Upgrade note:** Before you upgrade, check APIs that set `targetUpstream` but have no upstream definitions or sandbox upstream. Dynamic Endpoint v1.0 ignores a `targetUpstream` that names nothing the API defines, and sends requests to the API's own upstream. v1.1 treats that name as a Backend and returns `503 Service Unavailable` until a Backend of that name exists.
 
 See [Policy Hub](https://wso2.com/api-platform/policy-hub) for policy references.
 
