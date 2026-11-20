@@ -8,7 +8,7 @@ tags:
   - policies
   - custom-policies
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-11-05
+last_updated: 2026-11-18
 content_type: "how-to"
 ---
 
@@ -104,6 +104,8 @@ func (p *MyPolicy) Mode() policy.ProcessingMode {
 ### Step 3: Implement Phase Interfaces
 
 Implement only the interfaces for phases you declared in `Mode()` in step 2.
+
+For the values your policy can read in each phase, see [Policy Context Reference](policy-context-reference.md).
 
 #### Request Flow
 
@@ -345,6 +347,8 @@ reqCtx.Metadata["clientID"] = clientID
 clientID := respCtx.Metadata["clientID"]
 ```
 
+For more about `Metadata`, see [Metadata](policy-context-reference.md#metadata).
+
 ### Step 8: Register and Build
 
 Add your policy to gateway folder's `build.yaml` under `policies:` using `filePath` for local development:
@@ -544,4 +548,5 @@ return &policy.TerminateResponseChunk{
 ## What's Next?
 
 - [Building the Gateway with Custom Policies](building-gateway-with-custom-policies.md): Build a gateway image that includes your custom policy
+- [Policy Context Reference](policy-context-reference.md): Look up the values your policy can read in each phase
 - [Fault policies](../fault-policies.md): Attach fault policies to an API and run them for specific failures
