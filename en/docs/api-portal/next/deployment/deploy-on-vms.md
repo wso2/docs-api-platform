@@ -232,7 +232,7 @@ Sessions live in the shared database, so no sticky-session configuration is requ
 
 ## Step 9: Configure health checks { #health-checks }
 
-Point the load balancer's health check at `https://<vm>:9543/ready` and configure it to remove an instance that fails. Without that, the load balancer keeps sending traffic to a portal that has stopped serving or has lost its database. If you restrict `[api_portal.health] allowed_clients`, keep the load balancer's address in the list. See [Health Checks](health-checks.md).
+Point the load balancer's health check at `https://<vm>:9543/ready` and configure it to remove an instance that fails. Without that, the load balancer keeps sending traffic to a portal that has stopped serving or has lost its database. If you restrict `[api_portal.health] allowed_clients`, keep the load balancer's address in the list, and keep `127.0.0.1` and `::1` for the local Compose health check below. See [Health Checks](health-checks.md).
 
 The compose file has no health check for the portal service. Adding one gives Docker the same signal locally:
 
@@ -268,10 +268,10 @@ Confirm every instance is serving, not just that the deploy command succeeded. O
 
 ```bash
 docker compose ps
-curl -sk https://localhost:9543/health
+curl -sk https://localhost:9543/ready
 ```
 
-Then confirm the load balancer sees every instance as healthy, and that its health check is pointed at `/health` rather than `/`.
+Then confirm the load balancer sees every instance as healthy, and that its health check is pointed at `/ready` rather than `/`.
 
 Finally, verify that sessions are shared and that only one instance dispatches each event, as described in [Verify & Upgrade](deploy-and-verify.md#verify).
 
@@ -285,7 +285,7 @@ Upgrade one VM at a time so the others keep serving:
 
 1. Remove the VM from the load balancer pool.
 2. Update the image tag in `docker-compose.yaml`, then `docker compose up -d` to recreate the container.
-3. Confirm `https://localhost:9543/health` responds, and check the startup log.
+3. Confirm `https://localhost:9543/ready` responds with `200`, and check the startup log.
 4. Return it to the pool, then move to the next VM.
 
 Re-running `setup.sh` is safe — it fills in only what is missing and never overwrites an existing value — so an upgrade won't rotate the encryption key out from under stored credentials.

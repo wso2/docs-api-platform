@@ -26,10 +26,12 @@ The endpoints sit outside the path prefix, so a probe can reach a container dire
 
 ## Platform API endpoints
 
-- **Liveness** (`/health`) answers whether the process is alive. A failing liveness check is a reason to restart it.
-- **Readiness** (`/ready`) answers whether the Platform API can serve requests. A failing readiness check takes the instance out of rotation without restarting it.
+- **Liveness** (`/health`) answers whether the process is alive. A failing liveness probe restarts it.
+- **Readiness** (`/ready`) answers whether the Platform API can serve requests. A failing readiness probe takes the instance out of rotation without restarting it.
 
-Both endpoints run the same checks and give the same answer, so they always agree. They:
+Both endpoints run the same checks, including the database, and give the same answer. A short database outage takes the instance out of rotation through the readiness probe. An outage that outlasts the liveness probe's window, about 2 minutes with the Helm chart defaults, also restarts it.
+
+Both endpoints:
 
 - answer without credentials, ahead of authentication and authorization;
 - accept only `GET` and `HEAD`;
@@ -108,7 +110,12 @@ pool_saturation = 0.9   # share of the pool in use, with callers waiting, that c
 pool_wait_limit = "5s"  # how long the pool may stay saturated before the database is reported down
 ```
 
-Each database key has an environment variable named after it, for example `APIP_CP_HEALTH_DATABASE_STARTUP_WAIT`. In the Helm chart, the same settings sit under `config.health`, for example `config.health.database.startupWait`.
+Each database key has an environment variable named after it, for example `APIP_CP_HEALTH_DATABASE_STARTUP_WAIT`. A variable takes effect only when the key's value is an `{% raw %}{{ env }}{% endraw %}` token, as in the shipped configuration template. A key set to a literal value, as in the example above, ignores the variable. For example:
+
+```toml
+[platform_api.health.database]
+startup_wait = '{% raw %}{{ env "APIP_CP_HEALTH_DATABASE_STARTUP_WAIT" "5m" }}{% endraw %}'
+``` In the Helm chart, the same settings sit under `config.health`, for example `config.health.database.startupWait`.
 
 ### Restrict who can call the health endpoints
 
