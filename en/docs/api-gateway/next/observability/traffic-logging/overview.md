@@ -34,7 +34,7 @@ Client ──► Gateway ──► Backend
                       ──► stdout (default), a file or an HTTP endpoint
 ```
 
-* Lines are written after the response is sent, so traffic logging does not slow down API calls.
+* Lines are written after the response is sent, so a slow log receiver does not delay API calls.
 * Every request is logged, including requests that a policy rejects.
 * Lines go to the gateway's standard output by default. You can also write them to a file or send them
   to an HTTP endpoint. See [Log Outputs](log-outputs.md).
