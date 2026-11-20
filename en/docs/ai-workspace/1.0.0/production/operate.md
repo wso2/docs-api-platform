@@ -120,3 +120,4 @@ Two background tasks have configurable bounds. The defaults suit most deployment
 - [Run in high availability](high-availability.md): the replica setup that makes a rolling upgrade possible
 - [Provision secrets and keys](secrets-and-keys.md): what to back up alongside the database
 - [Connect a database to the Platform API](../setting-up/database.md): the database this page backs up
+- [Configure audit logging](audit-logging.md): record who changed what, and send audit records to your log pipeline
