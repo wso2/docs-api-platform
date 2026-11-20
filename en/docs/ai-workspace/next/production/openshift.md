@@ -10,7 +10,7 @@ tags:
   - kubernetes
   - helm
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-24
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
@@ -736,12 +736,15 @@ platform-api:
   deployment:
     startupProbe:
       httpGet:
-        path: /health
+        path: /ready
         port: http
         scheme: HTTPS
       periodSeconds: 5
-      failureThreshold: 30
+      timeoutSeconds: 3
+      failureThreshold: 108
 ```
+
+The chart's default startup probe allows 6 minutes (72 attempts every 5 seconds). The example raises it to 9 minutes for a slow first start. Keep the allowance above `config.health.database.startupWait` (5 minutes by default), so the Platform API, not the probe, decides when a database wait gives up.
 
 #### Verify high availability { #openshift-ha-verify }
 

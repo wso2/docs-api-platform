@@ -11,7 +11,7 @@ tags:
   - helm
   - devops
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-24
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
@@ -316,24 +316,29 @@ Sessions live in the shared database, so no sticky-session configuration is requ
 
 ## Step 9: Configure health probes { #health-checks }
 
-Point both probes at `/health`:
+The chart configures the probes for you: liveness on `/health`, and readiness and startup on `/ready`. Both answer `503` while the portal can't reach its database. Readiness takes the pod out of the Service after about 15 seconds, and liveness restarts it only after about 2 minutes, so a short database outage never causes a restart. The defaults are:
 
 ```yaml
 api-portal-ui:
   deployment:
     livenessProbe:
       httpGet: { path: /health, port: http, scheme: HTTPS }
-      initialDelaySeconds: 15
       periodSeconds: 10
-      failureThreshold: 3
+      timeoutSeconds: 5
+      failureThreshold: 12
     readinessProbe:
-      httpGet: { path: /health, port: http, scheme: HTTPS }
-      initialDelaySeconds: 10
+      httpGet: { path: /ready, port: http, scheme: HTTPS }
       periodSeconds: 5
+      timeoutSeconds: 3
       failureThreshold: 3
+    startupProbe:
+      httpGet: { path: /ready, port: http, scheme: HTTPS }
+      periodSeconds: 5
+      timeoutSeconds: 3
+      failureThreshold: 60
 ```
 
-If you set `tls.certificateProvider: none`, change both probes' `scheme` from `HTTPS` to `HTTP` — otherwise every probe fails and pods never become ready.
+If you set `tls.certificateProvider: none`, the chart renders all three probes with `scheme: HTTP`. If you restrict `config.health.allowedClients`, keep the node address range in the list, because the kubelet's probes arrive from the node. See [Health Checks](health-checks.md).
 
 ## Step 10: Deploy { #deploy }
 

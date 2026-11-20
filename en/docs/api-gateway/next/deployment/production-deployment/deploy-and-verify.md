@@ -9,7 +9,7 @@ tags:
   - helm
   - production
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-06-17
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
@@ -58,7 +58,7 @@ kubectl get svc -n ap-gateway
 
 ```bash
 kubectl exec -n ap-gateway deploy/ap-gateway-controller -- \
-  wget -qO- http://localhost:9094/api/admin/v1/health
+  wget -qO- http://localhost:9092/api/admin/v1/ready
 ```
 
 ## Upgrade Procedure
