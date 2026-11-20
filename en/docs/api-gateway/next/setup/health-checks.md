@@ -1,6 +1,6 @@
 ---
 title: "Health checks for the Gateway Controller and Gateway Runtime"
-description: "Configure liveness and readiness health checks for the Gateway Controller, Router, and Policy Engine, and wire them into Docker Compose or Kubernetes probes."
+description: "Gateway Controller and Gateway Runtime health endpoints, what they check, and how to use them in Kubernetes probes, Docker Compose, and load balancers."
 canonical_url: https://wso2.com/api-platform/docs/api-gateway/next/setup/health-checks/
 md_url: https://wso2.com/api-platform/docs/api-gateway/next/setup/health-checks.md
 tags:
@@ -8,175 +8,290 @@ tags:
   - health-check
   - deployment
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-07-31
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
 # Health checks for the Gateway Controller and Gateway Runtime
 
-This guide is for developers and platform operators wiring liveness and readiness checks for the API Platform Gateway into Docker Compose or Kubernetes. The Gateway Controller and the Gateway Runtime each expose HTTP endpoints that report whether that component is ready to handle traffic.
+This guide is for platform operators who wire the API Platform Gateway into Kubernetes probes, Docker Compose health checks, load balancers, or external monitors. The Gateway Controller and the Gateway Runtime each expose a liveness endpoint and a readiness endpoint:
 
-The gateway has three health surfaces:
+- **Liveness** answers whether the process is alive. A failing liveness probe restarts it.
+- **Readiness** answers whether the component can handle its work. A failing readiness probe takes it out of rotation without restarting it.
 
-- The **Gateway Controller** admin API, reachable at `/api/admin/v1/health`.
-- The **Router**, reachable at `/_gateway-health/healthy` and `/_gateway-health/ready` on the same ports that serve API traffic.
-- The **Policy Engine** admin API, reachable at `/health`.
+The two components treat dependencies differently:
 
-The Router and the Policy Engine each expose their own health endpoint inside the Gateway Runtime container.
+- The Gateway Controller runs the same checks, including its database, on both endpoints. A short database outage takes it out of rotation through the readiness probe. An outage that outlasts the liveness probe's window, about 2 minutes with the Helm chart defaults, also restarts it.
+- The Gateway Runtime's liveness endpoint checks no dependencies, so a controller outage never restarts a runtime.
 
-## Gateway Controller health endpoint
+## Endpoints
 
-The Gateway Controller exposes a health endpoint on its admin HTTP server:
+| Component | Liveness | Readiness | Port |
+|-----------|----------|-----------|------|
+| Gateway Controller, admin server | `/api/admin/v1/health` | `/api/admin/v1/ready` | `9092` |
+| Gateway Controller, management API | `/api/management/v1/health` | `/api/management/v1/ready` | `9090`, or `9093` when the management API uses TLS |
+| Gateway Runtime (Router) | `/_gateway-health/healthy` | `/_gateway-health/ready` | Every traffic listener, by default `8080` (HTTP) and `8443` (HTTPS) |
 
-| Item | Value |
-|------|-------|
-| Path | `/api/admin/v1/health` |
-| Legacy path | `/health` (deprecated) |
-| Default port | `9094` |
-| Method | `GET` |
-| Healthy response | `200` with a JavaScript Object Notation (JSON) body: `{"status": "healthy", "timestamp": "..."}` |
+All of them:
 
-Test it directly with:
+- answer without credentials;
+- accept only `GET` and `HEAD`, and answer any other method with `405` and `Allow: GET, HEAD`;
+- send `Cache-Control: no-store`;
+- reuse an evaluated result for 3 seconds (`cache_ttl`), so frequent probes don't add load.
 
-```bash
-curl http://localhost:9094/api/admin/v1/health
+!!! note
+    The Docker Compose setup publishes the controller's admin port `9092` on host port `9094`. From the host, call `http://localhost:9094/api/admin/v1/health`. Inside the container and in Kubernetes, the port is `9092`.
+
+## Response format
+
+A component answers `200` when every check is up and `503` when any check is down. The body names each check:
+
+```json
+{
+  "status": "healthy",
+  "timestamp": "2026-11-20T09:15:00Z",
+  "checks": {
+    "database": { "status": "up" },
+    "startup": { "status": "up" }
+  }
+}
 ```
 
-The Gateway Controller enforces an Internet Protocol (IP) allowlist on its admin API and, when configured, also requires Basic authentication. It exempts both `/api/admin/v1/health` and the legacy `/health` from both checks, so Docker and Kubernetes probes can reach them without credentials. It still requires an allowed IP and, if enabled, valid credentials for every other admin path.
+A check that is down carries a generic reason and the time it started failing:
 
-## Gateway Runtime health checks
-
-The Gateway Runtime container runs the Router and the Policy Engine, and each exposes its own health endpoint.
-
-### Router liveness and readiness
-
-The Router exposes two dedicated endpoints on its regular ingress listeners, so no separate admin port is involved:
-
-| Item | Value |
-|------|-------|
-| Liveness path | `/_gateway-health/healthy` |
-| Readiness path | `/_gateway-health/ready` |
-| Ports | `8080` (HTTP ingress) and `8443` (HTTPS ingress) |
-| Method | `GET` |
-| Healthy response | `200` with `{"status": "healthy"}` or `{"status": "ready"}` |
-
-```bash
-curl http://localhost:8080/_gateway-health/healthy
-curl -k https://localhost:8443/_gateway-health/ready
+```json
+{
+  "status": "unhealthy",
+  "timestamp": "2026-11-20T09:16:30Z",
+  "checks": {
+    "database": {
+      "status": "down",
+      "error": "database unreachable",
+      "since": "2026-11-20T09:16:02Z"
+    },
+    "startup": { "status": "up" }
+  }
+}
 ```
 
-Both paths answer on both ports. The example above pairs liveness with the HTTP listener and readiness with the HTTPS listener.
+The reason never includes host names, user names, or connection strings. The full cause is written to the component's log.
 
-The Router reserves the path prefix `/_gateway-health` for its own liveness and readiness routes, so no other route can use it.
+A check that is up but under strain carries a `warning`, for example `"database connection pool exhausted"`. A warning never makes the check down, because a full connection pool is load, not an outage.
 
-### Policy Engine health
+A client outside the allowed clients gets `403` with `{"status": "forbidden"}` and no check details. See [Restrict who can call the health endpoints](#restrict-who-can-call-the-health-endpoints).
 
-The Policy Engine admin server exposes its own health endpoint:
+## Gateway Controller
 
-| Item | Value |
-|------|-------|
-| Path | `/health` |
-| Default port | `9002` |
-| Method | `GET` |
-| Healthy response | `200` with `{"status": "healthy", "timestamp": "..."}` |
+The controller serves the same health answer on two ports:
 
-```bash
-curl http://localhost:9002/health
+- The **admin server** (`9092`) answers from the moment the controller starts. Use it when you need an answer during startup, or for operators on the admin network.
+- The **management API** (`9090`, or `9093` with TLS) answers once the controller has started. Use it when a probe, load balancer, or monitor should reach the controller through the port you already expose for the management API. When `[controller.server.tls]` is enabled, the TLS listener replaces the plain HTTP one, so the health endpoints move to `https://<host>:9093` with it.
+
+Both pairs use one evaluation and one cached result, so they always give the same answer. The management API answers its health endpoints before authentication, authorization, access logging, and metrics, so probes need no credentials and don't fill the access log. Every other management API path requires credentials.
+
+### What the controller checks
+
+Liveness and readiness run the same checks:
+
+| Check | Down when |
+|-------|-----------|
+| `database` | The controller has lost its connection to the database. The check judges the database by the outcomes of the controller's own database operations, so it adds no queries while traffic flows. When there are too few operations to decide, it pings the database itself, at most once every 10 seconds. |
+| `startup` | The controller hasn't finished starting (reason `starting`), or has begun shutting down (reason `stopping`). |
+
+### During startup
+
+At startup, the controller waits up to 5 minutes (`startup_wait`) for its database, and exits if the database is unreachable after that. A rejected login, a PostgreSQL database that doesn't exist, or an untrusted server certificate ends startup at once instead of waiting.
+
+While the controller starts:
+
+- the admin server answers `503` with the `startup` check down and reason `starting`;
+- the management API listener doesn't open until startup finishes, so its health endpoints refuse the connection.
+
+Both tell a probe that the controller hasn't started.
+
+## Gateway Runtime
+
+The Router serves the gateway's health routes on every traffic listener, so a load balancer can check the same port it sends traffic to. The path prefix `/_gateway-health` is reserved; no API can use it.
+
+The Router doesn't answer these routes by itself. It passes them to the Policy Engine, so they fail when either process is down or frozen.
+
+### What the runtime checks
+
+| Endpoint | Healthy status | Checks |
+|----------|----------------|--------|
+| `/_gateway-health/healthy` | `healthy` | None. It answers `200` whenever the Router and the Policy Engine both answer. |
+| `/_gateway-health/ready` | `ready` | `policy_engine`, `xds_connection`, and `python_executor` |
+
+| Readiness check | Down when |
+|-----------------|-----------|
+| `policy_engine` | The Policy Engine hasn't loaded its policy configuration (reason `policy configuration not loaded`). |
+| `xds_connection` | The runtime hasn't received its first configuration from the controller (reason `no configuration received yet`), or its connection to the controller has been down for longer than the grace period, 5 minutes by default (reason `disconnected from the controller for ...`). |
+| `python_executor` | The Python executor isn't reachable or isn't ready. Registered only when the Python executor is configured. |
+
+Liveness checks no dependencies on purpose. Once a runtime has its configuration, it keeps serving traffic with that configuration when the controller is unavailable. A controller outage longer than the grace period takes the runtime out of rotation, but never restarts it.
+
+The traffic listeners themselves come with the controller's first configuration. A runtime that never receives one has no listener to answer on, so the startup probe gives up and Kubernetes restarts it.
+
+### Policy Engine admin endpoint
+
+The Policy Engine serves `GET /health` on its admin server (`9002`). It reports whether the policy configuration is loaded, which the runtime readiness route already covers, so you don't need to add it to a probe.
+
+## Configuration
+
+Every key is optional. The values shown are the defaults.
+
+### Gateway Controller
+
+```toml
+[controller.health]
+allowed_clients = "*"   # APIP_GW_CONTROLLER_HEALTH_ALLOWED_CLIENTS
+cache_ttl = "3s"        # APIP_GW_CONTROLLER_HEALTH_CACHE_TTL
+
+[controller.health.database]
+check_timeout = "2s"    # deadline for the check's own ping
+startup_wait = "5m"     # how long startup waits for the database before exiting
+failure_window = "30s"  # how far back operation outcomes count (at most 1h)
+failure_ratio = 0.5     # share of failed operations that reports the database down
+min_attempts = 5        # operations needed in the window before the ratio decides
+idle_period = "10s"     # with too few operations to decide, the check pings once per period
+pool_saturation = 0.9   # share of the connection pool in use, with callers waiting, that counts as saturated
+pool_wait_limit = "5s"  # how long the pool may stay saturated before the warning appears
 ```
 
-The Policy Engine admin server has no Basic authentication layer, and `/health` bypasses even its IP allowlist, so probes always reach it.
+The comments name each key's environment variable. A database key's variable follows the same pattern, for example `APIP_GW_CONTROLLER_HEALTH_DATABASE_STARTUP_WAIT`. A variable takes effect only when the key's value is an `{% raw %}{{ env }}{% endraw %}` token, as in the shipped configuration template. A key set to a literal value, as in the example above, ignores the variable. For example:
+
+```toml
+[controller.health.database]
+startup_wait = '{% raw %}{{ env "APIP_GW_CONTROLLER_HEALTH_DATABASE_STARTUP_WAIT" "5m" }}{% endraw %}'
+```
+
+### Gateway Runtime
+
+```toml
+[router.health]
+allowed_clients = "*"   # APIP_GW_ROUTER_HEALTH_ALLOWED_CLIENTS
+
+[policy_engine.health]
+cache_ttl = "3s"
+
+[policy_engine.health.xds_connection]
+grace = "5m"            # how long the controller connection may be down before readiness fails
+
+[policy_engine.health.python_executor]
+check_timeout = "2s"    # deadline for the Python executor check
+```
+
+### Restrict who can call the health endpoints
+
+By default, the health endpoints answer every client. To restrict them, list IP addresses or CIDR ranges. Any other client then gets `403`.
+
+- `[controller.health] allowed_clients` applies to the controller's endpoints on both the admin server and the management API.
+- `[router.health] allowed_clients` applies to the runtime routes. The controller builds these routes, so set it on the controller.
+
+Only the connection's peer address counts. A call through a published Docker port arrives from the Docker network, and a call through a proxy arrives from the proxy, so keep those addresses in the list. For example, in Docker Compose:
+
+```bash
+APIP_GW_CONTROLLER_HEALTH_ALLOWED_CLIENTS=127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,fc00::/7
+APIP_GW_ROUTER_HEALTH_ALLOWED_CLIENTS=127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,fc00::/7
+```
+
+In Kubernetes, keep the pod and node ranges in both lists. Otherwise the kubelet's probes get `403` and the pods never become ready.
 
 ## Configuring health checks
 
+=== "Kubernetes (Helm)"
+
+    The gateway Helm chart configures liveness, readiness, and startup probes for both containers. You don't need to change them.
+
+    | Container | Probe | Path | Timing |
+    |-----------|-------|------|--------|
+    | Gateway Controller | Liveness | `/api/management/v1/health` | Every 10 s, restarts after 12 failures (about 2 minutes) |
+    | Gateway Controller | Readiness | `/api/management/v1/ready` | Every 5 s, out of the Service after 3 failures (about 15 s) |
+    | Gateway Controller | Startup | `/api/management/v1/health` | Every 5 s, up to 72 attempts (6 minutes) |
+    | Gateway Runtime | Liveness | `/_gateway-health/healthy` | Every 10 s, restarts after 12 failures (about 2 minutes) |
+    | Gateway Runtime | Readiness | `/_gateway-health/ready` | Every 5 s, out of the Service after 3 failures (about 15 s) |
+    | Gateway Runtime | Startup | `/_gateway-health/healthy` | Up to 5 minutes |
+
+    The long liveness window means a short database outage takes the controller out of the Service but never restarts it.
+
+    The controller probes leave out the port and scheme. The chart fills them in from `gateway.config.controller.server.tls.enabled`: the `rest` port over HTTP, or the `rest-tls` port over HTTPS. The runtime probes follow the Router's listener configuration in the same way.
+
+    To customise a probe, override it in your values. A probe that names its own port is rendered as given. For example, to probe the controller's admin server instead:
+
+    ```yaml
+    gateway:
+      controller:
+        deployment:
+          livenessProbe:
+            httpGet:
+              path: /api/admin/v1/health
+              port: admin
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12
+    ```
+
+    To remove a probe, set it to `null`, for example `--set gateway.controller.deployment.livenessProbe=null`. An empty map (`{}`) doesn't remove it, because Helm merges it with the default probe.
+
+    Gateways deployed by the gateway operator use the same probes.
+
 === "Docker Compose"
 
-    Add a `healthcheck:` block to each service, using `curl` against each component's health path.
+    Add a `healthcheck` to each service. The health check runs inside the container, so use the container ports.
 
-    1. For the `gateway-controller` service, point the `healthcheck` at the admin health path:
+    1. The controller image includes `wget`. Check the admin readiness endpoint, which answers during startup too:
 
         ```yaml
         services:
           gateway-controller:
             healthcheck:
-              test: ["CMD", "curl", "-f", "http://localhost:9094/api/admin/v1/health"]
+              test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:9092/api/admin/v1/ready"]
               interval: 10s
-              timeout: 3s
-              retries: 5
-              start_period: 10s
+              timeout: 5s
+              retries: 3
+              start_period: 5m
         ```
 
-    2. The `gateway-runtime` container isn't ready to handle traffic unless both processes report healthy. Check the Router's readiness path and the Policy Engine's health path in the same `healthcheck`:
+    2. The runtime image includes `curl`. Check the runtime readiness route, which covers both the Router and the Policy Engine:
 
         ```yaml
         services:
           gateway-runtime:
             healthcheck:
-              test: ["CMD-SHELL", "curl -f http://localhost:8080/_gateway-health/ready && curl -f http://localhost:9002/health"]
+              test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost:8080/_gateway-health/ready"]
               interval: 10s
-              timeout: 3s
-              retries: 5
-              start_period: 10s
+              timeout: 5s
+              retries: 3
+              start_period: 5m
         ```
 
-=== "Kubernetes"
+    `start_period` covers the controller's wait for its database and the runtime's wait for its first configuration.
 
-    Configure a `readinessProbe` and a `livenessProbe` on each container.
+=== "Load balancers and monitors"
 
-    1. For the Gateway Controller container, use an `httpGet` probe directly against its admin health path:
+    - **Gateway Runtime:** point the load balancer's health check at `/_gateway-health/ready` on the same listener it sends traffic to. It takes a runtime out of rotation when the Policy Engine isn't ready or the runtime has lost its controller for longer than the grace period.
+    - **Gateway Controller:** point the health check at `/api/management/v1/ready` on the management API port you already expose. It answers once the controller has started and its database is reachable.
 
-        ```yaml
-        spec:
-          template:
-            spec:
-              containers:
-                - name: gateway-controller
-                  readinessProbe:
-                    httpGet:
-                      path: /api/admin/v1/health
-                      port: 9094
-                    initialDelaySeconds: 5
-                    periodSeconds: 10
-                  livenessProbe:
-                    httpGet:
-                      path: /api/admin/v1/health
-                      port: 9094
-                    initialDelaySeconds: 10
-                    periodSeconds: 15
-        ```
+    Treat `503` and a refused connection as unhealthy. If you restrict `allowed_clients`, include the load balancer's or monitor's address.
 
-    2. For the Gateway Runtime container, point the liveness probe at `/_gateway-health/healthy` on the HTTP listener:
+## Verify
 
-        ```yaml
-        spec:
-          template:
-            spec:
-              containers:
-                - name: gateway-runtime
-                  livenessProbe:
-                    httpGet:
-                      path: /_gateway-health/healthy
-                      port: 8080
-                    initialDelaySeconds: 10
-                    periodSeconds: 15
-        ```
+```bash
+# Gateway Controller, from the host with Docker Compose
+curl -i http://localhost:9094/api/admin/v1/ready
+curl -i http://localhost:9090/api/management/v1/ready
 
-    3. The Gateway Runtime container isn't ready to handle traffic unless both processes report healthy. Point the readiness probe at both the Router's readiness path on the HTTPS listener and the Policy Engine's health path:
+# Gateway Runtime
+curl -i http://localhost:8080/_gateway-health/ready
+curl -ik https://localhost:8443/_gateway-health/healthy
+```
 
-        ```yaml
-        spec:
-          template:
-            spec:
-              containers:
-                - name: gateway-runtime
-                  readinessProbe:
-                    exec:
-                      command:
-                        - sh
-                        - -c
-                        - curl -k -f https://localhost:8443/_gateway-health/ready && curl -f http://localhost:9002/health
-                    initialDelaySeconds: 5
-                    periodSeconds: 10
-        ```
+In Kubernetes, check the controller from inside its pod:
+
+```bash
+kubectl exec -n <namespace> deploy/<release>-gateway-controller -- \
+  wget -qO- http://localhost:9092/api/admin/v1/ready
+```
 
 ---
 

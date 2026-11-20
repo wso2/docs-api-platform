@@ -10,7 +10,7 @@ tags:
   - kubernetes
   - helm
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-24
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
@@ -468,24 +468,29 @@ For the PodDisruptionBudget, set exactly one of `minAvailable` or `maxUnavailabl
 
 ### Configure health probes { #health-checks }
 
-Point both probes at `/health`:
+The chart configures the probes for you: liveness on `/health`, and readiness and startup on `/ready`. Both answer `503` while the portal can't reach its database. Readiness takes the pod out of the Service after about 15 seconds, and liveness restarts it only after about 2 minutes, so a short database outage never causes a restart. The defaults are:
 
 ```yaml
 api-portal-ui:
   deployment:
     livenessProbe:
       httpGet: { path: /health, port: http, scheme: HTTPS }
-      initialDelaySeconds: 15
       periodSeconds: 10
-      failureThreshold: 3
+      timeoutSeconds: 5
+      failureThreshold: 12
     readinessProbe:
-      httpGet: { path: /health, port: http, scheme: HTTPS }
-      initialDelaySeconds: 10
+      httpGet: { path: /ready, port: http, scheme: HTTPS }
       periodSeconds: 5
+      timeoutSeconds: 3
       failureThreshold: 3
+    startupProbe:
+      httpGet: { path: /ready, port: http, scheme: HTTPS }
+      periodSeconds: 5
+      timeoutSeconds: 3
+      failureThreshold: 60
 ```
 
-If you set `tls.certificateProvider: none`, change both probes' `scheme` from `HTTPS` to `HTTP` — otherwise every probe fails and pods never become ready.
+If you set `tls.certificateProvider: none`, the chart renders all three probes with `scheme: HTTP`. If you restrict `config.health.allowedClients`, keep the node address range in the list, because the kubelet's probes arrive from the node. See [Health Checks](health-checks.md).
 
 ### Verify { #verify }
 
@@ -506,7 +511,7 @@ Confirm the portal is serving, from inside the cluster:
 
 ```bash
 oc exec -n <PROJECT-NAME> deploy/api-portal-api-portal -- \
-  wget -qO- --no-check-certificate https://localhost:9543/health
+  wget -qO- --no-check-certificate https://localhost:9543/ready
 ```
 
 Finally, verify that sessions are shared and that only one instance dispatches each event, as described in [Verify & Upgrade](deploy-and-verify.md#verify).
@@ -799,7 +804,7 @@ Choose a TLS termination type:
 
 With `api-portal-ui.tls.certificateProvider: none`, the portal serves plain HTTP and the router terminates TLS. Traffic between the router and the pod isn't encrypted, so use this setup only where that's acceptable. The chart's Route needs HTTPS, so turn it off and create an edge Route yourself:
 
-1. Turn off the portal's TLS and the chart's portal Route, and change both health probes to `scheme: HTTP`:
+1. Turn off the portal's TLS and the chart's portal Route:
 
     ```yaml
     api-portal-ui:
@@ -809,14 +814,9 @@ With `api-portal-ui.tls.certificateProvider: none`, the portal serves plain HTTP
         routes:
           apiPortal:
             enabled: false
-      deployment:
-        livenessProbe:
-          httpGet: { path: /health, port: http, scheme: HTTP }
-        readinessProbe:
-          httpGet: { path: /health, port: http, scheme: HTTP }
     ```
 
-    With `scheme: HTTPS`, every probe fails and the pod never becomes ready. For the other probe settings, see [Configure health probes](#health-checks).
+    With `certificateProvider: none`, the chart renders the liveness, readiness, and startup probes with `scheme: HTTP`, so you don't need to change them. For the probe settings, see [Configure health probes](#health-checks).
 
 2. Apply the values, as described in [Upgrade](#upgrade).
 

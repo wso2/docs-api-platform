@@ -10,7 +10,7 @@ tags:
   - kubernetes
   - devops
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-21
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
@@ -99,7 +99,7 @@ Before you take traffic:
 - [ ] Authorization is enabled
 - [ ] The public base URL matches the real origin, and the proxy preserves `/api-portal`
 - [ ] The TLS certificate is a real one, not the self-signed pair from setup
-- [ ] Instances spread across failure domains, with a health check on `/health`
+- [ ] Instances spread across failure domains, with a readiness check on `/ready`
 
 Kubernetes and OpenShift add two: the PodDisruptionBudget is enabled, and CPU requests are set if the HPA is on.
 

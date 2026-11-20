@@ -1399,6 +1399,7 @@ nav:
                 - Security Hardening: api-portal/next/deployment/security-hardening.md
                 - Database Configuration: api-portal/next/deployment/database-configuration.md
                 - Resources & Scaling: api-portal/next/deployment/resources-and-scaling.md
+                - Health Checks: api-portal/next/deployment/health-checks.md
                 - Control Plane Connection: api-portal/next/deployment/control-plane-connection.md
                 - Verify & Upgrade: api-portal/next/deployment/deploy-and-verify.md
             - Deploy on VMs: api-portal/next/deployment/deploy-on-vms.md
@@ -1557,6 +1558,7 @@ nav:
               - Harden the Deployment: ai-workspace/next/production/harden.md
               - Connect AI Gateways: ai-workspace/next/production/connect-gateways.md
               - Operate the Deployment: ai-workspace/next/production/operate.md
+              - Health Checks: ai-workspace/next/production/health-checks.md
           - Deploy on VMs: ai-workspace/next/production/deploy-on-vms.md
           - Deploy on Kubernetes:
               - Kubernetes: ai-workspace/next/production/deploy-on-kubernetes.md
