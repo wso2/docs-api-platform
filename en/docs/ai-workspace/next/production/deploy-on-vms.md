@@ -9,7 +9,7 @@ tags:
   - deployment
   - docker
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-23
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
@@ -381,7 +381,7 @@ Which services start comes from `COMPOSE_PROFILES` in the stack's `.env` file, w
 
 ```bash
 docker compose logs platform-api ai-workspace | grep -i -E 'error|fail'
-curl -fsk https://localhost:9243/health
+curl -fsk https://localhost:9243/ready
 curl -fsk https://localhost:9643/healthz
 ```
 
@@ -472,7 +472,7 @@ Run the same Compose stack on two or more hosts, each with:
 - The same database connection.
 - A certificate valid for the public hostname, or plain-HTTP listeners behind a TLS-terminating load balancer.
 
-Put a load balancer in front of the hosts, health-checking `/healthz` on the workspace port and `/health` on the Platform API port. Remove a host from rotation before you upgrade it, then add it back once its health check passes.
+Put a load balancer in front of the hosts, health-checking `/healthz` on the workspace port and `/ready` on the Platform API port. Remove a host from rotation before you upgrade it, then add it back once its health check passes.
 
 Configure **session affinity** on the workspace pool. Most load balancers call this sticky sessions or source affinity; a cookie-based method is more accurate than one based on client IP address.
 
@@ -508,7 +508,7 @@ Watch CPU and memory against those limits, and treat sustained pressure as the s
 
 ### Tune the health probes { #ha-step-6-tune-the-health-probes }
 
-The shipped Compose health checks call each endpoint from inside the container. Point your load balancer at the same endpoints, over the port each service listens on.
+The shipped Compose health checks call each endpoint from inside the container. Point your load balancer at `/ready` on the Platform API port and `/healthz` on the workspace port. See [Health Checks](health-checks.md).
 
 ### Verify high availability { #ha-verify }
 
