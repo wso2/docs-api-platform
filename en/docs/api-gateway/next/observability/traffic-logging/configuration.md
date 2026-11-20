@@ -24,6 +24,25 @@ This page lists the traffic logging settings. To turn on traffic logging with th
 Shared capture pipeline. Configured once; every enabled consumer (Analytics, Traffic Logging) reads
 from it.
 
+Request/response header and body capture is a **shared** concern, handled by a capture pipeline called
+the **collector**. The collector has no on/off switch of its own. It activates automatically whenever
+a consumer that needs it is enabled (`analytics.enabled` or `traffic_logging.enabled`). Traffic Logging
+is one such consumer: it reads whatever the collector captured, serializes it to JSON, and hands the
+line to each configured sink.
+
+```text
+Envoy access log ──ALS──► collector ──► traffic-log serializer ──┬──► stdout   container log (kubectl logs, node collectors)
+                                                                 ├──► file     rotating file on a per-pod volume
+                                                                 └──► http     bounded queue ──► batched POST to a receiver
+```
+
+Because emission happens on Envoy's access-log path, it fires for every request Envoy terminates,
+including requests denied by an auth policy before they reach any downstream logic.
+
+!!! note
+    Traffic Logging and Moesif Analytics are independent consumers of the same underlying data-capture
+    pipeline. You can enable either, both, or neither.
+
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `request_body` | boolean | `false` | Capture the full request body into the collected event. |

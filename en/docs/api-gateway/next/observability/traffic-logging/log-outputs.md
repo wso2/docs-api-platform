@@ -15,12 +15,34 @@ content_type: "how-to"
 {% raw %}
 # Traffic Log Outputs
 
-Each traffic log line is written to the outputs (sinks) you name in `traffic_logging.outputs`.
+Each traffic log line is written to the **sinks** you name in `traffic_logging.outputs`.
 
-* `stdout` is the default and needs no other settings. See the [Quick start](overview.md#quick-start-stdout).
+| Sink | Where the line goes | Use it when |
+|---|---|---|
+| `stdout` | The policy-engine container log, and therefore the node's `/var/log/pods` files | A node-level collector (Fluent Bit, Fluentd, CloudWatch agent) is already scraping container logs, and the lines carry no payloads you need to keep off the node. **This is the default.** |
+| `file` | A rotating file on a writable volume | You want payloads out of the container log and away from every node-level collector, and you have (or can mount) a per-pod volume. |
+| `http` | Batched `POST`s to a log receiver you name | You want the lines to leave the pod directly, with no disk, no co-located collector, and no sidecar or DaemonSet. |
+
+Sinks are **additive**: `outputs = ["file", "http"]` writes every line to both. Order is irrelevant,
+duplicates are rejected, and an unknown name is a startup error.
+
+The same line is written to every configured sink, so with `outputs = ["file", "http"]` one request
+produces one line in the file **and** one line in the batch sent to the receiver.
+
+* `stdout` needs no other settings. See the [Quick start](overview.md#quick-start-stdout).
 * To collect `stdout` lines in one place with the other gateway logs, see [Centralized Logging](../logging.md).
-* `file` and `http` are described on this page.
-* To compare the outputs, see the [Overview](overview.md#overview).
+
+Two properties hold for every sink:
+
+* **Nothing in the sink path is on the request/response path.** Traffic-log lines are produced from
+  Envoy's access-log stream, which Envoy emits *after* the response has been sent to the client. A slow
+  or unreachable log receiver cannot add latency to an API call or fail one.
+* **Sink construction fails closed; delivery fails open.** A file that cannot be opened or an endpoint
+  that cannot be built fails gateway startup. No sink silently degrades to `stdout`, because that would
+  put payloads back into the container log the operator chose `file`/`http` to keep them out of. At
+  runtime, by contrast, a delivery failure drops the line and counts it (see
+  [Monitoring the sinks](#monitoring-the-sinks)); it never blocks request processing and never falls
+  back to another sink.
 
 ## The `file` sink
 

@@ -55,7 +55,7 @@ These variables describe the API that handled the request and the backend it cal
 | `api.kind` | string | API kind. |
 | `project.id` | string | Project ID. |
 | `target.statusCode` | number | Status code returned by the backend. |
-| `target.destination` | string | Backend URL the request was sent to. |
+| `target.destination` | string | Backend host and path, or the client's if the request didn't reach the backend. |
 
 ## Client and application
 

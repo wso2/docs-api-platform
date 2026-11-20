@@ -15,58 +15,29 @@ content_type: "concept"
 {% raw %}
 # Traffic Logging
 
-## Overview
+Traffic logging writes one structured JSON line for every API request the gateway handles. Each line
+records who called which API, the status code, latencies and, if you choose, headers and bodies.
 
-Traffic Logging writes a single structured JSON line for every request handled by the gateway. It records who
-called what, the status code, latencies, request/response headers, and (optionally) bodies.
+Traffic logs help you do the following.
 
-To write each line in your own JSON layout instead, see [Custom log format](custom-log-format.md).
-
-The router also writes its own access log line for every request, with HTTP and connection details. See [Router Access Logs](../access-logs.md).
-
-Each line is written to the **sinks** you name in `traffic_logging.outputs`:
-
-| Sink | Where the line goes | Use it when |
-|---|---|---|
-| `stdout` | The policy-engine container log, and therefore the node's `/var/log/pods` files | A node-level collector (Fluent Bit, Fluentd, CloudWatch agent) is already scraping container logs, and the lines carry no payloads you need to keep off the node. **This is the default.** |
-| `file` | A rotating file on a writable volume | You want payloads out of the container log and away from every node-level collector, and you have (or can mount) a per-pod volume. |
-| `http` | Batched `POST`s to a log receiver you name | You want the lines to leave the pod directly, with no disk, no co-located collector, and no sidecar or DaemonSet. |
-
-Sinks are **additive**: `outputs = ["file", "http"]` writes every line to both. Order is irrelevant,
-duplicates are rejected, and an unknown name is a startup error.
-
-!!! note
-    Traffic Logging and Moesif Analytics are independent consumers of the same underlying data-capture
-    pipeline. You can enable either, both, or neither.
+* Find out why a request failed.
+* Audit who called which API, and when.
+* Track latency and error rates.
+* Send request records to your log platform.
 
 ## How it works
 
-Request/response header and body capture is a **shared** concern, handled by a capture pipeline called
-the **collector**. The collector has no on/off switch of its own. It activates automatically whenever
-a consumer that needs it is enabled (`analytics.enabled` or `traffic_logging.enabled`). Traffic Logging
-is one such consumer: it reads whatever the collector captured, serializes it to JSON, and hands the
-line to each configured sink.
-
 ```text
-Envoy access log ──ALS──► collector ──► traffic-log serializer ──┬──► stdout   container log (kubectl logs, node collectors)
-                                                                 ├──► file     rotating file on a per-pod volume
-                                                                 └──► http     bounded queue ──► batched POST to a receiver
+Client ──► Gateway ──► Backend
+              │
+              └── after the response is sent, one JSON line per request
+                      ──► stdout (default), a file or an HTTP endpoint
 ```
 
-Because emission happens on Envoy's access-log path, it fires for every request Envoy terminates,
-including requests denied by an auth policy before they reach any downstream logic.
-
-Two properties hold for every sink:
-
-* **Nothing in the sink path is on the request/response path.** Traffic-log lines are produced from
-  Envoy's access-log stream, which Envoy emits *after* the response has been sent to the client. A slow
-  or unreachable log receiver cannot add latency to an API call or fail one.
-* **Sink construction fails closed; delivery fails open.** A file that cannot be opened or an endpoint
-  that cannot be built fails gateway startup. No sink silently degrades to `stdout`, because that would
-  put payloads back into the container log the operator chose `file`/`http` to keep them out of. At
-  runtime, by contrast, a delivery failure drops the line and counts it (see
-  [Monitoring the sinks](log-outputs.md#monitoring-the-sinks)); it never blocks request processing and never falls
-  back to another sink.
+* Lines are written after the response is sent, so traffic logging does not slow down API calls.
+* Every request is logged, including requests that a policy rejects.
+* Lines go to the gateway's standard output by default. You can also write them to a file or send them
+  to an HTTP endpoint. See [Log Outputs](log-outputs.md).
 
 ## Quick start (stdout)
 
@@ -111,7 +82,7 @@ To collect these lines in one place with the other gateway logs, see [Centralize
   },
   "target": {
     "statusCode": 200,
-    "destination": "https://backend.example.com/current"
+    "destination": "backend.example.com/current"
   },
   "application": {
     "id": "app-123",
@@ -147,14 +118,12 @@ To collect these lines in one place with the other gateway logs, see [Centralize
 Fields whose values are entirely empty (for example `application` on an unauthenticated request) are
 omitted from the line rather than emitted as `{}`.
 
-The same line is written to every configured sink, so with `outputs = ["file", "http"]` one request
-produces one line in the file **and** one line in the batch sent to the receiver.
-
 ## What's next
 
 * To choose what each line includes, mask headers, exclude fields, skip paths, or add custom properties, see [Configure Traffic Logging](configuration.md).
 * To write lines to a file or send them to an HTTP endpoint, and to monitor delivery, see [Log Outputs](log-outputs.md).
 * To write each line in your own JSON layout, see [Custom Log Format](custom-log-format.md).
 * To see the values you can read from each request, see [Variable Reference](variable-reference.md).
+* For the router's own access log line for every request, see [Router Access Logs](../access-logs.md).
 
 {% endraw %}
