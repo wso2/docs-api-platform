@@ -52,6 +52,18 @@ const config = {
           // Docs-only site: pages are served from the site root.
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
+          // Insights is hidden: its pages are not built, so they cannot be
+          // opened from a direct URL either. The first four entries are
+          // Docusaurus's default exclusions, which this list replaces.
+          exclude: [
+            '**/_*.{js,jsx,ts,tsx,md,mdx}',
+            '**/_*/**',
+            '**/*.test.{js,jsx,ts,tsx}',
+            '**/__tests__/**',
+            'insights/**',
+            'api-gateway/insights.md',
+            'api-control-plane/insights/**',
+          ],
           editUrl:
             'https://github.com/wso2/docs-api-platform/tree/cloud-docusaurus/',
         },
@@ -133,7 +145,7 @@ const config = {
           {label: 'Discord', href: 'https://discord.com/invite/wso2'},
           {label: 'GitHub', href: 'https://github.com/wso2/docs-api-platform'},
         ],
-        copyright: `© ${new Date().getFullYear()} WSO2 LLC.`,
+        copyright: `© ${new Date().getFullYear()} Choreo Labs LLC.`,
       },
       prism: {
         theme: prismThemes.github,

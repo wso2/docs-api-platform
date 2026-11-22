@@ -9,7 +9,7 @@ You configure the subscription plans for a specific API when you publish it to a
 
 ## View Subscription Plans
 
-1. Sign in to the [API Control Plane Console](https://console.bijira.dev).
+1. Sign in to the [API Control Plane Console](#).
 
 2. Go to the organization level. In the header, select your organization from the **Organizations** list.
 

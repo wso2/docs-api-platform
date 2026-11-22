@@ -6,7 +6,7 @@
  * hairline borders, Inter throughout with light-weight headings, and
  * orange only on actions and links.
  *
- * Light: canvas #F6F6F7, sidebar #F1F1F3, active pill #E4E4E7,
+ * Light: canvas #FFFFFF, sidebar #F1F1F3, active pill #E4E4E7,
  *        cards rgba(255,255,255,0.75), lines #E6E6E9,
  *        text headings #232328, body #3A3A40, muted #6B6B73,
  *        accent #EE6F2D (button gradient #F38345 → #E85F2A),
@@ -38,7 +38,7 @@
   --apd-highlight-fill: rgba(238, 111, 45, 0.1);
   --apd-heading-color: #232328;
 
-  --apd-canvas: #F6F6F7;
+  --apd-canvas: #FFFFFF;
   --apd-card: rgba(255, 255, 255, 0.75);
   --apd-card-solid: #FFFFFF;
   --apd-surface-border: #E6E6E9;
@@ -80,7 +80,7 @@
   --ifm-code-border-radius: 10px;
   --ifm-code-font-size: 93%;
 
-  --ifm-navbar-background-color: rgba(250, 250, 251, 0.85);
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
   --ifm-navbar-shadow: none;
   --ifm-navbar-link-color: #3A3A40;
   --ifm-navbar-link-hover-color: var(--apd-heading-color);

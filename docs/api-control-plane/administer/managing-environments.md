@@ -1,15 +1,15 @@
 ---
 title: "Manage Environments"
-description: "Create and delete deployment environments in the WSO2 Cloud Console. They are then available in the API Control Plane."
+description: "Create and delete deployment environments in the Choreo Cloud Console. They are then available in the API Control Plane."
 ---
 
 An environment is a deployment target in your organization, such as development or production. You deploy an API proxy to an environment, and a [pipeline](./managing-pipelines.md) promotes that build from one environment to the next.
 
-You create environments in the WSO2 Cloud Console. After you create an environment, it is available in the API Control Plane.
+You create environments in the Choreo Cloud Console. After you create an environment, it is available in the API Control Plane.
 
 ## View environments
 
-1. Sign in to the WSO2 Cloud Console.
+1. Sign in to the Choreo Cloud Console.
 
 2. Open your organization.
 

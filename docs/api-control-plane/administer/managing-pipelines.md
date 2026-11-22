@@ -1,17 +1,17 @@
 ---
 title: "Manage Pipelines"
-description: "Create, edit, and delete deployment pipelines in the WSO2 Cloud Console. The API Control Plane promotes builds through that order."
+description: "Create, edit, and delete deployment pipelines in the Choreo Cloud Console. The API Control Plane promotes builds through that order."
 ---
 
 A pipeline is the ordered sequence of environments that an API proxy moves through on its way to production, for example from development to production. You deploy an API proxy to the first environment in the pipeline, test it, and then promote the same build to the next environment.
 
-You create pipelines in the WSO2 Cloud Console. After you create a pipeline, the API Control Plane uses that order.
+You create pipelines in the Choreo Cloud Console. After you create a pipeline, the API Control Plane uses that order.
 
 A new organization comes with a pipeline named `default`, which has one environment, development. The **Default Project** uses it.
 
 ## View pipelines
 
-1. Sign in to the WSO2 Cloud Console.
+1. Sign in to the Choreo Cloud Console.
 
 2. Open your organization.
 
@@ -59,10 +59,10 @@ You cannot delete the `default` pipeline.
 
 ## Assign a pipeline to a project
 
-Each project uses one deployment pipeline. You set it in the project's settings in the WSO2 Cloud Console.
+Each project uses one deployment pipeline. You set it in the project's settings in the Choreo Cloud Console.
 
 1. In the API Control Plane Console, open the project.
-2. On the project's **Overview** page, click **Manage project**. The **Manage project** page of the project opens in the WSO2 Cloud Console. Its details are shared by the project across every WSO2 platform.
+2. On the project's **Overview** page, click **Manage project**. The **Manage project** page of the project opens in the Choreo Cloud Console. Its details are shared by the project across every Choreo platform.
 3. Under **Project details**, in **Deployment pipeline**, select the pipeline. The environments of the pipeline are shown under the list.
 4. Click **Save changes**. Click **Discard changes** to keep the current pipeline.
 

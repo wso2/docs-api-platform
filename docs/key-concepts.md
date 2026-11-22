@@ -27,10 +27,10 @@ A **gateway** is the runtime that receives API traffic, applies the policies you
 
 You can use the following kinds of gateways.
 
-- **WSO2 Managed Gateways:** Run on fully managed cloud infrastructure. WSO2 runs, scales, and upgrades the gateway.
+- **Choreo Managed Gateways:** Run on fully managed cloud infrastructure. Choreo Labs runs, scales, and upgrades the gateway.
 - **Self-Hosted Gateways:** Run on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connect to the control plane for configuration and management. Traffic and data stay within your network. See [Self-Hosted Gateway](./api-gateway/self-hosted-gateways/quickstart-guide.md).
 
-A new organization comes with one WSO2 Managed Gateway, named **Default**, in the development environment.
+A new organization comes with one Choreo Managed Gateway, named **Default**, in the development environment.
 
 ## Environments
 
