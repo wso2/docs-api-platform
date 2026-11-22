@@ -19,7 +19,7 @@ You want a web console to create, deploy, test, and govern API proxies.
 
 ### I Want to Keep API Traffic in My Own Infrastructure
 
-You want WSO2 to run the control plane, and you run the gateway.
+You want Choreo Labs to run the control plane, and you run the gateway.
 
 | Guide | What You Will Do |
 |:------|:-----------------|

@@ -5,7 +5,7 @@ description: "Analyze API, LLM, and MCP traffic with Moesif Basic."
 slug: /insights
 ---
 
-Insights is powered by Moesif Basic, which is included with your WSO2 subscription. WSO2 gateways send telemetry to Moesif, so you can monitor traffic, review overall usage, and diagnose latency without setting up a separate analytics pipeline.
+Insights is powered by Moesif Basic, which is included with your Choreo subscription. Choreo gateways send telemetry to Moesif, so you can monitor traffic, review overall usage, and diagnose latency without setting up a separate analytics pipeline.
 
 :::note
 Insights is coming soon.

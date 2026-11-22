@@ -15,10 +15,10 @@ The **API Gateways** page groups the gateways of your organization into two tabs
 
 | Tab | Gateways |
 |:----|:---------|
-| **WSO2 managed API gateways** | Gateways that WSO2 hosts and operates in the cloud. |
+| **Cloud gateways** | Gateways that Choreo hosts and operates in the cloud. |
 | **Self-hosted API gateways** | Gateways that run on your own infrastructure and connect to the API Control Plane. |
 
-A new organization comes with one WSO2 managed gateway, named **Default**, in the development environment. It is listed on the **WSO2 managed API gateways** tab.
+A new organization comes with one cloud gateway, named **Default**, in the development environment. It is listed on the **Cloud gateways** tab.
 
 Each tab lists its gateways with the following details. To find a gateway by name, type in **Search gateways**.
 
@@ -37,10 +37,18 @@ When you add a gateway, you choose its **Hosting**.
 
 | Hosting | Use it when |
 |:--------|:------------|
-| **WSO2 managed API gateway (cloud)** | WSO2 runs, scales, and upgrades the gateway for you, and you have no infrastructure to maintain. |
+| **Cloud gateway** | Choreo runs, scales, and upgrades the gateway for you, and you have no infrastructure to maintain. |
 | **Self-hosted API gateway** | You run the gateway on your own infrastructure and connect it to the API Control Plane, so that API traffic stays in your network. |
 
-To compare the two before you choose, click **Compare options** on the **Add API Gateway** page. The **Compare hosting options** dialog shows how each option handles traffic, its setup time, and what it's best for. Click **Choose WSO2 managed** or **Choose Self-hosted** to select one.
+To compare the two before you choose, click **Compare options** on the **Add API Gateway** page. The **Compare hosting options** dialog shows how each option handles traffic, its setup time, and what it's best for:
+
+| | Cloud gateway | Self-hosted |
+|:--|:--|:--|
+| **Setup time** | Instant | 1–5 minutes |
+| **Traffic via** | Choreo cloud | Your infrastructure |
+| **Best for** | Fast start, POCs | Enterprise, compliance |
+
+Click **Choose Cloud gateway** or **Choose Self-hosted** to select one.
 
 ## Create a self-hosted gateway
 
@@ -65,10 +73,14 @@ The console opens the gateway so you can download it and connect it to the API C
 
 ## Create a managed gateway
 
-A managed gateway is a gateway that WSO2 hosts and operates.
+A managed gateway is a gateway that Choreo hosts and operates. It is listed as a cloud gateway.
+
+:::note
+Your organization can have only a limited number of managed gateways. When it reaches the maximum, the **Cloud gateway** option is not available.
+:::
 
 1. On the **API Gateways** page, click **Add API Gateway**.
-2. Under **Hosting**, select **WSO2 managed API gateway (cloud)**.
+2. Under **Hosting**, select **Cloud gateway**.
 3. Enter the gateway details.
 
     | Field | Description |
@@ -81,7 +93,7 @@ A managed gateway is a gateway that WSO2 hosts and operates.
 
 4. Click **Add API Gateway**. **Add API Gateway** stays unavailable until **Name** and **Environment** are set. Click **Cancel** to leave without creating the gateway.
 
-The new gateway is listed on the **WSO2 managed API gateways** tab. Its status is **Inactive** while it is being provisioned, and changes to **Active** when it is ready.
+The new gateway is listed on the **Cloud gateways** tab. Its status is **Inactive** while it is being provisioned, and changes to **Active** when it is ready.
 
 ## Edit, Configure, or Delete a Gateway
 

@@ -1,7 +1,7 @@
 ---
 title: "Deploy an API"
 pagination_label: "Deploy an API"
-description: "Deploy an API proxy to a WSO2 managed or self-hosted gateway, check deployments and builds, stop a deployment, and deploy again."
+description: "Deploy an API proxy to a Choreo managed or self-hosted gateway, check deployments and builds, stop a deployment, and deploy again."
 ---
 
 Deploying an API proxy places a build of the API on one or more gateways. After the deployment succeeds, requests can reach the backend through each gateway's invoke URL.
@@ -14,7 +14,7 @@ The **Deploy** page of an API has two parts:
 ## Prerequisites
 
 - An API proxy. See [Create an API](../create-api-proxy/overview.md).
-- A gateway in the environment you deploy to. Your organization has a WSO2 Managed Gateway named **Default**, in the development environment, and the deploy dialog box selects it for a first deployment. To deploy to another gateway, create a [self-hosted gateway](../administer/managing-gateways.md#create-a-self-hosted-gateway) or a [managed gateway](../administer/managing-gateways.md#create-a-managed-gateway) first.
+- A gateway in the environment you deploy to. Your organization has a Choreo Managed Gateway named **Default**, in the development environment, and the deploy dialog box selects it for a first deployment. To deploy to another gateway, create a [self-hosted gateway](../administer/managing-gateways.md#create-a-self-hosted-gateway) or a [managed gateway](../administer/managing-gateways.md#create-a-managed-gateway) first.
 
 ## Deploy the API
 

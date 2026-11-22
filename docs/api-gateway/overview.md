@@ -1,7 +1,7 @@
 ---
 title: "API Gateway"
 pagination_label: "API Gateway"
-description: "Run your API proxies on a Self-Hosted Gateway in your own infrastructure or on a WSO2 Managed Gateway, all managed from API Management Cloud."
+description: "Run your API proxies on a Self-Hosted Gateway in your own infrastructure or on a Choreo Managed Gateway, all managed from API Management Cloud."
 slug: /api-gateway
 ---
 
@@ -14,10 +14,10 @@ Gateways run in the data plane, while you configure and manage them centrally fr
 | Gateway | Description | Traffic Via | Best For |
 |:--------|:------------|:------------|:---------|
 | **Self-Hosted Gateway** | Runs on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connects to the control plane. Traffic and data stay within your network. | Your infrastructure | Enterprise and compliance requirements |
-| **WSO2 Managed Gateway** | Runs on fully managed cloud infrastructure. WSO2 runs, scales, and upgrades the gateway, so you have no infrastructure to maintain. | WSO2 cloud | A fast start and proofs of concept |
+| **Choreo Managed Gateway** | Runs on fully managed cloud infrastructure. Choreo Labs runs, scales, and upgrades the gateway, so you have no infrastructure to maintain. | Choreo Cloud | A fast start and proofs of concept |
 
 :::info
-A new organization comes with a WSO2 Managed Gateway named **Default**, in the development environment, so you can deploy API proxies to it right away. To set up a Self-Hosted Gateway, follow the [Self-Hosted Gateway Quick Start Guide](./self-hosted-gateways/quickstart-guide.md). To add another WSO2 Managed Gateway, see [Manage Gateways](../api-control-plane/administer/managing-gateways.md).
+A new organization comes with a Choreo Managed Gateway named **Default**, in the development environment, so you can deploy API proxies to it right away. To set up a Self-Hosted Gateway, follow the [Self-Hosted Gateway Quick Start Guide](./self-hosted-gateways/quickstart-guide.md). To add another Choreo Managed Gateway, see [Manage Gateways](../api-control-plane/administer/managing-gateways.md).
 :::
 
 ## What You Can Do

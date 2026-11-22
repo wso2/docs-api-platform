@@ -4,11 +4,11 @@ pagination_label: "Gateway Insights"
 description: "View analytics for the API traffic on your gateways in the API Control Plane, and configure the analytics that a Self-Hosted Gateway publishes."
 ---
 
-Insights shows how the APIs on your gateways are used. WSO2 gateways send analytics to Moesif, which powers Insights in the API Control Plane. For a Self-Hosted Gateway, you can also control which request and response data the gateway captures.
+Insights shows how the APIs on your gateways are used. Choreo gateways send analytics to Moesif, which powers Insights in the API Control Plane. For a Self-Hosted Gateway, you can also control which request and response data the gateway captures.
 
 ## In the API Control Plane
 
-Insights is powered by Moesif Basic, which is included with your WSO2 subscription. The following dashboards show the API traffic on your gateways.
+Insights is powered by Moesif Basic, which is included with your Choreo subscription. The following dashboards show the API traffic on your gateways.
 
 :::note
 Insights is coming soon.
