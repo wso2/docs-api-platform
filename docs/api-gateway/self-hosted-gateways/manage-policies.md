@@ -8,6 +8,8 @@ You attach policies to an API proxy from the API Control Plane. The Self-Hosted 
 
 Saving the API records the policies. Deploy the API afterward so the Self-Hosted Gateway starts enforcing them.
 
+You can attach Policy Hub policies and your organization's custom policies. To build a policy of your own into the Self-Hosted Gateway, see [Adding Custom Policies](./custom-policies.md).
+
 ## Attach an API Level Policy
 
 An API level policy applies to every resource in the API proxy. To attach one, follow the steps given below.

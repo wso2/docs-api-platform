@@ -89,6 +89,7 @@ const sidebars = {
         doc("api-gateway/self-hosted-gateways/setting-up", "Setting Up Guide"),
         doc("api-gateway/self-hosted-gateways/deploy-and-test-api", "Deploy and Test an API"),
         doc("api-gateway/self-hosted-gateways/manage-policies", "Add and Manage Policies"),
+        doc("api-gateway/self-hosted-gateways/custom-policies", "Add Custom Policies"),
         doc("api-gateway/self-hosted-gateways/gateway-discovered-apis", "Gateway Discovered APIs"),
         doc("api-gateway/self-hosted-gateways/high-availability", "High Availability"),
       ]),
