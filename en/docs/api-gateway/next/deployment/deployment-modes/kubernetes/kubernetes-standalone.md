@@ -234,11 +234,13 @@ helm install ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
 
 ## Create and Invoke API
 
-### Port-forward Gateway Controller Service
+### Port-forward the Gateway Controller
 
 ```bash
-kubectl port-forward svc/ap-gateway-controller 9090:9090 9094:9094
+kubectl port-forward deploy/ap-gateway-controller 9090:9090 9094:9092
 ```
+
+This forwards local port `9090` to the management API and local port `9094` to the admin server, which listens on `9092` in the container. The command targets the Deployment rather than the Service because the chart leaves the admin port off the Service by default.
 
 ### Verify the Gateway Controller's admin endpoint is running
 

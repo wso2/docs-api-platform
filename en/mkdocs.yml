@@ -459,6 +459,8 @@ nav:
           - Setting Up the Database: api-gateway/2026.10.0/setup/database-setup.md
           - Artifact Templating: api-gateway/2026.10.0/setup/artifact-templating.md
           - Health Checks: api-gateway/2026.10.0/setup/health-checks.md
+          - Ports and TLS Configuration: api-gateway/2026.10.0/setup/ports-and-tls-configuration.md
+          - Outbound HTTP Client and Proxy Configuration: api-gateway/2026.10.0/setup/outbound-http-client-and-proxy.md
         - Resiliency:
           - Timeouts: api-gateway/2026.10.0/resiliency/timeouts.md
         - Policies:

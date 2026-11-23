@@ -32,11 +32,11 @@ The Gateway Controller exposes a health endpoint on its admin HTTP server:
 |------|-------|
 | Path | `/api/admin/v1/health` |
 | Legacy path | `/health` (deprecated) |
-| Default port | `9094` |
+| Default port | `9092` (`controller.admin_server.port`) |
 | Method | `GET` |
 | Healthy response | `200` with a JavaScript Object Notation (JSON) body: `{"status": "healthy", "timestamp": "..."}` |
 
-Test it directly with:
+The Docker Compose setup publishes this port on host port `9094`, so test it from the host with:
 
 ```bash
 curl http://localhost:9094/api/admin/v1/health
@@ -92,13 +92,13 @@ The Policy Engine admin server has no Basic authentication layer, and `/health` 
 
     Add a `healthcheck:` block to each service, using `curl` against each component's health path.
 
-    1. For the `gateway-controller` service, point the `healthcheck` at the admin health path:
+    1. For the `gateway-controller` service, point the `healthcheck` at the admin health path. The check runs inside the container, so it uses the container port `9092`, not the published host port `9094`:
 
         ```yaml
         services:
           gateway-controller:
             healthcheck:
-              test: ["CMD", "curl", "-f", "http://localhost:9094/api/admin/v1/health"]
+              test: ["CMD", "curl", "-f", "http://localhost:9092/api/admin/v1/health"]
               interval: 10s
               timeout: 3s
               retries: 5
@@ -133,13 +133,13 @@ The Policy Engine admin server has no Basic authentication layer, and `/health` 
                   readinessProbe:
                     httpGet:
                       path: /api/admin/v1/health
-                      port: 9094
+                      port: 9092
                     initialDelaySeconds: 5
                     periodSeconds: 10
                   livenessProbe:
                     httpGet:
                       path: /api/admin/v1/health
-                      port: 9094
+                      port: 9092
                     initialDelaySeconds: 10
                     periodSeconds: 15
         ```
@@ -180,4 +180,4 @@ The Policy Engine admin server has no Basic authentication layer, and `/health` 
 
 ---
 
-[← Artifact Templating](./artifact-templating.md) &nbsp;|&nbsp; [Configuring Timeouts →](../resiliency/timeouts.md)
+[← Artifact Templating](./artifact-templating.md) &nbsp;|&nbsp; [Ports and TLS Configuration →](./ports-and-tls-configuration.md)

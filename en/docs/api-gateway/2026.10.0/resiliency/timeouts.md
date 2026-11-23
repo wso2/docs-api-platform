@@ -267,3 +267,7 @@ spec:
 ```
 
 Disabling the route timeout removes only the per-route **response deadline** — it does not make the request truly unbounded. The request is still subject to every other applicable timeout: the upstream `connect_timeout_ms`, the route `idleTimeout`, and the downstream HCM `stream_idle_timeout` / `idle_timeout`, any of which can still terminate a stalled stream or connection. In other words, behaviour is bounded by all applicable gateway- and API-level timeouts. Use with care.
+
+---
+
+[← Outbound HTTP Client and Proxy Configuration](../setup/outbound-http-client-and-proxy.md)
