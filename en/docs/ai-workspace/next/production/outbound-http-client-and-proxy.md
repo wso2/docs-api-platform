@@ -138,26 +138,7 @@ The AI Workspace client is the one exception to `none` being the default: it def
 
 `[*.http_client.proxy.tls]` configures a separate TLS handshake to the proxy itself, used only when `mode = "url"` and the proxy address is `https://`. It's fully decoupled from the origin TLS settings above.
 
-`egress` (`"delegated"` or `"manual_connect"`) is required only on the Platform API client, and only when `mode` is not `none` **and** its SSRF guard (below) is enabled — the client fails to start rather than silently choosing a behavior. The AI Workspace client has no SSRF guard to combine it with, so `egress` isn't meaningful there.
-
-## Server-side request forgery (SSRF) guard
-
-```toml
-[platform_api.http_client.ssrf]
-enabled = true
-preset  = "permit_private_block_metadata"
-max_redirects = 5
-allowed_schemes = ["http", "https"]
-```
-
-The Platform API's SSRF guard is **on by default**, unlike every other outbound client described on this site: every current caller of this client fetches a destination an organization admin supplies (an MCP proxy's upstream, an LLM provider template's OpenAPI spec URL), which is exactly the scenario an SSRF guard protects against.
-
-| Preset | Behavior |
-|--------|----------|
-| `permit_private_block_metadata` (default) | A backend that's normally private (a `ClusterIP`, a service DNS name, `localhost`) stays reachable; link-local, cloud metadata, unspecified, and multicast addresses are refused. |
-| `public_only` | Stricter: every private, loopback, link-local, and carrier-grade NAT (CGNAT) address is refused, for a URL expected to point at the public internet. |
-
-The AI Workspace client has no SSRF section at all — it only ever calls the one fixed, trusted Platform API URL configured under `[ai_workspace.control_plane]`, never a tenant-supplied destination, so there's nothing for a guard to protect against.
+`egress` (`"delegated"` or `"manual_connect"`) applies only to the Platform API client; it isn't meaningful on the AI Workspace client.
 
 ## Related
 

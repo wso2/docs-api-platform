@@ -130,29 +130,12 @@ An `no_proxy` entry is an exact hostname, a `.suffix` domain match, or a CIDR bl
 
 `proxy.tls` configures a separate TLS handshake to the proxy itself, when the proxy address is `https://` — it's fully decoupled from the origin TLS settings above, since the client may need a different certificate or CA to reach the proxy than it needs to reach the eventual destination. `insecure_skip_verify` here (as with any TLS trust decision) removes certificate verification for that hop; only use it in a development environment.
 
-`egress` states how the gateway handles origin-destination risk when a forward proxy is configured. It's required only when `mode` is not `none` **and** the SSRF guard below is enabled — the client fails to start rather than silently choosing a behavior:
+`egress` states how the gateway handles origin-destination risk when a forward proxy is configured:
 
 | Value | Behavior |
 |-------|----------|
 | `delegated` | Trusts the proxy's own egress controls to enforce which destinations are reachable. |
 | `manual_connect` | Validates the destination locally before ever issuing a `CONNECT` request to the proxy. |
-
-## Server-side request forgery (SSRF) guard
-
-```toml
-[controller.http_client.ssrf]
-enabled = false
-preset  = ""
-max_redirects = 0
-allowed_schemes = []
-```
-
-Both clients leave the SSRF guard off by default, because their current callers — the control plane, the platform API, on-prem APIM, and a policy's configured backend — all target a single, fixed, operator-configured host rather than a destination supplied by an API consumer. Enable it only if you add a caller that fetches a tenant- or user-supplied URL. When enabled, `preset` must be one of:
-
-| Preset | Behavior |
-|--------|----------|
-| `permit_private_block_metadata` | A backend that's normally private (a `ClusterIP`, a service DNS name, `localhost`) stays reachable; link-local, cloud metadata, unspecified, and multicast addresses are refused. |
-| `public_only` | Stricter: every private, loopback, link-local, and carrier-grade NAT (CGNAT) address is refused, for a URL expected to point at the public internet. |
 
 ## Kubernetes with Helm
 
