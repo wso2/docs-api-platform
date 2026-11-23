@@ -191,6 +191,10 @@ kubectl exec -n <namespace> deploy/<release>-api-portal -- \
   wget -qO- --no-check-certificate https://localhost:9543/ready
 ```
 
+The check inside the container connects from `127.0.0.1` or `::1`. If you restrict `allowed_clients`, keep both addresses in the list, or this check gets `403`.
+
+If you set `tls.certificateProvider: none`, the portal serves plain HTTP. Use `http://localhost:9543/ready` in both commands, and leave out `-k` and `--no-check-certificate`.
+
 A healthy portal answers `200` with `"status": "ok"`.
 
 ## Related

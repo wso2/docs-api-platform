@@ -115,7 +115,9 @@ Each database key has an environment variable named after it, for example `APIP_
 ```toml
 [platform_api.health.database]
 startup_wait = '{% raw %}{{ env "APIP_CP_HEALTH_DATABASE_STARTUP_WAIT" "5m" }}{% endraw %}'
-``` In the Helm chart, the same settings sit under `config.health`, for example `config.health.database.startupWait`.
+```
+
+In the Helm chart, the same settings sit under `config.health`, for example `config.health.database.startupWait`.
 
 ### Restrict who can call the health endpoints
 

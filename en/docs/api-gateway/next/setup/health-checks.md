@@ -87,7 +87,7 @@ The controller serves its health endpoints on the management API (`9090`, or `90
 !!! note "Deprecated: admin server health endpoints"
     The admin server's health endpoints, `/api/admin/v1/health` and `/api/admin/v1/ready` on port `9092`, return the same answer as the management API endpoints and remain available. They're deprecated: use `/api/management/v1/health` and `/api/management/v1/ready` for probes and monitoring.
 
-The management API and admin server endpoints use one evaluation and one cached result, so they always give the same answer. The management API answers its health endpoints before authentication, authorization, access logging, and metrics, so probes need no credentials and don't fill the access log. Every other management API path requires credentials.
+The management API and admin server endpoints use one evaluation and one cached result, so they always give the same answer. The management API answers its health endpoints before authentication, authorization, access logging, and metrics, so probes need no credentials and don't fill the access log. Other management API paths require credentials when authentication is enabled.
 
 ### What the controller checks
 
@@ -252,6 +252,8 @@ In Kubernetes, keep the pod and node ranges in both lists. Otherwise the kubelet
               start_period: 5m
         ```
 
+        If `[controller.server.tls]` is enabled, check `https://localhost:9093/api/management/v1/ready` instead, and add `--no-check-certificate` before the URL. Skipping certificate verification is acceptable here because the call stays inside the container, and the certificate names your public host name rather than `localhost`.
+
     2. The runtime image includes `curl`. Check the runtime readiness route, which covers both the Router and the Policy Engine:
 
         ```yaml
@@ -291,6 +293,8 @@ In Kubernetes, check the controller from inside its pod:
 kubectl exec -n <namespace> deploy/<release>-gateway-controller -- \
   wget -qO- http://localhost:9090/api/management/v1/ready
 ```
+
+If `[controller.server.tls]` is enabled, the controller checks move to HTTPS on port `9093`. From the host, verify the certificate against your CA, for example `curl -i --cacert <ca-file> https://<host>:9093/api/management/v1/ready`. Inside the pod, use `wget -qO- --no-check-certificate https://localhost:9093/api/management/v1/ready`, because the certificate names your public host name rather than `localhost`.
 
 ---
 
