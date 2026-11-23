@@ -487,6 +487,7 @@ nav:
             - Control Plane Connection: api-gateway/2026.10.0/deployment/production-deployment/control-plane-connection.md
           - Deploying APIs:
             - Bottom-Up Deployment: api-gateway/2026.10.0/deployment/deploying-apis/bottom-up-api-deployment.md
+            - GraphQL API Deployment: api-gateway/2026.10.0/deployment/deploying-apis/graphql-api-deployment.md
         - Observability:
           - Logging:
             - Centralized Logging: api-gateway/2026.10.0/observability/logging.md
@@ -515,6 +516,7 @@ nav:
           - Overview: api-gateway/2026.10.0/gateway-controller-management-api/overview.md
           - Authentication: api-gateway/2026.10.0/gateway-controller-management-api/authentication.md
           - Rest API Management: api-gateway/2026.10.0/gateway-controller-management-api/rest-api-management.md
+          - GraphQL API Management: api-gateway/2026.10.0/gateway-controller-management-api/graphql-api-management.md
           - MCP Proxy Management: api-gateway/2026.10.0/gateway-controller-management-api/mcp-proxy-management.md
           - Certificate Management: api-gateway/2026.10.0/gateway-controller-management-api/certificate-management.md
           - LLM Provider Template Management: api-gateway/2026.10.0/gateway-controller-management-api/llm-provider-template-management.md
