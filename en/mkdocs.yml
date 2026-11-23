@@ -1354,6 +1354,7 @@ nav:
             - Configuration & Interpolation: api-portal/next/setting-up/configuration.md
             - Minimum resource requirements: api-portal/next/setting-up/resource-requirement.md
             - Ports: api-portal/next/setting-up/ports.md
+            - TLS & Post-Quantum Cryptography: api-portal/next/setting-up/tls-and-post-quantum-cryptography.md
             - Database: api-portal/next/setting-up/database.md
             - Authentication:
                 - Overview: api-portal/next/setting-up/authentication/overview.md
