@@ -40,7 +40,7 @@ This page lists every port the API Platform Gateway listens on, explains how to 
 !!! note "Admin and metrics ports"
     `controller.admin_server` is enabled by default because it serves `/health`, which Kubernetes liveness and readiness probes use. The `/config_dump` route stays off unless you enable it separately. `controller.metrics` is disabled by default.
 
-    The Docker Compose setup publishes the admin server's port `9092` on host port `9094`, which is the port the [Health Checks](health-checks.md) examples use.
+    The Docker Compose setup publishes the admin server's port `9092` on host port `9094`, so it's reachable from the host at `9094`. Health checks that run inside the container or a Kubernetes pod use `9092`; see [Health Checks](health-checks.md).
 
 ### Policy Engine ports
 
