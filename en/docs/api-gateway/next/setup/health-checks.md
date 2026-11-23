@@ -28,8 +28,8 @@ The two components treat dependencies differently:
 
 | Component | Liveness | Readiness | Port |
 |-----------|----------|-----------|------|
-| Gateway Controller, admin server | `/api/admin/v1/health` | `/api/admin/v1/ready` | `9092` |
 | Gateway Controller, management API | `/api/management/v1/health` | `/api/management/v1/ready` | `9090`, or `9093` when the management API uses TLS |
+| Gateway Controller, admin server (deprecated) | `/api/admin/v1/health` | `/api/admin/v1/ready` | `9092` |
 | Gateway Runtime (Router) | `/_gateway-health/healthy` | `/_gateway-health/ready` | Every traffic listener, by default `8080` (HTTP) and `8443` (HTTPS) |
 
 All of them:
@@ -40,7 +40,7 @@ All of them:
 - reuse an evaluated result for 3 seconds (`cache_ttl`), so frequent probes don't add load.
 
 !!! note
-    The Docker Compose setup publishes the controller's admin port `9092` on host port `9094`. From the host, call `http://localhost:9094/api/admin/v1/health`. Inside the container and in Kubernetes, the port is `9092`.
+    The management API answers on port `9090` both from the host with Docker Compose and inside the cluster. The Docker Compose setup publishes the admin port `9092` on host port `9094`, so from the host the deprecated admin endpoints are at `http://localhost:9094/api/admin/v1/health`. Inside the container and in Kubernetes, the admin port is `9092`.
 
 ## Response format
 
@@ -82,12 +82,12 @@ A client outside the allowed clients gets `403` with `{"status": "forbidden"}` a
 
 ## Gateway Controller
 
-The controller serves the same health answer on two ports:
+The controller serves its health endpoints on the management API (`9090`, or `9093` with TLS). Use them for probes, load balancers, and monitors, so they reach the controller through the port you already expose for the management API. When `[controller.server.tls]` is enabled, the TLS listener replaces the plain HTTP one, so the health endpoints move to `https://<host>:9093` with it.
 
-- The **admin server** (`9092`) answers from the moment the controller starts. Use it when you need an answer during startup, or for operators on the admin network.
-- The **management API** (`9090`, or `9093` with TLS) answers once the controller has started. Use it when a probe, load balancer, or monitor should reach the controller through the port you already expose for the management API. When `[controller.server.tls]` is enabled, the TLS listener replaces the plain HTTP one, so the health endpoints move to `https://<host>:9093` with it.
+!!! note "Deprecated: admin server health endpoints"
+    The admin server's health endpoints, `/api/admin/v1/health` and `/api/admin/v1/ready` on port `9092`, return the same answer as the management API endpoints and remain available. They're deprecated: use `/api/management/v1/health` and `/api/management/v1/ready` for probes and monitoring.
 
-Both pairs use one evaluation and one cached result, so they always give the same answer. The management API answers its health endpoints before authentication, authorization, access logging, and metrics, so probes need no credentials and don't fill the access log. Every other management API path requires credentials.
+The management API and admin server endpoints use one evaluation and one cached result, so they always give the same answer. The management API answers its health endpoints before authentication, authorization, access logging, and metrics, so probes need no credentials and don't fill the access log. Every other management API path requires credentials.
 
 ### What the controller checks
 
@@ -216,7 +216,7 @@ In Kubernetes, keep the pod and node ranges in both lists. Otherwise the kubelet
 
     The controller probes leave out the port and scheme. The chart fills them in from `gateway.config.controller.server.tls.enabled`: the `rest` port over HTTP, or the `rest-tls` port over HTTPS. The runtime probes follow the Router's listener configuration in the same way.
 
-    To customise a probe, override it in your values. A probe that names its own port is rendered as given. For example, to probe the controller's admin server instead:
+    To customise a probe, override it in your values. A probe that names its own port is rendered as given. For example, to probe the controller's admin server, whose health endpoints are deprecated:
 
     ```yaml
     gateway:
@@ -239,13 +239,13 @@ In Kubernetes, keep the pod and node ranges in both lists. Otherwise the kubelet
 
     Add a `healthcheck` to each service. The health check runs inside the container, so use the container ports.
 
-    1. The controller image includes `wget`. Check the admin readiness endpoint, which answers during startup too:
+    1. The controller image includes `wget`. Check the management API readiness endpoint. It refuses connections until the controller has started, which `start_period` allows for:
 
         ```yaml
         services:
           gateway-controller:
             healthcheck:
-              test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:9092/api/admin/v1/ready"]
+              test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:9090/api/management/v1/ready"]
               interval: 10s
               timeout: 5s
               retries: 3
@@ -278,7 +278,6 @@ In Kubernetes, keep the pod and node ranges in both lists. Otherwise the kubelet
 
 ```bash
 # Gateway Controller, from the host with Docker Compose
-curl -i http://localhost:9094/api/admin/v1/ready
 curl -i http://localhost:9090/api/management/v1/ready
 
 # Gateway Runtime
@@ -290,7 +289,7 @@ In Kubernetes, check the controller from inside its pod:
 
 ```bash
 kubectl exec -n <namespace> deploy/<release>-gateway-controller -- \
-  wget -qO- http://localhost:9092/api/admin/v1/ready
+  wget -qO- http://localhost:9090/api/management/v1/ready
 ```
 
 ---
