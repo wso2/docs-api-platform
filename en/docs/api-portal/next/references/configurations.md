@@ -31,6 +31,10 @@ port = 9543
 enabled = false
 cert_file = "./resources/security/client-truststore.pem"
 key_file = "./resources/security/private-key.pem"
+minimum_protocol_version = "TLS1_2"
+maximum_protocol_version = "TLS1_3"
+ciphers = ""
+ecdh_curves = "X25519,P-256"
 ```
 
 | Key | Default | Description |
@@ -39,8 +43,37 @@ key_file = "./resources/security/private-key.pem"
 | `server.port` | `9543` | Single listener port |
 | `server.https.enabled` | `false` | Whether the listener terminates TLS itself. Set `false` only when a trusted upstream (proxy/LB/ingress) terminates TLS |
 | `server.https.cert_file` / `key_file` |—| Required only when `https.enabled = true`—no self-signed fallback |
+| `server.https.minimum_protocol_version` / `maximum_protocol_version` | `TLS1_2` / `TLS1_3` | Bounds the negotiated TLS version: `TLS1_0`, `TLS1_1`, `TLS1_2`, or `TLS1_3` |
+| `server.https.ciphers` | Empty | Comma-separated OpenSSL-style cipher suite names for TLS 1.2 and below. Empty applies a secure built-in default set |
+| `server.https.ecdh_curves` | `X25519,P-256` | Comma-separated key-exchange groups, most preferred first. Add `X25519MLKEM768` to enable post-quantum key exchange. See [TLS and post-quantum cryptography](../setting-up/tls-and-post-quantum-cryptography.md) |
 
 {% endraw %}
+
+## Outbound HTTP client
+
+Settings for the connections the portal opens to other services: the Platform API sign-in in local authentication mode, token refresh requests to the identity provider, key managers, billing providers, the try-it proxy, and webhook delivery. The try-it proxy uses only the `tls` settings; its timeout and size limits are under [Try-out proxy](#try-out-proxy).
+
+```toml
+[api_portal.http_client]
+keep_alive = true
+max_sockets = 50
+max_free_sockets = 10
+timeout_ms = 10000
+
+[api_portal.http_client.tls]
+minimum_protocol_version = "TLS1_2"
+maximum_protocol_version = "TLS1_3"
+ciphers = ""
+ecdh_curves = "X25519,P-256"
+```
+
+| Key | Default | Description |
+|---|---|---|
+| `http_client.keep_alive` | `true` | Reuses connections to the same host across requests |
+| `http_client.max_sockets` | `50` | Maximum open connections per host |
+| `http_client.max_free_sockets` | `10` | Maximum idle connections kept open per host |
+| `http_client.timeout_ms` | `10000` | Socket inactivity timeout, in milliseconds |
+| `http_client.tls.*` | Same as `server.https` | Same keys and defaults as the listener's TLS settings above, applied to outbound connections. See [TLS and post-quantum cryptography](../setting-up/tls-and-post-quantum-cryptography.md) |
 
 ## Logging
 
