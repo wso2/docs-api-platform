@@ -27,7 +27,7 @@ The portal has two TLS sections in `config.toml`, and both take the same keys:
 | `[api_portal.server.https]` | The portal's HTTPS listener, which browsers and Management API clients connect to. It applies only when `enabled = true`. |
 | `[api_portal.http_client.tls]` | Connections the portal opens to other services: the Platform API sign-in in local authentication mode, token refresh requests to the identity provider, key managers, billing providers, the try-it proxy, and webhook delivery. |
 
-If a proxy, load balancer, or ingress terminates TLS in front of the portal, that component's settings decide what browsers negotiate. The listener settings on this page then don't apply.
+If a proxy, load balancer, or ingress terminates TLS in front of the portal, that component's settings decide what browsers negotiate. The listener settings then govern only the connection from that component to the portal, and only when it forwards traffic over HTTPS. If it forwards cleartext, the listener settings don't apply.
 
 !!! note "Sign-in code exchange and signing keys"
     Two connections to the identity provider don't use `[api_portal.http_client.tls]`: exchanging the sign-in authorization code for tokens, and fetching the provider's signing keys from `jwks_url`. They offer the hybrid post-quantum group `X25519MLKEM768` first and fall back to classical curves. You can't change their settings in `config.toml`.
@@ -86,7 +86,7 @@ To offer the hybrid group on the connections the portal opens to other services,
 ecdh_curves = "X25519MLKEM768,X25519,P-256"
 ```
 
-Keys you leave out of the table keep their defaults. A destination that supports the hybrid group uses it, and any other destination falls back to `X25519` or `P-256`.
+Keys you leave out of the table keep their defaults. The portal offers the hybrid group first, but each destination decides which group to use. A destination that supports `X25519MLKEM768` can still select a classical group if its own policy prefers one. A destination that doesn't support the hybrid group falls back to `X25519` or `P-256`.
 
 ### Verify the negotiated group
 
