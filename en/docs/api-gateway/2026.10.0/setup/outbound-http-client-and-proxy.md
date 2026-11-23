@@ -151,7 +151,7 @@ gateway:
     no_proxy = [".internal.example.com", "10.0.0.0/8"]
 ```
 
-`gateway.config_toml` is stored in a ConfigMap. Don't put a proxy password in it as a literal value; use an [interpolation token](configuration.md#interpolation-tokens) such as `{{ env "PROXY_PASSWORD" }}` and supply the variable to the gateway deployment.
+`gateway.config_toml` is stored in a ConfigMap. Don't put a proxy password in it as a literal value; use an [interpolation token](configuration.md#interpolation-tokens) such as {% raw %}`{{ env "PROXY_PASSWORD" }}`{% endraw %} and supply the variable to the gateway deployment.
 
 ---
 

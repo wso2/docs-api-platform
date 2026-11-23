@@ -1,6 +1,6 @@
 ---
 title: "Ports and TLS Configuration"
-description: "Reference for every gateway listener port, how to enable TLS on each, the cipher suites and protocol versions each component accepts, and post-quantum key exchange defaults."
+description: "Gateway listener ports, enabling TLS on each, accepted cipher suites and protocol versions, and post-quantum key exchange defaults."
 canonical_url: https://wso2.com/api-platform/docs/api-gateway/setup/ports-and-tls-configuration/
 md_url: https://wso2.com/api-platform/docs/api-gateway/setup/ports-and-tls-configuration.md
 tags:
@@ -39,6 +39,8 @@ This page lists every port the API Platform Gateway listens on, explains how to 
 
 !!! note "Admin and metrics ports"
     `controller.admin_server` is enabled by default because it serves `/health`, which Kubernetes liveness and readiness probes use. The `/config_dump` route stays off unless you enable it separately. `controller.metrics` is disabled by default.
+
+    The Docker Compose setup publishes the admin server's port `9092` on host port `9094`, which is the port the [Health Checks](health-checks.md) examples use.
 
 ### Policy Engine ports
 
@@ -80,7 +82,9 @@ The router and the other gateway components use different cipher suite naming sc
 
 ### Protocol version bounds
 
-Every TLS section takes `minimum_protocol_version` and `maximum_protocol_version`, each one of `TLS1_0`, `TLS1_1`, `TLS1_2`, or `TLS1_3`. The default range is `TLS1_2` to `TLS1_3` everywhere. A `ciphers` (or `cipher_suites`) field is a comma-separated list restricting which suites that listener or client negotiates. This list **only affects TLS 1.2 and below**; TLS 1.3 cipher suites aren't configurable.
+The outbound client sections (`controller.http_client.tls`, `policy_engine.http_client.tls`) bound the TLS version with `min_version` and `max_version`. Every other TLS section uses `minimum_protocol_version` and `maximum_protocol_version`. Each takes one of `TLS1_0`, `TLS1_1`, `TLS1_2`, or `TLS1_3`, and the default range is `TLS1_2` to `TLS1_3` everywhere.
+
+The cipher suite list is `cipher_suites` in the outbound client sections and `ciphers` everywhere else: a comma-separated list restricting which suites that listener or client negotiates. This list **only affects TLS 1.2 and below**; TLS 1.3 cipher suites aren't configurable.
 
 ### Default cipher list
 
