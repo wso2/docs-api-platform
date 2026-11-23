@@ -188,12 +188,19 @@ By default, the health endpoints answer every client. To restrict them, list IP 
 - `[controller.health] allowed_clients` applies to the controller's endpoints on both the admin server and the management API.
 - `[router.health] allowed_clients` applies to the runtime routes. The controller builds these routes, so set it on the controller.
 
-Only the connection's peer address counts. A call through a published Docker port arrives from the Docker network, and a call through a proxy arrives from the proxy, so keep those addresses in the list. For example, in Docker Compose:
+Only the connection's peer address counts. A call through a published Docker port arrives from the Docker network, and a call through a proxy arrives from the proxy, so keep those addresses in the list.
 
-```bash
-APIP_GW_CONTROLLER_HEALTH_ALLOWED_CLIENTS=127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,fc00::/7
-APIP_GW_ROUTER_HEALTH_ALLOWED_CLIENTS=127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,fc00::/7
+In Docker Compose, set both lists in the `gateway-controller` service's `environment`. The controller reads the router list too, because it builds the runtime's routes:
+
+```yaml
+services:
+  gateway-controller:
+    environment:
+      - APIP_GW_CONTROLLER_HEALTH_ALLOWED_CLIENTS=127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,fc00::/7
+      - APIP_GW_ROUTER_HEALTH_ALLOWED_CLIENTS=127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,fc00::/7
 ```
+
+Then recreate the containers with `docker compose up -d` so the lists take effect.
 
 In Kubernetes, keep the pod and node ranges in both lists. Otherwise the kubelet's probes get `403` and the pods never become ready.
 

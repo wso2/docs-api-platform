@@ -176,6 +176,8 @@ The portal checks only the connection's peer address. It never reads `X-Forwarde
 
     `--no-check-certificate` is acceptable here because the call stays inside the container, and the certificate names your public host name rather than `localhost`.
 
+    If you serve the portal over plain HTTP, check `http://localhost:9543/ready` instead, and leave out `--no-check-certificate`.
+
 ## Verify
 
 On a VM or with Docker Compose, call the endpoint on the host that runs the portal:

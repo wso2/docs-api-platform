@@ -127,7 +127,7 @@ Only the connection's peer address counts, so keep the addresses your probes and
 
 - **Kubernetes and OpenShift:** keep the pod and node ranges in the list. Otherwise the kubelet's probes get `403` and the pods never become ready.
 - **Load balancers:** keep the load balancer's address in the list.
-- **Docker Compose:** a call from the host through a published port arrives from the Docker network.
+- **Docker Compose:** a call from the host through a published port arrives from the Docker network. The health check inside the container connects through loopback, so also keep `127.0.0.1` and `::1` in the list.
 
 ## Configuring health checks
 
