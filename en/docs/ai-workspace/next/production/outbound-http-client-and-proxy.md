@@ -15,16 +15,16 @@ content_type: "reference"
 
 # Outbound HTTP Client and Proxy Configuration
 
-The Platform API and the AI Workspace backend for frontend (BFF) each build one shared outbound HTTP client at startup:
+The Platform API and the AI Workspace backend for frontend (BFF) each have an outbound HTTP client with its own settings:
 
 | Client | Used by | What it calls |
 |--------|---------|----------------|
-| `platform_api.http_client` | Platform API | Model Context Protocol (MCP) reachability probes, and OpenAPI-spec-by-URL fetches for LLM provider templates — both destinations an organization admin supplies |
-| `ai_workspace.http_client` | AI Workspace BFF | The Platform API, on the single fixed URL configured under `[ai_workspace.control_plane]` |
+| `platform_api.http_client` | Platform API | Model Context Protocol (MCP) reachability checks, and OpenAPI specs fetched by URL for LLM provider templates. Both destinations are supplied by an organization admin. |
+| `ai_workspace.http_client` | AI Workspace BFF | The Platform API, at the URL configured under `[ai_workspace.control_plane]` |
 
-Both mirror the same underlying shape as every other outbound client in the platform, but their defaults diverge in a few places because of what each one calls — a tenant-supplied destination for the Platform API, versus one fixed, trusted destination for the BFF. The sections below call out every place the two differ.
+Both clients take the same settings, but some defaults differ. The tables below list both defaults wherever they differ.
 
-TLS *trust* for the BFF's one call to the Platform API — `tls_skip_verify` and `ca_file` under `[ai_workspace.control_plane]` — is a separate, narrower setting from anything on this page. See [Secure traffic with TLS](tls.md#step-3-make-the-bff-verify-the-platform-api) for that.
+TLS *trust* for the BFF's calls to the Platform API (`tls_skip_verify` and `ca_file` under `[ai_workspace.control_plane]`) is configured separately. See [Secure traffic with TLS](tls.md#step-3-make-the-bff-verify-the-platform-api).
 
 ## Connection pooling
 
@@ -47,9 +47,9 @@ enable_http2            = false
 | `idle_conn_timeout` | `90s` | `90s` | How long an idle connection stays in the pool before it's closed. |
 | `keep_alive` | `30s` | `30s` | TCP keep-alive probe interval. |
 | `disable_keep_alives` | `true` | `false` | Whether each connection closes after one request instead of being reused. |
-| `enable_http2` | `false` | `true` | Whether this client opts in to HTTP/2. |
+| `enable_http2` | `false` | `true` | Whether this client uses HTTP/2. |
 
-Two of these are worth pausing on. The Platform API disables keep-alives by default: a one-off outbound probe or fetch (an MCP reachability check, an OpenAPI spec fetch) gains nothing from connection reuse, and reusing a connection whose response was malformed — which some MCP or spec backends do — could corrupt a later, unrelated request. The AI Workspace client enables HTTP/2 by default, the opposite of every other outbound client in the platform: it already set a custom TLS configuration before these settings existed, which otherwise makes Go's `Transport` conservatively disable HTTP/2, so this default simply preserves that transport's prior behavior.
+The Platform API disables keep-alives by default because its outbound calls are one-off checks and fetches that don't benefit from reusing a connection.
 
 ## Timeouts
 
@@ -65,16 +65,16 @@ max_response_bytes = -1
 
 | Setting | Platform API default | AI Workspace default | Description |
 |---------|------------------------|--------------------------|--------------|
-| `overall` | `60s` | `30s` | Safety-net budget for the entire outbound call. |
+| `overall` | `60s` | `30s` | Upper bound for an entire outbound call. |
 | `dial` | `10s` | `10s` | TCP connection establishment timeout. |
 | `tls_handshake` | `10s` | `10s` | Time allowed to complete the TLS handshake. |
 | `response_header` | `10s` | `10s` | Time allowed to receive the response headers. |
 | `expect_continue` | `1s` | `1s` | Time to wait for a `100 Continue` response. |
-| `max_response_bytes` | `-1` (no cap) | `-1` (no cap) | Response body size cap; negative disables it. |
+| `max_response_bytes` | `-1` (no cap) | `-1` (no cap) | Response body size cap; a negative value disables it. |
 
-Both clients leave `max_response_bytes` uncapped, but for different reasons. The Platform API applies its own, separately configured caps at each call site instead — `openapi_spec_max_fetch_bytes` for spec fetches, a fixed bound for MCP responses — so a client-level cap here would silently shadow whichever of those is smaller. The AI Workspace client backs a reverse proxy that streams Server-Sent Events (SSE) and other long-running LLM output between the BFF and the Platform API, where truncating a legitimate long stream would be worse than not bounding it.
+Both clients leave `max_response_bytes` uncapped by default. The Platform API limits OpenAPI spec fetches separately through `openapi_spec_max_fetch_bytes`. The AI Workspace client carries streamed LLM responses, which a size cap would cut off.
 
-`overall` on the AI Workspace client has no observable effect at its one call site today — the BFF extracts only the underlying transport and applies its own separate 60-second timeout on top. The setting exists for shape parity with every other outbound client and for future use.
+Calls from the AI Workspace BFF to the Platform API time out after 60 seconds regardless of `overall`.
 
 ## TLS for outbound calls
 
@@ -91,24 +91,24 @@ client_key_file   = ""
 
 | Setting | Default | Description |
 |---------|---------|--------------|
-| `min_version` / `max_version` | `TLS1_2` / `TLS1_3` (Platform API); empty/empty (AI Workspace) | Bounds the negotiated TLS version. The AI Workspace client leaves both empty, which uses Go's own default (currently a TLS 1.2 floor with no configured ceiling) — set them explicitly to bound it. |
-| `cipher_suites` | Empty | Comma-separated Go `crypto/tls` cipher suite names; only affects TLS 1.2 and below. |
+| `min_version` / `max_version` | `TLS1_2` / `TLS1_3` (Platform API); empty (AI Workspace) | Bounds the negotiated TLS version. On the AI Workspace client, empty means a TLS 1.2 minimum and no maximum. |
+| `cipher_suites` | Empty | Comma-separated IANA cipher suite names; only affects TLS 1.2 and below. |
 | `curve_preferences` | Empty | See [Post-quantum cryptography for outbound calls](#post-quantum-cryptography-for-outbound-calls) below. |
 | `root_ca_file` | Empty | PEM certificate authority (CA) bundle trusted for the destination's certificate. Empty uses the system root pool. |
-| `client_cert_file` / `client_key_file` | Empty | Client certificate and key for mutual TLS (mTLS) to the destination. Both or neither. |
+| `client_cert_file` / `client_key_file` | Empty | Client certificate and key for mutual TLS (mTLS) to the destination. Set both or neither. |
 
-The Platform API client also takes `insecure_skip_verify` (default `false`) directly, since — unlike the gateway's outbound clients, which reuse an existing control-plane trust setting — the Platform API has no equivalent setting to source it from. Enable it only in a local or development environment.
+The Platform API client also takes `insecure_skip_verify` (default `false`). Enable it only in a local or development environment.
 
 ### Post-quantum cryptography for outbound calls
 
-Both clients' `curve_preferences` default to empty — Go's own defaults, no post-quantum key exchange. Prepend the hybrid group once the destination is confirmed to support it:
+`curve_preferences` is a comma-separated list of TLS 1.3 key-exchange groups, most preferred first. When it's empty, both clients offer the hybrid post-quantum group `X25519MLKEM768` first, followed by the classical curves, so post-quantum key exchange is used with any destination that supports it. A destination that doesn't support the hybrid group falls back to a classical curve.
+
+Set the list only to change that order or to restrict the groups offered. For example, to offer classical curves only:
 
 ```toml
 [platform_api.http_client.tls]
-curve_preferences = "X25519MLKEM768,X25519,P-256"
+curve_preferences = "X25519,P-256"
 ```
-
-A peer that doesn't offer the hybrid group falls back to a later, classical entry in the same list.
 
 ## Forward proxy
 
@@ -134,14 +134,12 @@ egress   = ""
 | `environment` | Follows the standard `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables. |
 | `url` | Routes through the proxy at `url`, authenticating with `username`/`password` if set, and bypassing it for any destination matching an entry in `no_proxy` (an exact hostname, a `.suffix` domain match, or a CIDR block). |
 
-The AI Workspace client is the one exception to `none` being the default: it defaults to `environment` to preserve the transport's behavior from before this setting existed, when it always read those environment variables directly.
+`[*.http_client.proxy.tls]` configures the TLS connection to the proxy itself, used only when `mode = "url"` and the proxy address is `https://`. It's independent of the destination TLS settings above.
 
-`[*.http_client.proxy.tls]` configures a separate TLS handshake to the proxy itself, used only when `mode = "url"` and the proxy address is `https://`. It's fully decoupled from the origin TLS settings above.
-
-`egress` (`"delegated"` or `"manual_connect"`) applies only to the Platform API client; it isn't meaningful on the AI Workspace client.
+`egress` (`"delegated"` or `"manual_connect"`) applies only to the Platform API client.
 
 ## Related
 
 - [TLS Ciphers and Post-Quantum Cryptography](tls-ciphers-and-post-quantum-cryptography.md): cipher suites and PQC for each HTTPS listener
-- [Secure traffic with TLS](tls.md): the BFF's trust settings for its one call to the Platform API
+- [Secure traffic with TLS](tls.md): the BFF's trust settings for its calls to the Platform API
 - [Harden the deployment](harden.md): bounding connections and restricting what each container can reach
