@@ -180,4 +180,4 @@ The Policy Engine admin server has no Basic authentication layer, and `/health` 
 
 ---
 
-[← Artifact Templating](./artifact-templating.md) &nbsp;|&nbsp; [Configuring Timeouts →](../resiliency/timeouts.md)
+[← Artifact Templating](./artifact-templating.md) &nbsp;|&nbsp; [Ports and TLS Configuration →](./ports-and-tls-configuration.md)

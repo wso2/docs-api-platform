@@ -46,10 +46,10 @@ This page lists every port the API Platform Gateway listens on, explains how to 
 |---------|---------------|----------|------------|
 | Admin server (`/health`, `/config_dump`) | `9002` | Plaintext | `policy_engine.admin.port` |
 | Admin server, TLS | `9004` | TLS, off by default | `policy_engine.admin.tls.port`, `.enabled` |
-| Prometheus metrics | `9003` | Plaintext, enabled by default | `policy_engine.metrics.port`, `.enabled` |
+| Prometheus metrics | `9003` | Plaintext, disabled by default | `policy_engine.metrics.port`, `.enabled` |
 
-!!! note "Metrics are enabled by default on the Policy Engine"
-    The Policy Engine's admin server is enabled by default, for the same `/health` probe reason as the Gateway Controller's. Unlike `controller.metrics`, its metrics endpoint is also enabled by default.
+!!! note "Admin port"
+    The Policy Engine's admin server is enabled by default, for the same `/health` probe reason as the Gateway Controller's. Its metrics endpoint is disabled by default.
 
 ## Enabling TLS on a listener
 
@@ -138,7 +138,7 @@ The outbound HTTP clients (`controller.http_client.tls.curve_preferences`, `poli
 
 ## Kubernetes with Helm
 
-Every setting on this page is controlled through Helm values under `gateway.config.router.*`, `gateway.config.controller.*`, and `gateway.config.policy_engine.*`, the same pattern [Configuring Timeouts](../resiliency/timeouts.md#kubernetes-with-helm) uses. For example:
+Most settings on this page are controlled through Helm values under `gateway.config.router.*`, `gateway.config.controller.*`, and `gateway.config.policy_engine.*`, the same pattern [Configuring Timeouts](../resiliency/timeouts.md#kubernetes-with-helm) uses. For example:
 
 ```yaml
 gateway:
@@ -149,16 +149,19 @@ gateway:
       https_port: 8443
       downstream_tls:
         ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256,ECDHE-RSA-AES128-GCM-SHA256"
-        ecdh_curves: "X25519MLKEM768,X25519,P-256"
     controller:
       server:
         api_port: 9090
         tls:
           enabled: true
           port: 9093
+          ecdh_curves: "X25519MLKEM768,X25519,P-256"
 ```
 
 The chart renders these values into the gateway's `config.toml`. Provisioning the certificate the chart references (through cert-manager or an existing Kubernetes secret) is covered in [Security Hardening](../deployment/production-deployment/security-hardening.md#tls-configuration).
+
+!!! note "Router key-exchange groups with Helm"
+    The Helm chart doesn't expose `ecdh_curves` for `router.downstream_tls` or `router.upstream.tls`, so a gateway deployed with the chart uses the router's default classical curves (`X25519,P-256`).
 
 ---
 

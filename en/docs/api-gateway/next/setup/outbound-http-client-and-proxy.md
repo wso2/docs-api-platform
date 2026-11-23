@@ -137,20 +137,21 @@ A `no_proxy` entry is an exact hostname, a `.suffix` domain match, or a CIDR blo
 
 ## Kubernetes with Helm
 
-These settings use the same `gateway.config.controller.http_client.*` and `gateway.config.policy_engine.http_client.*` Helm values pattern as every other `config.toml` key described in [Configuring Timeouts](../resiliency/timeouts.md#kubernetes-with-helm). For example:
+The Helm chart has no structured values for these settings. Set them through `gateway.config_toml`, which adds raw TOML to the gateway's `config.toml`. For example:
 
 ```yaml
 gateway:
-  config:
-    controller:
-      http_client:
-        timeouts:
-          overall: "60s"
-        proxy:
-          mode: "url"
-          url: "http://proxy.internal:3128"
-          no_proxy: [".internal.example.com", "10.0.0.0/8"]
+  config_toml: |
+    [controller.http_client.timeouts]
+    overall = "60s"
+
+    [controller.http_client.proxy]
+    mode = "url"
+    url = "http://proxy.internal:3128"
+    no_proxy = [".internal.example.com", "10.0.0.0/8"]
 ```
+
+`gateway.config_toml` is stored in a ConfigMap. Don't put a proxy password in it as a literal value; use an [interpolation token](configuration.md#interpolation-tokens) such as `{{ env "PROXY_PASSWORD" }}` and supply the variable to the gateway deployment.
 
 ---
 
