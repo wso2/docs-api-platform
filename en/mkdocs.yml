@@ -369,6 +369,8 @@ nav:
           - Artifact Templating: api-gateway/next/setup/artifact-templating.md
           - Health Checks: api-gateway/next/setup/health-checks.md
           - Signing Keys and JWKS: api-gateway/next/setup/signing-keys-and-jwks.md
+          - Ports and TLS Configuration: api-gateway/next/setup/ports-and-tls-configuration.md
+          - Outbound HTTP Client and Proxy Configuration: api-gateway/next/setup/outbound-http-client-and-proxy.md
         - Resiliency:
           - Timeouts: api-gateway/next/resiliency/timeouts.md
         - Policies:
@@ -1559,6 +1561,8 @@ nav:
           - Production Readiness:
               - Provision Secrets and Keys: ai-workspace/next/production/secrets-and-keys.md
               - Secure Traffic with TLS: ai-workspace/next/production/tls.md
+              - TLS Ciphers and Post-Quantum Cryptography: ai-workspace/next/production/tls-ciphers-and-post-quantum-cryptography.md
+              - Outbound HTTP Client and Proxy Configuration: ai-workspace/next/production/outbound-http-client-and-proxy.md
               - Expose AI Workspace: ai-workspace/next/production/expose-the-workspace.md
               - Run in High Availability: ai-workspace/next/production/high-availability.md
               - Harden the Deployment: ai-workspace/next/production/harden.md
