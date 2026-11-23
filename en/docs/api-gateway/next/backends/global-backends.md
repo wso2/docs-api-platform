@@ -101,6 +101,16 @@ A Backend supports the following fields:
 
     A successful request returns `201 Created` with the Backend.
 
+=== "Kubernetes"
+
+    With the [Gateway Operator](../deployment/deployment-modes/kubernetes/gateway-operator.md), apply the same file as a custom resource:
+
+    ```bash
+    kubectl apply -f tenant-b.yaml
+    ```
+
+    The operator deploys the Backend to every gateway whose `APIGateway` selects its namespace and labels. Its labels also serve as the labels a `backendSelector` matches.
+
 If the definition is invalid, the gateway returns `400 Bad Request` with an `errors` array. Each error names the field at fault, for example `spec.endpoints[0].url` or `spec.basePath`. If a Backend with the same `metadata.name` exists, the gateway returns `409 Conflict`.
 
 If the gateway restricts the destinations that artifacts can reach, it checks each endpoint URL in the same way as an API's upstream URLs. An endpoint that the gateway doesn't permit gets `400 Bad Request` naming the field, and the gateway doesn't serve a stored Backend that it doesn't permit.
@@ -244,6 +254,8 @@ You can't delete a certificate while a Backend's `tls` block names it.
 
 Edit the definition file and apply it again with `ap gateway apply -f`, or send it with `PUT /backends/{id}`. The `metadata.name` in the file must match the Backend ID. The gateway applies the change within a few seconds. You don't redeploy the APIs that route to the Backend.
 
+Requests in flight during an update aren't affected. Until every API uses the updated base path, the gateway keeps the previous endpoints in service next to the updated ones. A request never combines one version's base path with another version's endpoints.
+
 ### Delete a Backend
 
 Send a `DELETE` request with the Backend ID:
@@ -253,7 +265,7 @@ curl -X DELETE http://localhost:9090/api/management/v1/backends/tenant-b \
   -u "$ADMIN_USERNAME:$ADMIN_PASSWORD"
 ```
 
-While a deployed API names the Backend in `targetUpstream`, the gateway refuses the delete with `409 Conflict`. The response lists each API and the parameter that names the Backend. Remove the reference or delete the API, and then delete the Backend. An API with its own upstream definition of the same name doesn't block the delete, because that API never uses the Backend.
+While a deployed API names the Backend in `targetUpstream`, the gateway refuses the delete with `409 Conflict`. The response lists each API and the parameter that names the Backend. Remove the reference or delete the API, and then delete the Backend. An API with its own upstream definition of the same name doesn't block the delete, because that API never uses the Backend. On Kubernetes, a deleted `Backend` resource stays in the `Terminating` state until no API names it, and then the operator removes it.
 
 If APIs select the Backend through `backendExpression`, requests that name it get `400 Bad Request` after you delete it. The gateway never sends them to another backend.
 

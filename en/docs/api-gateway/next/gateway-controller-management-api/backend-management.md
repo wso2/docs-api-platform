@@ -34,7 +34,7 @@ curl -X POST http://localhost:9090/api/management/v1/backends \
 
 ```
 
-Add a gateway-wide Backend. The gateway turns it into one Envoy cluster, backend_<name>, that any API using the dynamic-endpoint policy can route to without the API being edited or redeployed.
+Add a gateway-wide Backend. The gateway turns it into an Envoy cluster, backend_<name>_<revision>, that any API using the dynamic-endpoint policy can route to without the API being edited or redeployed. Each change to the Backend's endpoints, weights, base path, TLS settings or timeout is a new revision with its own cluster.
 
 > Payload
 
@@ -371,7 +371,7 @@ curl -X PUT http://localhost:9090/api/management/v1/backends/{id} \
 
 ```
 
-Update a gateway-wide Backend. The gateway rebuilds the Backend's cluster from its endpoints, weights, TLS settings and timeout, and then reconciles the record the policy engine reads (name, base path and labels), pushing it again only when it changed. The APIs that route to the Backend pick up the change without being edited or redeployed.
+Update a gateway-wide Backend. A change to its endpoints, weights, base path, TLS settings or timeout is a new revision: the gateway adds the new revision's cluster next to the previous one, switches the record the policy engine reads (name, cluster, base path and labels) to it, and only then removes the previous cluster, so every request uses one revision's base path and endpoints together. A change to labels alone updates the record only. The APIs that route to the Backend pick up the change without being edited or redeployed.
 
 > Payload
 
