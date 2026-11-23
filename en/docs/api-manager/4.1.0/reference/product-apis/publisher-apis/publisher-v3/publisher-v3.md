@@ -14,5 +14,5 @@ content_type: "reference"
 template: templates/redoc.html
 ---
 
-<redoc spec-url='publisher-v3.yaml'></redoc>
-<script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"> </script>
+<redoc spec-url='../publisher-v3.yaml'></redoc>
+<script src="https://cdn.redoc.ly/redoc/v2.5.4/bundles/redoc.standalone.js"> </script>
