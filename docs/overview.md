@@ -1,7 +1,7 @@
 ---
-title: "What is Choreo API Management?"
-pagination_label: "What is Choreo API Management?"
-description: "Overview of Choreo API Management, the ways you can run it, its components, and where to start."
+title: "What is API Management?"
+pagination_label: "What is API Management?"
+description: "Overview of API Management, how you can run it, its components, and where to start."
 ---
 
 Choreo API Management helps you design, secure, publish, and govern your APIs. Proxy REST, WebSocket, and GraphQL APIs, apply policies, and expose APIs to developers through a portal.
