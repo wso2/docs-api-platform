@@ -1,7 +1,7 @@
 ---
 title: "Deploy an API"
 pagination_label: "Deploy an API"
-description: "Deploy an API proxy to a Choreo managed or self-hosted gateway, check deployments and builds, stop a deployment, and deploy again."
+description: "Deploy an API proxy to a cloud or self-hosted gateway, check deployments and builds, stop a deployment, and deploy again."
 ---
 
 Deploying an API proxy places a build of the API on one or more gateways. After the deployment succeeds, requests can reach the backend through each gateway's invoke URL.

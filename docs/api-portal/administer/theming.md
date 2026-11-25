@@ -24,11 +24,11 @@ The **Current theme** section shows whether the selected view uses the built-in 
 
 The downloaded ZIP archive contains a folder named after the selected view (for example, `default`). This folder contains the theme files organized into the following directories:
 
-- `styles/` – Stylesheets.
-- `layout/` – Layout templates.
-- `partials/` – Reusable template components.
-- `images/` – Theme images.
-- `pages/` – Page templates.
+- `styles/` - Stylesheets.
+- `layout/` - Layout templates.
+- `partials/` - Reusable template components.
+- `images/` - Theme images.
+- `pages/` - Page templates.
 
 If the selected view does not have a custom theme, the archive contains the built-in default theme.
 
