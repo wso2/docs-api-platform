@@ -88,27 +88,3 @@
   height: var(--md-header-link-icon-size);
   width: var(--md-header-link-icon-size);
 }
-
-/* Try API Platform button */
-
-.md-button.md-button--try-bijira {
-  background-color: #FF7300;
-  border-color: #FF7300;
-  color: #ffffff;
-  border-radius: 5px;
-  padding: 5px 16px;
-  transition: 0.2s;
-  margin: 0;
-  font-size: 14px;
-}
-
-.md-button.md-button--try-bijira:hover {
-  background-color: #ff7300f1;
-  border-color: #FF7300;
-  color: #ffffff;
-  opacity: 1;
-}
-
-.md-button.md-button--try-bijira:hover label {
-  cursor: pointer;
-}

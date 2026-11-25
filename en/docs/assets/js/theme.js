@@ -145,64 +145,6 @@ onFirstPage(function () {
   });
 });
 
-/*
- * "Try WSO2 API Platform" header button (see partials/community.html)
- *
- * Opens the Console sign-in page with UTM parameters to record Console's sign-up
- * events in Moesif. The header stays in place across instant navigation. So the 
- * page slug is read when we click the button.
- *
- */
-window.openConsoleSignIn = (function () {
-  // Same site root resolution as the search breadcrumbs below.
-  var scope = window.__md_scope ||
-    (document.querySelector('base') ? new URL(document.querySelector('base').href) : new URL('/', location));
-  var basePath = scope.pathname;
-  if (basePath.charAt(basePath.length - 1) !== '/') basePath += '/';
-
-  // The page path relative to the site root, lowercased, with each run of
-  // characters other than letters and digits replaced by one underscore:
-  // /api-gateway/1.2.0/quick-start-guide/ becomes
-  // api_gateway_1_2_0_quick_start_guide. The site root becomes "home".
-  function pageSlug() {
-    var path = location.pathname;
-    try {
-      path = decodeURIComponent(path);
-    } catch (e) {
-      // Keep the raw path if it isn't valid percent-encoding.
-    }
-    if (path.indexOf(basePath) === 0) path = path.slice(basePath.length);
-    var slug = path
-      .replace(/index\.html$/, '')
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '_')
-      .replace(/^_+|_+$/g, '');
-    return slug || 'home';
-  }
-
-  return function () {
-    var utm = {
-      utm_source: 'docs',
-      utm_medium: 'header-cta',
-      utm_campaign: 'docs_cta',
-      utm_content: pageSlug(),
-    };
-
-    // Record the click with the same UTM values. 
-    try {
-      if (typeof trackEvent === 'function') trackEvent('CTA-Clicked', Object.assign({ page_title: document.title }, utm));
-    } catch (e) {
-      console.error('Failed to track CTA click:', e);
-    }
-
-    var url = new URL('https://console.bijira.dev/login/');
-    Object.keys(utm).forEach(function (key) {
-      url.searchParams.set(key, utm[key]);
-    });
-    window.open(url.toString(), '_blank', 'noopener');
-  };
-})();
-
 // Content tab styling and navigation sidebar state: both are re-rendered on
 // every navigation, so this runs per page.
 onEachPage(function() {
@@ -418,8 +360,8 @@ onEachPage(function () {
   var labels = { cloud: 'Cloud', hybrid: 'Hybrid', 'self-hosted': 'Self-hosted' };
   var urlParam = 'deployment';
   var descriptions = {
-    cloud: 'WSO2 hosts the control plane and the gateways.',
-    hybrid: 'WSO2 hosts the control plane, and you run the gateways.',
+    cloud: 'Choreo Labs hosts the control plane and the gateways.',
+    hybrid: 'Choreo Labs hosts the control plane, and you run the gateways.',
     'self-hosted': 'You run the gateways, on their own or with your own control plane.'
   };
 
@@ -977,7 +919,7 @@ onEachPage(function () {
   var output = null;
 
   // Material exposes the site root as an absolute URL in `window.__md_scope`
-  // (set on every page, e.g. https://host/bijira/docs/). Use it to build the
+  // (set on every page, e.g. https://host/api-platform/docs/). Use it to build the
   // fetch URL and to turn a result's pathname into a build-time breadcrumb key.
   // Fall back to a <base> tag, then the server root.
   var scope = window.__md_scope ||

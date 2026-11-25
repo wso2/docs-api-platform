@@ -1404,3 +1404,60 @@
         width: 16px;
     }
 }
+
+/* Announcement banner (theme/material/main.html).
+   A slim bar in the site's primary orange with white text and link, the same
+   in light and dark mode. */
+.md-banner {
+  background-color: var(--md-primary-fg-color);
+  color: #ffffff;
+}
+
+.md-banner .md-banner__inner {
+  margin: .7rem auto;
+  padding: 0 1rem;
+  font-size: .75rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.md-banner .md-banner__button {
+  color: #ffffff;
+  opacity: .85;
+}
+
+.md-banner .md-banner__button:hover {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* The light-mode ".md-icon svg" colour rule would paint the close button
+   dark on the orange bar. */
+[data-md-color-scheme] .md-banner .md-banner__button svg {
+  fill: currentColor;
+}
+
+.md-new-docs-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .2rem 1.2rem;
+  text-align: center;
+}
+
+.md-typeset .md-new-docs-banner__link,
+.md-typeset .md-new-docs-banner__link:hover,
+.md-typeset .md-new-docs-banner__link:focus {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.md-typeset .md-new-docs-banner__link:hover {
+  opacity: .85;
+}
