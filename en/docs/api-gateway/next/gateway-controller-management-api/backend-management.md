@@ -34,7 +34,7 @@ curl -X POST http://localhost:9090/api/management/v1/backends \
 
 ```
 
-Add a gateway-wide Backend. The gateway turns it into an Envoy cluster, backend_<name>_<revision>, that any API using the dynamic-endpoint policy can route to without the API being edited or redeployed. Each change to the Backend's endpoints, weights, base path, TLS settings or timeout is a new revision with its own cluster.
+Add a gateway-wide Backend. The gateway turns it into an Envoy cluster, `backend_<name>_<revision>`, that any API using the dynamic-endpoint policy can route to without the API being edited or redeployed. Each change to the Backend's endpoints, weights, base path, TLS settings or timeout is a new revision with its own cluster.
 
 > Payload
 

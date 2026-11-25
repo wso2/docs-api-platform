@@ -17,7 +17,7 @@ content_type: "how-to"
 
 A *Backend* is a backend service that you define once for the whole gateway, instead of inside one API. Each Backend has a name, optional labels, and one or more endpoint URLs. Any API on the gateway can route requests to a Backend with the [Dynamic Endpoint](https://wso2.com/api-platform/policy-hub/policies/dynamic-endpoint) policy.
 
-APIs refer to Backends by name. You can add, change, or remove a Backend without editing or redeploying the APIs that route to it. Backends suit services that many APIs share, or that grow over time:
+APIs refer to Backends by name. You can add or change a Backend without editing or redeploying the APIs that route to it. To remove a Backend that a deployed API names in `targetUpstream`, first change and redeploy that API. Backends suit services that many APIs share, or that grow over time:
 
 - One backend per tenant, chosen from a header or from a claim in the caller's token.
 - Regional deployments of the same service.
@@ -172,6 +172,9 @@ curl http://localhost:8080/orders/v1.0/items -H "x-tenant: tenant-b"
 
 The gateway sends the request to an endpoint of `tenant-b`, at `/v1/items`.
 
+!!! warning
+    The caller sets the `x-tenant` header, so any caller can reach any Backend labelled `team: orders` through this API. The `backendSelector` limits the Backends that the API can route to. It doesn't decide which caller can reach which of those Backends. When each tenant must reach only its own Backend, read the tenant from a value that the gateway has authenticated, such as a claim in the caller's token. For example, put the `jwt-auth` policy before `dynamic-endpoint` and use `backendExpression: auth.Properties["tenant_id"]`.
+
 The gateway answers `400 Bad Request` in the following cases:
 
 - The expression returns a value that isn't a valid Backend name.
@@ -291,7 +294,7 @@ The following responses come from routing to Backends or from managing them:
 | Response | Cause |
 | :--- | :--- |
 | `400 Bad Request` with `The requested backend is not available for this API.` | The value that `backendExpression` returned can't be routed, the expression failed on a value that the request carries, or the expression had no value and `onMissingValue` is `reject`. |
-| `503 Service Unavailable` with the error code `905008` | `targetUpstream` names neither an upstream definition of the API nor a Backend on the gateway, or someone deleted the Backend during the request. The response carries an `x-error-id` header, and the gateway logs the Backend name under that ID. |
+| `503 Service Unavailable` with the error code `905008` | `targetUpstream` names neither an upstream definition of the API nor a Backend on the gateway, someone deleted the Backend during the request, or someone changed the Backend's endpoints, weights, base path, TLS settings or timeout between the policy matching it against `backendSelector` and the gateway routing the request. The response carries an `x-error-id` header, and the gateway logs the Backend name under that ID. |
 | `500 Internal Server Error` with the error code `905005` | The `backendExpression` of the route doesn't compile. For more information, see [Limitations](#limitations). |
 | `409 Conflict` on `DELETE /backends/{id}` | A deployed API names the Backend in `targetUpstream`. |
 
