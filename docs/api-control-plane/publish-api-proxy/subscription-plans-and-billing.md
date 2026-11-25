@@ -11,13 +11,13 @@ Once created, API publishers can assign subscription plans to APIs, providing di
 
 You assign subscription plans to an API separately for each portal that you publish it to. To assign subscription plans to an API, follow the steps given below.
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 
 3. In the left navigation menu, click **Publish**.
 
-4. On the portal that you want to publish the API to, click **Configure & Publish**.
+4. On the card of the portal that you want to publish the API to, open **Configure & Publish**. If the API isn't published to the portal yet, click the arrow next to **Publish** and select **Configure & Publish**.
 
 5. Click the **Subscription Plans** tab. The tab lists the subscription plans of your organization, with the rate limit of each plan.
 
