@@ -641,6 +641,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wso2.com/bijira/docs/ai-gateway/1.2.0/logging-and-tracing/audit-logs/</loc>
+         <lastmod>2026-11-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wso2.com/bijira/docs/ai-gateway/1.2.0/logging-and-tracing/gateway-logs/</loc>
          <lastmod>2026-11-25</lastmod>
          <changefreq>daily</changefreq>
@@ -1941,6 +1946,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wso2.com/bijira/docs/ai-gateway/next/logging-and-tracing/audit-logs/</loc>
+         <lastmod>2026-11-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wso2.com/bijira/docs/ai-gateway/next/logging-and-tracing/gateway-logs/</loc>
          <lastmod>2026-11-25</lastmod>
          <changefreq>daily</changefreq>
@@ -2382,6 +2392,11 @@
     </url>
     <url>
          <loc>https://wso2.com/bijira/docs/ai-workspace/1.0.0/policies/writing-an-ai-policy/</loc>
+         <lastmod>2026-11-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wso2.com/bijira/docs/ai-workspace/1.0.0/production/audit-logging/</loc>
          <lastmod>2026-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -3596,6 +3611,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wso2.com/bijira/docs/api-gateway/1.2.0/observability/audit-logging/</loc>
+         <lastmod>2026-11-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wso2.com/bijira/docs/api-gateway/1.2.0/observability/logging/</loc>
          <lastmod>2026-11-25</lastmod>
          <changefreq>daily</changefreq>
@@ -4236,6 +4256,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wso2.com/bijira/docs/api-gateway/next/observability/audit-logging/</loc>
+         <lastmod>2026-11-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wso2.com/bijira/docs/api-gateway/next/observability/logging/</loc>
          <lastmod>2026-11-25</lastmod>
          <changefreq>daily</changefreq>
@@ -4567,6 +4592,11 @@
     </url>
     <url>
          <loc>https://wso2.com/bijira/docs/api-portal/1.0.0/consume-an-api/overview/</loc>
+         <lastmod>2026-11-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wso2.com/bijira/docs/api-portal/1.0.0/deployment/audit-logging/</loc>
          <lastmod>2026-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -4957,6 +4987,11 @@
     </url>
     <url>
          <loc>https://wso2.com/bijira/docs/api-portal/next/consume-an-api/overview/</loc>
+         <lastmod>2026-11-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wso2.com/bijira/docs/api-portal/next/deployment/audit-logging/</loc>
          <lastmod>2026-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
