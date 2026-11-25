@@ -12,24 +12,24 @@ This page explains what it offers, how you can run it, and where to start.
 
 You get a web console to create APIs, apply policies, set up portals, manage subscriptions, and monitor traffic. Choreo Labs runs the control plane, where you design and manage your APIs. You choose who runs the gateways, where your API traffic flows.
 
-### Choreo Managed Gateways
+### Cloud gateways
 
 Choreo Labs runs both the control plane and the gateways. This is the fastest way to get started, because there is no infrastructure to manage.
 
 - **Best for:** A fast start, proofs of concept, and teams that want to ship without managing infrastructure.
-- **What is included:** The API Control Plane, the API Portal and AI Hub, and Choreo Managed Gateways.
+- **What is included:** The API Control Plane, the API Portal and AI Hub, and cloud gateways.
 
 ### Self-Hosted Gateways (Hybrid)
 
 Choreo Labs runs the control plane, and you run the gateways on your own infrastructure, such as your data center. API traffic and data stay within the infrastructure that you manage, which meets most data residency requirements.
 
 - **Best for:** Enterprises that need centralized governance with data privacy, and organizations that cannot allow API traffic to flow through third-party infrastructure.
-- **What is included:** The API Control Plane and the API Portal and AI Hub, managed by Choreo Labs, and Self-Hosted Gateways in your environment.
+- **What is included:** The API Control Plane and the API Portal and AI Hub, managed by Choreo Labs, and self-hosted gateways in your environment.
 - **Get started:** [Set up a Self-Hosted Gateway](./api-gateway/self-hosted-gateways/quickstart-guide.md)
 
 ### How Do the Options Compare?
 
-| Feature | Choreo Managed Gateways | Self-Hosted Gateways (Hybrid) |
+| Feature | Cloud gateways | Self-hosted gateways (Hybrid) |
 |:--------|:----------------------|:------------------------------|
 | **Control plane** | Managed by Choreo Labs | Managed by Choreo Labs |
 | **Gateways** | Managed by Choreo Labs | Managed by you |
@@ -39,7 +39,7 @@ Choreo Labs runs the control plane, and you run the gateways on your own infrast
 | **API Portal and AI Hub** | Included | Included |
 
 :::info
-Both options use the same gateway technology, and you can use both in the same organization. A new organization comes with a Choreo Managed Gateway named **Default**, in the development environment, so you can deploy your first API proxy without adding a gateway. To keep API traffic in your own infrastructure, add a Self-Hosted Gateway. See [API Gateway](./api-gateway/overview.md).
+Both options use the same gateway technology, and you can use both in the same organization. A new organization comes with a cloud gateway named **Default**, in the development environment, so you can deploy your first API proxy without adding a gateway. To keep API traffic in your own infrastructure, add a self-hosted gateway. See [API Gateway](./api-gateway/overview.md).
 :::
 
 ## Components
@@ -55,7 +55,7 @@ Both options use the same gateway technology, and you can use both in the same o
 
 | Component | What It Does | Docs |
 |:----------|:-------------|:-----|
-| **API Gateway** | The runtime that receives API traffic, applies your policies, and routes requests to your backends. Runs as a Choreo Managed Gateway or a Self-Hosted Gateway. | [API Gateway](./api-gateway/overview.md) |
+| **API Gateway** | The runtime that receives API traffic, applies your policies, and routes requests to your backends. Runs as a cloud gateway or a self-hosted gateway. | [API Gateway](./api-gateway/overview.md) |
 | **Policy Hub** | The curated collection of versioned gateway policies, such as authentication, rate limiting, and header changes, that you attach to your APIs. | [Policy Hub](./policy-hub/overview.md) |
 
 ## Choose Your Path
