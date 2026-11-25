@@ -12,7 +12,7 @@ For production installs on a VM or Kubernetes, see [Setting Up](./setting-up.md)
 
 ## Prerequisites
 
-- An organization in the API Control Plane Console, and access to it.
+- An organization in the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/), and access to it.
 - `curl` and `unzip`.
 - Docker with Docker Compose v2, installed and running. To check, run the following commands.
 
@@ -22,11 +22,11 @@ For production installs on a VM or Kubernetes, see [Setting Up](./setting-up.md)
   ```
 
 - Outbound HTTPS (port 443) access from your machine to the internet.
-- Free local ports **8080, 8443, 9090, 9094, 9011, 9901, 9002, 9003**. If any are already in use, see [Port already in use](./setting-up.md#port-already-in-use).
+- Free local ports **8080, 8443, 8081, 9090, 9094, 9011, 9901, 9002, 9003**. If any are already in use, see [Port already in use](./setting-up.md#port-already-in-use).
 
 ## Step 1: Add a Self-Hosted Gateway in the Console
 
-1. Sign in to the API Control Plane Console and select your organization.
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/) and select your organization.
 
 2. In the left navigation, click **API Gateways**, then click **Add API Gateway**.
 
@@ -148,6 +148,8 @@ gateway-controller-1  | msg="Successfully pushed gateway manifest to control pla
    ```json
    {"status":"healthy","timestamp":"2026-11-04T09:02:01Z"}
    ```
+
+   The controller reports healthy as soon as it starts. This doesn't mean it has connected to the control plane. The console shows **Active** only after the connection succeeds.
 
 2. In the console, reload the **API Gateways** page. The status doesn't update live, so a refresh is required. Your gateway now shows **Active** under **Self-hosted API gateways**.
 

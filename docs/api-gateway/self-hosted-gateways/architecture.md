@@ -4,13 +4,13 @@ pagination_label: "Self-Hosted Gateway Architecture"
 description: "Learn how the Self-Hosted Gateway connects to the API Control Plane through the Gateway Controller and Gateway Runtime components."
 ---
 
-A Self-Hosted Gateway runs in a private data plane that you manage, and connects to the [API Control Plane](../../api-control-plane/overview.md) in the cloud. This architecture allows organizations to manage APIs centrally while keeping API traffic, runtime execution, and backend connectivity within their own environment.
+A self-hosted gateway runs in a private data plane that you manage, and connects to the [API Control Plane](../../api-control-plane/overview.md) in the cloud. This architecture allows organizations to manage APIs centrally while keeping API traffic, runtime execution, and backend connectivity within their own environment.
 
 ## API Control Plane
 
 The API Control Plane is hosted in the cloud and provides centralized API management capabilities. It is used to configure, publish, and manage APIs and policies.
 
-The Self-Hosted Gateway opens an outbound WebSocket connection to the API Control Plane over **port 443**. This connection is used to receive API and policy configuration updates from the control plane. Since the connection is initiated from the private data plane, you do not need to expose internal gateway management services to the public internet.
+The self-hosted gateway opens an outbound WebSocket connection to the API Control Plane over **port 443**. This connection is used to receive API and policy configuration updates from the control plane. Since the connection is initiated from the private data plane, you do not need to expose internal gateway management services to the public internet.
 
 ## Private Data Plane
 
@@ -37,7 +37,10 @@ It contains the following services.
 | Port | Type | Description |
 | ----- | ----- | ----- |
 | 9090 | External | Controller REST API port. |
-| 9002 | Internal | Controller admin port. |
+| 18000 | Internal | Controller xDS port. The router connects to it for runtime configuration. |
+| 18001 | Internal | Policy xDS port. The policy engine connects to it for policy configuration. |
+| 9091 | Internal | Controller metrics port. Metrics are off by default. |
+| 9092 | Internal | Controller admin port. The default Docker Compose file maps it to host port 9094. |
 
 ### Gateway Runtime
 
@@ -51,7 +54,10 @@ The router receives incoming API requests over HTTP or HTTPS and routes them to 
 | ----- | ----- | ----- |
 | 8080 | External | HTTP ingress port for API traffic. |
 | 8443 | External | HTTPS ingress port for API traffic. |
+| 8081 | External | Listener port for APIs that the controller configures through xDS. |
 | 9901 | Internal | Envoy admin port. |
+| 9002 | Internal | Policy engine admin port. |
+| 9003 | Internal | Policy engine metrics port. |
 
 ## Configuration Flow
 
