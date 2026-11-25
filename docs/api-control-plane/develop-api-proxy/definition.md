@@ -10,7 +10,7 @@ On the **Definition** page, you can view the definition as YAML or JSON, add and
 
 ## Open the Definition Page
 
-1. Sign in to the API Control Plane.
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Definition**.
 

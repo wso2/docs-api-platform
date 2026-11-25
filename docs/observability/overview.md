@@ -5,7 +5,7 @@ description: "View cloud runtime logs, alerts, and organization audit logs, API 
 slug: /observability
 ---
 
-Observability is how you see what your applications, API proxies, and gateways are doing. From the Choreo Cloud Console you can read application runtime logs, alerts, and organization audit logs. From the API Control Plane you can read gateway logs. On a self-hosted gateway you can also collect component logs and traces with your own tools.
+Observability is how you see what your applications, API proxies, and gateways are doing. From the [Choreo Cloud Console](https://console.cloud.choreolabs.com/) you can read application runtime logs, alerts, and organization audit logs. From the API Control Plane you can read gateway logs. On a self-hosted gateway you can also collect component logs and traces with your own tools.
 
 ## Choreo Cloud Console
 
