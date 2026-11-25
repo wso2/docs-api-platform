@@ -1,6 +1,6 @@
 ---
 title: "Quick Start Guide"
-pagination_label: "API Portal Quick Start"
+pagination_label: "API Portal and AI Hub Quick Start"
 description: "Sign in to the API Portal and AI Hub, find an API, generate an OAuth2 key and an access token, and invoke the API."
 ---
 
@@ -15,7 +15,7 @@ In this guide, you sign in to the API Portal and AI Hub, find an API, generate a
 
 1. Open the portal. If you don't have the portal URL, get it from the API publisher. See [Open the Portal](./overview.md#open-the-portal).
 
-2. Click **Log In**, and sign in with your username and password. If you don't have an account in the portal, click **Sign up** to create one.
+2. Click **Log In**, and sign in with your username and password. If you don't have an account in the portal and the portal allows self sign-up, click **Sign up** to create one.
 
 ## Step 2: Find the API
 
@@ -29,7 +29,7 @@ For more, see [Browse APIs](./discover/browse-apis.md) and [API Documentation](.
 
 ## Step 3: Generate an OAuth2 Key
 
-1. Go to **Keys** › **OAuth2 Keys**, and click **Register OAuth2 Client**.
+1. Go to **Keys** › **OAuth2 Keys**, and click **Register OAuth2 client**.
 
 2. In the dialog box that opens, enter the following details, and leave the other fields as they are.
 
@@ -39,21 +39,21 @@ For more, see [Browse APIs](./discover/browse-apis.md) and [API Documentation](.
     | **Application name** | A name for the key, such as `quickstart-app`. |
     | **Grant types** | **Client credentials**. |
 
-3. Click **Generate key**.
+3. Click **Register client**.
 
-4. Copy the client secret, and store it securely.
+4. Copy the consumer secret, and store it securely.
 
 :::warning
-The client secret is shown only once and is not stored. You need it to get an access token. If you lose it, delete the key and generate a new one.
+The consumer secret is shown only once and is not stored. You need it to get an access token. If you lose it, delete the key and generate a new one.
 :::
 
 ## Step 4: Get an Access Token
 
-1. On the **OAuth2 Keys** page, find your key, and in its **Actions** menu, click **Get an access token**.
+1. On the **OAuth2 Keys** page, find your key, and click **Get token** on its row. The **Get an access token** dialog opens.
 
-2. Enter the client secret, and click **Get token**.
+2. Enter the **Consumer secret**. Optionally, enter **Scopes** and **Resource indicators**.
 
-3. Copy the access token.
+3. Click **Get token**, and copy the access token.
 
 ## Step 5: Invoke the API
 

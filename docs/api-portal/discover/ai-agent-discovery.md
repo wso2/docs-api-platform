@@ -15,7 +15,7 @@ The portal dynamically generates an `llms.txt` file - a plain-text Markdown inde
 **Endpoint:**
 
 ```text
-GET /{orgName}/views/{viewName}/llms.txt
+GET /api-portal/{orgName}/views/{viewName}/llms.txt
 ```
 
 **What it contains**
@@ -40,31 +40,31 @@ Beyond `llms.txt`, the portal exposes all content as clean Markdown and raw spec
 
 | Endpoint | Description |
 |---|---|
-| `/{orgName}/views/{viewName}/apis.md` | All agent-visible APIs as a single Markdown document |
-| `/{orgName}/views/{viewName}/api/{apiHandle}.md` | Full documentation for a specific API in Markdown, including description, documents, and a link to the specification |
+| `/api-portal/{orgName}/views/{viewName}/apis.md` | All agent-visible APIs as a single Markdown document |
+| `/api-portal/{orgName}/views/{viewName}/api/{apiHandle}.md` | Full documentation for a specific API in Markdown, including description, documents, and a link to the specification |
 
 ### API Specifications
 
 | Endpoint | Description |
 |---|---|
-| `/{orgName}/views/{viewName}/api/{apiHandle}/docs/specification.json` | OpenAPI or AsyncAPI specification (JSON) |
-| `/{orgName}/views/{viewName}/api/{apiHandle}/docs/specification.graphql` | GraphQL schema |
-| `/{orgName}/views/{viewName}/api/{apiHandle}/docs/specification.xml` | SOAP specification (WSDL/XML) |
+| `/api-portal/{orgName}/views/{viewName}/api/{apiHandle}/docs/specification.json` | OpenAPI or AsyncAPI specification (JSON) |
+| `/api-portal/{orgName}/views/{viewName}/api/{apiHandle}/docs/specification.graphql` | GraphQL schema |
+| `/api-portal/{orgName}/views/{viewName}/api/{apiHandle}/docs/specification.xml` | SOAP specification (WSDL/XML) |
 
 ### MCP Server Catalog
 
 | Endpoint | Description |
 |---|---|
-| `/{orgName}/views/{viewName}/mcps` | MCP server catalog page |
-| `/{orgName}/views/{viewName}/mcp/{apiHandle}.md` | Full documentation for a specific MCP server in Markdown |
-| `/{orgName}/views/{viewName}/mcp/{apiHandle}/docs/specification.json` | MCP server specification |
+| `/api-portal/{orgName}/views/{viewName}/mcps` | MCP server catalog page. Use `/api-portal/{orgName}/views/{viewName}/mcps.md` for the machine-readable Markdown version. |
+| `/api-portal/{orgName}/views/{viewName}/mcp/{apiHandle}.md` | Full documentation for a specific MCP server in Markdown |
+| `/api-portal/{orgName}/views/{viewName}/mcp/{apiHandle}/docs/specification.json` | MCP server specification |
 
 ### API Workflows
 
 | Endpoint | Description |
 |---|---|
-| `/{orgName}/views/{viewName}/api-workflows.md` | All published, agent-visible workflows as a single Markdown document |
-| `/{orgName}/views/{viewName}/api-workflows/{handle}/arazzo.json` | Machine readable Arazzo specification for a specific workflow |
+| `/api-portal/{orgName}/views/{viewName}/api-workflows.md` | All published, agent-visible workflows as a single Markdown document |
+| `/api-portal/{orgName}/views/{viewName}/api-workflows/{handle}/arazzo.json` | Machine readable Arazzo specification for a specific workflow |
 
 ## How Agents Navigate the Portal
 
@@ -72,7 +72,7 @@ A typical agent discovery flow looks like this.
 
 1. **Start at `llms.txt`** - the agent fetches the portal's `llms.txt` to get an overview of available APIs and workflows.
 2. **Browse the API catalog** - if the agent needs more detail, it fetches `apis.md` to read descriptions of all APIs at once.
-3. **Retrieve per API documentation** - once the agent identifies a relevant API, it fetches `/{orgName}/views/{viewName}/api/{apiHandle}.md` for full documentation.
+3. **Retrieve per API documentation** - once the agent identifies a relevant API, it fetches `/api-portal/{orgName}/views/{viewName}/api/{apiHandle}.md` for full documentation.
 4. **Fetch the specification** - the agent retrieves the OpenAPI, GraphQL, or AsyncAPI specification for the precise endpoint and parameter details needed to make a call.
 5. **Follow a workflow** - if a published workflow matches the task, the agent retrieves the Arazzo specification and agent prompt to follow a vetted, step-by-step call sequence rather than reasoning from scratch.
 

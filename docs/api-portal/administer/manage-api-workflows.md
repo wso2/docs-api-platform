@@ -9,7 +9,7 @@ description: "Author an API workflow as an Arazzo specification or Markdown, gen
 2. Open **Settings**.
 3. Under **AI & DISCOVERY**, select **API Workflows**.
 
-Use the view selector to choose the view. Workflows belong to that view. The list columns are **Name**, **Status**, and **Type**. Status is **Draft** or **Published**. Type is **Arazzo** or **Markdown**. When the list is empty, the page says to click **Add workflow** to get started.
+Use the view selector to choose the view. Workflows belong to that view. The list columns are **Name**, **Status**, and **Type**. Status is **Draft**, **Published**, or **Deprecated**. Type is **Arazzo** or **Markdown**. When the list is empty, the page says to click **Add workflow** to get started.
 
 Each workflow also offers actions to view the agent prompt when the workflow is visible to agents, to edit it, and to delete it.
 

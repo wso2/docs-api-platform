@@ -24,7 +24,7 @@ Click **Add view**.
 Create labels first if the label list is empty. See [Manage Labels](./manage-labels.md).
 
 ## Editing a view
-Click a view's name (or the pencil icon) in the Views table to reopen the same form, update its name or label selection, and click Save changes. The handle can't be changed after creation.
+Click a view's name (or the pencil icon) in the Views table to reopen the same form, update its name, handle, or label selection, and click Save changes. The form warns that renaming the handle changes the URL of the view.
 
 ## Deleting a view
-Click the trash icon next to a view and confirm. Deleting a view also removes its LLM Instructions and API Workflows-this can't be undone. The default view can't be deleted.
+Click the trash icon next to a view and confirm. Deleting a view also removes its LLM Instructions-this can't be undone. You can delete any view, including the default view, except the last remaining view. If the view still has API workflows, the portal refuses the deletion with the message "View has API workflows". Delete the workflows first.

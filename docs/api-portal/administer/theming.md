@@ -66,7 +66,7 @@ The ZIP archive must not exceed 10 MB.
 
 Uploading the archive replaces all existing custom theme files for the selected view.
 
-Reload the API Portal or AI Hub to see the changes.
+Reload the API Portal and AI Hub to see the changes.
 
 ## Reset to the default theme
 

@@ -14,7 +14,7 @@ An OAuth2-secured API expects an access token issued by a key manager. ThunderID
 
 1. Sign in to the API Portal and AI Hub, and go to **Keys** › **OAuth2 Keys**.
 
-2. Click **Register OAuth2 Client**.
+2. Click **Register OAuth2 client**.
 
 3. Enter the following details.
 
@@ -24,19 +24,19 @@ An OAuth2-secured API expects an access token issued by a key manager. ThunderID
     | **Application name** | Required. A name for the key. |
     | **Grant types** | Required. Select **Client credentials**. |
 
-4. Click **Generate key**.
+4. Click **Register client**.
 
-5. Copy the client secret, and store it securely.
+5. Copy the consumer secret, and store it securely.
 
 :::warning
-The client secret is shown only once. The portal does not store it, and you need it each time you get an access token. If you lose it, delete the key and generate a new one.
+The consumer secret is shown only once. The portal does not store it, and you need it each time you get an access token. If you lose it, delete the key and generate a new one.
 :::
 
 ## Step 2: Get an Access Token
 
-1. On the **OAuth2 Keys** page, find your key, and in its **Actions** menu, click **Get an access token**.
+1. On the **OAuth2 Keys** page, find your key, and click **Get token** on its row. The **Get an access token** dialog opens.
 
-2. Enter the **Client secret**.
+2. Enter the **Consumer secret**. Optionally, enter **Scopes** and **Resource indicators**.
 
 3. Click **Get token**, and copy the access token.
 

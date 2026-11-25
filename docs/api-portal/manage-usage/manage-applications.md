@@ -11,7 +11,7 @@ An application groups your API keys and OAuth2 keys so that you can track their 
 
 ## Open Applications
 
-1. Sign in to the API Portal for your organization.
+1. Sign in to the API Portal and AI Hub for your organization.
 2. In the left navigation menu, click **Applications**.
 
 The **Applications** page lists your applications. Each card shows the application name and description.
@@ -47,7 +47,7 @@ Associating a key with an application is used only for tracking and analytics. I
 
 1. Open the application.
 2. Under **OAuth2 keys**, click **Associate existing key**.
-3. Select the **Key**. Only keys that belong to you are listed.
+3. Select the **Key**. The list shows only your keys that aren't associated with an application, and excludes key types that the application already holds.
 4. Click **Associate** to associate the key with the application. This button remains unavailable until you select a key. Click **Cancel** to close the dialog without associating a key.
 
 The following rules apply to OAuth2 keys.
