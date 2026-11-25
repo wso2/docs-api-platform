@@ -9,7 +9,7 @@ You create environments in the Choreo Cloud Console. After you create an environ
 
 ## View environments
 
-1. Sign in to the Choreo Cloud Console.
+1. Sign in to the [Choreo Cloud Console](https://console.cloud.choreolabs.com/).
 
 2. Open your organization.
 

@@ -48,7 +48,7 @@ Both options use the same gateway technology, and you can use both in the same o
 
 | Component | What It Does | Docs |
 |:----------|:-------------|:-----|
-| **API Control Plane** | Create, develop, test, publish, and govern API proxies through the web console. Manage gateways, portals, and subscription plans. Environments and pipelines are created in the Choreo Cloud Console and then used here. | [API Control Plane](./api-control-plane/overview.md) |
+| **API Control Plane** | Create, develop, test, publish, and govern API proxies through the web console. Manage gateways, portals, and subscription plans. Environments and pipelines are created in the [Choreo Cloud Console](https://console.cloud.choreolabs.com/) and then used here. | [API Control Plane](./api-control-plane/overview.md) |
 | **API Portal and AI Hub** | The developer-facing portal where developers discover APIs and MCP servers, subscribe to them, and get credentials. AI agents discover the same APIs through machine-readable endpoints such as `llms.txt`. | [API Portal and AI Hub](./api-portal/overview.md) |
 
 ### Gateway Components

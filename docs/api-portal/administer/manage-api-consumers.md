@@ -23,7 +23,7 @@ The admin is created in Identity & Access Management, assigned the **admin** rol
 
 ### Open Identity & Access Management
 
-1. Sign in to the Choreo Cloud Console.
+1. Sign in to the [Choreo Cloud Console](https://console.cloud.choreolabs.com/).
 
 2. Switch to  **Identity & Access Management**.
 

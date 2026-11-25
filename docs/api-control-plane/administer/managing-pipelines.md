@@ -11,7 +11,7 @@ A new organization comes with a pipeline named `default`, which has one environm
 
 ## View pipelines
 
-1. Sign in to the Choreo Cloud Console.
+1. Sign in to the [Choreo Cloud Console](https://console.cloud.choreolabs.com/).
 
 2. Open your organization.
 
