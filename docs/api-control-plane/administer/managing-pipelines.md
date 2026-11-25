@@ -61,7 +61,7 @@ You cannot delete the `default` pipeline.
 
 Each project uses one deployment pipeline. You set it in the project's settings in the Choreo Cloud Console.
 
-1. In the API Control Plane Console, open the project.
+1. In the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/), open the project.
 2. On the project's **Overview** page, click **Manage project**. The **Manage project** page of the project opens in the Choreo Cloud Console. Its details are shared by the project across every Choreo platform.
 3. Under **Project details**, in **Deployment pipeline**, select the pipeline. The environments of the pipeline are shown under the list.
 4. Click **Save changes**. Click **Discard changes** to keep the current pipeline.
@@ -76,7 +76,7 @@ For example, you can use the default development environment and create a produc
 
 Follow these steps to promote an API using this pipeline.
 
-1. **Create the production environment.** Create a production environment and create a appropriate gateway to it. The default development environment is already available.
+1. **Create the production environment.** Create a production environment and create a suitable gateway in it. The default development environment is already available.
 
 2. **Configure the pipeline.** Create a pipeline that starts with development and continues with production.
 

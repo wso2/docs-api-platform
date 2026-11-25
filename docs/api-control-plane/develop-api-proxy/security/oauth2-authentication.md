@@ -13,15 +13,15 @@ ThunderID is the default key manager, so consumers can get access tokens without
 
 ## Step 1: Attach the JWT Auth Policy
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 
-4. In the **Available policies** pane, find the **JWT Auth** policy, drag it to the **Global policies** section, and click **Add**.
+4. In the **Available policies** pane, find the **JWT Auth** policy, drag it to the **Global policies** section, and click **Attach policy** in the **Configure** pane.
 
-5. Click **Save**.
+5. Click **Save changes**.
 
 6. Deploy the API to a gateway, so that the policy takes effect.
 

@@ -9,7 +9,7 @@ You configure the subscription plans for a specific API when you publish it to a
 
 ## View Subscription Plans
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 
 2. Go to the organization level. In the header, select your organization from the **Organizations** list.
 
@@ -21,12 +21,13 @@ The **Subscription Plans** page lists the plans in your organization. To find a 
 |:-------|:------------|
 | **Name** | The name of the plan. |
 | **Limits** | The limits of the plan, such as `req · 50 / min`. |
+| **Pricing** | The pricing of the plan, such as **Free**. |
 | **Status** | A switch that shows whether the plan is active. |
 | **Actions** | Edit or delete the plan. |
 
 :::note
 - To activate or deactivate a plan, turn its switch in the **Status** column on or off.
-- You can't delete a plan that has active subscriptions.
+- You can't delete a plan that an API offers or that has subscriptions.
 :::
 
 ## Create a Subscription Plan
