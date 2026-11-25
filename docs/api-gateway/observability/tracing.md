@@ -15,6 +15,7 @@ In `configs/config.toml` inside the gateway distribution, add a `[tracing]` sect
 [tracing]
 enabled = true                          # Set to true to enable tracing
 endpoint = "otel-collector:4317"        # OTLP collector gRPC endpoint
+insecure = true                         # Connect without TLS
 service_version = "1.0.0"               # Service version
 batch_timeout = "1s"                    # Batch timeout for exporting spans
 max_export_batch_size = 512             # Maximum spans per batch
@@ -85,6 +86,15 @@ tracing_service_name = "router-prod-us-east-1"
 
 The defaults are `policy-engine` and `router`.
 
+Add resource attributes to every span from both the router and the policy engine:
+
+```toml
+[tracing.resource_attributes]
+"deployment.environment" = "prod"
+```
+
+Attributes from the `OTEL_RESOURCE_ATTRIBUTES` environment variable still apply, and the values in this block take precedence.
+
 Change how spans are batched:
 
 ```toml
@@ -99,13 +109,17 @@ A shorter timeout shows traces sooner. A longer timeout sends fewer, larger batc
 
 Keep the gateway endpoint pointed at an OTLP collector, and change the collector exporters. The collector file is `gateway/observability/otel-collector/config.yaml`.
 
+:::note
+The demonstration stack runs the core build of the OpenTelemetry Collector, `otel/opentelemetry-collector:0.112.0`. It includes the `otlp`, `otlphttp`, `zipkin`, and `debug` exporters. The `awsxray`, `googlecloud`, `azuremonitor`, and `datadog` exporters and the `tail_sampling` processor are in the contrib build only. To use them, change the collector image to `otel/opentelemetry-collector-contrib`.
+:::
+
 ### Moesif
 
 ```yaml
 exporters:
   # Export to Moesif
   otlphttp:
-    endpoint: https://api.moesif.net/v1/traces
+    endpoint: https://api.moesif.net
     headers:
       X-Moesif-Application-Id: 'your-moesif-application-id'
 
@@ -126,14 +140,14 @@ To pass the ID as an environment variable:
 ```yaml
 exporters:
   otlphttp:
-    endpoint: https://api.moesif.net/v1/traces
+    endpoint: https://api.moesif.net
     headers:
       X-Moesif-Application-Id: '${MOESIF_APPLICATION_ID}'
 ```
 
 ```yaml
 otel-collector:
-  image: otel/opentelemetry-collector:latest
+  image: otel/opentelemetry-collector:0.112.0
   environment:
     - MOESIF_APPLICATION_ID=${MOESIF_APPLICATION_ID}
   # ... rest of configuration
@@ -158,7 +172,7 @@ exporters:
 
   # Moesif for analytics
   otlphttp/moesif:
-    endpoint: https://api.moesif.net/v1/traces
+    endpoint: https://api.moesif.net
     headers:
       X-Moesif-Application-Id: '${MOESIF_APPLICATION_ID}'
 
@@ -305,7 +319,7 @@ Configure OTLP Collector to export to New Relic:
 ```yaml
 exporters:
   otlphttp:
-    endpoint: https://otlp.nr-data.net:4317
+    endpoint: https://otlp.nr-data.net
     headers:
       api-key: ${NEW_RELIC_LICENSE_KEY}
 ```
@@ -441,7 +455,7 @@ service:
       exporters: [otlp/jaeger, otlp/tempo, datadog]
 ```
 
-Keep error traces, slow traces, and a sample of the rest:
+Keep error traces, slow traces, and a sample of the rest. This processor needs the contrib build of the collector:
 
 ```yaml
 processors:
@@ -479,7 +493,7 @@ curl http://localhost:8080/weather/v1.0/us/seattle \
 | 1000-10000 req/s | 1-10% (0.01-0.1) | Cost-effective, statistical sampling |
 | > 10000 req/s | 0.1-1% (0.001-0.01) | Minimal overhead, error sampling |
 
-Use tail sampling if you want every error trace kept while ordinary traffic is sampled. In production, use TLS on the collector connection and a memory limit on the collector.
+Use tail sampling, which needs the contrib build of the collector, if you want every error trace kept while ordinary traffic is sampled. In production, use TLS on the collector connection and a memory limit on the collector.
 
 ## Troubleshooting
 
