@@ -4,7 +4,7 @@ pagination_label: "Self-Hosted Gateway Architecture"
 description: "Learn how the Self-Hosted Gateway connects to the API Control Plane through the Gateway Controller and Gateway Runtime components."
 ---
 
-A self-hosted gateway runs in a private data plane that you manage, and connects to the [API Control Plane](../../api-control-plane/overview.md) in the cloud. This architecture allows organizations to manage APIs centrally while keeping API traffic, runtime execution, and backend connectivity within their own environment.
+A self-hosted gateway runs in a private [data plane](../../glossary.md#data-plane) that you manage, and connects to the [API Control Plane](../../api-control-plane/overview.md) in the cloud. This architecture allows organizations to manage APIs centrally while keeping API traffic, runtime execution, and backend connectivity within their own environment.
 
 ## API Control Plane
 
@@ -29,7 +29,7 @@ It contains the following services.
 | Component | Description |
 | ----- | ----- |
 | Controller REST API | Exposes management APIs used by the control plane and internal gateway components. |
-| Controller XDS | Provides runtime configuration to the gateway router using xDS. |
+| Controller XDS | Provides runtime configuration to the gateway router using [xDS](../../glossary.md#xds). |
 | Database | Stores gateway configuration and runtime metadata required by the controller. |
 
 #### Gateway Controller Ports

@@ -4,14 +4,14 @@ pagination_label: "API Control Plane Quick Start"
 description: "Create a REST API from a backend URL, deploy it to a gateway, test it, and publish it to a portal."
 ---
 
-In the API Control Plane, you can expose an existing HTTP backend through a gateway by creating a REST API proxy. When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, deploy the API to a gateway, test it, and publish it to the API Portal and AI Hub.
+In the API Control Plane, you can expose an existing HTTP backend through a gateway by creating a REST [API proxy](../glossary.md#api-proxy). When you start from scratch, you provide a backend URL, and the console generates the initial API details for you. You can then review the API definition, deploy the API to a gateway, test it, and publish it to the API Portal and AI Hub.
 
 This guide uses the sample Reading List API backend.
 
 ## Prerequisites
 
 1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
-2. Create an organization:
+2. Create an [organization](../glossary.md#organization):
 
     1. Enter a **Display name**.
     2. Enter a **Handle**.
@@ -19,7 +19,7 @@ This guide uses the sample Reading List API backend.
 
     If you already have an organization, open it and continue.
 
-3. Open the `default` project if your organization has one, or create a project:
+3. Open the `default` [project](../glossary.md#project) if your organization has one, or create a project:
 
     1. In the left navigation menu, click **Projects**, then click **Create Project**.
     2. Enter a **Name** and a **Project ID**. **Description** is optional.
@@ -65,7 +65,7 @@ To view or edit the API definition, open the API and in the left navigation menu
 
 ## Deploy the API
 
-Deploying places a build of the API on a gateway so requests can reach the backend through that gateway. Create a self-hosted gateway, start it with the setup commands the console shows, and then deploy the API to that gateway.
+Deploying places a [build](../glossary.md#build) of the API on a gateway so requests can reach the backend through that gateway. Create a self-hosted gateway, start it with the setup commands the console shows, and then deploy the API to that gateway.
 
 1. In the left navigation menu, click **API Gateways**, then click **Add API Gateway**.
 2. Under **Hosting**, select **Self-hosted API gateway**.
@@ -74,7 +74,7 @@ Deploying places a build of the API on a gateway so requests can reach the backe
     | Field | Description |
     | --- | --- |
     | **Gateway Type** | **API Gateway**. |
-    | **Name** | A name for the gateway. The handle is derived from this name and cannot be changed later. |
+    | **Name** | A name for the gateway. The [handle](../glossary.md#handle) is derived from this name and cannot be changed later. |
     | **Description** | Optional. |
     | **Environment** | The environment this gateway belongs to. |
     | **API Gateway Version** | The gateway version to run. Use the latest version. |
@@ -84,7 +84,7 @@ Deploying places a build of the API on a gateway so requests can reach the backe
 
 4. Click **Add API Gateway**.
 
-    The console gives you a registration token and the setup commands to run the gateway on your infrastructure. Run those commands on the machine that hosts the gateway. The gateway stays inactive until it connects to the control plane. Wait until its status is **Active** before you deploy.
+    The console gives you a [registration token](../glossary.md#registration-token) and the setup commands to run the gateway on your infrastructure. Run those commands on the machine that hosts the gateway. The gateway stays inactive until it connects to the control plane. Wait until its status is **Active** before you deploy.
 
     You can also use a cloud gateway instead of a self-hosted gateway. For more on gateways, see [Manage Gateways](./administer/managing-gateways.md).
 
@@ -108,7 +108,7 @@ After the deployment succeeds, the API overview lists the gateway under **Deploy
 After the API is deployed, use the API Console to send a request through the gateway.
 
 1. In the left navigation menu, click **Test**. **Console view** is selected.
-2. Under **Gateway**, select the gateway you deployed the API to. The invoke URL of that gateway appears beside the gateway.
+2. Under **Gateway**, select the gateway you deployed the API to. The [invoke URL](../glossary.md#invoke-url) of that gateway appears beside the gateway.
 3. In the endpoint list, select an operation, such as **GET /***.
 4. Click **Send**. The **Response** panel shows the status, such as `200 OK`, and the **Body** tab shows the response from the backend.
 
@@ -128,7 +128,7 @@ Publishing makes the API available in the API Portal and AI Hub, where consumers
 
     1. In the left navigation menu, click **Portals**, then click **Add Portal**.
     2. Enter a **Name**. **Description** is optional.
-    3. If the form shows **Login environment**, select an environment. Portal users sign in through the authentication server of this environment. The field appears only when your organization has more than one environment. If you don't see it, continue with the next step.
+    3. If the form shows **Login environment**, select an [environment](../glossary.md#environment). See also [Login environment](../glossary.md#login-environment). Portal users sign in through the authentication server of this environment. The field appears only when your organization has more than one environment. If you don't see it, continue with the next step.
     4. **Allow self sign-up** is turned on by default.
     5. Click **Add Portal**.
 

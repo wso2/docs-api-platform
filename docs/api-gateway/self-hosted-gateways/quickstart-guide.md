@@ -51,7 +51,7 @@ The gateway is created with status **Inactive** and the page shows *Waiting for 
 ![Newly created gateway waiting for connection, showing Quick Start setup commands](/img/cloud/self-hosted-gateway/quick-start/self-hosted-quick-start-step-2.png)
 
 :::warning
-**The registration token is shown only once.** In step 3 of the setup commands, the page displays `<your-gateway-token>` as a placeholder. When you click **Copy** on that block, the copied command contains your real token. Copy and run it before you leave this page. If you navigate away, the console replaces this step with a **Reconfigure** button that issues a new token (see [Rotate the registration token](./setting-up.md#rotate-the-registration-token)).
+**The [registration token](../../glossary.md#registration-token) is shown only once.** In step 3 of the setup commands, the page displays `<your-gateway-token>` as a placeholder. When you click **Copy** on that block, the copied command contains your real token. Copy and run it before you leave this page. If you navigate away, the console replaces this step with a **Reconfigure** button that issues a new token (see [Rotate the registration token](./setting-up.md#rotate-the-registration-token)).
 :::
 
 ## Step 2: Download the Gateway

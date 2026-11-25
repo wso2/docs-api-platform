@@ -159,6 +159,7 @@ const sidebars = {
         group("Policy Hub", [
       doc("policy-hub/overview", "Overview"),
     ]),
+    doc("glossary", "Glossary"),
   ],
 };
 
