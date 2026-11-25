@@ -49,6 +49,7 @@ The **Environments** page lists the deployment environments shared by every prod
 ## Delete an environment
 
 In the **Actions** column, click the delete icon.
+
 ## Next Steps
 
 - [Manage Pipelines](./managing-pipelines.md) - Order environments into the path an API proxy follows to production

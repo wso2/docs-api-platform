@@ -14,7 +14,7 @@ Just trying it out? The [Quick Start](./quickstart-guide.md) is the fastest path
 
 Every installation method starts the same way.
 
-1. In the API Control Plane Console, go to **API Gateways** and click **Add API Gateway**.
+1. In the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/), go to **API Gateways** and click **Add API Gateway**.
 
 2. Under **Hosting**, select **Self-hosted API gateway**, set **Gateway Type** to **API Gateway**, then enter the following details.
    - **Name:** the gateway **handle** is derived from it and can't be changed later.
@@ -167,14 +167,13 @@ Back up the encryption key secret. If it is lost or rotated, data the gateway al
 
 ### Step 3: Install the Chart
 
-The console's **Kubernetes** tab gives you the `helm install` command with your control-plane host already filled in. Add the encryption-key settings and reference the token secret.
+The console's **Kubernetes** tab gives you the `helm install` command with your control-plane host already filled in. Add the encryption-key settings and reference the token secret. The chart has no separate port value. If the host uses a port other than 443, include it in the host value, for example `<host>:8443`.
 
 ```bash
 helm install development-local-self-hosted-gateway \
   oci://ghcr.io/wso2/api-platform/helm-charts/gateway --version 1.2.0 \
   --namespace api-gateway \
   --set gateway.controller.controlPlane.host="<control-plane-host-shown-in-console>" \
-  --set gateway.controller.controlPlane.port=443 \
   --set gateway.controller.controlPlane.token.secretName=gateway-cp-token \
   --set gateway.controller.encryptionKeys.enabled=true \
   --set gateway.controller.encryptionKeys.secretName=gateway-encryption-keys
@@ -237,7 +236,7 @@ Other settings (listeners, storage, policies) live in `configs/config.toml`. `co
 
 2. **Use your own listener certificate.** The distribution ships a self-signed certificate for `localhost` in `resources/listener-certs/`, and `setup.sh` keeps it if it exists. Replace `default-listener.crt` and `default-listener.key` with a certificate issued for your gateway hostname, or at minimum run `./scripts/setup.sh --force --certs-only` to generate a self-signed certificate unique to this install.
 
-3. **Keep management ports private.** The distribution's `docker-compose.yaml` publishes the controller API (9090), admin API (9094), metrics (9011), Envoy admin (9901), and Policy Engine admin and metrics (9002, 9003) on all host interfaces. Block them at the firewall, or bind them to loopback with a `docker-compose.override.yaml`. Compose picks this file up automatically; `!override` requires Docker Compose 2.24+:
+3. **Keep management ports private.** The distribution's `docker-compose.yaml` publishes the controller API (9090), admin API (9094), metrics (9011), Envoy admin (9901), the xDS-managed API listener (8081), and Policy Engine admin and metrics (9002, 9003) on all host interfaces. Block them at the firewall, or bind them to loopback with a `docker-compose.override.yaml`. Compose picks this file up automatically; `!override` requires Docker Compose 2.24+:
 
    ```yaml
    services:
@@ -250,6 +249,7 @@ Other settings (listeners, storage, policies) live in `configs/config.toml`. `co
        ports: !override
          - "8080:8080"     # API traffic (remove if you only serve HTTPS)
          - "8443:8443"     # API traffic
+         - "8081:8081"     # API traffic on the xDS-managed listener
    ```
 
 4. **Protect secrets on disk.** `api-platform.env` holds the registration token and `resources/aesgcm-keys/` holds the encryption key. Keep both readable only by the account that runs the gateway, and keep them out of version control.
@@ -272,21 +272,30 @@ The token appears only when the gateway is created. Afterwards, step 3 on the ga
 
 ## Port Already in Use
 
-If another service on the host already uses 8080, 8443, 9090, or another gateway port, remap the **host** side of the port in a `docker-compose.override.yaml`. Leave the container port unchanged.
+If another service on the host already uses 8080, 8443, 8081, 9090, or another gateway port, remap the **host** side of the port in a `docker-compose.override.yaml`. Leave the container port unchanged. The first number in each entry is the host port.
 
 ```yaml
 services:
   gateway-controller:
     ports: !override
-      - "127.0.0.1:19090:9090"
-      - "127.0.0.1:19094:9092"
+      - "127.0.0.1:19090:9090"   # controller management API
+      - "127.0.0.1:19094:9092"   # admin API
+      - "127.0.0.1:19011:9091"   # metrics
   gateway-runtime:
     ports: !override
-      - "18080:8080"
-      - "18443:8443"
+      - "18080:8080"             # API traffic
+      - "18443:8443"             # API traffic (HTTPS)
+      - "18081:8081"             # API traffic on the xDS-managed listener
+      - "19901:9901"             # Envoy admin
+      - "19002:9002"             # Policy Engine admin
+      - "19003:9003"             # Policy Engine metrics
 ```
 
-If you change the HTTPS port that consumers use, update the gateway **URL** in the console (**Gateways → your gateway → Edit**) to match.
+`!override` replaces the whole `ports` list of a service. A port that you leave out is no longer published on the host. If you also bind the management ports to loopback as described in [Production hardening](#production-hardening), put all the entries in one `docker-compose.override.yaml` file.
+
+After you remap a port, use your own host port in the commands in these pages. For example, the controller management API is then at `http://localhost:19090` instead of `http://localhost:9090`.
+
+If you change the HTTPS port that consumers use, update the gateway **URL** in the console (**API Gateways** → your gateway → **Edit**) to match.
 
 ## Troubleshooting
 
@@ -297,5 +306,5 @@ If you change the HTTPS port that consumers use, update the gateway **URL** in t
 | `WebSocket connection failed … context deadline exceeded` | The controller can't reach the control plane within the timeout. It retries with backoff (1 s up to 5 min). If it never connects, check outbound 443 to the control-plane host, DNS, and any HTTP proxy or firewall. |
 | `x509: certificate signed by unknown authority` with `INSECURE_SKIP_VERIFY=false` | A TLS-inspecting proxy re-signs traffic. Add your proxy's CA to the gateway's trust store, or allow the control-plane host through without inspection. |
 | `read /etc/gateway-controller/config.toml: is a directory` | The gateway folder isn't shared with the Docker VM (Docker Desktop, Colima, Rancher Desktop). Move it under your home directory or add the path to the runtime's file sharing. Then run `docker compose down -v` and `docker compose up -d`. |
-| `Encryption key file is world-readable` warning | Restrict `resources/aesgcm-keys/default-aesgcm256-v1.bin` to the gateway's user. `setup.sh` does this automatically when `setfacl` is available. |
+| `Encryption key file is world-readable` warning | Restrict `resources/aesgcm-keys/default-aesgcm256-v1.bin` to the gateway's user. `setup.sh` does this automatically when `setfacl` is available. On a host without `setfacl`, such as macOS, run `chmod 600 resources/aesgcm-keys/default-aesgcm256-v1.bin` as the user that runs the gateway. |
 | Helm: `encryptionKeys must be enabled` | Create the encryption-key secret and pass `gateway.controller.encryptionKeys.enabled=true` and `secretName` (see [Step 2](#step-2-create-the-namespace-and-secrets)). |

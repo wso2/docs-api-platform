@@ -1,13 +1,13 @@
 ---
 title: "Manage Gateways"
-description: "Create a self-hosted gateway or a managed gateway, and view, edit, or delete the gateways in your organization from the API Control Plane."
+description: "Create a self-hosted gateway or a cloud gateway, and view, edit, or delete the gateways in your organization from the API Control Plane."
 ---
 
 You manage all the gateways in your organization from the API Control Plane, regardless of where they run. For the types of gateways and how they work, see [API Gateway](../../api-gateway/overview.md).
 
 ## View Gateways
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 
 2. In the left navigation menu, click **API Gateways**.
 
@@ -27,7 +27,7 @@ Each tab lists its gateways with the following details. To find a gateway by nam
 | **Name** | The name of the gateway. |
 | **Description** | A description of the gateway. |
 | **Type** | The type of the gateway, such as **API Gateway**. |
-| **Status** | The status of the gateway, such as **Active**, **Inactive**, or **Failed**. |
+| **Status** | The status of the gateway, such as **Provisioning**, **Active**, **Inactive**, or **Failed**. |
 | **Environment** | The environment that the gateway belongs to. |
 | **Actions** | Edit, configure, or delete the gateway. See [Edit, Configure, or Delete a Gateway](#edit-configure-or-delete-a-gateway). |
 
@@ -44,7 +44,7 @@ To compare the two before you choose, click **Compare options** on the **Add API
 
 | | Cloud gateway | Self-hosted |
 |:--|:--|:--|
-| **Setup time** | Instant | 1–5 minutes |
+| **Setup time** | Instant | 1 to 5 minutes |
 | **Traffic via** | Choreo cloud | Your infrastructure |
 | **Best for** | Fast start, POCs | Enterprise, compliance |
 
@@ -71,12 +71,12 @@ A self-hosted gateway runs on your own infrastructure and connects to the API Co
 
 The console opens the gateway so you can download it and connect it to the API Control Plane. The gateway stays inactive until it connects. A self-hosted gateway is never the default gateway of an environment, so select it explicitly when you deploy to it. For those steps, see the [Self-Hosted Gateway Quick Start Guide](../../api-gateway/self-hosted-gateways/quickstart-guide.md).
 
-## Create a managed gateway
+## Create a cloud gateway
 
-A managed gateway is a gateway that Choreo hosts and operates. It is listed as a cloud gateway.
+A cloud gateway is a gateway that Choreo hosts and operates. It is listed as a cloud gateway.
 
 :::note
-Your organization can have only a limited number of managed gateways. When it reaches the maximum, the **Cloud gateway** option is not available.
+Your organization can have only a limited number of cloud gateways. When it reaches the maximum, the **Cloud gateway** option is not available.
 :::
 
 1. On the **API Gateways** page, click **Add API Gateway**.
@@ -89,11 +89,11 @@ Your organization can have only a limited number of managed gateways. When it re
     | **Name** | Required. The gateway handle is derived from this name and cannot be changed later. As you type, the form shows the handle. |
     | **Description** | Optional. A short description of the gateway. |
     | **Environment** | Required. Select the environment that will run this gateway. |
-    | **Default gateway for this environment** | The first gateway of this type in the environment is the default, and this switch stays on. When the environment already has a gateway of this type, turn the switch on to make this gateway the default. |
+    | **Default API gateway for this environment** | The first gateway of this type in the environment is the default, and this switch stays on. When the environment already has a gateway of this type, turn the switch on to make this gateway the default. |
 
 4. Click **Add API Gateway**. **Add API Gateway** stays unavailable until **Name** and **Environment** are set. Click **Cancel** to leave without creating the gateway.
 
-The new gateway is listed on the **Cloud gateways** tab. Its status is **Inactive** while it is being provisioned, and changes to **Active** when it is ready.
+The new gateway is listed on the **Cloud gateways** tab. Its status is **Provisioning** while the gateway is being set up, and changes to **Active** when it is ready.
 
 ## Edit, Configure, or Delete a Gateway
 

@@ -7,7 +7,7 @@ API consumers are the developers who use the API Portal and AI Hub to find APIs,
 
 ## How Consumers Sign Up
 
-Anyone can create an account in the portal.
+If the portal allows self sign-up, anyone can create an account in the portal. Otherwise, an administrator adds users.
 
 1. Open the portal URL that the API publisher shared. See [Open the Portal](../overview.md#open-the-portal).
 

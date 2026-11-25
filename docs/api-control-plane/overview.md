@@ -19,7 +19,7 @@ An API proxy goes through the following stages.
 |:------|:------------|
 | Create | Create a REST API proxy [from scratch](./create-api-proxy/rest-apis/start-from-scratch.md) or [with a contract](./create-api-proxy/rest-apis/start-with-a-contract.md), or a GraphQL API proxy [from scratch](./create-api-proxy/graphql-apis/start-from-scratch.md) or [with a schema](./create-api-proxy/graphql-apis/start-with-a-schema.md). |
 | Develop | [Secure access to the API](./develop-api-proxy/security/overview.md), [attach policies](./develop-api-proxy/policy/overview.md), and [add documents](./develop-api-proxy/documents.md) for consumers. |
-| Deploy | [Deploy the API](./deploy-api-proxy/overview.md) to a managed gateway or a self-hosted gateway. |
+| Deploy | [Deploy the API](./deploy-api-proxy/overview.md) to a cloud gateway or a self-hosted gateway. |
 | Test | Invoke the deployed API proxy from the [API Console](./test-api-proxy/api-console.md), the [GraphQL Console](./test-api-proxy/graphql-console.md), or [cURL](./test-api-proxy/curl.md). |
 | Publish | [Publish the API](./publish-api-proxy/publish-an-api.md) to one or more portals, [customize its portal listing](./publish-api-proxy/customize-portal-listing.md), choose its [subscription plans](./publish-api-proxy/subscription-plans-and-billing.md), and [make it AI-ready](./publish-api-proxy/make-an-api-ai-ready.md). When it is no longer needed, [deprecate or unpublish it](./publish-api-proxy/deprecate-or-unpublish.md). |
 

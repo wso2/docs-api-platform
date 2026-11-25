@@ -11,11 +11,11 @@ You can attach one or more policies to an API proxy in the API Control Plane, ei
 
 An API level policy applies to every resource in the API proxy. To attach one, follow the steps given below.
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 
-    ![Policies page showing the Global policies drop area, Resource policies for each resource, and the Available policies pane with search, category filter, and policy versions](/img/cloud/develop-api-proxy/policy/policies-page.png)
+    ![Policies page with the Global policies drop area, Resource policies, and the Available policies pane with search, category filter, and versions](/img/cloud/develop-api-proxy/policy/policies-page.png)
 
 4. In the **Available policies** pane, find the policy you want to attach. You can type a policy name in **Search policies**, or select a category from the **All** list to filter the policies.
 
@@ -32,7 +32,7 @@ An API level policy applies to every resource in the API proxy. To attach one, f
 
 A resource level policy applies only to the resource you attach it to. To attach one, follow the steps given below.
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 4. In the **Resource policies** section, find the resource you want to attach a policy to. You can type a path in **Search resources by path**, or select an HTTP method from the **All methods** list to filter the resources.
@@ -65,7 +65,7 @@ To discard changes that you haven't saved, click **Discard** in the save bar.
 
 Saving policies changes the API in the API Control Plane only. To apply attached, edited, or removed policies to a gateway, follow these steps:
 
-1. Deploy the API again with a new build. In the left navigation menu, click **Deploy**, click the arrow next to **Deploy** in **Build Area**, and select **Build and Deploy**. For more information, see [Deploy an API](../../deploy-api-proxy/overview.md).
+1. Deploy the API again with a new build. In the left navigation menu, click **Deploy**, click the arrow next to **Deploy** in **Build Area**, select **Build and Deploy**, and then click **Build and Deploy**. For more information, see [Deploy an API](../../deploy-api-proxy/overview.md).
 2. Wait until the gateway's status is **Active**.
 3. Call the API, and check that the change took effect. For example, after you remove a policy, its behavior stops:
 

@@ -5,7 +5,7 @@ description: "Set the details, specification, subscription plans, documentation,
 
 When you publish an API to a portal, you prepare a listing for it, the information that consumers see in that portal. You prepare the listing in the tabs of the API's publish page for that portal. Each portal has its own listing, so you can present the same API differently in different portals.
 
-To open the page, in the left navigation menu, click **Publish**. On the portal, click **Configure & Publish**. See [Publish an API](./publish-an-api.md).
+To open the page, in the left navigation menu, click **Publish**. On the portal card, open **Configure & Publish**. If the API isn't published to the portal yet, click the arrow next to **Publish** and select **Configure & Publish**. See [Publish an API](./publish-an-api.md).
 
 | Tab | Use it to |
 |:----|:----------|

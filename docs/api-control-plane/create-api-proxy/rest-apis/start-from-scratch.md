@@ -42,8 +42,8 @@ Before you begin, make sure you have access to the console.
    | **Name** | `Reading List API` |
    | **Identifier** | `reading-list-api` |
    | **Version** | `1.0.0` |
-   | **Context** | `/sample-project/reading-list-api/v1.0.0` |
-   | **Description** | `A starting point. Edit the operations, or ask AI to refine them.` |
+   | **Context** | `/default/reading-list-api/v1.0.0` |
+   | **Description** | Optional. The console leaves it empty. |
    | **Endpoint** | `https://apis.bijira.dev/samples/reading-list-api-service/v1.0/books` |
 
 6. Click **Create**.
@@ -56,7 +56,7 @@ To add your own resources, such as `GET /books/{id}`, or to remove the wildcard 
 
 Deploying places a build of the API on a gateway so requests can reach the backend through that gateway.
 
-1. Choose a gateway. Your organization has a Choreo Managed Gateway named **Default**, in the development environment. To deploy to another gateway, create it first. See [Manage Gateways](../../administer/managing-gateways.md).
+1. Choose a gateway. Your organization has a cloud gateway named **Default**, in the development environment. To deploy to another gateway, create it first. See [Manage Gateways](../../administer/managing-gateways.md).
 2. Go to the **Deploy** section and deploy the API to the gateway. For more information, see [Deploy an API](../../deploy-api-proxy/overview.md).
 
 ## Test the API

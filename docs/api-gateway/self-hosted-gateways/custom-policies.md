@@ -4,13 +4,13 @@ pagination_label: "Add Custom Policies to a Self-Hosted Gateway"
 description: "Build a Self-Hosted Gateway with your own policies, sync them to your organization, and attach them to API proxies from the API Control Plane."
 ---
 
-The [Policy Hub](../../policy-hub/overview.md) covers common needs such as authentication, rate limiting, and header changes. When an API needs logic of your own, such as a signature that a legacy backend expects, you can write a custom policy and build it into your Self-Hosted Gateway. You then attach it to API proxies in the API Control Plane Console, like any other policy.
+The [Policy Hub](../../policy-hub/overview.md) covers common needs such as authentication, rate limiting, and header changes. When an API needs logic of your own, such as a signature that a legacy backend expects, you can write a custom policy and build it into your self-hosted gateway. You then attach it to API proxies in the API Control Plane Console, like any other policy.
 
 A custom policy runs only on the gateways that you build with it.
 
 ## How It Works
 
-![Custom policy flow: the policy code and build.yaml are built into custom gateway images, the Self-Hosted Gateway runs them and reports its installed policies to the control plane, the policy is synced from the gateway's Policies tab to the organization's custom policies, attached to an API proxy, and the API is deployed back to the gateway](/img/cloud/self-hosted-gateway/custom-policies/self-hosted-custom-policies-flow.png)
+![Custom policy flow: build gateway images with the policy, run the gateway, sync the policy from the Policies tab, attach it to an API, and deploy.](/img/cloud/self-hosted-gateway/custom-policies/self-hosted-custom-policies-flow.png)
 
 1. **Write the policy**, and add it to the gateway's `build.yaml`.
 
@@ -28,9 +28,9 @@ The steps below follow this flow with the **Transform Payload Case** sample poli
 
 ## Prerequisites
 
-- A Self-Hosted Gateway that runs **API-Gateway v1.2** and shows **Active** in the console. If you don't have one, see [Setting Up a Self-Hosted Gateway](./setting-up.md).
+- A self-hosted gateway that runs **API-Gateway v1.2** and shows **Active** in the console. If you don't have one, see [Setting Up a Self-Hosted Gateway](./setting-up.md).
 - The gateway folder, `wso2apip-api-gateway-1.2.0`, which holds the `build.yaml` file used below. If you installed the gateway with Helm, download and extract it as in [Step 1: Download](./setting-up.md#step-1-download).
-- Docker and the `ap` CLI on the machine where you build the images. Download the CLI for your platform from the [`ap` CLI v0.9.1 release](https://github.com/wso2/api-platform/releases/tag/ap%2Fv0.9.1), extract it, and add the `ap` binary to your `PATH`. Run `ap version` to check it.
+- Docker and the `ap` CLI on the machine where you build the images. Download the CLI for your platform from the [`ap` CLI v0.9.2 release](https://github.com/wso2/api-platform/releases/tag/ap%2Fv0.9.2), extract it, and add the `ap` binary to your `PATH`. Run `ap version` to check it.
 
 ## Step 1: Write the Policy
 
@@ -45,7 +45,7 @@ To write your own policy, see the [Policy Development Guide](https://choreolabs.
 cd wso2apip-api-gateway-1.2.0
 mkdir -p policies/transform-payload-case && cd policies/transform-payload-case
 for f in go.mod go.sum policy-definition.yaml transformpayloadcase.go; do
-  curl -sLO "https://raw.githubusercontent.com/wso2/api-platform/refs/tags/gateway/v1.2.0/gateway/sample-policies/transform-payload-case/$f"
+  curl -fsSLO "https://raw.githubusercontent.com/wso2/api-platform/refs/tags/gateway/v1.2.0/gateway/sample-policies/transform-payload-case/$f"
 done
 cd ../..
 ```
@@ -113,7 +113,7 @@ policies:
 Add your policy to the list; don't replace the list. The new images contain only the policies in `build.yaml`. If you remove an entry, such as `cors`, every API that uses that policy fails to deploy to this gateway.
 :::
 
-`filePath` is the policy folder, relative to `build.yaml`. To build a policy from your own Go module repository instead, use `gomodule`, for example `gomodule: github.com/acme/gateway-policies/transform-payload-case@v1`. The gateway treats `filePath` entries, and `gomodule` entries outside `github.com/wso2`, as custom policies.
+`filePath` is the policy folder. The CLI resolves a relative path against the current working directory, so run the build command from the folder that holds `build.yaml`, or use paths relative to the folder where you run it. The `name` in `policy-definition.yaml` must match the policy `name` in `build.yaml`, or the build fails with a `name mismatch` error. To build a policy from your own Go module repository instead, use `gomodule`, for example `gomodule: github.com/acme/gateway-policies/transform-payload-case@v1`. The gateway treats `filePath` entries, and `gomodule` entries outside `github.com/wso2`, as custom policies.
 
 From the gateway folder, build the images.
 
@@ -201,7 +201,7 @@ You should see `Successfully pushed gateway manifest to control plane`. On Kuber
 
 The console now lists the gateway's policies, but APIs can't use a custom policy until you sync it. A sync copies the policy's name, version, description, and parameters to your organization.
 
-1. In the API Control Plane Console, go to **API Gateways**.
+1. In the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/), go to **API Gateways**.
 
 2. On the **Self-hosted API gateways** tab, click your gateway.
 
@@ -251,9 +251,9 @@ Attach the policy the same way as a Policy Hub policy. For details, see [Adding 
 
 ## Step 6: Deploy the API to the Gateway
 
-Deploy the API to the Self-Hosted Gateway that you built with the policy. For the steps, see [Deploy the API to the Self-Hosted Gateway](./deploy-and-test-api.md#step-2-deploy-the-api-to-the-self-hosted-gateway).
+Deploy the API to the self-hosted gateway that you built with the policy. For the steps, see [Deploy the API to the Self-Hosted Gateway](./deploy-and-test-api.md#step-2-deploy-the-api-to-the-self-hosted-gateway).
 
-A gateway that doesn't have the policy refuses the deployment, and the deployment shows **Failed**. This includes managed gateways, and Self-Hosted Gateways that run the standard images. Deploy APIs that use a custom policy only to gateways that you built with it.
+A gateway that doesn't have the policy refuses the deployment, and the deployment shows **Failed**. This includes cloud gateways, and self-hosted gateways that run the standard images. Deploy APIs that use a custom policy only to gateways that you built with it.
 
 ## Update a Custom Policy
 
@@ -273,7 +273,7 @@ APIs refer to a custom policy by its name and major version, such as `v1`, and e
 |---|---|
 | The **Policies** tab shows **No gateway manifest found** | The gateway hasn't reported its policies. Check that it shows **Active**, then look for `Failed to push gateway manifest` in the controller logs. |
 | The policy is missing from the **Policies** tab | The gateway still runs the standard images, or the page shows an earlier connection. Check the images with `docker compose images`, then reload the page. |
-| The policy shows **Policy Hub** instead of **Custom** | The controller didn't find the policy in its `build-manifest.yaml`. The controller image wasn't replaced, or the policy comes from a `github.com/wso2` module. The controller logs `Could not read build-manifest.yaml` when the file is missing. |
+| The policy shows **Policy Hub** instead of **Custom** | The controller didn't find the policy in its `build-manifest.yaml`. The controller image wasn't replaced, or the policy comes from a `github.com/wso2` module. If the file is missing, the controller treats every policy as a Policy Hub policy and logs only a debug message. The controller logs `Could not read build-manifest.yaml` only when it can't read or parse the file. |
 | Sync fails with `must be at most ... characters` | A field in `policy-definition.yaml` is too long. Shorten it, rebuild the images, restart the gateway, and sync again. |
 | The **Sync status** shows **Unknown** | The console couldn't read your organization's custom policies. Reload the page. |
 | The policy isn't in the **Available policies** pane | The policy isn't synced yet, or a category is selected. Sync it, or select **All**. |
@@ -282,5 +282,5 @@ APIs refer to a custom policy by its name and major version, such as `v1`, and e
 ## Next Steps
 
 - [Adding and Managing Policies](./manage-policies.md): attach, order, and configure policies on an API.
-- [Deploy and Test an API](./deploy-and-test-api.md): deploy an API to your Self-Hosted Gateway and invoke it.
+- [Deploy and Test an API](./deploy-and-test-api.md): deploy an API to your self-hosted gateway and invoke it.
 - [Policy Hub](../../policy-hub/overview.md): the Policy Hub policies you can attach without building them.

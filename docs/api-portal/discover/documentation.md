@@ -13,4 +13,4 @@ The API documentation page provides essential information such as endpoints, sch
 4. You can see the Documentation added to your API under different sections.
 5. Select the documentation to view the content.
 
-    ![API documentation page showing GET /restaurants endpoint method, path, and full URL details](/img/cloud/devportal/api-documentation.png)
+    ![API documentation page showing GET /restaurants endpoint method, path, and full URL details](/img/cloud/api-portal/api-documentation.png)

@@ -22,14 +22,13 @@ API publishers can share the portal URL with consumers so that they can open it 
 
 To sign in, click **Log In** in the portal, and enter your username and password.
 
-Anyone can create an account in a portal by clicking **Sign up** on the sign-in page. An administrator can also add users to the portal.
+If the portal allows self sign-up, you can create an account by clicking **Sign up** on the sign-in page. An administrator can also add users to the portal.
 
 ## What You Can Do
 
 | Area | Description |
 |:-----|:------------|
 | **APIs** | [Browse and search the APIs](./discover/browse-apis.md) in the portal, and [read their documentation](./discover/documentation.md). |
-| **MCP Servers** | [Explore the MCP servers](./discover/browse-mcp-servers.md) that you can connect your AI agents to. |
 | **API Workflows** | Find [pre-configured workflows](./discover/api-workflows.md) that AI agents follow to use your APIs correctly. |
 | **AI agents** | Let [AI agents discover the portal](./discover/ai-agent-discovery.md), or a single API, with a ready-made prompt that you can run in an AI agent such as Claude. APIs that agents can discover are marked **AI Ready**. |
 | **Keys** | Generate and manage the [OAuth2 keys](./manage-keys/oauth2-keys.md) and [API keys](./manage-keys/api-keys.md) that you use to call APIs. |

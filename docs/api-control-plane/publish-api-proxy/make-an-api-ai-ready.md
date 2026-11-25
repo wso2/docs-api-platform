@@ -51,17 +51,17 @@ By default, AI agents in the portal can discover a published API and invoke it o
 
 To control whether AI agents can discover an API, follow the steps given below.
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 
 3. In the left navigation menu, click **Publish**.
 
-4. On the portal, click **Configure & Publish**.
+4. On the portal card, open **Configure & Publish**. If the API isn't published to the portal yet, click the arrow next to **Publish** and select **Configure & Publish**.
 
 5. In the **Draft** view, on the **API Details** tab, turn the **Make this API discoverable by AI agents** toggle on or off.
 
-    ![API Details tab of the publish page with the Make this API discoverable by AI agents toggle turned on, and its tooltip saying that agents in the API Portal can discover and invoke the API on behalf of users](/img/cloud/publish-api-proxy/ai-agent-discovery.png)
+    ![The Make this API discoverable by AI agents toggle turned on, with its tooltip.](/img/cloud/publish-api-proxy/ai-agent-discovery.png)
 
 6. Click **Publish**, or **Republish** if the API is already published to the portal.
 

@@ -51,9 +51,9 @@ To discard your changes before you save, click **Reset**.
 
 ## Import a Definition
 
-Importing replaces the whole definition with another OpenAPI or Swagger contract.
+Importing replaces the whole definition with another OpenAPI 3.x contract. The console doesn't accept Swagger 2.x contracts.
 
-1. Click the **Update OpenAPI Definition** (upload) icon.
+1. Click the **Import Definition** (upload) icon.
 2. In the **Update OpenAPI Definition** dialog box, do one of the following:
 
     - Paste the contract URL, and click **Fetch specification**.

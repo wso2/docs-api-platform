@@ -4,7 +4,7 @@ pagination_label: "Gateway Observability"
 description: "View gateway logs, and collect logs and traces from Self-Hosted Gateways."
 ---
 
-You can view gateway logs from the API Control Plane. For a Self-Hosted Gateway, you can also collect the logs and traces of its components with your own tools.
+You can view gateway logs from the API Control Plane. For a self-hosted gateway, you can also collect the logs and traces of its components with your own tools.
 
 ## In the API Control Plane
 
