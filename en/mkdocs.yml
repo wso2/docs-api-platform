@@ -186,6 +186,7 @@ nav:
           - Logging:
             - Centralized Logging: api-gateway/1.2.0/observability/logging.md
             - Traffic Logging: api-gateway/1.2.0/observability/traffic-logging.md
+            - Audit Logging: api-gateway/1.2.0/observability/audit-logging.md
           - Tracing:
             - Overview: api-gateway/1.2.0/observability/tracing/overview.md
             - Enabling and Disabling Tracing: api-gateway/1.2.0/observability/tracing/enabling-tracing.md
