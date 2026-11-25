@@ -1405,12 +1405,19 @@
     }
 }
 
-/* Announcement banner (theme/material/main.html).
-   A slim bar in the site's primary orange with white text and link, the same
-   in light and dark mode. */
+/* Announcement banner (theme/material/main.html), in the Choreo Labs brand
+   colours: Midnight Ink bar, Paper text, and the Signal Orange link as the one
+   thing to act on. Signal Orange on Midnight Ink is 5.2:1 and Paper on
+   Midnight Ink is 16.5:1, so the same colours work in light and dark mode. */
 .md-banner {
-  background-color: var(--md-primary-fg-color);
-  color: #ffffff;
+  background-color: #0B1633;
+  color: #F4F6FA;
+}
+
+/* In dark mode the bar sits next to an almost equally dark header; a faint
+   Paper rule keeps the two apart. */
+[data-md-color-scheme=slate] .md-banner {
+  border-bottom: 1px solid rgba(244, 246, 250, .12);
 }
 
 .md-banner .md-banner__inner {
@@ -1422,17 +1429,17 @@
 }
 
 .md-banner .md-banner__button {
-  color: #ffffff;
+  color: #F4F6FA;
   opacity: .85;
 }
 
 .md-banner .md-banner__button:hover {
-  color: #ffffff;
+  color: #F4F6FA;
   opacity: 1;
 }
 
 /* The light-mode ".md-icon svg" colour rule would paint the close button
-   dark on the orange bar. */
+   dark on the Midnight Ink bar. */
 [data-md-color-scheme] .md-banner .md-banner__button svg {
   fill: currentColor;
 }
@@ -1452,12 +1459,12 @@
   display: inline-flex;
   align-items: center;
   gap: .3rem;
-  color: #ffffff;
+  color: #FF4600;
   font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
 }
 
 .md-typeset .md-new-docs-banner__link:hover {
-  opacity: .85;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
