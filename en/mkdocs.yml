@@ -228,6 +228,7 @@ nav:
             - Resources & Scaling: api-portal/1.0.0/deployment/resources-and-scaling.md
             - Deploy & Verify: api-portal/1.0.0/deployment/deploy-and-verify.md
             - Control Plane Connection: api-portal/1.0.0/deployment/control-plane-connection.md
+            - Audit Logging: api-portal/1.0.0/deployment/audit-logging.md
         - Tutorials:
             - Secured API End to End: api-portal/1.0.0/tutorials/secured-api-end-to-end.md
         - References:
