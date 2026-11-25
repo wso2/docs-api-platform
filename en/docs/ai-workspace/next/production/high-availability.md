@@ -9,7 +9,7 @@ tags:
   - high-availability
   - scaling
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-21
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
@@ -73,7 +73,7 @@ For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#ha-
 
 ## Step 6: Tune the health probes
 
-Both services answer a health endpoint: `/healthz` for AI Workspace, `/health` for the Platform API. The chart defaults suit a fast start. If your first start is slow, such as during a large schema migration, add a startup probe rather than lengthening the liveness delay. A startup probe gives the process time to come up without weakening the liveness check afterward.
+Both services answer health endpoints: `/healthz` for AI Workspace, and `/health` and `/ready` for the Platform API. The Platform API chart probes liveness on `/health`, and readiness and startup on `/ready`, with a startup probe that allows 6 minutes. If your first start is slower, such as during a large schema migration, lengthen the startup probe rather than the liveness delay. A startup probe gives the process time to come up without weakening the liveness check afterward. See [Health Checks](health-checks.md).
 
 For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#ha-step-6-tune-the-health-probes), [Deploy on Kubernetes](deploy-on-kubernetes.md#ha-step-6-tune-the-health-probes), and [Deploy on OpenShift](openshift.md#openshift-ha-step-6-tune-the-health-probes).
 

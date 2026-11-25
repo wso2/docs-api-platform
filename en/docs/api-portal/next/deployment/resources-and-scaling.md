@@ -9,7 +9,7 @@ tags:
   - deployment
   - kubernetes
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-21
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
@@ -43,9 +43,9 @@ Scaling up on any platform adds database connections (`instances × max_open_con
 
 ## Health checks
 
-The portal answers `/health` at both the container root and under the `/api-portal` prefix, precisely so a health check can use it. It deliberately bypasses the session middleware, so a check every few seconds doesn't write a session row each time.
+The portal answers `/health` (liveness) and `/ready` (readiness) at both the container root and under the `/api-portal` prefix. Both bypass the session middleware, so a check every few seconds doesn't write a session row each time. Both answer `503` while the portal can't reach its database.
 
-On Kubernetes and OpenShift, point the liveness and readiness probes at `/health`. On VMs, point the load balancer's health check at `/health` and configure it to remove an instance that fails. The deployment guides show both.
+On Kubernetes and OpenShift, the chart probes liveness on `/health`, and readiness and startup on `/ready`. On VMs, point the load balancer's health check at `/ready` and configure it to remove an instance that fails. For the response format, the checks, and access control, see [Health Checks](health-checks.md).
 
 ## Related
 
