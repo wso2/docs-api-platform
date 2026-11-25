@@ -92,7 +92,7 @@ To put a gateway in front of an MCP server, see [MCP proxies](mcp-proxies/overvi
 
 Expose an AI agent through the gateway so clients reach it under a managed endpoint with its own authentication and policies.
 
-To expose your first agent, see [Agent proxies](agent-proxies/quick-start-guide.md).
+To learn how agent proxies work, see [Agent proxies](agent-proxies/overview.md). To expose your first agent, see the [quick start guide](agent-proxies/quick-start-guide.md).
 
 ### AI policies
 

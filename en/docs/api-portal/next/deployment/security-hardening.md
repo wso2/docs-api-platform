@@ -46,6 +46,8 @@ The portal image does **not** generate a certificate for itself. Supply a real o
 
 Terminating TLS in front of the portal is a legitimate production choice, but the hop from the terminator to the portal is then cleartext. Encrypt that hop too wherever it crosses a host or network boundary.
 
+To restrict the TLS versions and cipher suites, or to enable post-quantum key exchange on the listener and on the portal's outbound connections, see [TLS and post-quantum cryptography](../setting-up/tls-and-post-quantum-cryptography.md).
+
 ## Authentication
 
 Local authentication posts credentials to a Platform API, which validates them against a file-based user list. It exists for development and demos, and it is the portal's only outbound call to a Platform API — production deployments delegate login to an OIDC identity provider and make no such call at all, so accounts, password policy, and revocation live in your identity system. The OIDC settings are the same on every platform: the issuer, the authorization, token, user-info, and JWKS endpoints, the client ID, the callback and logout URLs, and the scope. The client secret is kept out of the configuration file: in the Secret on Kubernetes and OpenShift, and in a mounted file on VMs. See the authentication step in [Deploy on VMs](deploy-on-vms.md#configure-authentication), [Deploy on Kubernetes](deploy-on-kubernetes.md#configure-authentication), or [Deploy on OpenShift](openshift.md#configure-authentication).

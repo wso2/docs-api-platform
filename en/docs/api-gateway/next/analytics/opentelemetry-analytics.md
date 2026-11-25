@@ -39,7 +39,7 @@ sampling model that would silently discard billing-relevant events.
 !!! note
     Analytics is a **consumer** of a shared data-capture pipeline called the **collector**. The collector
     has no `enabled` flag of its own. It activates automatically whenever `analytics.enabled` (or
-    `traffic_logging.enabled`) is `true`. See [Traffic Logging](../observability/traffic-logging.md) for
+    `traffic_logging.enabled`) is `true`. See [Traffic Logging](../observability/traffic-logging/overview.md) for
     the other consumer of the same pipeline.
 
 ## How it works
@@ -117,7 +117,7 @@ service:
 ### `[collector]`
 
 Header and body capture is **off by default**. Enable only what you need downstream. These settings
-are shared with [Traffic Logging](../observability/traffic-logging.md), so see that page for how they
+are shared with [Traffic Logging](../observability/traffic-logging/configuration.md#collector), so see that page for how they
 behave there.
 
 | Parameter | Type | Default | Description |
