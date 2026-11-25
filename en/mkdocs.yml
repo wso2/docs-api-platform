@@ -115,6 +115,7 @@ nav:
           - Logging:
             - Centralized Logging: api-gateway/next/observability/logging.md
             - Traffic Logging: api-gateway/next/observability/traffic-logging.md
+            - Audit Logging: api-gateway/next/observability/audit-logging.md
           - Tracing:
             - Overview: api-gateway/next/observability/tracing/overview.md
             - Enabling and Disabling Tracing: api-gateway/next/observability/tracing/enabling-tracing.md
