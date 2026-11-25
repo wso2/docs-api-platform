@@ -25,8 +25,9 @@ The pages in this section answer one question each:
 | [Gateway logs](gateway-logs.md) | Configure centralized log collection for API Platform AI Gateway using Fluent Bit, OpenSearch, and alternative logging stacks. |
 | [Log requests and responses](log-requests-and-responses.md) | Record the payload and headers of traffic passing through the AI Gateway, as a log line per request or through a policy on chosen operations. |
 | [Tracing](tracing.md) | Configure distributed tracing for API Platform AI Gateway using OpenTelemetry and Jaeger, with support for cloud-native tracing backends. |
+| [Audit logs](audit-logs.md) | Record who created, changed, or deleted LLM providers, LLM proxies, MCP proxies, and other resources through the AI Gateway's management API. |
 
-Gateway logs are the runtime's own output, so they tell you how the gateway is behaving. Request and response logging captures the traffic content, so it tells you what a caller sent and what a model returned. Tracing follows one request across every hop it makes, so it tells you where time went.
+Gateway logs are the runtime's own output, so they tell you how the gateway is behaving. Request and response logging captures the traffic content, so it tells you what a caller sent and what a model returned. Tracing follows one request across every hop it makes, so it tells you where time went. Audit logs answer a different question: who changed the gateway's configuration, and when.
 
 ## How logging and tracing differ from analytics
 
