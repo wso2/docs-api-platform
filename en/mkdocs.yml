@@ -210,6 +210,7 @@ nav:
             - ai-gateway/1.2.0/logging-and-tracing/index.md
             - Gateway Logs: ai-gateway/1.2.0/logging-and-tracing/gateway-logs.md
             - Log Requests and Responses: ai-gateway/1.2.0/logging-and-tracing/log-requests-and-responses.md
+            - Audit Logs: ai-gateway/1.2.0/logging-and-tracing/audit-logs.md
             - Tracing: ai-gateway/1.2.0/logging-and-tracing/tracing.md
         - Analytics:
             - ai-gateway/1.2.0/analytics/index.md
