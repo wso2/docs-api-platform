@@ -106,7 +106,6 @@ const sidebars = {
       group("Discover", [
         doc("api-portal/discover/browse-apis", "Search APIs"),
         doc("api-portal/discover/documentation", "API Documentation"),
-        doc("api-portal/discover/browse-mcp-servers", "MCP Servers"),
         doc("api-portal/discover/api-workflows", "API Workflows"),
         doc("api-portal/discover/ai-agent-discovery", "AI Agents"),
       ]),
@@ -138,7 +137,6 @@ const sidebars = {
         ]),
         group("Content", [
           doc("api-portal/administer/manage-apis", "Manage APIs"),
-          doc("api-portal/administer/manage-mcp-servers", "Manage MCP Servers"),
         ]),
         group("Integrations", [
           doc("api-portal/administer/webhook-integration", "Webhooks"),
