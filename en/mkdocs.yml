@@ -113,6 +113,7 @@ nav:
             - ai-gateway/next/logging-and-tracing/index.md
             - Gateway Logs: ai-gateway/next/logging-and-tracing/gateway-logs.md
             - Log Requests and Responses: ai-gateway/next/logging-and-tracing/log-requests-and-responses.md
+            - Audit Logs: ai-gateway/next/logging-and-tracing/audit-logs.md
             - Tracing: ai-gateway/next/logging-and-tracing/tracing.md
         - Analytics:
             - ai-gateway/next/analytics/index.md
