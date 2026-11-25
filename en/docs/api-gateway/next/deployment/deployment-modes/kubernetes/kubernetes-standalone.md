@@ -9,7 +9,7 @@ tags:
   - deployment
   - helm
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-07
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
@@ -234,17 +234,21 @@ helm install ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
 
 ## Create and Invoke API
 
-### Port-forward Gateway Controller Service
+### Port-forward the Gateway Controller
 
 ```bash
-kubectl port-forward svc/ap-gateway-controller 9090:9090 9094:9094
+kubectl port-forward deploy/ap-gateway-controller 9090:9090 9094:9092
 ```
 
-### Verify the Gateway Controller's admin endpoint is running
+This forwards local port `9090` to the management API and local port `9094` to the admin server, which listens on `9092` in the container. The command targets the Deployment rather than the Service because the chart leaves the admin port off the Service by default.
+
+### Verify the Gateway Controller is ready
 
 ```bash
-curl --fail http://localhost:9094/api/admin/v1/health
+curl --fail http://localhost:9090/api/management/v1/ready
 ```
+
+The admin server's `/api/admin/v1/ready`, forwarded to local port `9094`, returns the same answer but is deprecated. Use the management API endpoint.
 
 ### Deploy an API configuration
 
