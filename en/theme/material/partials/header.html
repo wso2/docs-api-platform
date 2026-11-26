@@ -28,7 +28,7 @@
       <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}" class="md-header__button md-logo" aria-label="{{ config.site_name }}" data-md-component="logo">
         {% include "partials/logo.html" %}
       </a>
-      <span class="md-header__docs-label">API Platform Documentation</span>
+      <span class="md-header__docs-label">{{ config.site_name }}</span>
     </div>
     <label class="md-header__button md-icon" for="__drawer">
       {% set icon = config.theme.icon.menu or "material/menu" %}

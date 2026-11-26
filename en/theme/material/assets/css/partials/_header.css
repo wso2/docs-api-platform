@@ -63,7 +63,7 @@
   min-height: var(--md-header-min-height);
 }
 
-/* Community button group (Get Help + Try API Platform) */
+/* Community button group (Get Help) */
 .md-header__community {
   flex: 0 0 auto;
   white-space: nowrap;
@@ -78,12 +78,14 @@
   align-items: center;
 }
 
-/* Divider before Get Help / Try API Platform group */
+/* Only Get Help is left in the group, so it needs no divider; the theme
+   toggle's margin spaces it from the search box and Get Help evenly. */
 .md-header__community .md-header__extra:before {
-  margin: 10px 15px;
-  width: 1px;
-  background-color: var(--md-divider-color);
-  content: "";
+  display: none;
+}
+
+.md-header .md-header__option .md-theme-switch {
+  margin-right: 7px;
 }
 
 .md-header__topic {
@@ -193,7 +195,6 @@
 
 .md-header__extra {
   display: flex;
-  margin-right: 0.6rem;
 }
 
 .md-header__extra .md-header__links {
@@ -209,8 +210,10 @@
   content: "";
 }
 
+/* Get Help sits at the header's right padding, matching the logo's left
+   padding. */
 .md-header__extra button {
-  margin-right: var(--md-header-links-vertical-spacing);
+  margin-right: 0;
 }
 
 @media screen and (max-width: 90.1875em) {
@@ -220,11 +223,6 @@
   
   .md-button.md-button--asgardeo-mini, .md-button.md-button--discord-mini {
     display: block;
-  }
-
-  /* Small screens: show only the Try Bijira icon (hide label) */
-  .md-button.md-button--try-bijira label {
-    display: none;
   }
 }
 

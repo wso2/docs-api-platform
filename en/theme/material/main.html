@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{#
+  Announcement bar for the WSO2 to Choreo Labs rename. Readers can dismiss
+  it (announce.dismiss); changing the text brings it back, because Material
+  keys the dismissal on a hash of the banner content.
+#}
+{% block announce %}
+  <div class="md-new-docs-banner">
+    <span class="md-new-docs-banner__text">WSO2 is now Choreo Labs</span>
+    <a class="md-new-docs-banner__link" href="https://choreolabs.com/news/wso2-is-now-choreo-labs/" target="_blank" rel="noopener">
+      Learn more<span class="md-new-docs-banner__arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+{% endblock %}
