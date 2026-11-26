@@ -242,7 +242,7 @@ policies:
 A request with `env: dev` goes to `https://url-dev.url.fr`, and `env: prod` goes to `https://url-prod.url.fr`. To route by the caller's subscription plan, put the `subscription-validation` policy first and read `request.Metadata["x-wso2-subscription-plan-name"]` instead.
 
 !!! warning
-    The caller sets the `env` header, so any caller can reach any host that the template allows, including production. Destination checks and a key allowlist limit the hosts. They don't decide which caller can reach which host. When each environment must be kept apart, read the key from a value that the gateway has authenticated, such as a claim in the caller's token or the caller's subscription plan.
+    The caller sets the `env` header, so any caller can reach any host that the template allows, including production. Destination checks and a key allowlist limit the hosts. They don't decide which caller can reach which host. When each environment must be kept apart, read the key from a value that the gateway has authenticated, such as a claim in the caller's token or the caller's subscription plan. Authentication alone isn't enough: the token issuer or the plan must set that value to an environment that the caller is authorized to use.
 
 A templated Backend follows these rules:
 
