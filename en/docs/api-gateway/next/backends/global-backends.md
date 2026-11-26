@@ -241,10 +241,13 @@ policies:
 
 A request with `env: dev` goes to `https://url-dev.url.fr`, and `env: prod` goes to `https://url-prod.url.fr`. To route by the caller's subscription plan, put the `subscription-validation` policy first and read `request.Metadata["x-wso2-subscription-plan-name"]` instead.
 
+!!! warning
+    The caller sets the `env` header, so any caller can reach any host that the template allows, including production. Destination checks and a key allowlist limit the hosts. They don't decide which caller can reach which host. When each environment must be kept apart, read the key from a value that the gateway has authenticated, such as a claim in the caller's token or the caller's subscription plan.
+
 A templated Backend follows these rules:
 
 - It has exactly one endpoint, with `{key}` in the first label of the host and at least one fixed label after it. The gateway rejects any other template with `400 Bad Request`.
-- The key must be one lowercase DNS label: letters, digits and inner hyphens, at most 63 characters. Every host the Backend reaches therefore ends in the fixed domain of the template.
+- The key must be one lowercase DNS label: letters, digits and inner hyphens. The fixed text around `{key}` and the key together must fit in 63 characters, the limit of a DNS label. With `url-{key}`, a key can have at most 59 characters. Every host the Backend reaches therefore ends in the fixed domain of the template.
 - A request without a valid key gets `400 Bad Request`. To limit the keys a caller can use, test the value in the expression, for example with `matches("^(dev|qa|prod)$")`.
 - The gateway resolves the expanded host for each request. A host that doesn't resolve gets `503 Service Unavailable`.
 - The Backend's `tls` settings apply to every host. The gateway checks each server certificate against the expanded host name.
