@@ -373,6 +373,8 @@ nav:
           - Outbound HTTP Client and Proxy Configuration: api-gateway/next/setup/outbound-http-client-and-proxy.md
         - Resiliency:
           - Timeouts: api-gateway/next/resiliency/timeouts.md
+        - Backends:
+          - Global Backends: api-gateway/next/backends/global-backends.md
         - Policies:
           - Overview: api-gateway/next/policies/overview.md
           - Policy execution order: api-gateway/next/policies/policy-execution-order.md
@@ -440,6 +442,7 @@ nav:
           - Rest API Management: api-gateway/next/gateway-controller-management-api/rest-api-management.md
           - GraphQL API Management: api-gateway/next/gateway-controller-management-api/graphql-api-management.md
           - MCP Proxy Management: api-gateway/next/gateway-controller-management-api/mcp-proxy-management.md
+          - Backend Management: api-gateway/next/gateway-controller-management-api/backend-management.md
           - Certificate Management: api-gateway/next/gateway-controller-management-api/certificate-management.md
           - LLM Provider Template Management: api-gateway/next/gateway-controller-management-api/llm-provider-template-management.md
           - LLM Provider Management: api-gateway/next/gateway-controller-management-api/llm-provider-management.md

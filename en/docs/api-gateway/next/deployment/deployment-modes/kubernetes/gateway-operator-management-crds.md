@@ -15,13 +15,13 @@ content_type: "reference"
 
 # Gateway Operator — Management CRDs
 
-This document covers the optional management-API-backed custom resources supported by the Gateway Operator: `LlmProviderTemplate`, `LlmProvider`, `LlmProxy`, `Mcp`, `ApiKey`, `SubscriptionPlan`, `Subscription`, and `Certificate`.
+This document covers the optional management-API-backed custom resources supported by the Gateway Operator: `LlmProviderTemplate`, `LlmProvider`, `LlmProxy`, `Mcp`, `ApiKey`, `SubscriptionPlan`, `Subscription`, `Certificate`, and `Backend`.
 
 For the main operator modes (Platform CRDs and Kubernetes Gateway API), see [Kubernetes Operator deployment mode](./gateway-operator.md).
 
 ## Overview
 
-In addition to `RestApi`, the operator supports management-API-backed CRDs such as `LlmProviderTemplate`, `LlmProvider`, `LlmProxy`, `Mcp`, `ApiKey`, `SubscriptionPlan`, `Subscription`, and `Certificate`.
+In addition to `RestApi`, the operator supports management-API-backed CRDs such as `LlmProviderTemplate`, `LlmProvider`, `LlmProxy`, `Mcp`, `ApiKey`, `SubscriptionPlan`, `Subscription`, `Certificate`, and `Backend`. `Backend` uses the `gateway.choreolabs.com/v1` API group; the others use `gateway.api-platform.wso2.com/v1`. See [Global Backends](../../../backends/global-backends.md) for the `Backend` resource.
 
 These resources use the same gateway selection model as `RestApi` (labels + `APIGateway.spec.apiSelector`).
 
