@@ -9,7 +9,7 @@ tags:
   - operations
   - observability
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-11-26
 content_type: "how-to"
 ---
 
@@ -72,13 +72,13 @@ Keep the level at `info` in production. `debug` is verbose enough to affect thro
 
 ## Step 2: Watch the right signals
 
-Both services answer a health endpoint that doesn't require authentication: `/healthz` on AI Workspace and `/health` on the Platform API. Everything else comes from logs and from your platform's own metrics.
+Both services answer health endpoints that don't require authentication: `/healthz` on AI Workspace, and `/health` (liveness) and `/ready` (readiness) on the Platform API. The Platform API endpoints report a `database` check, so they answer `503` while the database is unreachable or the connection pool stays exhausted. Everything else comes from logs and from your platform's own metrics. See [Health Checks](health-checks.md).
 
 Alert on these:
 
 | Signal | Why it matters |
 |--------|----------------|
-| Either health endpoint failing | The service is down or can't reach a dependency |
+| Either health endpoint failing | The service is down or can't reach a dependency. On the Platform API, the `database` check in the response names the cause |
 | A restart loop on either service | A configuration or secret stopped resolving; the startup message names which |
 | Database connection errors | The pool is exhausted or the database is unreachable |
 | Certificate expiry inside 14 days | Renewal stopped, and an expired certificate takes the workspace offline |

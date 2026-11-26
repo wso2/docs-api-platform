@@ -9,7 +9,7 @@ tags:
   - high-availability
   - scaling
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-11-26
 content_type: "how-to"
 ---
 
@@ -104,7 +104,7 @@ All instances must use the same at-rest encryption key so they can decrypt data 
     - The same database connection.
     - A certificate valid for the public hostname, or plain-HTTP listeners behind a TLS-terminating load balancer.
 
-    Put a load balancer in front of the hosts, health-checking `/healthz` on the workspace port and `/health` on the Platform API port. Remove a host from rotation before you upgrade it, then add it back once its health check passes.
+    Put a load balancer in front of the hosts, health-checking `/healthz` on the workspace port and `/ready` on the Platform API port. Remove a host from rotation before you upgrade it, then add it back once its health check passes.
 
     Configure **session affinity** on the workspace pool. The BFF keeps sessions in memory, so a user routed to a different host mid-session is signed out. Most load balancers call this sticky sessions or source affinity; a cookie-based method is more accurate than one based on client IP address.
 
@@ -251,7 +251,7 @@ Set CPU requests first. Without them the autoscaler has no baseline to compute u
 
 ## Step 6: Tune the health probes
 
-Both services answer a health endpoint: `/healthz` for AI Workspace, `/health` for the Platform API. The chart defaults suit a fast start. If your first start is slow, such as during a large schema migration, add a startup probe rather than lengthening the liveness delay. A startup probe gives the process time to come up without weakening the liveness check afterward.
+Both services answer health endpoints: `/healthz` for AI Workspace, and `/health` and `/ready` for the Platform API. The Platform API chart probes liveness on `/health`, and readiness and startup on `/ready`, with a startup probe that allows 6 minutes. If your first start is slower, such as during a large schema migration, lengthen the startup probe rather than the liveness delay. A startup probe gives the process time to come up without weakening the liveness check afterward. See [Health Checks](health-checks.md).
 
 === "Virtual machine"
     The shipped Compose health checks call each endpoint from inside the container. Point your load balancer at the same endpoints, over the port each service listens on.
@@ -262,12 +262,15 @@ Both services answer a health endpoint: `/healthz` for AI Workspace, `/health` f
       deployment:
         startupProbe:
           httpGet:
-            path: /health
+            path: /ready
             port: http
             scheme: HTTPS
           periodSeconds: 5
-          failureThreshold: 30
+          timeoutSeconds: 3
+          failureThreshold: 108
     ```
+
+    This example allows 9 minutes. Keep the startup probe's window longer than the Platform API's `startup_wait` (5 minutes by default), so the Platform API, not the probe, decides when a database wait gives up.
 
 ## Verify
 

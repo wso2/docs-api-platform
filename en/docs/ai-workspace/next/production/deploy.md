@@ -9,7 +9,7 @@ tags:
   - deployment
   - how-to
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-11-26
 content_type: "how-to"
 ---
 
@@ -420,11 +420,11 @@ Three values in this step are worth getting right the first time, because each f
 === "Virtual machine"
     ```bash
     docker compose logs platform-api ai-workspace | grep -i -E 'error|fail'
-    curl -fsk https://localhost:9243/health
+    curl -fsk https://localhost:9243/ready
     curl -fsk https://localhost:9643/healthz
     ```
 
-    These two checks use `-k`, which skips certificate verification, because the certificate names your public hostname rather than `localhost`. That's acceptable for a liveness check on the host itself. Don't carry `-k` into anything that crosses a network, and don't take it as a precedent for the service-to-service hops, which verify properly. Step 8 checks the same endpoints through the public hostname with verification on.
+    These two checks use `-k`, which skips certificate verification, because the certificate names your public hostname rather than `localhost`. That's acceptable for a health check on the host itself. Don't carry `-k` into anything that crosses a network, and don't take it as a precedent for the service-to-service hops, which verify properly. Step 8 checks the same endpoints through the public hostname with verification on.
 
 === "Kubernetes"
     ```bash

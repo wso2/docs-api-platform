@@ -102,6 +102,7 @@ nav:
           - Harden the Deployment: ai-workspace/next/production/harden.md
           - Connect AI Gateways: ai-workspace/next/production/connect-gateways.md
           - Operate the Deployment: ai-workspace/next/production/operate.md
+          - Health Checks: ai-workspace/next/production/health-checks.md
       # Build the artifacts, in the order you create them.
       - AI Gateways:
           - Setting Up: ai-workspace/next/ai-gateways/setting-up.md
