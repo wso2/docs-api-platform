@@ -63,6 +63,8 @@ spec:
     connect: 2s
 ```
 
+The endpoint URLs are placeholders. Replace them with the URLs of backend services that the gateway can reach.
+
 !!! note
     A Backend uses `apiVersion: gateway.choreolabs.com/v1`. APIs and the other gateway resources use `apiVersion: gateway.api-platform.wso2.com/v1`. The gateway rejects a Backend with any other `apiVersion`.
 
@@ -109,7 +111,7 @@ A Backend supports the following fields:
     kubectl apply -f tenant-b.yaml
     ```
 
-    The operator deploys the Backend to every gateway whose `APIGateway` selects its namespace and labels. Its labels also serve as the labels a `backendSelector` matches.
+    The operator selects the gateway for a Backend in the same way as for a `RestApi`, through the `apiSelector` of the `APIGateway`. The Backend's labels also serve as the labels a `backendSelector` matches. A label change that makes a different gateway select the Backend doesn't move it, and the previous gateway keeps its copy. To move a Backend to another gateway, delete it, and then create it with the labels that the other gateway selects.
 
 If the definition is invalid, the gateway returns `400 Bad Request` with an `errors` array. Each error names the field at fault, for example `spec.endpoints[0].url` or `spec.basePath`. If a Backend with the same `metadata.name` exists, the gateway returns `409 Conflict`.
 
@@ -173,7 +175,7 @@ curl http://localhost:8080/orders/v1.0/items -H "x-tenant: tenant-b"
 The gateway sends the request to an endpoint of `tenant-b`, at `/v1/items`.
 
 !!! warning
-    The caller sets the `x-tenant` header, so any caller can reach any Backend labelled `team: orders` through this API. The `backendSelector` limits the Backends that the API can route to. It doesn't decide which caller can reach which of those Backends. When each tenant must reach only its own Backend, read the tenant from a value that the gateway has authenticated, such as a claim in the caller's token. For example, put the `jwt-auth` policy before `dynamic-endpoint` and use `backendExpression: auth.Properties["tenant_id"]`.
+    The caller sets the `x-tenant` header, so any caller can reach any Backend labelled `team: orders` through this API. The `backendSelector` limits the Backends that the API can route to. It doesn't decide which caller can reach which of those Backends. When each tenant must reach only its own Backend, read the tenant from a value that the gateway has authenticated, such as a claim in the caller's token. For example, put the `jwt-auth` policy before `dynamic-endpoint` and use `backendExpression: auth.Properties["tenant_id"]`. Set `onMissingValue: reject` as well, so that a token without the claim gets `400 Bad Request` instead of the `targetUpstream` Backend. The token issuer must set the claim to the tenant that the caller is allowed to reach.
 
 The gateway answers `400 Bad Request` in the following cases:
 
@@ -257,7 +259,7 @@ You can't delete a certificate while a Backend's `tls` block names it.
 
 Edit the definition file and apply it again with `ap gateway apply -f`, or send it with `PUT /backends/{id}`. The `metadata.name` in the file must match the Backend ID. The gateway applies the change within a few seconds. You don't redeploy the APIs that route to the Backend.
 
-Requests in flight during an update aren't affected. Until every API uses the updated base path, the gateway keeps the previous endpoints in service next to the updated ones. A request never combines one version's base path with another version's endpoints.
+A request that the gateway has already sent to an endpoint isn't affected by an update. A request that the gateway is still matching or routing when the update takes effect can get `503 Service Unavailable`. For the causes, see [Errors](#errors). Until every API uses the updated base path, the gateway keeps the previous endpoints in service next to the updated ones. A request never combines one version's base path with another version's endpoints.
 
 ### Delete a Backend
 
@@ -295,6 +297,7 @@ The following responses come from routing to Backends or from managing them:
 | :--- | :--- |
 | `400 Bad Request` with `The requested backend is not available for this API.` | The value that `backendExpression` returned can't be routed, the expression failed on a value that the request carries, or the expression had no value and `onMissingValue` is `reject`. |
 | `503 Service Unavailable` with the error code `905008` | `targetUpstream` names neither an upstream definition of the API nor a Backend on the gateway, someone deleted the Backend during the request, or someone changed the Backend's endpoints, weights, base path, TLS settings or timeout between the policy matching it against `backendSelector` and the gateway routing the request. The response carries an `x-error-id` header, and the gateway logs the Backend name under that ID. |
+| `503 Service Unavailable` without an error code | The gateway removed the endpoints of a Backend's previous version just as it forwarded a request that it had routed to them. This can happen only within milliseconds of a Backend update. Send the request again. |
 | `500 Internal Server Error` with the error code `905005` | The `backendExpression` of the route doesn't compile. For more information, see [Limitations](#limitations). |
 | `409 Conflict` on `DELETE /backends/{id}` | A deployed API names the Backend in `targetUpstream`. |
 
