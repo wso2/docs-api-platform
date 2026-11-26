@@ -112,7 +112,7 @@ A Backend supports the following fields:
     kubectl apply -f tenant-b.yaml
     ```
 
-    The operator selects the gateway for a Backend in the same way as for a `RestApi`, through the `apiSelector` of the `APIGateway`. The Backend's labels also serve as the labels a `backendSelector` matches. A label change that makes a different gateway select the Backend doesn't move it, and the previous gateway keeps its copy. To move a Backend to another gateway, delete it, and then create it with the labels that the other gateway selects.
+    The operator selects the gateway for a Backend in the same way as for a `RestApi`, through the `apiSelector` of the `APIGateway`. The Backend's labels also serve as the labels a `backendSelector` matches. A label change that makes a different gateway select the Backend doesn't move it, and the previous gateway keeps its copy. To move a Backend to another gateway, first delete it while it still has its old labels, and then create it with the labels that the other gateway selects. Requests routed to the Backend get `503 Service Unavailable` while it's missing, so plan the move for a time when that's acceptable.
 
 If the definition is invalid, the gateway returns `400 Bad Request` with an `errors` array. Each error names the field at fault, for example `spec.endpoints[0].url` or `spec.basePath`. If a Backend with the same `metadata.name` exists, the gateway returns `409 Conflict`.
 
@@ -309,7 +309,7 @@ You can't delete a certificate while a Backend's `tls` block names it.
 
 Edit the definition file and apply it again with `ap gateway apply -f`, or send it with `PUT /backends/{id}`. The `metadata.name` in the file must match the Backend ID. The gateway applies the change within a few seconds. You don't redeploy the APIs that route to the Backend.
 
-A request that the gateway has already sent to an endpoint isn't affected by an update. A request that the gateway is still matching or routing when the update takes effect can get `503 Service Unavailable`. For the causes, see [Errors](#errors). Until every API uses the updated base path, the gateway keeps the previous endpoints in service next to the updated ones. A request never combines one version's base path with another version's endpoints.
+A request that the gateway has already sent to an endpoint isn't affected by an update. A request that the gateway is still matching or routing when the update takes effect can get `503 Service Unavailable`. For the causes, see [Errors](#errors). The gateway keeps the previous endpoints in service only until the policy engine routes by the updated Backend, and then removes them. A request never combines one version's base path with another version's endpoints.
 
 ### Delete a Backend
 
