@@ -237,8 +237,8 @@ Status Code **200**
 |»»»» basePath|string|false|none|Base path prefixed to every request routed to this Backend, after the API context is stripped. Must start with '/' and must not end with '/'; omit for root.|
 |»»»» timeout|[UpstreamTimeout](schemas.md#schemaupstreamtimeout)|false|none|Timeout configuration for upstream requests|
 |»»»»» connect|string|false|none|Connection timeout duration (e.g., "5s", "500ms")|
-|»»»» endpoints|[object]|true|none|The Backend's endpoint URLs, with optional weights for load balancing. All endpoints of a Backend must use the same scheme, all http:// or all https://, with or without `tls`; a Backend carrying `tls` must use https://.|
-|»»»»» url|string(uri)|true|none|Backend URL (host and port only, path comes from basePath)|
+|»»»» endpoints|[object]|true|none|The Backend's endpoint URLs, with optional weights for load balancing. All endpoints of a Backend must use the same scheme, all http:// or all https://, with or without `tls`; a Backend carrying `tls` must use https://. A templated Backend has a single endpoint whose host contains `{key}`, which each request fills with the key a policy computes (dynamic-endpoint `backendKeyExpression`).|
+|»»»»» url|string|true|none|Backend URL (host and port only, path comes from basePath). For a templated Backend, `{key}` sits in the host's first label, between optional fixed text, followed by at least one fixed label, for example `https://api-{key}.example.com`. The key is one lowercase DNS label, so every host the Backend reaches ends in the template's fixed domain.|
 |»»»»» weight|integer|false|none|Relative weight of this endpoint; requests are spread across all of the Backend's endpoints in proportion to their weights. Omitted or 0 counts as 1.|
 |»»»» tls|object|false|none|Optional mutual-TLS presentation and trust for this backend, with the same keys as an upstreamDefinitions entry: `identity`, `trustedCAs` and `verifyHostName`. Every endpoint of a Backend carrying `tls` must use https://. Unknown keys are rejected.|
 

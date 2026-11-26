@@ -22,6 +22,7 @@ APIs refer to Backends by name. You can add or change a Backend without editing 
 - One backend per tenant, chosen from a header or from a claim in the caller's token.
 - Regional deployments of the same service.
 - A pool of model or inference backends that several APIs use.
+- A family of hosts that differ by one part of their name, such as one host per environment.
 
 This guide is for platform teams and API developers who run API Platform Gateway.
 
@@ -207,6 +208,52 @@ policies:
 
 If the API has an upstream definition named `tenant-b`, the request goes to that upstream definition instead. Otherwise, the request goes to the Backend. Until you create the Backend, the gateway answers `503 Service Unavailable`, so you can deploy the API first.
 
+### Route to a host chosen per request
+
+When the target hosts follow one naming pattern, define a single *templated Backend* instead of one Backend per host. Its endpoint host contains `{key}`, and the Dynamic Endpoint policy computes the key for each request with `backendKeyExpression`.
+
+The following Backend serves every environment. The request's key fills `{key}` in the host:
+
+```yaml
+apiVersion: gateway.choreolabs.com/v1
+kind: Backend
+metadata:
+  name: env-router
+spec:
+  endpoints:
+    - url: https://url-{key}.url.fr
+  tls:
+    identity: client-cert
+    trustedCAs:
+      - backend-ca
+```
+
+The following policy reads the key from the `env` header:
+
+```yaml
+policies:
+  - name: dynamic-endpoint
+    version: v1
+    params:
+      targetUpstream: env-router
+      backendKeyExpression: request.Headers["env"][0].lowerAscii()
+```
+
+A request with `env: dev` goes to `https://url-dev.url.fr`, and `env: prod` goes to `https://url-prod.url.fr`. To route by the caller's subscription plan, put the `subscription-validation` policy first and read `request.Metadata["x-wso2-subscription-plan-name"]` instead.
+
+A templated Backend follows these rules:
+
+- It has exactly one endpoint, with `{key}` in the first label of the host and at least one fixed label after it. The gateway rejects any other template with `400 Bad Request`.
+- The key must be one lowercase DNS label: letters, digits and inner hyphens, at most 63 characters. Every host the Backend reaches therefore ends in the fixed domain of the template.
+- A request without a valid key gets `400 Bad Request`. To limit the keys a caller can use, test the value in the expression, for example with `matches("^(dev|qa|prod)$")`.
+- The gateway resolves the expanded host for each request. A host that doesn't resolve gets `503 Service Unavailable`.
+- The Backend's `tls` settings apply to every host. The gateway checks each server certificate against the expanded host name.
+- The request reaches the backend with the expanded host in its `Host` header, which can include the port.
+
+If the gateway restricts the destinations that artifacts can reach, it checks the template's scheme and fixed domain when you save the Backend. At request time, it refuses every resolved address that the access control denies, and the request gets `503 Service Unavailable`.
+
+The gateway keeps the resolved hosts of all templated Backends in one DNS cache. The `max_hosts` and `host_ttl_ms` settings under `[router.upstream.backend_dns_cache]` in the gateway configuration size it. A request for a host beyond `max_hosts` gets `503 Service Unavailable` until an entry expires.
+
 ### Add a Backend without changing the API
 
 To onboard another tenant, create its Backend with the same label:
@@ -295,9 +342,10 @@ The following responses come from routing to Backends or from managing them:
 
 | Response | Cause |
 | :--- | :--- |
-| `400 Bad Request` with `The requested backend is not available for this API.` | The value that `backendExpression` returned can't be routed, the expression failed on a value that the request carries, or the expression had no value and `onMissingValue` is `reject`. |
+| `400 Bad Request` with `The requested backend is not available for this API.` | The value that `backendExpression` returned can't be routed, the expression failed on a value that the request carries, or the expression had no value and `onMissingValue` is `reject`. For a templated Backend, the request has no valid key. |
 | `503 Service Unavailable` with the error code `905008` | `targetUpstream` names neither an upstream definition of the API nor a Backend on the gateway, someone deleted the Backend during the request, or someone changed the Backend's endpoints, weights, base path, TLS settings or timeout between the policy matching it against `backendSelector` and the gateway routing the request. The response carries an `x-error-id` header, and the gateway logs the Backend name under that ID. |
 | `503 Service Unavailable` without an error code | The gateway removed the endpoints of a Backend's previous version just as it forwarded a request that it had routed to them. This can happen only within milliseconds of a Backend update. Send the request again. |
+| `503 Service Unavailable` for a templated Backend | The host that the key expanded to doesn't resolve, resolves only to addresses that the gateway's access control refuses, or doesn't fit in the full DNS cache. |
 | `500 Internal Server Error` with the error code `905005` | The `backendExpression` of the route doesn't compile. For more information, see [Limitations](#limitations). |
 | `409 Conflict` on `DELETE /backends/{id}` | A deployed API names the Backend in `targetUpstream`. |
 
