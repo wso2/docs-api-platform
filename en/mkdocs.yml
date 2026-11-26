@@ -137,6 +137,7 @@ nav:
             - Security Hardening: api-portal/next/deployment/security-hardening.md
             - Database Configuration: api-portal/next/deployment/database-configuration.md
             - Resources & Scaling: api-portal/next/deployment/resources-and-scaling.md
+            - Health Checks: api-portal/next/deployment/health-checks.md
             - Deploy & Verify: api-portal/next/deployment/deploy-and-verify.md
             - Control Plane Connection: api-portal/next/deployment/control-plane-connection.md
         - Tutorials:
