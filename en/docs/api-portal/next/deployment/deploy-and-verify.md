@@ -9,7 +9,7 @@ tags:
   - deployment
   - kubernetes
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-11-25
 content_type: "how-to"
 ---
 
@@ -111,8 +111,8 @@ Confirm every instance is serving, not just that the deploy command succeeded.
     Confirm the portal is serving, from inside the cluster:
 
     ```bash
-    kubectl -n api-portal exec deploy/my-release-api-portal-ui -- \
-      curl -sk https://localhost:9543/health
+    kubectl -n api-portal exec deploy/my-release-api-portal -- \
+      wget -qO- --no-check-certificate https://localhost:9543/ready
     ```
 
 === "Virtual machine"
@@ -121,10 +121,10 @@ Confirm every instance is serving, not just that the deploy command succeeded.
 
     ```bash
     docker compose ps
-    curl -sk https://localhost:9543/health
+    curl -sk https://localhost:9543/ready
     ```
 
-    Then confirm the load balancer sees every instance as healthy, and that its health check is pointed at `/health` rather than `/`.
+    Then confirm the load balancer sees every instance as healthy, and that its health check is pointed at `/ready` rather than `/`.
 
 Then verify the two things a single-instance smoke test cannot catch, on either substrate:
 
@@ -154,7 +154,7 @@ Then verify the two things a single-instance smoke test cannot catch, on either 
 
     1. Remove the VM from the load balancer pool.
     2. Update the image tag in `docker-compose.yaml`, then `docker compose up -d` to recreate the container.
-    3. Confirm `https://localhost:9543/health` responds, and check the startup log.
+    3. Confirm `https://localhost:9543/ready` answers `200`, and check the startup log.
     4. Return it to the pool, then move to the next VM.
 
     Re-running `setup.sh` is safe — it fills in only what is missing and never overwrites an existing value — so an upgrade won't rotate the encryption key out from under stored credentials.

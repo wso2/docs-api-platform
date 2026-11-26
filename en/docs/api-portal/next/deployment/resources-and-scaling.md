@@ -9,7 +9,7 @@ tags:
   - deployment
   - kubernetes
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-11-25
 content_type: "how-to"
 ---
 
@@ -138,47 +138,47 @@ Scaling up in either case adds database connections (`instances × max_open_conn
 
 ## Health checks
 
-The portal answers `/health` at both the container root and under the `/api-portal` prefix, precisely so a health check can use it. It deliberately bypasses the session middleware, so a check every few seconds doesn't write a session row each time.
+The portal answers `/health` (liveness) and `/ready` (readiness) at both the container root and under the `/api-portal` prefix. Both bypass the session middleware, so a check every few seconds doesn't write a session row each time. Both answer `503` while the portal can't reach its database.
+
+For the response format, the checks, and access control, see [Health Checks](health-checks.md).
 
 === "Kubernetes"
 
-    Point both probes at `/health`:
+    The chart probes liveness on `/health`, and readiness and startup on `/ready`. You don't need to change them. If you set `tls.certificateProvider: none`, the chart renders the probes with `scheme: HTTP` itself.
+
+    To change a probe, override it in your values:
 
     ```yaml
     api-portal-ui:
       deployment:
-        livenessProbe:
-          httpGet: { path: /health, port: http, scheme: HTTPS }
-          initialDelaySeconds: 15
-          periodSeconds: 10
-          failureThreshold: 3
         readinessProbe:
-          httpGet: { path: /health, port: http, scheme: HTTPS }
-          initialDelaySeconds: 10
+          httpGet: { path: /ready, port: http, scheme: HTTPS }
           periodSeconds: 5
+          timeoutSeconds: 3
           failureThreshold: 3
     ```
 
-    If you set `tls.certificateProvider: none`, change both probes' `scheme` from `HTTPS` to `HTTP` — otherwise every probe fails and pods never become ready.
-
 === "Virtual machine"
 
-    Point the load balancer's health check at `https://<vm>:9543/health` and configure it to remove an instance that fails. Without that, the load balancer keeps sending traffic to a portal that has stopped serving.
+    Point the load balancer's health check at `https://<vm>:9543/ready` and configure it to remove an instance that fails. Without that, the load balancer keeps sending traffic to a portal that has stopped serving.
 
-    The compose file has no health check for the portal service. Adding one gives Docker the same signal locally:
+    The compose file has no health check for the portal service. The portal image includes `wget`, so add one that calls the readiness endpoint inside the container:
 
     ```yaml
     services:
       api-portal:
         healthcheck:
-          test: ["CMD", "curl", "-fk", "https://localhost:9543/health"]
-          interval: 30s
+          test: ["CMD", "wget", "-q", "-O", "/dev/null", "--no-check-certificate", "https://localhost:9543/ready"]
+          interval: 10s
           timeout: 5s
           retries: 3
     ```
 
+    If you restrict `allowed_clients`, keep `127.0.0.1` and `::1` in the list, because this check connects from inside the container.
+
 ## Related
 
 - [Database Configuration](database-configuration.md): the connection budget your instance count spends
+- [Health Checks](health-checks.md): the endpoints, what they check, and access control
 - [Deploy & Verify](deploy-and-verify.md): confirming instances came up healthy
 - [Security Hardening](security-hardening.md): the upload ceilings that inform memory sizing

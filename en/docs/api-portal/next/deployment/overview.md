@@ -10,7 +10,7 @@ tags:
   - kubernetes
   - devops
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-08-06
+last_updated: 2026-11-25
 content_type: "how-to"
 ---
 
@@ -64,7 +64,7 @@ A single production instance is a legitimate deployment — it just has no redun
     | Requirement | Detail |
     |---|---|
     | Two or more VMs | Each running Docker with the Compose plugin |
-    | Load balancer | Fronting the VMs, health-checking `/health` |
+    | Load balancer | Fronting the VMs, health-checking `/ready` |
     | `openssl` | Available on the VM you provision secrets from |
     | Database | An external, highly available PostgreSQL or SQL Server every VM can reach |
 
@@ -115,7 +115,7 @@ Nothing in the deployment provisions a public entry point — bring your own ing
 
 === "Virtual machine"
 
-    Point the load balancer at port `9543` on each VM, with its health check on `/health`.
+    Point the load balancer at port `9543` on each VM, with its health check on `/ready`.
 
     ```toml
     [api_portal.server]
@@ -150,7 +150,7 @@ Before you take traffic:
 - [ ] Authorization is enabled
 - [ ] The public base URL matches the real origin, and the proxy preserves `/api-portal`
 - [ ] The TLS certificate is a real one, not the self-signed pair from setup
-- [ ] Instances spread across failure domains, with a health check on `/health`
+- [ ] Instances spread across failure domains, with a readiness check on `/ready`
 
 Kubernetes adds two: the PodDisruptionBudget is enabled, and CPU requests are set if the HPA is on.
 
