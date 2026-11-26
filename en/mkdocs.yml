@@ -1549,7 +1549,7 @@ nav:
             - Webhook Event Catalog: api-portal/1.0.0/references/webhook-event-catalog.md
             - Get a Bearer Token via curl: api-portal/1.0.0/references/get-a-bearer-token-via-curl.md
             - Configurations: api-portal/1.0.0/references/configurations.md
-  - AI Workspace:
+  - Agent Control Plane:
     - "next":
       - Overview: ai-workspace/next/overview.md
       - About this Release: ai-workspace/next/about-this-release.md
