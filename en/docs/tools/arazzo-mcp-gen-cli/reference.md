@@ -1,15 +1,13 @@
 ---
 title: "Arazzo MCP Generator CLI reference"
 description: "Command reference for arazzo-mcp-gen: validate, inspect, visualize, and mcp-server generate."
-canonical_url: https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/reference/
-md_url: https://wso2.com/api-platform/docs/tools/arazzo-mcp-gen-cli/reference.md
 tags:
   - tools
   - cli
   - arazzo
   - mcp
   - reference
-author: WSO2 API Platform Documentation Team
+author: Choreo API Management Documentation Team
 last_updated: 2026-09-02
 content_type: "reference"
 ---

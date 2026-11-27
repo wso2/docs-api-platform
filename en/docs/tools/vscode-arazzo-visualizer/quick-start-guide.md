@@ -1,14 +1,12 @@
 ---
 title: "Arazzo Visualizer quick start guide"
 description: "Install Arazzo Visualizer for VS Code, open a sample Arazzo workflow as a diagram, and run it against a live API with Try with curl."
-canonical_url: https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/quick-start-guide/
-md_url: https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/quick-start-guide.md
 tags:
   - tools
   - vscode
   - arazzo
   - quick-start
-author: WSO2 API Platform Documentation Team
+author: Choreo API Management Documentation Team
 last_updated: 2026-10-28
 content_type: "quickstart"
 ---
