@@ -10,9 +10,9 @@ Choreo API Management is offered three ways: as SaaS on Choreo Cloud, as a hybri
 
 This page explains what Choreo API Management offers and helps you choose the right path. To govern LLM, MCP, or agent traffic, see [Agent Management](https://docs.choreolabs.com/documentation/agent-management/).
 
-![Choreo Cloud and API Manager control planes deploy APIs and policies to the same Go-based gateway runtime, which runs as a managed API Gateway, a self-hosted API Gateway, or federated third-party gateways, with one Policy Hub catalog for all of them](/img/cloud/overview/apim-overview.png)
+![Choreo Cloud and API Manager control planes deploy APIs and policies to the same Go-based gateway runtime, which runs as a managed API Gateway, a self-hosted API Gateway, or federated third-party gateways, with one Policy Hub catalog for all of them](/img/cloud/overview/apim-overview.svg)
 
-The shaded tiles in the above diagram are managed by Choreo Labs in the Choreo Cloud. Whichever control plane you choose, it deploys APIs and policies to the same gateway runtime.
+Choreo Labs manages the Choreo Cloud control plane and the managed API Gateway. Whichever control plane you choose, it deploys APIs and policies to the same gateway runtime.
 
 ## What are you looking for?
 
@@ -25,7 +25,7 @@ There are two starting points:
 
 Choreo Labs hosts everything on Choreo Cloud.
 
-![Choreo Cloud, managed by Choreo Labs, contains the control plane and the API Gateway. The control plane deploys APIs and policies to the gateway, which receives traffic from API consumers and routes it to your backends](/img/cloud/overview/cloud-option.png)
+![Choreo Cloud, managed by Choreo Labs, contains the control plane and the API Gateway. The control plane deploys APIs and policies to the gateway, which receives traffic from API consumers and routes it to your backends](/img/cloud/overview/cloud-option.svg)
 
 This is the fastest way to get started. Choreo Labs manages the control plane, where you design and manage APIs, and the data plane, where gateways process traffic. Sign up and start creating APIs within minutes, with no infrastructure to manage.
 
@@ -39,7 +39,7 @@ This is the fastest way to get started. Choreo Labs manages the control plane, w
 
 Choreo Labs hosts the control plane; you host the gateways.
 
-![The control plane on Choreo Cloud deploys APIs and policies to a self-hosted API Gateway in your data center or cloud account, which receives traffic from API consumers and routes it to your backends](/img/cloud/overview/hybrid-option.png)
+![The control plane on Choreo Cloud deploys APIs and policies to a self-hosted API Gateway in your data center or cloud account, which receives traffic from API consumers and routes it to your backends](/img/cloud/overview/hybrid-option.svg)
 
 You get a cloud-managed control plane, the UI where you design and govern APIs, while the gateways run in your own data center or cloud account. API traffic never leaves infrastructure you manage, which satisfies most data residency requirements.
 
@@ -53,7 +53,7 @@ See [Set up hybrid deployment](./api-gateway/self-hosted-gateways/quickstart-gui
 
 You host everything.
 
-![The API Manager control plane and the API Gateway both run on your own infrastructure. The control plane deploys APIs and policies to the gateway, which receives traffic from API consumers and routes it to your backends](/img/cloud/overview/self-managed-option.png)
+![The API Manager control plane and the API Gateway both run on your own infrastructure. The control plane deploys APIs and policies to the gateway, which receives traffic from API consumers and routes it to your backends](/img/cloud/overview/self-managed-option.svg)
 
 With API Manager, you download and run the entire stack on your own infrastructure: control plane, gateways, portal, and everything else. You have full control over where your software and data reside, on an open source foundation built for customization.
 
@@ -90,7 +90,7 @@ To self-host a control plane for AI gateways, use the Agent Control Plane in Age
 
 If you don't need a management console and want a high-performance gateway you configure with YAML files, the CLI, or REST APIs, use the standalone API Gateway. There is no web UI, control plane, or portal: you download a lightweight binary and run it.
 
-![YAML files, the CLI, or the REST API configure a standalone API Gateway, with no control plane, which receives REST, WebSocket, and GraphQL traffic from API consumers and routes it to your backends](/img/cloud/overview/standalone-gateway.png)
+![YAML files, the CLI, or the REST API configure a standalone API Gateway, with no control plane, which receives REST, WebSocket, and GraphQL traffic from API consumers and routes it to your backends](/img/cloud/overview/standalone-gateway.svg)
 
 The API Gateway handles traditional API traffic, including REST, WebSocket, and GraphQL. Apply authentication, rate limiting, request and response transformations, and custom policies, all configured through YAML files and CLI commands.
 
