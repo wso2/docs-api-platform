@@ -1,10 +1,10 @@
 ---
 title: "Key Managers"
 pagination_label: "Key Managers"
-description: "Learn how key managers issue access tokens for OAuth2-secured APIs in the API Portal and AI Hub, and how ThunderID works as the default key manager."
+description: "Learn how key managers issue access tokens for OAuth2-secured APIs in the API Portal & AI Hub, and how ThunderID works as the default key manager."
 ---
 
-A key manager is the OAuth2 authorization server that issues access tokens for OAuth2-secured APIs. The API Portal and AI Hub sends token requests to the key manager, and can also create OAuth2 applications on it for developers.
+A key manager is the OAuth2 authorization server that issues access tokens for OAuth2-secured APIs. The API Portal & AI Hub sends token requests to the key manager, and can also create OAuth2 applications on it for developers.
 
 ## The Default Key Manager
 

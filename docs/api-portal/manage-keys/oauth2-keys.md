@@ -1,6 +1,6 @@
 ---
 title: "OAuth2 Keys"
-description: "Generate, add, edit, and delete OAuth2 keys in the API Portal and AI Hub, get access tokens with curl, and work with production and sandbox keys."
+description: "Generate, add, edit, and delete OAuth2 keys in the API Portal & AI Hub, get access tokens with curl, and work with production and sandbox keys."
 ---
 
 An **OAuth2 key** is the portal's record of an OAuth2 client on a key manager. It holds the consumer key and the details needed to request access tokens. OAuth2 keys are listed under **Keys** › **OAuth2 Keys**.

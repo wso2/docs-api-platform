@@ -1,6 +1,6 @@
 ---
 title: "Manage Applications"
-description: "Optionally group your API keys and OAuth2 keys into an application in the API Portal and AI Hub to track their usage and analytics."
+description: "Optionally group your API keys and OAuth2 keys into an application in the API Portal & AI Hub to track their usage and analytics."
 ---
 
 :::info

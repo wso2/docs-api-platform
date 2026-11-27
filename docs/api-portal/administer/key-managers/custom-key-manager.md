@@ -1,12 +1,12 @@
 ---
 title: "Configure a Custom Key Manager"
-description: "Register your own OAuth2 key manager, such as WSO2 Identity Server, Asgardeo, or Keycloak, in the API Portal and AI Hub."
+description: "Register your own OAuth2 key manager, such as WSO2 Identity Server, Asgardeo, or Keycloak, in the API Portal & AI Hub."
 ---
 
-ThunderID is the default key manager. To issue access tokens from your own identity provider instead, or in addition, register it as a custom key manager in the API Portal and AI Hub. Developers can then select it when they get an OAuth2 key.
+ThunderID is the default key manager. To issue access tokens from your own identity provider instead, or in addition, register it as a custom key manager in the API Portal & AI Hub. Developers can then select it when they get an OAuth2 key.
 
 :::info
-Only administrators can add and manage key managers. Sign in to the API Portal and AI Hub as an administrator.
+Only administrators can add and manage key managers. Sign in to the API Portal & AI Hub as an administrator.
 :::
 
 ## Key Manager Types
@@ -21,7 +21,7 @@ Only administrators can add and manage key managers. Sign in to the API Portal a
 
 ## Add a Key Manager
 
-1. Sign in to the API Portal and AI Hub as an administrator.
+1. Sign in to the API Portal & AI Hub as an administrator.
 
 2. Go to **Settings**, and under **ORGANIZATION**, click the **Key Managers** tab.
 

@@ -17,14 +17,14 @@ You get a web console to create APIs, apply policies, set up portals, manage sub
 Choreo Labs runs both the control plane and the gateways. This is the fastest way to get started, because there is no infrastructure to manage.
 
 - **Best for:** A fast start, proofs of concept, and teams that want to ship without managing infrastructure.
-- **What is included:** The API Control Plane, the API Portal and AI Hub, and cloud gateways.
+- **What is included:** The API Control Plane, the API Portal & AI Hub, and Choreo Managed Gateways.
 
 ### Self-Hosted Gateways (Hybrid)
 
 Choreo Labs runs the control plane, and you run the gateways on your own infrastructure, such as your data center. API traffic and data stay within the infrastructure that you manage, which meets most data residency requirements.
 
 - **Best for:** Enterprises that need centralized governance with data privacy, and organizations that cannot allow API traffic to flow through third-party infrastructure.
-- **What is included:** The API Control Plane and the API Portal and AI Hub, managed by Choreo Labs, and self-hosted gateways in your environment.
+- **What is included:** The API Control Plane and the API Portal & AI Hub, managed by Choreo Labs, and Self-Hosted Gateways in your environment.
 - **Get started:** [Set up a Self-Hosted Gateway](./api-gateway/self-hosted-gateways/quickstart-guide.md)
 
 ### How Do the Options Compare?
@@ -36,7 +36,7 @@ Choreo Labs runs the control plane, and you run the gateways on your own infrast
 | **API traffic stays in your infrastructure** | No | Yes |
 | **Setup complexity** | Minimal | Moderate |
 | **Web console for managing APIs** | Yes | Yes |
-| **API Portal and AI Hub** | Included | Included |
+| **API Portal & AI Hub** | Included | Included |
 
 :::info
 Both options use the same gateway technology, and you can use both in the same organization. A new organization comes with a cloud gateway named **Default**, in the development environment, so you can deploy your first API proxy without adding a gateway. To keep API traffic in your own infrastructure, add a self-hosted gateway. See [API Gateway](./api-gateway/overview.md).
@@ -49,7 +49,7 @@ Both options use the same gateway technology, and you can use both in the same o
 | Component | What It Does | Docs |
 |:----------|:-------------|:-----|
 | **API Control Plane** | Create, develop, test, publish, and govern API proxies through the web console. Manage gateways, portals, and subscription plans. Environments and pipelines are created in the [Choreo Cloud Console](https://console.cloud.choreolabs.com/) and then used here. | [API Control Plane](./api-control-plane/overview.md) |
-| **API Portal and AI Hub** | The developer-facing portal where developers discover APIs and MCP servers, subscribe to them, and get credentials. AI agents discover the same APIs through machine-readable endpoints such as `llms.txt`. | [API Portal and AI Hub](./api-portal/overview.md) |
+| **API Portal & AI Hub** | The developer-facing portal where developers discover APIs and MCP servers, subscribe to them, and get credentials. AI agents discover the same APIs through machine-readable endpoints such as `llms.txt`. | [API Portal & AI Hub](./api-portal/overview.md) |
 
 ### Gateway Components
 
@@ -66,7 +66,7 @@ Both options use the same gateway technology, and you can use both in the same o
 | Keep API traffic in my own infrastructure | [Self-Hosted Gateway Quick Start Guide](./api-gateway/self-hosted-gateways/quickstart-guide.md) |
 | Secure an API with API keys or OAuth2 | [Security](./api-control-plane/develop-api-proxy/security/overview.md) |
 | Publish an API for developers and AI agents | [Publish an API](./api-control-plane/publish-api-proxy/publish-an-api.md) |
-| Discover, subscribe to, and consume an API as a developer | [API Portal and AI Hub Quick Start Guide](./api-portal/quickstart-guide.md) |
+| Discover, subscribe to, and consume an API as a developer | [API Portal & AI Hub Quick Start Guide](./api-portal/quickstart-guide.md) |
 
 For a list of quick start guides by goal, see [Get Started](./get-started.md).
 

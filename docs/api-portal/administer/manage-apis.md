@@ -1,11 +1,11 @@
 ---
 title: "Manage APIs"
-description: "Add, edit, and remove the APIs that are visible in the API Portal and AI Hub."
+description: "Add, edit, and remove the APIs that are visible in the API Portal & AI Hub."
 ---
 
 **APIs** under **Settings** is where you add, edit, and remove the APIs that this portal shows.
 
-1. Sign in to the API Portal and AI Hub as an administrator.
+1. Sign in to the API Portal & AI Hub as an administrator.
 2. Open **Settings**.
 3. Under **CONTENT**, select **APIs**.
 

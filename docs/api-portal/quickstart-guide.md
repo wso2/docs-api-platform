@@ -1,10 +1,10 @@
 ---
 title: "Quick Start Guide"
-pagination_label: "API Portal and AI Hub Quick Start"
-description: "Sign in to the API Portal and AI Hub, find an API, generate an OAuth2 key and an access token, and invoke the API."
+pagination_label: "API Portal Quick Start"
+description: "Sign in to the API Portal & AI Hub, find an API, generate an OAuth2 key and an access token, and invoke the API."
 ---
 
-In this guide, you sign in to the API Portal and AI Hub, find an API, generate an access token, and invoke the API.
+In this guide, you sign in to the API Portal & AI Hub, find an API, generate an access token, and invoke the API.
 
 ## Prerequisites
 

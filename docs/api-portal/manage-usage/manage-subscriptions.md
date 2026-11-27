@@ -1,6 +1,6 @@
 ---
 title: "Manage Subscriptions"
-description: "Subscribe to an API under a subscription plan in the API Portal and AI Hub, and view, regenerate, suspend, or cancel the subscription."
+description: "Subscribe to an API under a subscription plan in the API Portal & AI Hub, and view, regenerate, suspend, or cancel the subscription."
 ---
 
 :::info
@@ -21,7 +21,7 @@ The API publisher's organization defines subscription plans, and enables them on
 
 ## Subscribe to an API
 
-1. Sign in to the API Portal and AI Hub.
+1. Sign in to the API Portal & AI Hub.
 
 2. In the sidebar, click **APIs**, and open the API.
 

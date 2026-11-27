@@ -5,7 +5,7 @@ description: "Author an API workflow as an Arazzo specification or Markdown, gen
 
 **API Workflows** is where you define multi-step API use cases for one [view](./manage-views.md). A workflow tells AI agents how the APIs work together, in order. This page covers the admin side. For what consumers and agents then see, read [API Workflows](../discover/api-workflows.md).
 
-1. Sign in to the API Portal and AI Hub as an administrator.
+1. Sign in to the API Portal & AI Hub as an administrator.
 2. Open **Settings**.
 3. Under **AI & DISCOVERY**, select **API Workflows**.
 

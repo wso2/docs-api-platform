@@ -1,6 +1,6 @@
 ---
 title: "Searching"
-description: "Search published APIs in the API Portal and AI Hub by free text across API metadata and tag names."
+description: "Search published APIs in the API Portal & AI Hub by name, type, version, or description."
 ---
 
 You can search for APIs in the API Portal and AI Hub that have already been published from the API Control Plane.

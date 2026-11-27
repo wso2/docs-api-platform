@@ -45,14 +45,14 @@ You want to find an API in the portal, subscribe to it, and invoke it.
 
 | Guide | What You Will Do |
 |:------|:-----------------|
-| [API Portal and AI Hub Quick Start Guide](./api-portal/quickstart-guide.md) | Sign in to the portal, find an API, subscribe to it under a plan, and invoke it. |
+| [API Portal & AI Hub Quick Start Guide](./api-portal/quickstart-guide.md) | Sign in to the portal, find an API, subscribe to it under a plan, and invoke it. |
 | [Which Credentials You Need](./api-portal/consume-an-api/overview.md) | Find out which credentials an API requires, and how to get them. |
 
 ## After Your First Quick Start Guide
 
 | I Want To | Go Here |
 |:----------|:--------|
-| Explore the full feature docs | [API Control Plane](./api-control-plane/overview.md) · [API Portal and AI Hub](./api-portal/overview.md) · [API Gateway](./api-gateway/overview.md) |
+| Explore the full feature docs | [API Control Plane](./api-control-plane/overview.md) · [API Portal & AI Hub](./api-portal/overview.md) · [API Gateway](./api-gateway/overview.md) |
 | Understand key concepts, such as organizations, projects, and environments | [Key Concepts](./key-concepts.md) |
 | Browse reusable policies | [Policy Hub](./policy-hub/overview.md) |
 | Find out how the components fit together | [What is API Management?](./overview.md) |

@@ -1,9 +1,9 @@
 ---
 title: "Consume an OAuth2-Secured API"
-description: "Generate an OAuth2 key and an access token in the API Portal and AI Hub, and invoke an OAuth2-secured API."
+description: "Generate an OAuth2 key and an access token in the API Portal & AI Hub, and invoke an OAuth2-secured API."
 ---
 
-An OAuth2-secured API expects an access token issued by a key manager. ThunderID is the default key manager, so you can generate a key and a token in the API Portal and AI Hub without any other setup.
+An OAuth2-secured API expects an access token issued by a key manager. ThunderID is the default key manager, so you can generate a key and a token in the API Portal & AI Hub without any other setup.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ An OAuth2-secured API expects an access token issued by a key manager. ThunderID
 
 ## Step 1: Generate an OAuth2 Key
 
-1. Sign in to the API Portal and AI Hub, and go to **Keys** › **OAuth2 Keys**.
+1. Sign in to the API Portal & AI Hub, and go to **Keys** › **OAuth2 Keys**.
 
 2. Click **Register OAuth2 client**.
 

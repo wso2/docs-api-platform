@@ -5,7 +5,7 @@ description: "Create labels that group APIs and MCP servers so views can control
 
 A **label** groups APIs and MCP servers. A [view](./manage-views.md) shows the APIs and MCP servers that carry the labels selected for that view.
 
-1. Sign in to the API Portal and AI Hub as an administrator.
+1. Sign in to the API Portal & AI Hub as an administrator.
 2. Open **Settings**.
 3. Under **ORGANIZATION**, select **Labels**.
 

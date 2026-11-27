@@ -41,4 +41,4 @@ To track the logs of your API proxies, see [Logs](./observability/logs.md).
 
 ## Get Started
 
-To build your first API proxy and publish it to the API Portal and AI Hub, follow the [Quick Start Guide](./quickstart-guide.md).
+To build your first API proxy and publish it to the API Portal & AI Hub, follow the [Quick Start Guide](./quickstart-guide.md).
