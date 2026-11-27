@@ -11,7 +11,7 @@
 
 ## Getting Started
 
-- [Platform Overview](https://wso2.com/api-platform/docs/index.md): What WSO2 API Platform is, the three deployment options (Cloud, Hybrid, Self-Managed), and the two standalone gateway modes: use this to find the right starting point
+- [What is API Management?](https://wso2.com/api-platform/docs/index.md): What API Management is, the three deployment options (Cloud, Hybrid, Self-managed), and the standalone API Gateway: use this to find the right starting point
 - [Get Started](https://wso2.com/api-platform/docs/get-started.md): Index of quick start guides organized by use case: manage APIs, run a standalone gateway, govern AI services, or monetize APIs
 
 ## Cloud Platform
