@@ -8,11 +8,31 @@ tags:
   - api-portal
   - rest-api
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-07-24
+last_updated: 2026-11-16
 content_type: "reference"
 ---
 
 # Subscription Plans
+
+A plan's limits are its **conditions**: request count, tool-call count, token count and custom conditions, each built-in one with 1 to 10 time windows. Send them in `conditions`:
+
+```json
+{
+  "id": "gold",
+  "displayName": "Gold",
+  "description": "For production workloads",
+  "conditions": [
+    {"type": "request-count", "params": {"limits": [{"count": 100, "timeUnit": "MINUTE"}, {"count": 5000, "timeUnit": "DAY"}], "onExceed": "reject"}},
+    {"type": "token-count", "params": {"limits": [{"count": 1000000, "timeUnit": "MONTH"}], "tokenType": "total"}},
+    {"id": "region-limit", "type": "custom", "params": {"zone": "eu"}}
+  ]
+}
+```
+
+- Built-in conditions get their fixed `id` (`requests`, `tool-calls`, `tokens`); `timeAmount` defaults to `1`, `onExceed` to `reject` and `tokenType` to `total`.
+- On update, `conditions` replaces all of the plan's conditions, `[]` removes them, and leaving it out keeps them.
+- `limits` is deprecated but still works: sent alone, its `REQUEST_COUNT` limits replace only the request-count condition. Responses still carry `limits`, built from the request-count condition.
+- An invalid condition is refused with `400` and the reason, for example `conditions[0].params.limits[0]: count must be at least 1`. See [SubscriptionPlanCondition](schemas.md#schemasubscriptionplancondition) for the rules.
 
 ## List subscription plans
 
@@ -126,7 +146,8 @@ Status Code **200**
 |»» id|string|false|none|The plan's handle (unique per org). Not the internal database uuid.|
 |»» displayName|string|false|none|none|
 |»» description|string|false|none|none|
-|»» limits|[object]|false|none|Rate/quota limits enforced for this plan. Empty when the plan is unlimited.|
+|»» conditions|[[SubscriptionPlanCondition](schemas.md#schemasubscriptionplancondition)]|false|none|The plan's conditions. Empty when the plan is unlimited.|
+|»» limits|[object]|false|none|The windows of the plan's request-count condition as REQUEST_COUNT limits, kept for older clients.|
 |»»» limitType|string|false|none|none|
 |»»» limitCount|any|false|none|Returned as a string when the stored count exceeds the safe integer range, otherwise a number. Unlimited plans have no limit entries — the `limits` array is empty.|
 
@@ -245,7 +266,7 @@ Required scopes (the token must carry at least one of): `dp:subscription_plan:cr
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|any|true|Subscription plan payload. Send a single object for single create/upsert, or a non-empty array for bulk create/upsert; each object carries its rate/quota rules in `limits`. Alternatively, upload a YAML file in the `subscriptionPlan` multipart field; use `kind: SubscriptionPlan` for a single plan or `kind: SubscriptionPlanList` with an `items` array for bulk operations. YAML uploads may also use the shorthand `type: requestcount` or `type: eventcount` shorthand, which is converted into `limits` before storage.|
+|body|body|any|true|Subscription plan payload. Send a single object for single create/upsert, or a non-empty array for bulk create/upsert; each object carries its rules in `conditions` (the deprecated `limits` sets only the request-count condition). Alternatively, upload a YAML file in the `subscriptionPlan` multipart field; use `kind: SubscriptionPlan` for a single plan or `kind: SubscriptionPlanList` with an `items` array for bulk operations. YAML uploads may also use the `type: requestcount` shorthand, which is converted into a per-minute request-count condition; `type: eventcount` has no condition and is not read.|
 
 > Example responses
 >
@@ -390,7 +411,7 @@ Required scopes (the token must carry at least one of): `dp:subscription_plan:up
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|any|true|Subscription plan payload. Send a single object for single create/upsert, or a non-empty array for bulk create/upsert; each object carries its rate/quota rules in `limits`. Alternatively, upload a YAML file in the `subscriptionPlan` multipart field; use `kind: SubscriptionPlan` for a single plan or `kind: SubscriptionPlanList` with an `items` array for bulk operations. YAML uploads may also use the shorthand `type: requestcount` or `type: eventcount` shorthand, which is converted into `limits` before storage.|
+|body|body|any|true|Subscription plan payload. Send a single object for single create/upsert, or a non-empty array for bulk create/upsert; each object carries its rules in `conditions` (the deprecated `limits` sets only the request-count condition). Alternatively, upload a YAML file in the `subscriptionPlan` multipart field; use `kind: SubscriptionPlan` for a single plan or `kind: SubscriptionPlanList` with an `items` array for bulk operations. YAML uploads may also use the `type: requestcount` shorthand, which is converted into a per-minute request-count condition; `type: eventcount` has no condition and is not read.|
 
 > Example responses
 >

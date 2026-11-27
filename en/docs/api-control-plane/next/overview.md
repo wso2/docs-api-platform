@@ -7,7 +7,7 @@ tags:
   - api-control-plane
   - overview
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-05
+last_updated: 2026-11-16
 content_type: "overview"
 ---
 
@@ -18,3 +18,4 @@ The API Control Plane is where you design, publish, version, and govern APIs. It
 ## What you can manage
 
 - [GraphQL APIs](graphql-apis/overview.md): expose a GraphQL backend through the API Platform Gateway.
+- [Subscription plans](subscription-plans/overview.md): define the usage tiers subscribers choose, with request, tool-call, token and custom conditions, and attach them to APIs.
