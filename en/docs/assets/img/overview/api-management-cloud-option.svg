@@ -5,7 +5,7 @@
 <defs><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="1" fill="rgba(11,22,51,.07)"/></pattern><filter id="sh" x="-20%" y="-30%" width="140%" height="180%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0B1633" flood-opacity=".08"/></filter><marker id="ah-t" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1F4FFF" fill-opacity=".9"/></marker><marker id="ah-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1F4FFF" fill-opacity=".5"/></marker></defs>
 <rect width="848" height="428" fill="#F4F6FA"/>
 <rect width="848" height="428" fill="url(#dots)"/>
-<text x="24" y="26" font-size="14" font-weight="600" fill="#0B1633" text-anchor="start">Choreo Labs runs both the control plane and the gateway</text>
+<text x="24" y="26" font-size="14" font-weight="600" fill="#0B1633" text-anchor="start">Choreo runs both the control plane and the gateway</text>
 <rect x="220" y="92" width="408" height="132" rx="18" fill="#0B1633" stroke="rgba(255,255,255,.16)" stroke-width="1.25"/>
 <text x="238" y="116" font-size="9.5" font-weight="600" fill="#FFFFFF" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" letter-spacing=".12em">CONTROL PLANE</text>
 <rect x="232.0" y="128" width="122.66666666666667" height="84" rx="12" fill="#FFFFFF" stroke="rgba(11,22,51,.10)" stroke-width="1" filter="url(#sh)"/>
