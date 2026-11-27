@@ -1,5 +1,5 @@
 // Navigation for API Management Cloud: API Control Plane content at the top
-// level, with API Portal and AI Hub as its own section.
+// level, with API Portal & AI Hub as its own section.
 
 const doc = (id, label) => ({type: 'doc', id, label});
 const group = (label, items) => ({type: 'category', label, items});
@@ -100,13 +100,12 @@ const sidebars = {
       ]),
       // doc("api-gateway/insights", "Insights"),
     ]),
-    group("API Portal and AI Hub", [
+    group("API Portal & AI Hub", [
       doc("api-portal/overview", "Overview"),
       doc("api-portal/quickstart-guide", "Quick Start Guide"),
       group("Discover", [
         doc("api-portal/discover/browse-apis", "Search APIs"),
         doc("api-portal/discover/documentation", "API Documentation"),
-        doc("api-portal/discover/browse-mcp-servers", "MCP Servers"),
         doc("api-portal/discover/api-workflows", "API Workflows"),
         doc("api-portal/discover/ai-agent-discovery", "AI Agents"),
       ]),
@@ -138,7 +137,6 @@ const sidebars = {
         ]),
         group("Content", [
           doc("api-portal/administer/manage-apis", "Manage APIs"),
-          doc("api-portal/administer/manage-mcp-servers", "Manage MCP Servers"),
         ]),
         group("Integrations", [
           doc("api-portal/administer/webhook-integration", "Webhooks"),

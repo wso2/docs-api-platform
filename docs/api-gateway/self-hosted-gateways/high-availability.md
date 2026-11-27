@@ -4,7 +4,7 @@ pagination_label: "Self-Hosted Gateway High Availability"
 description: "Run multiple Gateway Controller and Gateway Runtime replicas so a Self-Hosted Gateway keeps serving APIs when one replica is unavailable."
 ---
 
-A Self-Hosted Gateway can run with more than one Gateway Controller replica and more than one Gateway Runtime replica, including replicas in different network zones or environments. For the components of a single gateway, see [Architecture](./architecture.md).
+A self-hosted gateway can run with more than one Gateway Controller replica and more than one Gateway Runtime replica, including replicas in different network zones or environments. For the components of a single gateway, see [Architecture](./architecture.md).
 
 API deployments are received by one of the Gateway Controller replicas. That controller stores the deployment in the shared PostgreSQL database. The other Gateway Controller replicas read the updated deployment state from the database and synchronize the configuration with the Gateway Runtime instances connected to them.
 

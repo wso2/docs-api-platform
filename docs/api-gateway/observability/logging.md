@@ -3,9 +3,28 @@ title: "Gateway Logging"
 description: "Collect gateway component logs with the demonstration Fluent Bit and OpenSearch stack, or send them to your own logging system."
 ---
 
-Gateway components write structured JSON logs to stdout and stderr. Docker stores those logs. You can read them from each container, or start the demonstration logging stack to search them in one place.
+Gateway components write logs to stdout and stderr. Docker stores those logs. You can read them from each container, or start the demonstration logging stack to search them in one place.
 
-The demonstration stack is Fluent Bit, OpenSearch, and OpenSearch Dashboards. It is a starting point. You can replace it with another logging system. The gateway components do not need extra logging configuration.
+The demonstration stack is Fluent Bit, OpenSearch, and OpenSearch Dashboards. It is a starting point. You can replace it with another logging system.
+
+The components log in text format by default. The demonstration stack parses JSON, so set the format to JSON in `configs/config.toml` before you search fields such as `level` and `msg`:
+
+```toml
+[controller.logging]
+format = "json"
+
+[policy_engine.logging]
+format = "json"
+
+[router.access_logs]
+format = "json"
+```
+
+Run these commands from the gateway folder, and restart the gateway after you change the file:
+
+```bash
+docker compose restart gateway-controller gateway-runtime
+```
 
 ## Start the logging stack
 
@@ -17,7 +36,7 @@ docker compose --profile logging up -d
 
 This starts:
 
-- **gateway-controller**, **policy-engine**, and **router**, which log to stdout and stderr
+- **gateway-controller** and **gateway-runtime**, which log to stdout and stderr. The router and the policy engine run inside **gateway-runtime**.
 - **Fluent Bit**, which reads the Docker log files, adds the component name and hostname, and forwards the logs
 - **OpenSearch**, which stores the logs
 - **OpenSearch Dashboards**, which is the search UI
@@ -31,16 +50,18 @@ docker compose up -d
 The components still log. Read them with:
 
 ```bash
-docker logs gateway-controller
-docker logs policy-engine
-docker logs router
+docker compose logs gateway-controller gateway-runtime
 ```
 
-Stop the stack, and the stored logs:
+Add `-f` to follow the logs as the components write them.
+
+To stop the stack and keep the stored logs, run:
 
 ```bash
 docker compose --profile logging down
 ```
+
+To stop the stack and delete the stored logs, add `-v`. This can't be undone:
 
 ```bash
 docker compose --profile logging down -v
@@ -62,11 +83,12 @@ Filter by component: click **Add filter**, set **Field** to `component`, **Opera
 
 | Component | Value |
 |:----------|:------|
-| Policy engine | `policy-engine` |
-| Gateway controller | `gateway-controller` |
-| Router | `router` |
+| Gateway controller | `<COMPOSE_PROJECT_NAME>-gateway-controller-1` |
+| Gateway runtime (router and policy engine) | `<COMPOSE_PROJECT_NAME>-gateway-runtime-1` |
 
-Click **Save**. You can add more filters, such as **Field** `level` and **Value** `error`, `info`, `warn`, or `debug`.
+Fluent Bit sets `component` to the Docker container name. Compose names containers after the project, which defaults to the name of the folder that holds `docker-compose.yaml`. Run `docker compose ps` to see the names.
+
+Click **Save**. You can add more filters, such as **Field** `level` and **Value** `ERROR`, `INFO`, `WARN`, or `DEBUG`. The `level` and `msg` fields exist only when the component logs in JSON format.
 
 Example queries:
 
@@ -79,15 +101,11 @@ Weather-API
 ```
 
 ```
-component:policy-engine AND level:error
+level:ERROR
 ```
 
 ```
-component:gateway-controller AND message:*Weather-API*
-```
-
-```
-duration_ms:>1000
+component:*gateway-controller* AND msg:*Weather-API*
 ```
 
 In Discover, use the gear icon to choose columns, click a column header to sort, and click **>** on a row to see the JSON. Click **Save** to keep a search.

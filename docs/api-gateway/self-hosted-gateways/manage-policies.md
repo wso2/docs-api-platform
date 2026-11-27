@@ -4,23 +4,23 @@ pagination_label: "Add and Manage Gateway Policies"
 description: "Attach, configure, and deploy policies on API proxies running on a Self-Hosted Gateway."
 ---
 
-You attach policies to an API proxy from the API Control Plane. The Self-Hosted Gateway runs those policies on the traffic it handles in your infrastructure. Attach a policy at the API level to apply it to every resource, or at the resource level to apply it to one resource. If you attach more than one, you can drag them to change the order they run in.
+You attach policies to an API proxy from the API Control Plane. The self-hosted gateway runs those policies on the traffic it handles in your infrastructure. Attach a policy at the API level to apply it to every resource, or at the resource level to apply it to one resource. If you attach more than one, you can drag them to change the order they run in.
 
-Saving the API records the policies. Deploy the API afterward so the Self-Hosted Gateway starts enforcing them.
+Saving the API records the policies. Deploy the API afterward so the self-hosted gateway starts enforcing them.
 
-You can attach Policy Hub policies and your organization's custom policies. To build a policy of your own into the Self-Hosted Gateway, see [Adding Custom Policies](./custom-policies.md).
+You can attach Policy Hub policies and your organization's custom policies. To build a policy of your own into the self-hosted gateway, see [Adding Custom Policies](./custom-policies.md).
 
 ## Attach an API Level Policy
 
 An API level policy applies to every resource in the API proxy. To attach one, follow the steps given below.
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 
-2. In the header, select the project from the **Projects** list and the API from the **APIs** list. The API must be one that you deploy to your Self-Hosted Gateway.
+2. In the header, select the project from the **Projects** list and the API from the **APIs** list. The API must be one that you deploy to your self-hosted gateway.
 
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 
-    ![Policies page showing the Global policies drop area, Resource policies for each resource, and the Available policies pane with search, category filter, and policy versions](/img/cloud/self-hosted-gateway/manage-policies/self-hosted-manage-policies-1.png)
+    ![Policies page with the Global policies drop area, Resource policies, and the Available policies pane with search, category filter, and versions](/img/cloud/self-hosted-gateway/manage-policies/self-hosted-manage-policies-1.png)
 
 4. In the **Available policies** pane, find the policy you want to attach. You can type a policy name in **Search policies**, or select a category from the **All** list to filter the policies.
 
@@ -40,7 +40,7 @@ An API level policy applies to every resource in the API proxy. To attach one, f
 
 A resource level policy applies only to the resource you attach it to. To attach one, follow the steps given below.
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 
@@ -64,6 +64,6 @@ A resource level policy applies only to the resource you attach it to. To attach
 
 ## Deploy the API to the Self-Hosted Gateway
 
-The policies stay inactive until you deploy the API. Deploy it so the Self-Hosted Gateway receives the updated policy chain. For the steps, see [Deploy the API to the Self-Hosted Gateway](./deploy-and-test-api.md#step-2-deploy-the-api-to-the-self-hosted-gateway).
+The policies stay inactive until you deploy the API. Deploy it so the self-hosted gateway receives the updated policy chain. For the steps, see [Deploy the API to the Self-Hosted Gateway](./deploy-and-test-api.md#step-2-deploy-the-api-to-the-self-hosted-gateway).
 
 When the deployment is active, the gateway runs the policies in the order you arranged them.

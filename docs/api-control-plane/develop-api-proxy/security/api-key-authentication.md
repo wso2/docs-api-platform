@@ -3,7 +3,7 @@ title: "API Key Authentication"
 description: "Secure an API proxy with the API Key Auth policy, generate an API key for it, and invoke the API with the key."
 ---
 
-With API key authentication, clients send an API key with each request to invoke an API proxy. An API key is bound to one API and it authenticates requests to that API only. You generate the key from the **API Keys** section of the API itself.
+With API key authentication, clients send an API key with each request to invoke an API proxy. An API key is bound to one API and it authenticates requests to that API only. You generate the key from the **API Keys** section of the API itself. Consumers can also generate their own keys in the API Portal and AI Hub. See [API Keys](../../../api-portal/manage-keys/api-keys.md).
 
 No key manager is involved, and an application is optional. You can associate a key with an application for usage analytics, but this does not change how the key works.
 
@@ -13,7 +13,7 @@ No key manager is involved, and an application is optional. You can associate a 
 
 ## Step 1: Attach the API Key Auth Policy
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 
@@ -21,9 +21,9 @@ No key manager is involved, and an application is optional. You can associate a 
 
 4. In the **Available policies** pane, find the **API Key Auth** policy, and drag it to the **Global policies** section.
 
-5. Configure where requests carry the API key, such as a header and its name, and click **Add**.
+5. Configure where requests carry the API key, such as a header and its name, and click **Attach policy**.
 
-6. Click **Save**.
+6. Click **Save changes**.
 
 7. Deploy the API to a gateway, so that the policy takes effect.
 
@@ -54,7 +54,7 @@ You can generate an API key for an API proxy that is deployed to a gateway. The 
 
 5. Click **I have copied the key**.
 
-The key appears in the **API Keys** section, with its name, the last characters of the key, and who created it. To revoke a key, click the delete (trash) icon next to it, and in the **Revoke API Key** dialog box, click **Revoke**. The gateways reject requests that use a revoked key.
+The key appears in the **API Keys** section, with its name, the last characters of the key, and who created it. The section lists the keys that you created for this API. To revoke a key, click the delete (trash) icon next to it, and in the **Revoke API Key** dialog box, click **Revoke**. The gateways reject requests that use a revoked key.
 
 ## Step 3: Invoke the API with the API Key
 
@@ -83,7 +83,7 @@ You can also call the API from the API Console without generating a key yourself
 
 1. In the left navigation menu, click **Test**.
 2. Select the gateway.
-3. In the **Test key** section, click **Get Test API Key**. The console creates a short-lived key and shows when it expires. It sends the key with every request to that gateway, in the header that the **API Key Auth** policy reads. If you change the header name in the policy, the console uses the new name.
-4. Expand an operation, and click **Execute**.
+3. In the **Test key** section, click **Get Test API Key**. The console creates a short-lived key and shows how long it remains valid. It sends the key with every request to that gateway, in the header that the **API Key Auth** policy reads. If you change the header name in the policy, the console uses the new name.
+4. In the endpoint list, select an operation, and click **Send**.
 
 To try a key that you generated, add it as a header under **Headers** in the operation instead.

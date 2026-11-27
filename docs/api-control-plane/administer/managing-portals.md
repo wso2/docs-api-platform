@@ -3,11 +3,11 @@ title: "Manage Portals"
 description: "Create a portal for your organization, open it, and edit or delete it. A portal is where you publish APIs for consumers."
 ---
 
-API portal is where consumers discover your APIs, read the documentation, and request access. You create portals for your organization from the API Control Plane, then publish APIs to them.
+The API Portal and AI Hub is where consumers discover your APIs, read the documentation, and request access. You create portals for your organization from the API Control Plane, then publish APIs to them.
 
 ## Open the Portals page
 
-1. Sign in to the API Control Plane Console.
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 2. In the left navigation menu, click **Portals**.
 
 The **Portals** page lists the portals in your organization. Each portal shows its name, its **Login environment**, and when it was last updated. Use **Search Portals** to find a portal.
@@ -21,11 +21,12 @@ The **Portals** page lists the portals in your organization. Each portal shows i
     |---|---|
     | **Name** | Required. The name of the portal. |
     | **Description** | Optional. A short description of the portal. |
+    | **Login environment** | Shown when your organization has more than one environment. The environment whose authentication server portal users sign in through. |
     | **Allow self sign-up** | Turned on by default. Consumers can create their own accounts in the portal. |
 
 3. Click **Add Portal**. **Add Portal** stays unavailable until you enter a name. Click **Cancel** to leave without creating the portal.
 
-    ![Add Portal form with the name Docs Portal, an empty description, Allow self sign-up turned on, and the Cancel and Add Portal buttons](/img/cloud/portals/add-portal.png)
+    ![Add Portal form with the name, description, login environment, Allow self sign-up switch, and the Cancel and Add Portal buttons](/img/cloud/portals/add-portal.png)
 
 While the portal is being created, its card shows **Creating portal**. When the portal is ready, **Open Portal** is available.
 

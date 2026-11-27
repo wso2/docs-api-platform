@@ -1,15 +1,15 @@
 ---
 title: "Theming"
-description: "Customize the appearance of a view in the API Portal and AI Hub by downloading, editing, and uploading its theme."
+description: "Customize the appearance of a view in the API Portal & AI Hub by downloading, editing, and uploading its theme."
 ---
 
-**Theming** lets you customize the appearance of an individual [view](./manage-views.md) in the API Portal and AI Hub. You can download the theme currently applied to a view, modify its files, and upload the updated theme as a ZIP archive.
+**Theming** lets you customize the appearance of an individual [view](./manage-views.md) in the API Portal & AI Hub. You can download the theme currently applied to a view, modify its files, and upload the updated theme as a ZIP archive.
 
 When you upload a theme, it completely replaces the existing custom theme files for that view.
 
 ## Access theming
 
-1. Sign in to the API Portal and AI Hub as an admin.
+1. Sign in to the API Portal & AI Hub as an admin.
 2. Go to **Settings**.
 3. Under **APPEARANCE**, select **Theming**.
 
@@ -24,11 +24,11 @@ The **Current theme** section shows whether the selected view uses the built-in 
 
 The downloaded ZIP archive contains a folder named after the selected view (for example, `default`). This folder contains the theme files organized into the following directories:
 
-- `styles/` – Stylesheets.
-- `layout/` – Layout templates.
-- `partials/` – Reusable template components.
-- `images/` – Theme images.
-- `pages/` – Page templates.
+- `styles/` - Stylesheets.
+- `layout/` - Layout templates.
+- `partials/` - Reusable template components.
+- `images/` - Theme images.
+- `pages/` - Page templates.
 
 If the selected view does not have a custom theme, the archive contains the built-in default theme.
 
@@ -66,7 +66,7 @@ The ZIP archive must not exceed 10 MB.
 
 Uploading the archive replaces all existing custom theme files for the selected view.
 
-Reload the API Portal or AI Hub to see the changes.
+Reload the API Portal and AI Hub to see the changes.
 
 ## Reset to the default theme
 

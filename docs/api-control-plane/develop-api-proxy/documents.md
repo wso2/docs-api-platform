@@ -1,10 +1,10 @@
 ---
 title: "Documents"
 pagination_label: "API Documents"
-description: "Add guides, samples, and support resources to an API proxy so consumers can understand and use it in the API Portal and AI Hub."
+description: "Add guides, samples, and support resources to an API proxy so consumers can understand and use it in the API Portal & AI Hub."
 ---
 
-When API consumers browse APIs in the API Portal and AI Hub, they need more than the API name and version to decide whether to use an API. Documents let you provide that information, such as,
+When API consumers browse APIs in the API Portal & AI Hub, they need more than the API name and version to decide whether to use an API. Documents let you provide that information, such as,
 
 - A brief description of the API.
 - How to invoke the API.
@@ -17,7 +17,7 @@ You write documents in Markdown and add them to the API before you publish it. Y
 
 To add a document to an API, follow the steps given below.
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Documents**.
 4. Click **Create Document**.

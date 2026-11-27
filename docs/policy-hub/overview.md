@@ -1,11 +1,11 @@
 ---
 title: "Policy Hub"
 pagination_label: "Policy Hub"
-description: "Browse the curated, versioned library of gateway policies for APIs and MCP servers in the Policy Hub."
+description: "Browse the curated, versioned library of gateway policies for APIs in the Policy Hub."
 slug: /policy-hub
 ---
 
-The [Policy Hub](https://choreolabs.com/api-management/policy-hub/) is the official, curated collection of [gateway policies](../api-control-plane/develop-api-proxy/policy/overview.md). It gives you a growing library of production-ready, versioned policy implementations that you can apply to any API or MCP server without writing custom code.
+The [Policy Hub](https://choreolabs.com/api-management/policy-hub/) is the official, curated collection of [gateway policies](../api-control-plane/develop-api-proxy/policy/overview.md). It gives you a growing library of production-ready, versioned policy implementations that you can apply to any API without writing custom code.
 
 Policies are self-contained units of behavior that plug into the gateway's request and response pipeline. You compose them, like stacking authentication on top of rate limiting on top of a guardrail, as opposed to building each concern from scratch. If your requisites exceed what the hub provides, you can author and ship your own policies alongside hub ones.
 
@@ -43,7 +43,6 @@ Control what goes into and out of AI models. Guardrail policies block unsafe pro
 | [AWS Bedrock Guardrail](https://choreolabs.com/api-management/policy-hub/policies/aws-bedrock-guardrail) | Validates content against AWS Bedrock Guardrails |
 | [Azure Content Safety](https://choreolabs.com/api-management/policy-hub/policies/azure-content-safety-content-moderation) | Screens content against Azure Content Safety API |
 | [Semantic Prompt Guard](https://choreolabs.com/api-management/policy-hub/policies/semantic-prompt-guard) | Blocks or allows prompts based on semantic similarity to configured allow/deny phrases |
-| [Semantic Tool Filtering](https://choreolabs.com/api-management/policy-hub/policies/semantic-tool-filtering) | Filters MCP tools to only those semantically relevant to the user query |
 | [PII Masking](https://choreolabs.com/api-management/policy-hub/policies/pii-masking-regex) | Masks or redacts PII from request/response bodies using configurable regex patterns |
 | [JSON Schema Guardrail](https://choreolabs.com/api-management/policy-hub/policies/json-schema-guardrail) | Enforces a JSON Schema on request or response payloads |
 | [Regex Guardrail](https://choreolabs.com/api-management/policy-hub/policies/regex-guardrail) | Validates content against a regular expression |
@@ -68,17 +67,6 @@ Policies designed specifically for the characteristics of AI APIs - cost, tokens
 | [Model Round Robin](https://choreolabs.com/api-management/policy-hub/policies/model-round-robin) | Distributes requests evenly across a pool of AI model endpoints |
 | [Model Weighted Round Robin](https://choreolabs.com/api-management/policy-hub/policies/model-weighted-round-robin) | Distributes requests across model endpoints according to configured weights |
 | [Respond](https://choreolabs.com/api-management/policy-hub/policies/respond) | Returns an immediate response without forwarding to the upstream backend |
-
-### MCP (Model Context Protocol)
-
-A dedicated policy tier for securing and controlling MCP servers - the emerging standard for exposing tools, resources, and prompts to AI agents.
-
-| Policy | What it does |
-| -- | -- |
-| [MCP Authentication](https://choreolabs.com/api-management/policy-hub/policies/mcp-auth) | Secures MCP server traffic per the MCP specification authorization profile |
-| [MCP Authorization](https://choreolabs.com/api-management/policy-hub/policies/mcp-authz) | Validates access to MCP tools, resources, and prompts using JWT claims or OAuth scopes |
-| [MCP Access Control](https://choreolabs.com/api-management/policy-hub/policies/mcp-acl-list) | Controls which tools, resources, and prompts a caller can reach using allow/deny lists |
-| [MCP Rewrite](https://choreolabs.com/api-management/policy-hub/policies/mcp-rewrite) | Defines user-facing tool names and maps them to backend capability names |
 
 ### Transformation
 
@@ -106,8 +94,6 @@ Modify requests and responses in flight.
 **AI guardrails:** Stack prompt-injection detection, [PII Masking](https://choreolabs.com/api-management/policy-hub/policies/pii-masking-regex), and a [Semantic Prompt Guard](https://choreolabs.com/api-management/policy-hub/policies/semantic-prompt-guard) on an LLM API to enforce safety and compliance requirements.
 
 **LLM cost governance:** Combine the [LLM Cost](https://choreolabs.com/api-management/policy-hub/policies/llm-cost) policy with [LLM Cost-Based Rate Limit](https://choreolabs.com/api-management/policy-hub/policies/llm-cost-based-ratelimit) to define cost constraints that the gateway enforces transparently.
-
-**MCP server security:** Apply [MCP Authentication](https://choreolabs.com/api-management/policy-hub/policies/mcp-auth), [MCP Authorization](https://choreolabs.com/api-management/policy-hub/policies/mcp-authz), and [MCP Access Control](https://choreolabs.com/api-management/policy-hub/policies/mcp-acl-list) together to fully secure an MCP server: authenticate the caller, validate their OAuth scopes, and restrict which tools they can invoke.
 
 **Semantic caching:** Place the [Semantic Cache](https://choreolabs.com/api-management/policy-hub/policies/semantic-cache) policy on a high-traffic LLM API to serve cached responses for semantically equivalent questions, cutting both latency and cost.
 

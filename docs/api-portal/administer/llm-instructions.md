@@ -5,7 +5,7 @@ description: "Set the portal name and description at the top of llms.txt, and tu
 
 **LLM Instructions** controls how AI agents see this view. It sets the name and description at the top of `llms.txt` - the first thing an agent reads - and carries the switch that turns AI discoverability on or off. The setting applies to one [view](./manage-views.md). Use the view selector to switch views.
 
-1. Sign in to the API Portal and AI Hub as an administrator.
+1. Sign in to the API Portal & AI Hub as an administrator.
 2. Open **Settings**.
 3. Under **AI & DISCOVERY**, select **LLM Instructions**.
 
@@ -44,7 +44,7 @@ Use the description for context an agent cannot infer from individual API specif
 - Which workflows are the recommended starting points for common tasks
 - Usage policies or limitations agents should respect
 
-When the name and description are empty, the preview uses the organization name and a short default description. Click **Publish** to save. The next request for `llms.txt` reflects the change.
+When the name and description are empty, the preview uses the heading `<organization-name> API Portal` and the description "Empower your development with our APIs & MCP Servers. Browse, subscribe, and integrate in minutes." Click **Publish** to save. The next request for `llms.txt` reflects the change.
 
 ## Preview the result
 
@@ -56,7 +56,7 @@ To fetch it yourself:
 GET /api-portal/{organization}/views/{view}/llms.txt
 ```
 
-Only the name and description are editable. Everything below them - the API Workflows, APIs, MCPs, GraphQL, WebSocket, and WebSub sections - is generated from the catalog and reflects each artifact's own agent visibility. See [AI Agent Discovery](../discover/ai-agent-discovery.md).
+Only the name and description are editable. Everything below them - the **API Workflows**, **APIs**, **MCPs**, **GraphQL APIs**, **Async / WebSocket APIs**, and **WebSub APIs** sections - is generated from the catalog and reflects each artifact's own agent visibility. See [AI Agent Discovery](../discover/ai-agent-discovery.md).
 
 ## Related
 

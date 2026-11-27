@@ -3,7 +3,7 @@ title: "OAuth2 Authentication"
 description: "Secure an API proxy with the JWT Auth policy, so that consumers invoke it with OAuth2 access tokens issued by a key manager."
 ---
 
-With OAuth2 authentication, consumers send an OAuth2 access token with each request to invoke an API proxy. You secure the API proxy with the **JWT Auth** policy, and consumers get access tokens in the API Portal and AI Hub.
+With OAuth2 authentication, consumers send an OAuth2 access token with each request to invoke an API proxy. You secure the API proxy with the **JWT Auth** policy, and consumers get access tokens in the API Portal & AI Hub.
 
 ThunderID is the default key manager, so consumers can get access tokens without any other setup.
 
@@ -13,15 +13,15 @@ ThunderID is the default key manager, so consumers can get access tokens without
 
 ## Step 1: Attach the JWT Auth Policy
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 
 3. In the left navigation menu, click **Develop**, then click **Policies**.
 
-4. In the **Available policies** pane, find the **JWT Auth** policy, drag it to the **Global policies** section, and click **Add**.
+4. In the **Available policies** pane, find the **JWT Auth** policy, drag it to the **Global policies** section, and click **Attach policy** in the **Configure** pane.
 
-5. Click **Save**.
+5. Click **Save changes**.
 
 6. Deploy the API to a gateway, so that the policy takes effect.
 
@@ -33,7 +33,7 @@ Publish the API to a portal, so that consumers can find it and get access tokens
 
 ## How Consumers Invoke the API
 
-1. The consumer signs in to the API Portal and AI Hub, and generates an OAuth2 key under **Keys** › **OAuth2 Keys**.
+1. The consumer signs in to the API Portal & AI Hub, and generates an OAuth2 key under **Keys** › **OAuth2 Keys**.
 
 2. The consumer gets an access token with the key.
 
@@ -47,4 +47,4 @@ For the steps that consumers follow, see [Consume an OAuth2-Secured API](../../.
 
 ## Use Another Key Manager
 
-To issue access tokens from your own identity provider, such as WSO2 Identity Server, Asgardeo, or Keycloak, an administrator registers it as a key manager in the API Portal and AI Hub. See [Configure a Custom Key Manager](../../../api-portal/administer/key-managers/custom-key-manager.md).
+To issue access tokens from your own identity provider, such as WSO2 Identity Server, Asgardeo, or Keycloak, an administrator registers it as a key manager in the API Portal & AI Hub. See [Configure a Custom Key Manager](../../../api-portal/administer/key-managers/custom-key-manager.md).

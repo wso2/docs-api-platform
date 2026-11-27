@@ -1,6 +1,6 @@
 ---
 title: "API Workflows"
-description: "Find a published API workflow in the API Portal and AI Hub, read its steps, and hand it to an AI agent through the agent prompt or the Arazzo specification."
+description: "Find a published API workflow in the API Portal & AI Hub, read its steps, and hand it to an AI agent through the agent prompt or the Arazzo specification."
 ---
 
 An API workflow is a published, multi-step sequence of API calls that solves one use case end to end, such as validating a patient, booking a specialist, and confirming the appointment. An administrator defines the workflow once, and everyone who needs that sequence follows the same tested path, instead of piecing it together from individual API specifications.
@@ -52,10 +52,10 @@ AI agents can also find workflows on their own through the machine-readable endp
 
 | Endpoint | Returns |
 |:---------|:--------|
-| `/{orgName}/views/{viewName}/api-workflows.md` | A Markdown list of all the published workflows that are visible to agents. |
-| `/{orgName}/views/{viewName}/api-workflows/{handle}.md` | One workflow in Markdown, including its source APIs and the full Arazzo specification. |
-| `/{orgName}/views/{viewName}/api-workflows/{handle}/arazzo.json` | The Arazzo specification of the workflow. Returns `404` for a Markdown workflow. |
-| `/{orgName}/views/{viewName}/api-workflows/{handle}/prompt` | The agent prompt, description, content, and source APIs of the workflow, as JSON. |
+| `/api-portal/{orgName}/views/{viewName}/api-workflows.md` | A Markdown list of all the published workflows that are visible to agents. |
+| `/api-portal/{orgName}/views/{viewName}/api-workflows/{handle}.md` | One workflow in Markdown, including its source APIs and the full Arazzo specification. |
+| `/api-portal/{orgName}/views/{viewName}/api-workflows/{handle}/arazzo.json` | The Arazzo specification of the workflow. Returns `404` for a Markdown workflow. |
+| `/api-portal/{orgName}/views/{viewName}/api-workflows/{handle}/prompt` | The agent prompt, description, content, and source APIs of the workflow, as JSON. |
 
 The portal's `llms.txt` also lists these workflows. For all the endpoints that AI agents use, see [AI Agents](./ai-agent-discovery.md).
 
@@ -65,7 +65,7 @@ Administrators control two settings for each workflow.
 
 | Setting | Values | Effect |
 |:--------|:-------|:-------|
-| **Status** | Draft or Published | Draft workflows appear nowhere. Published workflows appear on the **API Workflows** page. |
+| **Status** | Draft, Published, or Deprecated | Draft workflows appear nowhere. Published workflows appear on the **API Workflows** page. |
 | **Agent visibility** | Visible or Hidden | A hidden workflow stays on the **API Workflows** page, but is removed from `llms.txt` and the agent endpoints, and does not show **Try with AI**. |
 
 Administrators create and publish workflows in the portal, under **Settings** › **API Workflows**.

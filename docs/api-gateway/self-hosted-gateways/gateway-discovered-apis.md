@@ -81,6 +81,14 @@ curl -X POST http://localhost:9090/api/management/v1/rest-apis \
   --data-binary @reading-list-api.yaml
 ```
 
+The gateway replies with `201 Created` and `"state":"deployed"`. If you remapped the controller port, use your own port instead of 9090. See [Port already in use](./setting-up.md#port-already-in-use).
+
+The gateway serves the API right away, even before it connects to the control plane. To check it, call the gateway with the context and path from your definition. For the example above, run the following command and expect `200` with a JSON list of books. Use `-k` because the default listener certificate is self-signed, and use your own port if you remapped 8443:
+
+```bash
+curl -k https://localhost:8443/reading-list/books
+```
+
 To change the API later, update it on the gateway the same way, with `PUT /api/management/v1/rest-apis/{id}`. The gateway pushes each change to the control plane after it is deployed.
 
 ### Step 3: Verify the Sync
@@ -91,7 +99,7 @@ Check the controller logs for the push to the control plane.
 docker compose logs gateway-controller | grep -i "pushed deployment to control plane"
 ```
 
-You should see `Successfully pushed deployment to control plane`. Then open the project in the console. The API is listed there, and its **Deploy** page shows it on your self-hosted gateway.
+You should see `Successfully pushed deployment to control plane`. If the gateway isn't connected to the control plane, the command prints nothing, and the sync happens after the gateway connects. Then open the project in the console. The API is listed there, and its **Deploy** page shows it on your self-hosted gateway.
 
 ## What the Console Shows
 

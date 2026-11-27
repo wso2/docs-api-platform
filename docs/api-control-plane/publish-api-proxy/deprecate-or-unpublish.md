@@ -15,10 +15,10 @@ When an API is replaced by a newer version, or should no longer be offered to co
 You can deprecate or unpublish an API only after it is published to the portal.
 
 :::note
-You can't unpublish an API that has active subscriptions. Each consumer who subscribed to the API must unsubscribe first, in the API Portal and AI Hub. See [Manage Subscriptions](../../api-portal/manage-usage/manage-subscriptions.md#view-and-manage-a-subscription). To steer consumers to a newer version while their subscriptions continue, deprecate the API instead.
+You can't unpublish an API that has active subscriptions. Each consumer who subscribed to the API must unsubscribe first, in the API Portal & AI Hub. See [Manage Subscriptions](../../api-portal/manage-usage/manage-subscriptions.md#view-and-manage-a-subscription). To steer consumers to a newer version while their subscriptions continue, deprecate the API instead.
 :::
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 

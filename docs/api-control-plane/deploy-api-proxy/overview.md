@@ -1,7 +1,7 @@
 ---
 title: "Deploy an API"
 pagination_label: "Deploy an API"
-description: "Deploy an API proxy to a Choreo managed or self-hosted gateway, check deployments and builds, stop a deployment, and deploy again."
+description: "Deploy an API proxy to a cloud or self-hosted gateway, check deployments and builds, stop a deployment, and deploy again."
 ---
 
 Deploying an API proxy places a build of the API on one or more gateways. After the deployment succeeds, requests can reach the backend through each gateway's invoke URL.
@@ -14,17 +14,21 @@ The **Deploy** page of an API has two parts:
 ## Prerequisites
 
 - An API proxy. See [Create an API](../create-api-proxy/overview.md).
-- A gateway in the environment you deploy to. Your organization has a Choreo Managed Gateway named **Default**, in the development environment, and the deploy dialog box selects it for a first deployment. To deploy to another gateway, create a [self-hosted gateway](../administer/managing-gateways.md#create-a-self-hosted-gateway) or a [managed gateway](../administer/managing-gateways.md#create-a-managed-gateway) first.
+- A gateway in the environment you deploy to. Your organization has a cloud gateway named **Default**, in the development environment, and the deploy dialog box selects it for a first deployment. To deploy to another gateway, create a [self-hosted gateway](../administer/managing-gateways.md#create-a-self-hosted-gateway) or a [cloud gateway](../administer/managing-gateways.md#create-a-cloud-gateway) first.
 
 ## Deploy the API
 
 1. Open the API, and in the left navigation menu, click **Deploy**. You can also click **Deploy to Gateway** on the API overview page.
-2. In **Build Area**, click **Deploy**. To create a build from the current API and deploy it in one step, click the arrow next to **Deploy**, and select **Build and Deploy**.
+2. In **Build Area**, click the main button:
+
+    - If the API has no builds yet, the button is **Build and deploy**. It creates the first build and deploys it.
+    - If the API has a build, the button is **Deploy**. It deploys an existing build. To create a new build from the current API and deploy it, click the arrow next to **Deploy**, select **Build and Deploy**, and then click **Build and Deploy**.
+
 3. In the dialog box, which is named for the environment, such as **Deploy to development**, configure the deployment:
 
     1. Under **Gateways**, select one or more gateways. For a first deployment, the console selects the gateway marked **Default**.
     2. Confirm the **Endpoint URL** of the backend.
-    3. Under **Build**, confirm the build to deploy.
+    3. If the dialog shows **Build**, confirm the build to deploy.
     4. Click **Deploy**.
 
     ![Deploy page with the Build Area, the Deploy button, and the gateways in the development environment](/img/cloud/deploy-api-proxy/deploy.png)
@@ -70,7 +74,7 @@ The status changes to **Stopping**, and then to **Suspended**. The gateway no lo
 
 There's no separate redeploy action. To put an API back on a gateway after you stop it or after a deployment fails, or to deploy a change such as an updated definition or policy, deploy it again:
 
-- To deploy a new build with your latest changes, click the arrow next to **Deploy** in **Build Area**, and select **Build and Deploy**.
+- To deploy a new build with your latest changes, click the arrow next to **Deploy** in **Build Area**, select **Build and Deploy**, and then click **Build and Deploy**.
 - To deploy an existing build, click **Deploy**, and select the build under **Build** in the dialog box.
 
 ## Promote to the Next Environment

@@ -1,23 +1,16 @@
 ---
 title: "Searching"
-description: "Search published APIs in the API Portal and AI Hub by name, type, version, or description."
+description: "Search published APIs in the API Portal & AI Hub by name, type, version, or description."
 ---
 
-You can search for APIs in the API Portal that have already been published from the API Control Plane.
+You can search for APIs in the API Portal and AI Hub that have already been published from the API Control Plane.
 
-1. Click **APIs** from the sidebar. APIs list can be seen
+1. Click **APIs** from the sidebar. The page lists the published APIs.
 
-    ![API Portal APIs list showing multiple API cards with name, version, type, and Subscribe button](/img/cloud/devportal/apis-list.png)
+    ![API Portal and AI Hub APIs list with cards showing the name, version, type, and Subscribe button](/img/cloud/api-portal/apis-list.png)
 
-2. Use one of the following methods to search.
+2. Enter free text in the search bar, and press <kbd>Enter</kbd>. The search covers the metadata of each API, such as its name, type, version, and description, and its tag names.
 
-    | **Category**     | **Explanation**                          |
-    |------------------|------------------------------------------|
-    | **Name**         | Full or partial name of the API          |
-    | **Type**         | Type of the API (e.g., REST)             |
-    | **Version**      | Version of the API (e.g., 1.0)           |
-    | **Description**  | Full or partial description of the API   |
+    Example: searching for `1.0` returns only the API whose version is 1.0.
 
-    Example: Searching by API version.
-
-    ![Search bar with the query 1.0 returning one API card, version 1.0, with the REST and AI Ready labels, 1 plan, and a Subscribe button](/img/cloud/devportal/api-search.png)
+    ![Search bar with the query 1.0 returning one API card, version 1.0, with the REST and AI Ready labels, 1 plan, and a Subscribe button](/img/cloud/api-portal/api-search.png)

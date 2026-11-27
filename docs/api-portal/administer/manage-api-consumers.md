@@ -1,13 +1,13 @@
 ---
 title: "Manage API Consumers"
-description: "Learn how consumers sign up to the API Portal and AI Hub, and how to add an admin."
+description: "Learn how consumers sign up to the API Portal & AI Hub, and how to add an admin."
 ---
 
-API consumers are the developers who use the API Portal and AI Hub to find APIs, get credentials, and invoke APIs. An admin is a user with the **dp_admin** role. That user signs in to the portal and manages its settings.
+API consumers are the developers who use the API Portal & AI Hub to find APIs, get credentials, and invoke APIs. An admin is a user with the **dp_admin** role. That user signs in to the portal and manages its settings.
 
 ## How Consumers Sign Up
 
-Anyone can create an account in the portal.
+If the portal allows self sign-up, anyone can create an account in the portal. Otherwise, an administrator adds users.
 
 1. Open the portal URL that the API publisher shared. See [Open the Portal](../overview.md#open-the-portal).
 
@@ -23,7 +23,7 @@ The admin is created in Identity & Access Management, assigned the **admin** rol
 
 ### Open Identity & Access Management
 
-1. Sign in to the Choreo Cloud Console.
+1. Sign in to the [Choreo Cloud Console](https://console.cloud.choreolabs.com/).
 
 2. Switch to  **Identity & Access Management**.
 

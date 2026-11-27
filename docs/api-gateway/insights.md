@@ -4,7 +4,7 @@ pagination_label: "Gateway Insights"
 description: "View analytics for the API traffic on your gateways in the API Control Plane, and configure the analytics that a Self-Hosted Gateway publishes."
 ---
 
-Insights shows how the APIs on your gateways are used. Choreo gateways send analytics to Moesif, which powers Insights in the API Control Plane. For a Self-Hosted Gateway, you can also control which request and response data the gateway captures.
+Insights shows how the APIs on your gateways are used. Choreo gateways send analytics to Moesif, which powers Insights in the API Control Plane. For a self-hosted gateway, you can also control which request and response data the gateway captures.
 
 ## In the API Control Plane
 
@@ -21,11 +21,11 @@ Insights is coming soon.
 
 ## For a Self-Hosted Gateway
 
-A Self-Hosted Gateway publishes analytics for the API traffic that it handles. The gateway collects analytics data asynchronously, after the response reaches the client, so analytics does not add latency to API calls.
+A self-hosted gateway publishes analytics for the API traffic that it handles. The gateway collects analytics data asynchronously, after the response reaches the client, so analytics does not add latency to API calls.
 
 ### How Analytics Is Set Up
 
-A Self-Hosted Gateway publishes analytics to Moesif, which powers Insights. When you add a Self-Hosted Gateway, the command that creates the `keys.env` file includes your organization's Moesif key in the `MOESIF_KEY` variable. The gateway uses this key to publish analytics for your organization.
+A self-hosted gateway publishes analytics to Moesif, which powers Insights. When you add a self-hosted gateway, the command that creates the `keys.env` file includes your organization's Moesif key in the `MOESIF_KEY` variable. The gateway uses this key to publish analytics for your organization.
 
 The gateway reads its analytics settings from its `config.toml` file. The following sections describe the settings that you can change.
 
@@ -89,4 +89,4 @@ The policy works only when analytics is enabled for the gateway, and only on the
 
 ### Send Analytics to an OpenTelemetry Backend
 
-In addition to Moesif, a Self-Hosted Gateway can export analytics as OpenTelemetry Protocol (OTLP) log records to your own observability stack, such as an OpenTelemetry Collector. Each publisher receives every analytics event independently. This requires API Gateway `1.2.0.11` or later. For the configuration, see [OpenTelemetry Analytics](https://wso2.com/api-platform/docs/api-gateway/1.2.0/analytics/opentelemetry-analytics/).
+In addition to Moesif, a self-hosted gateway can export analytics as OpenTelemetry Protocol (OTLP) log records to your own observability stack, such as an OpenTelemetry Collector. Each publisher receives every analytics event independently. This requires API Gateway `1.2.0.11` or later. For the configuration, see [OpenTelemetry Analytics](https://wso2.com/api-platform/docs/api-gateway/1.2.0/analytics/opentelemetry-analytics/).

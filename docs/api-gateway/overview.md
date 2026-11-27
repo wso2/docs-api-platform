@@ -1,7 +1,7 @@
 ---
 title: "API Gateway"
 pagination_label: "API Gateway"
-description: "Run your API proxies on a Self-Hosted Gateway in your own infrastructure or on a Choreo Managed Gateway, all managed from API Management Cloud."
+description: "Run your API proxies on a self-hosted gateway in your own infrastructure or on a cloud gateway, all managed from API Management Cloud."
 slug: /api-gateway
 ---
 
@@ -13,21 +13,21 @@ Gateways run in the data plane, while you configure and manage them centrally fr
 
 | Gateway | Description | Traffic Via | Best For |
 |:--------|:------------|:------------|:---------|
-| **Self-Hosted Gateway** | Runs on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connects to the control plane. Traffic and data stay within your network. | Your infrastructure | Enterprise and compliance requirements |
-| **Choreo Managed Gateway** | Runs on fully managed cloud infrastructure. Choreo Labs runs, scales, and upgrades the gateway, so you have no infrastructure to maintain. | Choreo Cloud | A fast start and proofs of concept |
+| **Self-hosted gateway** | Runs on your own infrastructure, such as a virtual machine, Docker, or Kubernetes, and connects to the control plane. Traffic and data stay within your network. | Your infrastructure | Enterprise and compliance requirements |
+| **cloud gateway** | Runs on fully managed cloud infrastructure. Choreo Labs runs, scales, and upgrades the gateway, so you have no infrastructure to maintain. | Choreo Cloud | A fast start and proofs of concept |
 
 :::info
-A new organization comes with a Choreo Managed Gateway named **Default**, in the development environment, so you can deploy API proxies to it right away. To set up a Self-Hosted Gateway, follow the [Self-Hosted Gateway Quick Start Guide](./self-hosted-gateways/quickstart-guide.md). To add another Choreo Managed Gateway, see [Manage Gateways](../api-control-plane/administer/managing-gateways.md).
+A new organization comes with a cloud gateway named **Default**, in the development environment, so you can deploy API proxies to it right away. To set up a self-hosted gateway, follow the [Self-Hosted Gateway Quick Start Guide](./self-hosted-gateways/quickstart-guide.md). To add another cloud gateway, see [Manage Gateways](../api-control-plane/administer/managing-gateways.md).
 :::
 
 ## What You Can Do
 
 | Task | Description |
 |:-----|:------------|
-| [Set up a Self-Hosted Gateway](./self-hosted-gateways/quickstart-guide.md) | Add a Self-Hosted Gateway in the API Control Plane, run it on your infrastructure, and connect it to the API Control Plane. |
+| [Set up a Self-Hosted Gateway](./self-hosted-gateways/quickstart-guide.md) | Add a self-hosted gateway in the API Control Plane, run it on your infrastructure, and connect it to the API Control Plane. |
 | [Install a Self-Hosted Gateway for production](./self-hosted-gateways/setting-up.md) | Install the gateway on a VM or Docker host, or on Kubernetes with Helm, and prepare it for production. |
-| [Deploy and test an API](./self-hosted-gateways/deploy-and-test-api.md) | Create a REST API proxy, deploy it to a Self-Hosted Gateway, and test it. |
-| [Add and manage policies](./self-hosted-gateways/manage-policies.md) | Apply policies to the APIs on a Self-Hosted Gateway. |
-| [Deploy APIs directly on the gateway](./self-hosted-gateways/gateway-discovered-apis.md) | Deploy APIs on a Self-Hosted Gateway, and see them in the API Control Plane as read-only APIs. |
+| [Deploy and test an API](./self-hosted-gateways/deploy-and-test-api.md) | Create a REST API proxy, deploy it to a self-hosted gateway, and test it. |
+| [Add and manage policies](./self-hosted-gateways/manage-policies.md) | Apply policies to the APIs on a self-hosted gateway. |
+| [Deploy APIs directly on the gateway](./self-hosted-gateways/gateway-discovered-apis.md) | Deploy APIs on a self-hosted gateway, and see them in the API Control Plane as read-only APIs. |
 
 To view the gateways in your organization from the API Control Plane, see [Manage Gateways](../api-control-plane/administer/managing-gateways.md).

@@ -10,7 +10,7 @@ On the **Definition** page, you can view the definition as YAML or JSON, add and
 
 ## Open the Definition Page
 
-1. Sign in to the API Control Plane.
+1. Sign in to the [API Control Plane Console](https://console.cloud.choreolabs.com/api-management/).
 2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
 3. In the left navigation menu, click **Develop**, then click **Definition**.
 
@@ -51,9 +51,9 @@ To discard your changes before you save, click **Reset**.
 
 ## Import a Definition
 
-Importing replaces the whole definition with another OpenAPI or Swagger contract.
+Importing replaces the whole definition with another OpenAPI 3.x contract. The console doesn't accept Swagger 2.x contracts.
 
-1. Click the **Update OpenAPI Definition** (upload) icon.
+1. Click the **Import Definition** (upload) icon.
 2. In the **Update OpenAPI Definition** dialog box, do one of the following:
 
     - Paste the contract URL, and click **Fetch specification**.

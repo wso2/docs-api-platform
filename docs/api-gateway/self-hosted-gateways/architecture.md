@@ -4,13 +4,13 @@ pagination_label: "Self-Hosted Gateway Architecture"
 description: "Learn how the Self-Hosted Gateway connects to the API Control Plane through the Gateway Controller and Gateway Runtime components."
 ---
 
-A Self-Hosted Gateway runs in a private data plane that you manage, and connects to the [API Control Plane](../../api-control-plane/overview.md) in the cloud. This architecture allows organizations to manage APIs centrally while keeping API traffic, runtime execution, and backend connectivity within their own environment.
+A self-hosted gateway runs in a private data plane that you manage, and connects to the [API Control Plane](../../api-control-plane/overview.md) in the cloud. This architecture allows organizations to manage APIs centrally while keeping API traffic, runtime execution, and backend connectivity within their own environment.
 
 ## API Control Plane
 
 The API Control Plane is hosted in the cloud and provides centralized API management capabilities. It is used to configure, publish, and manage APIs and policies.
 
-The Self-Hosted Gateway opens an outbound WebSocket connection to the API Control Plane over **port 443**. This connection is used to receive API and policy configuration updates from the control plane. Since the connection is initiated from the private data plane, you do not need to expose internal gateway management services to the public internet.
+The self-hosted gateway opens an outbound WebSocket connection to the API Control Plane over **port 443**. This connection is used to receive API and policy configuration updates from the control plane. Since the connection is initiated from the private data plane, you do not need to expose internal gateway management services to the public internet.
 
 ## Private Data Plane
 
@@ -34,10 +34,15 @@ It contains the following services.
 
 #### Gateway Controller Ports
 
-| Port | Type | Description |
-| ----- | ----- | ----- |
-| 9090 | External | Controller REST API port. |
-| 9002 | Internal | Controller admin port. |
+The following table lists the controller ports. The **Container port** column is the port inside the container. The **Host port** column is the port that the default Docker Compose file publishes on the host. The **Who connects** column says who should reach the port.
+
+| Container port | Host port | Who connects | Description |
+| ----- | ----- | ----- | ----- |
+| 9090 | 9090 | Operators, on a private network | Controller management REST API. Basic authentication protects it. |
+| 9092 | 9094 | Operators, on a private network | Controller admin API, which includes the health endpoint. |
+| 9091 | 9011 | Monitoring tools, on a private network | Controller metrics. Metrics are off by default. |
+| 18000 | Not published | The router in the gateway runtime | Controller xDS. The router gets its runtime configuration here. |
+| 18001 | Not published | The policy engine in the gateway runtime | Policy xDS. The policy engine gets its policy configuration here. |
 
 ### Gateway Runtime
 
@@ -47,11 +52,18 @@ The router receives incoming API requests over HTTP or HTTPS and routes them to 
 
 #### Gateway Runtime Ports
 
-| Port | Type | Description |
-| ----- | ----- | ----- |
-| 8080 | External | HTTP ingress port for API traffic. |
-| 8443 | External | HTTPS ingress port for API traffic. |
-| 9901 | Internal | Envoy admin port. |
+The following table lists the runtime ports, with the same columns as the controller table.
+
+| Container port | Host port | Who connects | Description |
+| ----- | ----- | ----- | ----- |
+| 8080 | 8080 | API consumers | HTTP ingress for API traffic. |
+| 8443 | 8443 | API consumers | HTTPS ingress for API traffic. |
+| 8081 | 8081 | API consumers | Listener for APIs that the controller configures through xDS. |
+| 9901 | 9901 | Operators, on a private network | Envoy admin. |
+| 9002 | 9002 | Operators, on a private network | Policy engine admin. |
+| 9003 | 9003 | Monitoring tools, on a private network | Policy engine metrics. |
+
+The default Docker Compose file publishes the ports for operators and monitoring tools on all host interfaces. Block them at the firewall or bind them to the loopback address. See [Production hardening](./setting-up.md#production-hardening). Only the three ports for API consumers need to be reachable from your clients.
 
 ## Configuration Flow
 

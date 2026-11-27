@@ -5,11 +5,11 @@ description: "Author an API workflow as an Arazzo specification or Markdown, gen
 
 **API Workflows** is where you define multi-step API use cases for one [view](./manage-views.md). A workflow tells AI agents how the APIs work together, in order. This page covers the admin side. For what consumers and agents then see, read [API Workflows](../discover/api-workflows.md).
 
-1. Sign in to the API Portal and AI Hub as an administrator.
+1. Sign in to the API Portal & AI Hub as an administrator.
 2. Open **Settings**.
 3. Under **AI & DISCOVERY**, select **API Workflows**.
 
-Use the view selector to choose the view. Workflows belong to that view. The list columns are **Name**, **Status**, and **Type**. Status is **Draft** or **Published**. Type is **Arazzo** or **Markdown**. When the list is empty, the page says to click **Add workflow** to get started.
+Use the view selector to choose the view. Workflows belong to that view. The list columns are **Name**, **Status**, and **Type**. Status is **Draft**, **Published**, or **Deprecated**. Type is **Arazzo** or **Markdown**. When the list is empty, the page says to click **Add workflow** to get started.
 
 Each workflow also offers actions to view the agent prompt when the workflow is visible to agents, to edit it, and to delete it.
 

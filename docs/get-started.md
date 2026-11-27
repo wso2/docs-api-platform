@@ -23,11 +23,11 @@ You want Choreo Labs to run the control plane, and you run the gateway.
 
 | Guide | What You Will Do |
 |:------|:-----------------|
-| [Self-Hosted Gateway Quick Start Guide](./api-gateway/self-hosted-gateways/quickstart-guide.md) | Add a Self-Hosted Gateway, run it on your infrastructure, and connect it to the API Control Plane. |
+| [Self-Hosted Gateway Quick Start Guide](./api-gateway/self-hosted-gateways/quickstart-guide.md) | Add a self-hosted gateway, run it on your infrastructure, and connect it to the API Control Plane. |
 | [Set Up a Self-Hosted Gateway](./api-gateway/self-hosted-gateways/setting-up.md) | Install the gateway on a VM or Docker host, or on Kubernetes with Helm, for production use. |
-| [Deploy and Test an API on a Self-Hosted Gateway](./api-gateway/self-hosted-gateways/deploy-and-test-api.md) | Create a REST API proxy, deploy it to your Self-Hosted Gateway, and test it. |
-| [Add and Manage Policies](./api-gateway/self-hosted-gateways/manage-policies.md) | Attach policies to the APIs that run on your Self-Hosted Gateway. |
-| [Gateway Discovered APIs](./api-gateway/self-hosted-gateways/gateway-discovered-apis.md) | Deploy APIs directly on your Self-Hosted Gateway, and see them in the API Control Plane as read-only APIs. |
+| [Deploy and Test an API on a Self-Hosted Gateway](./api-gateway/self-hosted-gateways/deploy-and-test-api.md) | Create a REST API proxy, deploy it to your self-hosted gateway, and test it. |
+| [Add and Manage Policies](./api-gateway/self-hosted-gateways/manage-policies.md) | Attach policies to the APIs that run on your self-hosted gateway. |
+| [Gateway Discovered APIs](./api-gateway/self-hosted-gateways/gateway-discovered-apis.md) | Deploy APIs directly on your self-hosted gateway, and see them in the API Control Plane as read-only APIs. |
 
 ### I Want to Publish APIs to Developers and AI Agents
 
@@ -45,14 +45,14 @@ You want to find an API in the portal, subscribe to it, and invoke it.
 
 | Guide | What You Will Do |
 |:------|:-----------------|
-| [API Portal and AI Hub Quick Start Guide](./api-portal/quickstart-guide.md) | Sign in to the portal, find an API, subscribe to it under a plan, and invoke it. |
+| [API Portal & AI Hub Quick Start Guide](./api-portal/quickstart-guide.md) | Sign in to the portal, find an API, subscribe to it under a plan, and invoke it. |
 | [Which Credentials You Need](./api-portal/consume-an-api/overview.md) | Find out which credentials an API requires, and how to get them. |
 
 ## After Your First Quick Start Guide
 
 | I Want To | Go Here |
 |:----------|:--------|
-| Explore the full feature docs | [API Control Plane](./api-control-plane/overview.md) · [API Portal and AI Hub](./api-portal/overview.md) · [API Gateway](./api-gateway/overview.md) |
+| Explore the full feature docs | [API Control Plane](./api-control-plane/overview.md) · [API Portal & AI Hub](./api-portal/overview.md) · [API Gateway](./api-gateway/overview.md) |
 | Understand key concepts, such as organizations, projects, and environments | [Key Concepts](./key-concepts.md) |
 | Browse reusable policies | [Policy Hub](./policy-hub/overview.md) |
 | Find out how the components fit together | [What is API Management?](./overview.md) |

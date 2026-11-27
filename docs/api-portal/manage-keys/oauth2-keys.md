@@ -1,9 +1,9 @@
 ---
 title: "OAuth2 Keys"
-description: "Generate, add, edit, and delete OAuth2 keys in the API Portal and AI Hub, get access tokens with curl, and work with production and sandbox keys."
+description: "Generate, add, edit, and delete OAuth2 keys in the API Portal & AI Hub, get access tokens with curl, and work with production and sandbox keys."
 ---
 
-An **OAuth2 key** is the portal's record of an OAuth2 client on a key manager. It holds the client ID and the details needed to request access tokens. OAuth2 keys are listed under **Keys** › **OAuth2 Keys**.
+An **OAuth2 key** is the portal's record of an OAuth2 client on a key manager. It holds the consumer key and the details needed to request access tokens. OAuth2 keys are listed under **Keys** › **OAuth2 Keys**.
 
 An OAuth2 key belongs to the user who creates it, not to an application. To generate a key and invoke an API, see [Consume an OAuth2-Secured API](../consume-an-api/oauth2.md).
 
@@ -13,8 +13,8 @@ The buttons on the **OAuth2 Keys** page depend on how the key managers of your o
 
 | Option | What Happens | Available When |
 |:-------|:-------------|:---------------|
-| **Register OAuth2 Client** | The portal registers a new OAuth2 client on the key manager, and returns its client ID and secret. | The key manager lets the portal create applications, as ThunderID does by default. |
-| **Add existing key** | You create the OAuth2 application in the key manager, and add its client ID to the portal. | The key manager is configured for imported client IDs. See [Configure a Custom Key Manager](../administer/key-managers/custom-key-manager.md). |
+| **Register OAuth2 client** | The portal registers a new OAuth2 client on the key manager, and returns its consumer key and secret. | The key manager lets the portal create applications, as ThunderID does by default. |
+| **Import OAuth2 client** | You create the OAuth2 application in the key manager, and import its client ID into the portal. | The portal shows this button only when a key manager that supports import exists. See [Configure a Custom Key Manager](../administer/key-managers/custom-key-manager.md). |
 
 ### Key Details
 
@@ -29,13 +29,13 @@ When you generate a key, you can set the following details.
 | **Response types** | The response types of the authorization endpoint: **code**, **token**, or **id_token**. They must match the selected grant types. |
 | **Client authentication method** | How the application authenticates at the token endpoint. |
 
-### Add an Existing Key
+### Import an existing client
 
-1. Go to **Keys** › **OAuth2 Keys**, and click **Add existing key**.
+1. Go to **Keys** › **OAuth2 Keys**, and click **Import OAuth2 client**. The **Import an existing client** dialog opens.
 
-2. Select the **Key manager**, enter a **Name** for the key, and enter the **Client ID** of the OAuth2 application that you created in the key manager.
+2. Select the **Key manager**, and enter the client ID of the OAuth2 application that you created in the key manager.
 
-3. Click **Add key**.
+3. Click **Import client**.
 
 The portal does not register anything on the key manager for an existing key. It only records the client ID, so that it can request tokens with it. Keep the client secret from where you created the application.
 
@@ -70,7 +70,7 @@ Each key is either a production key or a sandbox key, based on the key manager t
 
 This step is optional. Associate a key with an application to track its usage in analytics. It is not required to invoke an API.
 
-- **From the key:** In the **Actions** menu of the key, click **Associate with an application**, and select the application.
+- **From the key:** In the **Application** column of the key, click the **+** button (**Associate an application**) or the pencil button (**Change application**). In the **Associate with an application** dialog, select the application, and click **Save**. The dialog lists applications that already hold a key of that type, but you can't select them.
 
 - **From the application:** Open the application, and in the **OAuth2 keys** section, click **Associate existing OAuth2 key**.
 
@@ -88,9 +88,9 @@ See [Manage Applications](../manage-usage/manage-applications.md).
 
 ## Edit or Delete a Key
 
-- **Edit:** In the **Actions** menu of the key, change the details that the key manager holds, such as the name or callback URLs, and click **Save changes**. For a key that the portal registered, the portal also sends the change to the key manager.
+- **Edit:** In the **Actions** menu of the key, click **Update**. In the **Update OAuth2 key** dialog, change the details that the key manager holds, such as the name or callback URLs, and click **Save changes**. For a key that the portal registered, the portal also sends the change to the key manager.
 
-- **Delete:** In the **Actions** menu of the key, click **Delete key**, and confirm. For a key that the portal registered, this also deletes the OAuth2 application on the key manager. For an existing key that you added, only the record in the portal is deleted.
+- **Delete:** In the **Actions** menu of the key, click **Delete**. In the **Delete OAuth2 key** confirmation, click **Delete key**. For a key that the portal registered, this also deletes the OAuth2 application on the key manager. For an existing key that you added, only the record in the portal is deleted.
 
 :::note
 Deleting a key does not invalidate the tokens that were issued with it. They stay valid until they expire. To revoke a live token, use the revocation endpoint of the key manager.

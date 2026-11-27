@@ -1,6 +1,6 @@
 ---
 title: "Consume an API-Key-Secured API"
-description: "Get an API key for an API, and invoke the API with the key from the API Portal and AI Hub."
+description: "Get an API key for an API, and invoke the API with the key from the API Portal & AI Hub."
 ---
 
 An API key is bound to one API, and it authenticates your requests to that API only. No key manager is involved, and an application is optional. You can associate a key with an application for usage analytics, but this does not change how the key works.
@@ -12,27 +12,29 @@ An API key is bound to one API, and it authenticates your requests to that API o
 
 ## Get an API Key
 
-API keys are created in the API Control Plane. If you don't have access to the API in the console, request a key from the API publisher.
+You generate an API key in the portal. The portal offers API keys for all API types except GraphQL, MCP, SOAP, and WebSub.
 
-1. Sign in to the [API Control Plane Console](#).
+1. Sign in to the API Portal and AI Hub, and open the API.
 
-2. In the header, select the project from the **Projects** list and the API from the **APIs** list.
+2. On the page of the API, click **API Keys**. You can also click **API Keys** in the submenu of the API in the left navigation menu.
 
-3. On the **Overview** page of the API, in the **API Keys** section, click **Add**.
+3. Click **Generate API key**.
 
-4. Enter a **Key name** and select how long the key is valid in **Expires in**, and click **Create key**.
+4. Enter a **Name**. Use lowercase letters, numbers, hyphens, and underscores, up to 128 characters. Optionally, set **Expires at**.
 
-5. Copy the API key, and click **I have copied the key**.
+5. Click **Generate**.
+
+6. In the **API key generated** dialog, copy the API key, and click **Done**.
 
     :::warning
     The key is shown only once. It is stored hashed and pushed to the deployed gateways, so you cannot view it again after you close the dialog.
     :::
 
-For more, see [API Key Authentication](../../api-control-plane/develop-api-proxy/security/api-key-authentication.md).
+A publisher can also create keys in the API Control Plane. See [API Key Authentication](../../api-control-plane/develop-api-proxy/security/api-key-authentication.md).
 
 ## Invoke the API
 
-1. In the API Portal and AI Hub, open the API, and under **Endpoints**, copy the **Production** endpoint.
+1. In the API Portal & AI Hub, open the API, and under **Endpoints**, copy the **Production** endpoint.
 
 2. Send the API key in the header that the **API Key Auth** policy of the API expects.
 

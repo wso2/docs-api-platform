@@ -5,17 +5,18 @@ description: "Trace gateway requests with the demonstration OpenTelemetry and Ja
 
 A trace follows one request through the gateway. Each step is a span. Components pass the trace from one to the next with the W3C `traceparent` and `tracestate` headers.
 
-The demonstration stack is an OpenTelemetry Collector and Jaeger. Components send spans to the collector on gRPC port 4317 or HTTP port 4318. The collector forwards them to Jaeger. You can send the same spans to any OTLP backend instead.
+The demonstration stack is an OpenTelemetry Collector and Jaeger. The router and the policy engine send spans to the collector over gRPC on port 4317. The collector also accepts OTLP over HTTP on port 4318 for other senders. The collector forwards the spans to Jaeger. You can send the same spans to any OTLP backend instead.
 
 ## Enable tracing
 
-In `gateway/configs/config.toml`:
+In `configs/config.toml` inside the gateway distribution, add a `[tracing]` section. The shipped file has no `[tracing]` section, so tracing stays off until you add one:
 
 ```toml
 [tracing]
 enabled = true                          # Set to true to enable tracing
 endpoint = "otel-collector:4317"        # OTLP collector gRPC endpoint
-service_version = "0.2.0"               # Service version
+insecure = true                         # Connect without TLS
+service_version = "1.0.0"               # Service version
 batch_timeout = "1s"                    # Batch timeout for exporting spans
 max_export_batch_size = 512             # Maximum spans per batch
 sampling_rate = 1.0                     # Sample rate (1.0 = 100%, 0.5 = 50%)
@@ -27,7 +28,7 @@ Start the gateway with the tracing services:
 docker compose --profile tracing up -d
 ```
 
-This starts **gateway-controller**, **policy-engine**, **router**, the OpenTelemetry Collector, and Jaeger.
+This starts **gateway-controller**, **gateway-runtime** (which runs the router and the policy engine), the OpenTelemetry Collector, and Jaeger.
 
 To run the gateway without that stack:
 
@@ -73,12 +74,26 @@ sampling_rate = 0.1  # Sample 10% of requests
 
 `1.0` samples every request. `0.5` samples half, `0.1` samples 10%, and `0.01` samples 1%. A lower rate costs less and can miss traces.
 
-Set the service name:
+Set the service name for each component:
 
 ```toml
 [policy_engine]
-service_name = "policy-engine-prod-us-east-1"
+tracing_service_name = "policy-engine-prod-us-east-1"
+
+[router]
+tracing_service_name = "router-prod-us-east-1"
 ```
+
+The defaults are `policy-engine` and `router`.
+
+Add resource attributes to every span from both the router and the policy engine:
+
+```toml
+[tracing.resource_attributes]
+"deployment.environment" = "prod"
+```
+
+Attributes from the `OTEL_RESOURCE_ATTRIBUTES` environment variable still apply, and the values in this block take precedence.
 
 Change how spans are batched:
 
@@ -94,13 +109,17 @@ A shorter timeout shows traces sooner. A longer timeout sends fewer, larger batc
 
 Keep the gateway endpoint pointed at an OTLP collector, and change the collector exporters. The collector file is `gateway/observability/otel-collector/config.yaml`.
 
+:::note
+The demonstration stack runs the core build of the OpenTelemetry Collector, `otel/opentelemetry-collector:0.112.0`. It includes the `otlp`, `otlphttp`, `zipkin`, and `debug` exporters. The `awsxray`, `googlecloud`, `azuremonitor`, and `datadog` exporters and the `tail_sampling` processor are in the contrib build only. To use them, change the collector image to `otel/opentelemetry-collector-contrib`.
+:::
+
 ### Moesif
 
 ```yaml
 exporters:
   # Export to Moesif
   otlphttp:
-    endpoint: https://api.moesif.net/v1/traces
+    endpoint: https://api.moesif.net
     headers:
       X-Moesif-Application-Id: 'your-moesif-application-id'
 
@@ -121,14 +140,14 @@ To pass the ID as an environment variable:
 ```yaml
 exporters:
   otlphttp:
-    endpoint: https://api.moesif.net/v1/traces
+    endpoint: https://api.moesif.net
     headers:
       X-Moesif-Application-Id: '${MOESIF_APPLICATION_ID}'
 ```
 
 ```yaml
 otel-collector:
-  image: otel/opentelemetry-collector:latest
+  image: otel/opentelemetry-collector:0.112.0
   environment:
     - MOESIF_APPLICATION_ID=${MOESIF_APPLICATION_ID}
   # ... rest of configuration
@@ -153,7 +172,7 @@ exporters:
 
   # Moesif for analytics
   otlphttp/moesif:
-    endpoint: https://api.moesif.net/v1/traces
+    endpoint: https://api.moesif.net
     headers:
       X-Moesif-Application-Id: '${MOESIF_APPLICATION_ID}'
 
@@ -218,9 +237,9 @@ grafana:
     - tempo
 ```
 
-```yaml
-tracing:
-  endpoint: tempo:4317
+```toml
+[tracing]
+endpoint = "tempo:4317"
 ```
 
 ### AWS X-Ray
@@ -288,9 +307,9 @@ datadog-agent:
     - gateway-network
 ```
 
-```yaml
-tracing:
-  endpoint: datadog-agent:4317
+```toml
+[tracing]
+endpoint = "datadog-agent:4317"
 ```
 
 ### New Relic
@@ -300,7 +319,7 @@ Configure OTLP Collector to export to New Relic:
 ```yaml
 exporters:
   otlphttp:
-    endpoint: https://otlp.nr-data.net:4317
+    endpoint: https://otlp.nr-data.net
     headers:
       api-key: ${NEW_RELIC_LICENSE_KEY}
 ```
@@ -327,16 +346,16 @@ exporters:
 
 ### Istio and Linkerd
 
-```yaml
-tracing:
-  enabled: true
-  endpoint: istio-telemetry.istio-system:4317
+```toml
+[tracing]
+enabled = true
+endpoint = "istio-telemetry.istio-system:4317"
 ```
 
-```yaml
-tracing:
-  enabled: true
-  endpoint: linkerd-collector.linkerd:4317
+```toml
+[tracing]
+enabled = true
+endpoint = "linkerd-collector.linkerd:4317"
 ```
 
 ## Collector configuration
@@ -436,7 +455,7 @@ service:
       exporters: [otlp/jaeger, otlp/tempo, datadog]
 ```
 
-Keep error traces, slow traces, and a sample of the rest:
+Keep error traces, slow traces, and a sample of the rest. This processor needs the contrib build of the collector:
 
 ```yaml
 processors:
@@ -474,7 +493,7 @@ curl http://localhost:8080/weather/v1.0/us/seattle \
 | 1000-10000 req/s | 1-10% (0.01-0.1) | Cost-effective, statistical sampling |
 | > 10000 req/s | 0.1-1% (0.001-0.01) | Minimal overhead, error sampling |
 
-Use tail sampling if you want every error trace kept while ordinary traffic is sampled. In production, use TLS on the collector connection and a memory limit on the collector.
+Use tail sampling, which needs the contrib build of the collector, if you want every error trace kept while ordinary traffic is sampled. In production, use TLS on the collector connection and a memory limit on the collector.
 
 ## Troubleshooting
 
@@ -483,10 +502,10 @@ Use tail sampling if you want every error trace kept while ordinary traffic is s
 1. Confirm tracing is on:
 
 ```bash
-cat gateway/configs/config.toml | grep -A5 "tracing"
+cat configs/config.toml | grep -A5 "tracing"
 ```
 
-`enabled` must be `true`.
+The file must contain a `[tracing]` section, and `enabled` must be `true`.
 
 2. Confirm the collector and Jaeger are running:
 
@@ -502,19 +521,18 @@ curl http://localhost:16686/
 3. Read the collector and component logs:
 
 ```bash
-docker logs otel-collector
+docker compose logs otel-collector
 ```
 
 ```bash
-docker logs policy-engine | grep -i trace
-docker logs gateway-controller | grep -i trace
+docker compose logs gateway-runtime | grep -i trace
+docker compose logs gateway-controller | grep -i trace
 ```
 
 4. Check that the containers can reach each other:
 
 ```bash
-docker exec policy-engine ping otel-collector
-docker exec otel-collector ping jaeger
+docker compose exec gateway-runtime ping -c 1 otel-collector
 ```
 
 If spans are missing, the sampling rate may be too low, a component may not be exporting, or the `traceparent` header may have been dropped. Clock skew across containers shows up as wrong span times.
@@ -539,7 +557,7 @@ docker ps | grep jaeger
 ```
 
 ```bash
-docker logs jaeger
+docker compose logs jaeger
 ```
 
 ```bash
@@ -550,36 +568,22 @@ Port 16686 must be reachable on the host.
 
 ## Turn tracing off
 
-In `gateway/configs/config.toml`:
+In `configs/config.toml`:
 
 ```toml
-[policy_engine.tracing]
-enabled = false
-
 [tracing]
 enabled = false
 ```
 
 ```bash
-docker compose restart gateway-controller policy-engine router
+docker compose restart gateway-controller gateway-runtime
 ```
 
 Router tracing follows the gateway-controller configuration, so it stops when that configuration is applied.
 
 ## Match a trace to a log
 
-Log lines include `trace_id` and `span_id`. Copy the trace ID into Jaeger, or copy a Jaeger trace ID into the log search.
-
-```json
-{
-  "level": "info",
-  "ts": "2025-12-19T10:30:45.456Z",
-  "msg": "Policy executed",
-  "trace_id": "0af7651916cd43dd8448eb211c80319c",
-  "span_id": "b7ad6b7169203331",
-  "policy": "modify-headers"
-}
-```
+Most log lines don't carry a trace ID. The policy engine writes `trace_id` only in a debug message when it extracts the trace context from request headers, and no component logs `span_id`. To match a trace to a log, set the policy engine log level to `debug` and search the logs for the trace ID from Jaeger.
 
 Run both stacks together:
 

@@ -1,10 +1,10 @@
 ---
 title: "Manage Usage"
 pagination_label: "Manage Usage"
-description: "Learn how applications track the usage of your keys, and how subscriptions apply the usage limits of a subscription plan, in the API Portal and AI Hub."
+description: "Learn how applications track the usage of your keys, and how subscriptions apply the usage limits of a subscription plan, in the API Portal & AI Hub."
 ---
 
-Applications and subscriptions in the API Portal and AI Hub let you track how your keys are used, and subscribe to APIs under subscription plans.
+Applications and subscriptions in the API Portal & AI Hub let you track how your keys are used, and subscribe to APIs under subscription plans.
 
 | Feature | What It Does | When You Need It |
 |:--------|:-------------|:-----------------|

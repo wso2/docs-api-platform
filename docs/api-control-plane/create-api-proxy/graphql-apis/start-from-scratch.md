@@ -38,7 +38,7 @@ This walks you through creating a GraphQL API using a sample backend, deploying 
    | **Identifier** | `countries` |
    | **Version** | `1.0` |
    | **Context** | `/countries/v1.0/graphql` |
-   | **Description** | Sample description |
+   | **Description** | Optional. The console leaves it empty. |
    | **Query and Mutation URL** | `https://countries.trevorblades.com/graphql` |
 
    Ensure that the **Identifier** is unique across your organization. Update the generated values if needed.
@@ -49,7 +49,7 @@ This walks you through creating a GraphQL API using a sample backend, deploying 
 
 Deploying places a build of the API on a gateway so requests can reach the backend through that gateway.
 
-1. Choose a gateway. Your organization has a Choreo Managed Gateway named **Default**, in the development environment. To deploy to another gateway, create it first. See [Manage Gateways](../../administer/managing-gateways.md).
+1. Choose a gateway. Your organization has a cloud gateway named **Default**, in the development environment. To deploy to another gateway, create it first. See [Manage Gateways](../../administer/managing-gateways.md).
 2. Go to the **Deploy** section and deploy the API to the gateway. For more information, see [Deploy an API](../../deploy-api-proxy/overview.md).
 
 ## Test the API

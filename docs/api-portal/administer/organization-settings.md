@@ -1,11 +1,11 @@
 ---
 title: "Organization settings"
-description: "Edit the organization name, business owner, and control plane reference from Settings in the API Portal and AI Hub."
+description: "Edit the organization name, business owner, and control plane reference from Settings in the API Portal & AI Hub."
 ---
 
 **Organization** in **Settings** is where you edit the organization you are signed in to.
 
-1. Sign in to the API Portal and AI Hub as an admin.
+1. Sign in to the API Portal & AI Hub as an admin.
 2. Open **Settings**.
 3. Under **ORGANIZATION**, select **Organization**.
 

@@ -91,7 +91,7 @@ A self-hosted gateway is never an environment's default gateway, so make sure it
    https://localhost:8443/default/reading-list-api/v1.0
    ```
 
-3. Switch to **CURL VIEW**, choose a resource (for example `GET /books`), and copy the generated command.
+3. Switch to **cURL view**, choose a resource (for example `GET /books`), and copy the generated command.
 
 ![Invoke the Deployed API using the Test Console's cURL View](/img/cloud/self-hosted-gateway/create-and-test-api/self-hosted-create-and-test-api-step-8.png)
 
@@ -114,7 +114,7 @@ A self-hosted gateway is never an environment's default gateway, so make sure it
    ```
 
 :::note
-**CONSOLE VIEW** sends requests from your browser straight to the gateway URL. It works only if your browser can reach that URL and trusts the gateway's certificate. If it fails with a network or certificate error, use **CURL VIEW**, or open the gateway URL in the browser once and trust its certificate.
+In **Console view**, the **Through proxy** option relays the request through the API Control Plane. It can't reach a gateway on a private network or on `localhost`. Select **Direct** to send the request from your browser straight to the gateway URL. **Direct** works only if your browser can reach that URL and trusts the gateway's certificate. If it fails with a network or certificate error, use **cURL view**, or open the gateway URL in the browser once and trust its certificate.
 :::
 
 :::warning
@@ -123,7 +123,7 @@ An API with no security policy attached can be called without credentials, as in
 
 ## Update or Remove a Deployment
 
-- **Redeploy after changes.** Changes to an API (resources, policies, endpoint) reach the gateway only when you deploy again. On the **Deploy** page, click **Deploy**; the arrow next to it selects which build to deploy. Each deployment creates a new build in the **Build Area**.
+- **Redeploy after changes.** Changes to an API (resources, policies, endpoint) reach the gateway only when you deploy again. On the **Deploy** page, click the arrow next to **Deploy**, select **Build and Deploy**, and then click **Build and Deploy**. This creates a new build in the **Build Area** and deploys it. **Deploy** deploys an existing build.
 - **Undeploy.** On the **Deploy** page, expand the gateway row and click **Stop deployment**. The gateway removes the API's routes.
 - **Gateway offline during a change?** The gateway re-syncs every deployment assigned to it when it reconnects, and periodically after that, so it catches up automatically.
 
