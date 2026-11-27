@@ -16,6 +16,9 @@ content_type: "how-to"
 
 This guide explains how to implement and configure logging for the API Platform Gateway components.
 
+!!! tip
+    This page covers the logs the gateway components write about their own work. For a log line for every request, see [Router Access Logs](access-logs.md) and [Traffic Logging](traffic-logging/overview.md).
+
 ## Overview
 
 The default logging services included in the Docker Compose configuration are **demonstration services** designed to showcase how you can observe component logs in a centralized setup. These services provide a reference implementation that you can use out-of-the-box for development, testing, or as a starting point for your production logging strategy.

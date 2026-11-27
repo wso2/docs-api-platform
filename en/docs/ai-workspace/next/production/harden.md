@@ -94,5 +94,6 @@ For the configuration on each platform, see [Deploy on VMs](deploy-on-vms.md#har
 
 - [Connect an identity provider to AI Workspace](../setting-up/authentication/connect-an-identity-provider.md): the full OIDC setup this page switches on
 - [Authentication in AI Workspace](../setting-up/authentication/overview.md): how the two authentication modes differ
+- [Outbound HTTP Client and Proxy Configuration](outbound-http-client-and-proxy.md): connection pooling, timeouts, and forward proxy settings on each service's outbound HTTP client
 - [Provision secrets and keys](secrets-and-keys.md): the credentials behind these settings
 - [Deploy on VMs](deploy-on-vms.md), [Deploy on Kubernetes](deploy-on-kubernetes.md), and [Deploy on OpenShift](openshift.md): where this page fits in the full deployment sequence

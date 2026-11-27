@@ -85,6 +85,7 @@ Check the BFF hop by making a proxied call from the UI. A `502` in the AI Worksp
 
 ## Related
 
+- [TLS Ciphers and Post-Quantum Cryptography](tls-ciphers-and-post-quantum-cryptography.md): cipher suites and post-quantum key exchange for these same listeners
 - [Expose AI Workspace](expose-the-workspace.md): the ingress and reverse proxy that sit in front of these listeners
 - [Connect a database to the Platform API](../setting-up/database.md): TLS on the database connection
 - [Provision secrets and keys](secrets-and-keys.md): the other credentials each service needs at startup

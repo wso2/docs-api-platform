@@ -7,7 +7,7 @@ tags:
   - api-gateway
   - management-api
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-09-30
+last_updated: 2026-11-19
 content_type: "reference"
 ---
 
@@ -49,6 +49,46 @@ Server-managed lifecycle information for a resource
 |---|---|
 |state|deployed|
 |state|undeployed|
+
+## Warning
+
+<a id="schemawarning"></a>
+<a id="schema_Warning"></a>
+<a id="tocSwarning"></a>
+<a id="tocswarning"></a>
+
+```json
+{
+  "code": "TLS_VERIFY_HOSTNAME_DISABLED",
+  "field": "spec.upstreamDefinitions[0].tls.verifyHostName",
+  "message": "hostname verification is disabled for this upstream; the backend certificate's name is not checked against the target host"
+}
+
+```
+
+A non-fatal, deploy-time finding attached to a resource's status.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|code|string|false|none|none|
+|field|string|false|none|none|
+|message|string|false|none|none|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|code|MTLS_ACCEPT_INHERITS_POOL|
+|code|MTLS_ACCEPT_UNNARROWED|
+|code|MTLS_AUTH_NOT_FIRST|
+|code|MTLS_ACCEPT_NAMES_RELAY_AUTHORITY|
+|code|MTLS_THUMBPRINT_NORMALISED|
+|code|HEADER_CERT_BYPASS_ACTIVE|
+|code|MTLS_HOSTNAME_NOT_SCOPED|
+|code|TLS_VERIFY_HOSTNAME_DISABLED|
+|code|TLS_IDENTITY_EXPIRED|
 
 ## RestAPIRequest
 
@@ -228,6 +268,176 @@ allOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |*anonymous*|[RestAPIRequest](#schemarestapirequest)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+
+## GraphQLAPIConfigData
+
+<a id="schemagraphqlapiconfigdata"></a>
+<a id="schema_GraphQLAPIConfigData"></a>
+<a id="tocSgraphqlapiconfigdata"></a>
+<a id="tocsgraphqlapiconfigdata"></a>
+
+```json
+{
+  "displayName": "Countries GraphQL API",
+  "version": "v1.0",
+  "context": "/countries/$version/graphql",
+  "upstream": {
+    "main": {
+      "url": "http://prod-backend:5000/api/v2",
+      "ref": "string",
+      "hostRewrite": "auto",
+      "tls": {}
+    },
+    "sandbox": {
+      "url": "http://prod-backend:5000/api/v2",
+      "ref": "string",
+      "hostRewrite": "auto",
+      "tls": {}
+    }
+  },
+  "subscriptionPlans": [
+    "Gold",
+    "Silver"
+  ],
+  "policies": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ],
+  "deploymentState": "deployed"
+}
+
+```
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|true|none|Human-readable API name (must be URL-friendly - only letters, numbers, spaces, hyphens, underscores, and dots allowed)|
+|version|string|true|none|Semantic version of the API. Both major-only (v1) and major.minor (v1.0) forms are accepted.|
+|context|string|true|none|Base path for the single GraphQL endpoint (must start with /, no trailing slash). Use $version to embed the version in the path (e.g., /countries/$version resolves to /countries/v1.0). A GraphQLApi always exposes exactly one POST route at this path — there is no per-operation path list. Suggested (not enforced) convention: end the path with /graphql, matching how most standalone GraphQL servers name their single endpoint (e.g. /countries/$version/graphql) — this is not validated or required.|
+|upstream|object|true|none|API-level upstream configuration. A GraphQLApi has exactly one logical endpoint (no per-operation paths), so upstream.main.url is the single GraphQL endpoint to proxy to. Only a direct inline url is supported — GraphQLAPIConfigData has no upstreamDefinitions list, so upstream.ref (used by RestApi to reference a predefined upstreamDefinition) cannot be resolved and is rejected.|
+|main|[Upstream](#schemaupstream)|true|none|Upstream backend configuration (single target or reference)|
+|sandbox|[Upstream](#schemaupstream)|false|none|Upstream backend configuration (single target or reference)|
+|subscriptionPlans|[string]|false|none|List of subscription plan names available for this API|
+|policies|[[Policy](#schemapolicy)]|false|none|List of policies applied to the GraphQL route(s). A GraphQLApi has<br>no operations[] list to add an explicit `OPTIONS` entry to the way<br>a RestApi does, so when a `cors` policy is attached, the gateway<br>synthesizes an OPTIONS route for the same path itself, sharing this<br>same policy chain — this is what lets `cors` (and every other<br>policy in this list, in declared order) answer a browser's<br>preflight request.|
+|deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the API is removed from router traffic but configuration, API keys, and policies are preserved for potential redeployment.|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|deploymentState|deployed|
+|deploymentState|undeployed|
+
+## GraphQLAPIRequest
+
+<a id="schemagraphqlapirequest"></a>
+<a id="schema_GraphQLAPIRequest"></a>
+<a id="tocSgraphqlapirequest"></a>
+<a id="tocsgraphqlapirequest"></a>
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "GraphQLApi",
+  "metadata": {
+    "name": "countries-graphql-api-v1.0"
+  },
+  "spec": {
+    "displayName": "Countries-GraphQL-API",
+    "version": "v1.0",
+    "context": "/countries/$version/graphql",
+    "upstream": {
+      "main": {
+        "url": "https://countries.trevorblades.com/graphql"
+      }
+    },
+    "policies": [
+      {
+        "name": "jwt-auth",
+        "version": "v1"
+      }
+    ]
+  }
+}
+
+```
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|API specification version|
+|kind|string|true|none|API type|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[GraphQLAPIConfigData](#schemagraphqlapiconfigdata)|true|none|none|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1|
+|kind|GraphQLApi|
+
+## GraphQLAPI
+
+<a id="schemagraphqlapi"></a>
+<a id="schema_GraphQLAPI"></a>
+<a id="tocSgraphqlapi"></a>
+<a id="tocsgraphqlapi"></a>
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "GraphQLApi",
+  "metadata": {
+    "name": "countries-graphql-api-v1.0"
+  },
+  "spec": {
+    "displayName": "Countries-GraphQL-API",
+    "version": "v1.0",
+    "context": "/countries/$version/graphql",
+    "upstream": {
+      "main": {
+        "url": "https://countries.trevorblades.com/graphql"
+      }
+    },
+    "policies": [
+      {
+        "name": "jwt-auth",
+        "version": "v1"
+      }
+    ]
+  },
+  "status": {
+    "id": "countries-graphql-api-v1.0",
+    "state": "deployed",
+    "createdAt": "2026-08-11T10:00:00Z",
+    "updatedAt": "2026-08-11T10:00:00Z",
+    "deployedAt": "2026-08-11T10:00:00Z"
+  }
+}
+
+```
+
+#### Properties
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[GraphQLAPIRequest](#schemagraphqlapirequest)|false|none|none|
 
 and
 
@@ -3013,7 +3223,9 @@ and
 
 ```json
 {
-  "name": "my-custom-ca",
+  "name": "partner-a-root",
+  "usage": "downstream",
+  "role": "client",
   "certificate": "-----BEGIN CERTIFICATE-----\nMIIDXTCCAkWgAwIBAgIJAKL0UG+mRKtjMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV\n...\n-----END CERTIFICATE-----\n"
 }
 
@@ -3023,8 +3235,51 @@ and
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|name|string|true|none|Unique name for the certificate. Must be unique across all certificates.|
-|certificate|string|true|none|PEM-encoded X.509 certificate(s). Can contain multiple certificates.|
+|name|string|true|none|Unique name for the certificate. Must be unique across all certificates, regardless of usage. Letters, digits, `.`, `_`, and `-` only.|
+|certificate|string|true|none|PEM-encoded X.509 certificate(s). Can contain multiple certificates. For `usage: identity`, the certificate chain, leaf first.|
+|usage|string|false|none|What the certificate is for: `upstream` (default), a certificate authority (CA) that the gateway trusts when it verifies HTTPS backends; `downstream`, a client CA that authenticates mutual TLS (mTLS) callers; or `identity`, a certificate chain and private key that the gateway presents to backends that require mTLS.|
+|role|string|false|none|With `usage: downstream`, `client` (default) validates a client certificate presented on the TLS connection, and `relay` validates a load balancer that forwards the caller's certificate in a header. With `usage: identity`, `default` makes this the identity presented to HTTPS backends whose upstream definition names no `tls.identity`. Only one identity can have `role: default`. Any other combination is rejected. The role can't change after upload.|
+|match|[CertificateMatch](#schemacertificatematch)|false|none|Only valid for `role: relay`. Accepts the forwarded header only on a connection whose certificate carries one of the listed subject alternative names (SANs). Omit to accept any connection that presents a certificate from this CA.|
+|privateKey|string(password)|false|write-only|Required, and only valid, for `usage: identity`. A PEM-encoded, unencrypted private key that matches the leaf certificate: RSA, ECDSA, or Ed25519, in PKCS#8, PKCS#1, or SEC1 format. The gateway encrypts it at rest and never returns it.|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|usage|upstream|
+|usage|downstream|
+|usage|identity|
+|role|client|
+|role|relay|
+|role|default|
+
+## CertificateMatch
+
+<a id="schemacertificatematch"></a>
+<a id="schema_CertificateMatch"></a>
+<a id="tocScertificatematch"></a>
+<a id="tocscertificatematch"></a>
+
+```json
+{
+  "dnsSANs": [
+    "lb.example.com"
+  ],
+  "uriSANs": [
+    "urn:partner-a:edge-lb"
+  ]
+}
+
+```
+
+Narrows a `role: relay` CA to the connections it vouches for. If a list is present, it must name at least one non-empty SAN.
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|dnsSANs|[string]|false|none|DNS subject alternative names accepted on the relay connection's certificate|
+|uriSANs|[string]|false|none|URI subject alternative names accepted on the relay connection's certificate|
 
 ## CertificateResponse
 
@@ -3036,11 +3291,15 @@ and
 ```json
 {
   "id": "550e8400-e29b-41d4-a716-446655440000",
-  "name": "my-custom-ca",
-  "subject": "CN=My CA,O=My Organization,C=US",
-  "issuer": "CN=My CA,O=My Organization,C=US",
+  "name": "partner-a-root",
+  "usage": "downstream",
+  "role": "client",
+  "subject": "CN=Partner A Root,O=Partner A,C=US",
+  "issuer": "CN=Partner A Root,O=Partner A,C=US",
   "notAfter": "2026-11-26 06:07:26",
   "count": 1,
+  "isLeaf": false,
+  "referencedByApis": 0,
   "message": "Certificate uploaded and SDS updated successfully",
   "status": "success"
 }
@@ -3053,10 +3312,18 @@ and
 |---|---|---|---|---|
 |id|string|false|none|Unique identifier (UUID) for the certificate|
 |name|string|false|none|Name of the certificate|
-|subject|string|false|none|Certificate subject DN (for first cert if bundle)|
-|issuer|string|false|none|Certificate issuer DN (for first cert if bundle)|
-|notAfter|string(date-time)|false|none|Certificate expiration date (for first cert if bundle)|
+|usage|string|false|none|`upstream`, `downstream`, or `identity`|
+|role|string|false|none|For `usage: downstream`, `client` or `relay`. For `usage: identity`, present only as `default` on the default identity.|
+|match|[CertificateMatch](#schemacertificatematch)|false|none|Only present for a `role: relay` CA stored with a `match`|
+|subject|string|false|none|Subject distinguished name (DN) of the first certificate in the file. For `usage: identity`, the leaf certificate.|
+|issuer|string|false|none|Issuer DN of the first certificate in the file. For `usage: identity`, the leaf certificate.|
+|notAfter|string(date-time)|false|none|Expiration date of the first certificate in the file. For `usage: identity`, the leaf certificate.|
 |count|integer|false|none|Number of certificates in the file|
+|isLeaf|boolean|false|none|`true` when the certificate isn't itself a CA|
+|chainLength|integer|false|none|Only present for `usage: identity`. Number of certificates in the uploaded chain.|
+|keyAlgorithm|string|false|none|Only present for `usage: identity`. Algorithm of the leaf private key: RSA, ECDSA, or Ed25519.|
+|referencedByApis|integer|false|none|Only present for `usage: downstream` or `identity`. Number of deployed APIs that refer to this certificate.|
+|warnings|[[CertificateWarning](#schemacertificatewarning)]|false|none|Non-fatal findings about the upload. Omitted when there are none.|
 |message|string|false|none|Success or informational message|
 |status|string|false|none|none|
 
@@ -3064,8 +3331,47 @@ and
 
 |Property|Value|
 |---|---|
+|usage|upstream|
+|usage|downstream|
+|usage|identity|
+|role|client|
+|role|relay|
+|role|default|
 |status|success|
 |status|error|
+
+## CertificateWarning
+
+<a id="schemacertificatewarning"></a>
+<a id="schema_CertificateWarning"></a>
+<a id="tocScertificatewarning"></a>
+<a id="tocscertificatewarning"></a>
+
+```json
+{
+  "code": "CLIENT_CA_IS_LEAF",
+  "field": "certificate",
+  "message": "the certificate is not a certificate authority; it is pooled as a one-member authority that trusts exactly this certificate"
+}
+
+```
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|code|string|false|none|Warning code|
+|field|string|false|none|Request field the warning applies to|
+|message|string|false|none|Human-readable description|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|code|CLIENT_CA_IS_LEAF|
+|code|CLIENT_CA_NOT_YET_VALID|
+|code|CERT_EXPIRES_SOON|
+|code|IDENTITY_NO_CLIENTAUTH_EKU|
 
 ## CertificateListResponse
 
@@ -3079,17 +3385,19 @@ and
   "certificates": [
     {
       "id": "550e8400-e29b-41d4-a716-446655440000",
-      "name": "my-custom-ca",
-      "subject": "CN=My CA,O=My Organization,C=US",
-      "issuer": "CN=My CA,O=My Organization,C=US",
+      "name": "partner-a-root",
+      "usage": "downstream",
+      "role": "client",
+      "subject": "CN=Partner A Root,O=Partner A,C=US",
+      "issuer": "CN=Partner A Root,O=Partner A,C=US",
       "notAfter": "2026-11-26 06:07:26",
       "count": 1,
-      "message": "Certificate uploaded and SDS updated successfully",
+      "referencedByApis": 1,
       "status": "success"
     }
   ],
-  "totalCount": 3,
-  "totalBytes": 221599,
+  "totalCount": 1,
+  "totalBytes": 1302,
   "status": "success"
 }
 

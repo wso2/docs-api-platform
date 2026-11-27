@@ -9,7 +9,7 @@ tags:
   - deployment
   - architecture
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-21
+last_updated: 2026-11-20
 content_type: "concept"
 ---
 
@@ -68,12 +68,12 @@ The services listen on these ports by default. See [Change the ports AI Workspac
 
 Both services also expose an optional plain-HTTP listener, off by default. Enable it only when a proxy in front of the service terminates TLS. See [Secure traffic with TLS](tls.md).
 
-Health endpoints sit outside the path prefix so probes can reach a container directly:
+Health endpoints sit outside the path prefix so probes can reach a container directly. For what each one checks, see [Health Checks](health-checks.md).
 
 | Endpoint | Service |
 |----------|---------|
 | `/healthz` | AI Workspace |
-| `/health` | Platform API |
+| `/health` (liveness), `/ready` (readiness) | Platform API |
 
 ## What production requires that the quickstart doesn't
 

@@ -19,6 +19,9 @@ content_type: "how-to"
 
 This guide explains how to implement and configure logging for the API Platform Gateway components.
 
+!!! tip
+    The router also writes an access log line for every request. To turn access logs off, write them as JSON lines or choose their fields, see [Router Access Logs](../../../api-gateway/next/observability/access-logs.md) in the API Platform Gateway documentation.
+
 ## Overview
 
 The default logging services included in the Docker Compose configuration are **demonstration services** designed to showcase how you can observe component logs in a centralized setup. These services provide a reference implementation that you can use out-of-the-box for development, testing, or as a starting point for your production logging strategy.

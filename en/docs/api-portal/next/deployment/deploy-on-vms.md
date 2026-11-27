@@ -10,7 +10,7 @@ tags:
   - docker
   - devops
 author: WSO2 API Platform Documentation Team
-last_updated: 2026-10-24
+last_updated: 2026-11-20
 content_type: "how-to"
 ---
 
@@ -25,7 +25,7 @@ For what each step requires and why, independent of where you run the portal, se
 | Requirement | Detail |
 |---|---|
 | Two or more VMs | Each running Docker with the Compose plugin |
-| Load balancer | Fronting the VMs, health-checking `/health` |
+| Load balancer | Fronting the VMs, health-checking `/ready` |
 | `openssl` | Available on the VM you provision secrets from |
 | Database | An external, highly available PostgreSQL or SQL Server every VM can reach |
 
@@ -217,7 +217,7 @@ For planned maintenance, take one VM out of the load balancer pool, upgrade it, 
 
 ## Step 8: Front the portal with a load balancer { #front-the-portal }
 
-Point the load balancer at port `9543` on each VM, with its health check on `/health`. Route `/api-portal/*` through without stripping the prefix, as described in [Overview → Fronting the portal](overview.md#fronting-the-portal).
+Point the load balancer at port `9543` on each VM, with its health check on `/ready`. Route `/api-portal/*` through without stripping the prefix, as described in [Overview → Fronting the portal](overview.md#fronting-the-portal).
 
 Set the public base URL in `configs/config.toml`:
 
@@ -232,7 +232,7 @@ Sessions live in the shared database, so no sticky-session configuration is requ
 
 ## Step 9: Configure health checks { #health-checks }
 
-Point the load balancer's health check at `https://<vm>:9543/health` and configure it to remove an instance that fails. Without that, the load balancer keeps sending traffic to a portal that has stopped serving.
+Point the load balancer's health check at `https://<vm>:9543/ready` and configure it to remove an instance that fails. Without that, the load balancer keeps sending traffic to a portal that has stopped serving or has lost its database. If you restrict `[api_portal.health] allowed_clients`, keep the load balancer's address in the list, and keep `127.0.0.1` and `::1` for the local Compose health check below. See [Health Checks](health-checks.md).
 
 The compose file has no health check for the portal service. Adding one gives Docker the same signal locally:
 
@@ -240,8 +240,8 @@ The compose file has no health check for the portal service. Adding one gives Do
 services:
   api-portal:
     healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "--no-check-certificate", "https://localhost:9543/health"]
-      interval: 30s
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "--no-check-certificate", "https://localhost:9543/ready"]
+      interval: 10s
       timeout: 5s
       retries: 3
 ```
@@ -268,10 +268,10 @@ Confirm every instance is serving, not just that the deploy command succeeded. O
 
 ```bash
 docker compose ps
-curl -sk https://localhost:9543/health
+curl -sk https://localhost:9543/ready
 ```
 
-Then confirm the load balancer sees every instance as healthy, and that its health check is pointed at `/health` rather than `/`.
+Then confirm the load balancer sees every instance as healthy, and that its health check is pointed at `/ready` rather than `/`.
 
 Finally, verify that sessions are shared and that only one instance dispatches each event, as described in [Verify & Upgrade](deploy-and-verify.md#verify).
 
@@ -285,7 +285,7 @@ Upgrade one VM at a time so the others keep serving:
 
 1. Remove the VM from the load balancer pool.
 2. Update the image tag in `docker-compose.yaml`, then `docker compose up -d` to recreate the container.
-3. Confirm `https://localhost:9543/health` responds, and check the startup log.
+3. Confirm `https://localhost:9543/ready` responds with `200`, and check the startup log.
 4. Return it to the pool, then move to the next VM.
 
 Re-running `setup.sh` is safe — it fills in only what is missing and never overwrites an existing value — so an upgrade won't rotate the encryption key out from under stored credentials.

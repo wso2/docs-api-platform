@@ -369,6 +369,8 @@ nav:
           - Artifact Templating: api-gateway/next/setup/artifact-templating.md
           - Health Checks: api-gateway/next/setup/health-checks.md
           - Signing Keys and JWKS: api-gateway/next/setup/signing-keys-and-jwks.md
+          - Ports and TLS Configuration: api-gateway/next/setup/ports-and-tls-configuration.md
+          - Outbound HTTP Client and Proxy Configuration: api-gateway/next/setup/outbound-http-client-and-proxy.md
         - Resiliency:
           - Timeouts: api-gateway/next/resiliency/timeouts.md
         - Policies:
@@ -380,6 +382,7 @@ nav:
           - Custom Policies:
             - Writing a Custom Policy: api-gateway/next/policies/custom-policies/writing-a-custom-policy.md
             - Building Gateway with Custom Policies: api-gateway/next/policies/custom-policies/building-gateway-with-custom-policies.md
+            - Policy Context Reference: api-gateway/next/policies/custom-policies/policy-context-reference.md
         - Deployment:
           - Deployment Modes:
             - Immutable Gateway: api-gateway/next/deployment/deployment-modes/immutable-gateway.md
@@ -404,9 +407,14 @@ nav:
         - Observability:
           - Logging:
             - Centralized Logging: api-gateway/next/observability/logging.md
+            - Router Access Logs: api-gateway/next/observability/access-logs.md
             - Traffic Logging:
-              - Overview: api-gateway/next/observability/traffic-logging.md
-              - Custom Log Format: api-gateway/next/observability/custom-traffic-log-format.md
+              - Overview: api-gateway/next/observability/traffic-logging/overview.md
+              - Configure Traffic Logging: api-gateway/next/observability/traffic-logging/configuration.md
+              - Log Outputs: api-gateway/next/observability/traffic-logging/log-outputs.md
+              - Custom Log Format: api-gateway/next/observability/traffic-logging/custom-log-format.md
+              - Variable Reference: api-gateway/next/observability/traffic-logging/variable-reference.md
+            - Audit Logging: api-gateway/next/observability/audit-logging.md
           - Tracing:
             - Overview: api-gateway/next/observability/tracing/overview.md
             - Enabling and Disabling Tracing: api-gateway/next/observability/tracing/enabling-tracing.md
@@ -453,6 +461,8 @@ nav:
           - Setting Up the Database: api-gateway/2026.10.0/setup/database-setup.md
           - Artifact Templating: api-gateway/2026.10.0/setup/artifact-templating.md
           - Health Checks: api-gateway/2026.10.0/setup/health-checks.md
+          - Ports and TLS Configuration: api-gateway/2026.10.0/setup/ports-and-tls-configuration.md
+          - Outbound HTTP Client and Proxy Configuration: api-gateway/2026.10.0/setup/outbound-http-client-and-proxy.md
         - Resiliency:
           - Timeouts: api-gateway/2026.10.0/resiliency/timeouts.md
         - Policies:
@@ -483,6 +493,7 @@ nav:
             - Control Plane Connection: api-gateway/2026.10.0/deployment/production-deployment/control-plane-connection.md
           - Deploying APIs:
             - Bottom-Up Deployment: api-gateway/2026.10.0/deployment/deploying-apis/bottom-up-api-deployment.md
+            - GraphQL API Deployment: api-gateway/2026.10.0/deployment/deploying-apis/graphql-api-deployment.md
         - Observability:
           - Logging:
             - Centralized Logging: api-gateway/2026.10.0/observability/logging.md
@@ -511,6 +522,7 @@ nav:
           - Overview: api-gateway/2026.10.0/gateway-controller-management-api/overview.md
           - Authentication: api-gateway/2026.10.0/gateway-controller-management-api/authentication.md
           - Rest API Management: api-gateway/2026.10.0/gateway-controller-management-api/rest-api-management.md
+          - GraphQL API Management: api-gateway/2026.10.0/gateway-controller-management-api/graphql-api-management.md
           - MCP Proxy Management: api-gateway/2026.10.0/gateway-controller-management-api/mcp-proxy-management.md
           - Certificate Management: api-gateway/2026.10.0/gateway-controller-management-api/certificate-management.md
           - LLM Provider Template Management: api-gateway/2026.10.0/gateway-controller-management-api/llm-provider-template-management.md
@@ -565,6 +577,7 @@ nav:
           - Logging:
             - Centralized Logging: api-gateway/1.2.0/observability/logging.md
             - Traffic Logging: api-gateway/1.2.0/observability/traffic-logging.md
+            - Audit Logging: api-gateway/1.2.0/observability/audit-logging.md
           - Tracing:
             - Overview: api-gateway/1.2.0/observability/tracing/overview.md
             - Enabling and Disabling Tracing: api-gateway/1.2.0/observability/tracing/enabling-tracing.md
@@ -773,6 +786,7 @@ nav:
             - ai-gateway/next/logging-and-tracing/index.md
             - Gateway Logs: ai-gateway/next/logging-and-tracing/gateway-logs.md
             - Log Requests and Responses: ai-gateway/next/logging-and-tracing/log-requests-and-responses.md
+            - Audit Logs: ai-gateway/next/logging-and-tracing/audit-logs.md
             - Tracing: ai-gateway/next/logging-and-tracing/tracing.md
         - Analytics:
             - ai-gateway/next/analytics/index.md
@@ -1134,6 +1148,7 @@ nav:
             - ai-gateway/1.2.0/logging-and-tracing/index.md
             - Gateway Logs: ai-gateway/1.2.0/logging-and-tracing/gateway-logs.md
             - Log Requests and Responses: ai-gateway/1.2.0/logging-and-tracing/log-requests-and-responses.md
+            - Audit Logs: ai-gateway/1.2.0/logging-and-tracing/audit-logs.md
             - Tracing: ai-gateway/1.2.0/logging-and-tracing/tracing.md
         - Analytics:
             - ai-gateway/1.2.0/analytics/index.md
@@ -1344,6 +1359,7 @@ nav:
             - Configuration & Interpolation: api-portal/next/setting-up/configuration.md
             - Minimum resource requirements: api-portal/next/setting-up/resource-requirement.md
             - Ports: api-portal/next/setting-up/ports.md
+            - TLS & Post-Quantum Cryptography: api-portal/next/setting-up/tls-and-post-quantum-cryptography.md
             - Database: api-portal/next/setting-up/database.md
             - Authentication:
                 - Overview: api-portal/next/setting-up/authentication/overview.md
@@ -1400,7 +1416,9 @@ nav:
                 - Security Hardening: api-portal/next/deployment/security-hardening.md
                 - Database Configuration: api-portal/next/deployment/database-configuration.md
                 - Resources & Scaling: api-portal/next/deployment/resources-and-scaling.md
+                - Health Checks: api-portal/next/deployment/health-checks.md
                 - Control Plane Connection: api-portal/next/deployment/control-plane-connection.md
+                - Audit Logging: api-portal/next/deployment/audit-logging.md
                 - Verify & Upgrade: api-portal/next/deployment/deploy-and-verify.md
             - Deploy on VMs: api-portal/next/deployment/deploy-on-vms.md
             - Deploy on Kubernetes:
@@ -1498,6 +1516,7 @@ nav:
                 - Database Configuration: api-portal/1.0.0/deployment/database-configuration.md
                 - Resources & Scaling: api-portal/1.0.0/deployment/resources-and-scaling.md
                 - Control Plane Connection: api-portal/1.0.0/deployment/control-plane-connection.md
+                - Audit Logging: api-portal/1.0.0/deployment/audit-logging.md
                 - Verify & Upgrade: api-portal/1.0.0/deployment/deploy-and-verify.md
             - Deploy on VMs: api-portal/1.0.0/deployment/deploy-on-vms.md
             - Deploy on Kubernetes:
@@ -1553,11 +1572,14 @@ nav:
           - Production Readiness:
               - Provision Secrets and Keys: ai-workspace/next/production/secrets-and-keys.md
               - Secure Traffic with TLS: ai-workspace/next/production/tls.md
+              - TLS Ciphers and Post-Quantum Cryptography: ai-workspace/next/production/tls-ciphers-and-post-quantum-cryptography.md
+              - Outbound HTTP Client and Proxy Configuration: ai-workspace/next/production/outbound-http-client-and-proxy.md
               - Expose AI Workspace: ai-workspace/next/production/expose-the-workspace.md
               - Run in High Availability: ai-workspace/next/production/high-availability.md
               - Harden the Deployment: ai-workspace/next/production/harden.md
               - Connect AI Gateways: ai-workspace/next/production/connect-gateways.md
               - Operate the Deployment: ai-workspace/next/production/operate.md
+              - Health Checks: ai-workspace/next/production/health-checks.md
           - Deploy on VMs: ai-workspace/next/production/deploy-on-vms.md
           - Deploy on Kubernetes:
               - Kubernetes: ai-workspace/next/production/deploy-on-kubernetes.md
@@ -1656,6 +1678,7 @@ nav:
               - Harden the Deployment: ai-workspace/1.0.0/production/harden.md
               - Connect AI Gateways: ai-workspace/1.0.0/production/connect-gateways.md
               - Operate the Deployment: ai-workspace/1.0.0/production/operate.md
+              - Configure Audit Logging: ai-workspace/1.0.0/production/audit-logging.md
           - Deploy on VMs: ai-workspace/1.0.0/production/deploy-on-vms.md
           - Deploy on Kubernetes:
               - Kubernetes: ai-workspace/1.0.0/production/deploy-on-kubernetes.md
@@ -1855,6 +1878,9 @@ plugins:
   - markdownextradata: {}
   - redirects:
       redirect_maps:
+        # API Gateway: Traffic Logging split into its own folder
+        api-gateway/next/observability/traffic-logging.md: api-gateway/next/observability/traffic-logging/overview.md
+        api-gateway/next/observability/custom-traffic-log-format.md: api-gateway/next/observability/traffic-logging/custom-log-format.md
         # Cloud AI Workspace: Getting Started merged into the quick start guide
         cloud/ai-workspace/getting-started.md: cloud/ai-workspace/quickstart.md
         # API Portal: Getting Started merged into the quick start guide
