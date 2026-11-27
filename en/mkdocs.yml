@@ -1826,8 +1826,6 @@ nav:
     - VS Code Arazzo Visualizer:
         - Overview: tools/vscode-arazzo-visualizer/getting-started.md
         - Quick Start Guide: tools/vscode-arazzo-visualizer/quick-start-guide.md
-  - FAQ: faq.md
-  - Glossary: glossary.md
 
 # Extensions
 markdown_extensions:
@@ -2668,12 +2666,6 @@ extra:
       level: 1
     Get Started:
       icon: octicons/rocket-16
-      level: 1
-    FAQ:
-      icon: octicons/question-16
-      level: 1
-    Glossary:
-      icon: octicons/typography-16
       level: 1
     Cloud:
       icon: octicons/cloud-16
