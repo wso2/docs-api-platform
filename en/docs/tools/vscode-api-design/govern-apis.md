@@ -1,14 +1,12 @@
 ---
 title: "Govern APIs with API Designer"
 description: "Review AI readiness, REST design, and OWASP security findings for your OpenAPI specification using API Designer governance reports."
-canonical_url: https://wso2.com/api-platform/docs/tools/vscode-api-design/govern-apis/
-md_url: https://wso2.com/api-platform/docs/tools/vscode-api-design/govern-apis.md
 tags:
   - tools
   - vscode
   - api-design
   - governance
-author: WSO2 API Platform Documentation Team
+author: Choreo API Management Documentation Team
 last_updated: 2026-08-11
 content_type: "how-to"
 ---
@@ -38,8 +36,8 @@ API Designer includes the following reports:
 
 | Report focus | What it emphasizes |
 |---------------|-------------------|
-| **WSO2 REST API AI Readiness Guidelines** | Readiness for AI agents and automated clients |
-| **WSO2 REST API Design Guidelines** | REST design quality and consistency |
+| **REST API AI Readiness Guidelines** | Readiness for AI agents and automated clients |
+| **REST API Design Guidelines** | REST design quality and consistency |
 | **OWASP API Security Top 10** | API security best-practice checks |
 
 ## AI readiness first
@@ -100,15 +98,15 @@ By default, API Designer runs the three bundled Spectral rulesets listed above. 
 
 Use the Workspace option (`.vscode/settings.json`) when different projects need different ruleset folders. Otherwise, a single User-level setting applies to every workspace you open.
 
-**Start from the bundled rulesets.** The simplest way to build a custom ruleset is to copy WSO2's bundled ones and customize them: [WSO2 bundled Spectral rulesets](https://github.com/wso2/vscode-extensions/tree/main/workspaces/api-designer/api-designer-extension/spectral-rulesets).
+**Start from the bundled rulesets.** The simplest way to build a custom ruleset is to copy the bundled ones and customize them: [bundled Spectral rulesets](https://github.com/wso2/vscode-extensions/tree/main/workspaces/api-designer/api-designer-extension/spectral-rulesets).
 
 **Name your file to match the report you're overriding:**
 
 | Report | Required filename |
 |---|---|
-| WSO2 REST API AI Readiness Guidelines | `ai-readiness.yaml` |
+| REST API AI Readiness Guidelines | `ai-readiness.yaml` |
 | OWASP API Security Top 10 | `owasp_top_10.yaml` |
-| WSO2 REST API Design Guidelines | `wso2_rest_api_design_guidelines.yaml` |
+| REST API Design Guidelines | `wso2_rest_api_design_guidelines.yaml` |
 
 **Overriding an existing rule vs. adding a new one:** editing an existing rule works correctly across all three reports. If you want to add new rules to OWASP, use the same format as the bundled rules—`owasp:apiN:2023-<description>` (for example `owasp:api1:2023-custom-check`)—so they're categorized correctly. For REST API Design Guidelines, new rules are grouped under a general **Others** category instead of a specific theme. We recommend against adding new rules to AI Readiness, since that report doesn't support them.
 

@@ -1,22 +1,20 @@
 ---
-title: "WSO2 API Manager Overview"
-description: "A high-level map of WSO2 API Manager's capabilities for designing, governing, and monetizing APIs across cloud, on-premise, and hybrid architectures."
-canonical_url: https://wso2.com/api-platform/docs/api-manager/overview/
-md_url: https://wso2.com/api-platform/docs/api-manager/overview.md
+title: "Choreo API Manager Overview"
+description: "A high-level map of Choreo API Manager's capabilities for designing, governing, and monetizing APIs across cloud, on-premise, and hybrid architectures."
 tags:
   - api-manager
   - api-management
   - governance
-author: WSO2 API Platform Documentation Team
+author: Choreo API Management Documentation Team
 last_updated: 2026-06-11
 content_type: "concept"
 ---
 
-# WSO2 API Manager Overview
+# Choreo API Manager Overview
 
-WSO2 API Manager is a complete platform for building, integrating, and exposing your digital services as managed APIs. Irrespective of cloud, on-premise, or hybrid architectures, API Manager provides the tools to drive your digital transformation strategy from design to deployment.
+Choreo API Manager is a complete platform for building, integrating, and exposing your digital services as managed APIs. Irrespective of cloud, on-premise, or hybrid architectures, API Manager provides the tools to drive your digital transformation strategy from design to deployment.
 
-Visit [the API Manager documentation website](https://apim.docs.wso2.com/en/latest/) to explore detailed guides, tutorials, and component references. 
+Visit [the API Manager documentation website](https://apim.docs.choreolabs.com/en/latest/) to explore detailed guides, tutorials, and component references. 
 
 This page provides a high-level map of the API Manager's capabilities to help you understand the ecosystem.
 
@@ -52,4 +50,4 @@ Oversee the security, usage, and automation of your API ecosystem.
 Configure and manage the core system, users, and tenants. Manage system-wide policies (like rate limiting), register external Gateways and Key Managers, and oversee global configurations.
 
 ## What's Next?
-Follow [the 15-minute quick start guide](https://apim.docs.wso2.com/en/4.7.0/get-started/api-manager-quick-start-guide/) to get started with API Manager.
+Follow [the 15-minute quick start guide](https://apim.docs.choreolabs.com/en/4.7.0/get-started/api-manager-quick-start-guide/) to get started with API Manager.

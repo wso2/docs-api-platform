@@ -1,20 +1,18 @@
 ---
 title: "API Platform CLI reference"
 description: "Command reference for the ap CLI: gateway management, API and MCP operations, and custom gateway image builds."
-canonical_url: https://wso2.com/api-platform/docs/tools/cli/reference/
-md_url: https://wso2.com/api-platform/docs/tools/cli/reference.md
 tags:
   - tools
   - cli
   - reference
-author: WSO2 API Platform Documentation Team
+author: Choreo API Management Documentation Team
 last_updated: 2026-06-23
 content_type: "reference"
 ---
 
-# WSO2 API Platform CLI (AP)
+# API Platform CLI (AP)
 
-`ap` is a command-line tool for managing and interacting with the WSO2 API Platform.
+`ap` is a command-line tool for managing and interacting with Choreo API Management.
 
 ## Supported Short Flags
 

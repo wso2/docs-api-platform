@@ -1,13 +1,11 @@
 ---
 title: "Arazzo Visualizer for VS Code overview"
 description: "Learn what Arazzo Visualizer for VS Code does: visualize Arazzo workflows as diagrams, run them from the editor, and work with them using GitHub Copilot."
-canonical_url: https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/getting-started/
-md_url: https://wso2.com/api-platform/docs/tools/vscode-arazzo-visualizer/getting-started.md
 tags:
   - tools
   - vscode
   - arazzo
-author: WSO2 API Platform Documentation Team
+author: Choreo API Management Documentation Team
 last_updated: 2026-06-23
 content_type: "concept"
 ---

@@ -1,14 +1,12 @@
 ---
 title: "API Designer end-to-end tutorial"
 description: "Walk through drafting, designing, governing, and fixing an OpenAPI specification end to end using API Designer and GitHub Copilot."
-canonical_url: https://wso2.com/api-platform/docs/tools/vscode-api-design/end-to-end-tutorial/
-md_url: https://wso2.com/api-platform/docs/tools/vscode-api-design/end-to-end-tutorial.md
 tags:
   - tools
   - vscode
   - api-design
   - tutorial
-author: WSO2 API Platform Documentation Team
+author: Choreo API Management Documentation Team
 last_updated: 2026-06-23
 content_type: "tutorial"
 ---
@@ -80,8 +78,8 @@ Outcome: Safe and precise structural edits.
 ## Step 5: Open a governance report and review findings
 
 1. In the designer, report cards are available for the following:
-   - WSO2 REST API AI Readiness Guidelines
-   - WSO2 REST API Design Guidelines
+   - REST API AI Readiness Guidelines
+   - REST API Design Guidelines
    - OWASP API Security Top 10
 2. Click any report card to open the full report and review its score and issue list.
 

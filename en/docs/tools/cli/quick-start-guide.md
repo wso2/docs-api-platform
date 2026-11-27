@@ -1,13 +1,11 @@
 ---
 title: "API Platform CLI quick start guide"
 description: "Install the ap CLI binary, set gateway credentials, and run your first commands from the API Platform Controller."
-canonical_url: https://wso2.com/api-platform/docs/tools/cli/quick-start-guide/
-md_url: https://wso2.com/api-platform/docs/tools/cli/quick-start-guide.md
 tags:
   - tools
   - cli
   - quickstart
-author: WSO2 API Platform Documentation Team
+author: Choreo API Management Documentation Team
 last_updated: 2026-06-23
 content_type: "quickstart"
 ---
