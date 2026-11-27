@@ -1,6 +1,6 @@
 ---
 title: "API Keys"
-description: "View, regenerate, and revoke your API keys in the API Portal and AI Hub, and associate them with applications for usage analytics."
+description: "View, regenerate, and revoke your API keys in the API Portal & AI Hub, and associate them with applications for usage analytics."
 ---
 
 An API key is bound to a specific API, and it authenticates your requests to that API. You send the key in the header that the **API Key Auth** policy of the API expects.
@@ -9,7 +9,7 @@ To generate a key, open the API, click **API Keys**, and click **Generate API ke
 
 ## View Your API Keys
 
-1. Sign in to the API Portal and AI Hub.
+1. Sign in to the API Portal & AI Hub.
 
 2. In the sidebar, click **Keys**, then click **API Keys**.
 

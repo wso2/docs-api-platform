@@ -1,9 +1,9 @@
 ---
 title: "Which Credentials You Need"
-description: "Learn which credentials an API in the API Portal and AI Hub expects, how to tell from its specification, and where to get each one."
+description: "Learn which credentials an API in the API Portal & AI Hub expects, how to tell from its specification, and where to get each one."
 ---
 
-To call an API that is published in the API Portal and AI Hub, you need the endpoint URL of the API and the right credentials in the right headers. An API requires an OAuth2 access token, an API key, or both. A subscription token is needed only when the API has a subscription rate limiting policy. When an API requires more than one credential, send all of them.
+To call an API that is published in the API Portal & AI Hub, you need the endpoint URL of the API and the right credentials in the right headers. An API requires an OAuth2 access token, an API key, or both. A subscription token is needed only when the API has a subscription rate limiting policy. When an API requires more than one credential, send all of them.
 
 | Credential | What It Proves | Where It Comes From | Header |
 |:-----------|:---------------|:--------------------|:-------|

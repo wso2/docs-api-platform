@@ -1,6 +1,6 @@
 ---
 title: "API Workflows"
-description: "Find a published API workflow in the API Portal and AI Hub, read its steps, and hand it to an AI agent through the agent prompt or the Arazzo specification."
+description: "Find a published API workflow in the API Portal & AI Hub, read its steps, and hand it to an AI agent through the agent prompt or the Arazzo specification."
 ---
 
 An API workflow is a published, multi-step sequence of API calls that solves one use case end to end, such as validating a patient, booking a specialist, and confirming the appointment. An administrator defines the workflow once, and everyone who needs that sequence follows the same tested path, instead of piecing it together from individual API specifications.

@@ -5,7 +5,7 @@ description: "Send a notification to your endpoint when API keys or subscription
 
 **Webhooks** sends a notification to your endpoint when API keys or subscriptions change in this organization.
 
-1. Sign in to the API Portal and AI Hub as an administrator.
+1. Sign in to the API Portal & AI Hub as an administrator.
 2. Open **Settings**.
 3. Under **INTEGRATIONS**, select **Webhooks**.
 

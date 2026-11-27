@@ -1,11 +1,11 @@
 ---
-title: "API Portal and AI Hub"
-pagination_label: "API Portal and AI Hub"
+title: "API Portal & AI Hub"
+pagination_label: "API Portal & AI Hub"
 description: "Discover, subscribe to, and consume the APIs, MCP servers, and API workflows published from API Management Cloud."
 slug: /api-portal
 ---
 
-The API Portal and AI Hub is where consumers find and use the APIs, MCP servers, and API workflows that your organization publishes from the [API Control Plane](../api-control-plane/overview.md). It is built for both application developers and AI agents. Developers browse the catalog, read the documentation and get the credentials to invoke it. AI agents discover the same APIs through machine-readable endpoints.
+The API Portal & AI Hub is where consumers find and use the APIs, MCP servers, and API workflows that your organization publishes from the [API Control Plane](../api-control-plane/overview.md). It is built for both application developers and AI agents. Developers browse the catalog, read the documentation and get the credentials to invoke it. AI agents discover the same APIs through machine-readable endpoints.
 
 ## Open the Portal
 
@@ -37,7 +37,7 @@ If the portal allows self sign-up, you can create an account by clicking **Sign 
 
 ## Consume an API
 
-To use an API from the API Portal and AI Hub, follow these steps.
+To use an API from the API Portal & AI Hub, follow these steps.
 
 1. Find the API in the catalog, and review its documentation.
 

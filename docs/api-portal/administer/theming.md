@@ -1,15 +1,15 @@
 ---
 title: "Theming"
-description: "Customize the appearance of a view in the API Portal and AI Hub by downloading, editing, and uploading its theme."
+description: "Customize the appearance of a view in the API Portal & AI Hub by downloading, editing, and uploading its theme."
 ---
 
-**Theming** lets you customize the appearance of an individual [view](./manage-views.md) in the API Portal and AI Hub. You can download the theme currently applied to a view, modify its files, and upload the updated theme as a ZIP archive.
+**Theming** lets you customize the appearance of an individual [view](./manage-views.md) in the API Portal & AI Hub. You can download the theme currently applied to a view, modify its files, and upload the updated theme as a ZIP archive.
 
 When you upload a theme, it completely replaces the existing custom theme files for that view.
 
 ## Access theming
 
-1. Sign in to the API Portal and AI Hub as an admin.
+1. Sign in to the API Portal & AI Hub as an admin.
 2. Go to **Settings**.
 3. Under **APPEARANCE**, select **Theming**.
 

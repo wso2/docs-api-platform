@@ -1,11 +1,11 @@
 ---
 title: "Manage views"
-description: "Create and edit views that control which labelled APIs and MCP servers are visible in the API Portal and AI Hub."
+description: "Create and edit views that control which labelled APIs and MCP servers are visible in the API Portal & AI Hub."
 ---
 
 A **view** decides which labelled APIs and MCP servers people see. Each view has its own URL. [LLM Instructions](./llm-instructions.md) and [API Workflows](./manage-api-workflows.md) are also set per view.
 
-1. Sign in to the API Portal and AI Hub as an admin.
+1. Sign in to the API Portal & AI Hub as an admin.
 2. Open **Settings**.
 3. Under **ORGANIZATION**, select **Views**.
 

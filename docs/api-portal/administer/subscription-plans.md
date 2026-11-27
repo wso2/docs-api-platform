@@ -1,11 +1,11 @@
 ---
 title: "Subscription plans"
-description: "View and add the rate and quota tiers that applications can subscribe to in the API Portal and AI Hub."
+description: "View and add the rate and quota tiers that applications can subscribe to in the API Portal & AI Hub."
 ---
 
 A subscription plan is a named usage tier that controls how much of an API a developer can consume. You attach one or more plans to each API you publish, and developers choose a plan when they subscribe.
 
-1. Sign in to the API Portal and AI Hub as an administrator.
+1. Sign in to the API Portal & AI Hub as an administrator.
 2. Open **Settings**.
 3. Under **ORGANIZATION**, select **Subscription Plans**.
 

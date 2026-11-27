@@ -1,5 +1,5 @@
 // Navigation for API Management Cloud: API Control Plane content at the top
-// level, with API Portal and AI Hub as its own section.
+// level, with API Portal & AI Hub as its own section.
 
 const doc = (id, label) => ({type: 'doc', id, label});
 const group = (label, items) => ({type: 'category', label, items});
@@ -100,7 +100,7 @@ const sidebars = {
       ]),
       // doc("api-gateway/insights", "Insights"),
     ]),
-    group("API Portal and AI Hub", [
+    group("API Portal & AI Hub", [
       doc("api-portal/overview", "Overview"),
       doc("api-portal/quickstart-guide", "Quick Start Guide"),
       group("Discover", [

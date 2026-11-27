@@ -1,6 +1,6 @@
 ---
 title: "Consume an API-Key-Secured API"
-description: "Get an API key for an API, and invoke the API with the key from the API Portal and AI Hub."
+description: "Get an API key for an API, and invoke the API with the key from the API Portal & AI Hub."
 ---
 
 An API key is bound to one API, and it authenticates your requests to that API only. No key manager is involved, and an application is optional. You can associate a key with an application for usage analytics, but this does not change how the key works.
@@ -34,7 +34,7 @@ A publisher can also create keys in the API Control Plane. See [API Key Authenti
 
 ## Invoke the API
 
-1. In the API Portal and AI Hub, open the API, and under **Endpoints**, copy the **Production** endpoint.
+1. In the API Portal & AI Hub, open the API, and under **Endpoints**, copy the **Production** endpoint.
 
 2. Send the API key in the header that the **API Key Auth** policy of the API expects.
 

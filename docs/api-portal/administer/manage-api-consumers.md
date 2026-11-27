@@ -1,9 +1,9 @@
 ---
 title: "Manage API Consumers"
-description: "Learn how consumers sign up to the API Portal and AI Hub, and how to add an admin."
+description: "Learn how consumers sign up to the API Portal & AI Hub, and how to add an admin."
 ---
 
-API consumers are the developers who use the API Portal and AI Hub to find APIs, get credentials, and invoke APIs. An admin is a user with the **dp_admin** role. That user signs in to the portal and manages its settings.
+API consumers are the developers who use the API Portal & AI Hub to find APIs, get credentials, and invoke APIs. An admin is a user with the **dp_admin** role. That user signs in to the portal and manages its settings.
 
 ## How Consumers Sign Up
 

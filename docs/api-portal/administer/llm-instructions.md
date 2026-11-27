@@ -5,7 +5,7 @@ description: "Set the portal name and description at the top of llms.txt, and tu
 
 **LLM Instructions** controls how AI agents see this view. It sets the name and description at the top of `llms.txt` - the first thing an agent reads - and carries the switch that turns AI discoverability on or off. The setting applies to one [view](./manage-views.md). Use the view selector to switch views.
 
-1. Sign in to the API Portal and AI Hub as an administrator.
+1. Sign in to the API Portal & AI Hub as an administrator.
 2. Open **Settings**.
 3. Under **AI & DISCOVERY**, select **LLM Instructions**.
 

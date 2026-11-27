@@ -3,7 +3,7 @@ title: "OAuth2 Authentication"
 description: "Secure an API proxy with the JWT Auth policy, so that consumers invoke it with OAuth2 access tokens issued by a key manager."
 ---
 
-With OAuth2 authentication, consumers send an OAuth2 access token with each request to invoke an API proxy. You secure the API proxy with the **JWT Auth** policy, and consumers get access tokens in the API Portal and AI Hub.
+With OAuth2 authentication, consumers send an OAuth2 access token with each request to invoke an API proxy. You secure the API proxy with the **JWT Auth** policy, and consumers get access tokens in the API Portal & AI Hub.
 
 ThunderID is the default key manager, so consumers can get access tokens without any other setup.
 
@@ -33,7 +33,7 @@ Publish the API to a portal, so that consumers can find it and get access tokens
 
 ## How Consumers Invoke the API
 
-1. The consumer signs in to the API Portal and AI Hub, and generates an OAuth2 key under **Keys** › **OAuth2 Keys**.
+1. The consumer signs in to the API Portal & AI Hub, and generates an OAuth2 key under **Keys** › **OAuth2 Keys**.
 
 2. The consumer gets an access token with the key.
 
@@ -47,4 +47,4 @@ For the steps that consumers follow, see [Consume an OAuth2-Secured API](../../.
 
 ## Use Another Key Manager
 
-To issue access tokens from your own identity provider, such as WSO2 Identity Server, Asgardeo, or Keycloak, an administrator registers it as a key manager in the API Portal and AI Hub. See [Configure a Custom Key Manager](../../../api-portal/administer/key-managers/custom-key-manager.md).
+To issue access tokens from your own identity provider, such as WSO2 Identity Server, Asgardeo, or Keycloak, an administrator registers it as a key manager in the API Portal & AI Hub. See [Configure a Custom Key Manager](../../../api-portal/administer/key-managers/custom-key-manager.md).

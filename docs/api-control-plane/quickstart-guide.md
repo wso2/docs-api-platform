@@ -153,4 +153,4 @@ The status of the API in that portal changes to **Published**. To open the porta
 
 - [Security](./develop-api-proxy/security/overview.md) - Control who can invoke the API
 - [Attach and Manage Policies](./develop-api-proxy/policy/attach-and-manage-policies.md) - Add capabilities such as rate limiting or header changes to the API
-- [Which Credentials You Need](../api-portal/consume-an-api/overview.md) - Generate keys in the API Portal and AI Hub and invoke the API
+- [Which Credentials You Need](../api-portal/consume-an-api/overview.md) - Generate keys in the API Portal & AI Hub and invoke the API
