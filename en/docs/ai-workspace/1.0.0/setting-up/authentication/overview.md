@@ -83,7 +83,7 @@ The mapping file ships with these roles:
 | `ap_subscriber` | Applications and subscriptions |
 | `ap_viewer` | Read-only access |
 
-Edit that file to change what a role grants, or to add your own.
+Edit that file to change what a role grants, or to add your own. For what each scope allows and how to define a custom role, see [Scopes and custom roles in AI Workspace](scopes.md).
 
 The `setup.sh` script bundled with the Docker Compose distribution provisions the Platform API's admin credentials. It prompts for the username and password, generates the password if you accept the default, and prints that password to the terminal once. See [Getting Started](../../getting-started.md).
 

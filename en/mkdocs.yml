@@ -1665,6 +1665,7 @@ nav:
           - Authentication:
               - Overview: ai-workspace/1.0.0/setting-up/authentication/overview.md
               - Connect an Identity Provider: ai-workspace/1.0.0/setting-up/authentication/connect-an-identity-provider.md
+              - Scopes and Custom Roles: ai-workspace/1.0.0/setting-up/authentication/scopes.md
               - Set up Asgardeo: ai-workspace/1.0.0/setting-up/authentication/asgardeo-setup.md
               - Set up Microsoft Entra ID: ai-workspace/1.0.0/setting-up/authentication/entra-id-setup.md
       - Deployment:
@@ -2221,6 +2222,7 @@ plugins:
         next/ai-workspace/setting-up/authentication/connect-an-identity-provider.md: ai-workspace/1.0.0/setting-up/authentication/connect-an-identity-provider.md
         next/ai-workspace/setting-up/authentication/entra-id-setup.md: ai-workspace/1.0.0/setting-up/authentication/entra-id-setup.md
         next/ai-workspace/setting-up/authentication/overview.md: ai-workspace/1.0.0/setting-up/authentication/overview.md
+        next/ai-workspace/setting-up/authentication/scopes.md: ai-workspace/1.0.0/setting-up/authentication/scopes.md
         next/ai-workspace/setting-up/configuration.md: ai-workspace/1.0.0/setting-up/configuration.md
         next/ai-workspace/setting-up/database.md: ai-workspace/1.0.0/setting-up/database.md
         next/ai-workspace/setting-up/ports.md: ai-workspace/1.0.0/setting-up/ports.md
